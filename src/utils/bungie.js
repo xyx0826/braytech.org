@@ -47,8 +47,13 @@ async function apiRequest(path, options = {}) {
     let now = new Date().getTime() + 10000;
     let then = new Date(tokens.access.expires).getTime();
 
+    // refresh tokens before making auth-full request
     if (now > then) {
-      await GetOAuthAccessToken(`grant_type=refresh_token&refresh_token=${tokens.refresh.value}`);
+      const refreshRequest = await GetOAuthAccessToken(`grant_type=refresh_token&refresh_token=${tokens.refresh.value}`);
+
+      if (refreshRequest && !refreshRequest.ok) {
+        return await refreshRequest.json();
+      }
 
       tokens = ls.get('setting.auth');
 
@@ -76,7 +81,7 @@ async function apiRequest(path, options = {}) {
         });
       }
     });
-  const response = request && await request.json();
+  const response = request && request.ok && await request.json();
 
   if (response && response.ErrorCode && response.ErrorCode !== 1) {
     if (!options.errors.hide) {

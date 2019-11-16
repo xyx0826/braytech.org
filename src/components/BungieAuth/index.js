@@ -17,6 +17,12 @@ import ObservedImage from '../ObservedImage';
 
 import './styles.css';
 
+const handleErrors = response => {
+  if (response.error && response.error === 'invalid_grant') {
+    ls.del('setting.auth');
+  }
+}
+
 class BungieAuth extends React.Component {
   constructor(props) {
     super(props);
@@ -40,19 +46,24 @@ class BungieAuth extends React.Component {
     const response = await bungie.GetMembershipDataForCurrentUser();
 
     if (this.mounted) {
-      if (response && response.ErrorCode === 1) {
+      if (response && response.ErrorCode && response.ErrorCode === 1) {
         this.setState(p => ({
           ...p,
           loading: false,
           memberships: response.Response
         }));
-      } else if (response && response.ErrorCode !== 1) {
+      } else if ((response && response.ErrorCode && response.ErrorCode !== 1) || (response && response.error)) {
+        handleErrors(response);
+
         this.setState(p => ({
           ...p,
           loading: false,
-          error: response
+          error: {
+            ErrorCode: response.ErrorCode || response.error,
+            ErrorStatus: response.ErrorStatus || response.error_description,
+          }
         }));
-      } else {
+      } else {        
         this.setState(p => ({
           ...p,
           loading: false,
@@ -146,9 +157,8 @@ class BungieAuth extends React.Component {
               text={t('Forget me')}
               action={() => {
                 ls.del('setting.auth');
-                this.setState((prevState, props) => {
-                  prevState.memberships = false;
-                  return prevState;
+                this.setState({
+                  memberships: false
                 });
               }}
             />
@@ -227,11 +237,16 @@ class BungieAuthMini extends React.Component {
           loading: false,
           memberships: response.Response
         }));
-      } else if (response && response.ErrorCode !== 1) {
+      } else if ((response && response.ErrorCode && response.ErrorCode !== 1) || (response && response.error)) {
+        handleErrors(response);
+
         this.setState(p => ({
           ...p,
           loading: false,
-          error: response
+          error: {
+            ErrorCode: response.ErrorCode || response.error,
+            ErrorStatus: response.ErrorStatus || response.error_description,
+          }
         }));
       } else {
         this.setState(p => ({

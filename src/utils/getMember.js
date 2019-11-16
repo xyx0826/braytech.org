@@ -1,6 +1,7 @@
 import * as ls from './localStorage';
 import * as bungie from './bungie';
 import * as responseUtils from './responseUtils';
+import manifest from './manifest';
 
 async function getMember(membershipType, membershipId) {
 
@@ -14,6 +15,10 @@ async function getMember(membershipType, membershipId) {
     const refreshTokenExpired = tokens && now > new Date(tokens.refresh.expires).getTime();
 
     if (tokens && tokens.destinyMemberships.find(m => m.membershipId === membershipId) && !refreshTokenExpired) {
+      if (manifest.settings && !manifest.settings.systems.Authentication.enabled) {
+        return;
+      };
+      
       withAuth = true;
       components.push(102,103,201);
     }
