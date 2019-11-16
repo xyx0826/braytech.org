@@ -51,7 +51,7 @@ async function apiRequest(path, options = {}) {
     if (now > then) {
       const refreshRequest = await GetOAuthAccessToken(`grant_type=refresh_token&refresh_token=${tokens.refresh.value}`);
 
-      if (refreshRequest && !refreshRequest.ok) {
+      if (refreshRequest && !refreshRequest.access_token && !refreshRequest.ok) {
         return await refreshRequest.json();
       }
 
