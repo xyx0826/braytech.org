@@ -1,8 +1,9 @@
 import Dexie from 'dexie';
 
-const db = new Dexie('braytech');
+const db = new Dexie('Braytech');
+
 db.version(1).stores({
-  manifest: 'version,value'
+  manifest: 'table,definitions,version'
 });
 
 export default db;

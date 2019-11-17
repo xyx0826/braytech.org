@@ -50,7 +50,7 @@ class Mode extends React.Component {
 
   calculateResets = progressionHash => {
     const { characterId, characterProgressions } = this.props.data;
-
+//console.log(characterProgressions[characterId].progressions)
     return {
       current: characterProgressions[characterId].progressions[progressionHash] && Number.isInteger(characterProgressions[characterId].progressions[progressionHash].currentResetCount) ? characterProgressions[characterId].progressions[progressionHash].currentResetCount : '?',
       total:

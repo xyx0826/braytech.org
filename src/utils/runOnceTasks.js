@@ -1,3 +1,4 @@
+import Dexie from 'dexie';
 
 import * as ls from './localStorage';
 import dexie from './dexie';
@@ -22,6 +23,12 @@ export default function runOnceTasks() {
     dexie.table('manifest').clear()
 
     ls.update('history.tasks', { id: 'manifest_november172019' });
+  }
+
+  if (!history.find(t => t.id === 'manifest_november172019-2')) {
+    Dexie.delete('braytech');
+
+    ls.update('history.tasks', { id: 'manifest_november172019-2' });
   }
 
 }

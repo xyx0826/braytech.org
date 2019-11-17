@@ -82,13 +82,7 @@ class App extends React.Component {
     // We do these as early as possible - we don't want to wait
     // for the component to mount before starting the web requests
     this.startupRequests = {
-      storedManifest: timed(
-        'storedManifest',
-        dexie
-          .table('manifest')
-          .toCollection()
-          .first()
-      ),
+      storedManifest: timed('storedManifest', this.getStoredManifest()),
       manifestIndex: timed('GetDestinyManifest', bungie.GetDestinyManifest({ errors: { hide: true } })),
       bungieSettings: timed('GetCommonSettings', bungie.GetCommonSettings({ errors: { hide: true } })),
       voluspaStatistics: timed('statistics', voluspa.statistics())
@@ -159,6 +153,17 @@ class App extends React.Component {
     }
   }
 
+  async getStoredManifest() {
+    const manifest = {};
+    
+    await dexie.table('manifest').each(row => {
+      manifest[row.table] = row.definitions;
+      manifest.version = row.version;
+    });
+
+    return manifest;
+  }
+
   async setUpManifest() {
     this.setState({ status: { code: 'checkManifest' } });
 
@@ -179,7 +184,7 @@ class App extends React.Component {
       // download a new one and store it.
       tmpManifest = await this.downloadNewManifest(currentVersion);
     } else {
-      tmpManifest = storedManifest.value;
+      tmpManifest = storedManifest;
     }
 
     tmpManifest.settings = bungieSettings && bungieSettings.ErrorCode === 1 && bungieSettings.Response;
@@ -211,7 +216,7 @@ class App extends React.Component {
 
     try {
       await timed('clearTable', dexie.table('manifest').clear());
-      await timed('storeManifest', dexie.table('manifest').add({ version: version, value: manifest }));
+      await timed('storeManifest', dexie.table('manifest').bulkAdd(Object.keys(manifest).map(table => ({ table, definitions: manifest[table], version }))));
     } catch (error) {
       // Can't write a manifest if we're in private mode in safari
       console.warn(`Error while trying to store the manifest in indexeddb: ${error}`);
