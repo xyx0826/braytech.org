@@ -137,6 +137,20 @@ class NotificationLink extends React.Component {
                         <DestinyKey type='dismiss' /> {t('Dismiss')}
                       </Button>
                     </li>
+                    {state.actions && state.actions.length && state.actions.map((action, i) => {
+
+                      if (action.type === 'external') {
+                        return (
+                          <li key={i}>
+                            <a className='button' href={action.target} onClick={action.dismiss ? this.deactivateOverlay : null} target='_blank' rel='noreferrer noopener'>
+                              <DestinyKey type={action.key || 'dismiss'} /> {action.text}
+                            </a>
+                          </li>
+                        )
+                      } else {
+                        return null;
+                      }
+                    })}
                   </ul>
                 </div>
               </div>

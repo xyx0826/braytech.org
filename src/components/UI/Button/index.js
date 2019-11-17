@@ -37,6 +37,15 @@ class DestinyKey extends React.Component {
         {
           char: ''
         }
+      ],
+      accept: [
+        {
+          color: '#598652',
+          char: ''
+        },
+        {
+          char: ''
+        }
       ]
     }
   }

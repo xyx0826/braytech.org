@@ -111,5 +111,26 @@
       "description": "_Yeah, but, did you know there's a dark mode?_ — me, now\n\nHave you been to the _Settings_ view? You can access it by selecting VIEWS on smaller touch devices, or by just pinching the cog. There's some good stuff in there and it's come to my attention that not everyone knows that I have a dark mode.\n\nOkay, that's all. Also, like and subscribe to my Patreon.",
       "prompt": true
     }
+  },
+  {
+    "id": "nfy3pkbvptn44hrnk0ej71",
+    "date": "2019-11-17T21:27:57.739Z",
+    "expiry": 1209600000,
+    "showOnce": true,
+    "displayProperties": {
+      "name": "Patreon: November",
+      "image": "/static/images/notifications/patreon.png",
+      "description": "Ahoy-hoy!\n\nI've made a fresh post on Braytech's Patreon regarding the month of November (where the bloody hell did the last 18 days go).\n\nWithin, I pat myself on the back a few times with regard to my _Reports_ and _Maps_ work, and briefly engage in what could be considered gossip.\n\nNot a patron yet? I personally recommend it. I've just updated the tier rewards too.",
+      "prompt": true
+    },
+    "actions": [
+      {
+        "type": "external",
+        "target": "https://www.patreon.com/posts/november-31640734",
+        "text": "View post",
+        "key": "accept",
+        "dismiss": true
+      }
+    ]
   }
 ]

@@ -173,7 +173,10 @@ html.backdropfilter .wrapper.light-mode #notification-overlay .sticky-nav {
     position: relative;
     height: 50px;
     width: 50px;
-    display: none;
+  }
+
+  #notification-overlay .wrapper-inner.has-image div .icon {
+    padding-bottom: 20%;
   }
 
   #notification-overlay .wrapper-inner .text .name {
