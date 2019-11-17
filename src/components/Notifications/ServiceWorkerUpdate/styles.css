@@ -18,7 +18,7 @@
 #service-worker-update .wrapper > .text {
   display: grid;
   align-content: center;  
-  font-family: 'nhg text';
+  font-family: 'nhg text', 'nhg display', 'Destiny Keys', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
   font-size: 13px;
 }
 

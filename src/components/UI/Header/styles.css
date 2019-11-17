@@ -20,7 +20,7 @@
   background-color: rgba(255, 255, 255, 0.05);
   color: rgba(255, 255, 255, 0.8);
   font-size: 14px;
-  font-family: 'nhg text';
+  font-family: 'nhg text', 'nhg display', 'Destiny Keys', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
 }
 
 #header.navOpen .braytech {
@@ -118,7 +118,7 @@ html.backdropfilter .wrapper.dark-mode #header .braytech {
   align-items: center;
   color: rgba(255, 255, 255, 0.6);
   font-size: 16px;
-  font-family: 'nhg text', 'Destiny Keys';
+  font-family: 'nhg text', 'nhg display', 'Destiny Keys', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols', 'Destiny Keys';
 }
 
 #header .views ul li a.active {
@@ -306,7 +306,7 @@ html.backdropfilter .wrapper.dark-mode #header .braytech {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
-  font-family: 'nhg text';
+  font-family: 'nhg text', 'nhg display', 'Destiny Keys', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
   line-height: 1;
   color: rgba(255, 255, 255, 0.6);
 }
@@ -500,7 +500,7 @@ html.backdropfilter #header .nav {
 #header .nav .wrap .types .head .name {
   font-size: 18px;
   font-weight: 500;
-  font-family: 'nhg text';
+  font-family: 'nhg text', 'nhg display', 'Destiny Keys', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
 }
 
 #header .nav .wrap .types .head .description {
@@ -513,7 +513,7 @@ html.backdropfilter #header .nav {
   padding: 10px 1rem;
   flex-basis: 100%;
   position: relative;
-  font-family: 'nhg text', 'Destiny Keys';
+  font-family: 'nhg text', 'nhg display', 'Destiny Keys', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols', 'Destiny Keys';
 }
 
 #header .nav .wrap .types li .name {

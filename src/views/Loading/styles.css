@@ -52,7 +52,7 @@
   bottom: 7rem;
   left: 0;
   width: 100%;
-  font-family: 'nhg text';
+  font-family: 'nhg text', 'nhg display', 'Destiny Keys', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
   display: grid;
   grid-gap: 2rem;
   justify-content: center;
