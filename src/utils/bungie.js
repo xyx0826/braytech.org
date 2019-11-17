@@ -233,6 +233,8 @@ export const manifest = async version => fetch(`https://www.bungie.net${version}
 
 export const GetDestinyManifest = async options => apiRequest('/Platform/Destiny2/Manifest/', options);
 
+export const GetHistoricalStatsDefinition = async options => apiRequest(`/Platform/Destiny2/Stats/Definition/?lc=${options.params.locale}`, options);
+
 export const GetCommonSettings = async options => apiRequest(`/Platform/Settings/`, options);
 
 export const GetPublicMilestones = async () => apiRequest('/Platform/Destiny2/Milestones/');

@@ -46,22 +46,15 @@ import CharacterSelect from './views/CharacterSelect';
 import Settings from './views/Settings';
 import FAQ from './views/FAQ';
 import Credits from './views/Credits';
+import OOB from './views/OOB';
 
 import Inspect from './views/Inspect';
 import Read from './views/Read';
 import Maps from './views/Maps';
-
 import ClanBannerBuilder from './views/ClanBannerBuilder';
 import PGCR from './views/PGCR';
 
-import Suggestions from './views/Suggestions';
-import ChaliceRecipes from './views/ChaliceRecipes';
-
 import Test from './views/Test';
-
-
-
-import OOB from './views/OOB';
 
 const RedirectRoute = props => <Route {...props} render={({ location }) => <Redirect to={{ pathname: '/character-select', state: { from: location } }} />} />;
 
@@ -177,8 +170,7 @@ class App extends React.Component {
       throw new Error('maintenance');
     }
 
-    const manifestLanuage = this.currentLanguage;
-    const currentVersion = manifestIndex && manifestIndex.ErrorCode === 1 && manifestIndex.Response.jsonWorldContentPaths[manifestLanuage];
+    const currentVersion = manifestIndex && manifestIndex.ErrorCode === 1 && manifestIndex.Response.jsonWorldContentPaths[this.currentLanguage];
 
     let tmpManifest = null;
 
@@ -196,16 +188,27 @@ class App extends React.Component {
 
     tmpManifest.statistics = (await this.startupRequests.voluspaStatistics) || {};
 
-    manifest.set(tmpManifest, manifestLanuage);
+    manifest.set(tmpManifest, this.currentLanguage);
 
     this.setState({ status: { code: 'ready' } });
   }
 
   async downloadNewManifest(version) {
     this.setState({ status: { code: 'fetchManifest' } });
-    const manifest = await timed('downloadManifest', bungie.manifest(version));
+
+    const [manifest, DestinyHistoricalStatsDefinition] = await Promise.all([
+      timed('downloadManifest', bungie.manifest(version)),
+      timed('downloadManifestHistoricalStats', bungie.GetHistoricalStatsDefinition({ params: { locale: this.currentLanguage } }))      
+    ]);
+
+    if (DestinyHistoricalStatsDefinition.ErrorCode === 1 && DestinyHistoricalStatsDefinition.Response) {
+      manifest.DestinyHistoricalStatsDefinition = DestinyHistoricalStatsDefinition.Response;
+    } else {
+      throw new Error('manifest');
+    }
 
     this.setState({ status: { code: 'setManifest' } });
+
     try {
       await timed('clearTable', dexie.table('manifest').clear());
       await timed('storeManifest', dexie.table('manifest').add({ version: version, value: manifest }));
@@ -213,6 +216,7 @@ class App extends React.Component {
       // Can't write a manifest if we're in private mode in safari
       console.warn(`Error while trying to store the manifest in indexeddb: ${error}`);
     }
+
     return manifest;
   }
 
@@ -276,10 +280,8 @@ class App extends React.Component {
                           <Route path='/read/:kind?/:hash?' exact component={Read} />
                           <Route path='/maps/:map?/:highlight?' render={route => <Maps {...route} />} />
                           <Route path='/settings' exact render={route => <Settings {...route} availableLanguages={this.availableLanguages} />} />
-                          <Route path='/suggestions/:id?' render={route => <Suggestions {...route} />} />
                           <Route path='/faq' exact component={FAQ} />
                           <Route path='/credits' exact component={Credits} />
-                          <Route path='/chalice-tool/:rune1?/:rune2?/:rune3?' render={route => <ChaliceRecipes {...route} />} />
                           <Route path='/clan-banner-builder/:decalBackgroundColorId?/:decalColorId?/:decalId?/:gonfalonColorId?/:gonfalonDetailColorId?/:gonfalonDetailId?/:gonfalonId?/' exact component={ClanBannerBuilder} />
                           <Route path='/oob' component={OOB} />
                           <Route path='/test' component={Test} />
