@@ -48,7 +48,7 @@ class ReportItem extends React.Component {
 
     if (report) {
       report.entries.forEach(async e => {
-        const progression = await this.getProgression(e.player.destinyUserInfo.membershipType, e.player.destinyUserInfo.membershipId);
+        const progression = await this.getProgression(e.player.destinyUserInfo.membershipType, e.player.destinyUserInfo.membershipId, e.characterId);
 
         if (this.mounted) {
           this.setState(p => ({
@@ -67,7 +67,7 @@ class ReportItem extends React.Component {
     }
   };
 
-  getProgression = async (membershipType, membershipId) => {
+  getProgression = async (membershipType, membershipId, characterId) => {
     let response = await bungie.GetProfile({
       params: {
         membershipType,
@@ -87,13 +87,62 @@ class ReportItem extends React.Component {
       };
     }
 
-    let gloryPoints = Object.values(response.Response.characterProgressions.data)[0].progressions[2000925172].currentProgress.toLocaleString('en-us');
-    let valorPoints = Object.values(response.Response.characterProgressions.data)[0].progressions[2626549951].currentProgress.toLocaleString('en-us');
-    let infamyPoints = Object.values(response.Response.characterProgressions.data)[0].progressions[2772425241].currentProgress.toLocaleString('en-us');
+    const characterProgressions = response.Response.characterProgressions.data;
+    const characterRecords = response.Response.characterRecords.data;
+    const profileRecords = response.Response.profileRecords.data.records;
 
-    let valorResets = response.Response.profileRecords.data.records[559943871] ? response.Response.profileRecords.data.records[559943871].objectives[0].progress.toLocaleString('en-us') : '0';
-    let infamyResets = response.Response.profileRecords.data.records[3901785488] ? response.Response.profileRecords.data.records[3901785488].objectives[0].progress.toLocaleString('en-us') : '0';
+    const gloryPoints = characterProgressions[characterId].progressions[2000925172].currentProgress.toLocaleString('en-us');
+    const valorPoints = characterProgressions[characterId].progressions[2626549951].currentProgress.toLocaleString('en-us');
+    const infamyPoints = characterProgressions[characterId].progressions[2772425241].currentProgress.toLocaleString('en-us');
 
+    const infamySeasons = [{ recordHash: 3901785488, objectiveHash: 4210654397 }].map(season => {
+
+      const definitionRecord = manifest.DestinyRecordDefinition[season.recordHash];
+
+      const recordScope = definitionRecord.scope || 0;
+      const recordData = recordScope === 1 ? characterRecords && characterRecords[characterId].records[definitionRecord.hash] : profileRecords && profileRecords[definitionRecord.hash];
+
+      season.resets = (recordData && recordData.objectives && recordData.objectives.find(o => o.objectiveHash === season.objectiveHash) && recordData.objectives.find(o => o.objectiveHash === season.objectiveHash).progress) || 0;
+
+      return season;
+    });
+
+    const valorSeasons = [
+      {
+        recordHash: 1341325320,
+        objectiveHash: 1089010148
+      },
+      {
+        recordHash: 2462707519,
+        objectiveHash: 2048068317
+      },
+      {
+        recordHash: 3666883430,
+        objectiveHash: 3211089622
+      },
+      {
+        recordHash: 2110987253,
+        objectiveHash: 1898743615
+      },
+      {
+        recordHash: 510151900,
+        objectiveHash: 2011701344
+      }
+    ].map(season => {
+
+      const definitionRecord = manifest.DestinyRecordDefinition[season.recordHash];
+
+      const recordScope = definitionRecord.scope || 0;
+      const recordData = recordScope === 1 ? characterRecords && characterRecords[characterId].records[definitionRecord.hash] : profileRecords && profileRecords[definitionRecord.hash];
+
+      season.resets = (recordData && recordData.objectives && recordData.objectives.find(o => o.objectiveHash === season.objectiveHash) && recordData.objectives.find(o => o.objectiveHash === season.objectiveHash).progress) || 0;
+
+      return season;
+    });
+
+    const valorResets = valorSeasons.reduce((a, v) => a + v.resets, 0).toLocaleString('en-us');
+    const infamyResets = infamySeasons.reduce((a, v) => a + v.resets, 0).toLocaleString('en-us');
+    
     return {
       points: {
         gloryPoints,

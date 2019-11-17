@@ -234,11 +234,11 @@
   height: unset;
 }
 
-.list.roster .fireteam ul {
+.list.roster .fireteam > ul {
   width: 100%;
 }
 
-.list.roster .fireteam ul .row:last-child {
+.list.roster .fireteam > ul .row:last-child {
   margin: 0;
 }
 
