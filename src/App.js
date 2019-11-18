@@ -51,6 +51,7 @@ import OOB from './views/OOB';
 import Inspect from './views/Inspect';
 import Read from './views/Read';
 import Maps from './views/Maps';
+import Legend from './views/Legend';
 import ClanBannerBuilder from './views/ClanBannerBuilder';
 import PGCR from './views/PGCR';
 
@@ -270,7 +271,6 @@ class App extends React.Component {
                         <Switch>
                           <RedirectRoute path='/clan' />
                           <RedirectRoute path='/character' exact />
-                          <RedirectRoute path='/legend' exact />
                           <RedirectRoute path='/checklists' exact />
                           <RedirectRoute path='/collections/' />
                           <RedirectRoute path='/triumphs' />
@@ -284,6 +284,7 @@ class App extends React.Component {
                           <Route path='/inspect/:hash?' exact component={Inspect} />
                           <Route path='/read/:kind?/:hash?' exact component={Read} />
                           <Route path='/maps/:map?/:highlight?' render={route => <Maps {...route} />} />
+                          <Route path='/legend2' exact component={Legend} />
                           <Route path='/settings' exact render={route => <Settings {...route} availableLanguages={this.availableLanguages} />} />
                           <Route path='/faq' exact component={FAQ} />
                           <Route path='/credits' exact component={Credits} />

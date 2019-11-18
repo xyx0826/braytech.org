@@ -1,0 +1,52 @@
+#legend {
+  padding: 3rem;
+  display: grid;
+  grid-gap: 3rem;
+}
+
+#legend .page {
+  width: 1280px;
+  display: grid;
+  align-content: start;
+  padding: 2rem 4rem;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+#legend .page .row {
+  display: grid;
+  grid-gap: 2rem;
+  grid-auto-flow: column;
+  margin: 0 0 3rem;
+}
+
+#legend .sub {
+  font-size: 14px;
+  font-family: 'nhg text', 'nhg display', 'Destiny Keys', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  /* text-transform: uppercase; */
+  color: rgba(255, 255, 255, 0.4);
+}
+
+#legend .page .row .col {
+  
+}
+
+#legend .page .row.name {
+  grid-auto-flow: unset;
+  grid-gap: 0;
+}
+
+#legend .page .row.name .displayName {
+  font-size: 48px;
+  font-weight: 500;
+  text-align: center;
+}
+
+#legend .page .row.name .groupName {
+  font-size: 18px;
+  text-align: center;
+}
+
+#legend .page .corners::before,
+#legend .page .corners::after {
+  border-color: rgba(255, 255, 255, 0.4);
+}

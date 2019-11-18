@@ -1,0 +1,15 @@
+#legend .page .row.basics {
+  /* grid-auto-flow: unset;
+  grid-template-columns: repeat(3, 1fr); */
+  margin: 0 0 3rem;
+}
+
+#legend .page .row.basics .col {
+  font-family: 'nhg text', 'nhg display', 'Destiny Keys', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+}
+
+#legend .page .row.basics .col .value {
+  font-size: 32px;
+  font-weight: 500;
+  margin: 0 0 4px;
+}
