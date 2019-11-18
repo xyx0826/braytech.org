@@ -5,7 +5,7 @@
       "description": "La piattaforma d'appartenenza di questo profilo."
     },
     "itemType": 1,
-    "itemTypeDisplayName": "Platform"
+    "itemTypeDisplayName": "Piattaforma"
   },
   "platform_playstation": {
     "displayProperties": {
@@ -13,7 +13,7 @@
       "description": "La piattaforma d'appartenenza di questo profilo."
     },
     "itemType": 1,
-    "itemTypeDisplayName": "Platform"
+    "itemTypeDisplayName": "Piattaforma"
   },
   "platform_pc": {
     "displayProperties": {
@@ -21,7 +21,7 @@
       "description": "La piattaforma d'appartenenza di questo profilo."
     },
     "itemType": 1,
-    "itemTypeDisplayName": "Platform"
+    "itemTypeDisplayName": "Piattaforma"
   },
   "warmind": {
     "displayProperties": {
@@ -29,7 +29,7 @@
       "description": "Tom Chapman, creatore e ingeniere di Braytech."
     },
     "itemType": 1,
-    "itemTypeDisplayName": "Admin"
+    "itemTypeDisplayName": "Amministratore"
   },
   "patron-vip": {
     "displayProperties": {
@@ -37,7 +37,7 @@
       "description": "Uno stimato e molto generoso patron di Braytech."
     },
     "itemType": 1,
-    "itemTypeDisplayName": "Commendation"
+    "itemTypeDisplayName": "Raccomandazione"
   },
   "patron": {
     "displayProperties": {
@@ -45,7 +45,7 @@
       "description": "Un generoso patron di Braytech."
     },
     "itemType": 1,
-    "itemTypeDisplayName": "Commendation"
+    "itemTypeDisplayName": "Raccomandazione"
   },
   "commonality": {
     "displayProperties": {
