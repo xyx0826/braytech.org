@@ -726,6 +726,11 @@ html.backdropfilter #header .nav {
     left: 0;
   }
 
+  #header .nav .wrap .types li.separator::before {
+    left: 2rem;
+    width: calc(100% - 4rem);
+  }
+
   #header.profile-header {
     height: 112px;
   }

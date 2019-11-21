@@ -406,9 +406,9 @@ class Header extends React.Component {
                   <ul>
                     {views
                       .filter(v => v.group === 1 && !v.hidden)
-                      .map(view => {
+                      .map((view, i) => {
                         if (view.type === 'separator') {
-                          return <li key={view.slug} className='separator' />;
+                          return <li key={i} className='separator' />;
                         } else if (view.profile) {
                           return (
                             <li key={view.slug}>

@@ -24,6 +24,7 @@ import './footer-note.css';
 import './basics.css';
 import './characters.css';
 import './triumphs.css';
+import './variants.css';
 
 class Legend extends React.Component {
   constructor() {
@@ -87,7 +88,7 @@ class Legend extends React.Component {
         {
           name: i18n.t('Destiny 2 colours'),
           background: {
-            src: '/static/images/extracts/flair/010A_0623_00.jpg'
+            src: '/static/images/legend/010A_0623_00.jpg'
           },
           dyes: [
             {
@@ -119,7 +120,7 @@ class Legend extends React.Component {
         {
           name: i18n.t('Destiny 1 colours'),
           background: {
-            src: '/static/images/extracts/flair/010A_0623_00.jpg'
+            src: '/static/images/legend/010A_0623_00.jpg'
           },
           dyes: [
             {
@@ -277,35 +278,42 @@ class Legend extends React.Component {
     factions: {
       name: i18n.t('Factions'),
       description: 'Represent your people. Coming soon, maybe. Graphic design is like, a lot of work.',
-      disabled: true,
+      disabled: false,
       variants: [
         {
-          name: manifest.DestinyFactionDefinition[1714509342].displayProperties.name,
-          description: manifest.DestinyFactionDefinition[1714509342].displayProperties.description,
+          name: manifest.DestinyFactionDefinition[2105209711].displayProperties.name,
+          description: manifest.DestinyFactionDefinition[2105209711].displayProperties.description,
+          background: {
+            src: '/static/images/legend/new_monarchy.jpg'
+          },
           dyes: [
             {
               channel: '--background-primary-1',
-              value: '#121f28'
+              value: '#95423f'
             },
             {
               channel: '--triumph-seal-1',
-              value: '#7b3274'
+              value: '#bca04e'
             },
             {
               channel: '--triumph-seal-2',
-              value: '#63215d'
+              value: '#ddbe5f'
             },
             {
               channel: '--class-titan-1',
-              value: '#912b21'
+              value: '#95423f'
             },
             {
               channel: '--class-hunter-1',
-              value: '#3b636d'
+              value: '#95423f'
             },
             {
               channel: '--class-warlock-1',
-              value: '#a67d1c'
+              value: '#95423f'
+            },
+            {
+              channel: '--text-margins',
+              value: 'rgba(255, 255, 255, 0.4)'
             }
           ]
         }
@@ -560,7 +568,7 @@ class Legend extends React.Component {
               </div>
             </div>
           </div>
-          <div ref={this.ref_page} className={cx('page', this.state.theme.selected)} style={dyes}>
+          <div ref={this.ref_page} className={cx('page', this.state.theme.selected, `variant-${this.state.theme.variantIndex}`)} style={dyes}>
             {theme.variants[this.state.theme.variantIndex].background ? (
               <div className='background'>
                 <ObservedImage noConstraints src={theme.variants[this.state.theme.variantIndex].background.src} />
@@ -808,7 +816,7 @@ class Legend extends React.Component {
                 <div className='col'>
                   <span className='destiny-clovis_bray_device' />
                 </div>
-                <div className='col'>{packageJSON.version} / 1 / {time}</div>
+                <div className='col'>{packageJSON.version} / 2 / {time}</div>
               </div>
             </div>
           </div>
