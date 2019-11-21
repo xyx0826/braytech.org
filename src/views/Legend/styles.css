@@ -96,6 +96,10 @@
   margin: 2rem 0 0;
 }
 
+#legend .config .button:last-child {
+  margin: 1rem 0 0;
+}
+
 #legend .page {
   position: relative;
   width: 1280px;

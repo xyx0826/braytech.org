@@ -36,7 +36,8 @@ class Legend extends React.Component {
           saturation: 0,
           luminance: 0
         }
-      }
+      },
+      blob: false
     };
 
     this.ref_page = React.createRef();
@@ -52,11 +53,9 @@ class Legend extends React.Component {
     this.mounted = false;
   }
 
-  handler_print = () => {
+  handler_generate = () => {
     const viewport = this.props.viewport;
     const page = this.ref_page.current;
-
-    console.log(page.offsetLeft)
 
     const modOffsetLeft = viewport.width < 1660 ? 0 : 16;
     
@@ -70,7 +69,8 @@ class Legend extends React.Component {
     }).then(canvas => {
       canvas.toBlob(async blob => {
         const url = await URL.createObjectURL(blob);
-        window.open(url);
+
+        this.setState({ blob: url })
       });
     });
   };
@@ -267,7 +267,8 @@ class Legend extends React.Component {
         ...p.theme,
         selected: key,
         variantIndex: 0
-      }
+      },
+      blob: false
     }));
   }
 
@@ -277,7 +278,8 @@ class Legend extends React.Component {
       theme: {
         ...p.theme,
         variantIndex: parseInt(key, 10)
-      }
+      },
+      blob: false
     }));
   }
 
@@ -293,7 +295,8 @@ class Legend extends React.Component {
           saturation: p.theme.mono.saturation,
           luminance: p.theme.mono.luminance
         }
-      }
+      },
+      blob: false
     }));
   }
 
@@ -309,7 +312,8 @@ class Legend extends React.Component {
           saturation,
           luminance: p.theme.mono.luminance
         }
-      }
+      },
+      blob: false
     }));
   }
 
@@ -325,7 +329,8 @@ class Legend extends React.Component {
           saturation: p.theme.mono.saturation,
           luminance
         }
-      }
+      },
+      blob: false
     }));
   }
 
@@ -390,6 +395,8 @@ class Legend extends React.Component {
 
         return season;
       });
+
+      const time = new Date().toISOString();
 
       const theme = this.themes[this.state.theme.selected];
       const dyes = theme.variants[this.state.theme.variantIndex].dyes.reduce((a, v) => {
@@ -487,7 +494,10 @@ class Legend extends React.Component {
               </div>
               <div className='row'>
                 <div className='col'>
-                  <Button action={this.handler_print} text={t('Export to .PNG')} />
+                  <Button action={this.handler_generate} text={t('Generate image')} />
+                  <a className={cx('button', { disabled: !this.state.blob })} href={this.state.blob} download={`Braytech-legend_${member.data.profile.profile.data.userInfo.displayName}_${time}.png`}>
+                    <div className='text'>{t('Download image')}</div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -569,8 +579,6 @@ class Legend extends React.Component {
                       equipment.find(item => item.inventory.bucketTypeHash === 20886954)
                     ].filter(i => i.inventory.tierType === 6)
                   ]) || [];
-
-                  console.log(loadout)
 
                   if (c.characterId) {
                     const classString = utils
@@ -742,7 +750,7 @@ class Legend extends React.Component {
                 <div className='col'>
                   <span className='destiny-clovis_bray_device' />
                 </div>
-                <div className='col'>{packageJSON.version} / 1 / {new Date().toISOString()}</div>
+                <div className='col'>{packageJSON.version} / 1 / {time}</div>
               </div>
             </div>
           </div>
