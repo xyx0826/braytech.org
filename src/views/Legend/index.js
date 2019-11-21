@@ -57,7 +57,9 @@ class Legend extends React.Component {
     const viewport = this.props.viewport;
     const page = this.ref_page.current;
 
-    const modOffsetLeft = viewport.width < 1660 ? 0 : 16;
+    this.setState({ blob: false })
+
+    const modOffsetLeft = viewport.width < 1660 ? 0 : viewport.width > 1920 ? 8 : 16;
     
     html2canvas(page, {
       backgroundColor: '#ffffff',
@@ -70,7 +72,7 @@ class Legend extends React.Component {
       canvas.toBlob(async blob => {
         const url = await URL.createObjectURL(blob);
 
-        this.setState({ blob: url })
+        this.setState({ blob: url });
       });
     });
   };
@@ -84,7 +86,7 @@ class Legend extends React.Component {
       },
       variants: [
         {
-          name: i18n.t('Destiny 2'),
+          name: i18n.t('Destiny 2 colours'),
           dyes: [
             {
               channel: '--background-primary-1',
@@ -113,7 +115,7 @@ class Legend extends React.Component {
           ]
         },
         {
-          name: i18n.t('Destiny 1'),
+          name: i18n.t('Destiny 1 colours'),
           dyes: [
             {
               channel: '--background-primary-1',
@@ -198,6 +200,15 @@ class Legend extends React.Component {
                 saturation: 62,
                 luminance: 50,
                 alpha: 0.05
+              }
+            },
+            {
+              channel: '--corners',
+              value: {
+                hue: 0,
+                saturation: 62,
+                luminance: 30,
+                alpha: 0.2
               }
             },
             {
@@ -453,7 +464,7 @@ class Legend extends React.Component {
                 </div>
                 <div className='col'>
                   <div className='module-header'>
-                    <div>{t('Variant')}</div>
+                    <div>{t('Options')}</div>
                   </div>
                   <ul className='list settings'>
                 {theme.variants.map((v, i) => {

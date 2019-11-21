@@ -12,6 +12,7 @@
   --text-primary-5: rgba(255, 255, 255, 0.05);
   --text-margins: rgba(255, 255, 255, 0.05);
   --background-primary-1: rgb(152, 152, 152);
+  --corners: rgba(255, 255, 255, 0.1);
   --triumph-seal-1: #7b3274;
   --triumph-seal-2: #63215d;
   --class-titan-1: #4b7f95;
@@ -168,7 +169,7 @@
 
 #legend .page .corners::before,
 #legend .page .corners::after {
-  border-color: var(--text-primary-10);
+  border-color: var(--corners);
 }
 
 
