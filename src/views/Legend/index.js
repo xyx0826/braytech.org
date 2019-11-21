@@ -80,7 +80,7 @@ class Legend extends React.Component {
       name: 'Bungie.net',
       description: i18n.t('In the modern though timeless style of Bungie.net itself'),
       background: {
-        src: '/static/images/extracts/flair/010A_0623_00.png'
+        src: '/static/images/extracts/flair/010A_0623_00.jpg'
       },
       variants: [
         {
@@ -88,7 +88,7 @@ class Legend extends React.Component {
           dyes: [
             {
               channel: '--background-primary-1',
-              value: 'hsla(216, 29%, 9%, 1)'
+              value: '#121f28'
             },
             {
               channel: '--triumph-seal-1',
@@ -117,7 +117,7 @@ class Legend extends React.Component {
           dyes: [
             {
               channel: '--background-primary-1',
-              value: 'hsla(216, 29%, 9%, 1)'
+              value: '#121f28'
             },
             {
               channel: '--triumph-seal-1',
@@ -505,7 +505,7 @@ class Legend extends React.Component {
           <div ref={this.ref_page} className={cx('page', this.state.theme.selected)} style={dyes}>
             {theme.background ? (
               <div className='background'>
-                <ObservedImage src={theme.background.src} />
+                <ObservedImage noConstraints src={theme.background.src} />
               </div>
             ) : null}
             <div className='grid'>
