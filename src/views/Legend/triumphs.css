@@ -14,7 +14,8 @@
   position: relative;
   padding: 16px;
   overflow: hidden;
-  color: rgba(255, 255, 255, 0.4);
+  background-color: var(--text-primary-5);
+  color: var(--text-primary-40);
 }
 
 #legend .page .row.triumphs .seals .seal .progress {
@@ -28,24 +29,21 @@
   position: relative;
 }
 
-#legend .page .row.triumphs .seals .seal .image.dl {
-  background-position: right 40%;
-  background-size: 80%;
-  left: 0%;
-  filter: grayscale(1);
-  mix-blend-mode: screen;
-  opacity: 0.4;
-
-  display: none;
+#legend .page .row.triumphs .seals .seal .icon {
+  position: absolute;
+  top: -11%;
+  left: 32%;
+  font-size: 142px;
+  pointer-events: none;
+  color: var(--text-primary-5);
 }
 
 #legend .page .row.triumphs .seals .seal.completed {
-  background-color: #7b3274;
+  background-color: var(--triumph-seal-1);
 }
 
-#legend .page .row.triumphs .seals .seal.completed .image.dl {
-  mix-blend-mode: overlay;
-  opacity: 0.6;
+#legend .page .row.triumphs .seals .seal.completed .icon {
+  color: var(--triumph-seal-2);
 }
 
 #legend .page .row.triumphs .seals .seal.completed .corners {
@@ -54,5 +52,5 @@
 
 #legend .page .row.triumphs .seals .seal.completed .progress,
 #legend .page .row.triumphs .seals .seal.completed .name {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-primary-80);
 }

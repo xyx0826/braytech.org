@@ -91,7 +91,7 @@ class Header extends React.Component {
   render() {
     const { t, route, viewport, member } = this.props;
 
-    const isProfileRoute = route.location.pathname.match(/\/(?:[1|2|3|4])\/(?:[0-9]+)\/(?:[0-9]+)/);
+    const isProfileRoute = route.location.pathname.match(/\/(?:[1|2|3|4|5])\/(?:[0-9]+)\/(?:[0-9]+)/);
 
     const views = [
       {

@@ -8,7 +8,7 @@
   font-weight: 500;
   font-family: 'nhg text', 'nhg display', 'Destiny Keys', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--text-margins);
 }
 
 #legend .page .row.header-note .col:nth-child(2) {

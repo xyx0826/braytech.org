@@ -32,21 +32,22 @@ class ObservedImageInner extends React.Component {
         if (isIntersecting || noConstraints) {
           this.image = new window.Image();
           this.image.onload = bmp => {
-            let ratio = bmp.target.height / bmp.target.width;
+            const ratio = bmp.target.height / bmp.target.width;
+            const src = bmp.target.src
 
             if (className.includes('padding')) {
               this.setState({
                 downloaded: true,
                 styles: {
                   paddingBottom: ratio * 100 + '%',
-                  backgroundImage: `url(${bmp.target.src})`
+                  backgroundImage: `url(${src})`
                 }
               });
             } else {
               this.setState({
                 downloaded: true,
                 styles: {
-                  backgroundImage: `url(${bmp.target.src})`
+                  backgroundImage: `url(${src})`
                 }
               });
             }

@@ -140,7 +140,7 @@
 }
 
 #tooltip .damage .power .icon::before {
-  font-family: 'destiny';
+  font-family: 'Braytech';
 }
 
 #tooltip .damage .power.solar {
@@ -196,7 +196,7 @@
 }
 
 #tooltip .damage .slot .icon::before {
-  font-family: 'destiny' !important;
+  font-family: 'Braytech' !important;
 }
 
 #tooltip .damage .slot .icon.primary::before {
@@ -716,7 +716,7 @@
   position: absolute;
   top: 3px;
   left: -7px;
-  font-family: 'destiny' !important;
+  font-family: 'Braytech' !important;
   font-size: 6px;
   font-style: normal;
   font-weight: normal;

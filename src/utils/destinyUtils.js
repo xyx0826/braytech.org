@@ -318,6 +318,11 @@ function getSubclassPath(gridDef, talentGrid) {
 }
 
 export function getSubclassPathInfo(profile, characterId) {
+  if (!profile || !profile.characters || !profile.characterEquipment || !profile.itemComponents) {
+    console.warn('Profile data missing');
+    return false;
+  }
+
   const characters = profile.characters.data;
   const characterEquipment = profile.characterEquipment.data;
   const itemComponents = profile.itemComponents;
@@ -331,168 +336,221 @@ export function getSubclassPathInfo(profile, characterId) {
       classType: classTypes.Titan,
       damageType: damageTypes.Arc,
       identifier: identifiers.First,
+      sandboxPerk: 113667234,
+      icon: '',
       art: '01A3-0000112B'
     },
     {
       classType: classTypes.Titan,
       damageType: damageTypes.Arc,
       identifier: identifiers.Second,
+      sandboxPerk: 113667234,
+      icon: '',
       art: '01A3-0000112B'
     },
     {
       classType: classTypes.Titan,
       damageType: damageTypes.Arc,
       identifier: identifiers.Third,
+      sandboxPerk: 3326771373,
+      icon: '',
       art: '01E3-00001598'
     },
     {
       classType: classTypes.Titan,
       damageType: damageTypes.Thermal,
       identifier: identifiers.First,
+      sandboxPerk: 3881209933,
+      icon: '',
       art: '01A3-0000116E'
     },
     {
       classType: classTypes.Titan,
       damageType: damageTypes.Thermal,
       identifier: identifiers.Second,
+      sandboxPerk: 3881209933,
+      icon: '',
       art: '01A3-0000116E'
     },
     {
       classType: classTypes.Titan,
       damageType: damageTypes.Thermal,
       identifier: identifiers.Third,
+      sandboxPerk: 2401205106,
+      icon: '',
       art: '01E3-0000159D'
     },
     {
       classType: classTypes.Titan,
       damageType: damageTypes.Void,
       identifier: identifiers.First,
+      sandboxPerk: 3170765412,
+      icon: '',
       art: '01A3-00001179'
     },
     {
       classType: classTypes.Titan,
       damageType: damageTypes.Void,
       identifier: identifiers.Second,
+      sandboxPerk: 3078264658,
+      icon: '',
       art: '01A3-00001179'
     },
     {
       classType: classTypes.Titan,
       damageType: damageTypes.Void,
       identifier: identifiers.Third,
+      sandboxPerk: 3112248479,
+      icon: '',
       art: '01E3-0000159F'
     },
     {
       classType: classTypes.Hunter,
       damageType: damageTypes.Arc,
       identifier: identifiers.First,
+      sandboxPerk: 674606208,
+      icon: '',
       art: '01A3-000010B4'
     },
     {
       classType: classTypes.Hunter,
       damageType: damageTypes.Arc,
       identifier: identifiers.Second,
+      sandboxPerk: 674606208,
+      icon: '',
       art: '01A3-000010B4'
     },
     {
       classType: classTypes.Hunter,
       damageType: damageTypes.Arc,
       identifier: identifiers.Third,
+      sandboxPerk: 2236497009,
+      icon: '',
       art: '01E3-00001593'
     },
     {
       classType: classTypes.Hunter,
       damageType: damageTypes.Thermal,
       identifier: identifiers.First,
+      sandboxPerk: 3205500087,
+      icon: '',
       art: '01A3-000010F8'
     },
     {
       classType: classTypes.Hunter,
       damageType: damageTypes.Thermal,
       identifier: identifiers.Second,
+      sandboxPerk: 3205500087,
+      icon: '',
       art: '01A3-000010F8'
     },
     {
       classType: classTypes.Hunter,
       damageType: damageTypes.Thermal,
       identifier: identifiers.Third,
+      sandboxPerk: 2041340886,
+      icon: '',
       art: '01E3-00001595'
     },
     {
       classType: classTypes.Hunter,
       damageType: damageTypes.Void,
       identifier: identifiers.First,
+      sandboxPerk: 2999301420,
+      icon: '',
       art: '01A3-00001107'
     },
     {
       classType: classTypes.Hunter,
       damageType: damageTypes.Void,
       identifier: identifiers.Second,
+      sandboxPerk: 2999301420,
+      icon: '',
       art: '01A3-00001107'
     },
     {
       classType: classTypes.Hunter,
       damageType: damageTypes.Void,
       identifier: identifiers.Third,
+      sandboxPerk: 4099200371,
+      icon: '',
       art: '01E3-00001596'
     },
     {
       classType: classTypes.Warlock,
       damageType: damageTypes.Arc,
       identifier: identifiers.First,
+      sandboxPerk: 803974717,
+      icon: '',
       art: '01A3-000011A1'
     },
     {
       classType: classTypes.Warlock,
       damageType: damageTypes.Arc,
       identifier: identifiers.Second,
+      sandboxPerk: 803974717,
+      icon: '',
       art: '01A3-000011A1'
     },
     {
       classType: classTypes.Warlock,
       damageType: damageTypes.Arc,
       identifier: identifiers.Third,
+      sandboxPerk: 3368836162,
+      icon: '',
       art: '01E3-000015A1'
     },
     {
       classType: classTypes.Warlock,
       damageType: damageTypes.Thermal,
       identifier: identifiers.First,
+      sandboxPerk: 1136882502,
+      icon: '',
       art: '01A3-000011F1'
     },
     {
       classType: classTypes.Warlock,
       damageType: damageTypes.Thermal,
       identifier: identifiers.Second,
+      sandboxPerk: 1136882502,
+      icon: '',
       art: '01A3-000011F1'
     },
     {
       classType: classTypes.Warlock,
       damageType: damageTypes.Thermal,
       identifier: identifiers.Third,
+      sandboxPerk: 1267155257,
+      icon: '',
       art: '01E3-000015A2'
     },
     {
       classType: classTypes.Warlock,
       damageType: damageTypes.Void,
       identifier: identifiers.First,
+      sandboxPerk: 195170165,
+      icon: '',
       art: '01A3-0000120D'
     },
     {
       classType: classTypes.Warlock,
       damageType: damageTypes.Void,
       identifier: identifiers.Second,
+      sandboxPerk: 3959434990,
+      icon: '',
       art: '01A3-0000120D'
     },
     {
       classType: classTypes.Warlock,
       damageType: damageTypes.Void,
       identifier: identifiers.Third,
+      sandboxPerk: 3247948194,
+      icon: '',
       art: '01E3-000015A5'
     }
   ];
 
-  let equipment = characterEquipment[characterId].items;
-  equipment = equipment.map(item => ({
+  const equipment = characterEquipment[characterId].items.map(item => ({
     ...manifest.DestinyInventoryItemDefinition[item.itemHash],
     ...item,
     itemComponents: {
@@ -501,20 +559,30 @@ export function getSubclassPathInfo(profile, characterId) {
     }
   }));
 
-  let subclass = equipment.find(item => item.inventory.bucketTypeHash === 3284755031);
-  let talentGrid = itemComponents.talentGrids.data[subclass.itemInstanceId];
-  let gridDef = manifest.DestinyTalentGridDefinition[talentGrid.talentGridHash];
-  let talentPath = getSubclassPath(gridDef, talentGrid);
-  let damageNames = ['', '', 'arc', 'solar', 'void'];
-  let damageType = subclass.talentGrid.hudDamageType;
-  if (talentPath == null) {
-    talentPath = { displayProperties: { name: 'Unknown' }, identifier: 'FirstPath' };
+  const subclass = equipment.find(item => item.inventory.bucketTypeHash === 3284755031);
+  const talentGrid = itemComponents.talentGrids.data[subclass.itemInstanceId];
+  const definitionTalentGrid = manifest.DestinyTalentGridDefinition[talentGrid.talentGridHash];
+  const damageNames = ['', '', 'arc', 'solar', 'void'];
+  const damageType = subclass.talentGrid.hudDamageType;
+
+  let activeTalentPath = getSubclassPath(definitionTalentGrid, talentGrid);
+
+  if (activeTalentPath == null) {
+    activeTalentPath = { displayProperties: { name: 'Unknown' }, identifier: 'FirstPath' };
   }
-  let pathCustom = pathsCustomInfo.find(p => p.classType === subclass.classType && p.damageType === damageType && p.identifier === talentPath.identifier);
-  let path = {
-    name: talentPath.displayProperties.name,
+
+  const pathCustom = pathsCustomInfo.find(p => p.classType === subclass.classType && p.damageType === damageType && p.identifier === activeTalentPath.identifier);
+  
+  const path = {
+    name: activeTalentPath.displayProperties.name,
     element: damageNames[subclass.talentGrid.hudDamageType],
-    art: pathCustom.art
+    art: pathCustom.art,
+    super: {
+      name: pathCustom.sandboxPerk && manifest.DestinySandboxPerkDefinition[pathCustom.sandboxPerk].displayProperties.name,
+      description: pathCustom.sandboxPerk && manifest.DestinySandboxPerkDefinition[pathCustom.sandboxPerk].displayProperties.description,
+      icon: pathCustom.icon,
+      hash: pathCustom.sandboxPerk
+    }
   };
 
   return path;

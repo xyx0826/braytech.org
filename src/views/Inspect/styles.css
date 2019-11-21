@@ -150,7 +150,7 @@
 }
 
 #inspect .row .module.primary-stat div .icon::before {
-  font-family: 'destiny' !important;
+  font-family: 'Braytech' !important;
 }
 
 #inspect .row .module.primary-stat div .icon.primary::before {
@@ -173,7 +173,7 @@
 }
 
 #inspect .row .module.primary-stat .power .icon::before {
-  font-family: 'destiny';
+  font-family: 'Braytech';
 }
 
 #inspect .row .module.primary-stat .power.solar .icon {

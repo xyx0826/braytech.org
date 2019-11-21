@@ -1,15 +1,123 @@
 #legend {
   padding: 3rem;
   display: grid;
-  grid-gap: 3rem;
+  gap: 3rem;
+  --text-primary-100: rgb(255, 255, 255);
+  --text-primary-80: rgba(255, 255, 255, 0.8);
+  --text-primary-60: rgba(255, 255, 255, 0.6);
+  --text-primary-40: rgba(255, 255, 255, 0.4);
+  --text-primary-20: rgba(255, 255, 255, 0.2);
+  --text-primary-10: rgba(255, 255, 255, 0.1);
+  --text-primary-5: rgba(255, 255, 255, 0.05);
+  --text-margins: rgba(255, 255, 255, 0.05);
+  --background-primary-1: rgb(152, 152, 152);
+  --triumph-seal-1: #7b3274;
+  --triumph-seal-2: #63215d;
+  --class-titan-1: #4b7f95;
+  --class-hunter-1: #7f624c;
+  --class-warlock-1: #2a7863;
+  --light-1: rgb(228, 208, 98);
+  --light-2: rgba(228, 208, 98, 0);
+}
+
+#legend .config {
+  position: relative;
+}
+
+#legend .config .page-header {
+  margin-bottom: 4rem;
+}
+
+#legend .config .row {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: 280px 280px;
+  margin: 0 0 2rem;
+}
+
+#legend .config .row:last-child {
+  margin: 0;
+}
+
+#legend .config .module-header {
+  position: relative;
+  margin: 0 0 24px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+}
+
+#legend .config .module-header::after {
+  content: ' ';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 16px;
+  border-bottom: 3px solid #ffffff;
+  opacity: 0.2;
+}
+
+#legend .config .list.settings li {
+  height: unset;
+  display: block;
+  padding: 5px 0;
+  margin: 0 0 7px;
+}
+
+#legend .config .list.settings li:last-child {
+  margin: 0;
+}
+
+#legend .config .list.settings li .check-box {
+  width: 100%;
+}
+
+#legend .config .list.settings li .check-box .text {
+  flex-basis: calc(100% - 24px);
+  justify-content: space-between;
+}
+
+#legend .config input[type='range'] {
+  -webkit-appearance: slider-horizontal;
+  appearance: slider-horizontal;
+  height: unset;
+  width: 100%;
+}
+
+#legend .config .info {
+  margin: 10px 0 0;
+  max-width: 300px;
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+#legend .config .info p {
+  line-height: 1.4;
 }
 
 #legend .page {
+  position: relative;
   width: 1280px;
+  padding: 2rem 4rem;
+  overflow: hidden;
+  background-color: var(--background-primary-1);
+  color: var(--text-primary-80);
+}
+
+#legend .page .background {
+  width: 2560px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position-y: -110%;
+  transform-origin: left top;
+  transform: scale(0.5);
+}
+
+#legend .page .grid {
+  position: relative;
   display: grid;
   align-content: start;
-  padding: 2rem 4rem;
-  background-color: rgba(255, 255, 255, 0.2);
 }
 
 #legend .page .row {
@@ -23,7 +131,7 @@
   font-size: 14px;
   font-family: 'nhg text', 'nhg display', 'Destiny Keys', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
   /* text-transform: uppercase; */
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--text-primary-40);
 }
 
 #legend .page .row .col {
@@ -48,5 +156,5 @@
 
 #legend .page .corners::before,
 #legend .page .corners::after {
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: var(--text-primary-10);
 }
