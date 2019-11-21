@@ -277,7 +277,7 @@ class Legend extends React.Component {
     },
     factions: {
       name: i18n.t('Factions'),
-      description: 'Represent your people. Coming soon, maybe. Graphic design is like, a lot of work.',
+      description: i18n.t('Represent your people'),
       disabled: false,
       variants: [
         {
