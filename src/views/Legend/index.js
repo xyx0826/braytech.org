@@ -29,11 +29,12 @@ class Legend extends React.Component {
 
     this.state = {
       theme: {
-        selected: 'mono',
+        selected: 'bnet',
         variantIndex: 0,
         mono: {
           hue: 144,
-          saturation: 0
+          saturation: 0,
+          luminance: 0
         }
       }
     };
@@ -52,7 +53,21 @@ class Legend extends React.Component {
   }
 
   handler_print = () => {
-    html2canvas(this.ref_page.current, { backgroundColor: null, scale: 2 }).then(canvas => {
+    const viewport = this.props.viewport;
+    const page = this.ref_page.current;
+
+    console.log(page.offsetLeft)
+
+    const modOffsetLeft = viewport.width < 1660 ? 0 : 16;
+    
+    html2canvas(page, {
+      backgroundColor: '#ffffff',
+      scale: 2,
+      x: 0,
+      y: 0,
+      scrollX: -(page.offsetLeft + modOffsetLeft),
+      scrollY: -page.offsetTop
+    }).then(canvas => {
       canvas.toBlob(async blob => {
         const url = await URL.createObjectURL(blob);
         window.open(url);
@@ -189,7 +204,7 @@ class Legend extends React.Component {
               channel: '--triumph-seal-1',
               value: {
                 hue: 0,
-                saturation: 100,
+                saturation: 62,
                 luminance: 38,
                 alpha: 0.4
               }
@@ -198,7 +213,7 @@ class Legend extends React.Component {
               channel: '--triumph-seal-2',
               value: {
                 hue: 0,
-                saturation: 100,
+                saturation: 62,
                 luminance: 38,
                 alpha: 0.2
               }
@@ -235,7 +250,7 @@ class Legend extends React.Component {
               value: {
                 hue: 0,
                 saturation: 62,
-                luminance: 20,
+                luminance: 30,
                 alpha: 0.4
               }
             }
@@ -275,7 +290,8 @@ class Legend extends React.Component {
         variantIndex: 0,
         mono: {
           hue,
-          saturation: p.theme.mono.saturation
+          saturation: p.theme.mono.saturation,
+          luminance: p.theme.mono.luminance
         }
       }
     }));
@@ -290,7 +306,24 @@ class Legend extends React.Component {
         variantIndex: 0,
         mono: {
           hue: p.theme.mono.hue,
-          saturation
+          saturation,
+          luminance: p.theme.mono.luminance
+        }
+      }
+    }));
+  }
+
+  handler_setMonoLuminance = e => {
+    const luminance = parseInt(e.target.value, 10);
+
+    this.setState(p => ({
+      theme: {
+        selected: 'mono',
+        variantIndex: 0,
+        mono: {
+          hue: p.theme.mono.hue,
+          saturation: p.theme.mono.saturation,
+          luminance
         }
       }
     }));
@@ -362,6 +395,7 @@ class Legend extends React.Component {
       const dyes = theme.variants[this.state.theme.variantIndex].dyes.reduce((a, v) => {
         if (this.state.theme.selected === 'mono') {
           let saturation = this.state.theme.mono.saturation;
+          let luminance = this.state.theme.mono.luminance;
 
           if (saturation < 0) {
             saturation = Math.max(saturation + v.value.saturation, 0);
@@ -369,7 +403,17 @@ class Legend extends React.Component {
             saturation = Math.min(saturation + v.value.saturation, 100);
           }
 
-          a[v.channel] = `hsla(${[this.state.theme.mono.hue, saturation, v.value.luminance, v.value.alpha].map((p, i) => i > 0 && i < 3 ? `${p}%` : p)})`;
+          if (luminance < 0) {
+            luminance = Math.max(luminance + v.value.luminance, 0);
+          } else {
+            luminance = Math.min(luminance + v.value.luminance, 100);
+          }
+
+          if (v.channel !== '--background-primary-1' && saturation === 0) {
+            luminance = Math.min(luminance + 36, 100);
+          }
+
+          a[v.channel] = `hsla(${[this.state.theme.mono.hue, saturation, luminance, v.value.alpha].map((p, i) => i > 0 && i < 3 ? `${p}%` : p)})`;
         } else {
           a[v.channel] = v.value;
         }
@@ -380,69 +424,80 @@ class Legend extends React.Component {
       return (
         <div className='view' id='legend'>
           <div className='config'>
-            <div className='row'></div>
             <div className='page-header'>
               <div className='name'>{t('Legend')}</div>
             </div>
-            <div className='row'>
-            <div className='col'>
-                <div className='module-header'>
-                  <div>{t('Theme')}</div>
+            <div className='options'>
+              <div className='row'>
+                <div className='col'>
+                  <div className='module-header'>
+                    <div>{t('Theme')}</div>
+                  </div>
+                  <ul className='list settings'>
+                {Object.keys(this.themes).map(key => (
+                  <li key={key} onClick={this.handler_setTheme(key)}>
+                    <Checkbox linked checked={this.state.theme.selected === key} text={this.themes[key].name} />
+                    <div className='info'>
+                      <p>{this.themes[key].description}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
                 </div>
-                <ul className='list settings'>
-                  {Object.keys(this.themes).map(key => (
-                    <li key={key} onClick={this.handler_setTheme(key)}>
-                      <Checkbox linked checked={this.state.theme.selected === key} text={this.themes[key].name} />
-                      <div className='info'>
-                        <p>{this.themes[key].description}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className='col'>
-                <div className='module-header'>
-                  <div>{t('Variant')}</div>
-                </div>
-                <ul className='list settings'>
-                  {theme.variants.map((v, i) => {
-                    if (this.state.theme.selected === 'mono') {
-                      return (
-                        <React.Fragment key={i}>
-                          <li>
-                            <input key='rangeHue' type='range' min='0' max='359' step='1' value={this.state.theme.mono.hue} onChange={this.handler_setMonoHue} />
-                            <div className='info'>
-                              <p>{t('Adjust the hue of colour')}</p>
-                            </div>
-                          </li>
-                          <li>
-                            <input key='rangeSat' type='range' min='-100' max='100' step='1' value={this.state.theme.mono.saturation} onChange={this.handler_setMonoSaturation} />
-                            <div className='info'>
-                              <p>{t('Adjust the saturation of colour')}</p>
-                            </div>
-                          </li>
-                        </React.Fragment>
-                      )
-                    }
-                    else {
-                      return (
-                        <li key={i} onClick={this.handler_setVariant(i)}>
-                          <Checkbox linked checked={this.state.theme.variantIndex === i} text={v.name} />
+                <div className='col'>
+                  <div className='module-header'>
+                    <div>{t('Variant')}</div>
+                  </div>
+                  <ul className='list settings'>
+                {theme.variants.map((v, i) => {
+                  if (this.state.theme.selected === 'mono') {
+                    return (
+                      <React.Fragment key={i}>
+                        <li>
+                          <input key='rangeHue' type='range' min='0' max='359' step='1' value={this.state.theme.mono.hue} onChange={this.handler_setMonoHue} />
+                          <div className='info'>
+                            <p>{t('Adjust the hue')}</p>
+                          </div>
                         </li>
-                      )
-                    }
-                  })}
-                </ul>
+                        <li>
+                          <input key='rangeSat' type='range' min='-100' max='100' step='1' value={this.state.theme.mono.saturation} onChange={this.handler_setMonoSaturation} />
+                          <div className='info'>
+                            <p>{t('Adjust the saturation')}</p>
+                          </div>
+                        </li>
+                        <li>
+                          <input key='rangeLum' type='range' min='-10' max='30' step='1' value={this.state.theme.mono.luminance} onChange={this.handler_setMonoLuminance} />
+                          <div className='info'>
+                            <p>{t('Adjust the luminance')}</p>
+                          </div>
+                        </li>
+                      </React.Fragment>
+                    )
+                  }
+                  else {
+                    return (
+                      <li key={i} onClick={this.handler_setVariant(i)}>
+                        <Checkbox linked checked={this.state.theme.variantIndex === i} text={v.name} />
+                      </li>
+                    )
+                  }
+                })}
+              </ul>
+                </div>
               </div>
-            </div>
-            <div className='row'>
-              <div className='col'>
-                <Button action={this.handler_print} text={t('Export to .PNG')} />
+              <div className='row'>
+                <div className='col'>
+                  <Button action={this.handler_print} text={t('Export to .PNG')} />
+                </div>
               </div>
             </div>
           </div>
           <div ref={this.ref_page} className={cx('page', this.state.theme.selected)} style={dyes}>
-            {theme.background ? <ObservedImage className='image background' src={theme.background.src} /> : null}
+            {theme.background ? (
+              <div className='background'>
+                <ObservedImage src={theme.background.src} />
+              </div>
+            ) : null}
             <div className='grid'>
               <div className='row header-note'>
                 <div className='col'>{member.data.profile.profile.data.userInfo.displayName}</div>
@@ -701,7 +756,8 @@ class Legend extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    member: state.member
+    member: state.member,
+    viewport: state.viewport
   };
 }
 
