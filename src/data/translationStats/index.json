@@ -1,106 +1,140 @@
 {
   "de": {
     "translated": 462,
-    "notTranslated": 15,
-    "added": [],
-    "removed": []
+    "notTranslated": 32,
+    "added": [
+      "A single colour–or none–at various saturations and luminances"
+    ],
+    "removed": [
+      "A single colour - or none - at various saturations and luminances"
+    ]
   },
   "en": {
-    "translated": 477,
+    "translated": 494,
     "notTranslated": 0,
     "added": [],
-    "removed": []
+    "removed": [
+      "A single colour - or none - at various saturations and luminances"
+    ]
   },
   "es-mx": {
     "translated": 0,
-    "notTranslated": 477,
-    "added": [],
-    "removed": []
+    "notTranslated": 494,
+    "added": [
+      "A single colour–or none–at various saturations and luminances"
+    ],
+    "removed": [
+      "A single colour - or none - at various saturations and luminances"
+    ]
   },
   "es": {
-    "translated": 472,
-    "notTranslated": 5,
-    "added": [],
-    "removed": []
+    "translated": 477,
+    "notTranslated": 17,
+    "added": [
+      "A single colour–or none–at various saturations and luminances"
+    ],
+    "removed": [
+      "A single colour - or none - at various saturations and luminances"
+    ]
   },
   "fr": {
     "translated": 361,
-    "notTranslated": 116,
-    "added": [],
-    "removed": []
+    "notTranslated": 133,
+    "added": [
+      "A single colour–or none–at various saturations and luminances"
+    ],
+    "removed": [
+      "A single colour - or none - at various saturations and luminances"
+    ]
   },
   "internal": {
     "translated": 0,
-    "notTranslated": 477,
-    "added": [],
-    "removed": []
+    "notTranslated": 494,
+    "added": [
+      "A single colour–or none–at various saturations and luminances"
+    ],
+    "removed": [
+      "A single colour - or none - at various saturations and luminances"
+    ]
   },
   "it": {
-    "translated": 472,
-    "notTranslated": 5,
-    "added": [],
-    "removed": []
+    "translated": 477,
+    "notTranslated": 17,
+    "added": [
+      "A single colour–or none–at various saturations and luminances"
+    ],
+    "removed": [
+      "A single colour - or none - at various saturations and luminances"
+    ]
   },
   "ja": {
     "translated": 220,
-    "notTranslated": 257,
-    "added": [],
-    "removed": []
+    "notTranslated": 274,
+    "added": [
+      "A single colour–or none–at various saturations and luminances"
+    ],
+    "removed": [
+      "A single colour - or none - at various saturations and luminances"
+    ]
   },
   "ko": {
     "translated": 302,
-    "notTranslated": 175,
-    "added": [],
-    "removed": []
+    "notTranslated": 192,
+    "added": [
+      "A single colour–or none–at various saturations and luminances"
+    ],
+    "removed": [
+      "A single colour - or none - at various saturations and luminances"
+    ]
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 477,
-    "added": [],
-    "removed": []
+    "notTranslated": 494,
+    "added": [
+      "A single colour–or none–at various saturations and luminances"
+    ],
+    "removed": [
+      "A single colour - or none - at various saturations and luminances"
+    ]
   },
   "pt-br": {
     "translated": 462,
-    "notTranslated": 15,
-    "added": [],
-    "removed": []
+    "notTranslated": 32,
+    "added": [
+      "A single colour–or none–at various saturations and luminances"
+    ],
+    "removed": [
+      "A single colour - or none - at various saturations and luminances"
+    ]
   },
   "ru": {
     "translated": 0,
-    "notTranslated": 477,
-    "added": [],
-    "removed": []
+    "notTranslated": 494,
+    "added": [
+      "A single colour–or none–at various saturations and luminances"
+    ],
+    "removed": [
+      "A single colour - or none - at various saturations and luminances"
+    ]
   },
   "zh-chs": {
     "translated": 473,
-    "notTranslated": 4,
+    "notTranslated": 21,
     "added": [
-      "Defeat",
-      "Savathûn's Curse",
-      "Victory",
-      "You shouldn't be here 👀"
+      "A single colour–or none–at various saturations and luminances"
     ],
     "removed": [
-      "DEFEAT",
-      "Savath?n's Curse",
-      "VICTORY",
-      "You shouldn't be here ??"
+      "A single colour - or none - at various saturations and luminances"
     ]
   },
   "zh-cht": {
     "translated": 473,
-    "notTranslated": 4,
+    "notTranslated": 21,
     "added": [
-      "Defeat",
-      "Savathûn's Curse",
-      "Victory",
-      "You shouldn't be here 👀"
+      "A single colour–or none–at various saturations and luminances"
     ],
     "removed": [
-      "DEFEAT",
-      "Savath?n's Curse",
-      "VICTORY",
-      "You shouldn't be here ??"
+      "A single colour - or none - at various saturations and luminances"
     ]
   }
 }

@@ -22,7 +22,7 @@ class Characters extends React.Component {
 
     const lastActivities = utils.lastPlayerActivity({ profile: { characters, characterActivities } });
 
-    const publicPaths = ['/maps'];
+    const publicPaths = ['/maps', '/legend'];
     const goto = removeMemberIds((location.state && location.state.from && location.state.from.pathname) || '/now');
 
     return (

@@ -818,5 +818,10 @@
     "date": "2019-11-17T12:58:09.720Z",
     "version": "2.10.47",
     "content": "- Destiny's \"manifest\" (contains all the definitions of items, activities, etc.) has grown so large (130 MB uncompressed) that I've needed to rework how it's stored in the browser. This comes with risks of... bugs. Pray.\n- font changes to make Russian prettier\n- a `seasonResets` patch because I'm sick of waiting for bungie to fix the API\n- Chalice recipes tool has been removed to save a lot of space"
+  },
+  {
+    "date": "2019-11-21T08:40:33.882Z",
+    "version": "2.11.0",
+    "content": "- _Legend_ version 1"
   }
 ]

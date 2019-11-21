@@ -193,6 +193,18 @@ class Header extends React.Component {
         group: 0
       },
       {
+        name: t('Legend'),
+        desc: t("Generate an infographic that details your Destiny legend"),
+        slug: '/legend',
+        exact: false,
+        profile: false,
+        group: 1
+      },
+      {
+        group: 1,
+        type: 'separator'
+      },
+      {
         name: t('FAQ'),
         desc: t("Some of Tom's favourite frequently asked questions"),
         slug: '/faq',
@@ -395,7 +407,9 @@ class Header extends React.Component {
                     {views
                       .filter(v => v.group === 1 && !v.hidden)
                       .map(view => {
-                        if (view.profile) {
+                        if (view.type === 'separator') {
+                          return <li key={view.slug} className='separator' />;
+                        } else if (view.profile) {
                           return (
                             <li key={view.slug}>
                               <div className='name'>{view.name}</div>

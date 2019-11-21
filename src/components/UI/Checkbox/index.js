@@ -13,13 +13,13 @@ class Checkbox extends React.Component {
   }
 
   render() {
-    const { classNames, checked, text, children, linked, action } = this.props;
+    const { classNames, checked, text, children, linked, action, disabled = false } = this.props;
 
     return (
       <div
-        className={cx('check-box', classNames, { checked: checked, linked: linked })}
+        className={cx('check-box', classNames, { checked: checked, linked: linked, disabled: disabled })}
         onClick={e => {
-          if (action) {
+          if (action && !disabled) {
             action(e);
           }
         }}

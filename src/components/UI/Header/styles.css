@@ -610,6 +610,23 @@ html.backdropfilter #header .nav {
 
 
 
+#header .nav .wrap .types li.separator {
+  padding: 0 1rem;
+  margin: 10px 0 20px;
+}
+
+#header .nav .wrap .types li.separator::before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 1px;
+  height: 1px;
+  width: calc(100% - 1px);
+  background-color: #ffffff;
+  opacity: 0.1;
+}
+
+
 
 
 @media screen and (max-width: 1280px) {

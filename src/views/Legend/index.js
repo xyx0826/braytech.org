@@ -1,6 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { orderBy } from 'lodash';
 import cx from 'classnames';
@@ -14,6 +15,7 @@ import ObservedImage from '../../components/ObservedImage';
 import ObservedImageBase64 from '../../components/ObservedImageBase64';
 import Button from '../../components/UI/Button';
 import Checkbox from '../../components/UI/Checkbox';
+import Spinner from '../../components/UI/Spinner';
 import packageJSON from '../../../package.json';
 
 import './styles.css';
@@ -81,12 +83,12 @@ class Legend extends React.Component {
     bnet: {
       name: 'Bungie.net',
       description: i18n.t('In the modern though timeless style of Bungie.net itself'),
-      background: {
-        src: '/static/images/extracts/flair/010A_0623_00.jpg'
-      },
       variants: [
         {
           name: i18n.t('Destiny 2 colours'),
+          background: {
+            src: '/static/images/extracts/flair/010A_0623_00.jpg'
+          },
           dyes: [
             {
               channel: '--background-primary-1',
@@ -116,6 +118,9 @@ class Legend extends React.Component {
         },
         {
           name: i18n.t('Destiny 1 colours'),
+          background: {
+            src: '/static/images/extracts/flair/010A_0623_00.jpg'
+          },
           dyes: [
             {
               channel: '--background-primary-1',
@@ -135,7 +140,7 @@ class Legend extends React.Component {
     },
     mono: {
       name: i18n.t('Monotone'),
-      description: i18n.t('A single colour - or none - at various saturations and luminances'),
+      description: i18n.t('A single colour–or none–at various saturations and luminances'),
       variants: [
         {
           dyes: [
@@ -268,6 +273,43 @@ class Legend extends React.Component {
           ]
         }
       ]
+    },
+    factions: {
+      name: i18n.t('Factions'),
+      description: 'Represent your people. Coming soon, maybe. Graphic design is like, a lot of work.',
+      disabled: true,
+      variants: [
+        {
+          name: manifest.DestinyFactionDefinition[1714509342].displayProperties.name,
+          description: manifest.DestinyFactionDefinition[1714509342].displayProperties.description,
+          dyes: [
+            {
+              channel: '--background-primary-1',
+              value: '#121f28'
+            },
+            {
+              channel: '--triumph-seal-1',
+              value: '#7b3274'
+            },
+            {
+              channel: '--triumph-seal-2',
+              value: '#63215d'
+            },
+            {
+              channel: '--class-titan-1',
+              value: '#912b21'
+            },
+            {
+              channel: '--class-hunter-1',
+              value: '#3b636d'
+            },
+            {
+              channel: '--class-warlock-1',
+              value: '#a67d1c'
+            }
+          ]
+        }
+      ]
     }
   }
 
@@ -346,9 +388,9 @@ class Legend extends React.Component {
   }
 
   render() {
-    const { t, member } = this.props;
+    const { t, member, location } = this.props;
 
-    if (member && member.data) {
+    if (member && member.characterId && member.data) {
       const characters = member.data.profile.characters.data;
       const character = characters.find(c => c.characterId === member.characterId);
       const profileRecords = member.data.profile.profileRecords.data.records;
@@ -452,55 +494,60 @@ class Legend extends React.Component {
                     <div>{t('Theme')}</div>
                   </div>
                   <ul className='list settings'>
-                {Object.keys(this.themes).map(key => (
-                  <li key={key} onClick={this.handler_setTheme(key)}>
-                    <Checkbox linked checked={this.state.theme.selected === key} text={this.themes[key].name} />
-                    <div className='info'>
-                      <p>{this.themes[key].description}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                    {Object.keys(this.themes).map(key => (
+                      <li key={key} onClick={!this.themes[key].disabled ? this.handler_setTheme(key) : null}>
+                        <Checkbox linked checked={this.state.theme.selected === key} text={this.themes[key].name} disabled={this.themes[key].disabled} />
+                        <div className='info'>
+                          <p>{this.themes[key].description}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <div className='col'>
                   <div className='module-header'>
                     <div>{t('Options')}</div>
                   </div>
                   <ul className='list settings'>
-                {theme.variants.map((v, i) => {
-                  if (this.state.theme.selected === 'mono') {
-                    return (
-                      <React.Fragment key={i}>
-                        <li>
-                          <input key='rangeHue' type='range' min='0' max='359' step='1' value={this.state.theme.mono.hue} onChange={this.handler_setMonoHue} />
-                          <div className='info'>
-                            <p>{t('Adjust the hue')}</p>
-                          </div>
-                        </li>
-                        <li>
-                          <input key='rangeSat' type='range' min='-100' max='100' step='1' value={this.state.theme.mono.saturation} onChange={this.handler_setMonoSaturation} />
-                          <div className='info'>
-                            <p>{t('Adjust the saturation')}</p>
-                          </div>
-                        </li>
-                        <li>
-                          <input key='rangeLum' type='range' min='-10' max='30' step='1' value={this.state.theme.mono.luminance} onChange={this.handler_setMonoLuminance} />
-                          <div className='info'>
-                            <p>{t('Adjust the luminance')}</p>
-                          </div>
-                        </li>
-                      </React.Fragment>
-                    )
-                  }
-                  else {
-                    return (
-                      <li key={i} onClick={this.handler_setVariant(i)}>
-                        <Checkbox linked checked={this.state.theme.variantIndex === i} text={v.name} />
-                      </li>
-                    )
-                  }
-                })}
-              </ul>
+                    {theme.variants.map((v, i) => {
+                      if (this.state.theme.selected === 'mono') {
+                        return (
+                          <React.Fragment key={i}>
+                            <li>
+                              <input key='rangeHue' type='range' min='0' max='359' step='1' value={this.state.theme.mono.hue} onChange={this.handler_setMonoHue} />
+                              <div className='info'>
+                                <p>{t('Adjust the hue')}</p>
+                              </div>
+                            </li>
+                            <li>
+                              <input key='rangeSat' type='range' min='-100' max='100' step='1' value={this.state.theme.mono.saturation} onChange={this.handler_setMonoSaturation} />
+                              <div className='info'>
+                                <p>{t('Adjust the saturation')}</p>
+                              </div>
+                            </li>
+                            <li>
+                              <input key='rangeLum' type='range' min='-10' max='30' step='1' value={this.state.theme.mono.luminance} onChange={this.handler_setMonoLuminance} />
+                              <div className='info'>
+                                <p>{t('Adjust the luminance')}</p>
+                              </div>
+                            </li>
+                          </React.Fragment>
+                        )
+                      }
+                      else {
+                        return (
+                          <li key={i} onClick={this.handler_setVariant(i)}>
+                            <Checkbox linked checked={this.state.theme.variantIndex === i} text={v.name} />
+                            {v.description ? (
+                              <div className='info'>
+                                <p>{v.description}</p>
+                              </div>
+                            ) : null}
+                          </li>
+                        )
+                      }
+                    })}
+                  </ul>
                 </div>
               </div>
               <div className='row'>
@@ -514,9 +561,9 @@ class Legend extends React.Component {
             </div>
           </div>
           <div ref={this.ref_page} className={cx('page', this.state.theme.selected)} style={dyes}>
-            {theme.background ? (
+            {theme.variants[this.state.theme.variantIndex].background ? (
               <div className='background'>
-                <ObservedImage noConstraints src={theme.background.src} />
+                <ObservedImage noConstraints src={theme.variants[this.state.theme.variantIndex].background.src} />
               </div>
             ) : null}
             <div className='grid'>
@@ -767,8 +814,19 @@ class Legend extends React.Component {
           </div>
         </div>
       );
+    } else if (member && member.characterId) {
+      return (
+        <div className='view' id='legend'>
+          <div className='config'>
+            <div className='page-header'>
+              <div className='name'>{t('Legend')}</div>
+            </div>
+            <Spinner />
+          </div>
+        </div>
+      )
     } else {
-      return <div className='view' id='legend'></div>;
+      return <Redirect to={{ pathname: '/character-select', state: { from: location } }} />;
     }
   }
 }
