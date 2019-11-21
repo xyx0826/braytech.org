@@ -3,110 +3,138 @@
     "translated": 462,
     "notTranslated": 33,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "en": {
     "translated": 495,
     "notTranslated": 0,
     "added": [],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "es-mx": {
     "translated": 0,
     "notTranslated": 495,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "es": {
     "translated": 477,
     "notTranslated": 18,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "fr": {
     "translated": 361,
     "notTranslated": 134,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "internal": {
     "translated": 0,
     "notTranslated": 495,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "it": {
     "translated": 477,
     "notTranslated": 18,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "ja": {
     "translated": 220,
     "notTranslated": 275,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "ko": {
     "translated": 302,
     "notTranslated": 193,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "pl": {
     "translated": 0,
     "notTranslated": 495,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "pt-br": {
     "translated": 462,
     "notTranslated": 33,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "ru": {
     "translated": 0,
     "notTranslated": 495,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "zh-chs": {
     "translated": 473,
     "notTranslated": 22,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   },
   "zh-cht": {
     "translated": 473,
     "notTranslated": 22,
     "added": [
-      "Represent your people"
+      "Factions and foundries"
     ],
-    "removed": []
+    "removed": [
+      "Factions"
+    ]
   }
 }
