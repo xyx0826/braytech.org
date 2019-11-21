@@ -495,7 +495,7 @@ class Legend extends React.Component {
               <div className='row'>
                 <div className='col'>
                   <Button action={this.handler_generate} text={t('Generate image')} />
-                  <a className={cx('button', { disabled: !this.state.blob })} href={this.state.blob} download={`Braytech-legend_${member.data.profile.profile.data.userInfo.displayName}_${time}.png`}>
+                  <a className={cx('button', { disabled: !this.state.blob })} href={this.state.blob || undefined} download={`Braytech-legend_${member.data.profile.profile.data.userInfo.displayName}_${time}.png`}>
                     <div className='text'>{t('Download image')}</div>
                   </a>
                 </div>

@@ -189,3 +189,26 @@
   }
 
 }
+
+@media screen and (max-width: 600px) {
+  #legend {
+    grid-template-columns: auto;
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  #legend .config .page-header {
+    margin-bottom: 3rem;
+  }
+  
+  #legend .config .options {
+    position: unset;
+  }
+
+  #legend .config .options .row {
+    display: grid;
+    grid-template-columns: minmax(auto, 280px);
+    gap: 2rem;
+  }
+
+}
