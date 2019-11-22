@@ -48,10 +48,14 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-#footer .wrapper ul li:last-child a svg {
+#footer .wrapper ul li a svg {
   position: relative;
-  top: 3px;
   margin: 0 0 0 5px;
+  top: 2px;
+}
+
+#footer .wrapper ul li:last-child a svg {
+  top: 3px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -63,7 +67,7 @@
 
 @media screen and (max-width: 600px) {
   #footer {
-    padding: 2rem;
+    padding: 2rem 2rem calc(2rem - 16px);
   }
 
   #footer .wrapper {
@@ -79,6 +83,6 @@
   }
 
   #footer .wrapper ul li {
-    margin: 0 16px 0 0;
+    margin: 0 16px 10px 0;
   }
 }

@@ -6,6 +6,7 @@ import Moment from 'react-moment';
 import manifest from '../../../utils/manifest';
 import packageJSON from '../../../../package.json';
 import { ReactComponent as Patreon } from '../../PatreonDevice.svg';
+import { ReactComponent as PayPal } from '../../PayPalDevice.svg';
 
 import './styles.css';
 
@@ -47,8 +48,13 @@ class Footer extends React.Component {
               </a>
             </li>
             <li>
+              <a href='https://paypal.me/braytechltd' target='_blank' rel='noopener noreferrer'>
+                PayPal <PayPal />
+              </a>
+            </li>
+            <li>
               <a href='https://www.patreon.com/braytech' target='_blank' rel='noopener noreferrer'>
-                {t('Patreon')} <Patreon />
+                Patreon <Patreon />
               </a>
             </li>
           </ul>

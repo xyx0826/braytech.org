@@ -1,140 +1,114 @@
 {
   "de": {
-    "translated": 462,
+    "translated": 461,
     "notTranslated": 33,
-    "added": [
-      "Factions and foundries"
-    ],
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "en": {
-    "translated": 495,
+    "translated": 494,
     "notTranslated": 0,
     "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "es-mx": {
     "translated": 0,
-    "notTranslated": 495,
-    "added": [
-      "Factions and foundries"
-    ],
+    "notTranslated": 494,
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "es": {
-    "translated": 477,
+    "translated": 476,
     "notTranslated": 18,
-    "added": [
-      "Factions and foundries"
-    ],
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "fr": {
-    "translated": 361,
+    "translated": 360,
     "notTranslated": 134,
-    "added": [
-      "Factions and foundries"
-    ],
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "internal": {
     "translated": 0,
-    "notTranslated": 495,
-    "added": [
-      "Factions and foundries"
-    ],
+    "notTranslated": 494,
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "it": {
-    "translated": 477,
+    "translated": 476,
     "notTranslated": 18,
-    "added": [
-      "Factions and foundries"
-    ],
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "ja": {
-    "translated": 220,
+    "translated": 219,
     "notTranslated": 275,
-    "added": [
-      "Factions and foundries"
-    ],
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "ko": {
-    "translated": 302,
+    "translated": 301,
     "notTranslated": 193,
-    "added": [
-      "Factions and foundries"
-    ],
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 495,
-    "added": [
-      "Factions and foundries"
-    ],
+    "notTranslated": 494,
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "pt-br": {
-    "translated": 462,
+    "translated": 461,
     "notTranslated": 33,
-    "added": [
-      "Factions and foundries"
-    ],
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "ru": {
     "translated": 0,
-    "notTranslated": 495,
-    "added": [
-      "Factions and foundries"
-    ],
+    "notTranslated": 494,
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "zh-chs": {
-    "translated": 473,
+    "translated": 472,
     "notTranslated": 22,
-    "added": [
-      "Factions and foundries"
-    ],
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   },
   "zh-cht": {
-    "translated": 473,
+    "translated": 472,
     "notTranslated": 22,
-    "added": [
-      "Factions and foundries"
-    ],
+    "added": [],
     "removed": [
-      "Factions"
+      "Patreon"
     ]
   }
 }

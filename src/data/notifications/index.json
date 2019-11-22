@@ -132,5 +132,17 @@
         "dismiss": true
       }
     ]
+  },
+  {
+    "id": "bxdidqeuvog29tj30xe7t",
+    "date": "2019-11-22T02:45:28.889Z",
+    "expiry": 1209600000,
+    "showOnce": true,
+    "displayProperties": {
+      "name": "Legend",
+      "image": "/static/images/notifications/legend.jpg",
+      "description": "Hi.\n\nI did a thing. It's called _Legend_. It allows you to create a downloadable .PNG image of your profile basics. It's pretty and good for bragging with.\n\nCheck it out at braytech.org/legend. Also found under the fullscreen menu.",
+      "prompt": true
+    }
   }
 ]
