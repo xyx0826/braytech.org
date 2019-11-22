@@ -13,7 +13,7 @@ class Profile extends React.Component {
 
     const timePlayed = Math.floor(
       Object.keys(member.data.profile.characters.data).reduce((sum, key) => {
-        return sum + parseInt(member.data.profile.characters.data[key].minutesPlayedTotal);
+        return sum + parseInt(member.data.profile.characters.data[key].minutesPlayedTotal, 10);
       }, 0) / 1440
     );
 

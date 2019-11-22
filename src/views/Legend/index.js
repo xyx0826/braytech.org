@@ -276,10 +276,53 @@ class Legend extends React.Component {
       ]
     },
     factions: {
-      name: i18n.t('Factions'),
+      name: i18n.t('Factions and foundries'),
       description: i18n.t('Represent your people'),
-      disabled: false,
       variants: [
+        {
+          disabled: true,
+          name: manifest.DestinyFactionDefinition[1714509342].displayProperties.name,
+          description: manifest.DestinyFactionDefinition[1714509342].displayProperties.description,
+          // background: {
+          //   src: '/static/images/legend/new_monarchy.jpg'
+          // },
+          dyes: [
+            // {
+            //   channel: '--background-primary-1',
+            //   value: '#95423f'
+            // },
+            // {
+            //   channel: '--triumph-seal-1',
+            //   value: 'hsla(23, 34%, 50%, 1)'
+            // },
+            // {
+            //   channel: '--triumph-seal-2',
+            //   value: 'hsla(23, 34%, 58%, 1)'
+            // },
+            // {
+            //   channel: '--class-titan-1',
+            //   value: '#95423f'
+            // },
+            // {
+            //   channel: '--class-hunter-1',
+            //   value: '#95423f'
+            // },
+            // {
+            //   channel: '--class-warlock-1',
+            //   value: '#95423f'
+            // },
+            // {
+            //   channel: '--text-margins',
+            //   value: 'rgba(255, 255, 255, 0.4)'
+            // }
+          ]
+        },
+        {
+          disabled: true,
+          name: manifest.DestinyFactionDefinition[3398051042].displayProperties.name,
+          description: manifest.DestinyFactionDefinition[3398051042].displayProperties.description,
+          dyes: []
+        },
         {
           name: manifest.DestinyFactionDefinition[2105209711].displayProperties.name,
           description: manifest.DestinyFactionDefinition[2105209711].displayProperties.description,
@@ -293,11 +336,11 @@ class Legend extends React.Component {
             },
             {
               channel: '--triumph-seal-1',
-              value: '#bca04e'
+              value: 'hsla(23, 34%, 50%, 1)'
             },
             {
               channel: '--triumph-seal-2',
-              value: '#ddbe5f'
+              value: 'hsla(23, 34%, 58%, 1)'
             },
             {
               channel: '--class-titan-1',
@@ -316,6 +359,24 @@ class Legend extends React.Component {
               value: 'rgba(255, 255, 255, 0.4)'
             }
           ]
+        },
+        {
+          disabled: true,
+          name: manifest.DestinyFactionDefinition[697030790].displayProperties.name,
+          description: manifest.DestinyFactionDefinition[697030790].displayProperties.description,
+          dyes: []
+        },
+        {
+          disabled: true,
+          name: manifest.DestinyFactionDefinition[611314723].displayProperties.name,
+          description: manifest.DestinyFactionDefinition[611314723].displayProperties.description,
+          dyes: []
+        },
+        {
+          disabled: true,
+          name: manifest.DestinyPlaceDefinition[484311295].displayProperties.name,
+          description: manifest.DestinyPlaceDefinition[484311295].displayProperties.description,
+          dyes: []
         }
       ]
     }
@@ -327,7 +388,7 @@ class Legend extends React.Component {
       theme: {
         ...p.theme,
         selected: key,
-        variantIndex: 0
+        variantIndex: this.themes[key].variants.findIndex(v => !v.disabled)
       },
       blob: false
     }));
@@ -410,7 +471,7 @@ class Legend extends React.Component {
 
       const timePlayed = Math.floor(
         Object.keys(member.data.profile.characters.data).reduce((sum, key) => {
-          return sum + parseInt(member.data.profile.characters.data[key].minutesPlayedTotal);
+          return sum + parseInt(member.data.profile.characters.data[key].minutesPlayedTotal, 10);
         }, 0) / 1440
       );
 
@@ -544,8 +605,8 @@ class Legend extends React.Component {
                       }
                       else {
                         return (
-                          <li key={i} onClick={this.handler_setVariant(i)}>
-                            <Checkbox linked checked={this.state.theme.variantIndex === i} text={v.name} />
+                          <li key={i} onClick={!v.disabled ? this.handler_setVariant(i) : null}>
+                            <Checkbox linked checked={this.state.theme.variantIndex === i} text={v.name} disabled={v.disabled} />
                             {v.description ? (
                               <div className='info'>
                                 <p>{v.description}</p>
@@ -651,6 +712,8 @@ class Legend extends React.Component {
                       .classTypeToString(c.classType)
                       .toString()
                       .toLowerCase();
+                    
+                    const timePlayed = Math.floor(parseInt(c.minutesPlayedTotal, 10) / 1440);
 
                     return (
                       <div key={i} className='col'>
