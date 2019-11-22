@@ -65,7 +65,7 @@ class Legend extends React.Component {
     const modOffsetLeft = viewport.width < 1660 ? 0 : viewport.width > 1920 ? 8 : 16;
     
     html2canvas(page, {
-      backgroundColor: '#ffffff',
+      backgroundColor: process.env.NODE_ENV === 'development' ? '#ff00ff' : null,
       scale: 2,
       x: 0,
       y: 0,
