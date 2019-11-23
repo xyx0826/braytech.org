@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { keyBy, sumBy, sortBy, compact } from 'lodash';
 
 import manifest from '../manifest';
 import * as enums from '../destinyEnums';
@@ -162,7 +162,7 @@ function buildInvestmentStats(item, statGroupHash, statDisplays) {
 
   const itemStats = definitionItem.investmentStats || [];
 
-  return _.compact(
+  return compact(
     Object.values(itemStats).map((itemStat) => {
 
       const statHash = itemStat.statTypeHash;
@@ -215,7 +215,7 @@ function enhanceStatsWithPlugs(item, stats, statDisplays) {
   const definitionStatGroup = manifest.DestinyStatGroupDefinition[definitionItem.stats.statGroupHash];
 
   const sockets = item.sockets.sockets;
-  const statsByHash = _.keyBy(stats, (s) => s.statHash);
+  const statsByHash = keyBy(stats, (s) => s.statHash);
 
   const modifiedStats = new Set();
 
@@ -266,7 +266,7 @@ function enhanceStatsWithPlugs(item, stats, statDisplays) {
   // We sort the sockets by length so that we count contributions from plugs with fewer options first.
   // This is because multiple plugs can contribute to the same stat, so we want to sink the non-changeable
   // stats in first.
-  const sortedSockets = _.sortBy(sockets, (s) => s.plugOptions.length);
+  const sortedSockets = sortBy(sockets, (s) => s.plugOptions.length);
 
   for (const socket of sortedSockets) {
     for (const plug of socket.plugOptions) {
@@ -284,7 +284,7 @@ function enhanceStatsWithPlugs(item, stats, statDisplays) {
  * for Armor 2.0 since it has random stat rolls.
  */
 function buildLiveStats(item, stats, statGroup, statDisplays) {
-  return _.compact(
+  return compact(
     Object.values(stats.stats).map((itemStat) => {
       const statHash = itemStat.statHash;
       if (!itemStat || !shouldShowStat(item, statHash, statDisplays)) {
@@ -334,7 +334,7 @@ export const stats = item => {
     return false;
   }
 
-  const statDisplays = _.keyBy(definitionStatGroup.scaledStats, (s) => s.statHash);
+  const statDisplays = keyBy(definitionStatGroup.scaledStats, (s) => s.statHash);
 
   // We only use the raw "investment" stats to calculate all item stats.
   let investmentStats = buildInvestmentStats(item, definitionItem.stats.statGroupHash, statDisplays) || [];
@@ -388,8 +388,8 @@ export const stats = item => {
 
 
 function totalStat(stats = []) {
-  const total = _.sumBy(stats, (s) => s.value);
-  const baseTotal = _.sumBy(stats, (s) => s.base);
+  const total = sumBy(stats, (s) => s.value);
+  const baseTotal = sumBy(stats, (s) => s.base);
 
   return {
     investmentValue: total,

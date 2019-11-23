@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { compact } from 'lodash';
 
 import manifest from '../manifest';
 import * as enums from '../destinyEnums';
@@ -131,7 +131,7 @@ function buildSocket(
     if (reusablePlugs) {
       // This perk's list of plugs comes from the live reusablePlugs component.
       const reusableDimPlugs = reusablePlugs
-        ? _.compact(
+        ? compact(
             reusablePlugs.map((reusablePlug) =>
               buildPlug(reusablePlug, socketDef, plugObjectivesData)
             )
@@ -237,7 +237,7 @@ function buildDefinedSockets(item) {
     (category) => {
       return {
         category: manifest.DestinySocketCategoryDefinition[category.socketCategoryHash],
-        sockets: _.compact(category.socketIndexes.map((index) => realSockets[index])).filter(
+        sockets: compact(category.socketIndexes.map((index) => realSockets[index])).filter(
           (s) => s.plugOptions.length
         )
       };
@@ -245,7 +245,7 @@ function buildDefinedSockets(item) {
   );
 
   return {
-    sockets: _.compact(realSockets), // Flat list of sockets
+    sockets: compact(realSockets), // Flat list of sockets
     socketCategories: categories.sort(utils.compareBy((c) => c.category.index)) // Sockets organized by category
   };
 }
@@ -272,7 +272,7 @@ function buildDefinedSocket(socketDef, index) {
 
   const randomizedPlugs = (socketDef.randomizedPlugSetHash && manifest.DestinyPlugSetDefinition[socketDef.randomizedPlugSetHash] && manifest.DestinyPlugSetDefinition[socketDef.randomizedPlugSetHash].reusablePlugItems) || [];
 
-  const reusablePlugs = _.compact(
+  const reusablePlugs = compact(
     (socketDef.reusablePlugItems || [])
       .concat(reusablePlugItems)
       .concat(randomizedPlugs)

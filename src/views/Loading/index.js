@@ -25,7 +25,7 @@ class Loading extends React.Component {
         status: t('Fatal error'),
         displayProperties: {
           name: t('Unknown error'),
-          description: t('Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.')
+          description: t('Something very unexpected and irrecoverable occurred.')
         }
       },
       error_setUpManifest: {
@@ -33,7 +33,7 @@ class Loading extends React.Component {
         status: t('Fatal error'),
         displayProperties: {
           name: t('Manifest error'),
-          description: t('Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.')
+          description: t('Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again.')
         }
       },
       error_fetchingManifest: {
@@ -41,7 +41,7 @@ class Loading extends React.Component {
         status: t('Fatal error'),
         displayProperties: {
           name: t('Manifest download failed'),
-          description: t('Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.')
+          description: t('Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.')
         }
       },
       error_maintenance: {

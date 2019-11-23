@@ -23,6 +23,11 @@
       "sizes": "96x96"
     },
     {
+      "src": "/static/images/icon-128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
       "src": "/static/images/icon-192.png",
       "type": "image/png",
       "sizes": "192x192"

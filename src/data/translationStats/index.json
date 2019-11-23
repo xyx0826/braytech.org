@@ -1,10 +1,16 @@
 {
   "de": {
-    "translated": 461,
-    "notTranslated": 33,
-    "added": [],
+    "translated": 458,
+    "notTranslated": 36,
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "en": {
@@ -12,103 +18,177 @@
     "notTranslated": 0,
     "added": [],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "es-mx": {
     "translated": 0,
     "notTranslated": 494,
-    "added": [],
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "es": {
-    "translated": 476,
-    "notTranslated": 18,
-    "added": [],
+    "translated": 473,
+    "notTranslated": 21,
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "fr": {
-    "translated": 360,
-    "notTranslated": 134,
-    "added": [],
+    "translated": 357,
+    "notTranslated": 137,
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "internal": {
     "translated": 0,
     "notTranslated": 494,
-    "added": [],
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "it": {
-    "translated": 476,
-    "notTranslated": 18,
-    "added": [],
+    "translated": 473,
+    "notTranslated": 21,
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "ja": {
     "translated": 219,
     "notTranslated": 275,
-    "added": [],
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "ko": {
-    "translated": 301,
-    "notTranslated": 193,
-    "added": [],
+    "translated": 298,
+    "notTranslated": 196,
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "pl": {
     "translated": 0,
     "notTranslated": 494,
-    "added": [],
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "pt-br": {
-    "translated": 461,
-    "notTranslated": 33,
-    "added": [],
+    "translated": 458,
+    "notTranslated": 36,
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "ru": {
     "translated": 0,
     "notTranslated": 494,
-    "added": [],
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "zh-chs": {
-    "translated": 472,
-    "notTranslated": 22,
-    "added": [],
+    "translated": 469,
+    "notTranslated": 25,
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   },
   "zh-cht": {
-    "translated": 472,
-    "notTranslated": 22,
-    "added": [],
+    "translated": 469,
+    "notTranslated": 25,
+    "added": [
+      "Something very unexpected and irrecoverable occurred.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again."
+    ],
     "removed": [
-      "Patreon"
+      "Something very unexpected and unrecoravable occurred.\n\nPlease help @justrealmilk resolve this issue by messaging him.",
+      "Something went wrong while trying to download the item manifest from Bungie.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk.",
+      "Something went wrong while trying to update the item manifest.\n\nPlease refresh the app and try again. If this issue persists, please contact @justrealmilk."
     ]
   }
 }

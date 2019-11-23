@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
-import { orderBy, groupBy } from 'lodash';
+import { orderBy } from 'lodash';
 import cx from 'classnames';
 import moment from 'moment';
 
