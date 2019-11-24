@@ -614,7 +614,7 @@ const hashExtract = /^([^[\]]*)(\[[^[\]]+?\]|[\uE099-\uE154])(.*)$/u;
 function supplementedConversionTable() {
   // conversionTable holds input & output rules for icon replacement. baseConversionTable is used to build it.
   const baseConversionTable = [
-    { char: 'lol wot kinetic', objectiveHash: 3924246227, substring: '' },
+    { char: '', objectiveHash: 3924246227, substring: '' },
     { char: '', objectiveHash: 2994623161, substring: '' },
     { char: '', objectiveHash: 2178780271, substring: '' },
     { char: '', objectiveHash: 695106797, substring: '' },

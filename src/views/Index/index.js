@@ -47,6 +47,12 @@ class Index extends React.Component {
     this.mounted = false;
   }
 
+  componentDidUpdate(p, s) {
+    if (!s.manifest.data && this.state.manifest.data) {
+      this.props.rebindTooltips();
+    }
+  }
+
   init = async () => {
     if (!this.state.manifest.data) {
       let diff = await fetch('https://voluspa.braytech.org/manifest');
@@ -318,7 +324,18 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    rebindTooltips: value => {
+      dispatch({ type: 'REBIND_TOOLTIPS', payload: new Date().getTime() });
+    }
+  };
+}
+
 export default compose(
-  connect(mapStateToProps),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
   withTranslation()
 )(Index);
