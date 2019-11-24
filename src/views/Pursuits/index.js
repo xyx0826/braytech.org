@@ -61,7 +61,7 @@ class Pursuits extends React.Component {
       const bucketName = definitionBucket && definitionBucket.displayProperties && definitionBucket.displayProperties.name && definitionBucket.displayProperties.name.replace(' ', '-').toLowerCase();
 
       const vendorSource = definitionItem.sourceData && definitionItem.sourceData.vendorSources && definitionItem.sourceData.vendorSources.length && definitionItem.sourceData.vendorSources[0] && definitionItem.sourceData.vendorSources[0].vendorHash ? definitionItem.sourceData.vendorSources[0].vendorHash : false;
-if (item.itemHash === 2675137426) item.itemHash = 2600369658
+
       return ({
         ...item,
         name: definitionItem.displayProperties && definitionItem.displayProperties.name,
