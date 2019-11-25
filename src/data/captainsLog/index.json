@@ -823,5 +823,10 @@
     "date": "2019-11-21T08:40:33.882Z",
     "version": "2.11.0",
     "content": "- _Legend_ version 1"
+  },
+  {
+    "date": "2019-11-25T08:22:01.343Z",
+    "version": "2.11.6",
+    "content": "- _Maps_ view _Tooltip_ fix"
   }
 ]

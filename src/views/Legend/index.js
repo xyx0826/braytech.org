@@ -275,111 +275,47 @@ class Legend extends React.Component {
         }
       ]
     },
-    factions: {
-      name: i18n.t('Factions and foundries'),
-      description: i18n.t('Represent your people'),
-      variants: [
-        {
-          disabled: true,
-          name: manifest.DestinyFactionDefinition[1714509342].displayProperties.name,
-          description: manifest.DestinyFactionDefinition[1714509342].displayProperties.description,
-          // background: {
-          //   src: '/static/images/legend/new_monarchy.jpg'
-          // },
-          dyes: [
-            // {
-            //   channel: '--background-primary-1',
-            //   value: '#95423f'
-            // },
-            // {
-            //   channel: '--triumph-seal-1',
-            //   value: 'hsla(23, 34%, 50%, 1)'
-            // },
-            // {
-            //   channel: '--triumph-seal-2',
-            //   value: 'hsla(23, 34%, 58%, 1)'
-            // },
-            // {
-            //   channel: '--class-titan-1',
-            //   value: '#95423f'
-            // },
-            // {
-            //   channel: '--class-hunter-1',
-            //   value: '#95423f'
-            // },
-            // {
-            //   channel: '--class-warlock-1',
-            //   value: '#95423f'
-            // },
-            // {
-            //   channel: '--text-margins',
-            //   value: 'rgba(255, 255, 255, 0.4)'
-            // }
-          ]
-        },
-        {
-          disabled: true,
-          name: manifest.DestinyFactionDefinition[3398051042].displayProperties.name,
-          description: manifest.DestinyFactionDefinition[3398051042].displayProperties.description,
-          dyes: []
-        },
-        {
-          name: manifest.DestinyFactionDefinition[2105209711].displayProperties.name,
-          description: manifest.DestinyFactionDefinition[2105209711].displayProperties.description,
-          background: {
-            src: '/static/images/legend/new_monarchy.jpg'
-          },
-          dyes: [
-            {
-              channel: '--background-primary-1',
-              value: '#95423f'
-            },
-            {
-              channel: '--triumph-seal-1',
-              value: 'hsla(23, 34%, 50%, 1)'
-            },
-            {
-              channel: '--triumph-seal-2',
-              value: 'hsla(23, 34%, 58%, 1)'
-            },
-            {
-              channel: '--class-titan-1',
-              value: '#95423f'
-            },
-            {
-              channel: '--class-hunter-1',
-              value: '#95423f'
-            },
-            {
-              channel: '--class-warlock-1',
-              value: '#95423f'
-            },
-            {
-              channel: '--text-margins',
-              value: 'rgba(255, 255, 255, 0.4)'
-            }
-          ]
-        },
-        {
-          disabled: true,
-          name: manifest.DestinyFactionDefinition[697030790].displayProperties.name,
-          description: manifest.DestinyFactionDefinition[697030790].displayProperties.description,
-          dyes: []
-        },
-        {
-          disabled: true,
-          name: manifest.DestinyFactionDefinition[611314723].displayProperties.name,
-          description: manifest.DestinyFactionDefinition[611314723].displayProperties.description,
-          dyes: []
-        },
-        {
-          disabled: true,
-          name: manifest.DestinyPlaceDefinition[484311295].displayProperties.name,
-          description: manifest.DestinyPlaceDefinition[484311295].displayProperties.description,
-          dyes: []
-        }
-      ]
-    }
+    // gambit: {
+    //   name: manifest.DestinyActivityDefinition[3577607128].displayProperties.name,
+    //   description: manifest.DestinyActivityDefinition[3577607128].displayProperties.description,
+    //   variants: [
+    //     {
+    //       // background: {
+    //       //   src: '/static/images/legend/gambit.jpg'
+    //       // },
+    //       dyes: [
+    //         {
+    //           channel: '--background-primary-1',
+    //           value: '#0e4b2e'
+    //         },
+    //         {
+    //           channel: '--triumph-seal-1',
+    //           value: 'hsla(165, 100%, 42%, 0.4)'
+    //         },
+    //         {
+    //           channel: '--triumph-seal-2',
+    //           value: 'hsla(165, 100%, 42%, 0.8)'
+    //         },
+    //         {
+    //           channel: '--class-titan-1',
+    //           value: 'hsla(165, 100%, 42%, 0.4)'
+    //         },
+    //         {
+    //           channel: '--class-hunter-1',
+    //           value: 'hsla(165, 100%, 42%, 0.4)'
+    //         },
+    //         {
+    //           channel: '--class-warlock-1',
+    //           value: 'hsla(165, 100%, 42%, 0.4)'
+    //         },
+    //         {
+    //           channel: '--text-primary-5',
+    //           value: 'hsla(165, 100%, 42%, 0.2)'
+    //         }
+    //       ]
+    //     }
+    //   ]
+    // }
   }
 
   handler_setTheme = key => e => {
@@ -573,51 +509,53 @@ class Legend extends React.Component {
                     ))}
                   </ul>
                 </div>
-                <div className='col'>
-                  <div className='module-header'>
-                    <div>{t('Options')}</div>
+                {theme.variants.length > 1 || this.state.theme.selected === 'mono' ? (
+                  <div className='col'>
+                    <div className='module-header'>
+                      <div>{t('Options')}</div>
+                    </div>
+                    <ul className='list settings'>
+                      {theme.variants.map((v, i) => {
+                        if (this.state.theme.selected === 'mono') {
+                          return (
+                            <React.Fragment key={i}>
+                              <li>
+                                <input key='rangeHue' type='range' min='0' max='359' step='1' value={this.state.theme.mono.hue} onChange={this.handler_setMonoHue} />
+                                <div className='info'>
+                                  <p>{t('Adjust the hue')}</p>
+                                </div>
+                              </li>
+                              <li>
+                                <input key='rangeSat' type='range' min='-100' max='100' step='1' value={this.state.theme.mono.saturation} onChange={this.handler_setMonoSaturation} />
+                                <div className='info'>
+                                  <p>{t('Adjust the saturation')}</p>
+                                </div>
+                              </li>
+                              <li>
+                                <input key='rangeLum' type='range' min='-10' max='30' step='1' value={this.state.theme.mono.luminance} onChange={this.handler_setMonoLuminance} />
+                                <div className='info'>
+                                  <p>{t('Adjust the luminance')}</p>
+                                </div>
+                              </li>
+                            </React.Fragment>
+                          )
+                        }
+                        else {
+                          return (
+                            <li key={i} onClick={!v.disabled ? this.handler_setVariant(i) : null}>
+                              <Checkbox linked checked={this.state.theme.variantIndex === i} text={v.name} disabled={v.disabled} />
+                              {v.description ? (
+                                <div className='info'>
+                                  <p>{v.description}</p>
+                                </div>
+                              ) : null}
+                            </li>
+                          )
+                        }
+                      })}
+                    </ul>
                   </div>
-                  <ul className='list settings'>
-                    {theme.variants.map((v, i) => {
-                      if (this.state.theme.selected === 'mono') {
-                        return (
-                          <React.Fragment key={i}>
-                            <li>
-                              <input key='rangeHue' type='range' min='0' max='359' step='1' value={this.state.theme.mono.hue} onChange={this.handler_setMonoHue} />
-                              <div className='info'>
-                                <p>{t('Adjust the hue')}</p>
-                              </div>
-                            </li>
-                            <li>
-                              <input key='rangeSat' type='range' min='-100' max='100' step='1' value={this.state.theme.mono.saturation} onChange={this.handler_setMonoSaturation} />
-                              <div className='info'>
-                                <p>{t('Adjust the saturation')}</p>
-                              </div>
-                            </li>
-                            <li>
-                              <input key='rangeLum' type='range' min='-10' max='30' step='1' value={this.state.theme.mono.luminance} onChange={this.handler_setMonoLuminance} />
-                              <div className='info'>
-                                <p>{t('Adjust the luminance')}</p>
-                              </div>
-                            </li>
-                          </React.Fragment>
-                        )
-                      }
-                      else {
-                        return (
-                          <li key={i} onClick={!v.disabled ? this.handler_setVariant(i) : null}>
-                            <Checkbox linked checked={this.state.theme.variantIndex === i} text={v.name} disabled={v.disabled} />
-                            {v.description ? (
-                              <div className='info'>
-                                <p>{v.description}</p>
-                              </div>
-                            ) : null}
-                          </li>
-                        )
-                      }
-                    })}
-                  </ul>
-                </div>
+                ) : null}
               </div>
               <div className='row'>
                 <div className='col'>

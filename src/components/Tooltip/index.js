@@ -22,7 +22,10 @@ class Tooltip extends React.Component {
     };
 
     this.ref_tooltip = React.createRef();
-    this.touchMovement = false;
+    this.touchPosition = {
+      x: 0,
+      y: 0
+    };
     this.mousePosition = {
       x: 0,
       y: 0
@@ -88,15 +91,22 @@ class Tooltip extends React.Component {
   };
 
   helper_targetTouchStart = e => {
-    this.touchMovement = false;
+    console.log('touch start');
+
+    this.touchPosition = {
+      x: e.changedTouches[0].clientX,
+      y: e.changedTouches[0].clientY
+    };
   };
 
   helper_targetTouchMove = e => {
-    this.touchMovement = true;
+    
   };
 
   helper_targetTouchEnd = e => {
-    if (!this.touchMovement) {
+    const drag = e && e.changedTouches && e.changedTouches.length ? !((e.changedTouches[0].clientX - this.touchPosition.x) === 0 && (e.changedTouches[0].clientY - this.touchPosition.y) === 0) : false;
+
+    if (!drag) {
       if (e.currentTarget.dataset.hash) {
         this.setState({
           hash: e.currentTarget.dataset.hash,
@@ -110,16 +120,22 @@ class Tooltip extends React.Component {
   };
 
   helper_tooltipTouchStart = e => {
-    this.touchMovement = false;
+    this.touchPosition = {
+      x: e.changedTouches[0].clientX,
+      y: e.changedTouches[0].clientY
+    };
   };
 
   helper_tooltipTouchMove = e => {
-    this.touchMovement = true;
+    
   };
 
   helper_tooltipTouchEnd = e => {
     e.preventDefault();
-    if (!this.touchMovement) {
+
+    const drag = e && e.changedTouches && e.changedTouches.length ? !((e.changedTouches[0].clientX - this.touchPosition.x) === 0 && (e.changedTouches[0].clientY - this.touchPosition.y) === 0) : false;
+
+    if (!drag) {
       this.resetState();
     }
   };
@@ -130,6 +146,10 @@ class Tooltip extends React.Component {
       table: false,
       data: {}
     });
+    this.touchPosition = {
+      x: 0,
+      y: 0
+    };
     this.mousePosition = {
       x: 0,
       y: 0
