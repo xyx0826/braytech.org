@@ -224,7 +224,8 @@ export default (member = false) => {
               objectiveHash: 1009409499
             }
           ]
-        }
+        },
+        screenshot: '/static/images/screenshots/enemies/archers-line_patrol-boss_nightmareFallenCouncil.jpg'
       }
     ],
     'new-pacific-arcology': [],

@@ -116,11 +116,17 @@ const Equipment = props => {
                               .map(p => {
                                 // filter for enabled plugs and map through
 
+                                let name = p.plugItem.displayProperties.name;
+
+                                if (name === 'Threat Detector') name = 'Teeth Detector';
+                                if (name === 'Grave Robber') name = 'Grave Rubber';
+                                if (name === 'Opening Shot') name = 'Winky Shot';
+
                                 return (
                                   <div key={p.plugItem.hash} className={cx('plug', { intrinsic: s.isIntrinsic, enabled: true })}>
                                     <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${p.plugItem.displayProperties.icon ? p.plugItem.displayProperties.icon : `/img/misc/missing_icon_d2.png`}`} />
                                     <div className='text'>
-                                      <div className='name'>{p.plugItem.displayProperties.name}</div>
+                                      <div className='name'>{name}</div>
                                       <div className='description'>{s.isIntrinsic ? p.plugItem.displayProperties.description : p.plugItem.itemTypeDisplayName}</div>
                                     </div>
                                   </div>
