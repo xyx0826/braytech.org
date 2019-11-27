@@ -44,7 +44,7 @@
 }
 
 .seasonal-artifact .artifact .text .name {
-  font-family: 'nhg text', 'nhg display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
   font-size: 38px;
   text-transform: uppercase;
   font-weight: 500;
@@ -54,7 +54,7 @@
 }
 
 .seasonal-artifact .artifact .text .type {
-  font-family: 'nhg text', 'nhg display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
   font-size: 21px;
   text-transform: uppercase;
   line-height: 18px;
@@ -150,7 +150,7 @@
   top: 8px;
   right: 11px;
   font-size: 14px;
-  font-family: 'nhg text', 'nhg display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
   color: #fff;
   pointer-events: none;  
 }

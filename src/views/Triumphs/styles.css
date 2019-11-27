@@ -147,7 +147,7 @@
 
 #triumphs .node.seal .children h4.completed {
   color: rgb(206, 174, 51);
-  font-family: 'nhg text', 'nhg display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
 }
 
 #triumphs .node.seal .children .progress {
@@ -257,7 +257,7 @@
   padding: 0 1rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-family: 'nhg text', 'nhg display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
 }
 
 #triumphs.root .list.notification-unredeemed li .text {

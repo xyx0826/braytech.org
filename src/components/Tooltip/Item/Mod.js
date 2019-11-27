@@ -58,7 +58,7 @@ const Mod = props => {
           <pre>{description}</pre>
         </div>
       ) : null}
-      {description && <div className='line' />}
+      {sourceString && <div className='line' />}
       {sourceString ? (
         <div className='source'>
           <p>{sourceString}</p>
