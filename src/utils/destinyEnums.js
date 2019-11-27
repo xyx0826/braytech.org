@@ -11,6 +11,7 @@ export const XBOX = 1;
 export const PLAYSTATION = 2;
 export const PC_STEAM = 3;
 export const PC_BLIZZARD = 4;
+export const STADIA = 5;
 export const TIGERDEMON = 10;
 export const BUNGIENEXT = 254;
 
@@ -18,7 +19,8 @@ export const PLATFORMS = {
   [XBOX]: 'xbox',
   [PLAYSTATION]: 'playstation',
   [PC_STEAM]: 'steam',
-  [PC_BLIZZARD]: 'battlenet'
+  [PC_BLIZZARD]: 'battlenet',
+  [STADIA]: 'stadia'
 };
 
 export const CLASSES = {

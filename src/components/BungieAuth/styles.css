@@ -86,6 +86,9 @@
   margin: 0 1rem 0 0;
   font-size: 18px;
   color: #fff;
+}
+
+.bungie-auth .memberships .list li.linked span.destiny-platform_xbox {
   background-color: #4CAF50;
 }
 
@@ -94,11 +97,15 @@
 }
 
 .bungie-auth .memberships .list li.linked span.destiny-platform_steam {
-  background-color: #0a1b48;
+  background-color: #165b83;
 }
 
 .bungie-auth .memberships .list li.linked span.destiny-platform_battlenet {
   background-color: #009ae4;
+}
+
+.bungie-auth .memberships .list li.linked span.destiny-platform_stadia {
+  background-color: #da2b48;
 }
 
 .bungie-auth .memberships .list li.linked .displayName {

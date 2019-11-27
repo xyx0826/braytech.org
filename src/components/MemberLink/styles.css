@@ -299,11 +299,15 @@ html.backdropfilter #member-overlay .background .acrylic {
 }
 
 #member-overlay .wrapper-inner .stamps div i.destiny-platform_steam {
-  background-color: #0a1b48;
+  background-color: #165b83;
 }
 
 #member-overlay .wrapper-inner .stamps div i.destiny-platform_battlenet {
   background-color: #009ae4;
+}
+
+#member-overlay .wrapper-inner .stamps div i.destiny-platform_stadia {
+  background-color: #da2b48;
 }
 
 #member-overlay .wrapper-inner .stamps div i.destiny-clovis_bray_device {

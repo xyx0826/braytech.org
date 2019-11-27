@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { debounce } from 'lodash';
 import { withTranslation } from 'react-i18next';

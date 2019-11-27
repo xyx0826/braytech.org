@@ -94,6 +94,9 @@
   margin: 0 1rem 0 0;
   font-size: 18px;
   color: #fff;
+}
+
+#character-select .results .list li.linked span.destiny-platform_xbox {
   background-color: #4CAF50;
 }
 
@@ -102,11 +105,15 @@
 }
 
 #character-select .results .list li.linked span.destiny-platform_steam {
-  background-color: #0a1b48;
+  background-color: #165b83;
 }
 
 #character-select .results .list li.linked span.destiny-platform_battlenet {
   background-color: #009ae4;
+}
+
+#character-select .results .list li.linked span.destiny-platform_stadia {
+  background-color: #da2b48;
 }
 
 #character-select .profile {
@@ -179,11 +186,15 @@
 }
 
 #character-select .profile .summary .stamps div i.destiny-platform_steam {
-  background-color: #0a1b48;
+  background-color: #165b83;
 }
 
 #character-select .profile .summary .stamps div i.destiny-platform_battlenet {
   background-color: #009ae4;
+}
+
+#character-select .profile .summary .stamps div i.destiny-platform_stadia {
+  background-color: #da2b48;
 }
 
 #character-select .profile .summary .stamps div i.destiny-clovis_bray_device {
