@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Braytech';
-  src: url('Braytech.woff?d9bmkw') format('woff');
+  src: url('Braytech.woff?uywl1e') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -17,6 +17,26 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.destiny-campaign_red-war:before {
+  content: "\e941";
+  color: #802f22;
+}
+.destiny-campaign_shadowkeep:before {
+  content: "\e942";
+  color: #80222d;
+}
+.destiny-campaign_curse-of-osiris:before {
+  content: "\e943";
+  color: #d3d024;
+}
+.destiny-campaign_forsaken:before {
+  content: "\e944";
+  color: #993d8a;
+}
+.destiny-campaign_warmind:before {
+  content: "\e945";
+  color: #63b7c9;
+}
 .destiny-patrol-minion:before {
   content: "\e92e";
   color: #a12624;
@@ -91,17 +111,8 @@
 .destiny-power:before {
   content: "\6c";
 }
-.destiny-damage_solar:before {
-  content: "\73";
-}
-.destiny-damage_arc:before {
-  content: "\61";
-}
-.destiny-damage_void:before {
-  content: "\76";
-}
-.destiny-damage_kinetic:before {
-  content: "\6b";
+.destiny-platform_stadia:before {
+  content: "\e946";
 }
 .destiny-platform_steam:before {
   content: "\e903";

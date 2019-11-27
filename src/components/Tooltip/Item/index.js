@@ -158,9 +158,9 @@ class Item extends React.Component {
       item.primaryStat.value = Math.floor((733 / 750) * character.light);
     }
 
-    let note = false;
+    let importantText = false;
     if (!item.itemComponents && this.props.uninstanced) {
-      note = t('Collections roll');
+      importantText = t('Collections roll');
     }
 
     const Meat = item.type && woolworths[item.type];
@@ -177,7 +177,7 @@ class Item extends React.Component {
               {item.rarity ? <div className='rarity'>{definitionItem.inventory.tierTypeName}</div> : null}
             </div>
           </div>
-          {note ? <div className='note'>{note}</div> : null}
+          {importantText ? <div className='important'>{importantText}</div> : null}
           <div className='black'>
             {this.props.viewport.width <= 600 && definitionItem.screenshot ? (
               <div className='screenshot'>

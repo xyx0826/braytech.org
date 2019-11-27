@@ -81,12 +81,11 @@
   text-align: right;
 }
 
-#tooltip .frame .note {
+#tooltip .frame .important {
   padding: 7px 16px 6px;
   background-color: rgba(158, 65, 51, 0.9);
   font-size: 13px;
   line-height: 1.4;
-  text-transform: uppercase;
   font-family: 'nhg text', 'nhg display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
 }
 
@@ -140,7 +139,7 @@
 }
 
 #tooltip .damage .power .icon::before {
-  font-family: 'Braytech';
+  font-family: 'Destiny Symbols';
 }
 
 #tooltip .damage .power.solar {
@@ -148,7 +147,7 @@
 }
 
 #tooltip .damage .power .icon.solar::before {
-  content: 's';
+  content: '';
 }
 
 #tooltip .damage .power.arc {
@@ -156,7 +155,7 @@
 }
 
 #tooltip .damage .power .icon.arc::before {
-  content: 'a';
+  content: '';
 }
 
 #tooltip .damage .power.void {
@@ -164,7 +163,7 @@
 }
 
 #tooltip .damage .power .icon.void::before {
-  content: 'v';
+  content: '';
 }
 
 #tooltip .damage.armour .power {

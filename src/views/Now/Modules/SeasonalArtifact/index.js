@@ -7,7 +7,6 @@ import cx from 'classnames';
 import manifest from '../../../../utils/manifest';
 import { seasonalMods } from '../../../../utils/destinyEnums';
 import ObservedImage from '../../../../components/ObservedImage';
-import Spinner from '../../../../components/UI/Spinner';
 import ProgressBar from '../../../../components/UI/ProgressBar';
 
 import './styles.css';

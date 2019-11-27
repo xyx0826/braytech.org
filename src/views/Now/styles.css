@@ -98,17 +98,44 @@
 
 #now .module .list.activities li > div:not(.name) {
   display: grid;
-  grid-template-columns: auto 50px;
+  grid-template-columns: 38px 55px 45px;
   grid-gap: 6px;
   text-align: right;
+  align-items: center;
 }
 
 #now .module .list.activities li .name {
   font-size: 16px;
 }
 
+#now .module .list.activities li .game-version-icon {
+  height: 38px;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  background-color: rgba(211, 208, 36, 0.6);
+}
+
+#now .module .list.activities li.warmind .game-version-icon {
+  background-color: rgba(99, 182, 201, 0.6);
+}
+
+#now .module .list.activities li.forsaken .game-version-icon {
+  background-color: rgba(153, 61, 138, 0.6);
+}
+
+#now .module .list.activities li.shadowkeep .game-version-icon {
+  background-color: rgba(128, 34, 45, 0.6);
+}
+
+#now .module .list.activities li .game-version-icon span::before {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
 #now .module .list.activities li .time {
   color: rgba(255, 255, 255, 0.6);
+  grid-column: 2/3;
 }
 
 #now .module .list.activities li .light {

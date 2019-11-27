@@ -6,6 +6,7 @@ import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
 import * as enums from '../../../utils/destinyEnums';
+import * as utils from '../../../utils/destinyUtils';
 import ObservedImage from '../../ObservedImage';
 import { checklists, lookup } from '../../../utils/checklists';
 
@@ -13,7 +14,7 @@ import './styles.css';
 
 class Activity extends React.Component {
   render() {
-    const { t, hash, mode, playlist } = this.props;
+    const { t, member, hash, mode, playlist } = this.props;
 
     const definitionActivity = manifest.DestinyActivityDefinition[hash];
     const definitionActivityMode = manifest.DestinyActivityModeDefinition[mode];
@@ -337,6 +338,8 @@ class Activity extends React.Component {
       const checklist = checklistEntry.checklistId && checklists[checklistEntry.checklistId]({ requested: [checklistEntry.checklistHash] });
       const checklistItem = checklist && checklist.items && checklist.items.length && checklist.items[0];
 
+      const eligibilityRequirements = member.data && member.data.profile && definitionActivity.eligibilityRequirements && utils.gameVersion(member.data.profile.profile.data.versionsOwned, definitionActivity.eligibilityRequirements.gameVersion);
+
       return (
         <>
           <div className='acrylic' />
@@ -356,6 +359,7 @@ class Activity extends React.Component {
                   <ObservedImage className='image' src={`https://www.bungie.net${activityTypeDisplay.pgcrImage}`} />
                 </div>
               ) : null}
+              {eligibilityRequirements && !eligibilityRequirements.eligible ? <div className='important'>{eligibilityRequirements.unlock.text}</div> : null}
               {activityTypeDisplay.destination || activityTypeDisplay.description ? (
                 <div className='description'>
                   {activityTypeDisplay.destination && activityTypeDisplay.destination.name ? (

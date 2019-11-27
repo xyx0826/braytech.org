@@ -64,11 +64,12 @@ class SeasonPass extends React.Component {
     const characters = member.data.profile.characters.data;
     const character = characters.find(c => c.characterId === member.characterId);
     const characterProgressions = member.data.profile.characterProgressions.data;
+    const profile = member.data.profile.profile.data;
 
     const seasonPassItemsPerPage = this.seasonPassItemsPerPage(viewport.width);
 
     const seasonPass = {
-      season: manifest.DestinySeasonDefinition[3612906877],
+      season: manifest.DestinySeasonDefinition[profile.currentSeasonHash],
       slice: this.state.seasonPassRewardsPage * seasonPassItemsPerPage - seasonPassItemsPerPage,
       itemsPerPage: seasonPassItemsPerPage,
       ranks: manifest.DestinyProgressionDefinition[1628407317].steps.map((s, x) => {

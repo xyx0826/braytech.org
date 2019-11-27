@@ -348,6 +348,7 @@ class ReportItem extends React.Component {
           name: t('Score'),
           abbr: 'S',
           type: 'displayValue',
+          hideInline: true,
           root: true
         }
       ],

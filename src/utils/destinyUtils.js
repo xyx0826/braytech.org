@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
-import { once, orderBy } from 'lodash';
+import { once } from 'lodash';
+import i18n from 'i18next';
 
 import manifest from './manifest';
-import * as destinyEnums from './destinyEnums';
+import * as enums from './destinyEnums';
 
 // TODO: we can just use itemCategoryHashes for this now?
 export const isOrnament = item => item.inventory && item.inventory.stackUniqueLabel && item.plug && item.plug.plugCategoryIdentifier && item.plug.plugCategoryIdentifier.includes('skins');
@@ -40,7 +39,7 @@ export function collectionTotal(data) {
   let profileTempCollections = {};
 
   for (const [hash, collectible] of Object.entries(data.profileCollectibles.data.collectibles)) {
-    let collectibleState = destinyEnums.enumerateCollectibleState(collectible.state);
+    let collectibleState = enums.enumerateCollectibleState(collectible.state);
     if (!collectibleState.notAcquired) {
       if (!profileTempCollections[hash]) {
         profileTempCollections[hash] = 1;
@@ -50,7 +49,7 @@ export function collectionTotal(data) {
 
   for (const [characterId, character] of Object.entries(data.characterCollectibles.data)) {
     for (const [hash, collectible] of Object.entries(character.collectibles)) {
-      let collectibleState = destinyEnums.enumerateCollectibleState(collectible.state);
+      let collectibleState = enums.enumerateCollectibleState(collectible.state);
       if (!collectibleState.notAcquired) {
         if (!profileTempCollections[hash]) {
           profileTempCollections[hash] = 1;
@@ -149,6 +148,77 @@ export function raceTypeToString(str) {
   }
 
   return string;
+}
+
+export const gameVersion = (versionsOwned, versionHash) => {
+  const owned = versionsOwned && enums.enumerateDestinyGameVersions(versionsOwned)
+
+  if (versionHash === 'base') {
+    return {
+      hash: 'base',
+      unlock: {
+        text: 'Requires Destiny 2'
+      },
+      eligible: owned[versionHash],
+      displayProperties: {
+        icon: 'destiny-campaign_red-war'
+      }
+    }
+  } else if (versionHash === 'osiris') {
+    return {
+      hash: 'osiris',
+      unlock: {
+        text: i18n.t('Requires Destiny 2: Curse of Osiris')
+      },
+      eligible: owned[versionHash],
+      displayProperties: {
+        icon: 'destiny-campaign_curse-of-osiris'
+      }
+    }
+  } else if (versionHash === 'warmind') {
+    return {
+      hash: 'warmind',
+      unlock: {
+        text: i18n.t('Requires Destiny 2: Warmind')
+      },
+      eligible: owned[versionHash],
+      displayProperties: {
+        icon: 'destiny-campaign_warmind'
+      }
+    }
+  } else if (versionHash === 'forsaken') {
+    return {
+      hash: 'forsaken',
+      unlock: {
+        text: i18n.t('Requires Destiny 2: Forsaken')
+      },
+      eligible: owned[versionHash],
+      displayProperties: {
+        icon: 'destiny-campaign_forsaken'
+      }
+    }
+  } else if (versionHash === 'shadowkeep') {
+    return {
+      hash: 'shadowkeep',
+      unlock: {
+        text: i18n.t('Requires Destiny 2: Shadowkeep')
+      },
+      eligible: owned[versionHash],
+      displayProperties: {
+        icon: 'destiny-campaign_shadowkeep'
+      }
+    }
+  } else {
+    return {
+      hash: '',
+      unlock: {
+        text: ''
+      },
+      displayProperties: {
+        icon: false
+      }
+    }
+  }
 }
 
 export function classHashToString(hash, gender) {
@@ -757,7 +827,7 @@ export function lastPlayerActivity(member) {
 
         lastActivityString = `${definitionActivity.selectionScreenDisplayProperties && definitionActivity.selectionScreenDisplayProperties.name ? definitionActivity.selectionScreenDisplayProperties.name : definitionActivity.displayProperties && definitionActivity.displayProperties.name}`;
 
-      } else if (lastActivity.currentActivityModeHash === 547513715 && destinyEnums.ordealHashes.includes(lastActivity.currentActivityHash)) { // Nightfall ordeals
+      } else if (lastActivity.currentActivityModeHash === 547513715 && enums.ordealHashes.includes(lastActivity.currentActivityHash)) { // Nightfall ordeals
 
         lastActivityString = definitionActivity.displayProperties.name;
 

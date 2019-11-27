@@ -3,8 +3,10 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { orderBy } from 'lodash';
+import cx from 'classnames';
 
 import manifest from '../../../../utils/manifest';
+import * as utils from '../../../../utils/destinyUtils';
 
 import './styles.css';
 
@@ -33,18 +35,33 @@ class HeroicStoryMissions extends React.Component {
         <div className='module-header'>
           <div className='sub-name'>{dailyHeroicStories.displayProperties.name}</div>
         </div>
+        <div className='text'>
+          <p>
+            <em>
+              {t('Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better.')}
+            </em>
+          </p>
+        </div>
+        <h4>{t('Available activities')}</h4>
         <ul className='list activities'>
           {orderBy(
             dailyHeroicStories.activities.map((a, i) => {
               const definitionActivity = manifest.DestinyActivityDefinition[a.activityHash];
 
+              const gameVersion = definitionActivity.eligibilityRequirements && utils.gameVersion(false, definitionActivity.eligibilityRequirements.gameVersion);
+
               return {
                 light: definitionActivity.activityLightLevel,
-                timeToComplete: definitionActivity.timeToComplete || 20,
+                timeToComplete: definitionActivity.timeToComplete || 0,
                 el: (
-                  <li key={i} className='linked tooltip' data-table='DestinyActivityDefinition' data-hash={a.activityHash} data-mode='175275639'>
+                  <li key={i} className={cx('linked', 'tooltip', { [gameVersion.hash]: gameVersion.hash !== 'base' })} data-table='DestinyActivityDefinition' data-hash={a.activityHash} data-mode='175275639'>
                     <div className='name'>{definitionActivity.selectionScreenDisplayProperties && definitionActivity.selectionScreenDisplayProperties.name ? definitionActivity.selectionScreenDisplayProperties.name : definitionActivity.displayProperties && definitionActivity.displayProperties.name ? definitionActivity.displayProperties.name : t('Unknown')}</div>
                     <div>
+                      {gameVersion.hash !== 'base' && gameVersion.displayProperties.icon ? (
+                        <div className='game-version-icon'>
+                          <span className={gameVersion.displayProperties.icon} />
+                        </div>
+                      ) : null}
                       <div className='time'>{definitionActivity.timeToComplete ? <>{t('{{number}} mins', { number: definitionActivity.timeToComplete || 0 })}</> : null}</div>
                       <div className='light'>
                         <span>{definitionActivity.activityLightLevel}</span>
