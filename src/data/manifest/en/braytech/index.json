@@ -31,6 +31,14 @@
     "itemType": 1,
     "itemTypeDisplayName": "Platform"
   },
+  "platform_stadia": {
+    "displayProperties": {
+      "name": "Stadia",
+      "description": "The platform to which this profile belongs."
+    },
+    "itemType": 1,
+    "itemTypeDisplayName": "Platform"
+  },
   "warmind": {
     "displayProperties": {
       "name": "Darth Sidious",

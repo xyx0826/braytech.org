@@ -90,7 +90,8 @@ export default (member = false) => {
               objectiveHash: 1009409498
             }
           ]
-        }
+        },
+        screenshot: '/static/images/screenshots/enemies/sorrows-harbor_patrol-boss_nightmareXortal.jpg'
       },
       {
         hash: 'wanderingNightmareHorkis',
