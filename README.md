@@ -13,34 +13,6 @@ _The source code of braytech.org_
 
 4.  Submit pull request
 
-## Contributing to maps data
-
-### Screenshots
-
-1.  Create a pull request
-
-2.  Find screenshots at [/screenshots/](https://github.com/justrealmilk/braytech.org/tree/master/screenshots/)
-
-3.  Submit your screenshots with matching file name patterns to these folders
-    *  Original PNG file
-    *  No HUD
-    *  1080p or greater, 16:9 aspect ratio
-    *  Frame subject in very center _unless it's super important to creating location context_
-    *  Feel free to provide multiple variants for consideration
-    *  No ammo, enemies, guardians in frame
-
-4.  Submit pull request
-
-### Nodes
-
-1.  Create a pull request
-
-2.  Find data at [/src/data/lowlines/maps/nodes/index.json](https://github.com/justrealmilk/braytech.org/tree/master/src/data/lowlines/maps/nodes/index.json)
-
-3.  Make your desired changes i.e. description value
-
-4.  Submit pull request
-
 ## Running the dev build
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
