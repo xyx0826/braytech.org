@@ -63,9 +63,9 @@ class HeroicStoryMissions extends React.Component {
                         </div>
                       ) : null}
                       <div className='time'>{definitionActivity.timeToComplete ? <>{t('{{number}} mins', { number: definitionActivity.timeToComplete || 0 })}</> : null}</div>
-                      <div className='light'>
+                      {/* <div className='light'>
                         <span>{definitionActivity.activityLightLevel}</span>
-                      </div>
+                      </div> */}
                     </div>
                   </li>
                 )

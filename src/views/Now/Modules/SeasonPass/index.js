@@ -25,14 +25,24 @@ class SeasonPass extends React.Component {
   }
 
   componentDidUpdate(p, s) {
+    const { member, viewport } = this.props;
+    const characterProgressions = member.data.profile.characterProgressions.data;
+
     if (s.seasonPassRewardsPage !== this.state.seasonPassRewardsPage) {
       this.props.rebindTooltips();
     }
 
-    if (p.member.data.profile.characterProgressions.data[p.member.characterId].progressions[1628407317].level !== this.props.member.data.profile.characterProgressions.data[this.props.member.characterId].progressions[1628407317].level) {
+    if (p.member.data.profile.characterProgressions.data[p.member.characterId].progressions[1628407317].level !== characterProgressions[this.props.member.characterId].progressions[1628407317].level) {
       this.setState(p => ({
         ...p,
-        seasonPassRewardsPage: Math.ceil((this.props.member.data.profile.characterProgressions.data[this.props.member.characterId].progressions[1628407317].level + 1) / this.seasonPassItemsPerPage(this.props.viewport.width))
+        seasonPassRewardsPage: Math.ceil((characterProgressions[this.props.member.characterId].progressions[1628407317].level + 1) / this.seasonPassItemsPerPage(this.props.viewport.width))
+      }));
+    }
+
+    if (p.viewport.width !== viewport.width) {
+      this.setState(p => ({
+        ...p,
+        seasonPassRewardsPage: Math.ceil((Math.min(characterProgressions[member.characterId].progressions[1628407317].level, 99) + 1) / this.seasonPassItemsPerPage(viewport.width))
       }));
     }
   }
@@ -177,8 +187,18 @@ class SeasonPass extends React.Component {
           <Button text={<i className='segoe-uniE973' />} action={this.handler_seasonPassPrev} disabled={this.state.seasonPassRewardsPage * seasonPassItemsPerPage - seasonPassItemsPerPage < 1} />
         </div>
         <div className='rewards'>
-          {seasonPass.ranks.slice(seasonPass.slice, seasonPass.slice + seasonPass.itemsPerPage).map(r => {
+          {[...seasonPass.ranks, { filler: true }, { filler: true }].slice(seasonPass.slice, seasonPass.slice + seasonPass.itemsPerPage).map((r, i) => {
             const progressData = { ...characterProgressions[member.characterId].progressions[1628407317] };
+
+            if (r.filler) {
+              return (
+                <div key={i} className='rank filler'>
+                  <div />
+                  <div className='free' />
+                  <div className='premium' />
+                </div>
+              );
+            }
 
             if (r.rank <= progressData.level) {
               progressData.progressToNextLevel = progressData.nextLevelAt;

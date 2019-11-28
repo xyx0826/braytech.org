@@ -99,6 +99,7 @@
 #now .module .list.activities li > div:not(.name) {
   display: grid;
   grid-template-columns: 38px 55px 45px;
+  grid-template-columns: 38px 55px;
   grid-gap: 6px;
   text-align: right;
   align-items: center;
@@ -106,6 +107,10 @@
 
 #now .module .list.activities li .name {
   font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 1rem 0 0;
 }
 
 #now .module .list.activities li .game-version-icon {
@@ -138,9 +143,9 @@
   grid-column: 2/3;
 }
 
-#now .module .list.activities li .light {
+/* #now .module .list.activities li .light {
   color: #e5d163;
-}
+} */
 
 #now .module .list.activities li .light span {
   position: relative;
