@@ -5,11 +5,11 @@ const defaultState = {
   now: {
     groups: [
       {
-        id: 'userHead',
+        id: 'head',
         type: 'head',
         cols: [
           {
-            id: 'userHead-col-0',
+            id: 'head-col-0',
             mods: [
               {
                 component: 'Flashpoint'
@@ -17,7 +17,7 @@ const defaultState = {
             ]
           },
           {
-            id: 'userHead-col-1',
+            id: 'head-col-1',
             mods: [
               {
                 component: 'DailyVanguardModifiers'
@@ -25,7 +25,7 @@ const defaultState = {
             ]
           },
           {
-            id: 'userHead-col-2',
+            id: 'head-col-2',
             mods: [
               {
                 component: 'HeroicStoryMissions'
@@ -33,7 +33,7 @@ const defaultState = {
             ]
           },
           {
-            id: 'userHead-col-3',
+            id: 'head-col-3',
             mods: [
               {
                 component: 'BlackArmoryForges'
@@ -99,11 +99,10 @@ const defaultState = {
         ]
       }
     ]
-  },
-  ...lsState
+  }
 };
 
-export default function reducer(state = defaultState, action) {
+export default function reducer(state = {...defaultState, ...lsState}, action) {
   switch (action.type) {
     case 'SET_LAYOUT':
       state = {

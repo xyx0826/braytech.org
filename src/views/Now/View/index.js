@@ -34,7 +34,7 @@ class Now extends React.Component {
     const { t, auth, layout } = this.props;
 
     const userHead = {
-      ...layout.groups.find(g => g.id === 'userHead'),
+      ...layout.groups.find(g => g.id === 'head'),
       type: 'user',
       className: ['head']
     };
@@ -155,7 +155,7 @@ class Now extends React.Component {
             <ul>
               <li>
                 <ProfileLink className='button' to='/now/customise'>
-                  <DestinyKey type='more' />
+                  <DestinyKey type='modify' />
                   {t('Customise')}
                 </ProfileLink>
               </li>

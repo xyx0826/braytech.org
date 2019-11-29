@@ -22,6 +22,13 @@
 #now.customise .group.user .column {
 }
 
+#now.customise .group.user .column .col-id {
+  margin: 0 0 1rem;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.2);
+}
+
 #now.customise .group.user .column .column-inner {
   margin: 0 0 1rem;
   min-height: 38px;

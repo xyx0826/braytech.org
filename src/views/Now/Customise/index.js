@@ -70,7 +70,8 @@ const getListStyle = isDraggingOver => ({
 
 export const moduleRules = {
   full: ['SeasonPass'],
-  double: ['SeasonalArtifact']
+  double: ['SeasonalArtifact'],
+  head: ['Flashpoint', 'DailyVanguardModifiers', 'HeroicStoryMissions', 'BlackArmoryForges']
 }
 
 class Customise extends React.Component {
@@ -122,9 +123,9 @@ class Customise extends React.Component {
       });
     } else {
       // enforces 1 module limit on header group
-      if (destinationList.col.mods.length && destinationList.group.id === 'userHead') return;
+      if (destinationList.col.mods.length && destinationList.group.id === 'head') return;
       // no full or double mods in header group
-      if (sourceList.col.mods.find(m => moduleRules.full.includes(m.component) || moduleRules.double.includes(m.component)) && destinationList.group.id === 'userHead') return;
+      if (sourceList.col.mods.find(m => moduleRules.full.includes(m.component) || moduleRules.double.includes(m.component)) && destinationList.group.id === 'head') return;
       // force full mods to first column
       if (sourceList.col.mods.find(m => moduleRules.full.includes(m.component))) {
         destination.droppableId = destinationList.group.cols[0].id;
@@ -347,13 +348,13 @@ class Customise extends React.Component {
               const cols = modFullSpan > -1 ? group.cols.slice(0, 1) : modDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols;
 
               return (
-                <div key={i} className={cx('group', 'user', { head: group.id === 'userHead', 'full': modFullSpan > -1 })}>
+                <div key={i} className={cx('group', 'user', { head: group.id === 'head', 'full': modFullSpan > -1 })}>
                   {cols.map((col, i) => {
-                    const columnFilled = group.id === 'userHead' && col.mods.length;
+                    const columnFilled = group.id === 'head' && col.mods.length;
 
                     return (
                       <div key={col.id} className={cx('column', { 'double': i === modDoubleSpan })}>
-                      {col.id}
+                        <div className='col-id'>{col.id}</div>
                         <Droppable droppableId={col.id}>
                           {(provided, snapshot) => (
                             <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} className='column-inner'>
@@ -382,11 +383,11 @@ class Customise extends React.Component {
                             </div>
                           )}
                         </Droppable>
-                        <ModulesSelector disabled={columnFilled || modFullSpan > -1} modules={modules} column={col.id} addMod={this.handler_addMod} />
+                        <ModulesSelector disabled={columnFilled || modFullSpan > -1} modules={modules} groupType={group.type} column={col.id} addMod={this.handler_addMod} />
                       </div>
                     );
                   })}
-                  {group.id === 'userHead' ? null : (
+                  {group.id === 'head' ? null : (
                     <Button className='remove row' text={t('Remove group')} onClick={this.handler_removeGroup(group.id)} />
                   )}
                 </div>
@@ -454,7 +455,7 @@ class ModulesSelector extends React.Component {
   };
 
   render() {
-    const { t, disabled, modules } = this.props;
+    const { t, disabled, modules, groupType } = this.props;
     const { expanded } = this.state;
 
     if (!disabled && expanded) {
@@ -465,8 +466,12 @@ class ModulesSelector extends React.Component {
             {Object.keys(modules).map(key => {
               const { name, description, used } = modules[key];
 
+              const unavailable = groupType === 'head' && !moduleRules.head.includes(key);
+
+              if (unavailable) return null;
+
               return (
-                <div key={key} className={cx('module', 'button', { disabled: used })} onClick={!used ? this.handler_select(key) : undefined}>
+                <div key={key} className={cx('module', 'button', { disabled: used || unavailable })} onClick={!used ? this.handler_select(key) : undefined}>
                   <div className='text'>
                     <div className='name'>{name}</div>
                     <div className='description'>{description}</div>
