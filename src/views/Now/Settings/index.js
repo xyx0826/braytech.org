@@ -6,7 +6,6 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
-import * as ls from '../../../utils/localStorage';
 import { ProfileLink } from '../../../components/ProfileLink';
 import { Button, DestinyKey } from '../../../components/UI/Button';
 
@@ -275,10 +274,6 @@ class NowSettings extends React.Component {
     if (s !== this.state) {
       this.props.setLayout(this.state);
     }
-  }
-  
-  saveLayout = () => {
-    ls.set('setting.layouts', this.state.groups);
   }
 
   inUse = key => this.state.groups.find(g => g.cols.find(c => c.mods.find(m => m.component === key)));

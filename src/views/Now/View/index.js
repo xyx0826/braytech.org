@@ -1,9 +1,11 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
 
-import * as ls from '../../../utils/localStorage';
+import { ProfileLink } from '../../../components/ProfileLink';
+import { Button, DestinyKey } from '../../../components/UI/Button';
 
 import Flashpoint from '../Modules/Flashpoint';
 import HeroicStoryMissions from '../Modules/HeroicStoryMissions';
@@ -29,7 +31,7 @@ class Now extends React.Component {
   }
 
   render() {
-    const { auth, layout } = this.props;
+    const { t, auth, layout } = this.props;
 
     const userHead = {
       ...layout.groups.find(g => g.id === 'userHead'),
@@ -169,6 +171,19 @@ class Now extends React.Component {
             );
           }
         })}
+        <div className='sticky-nav'>
+          <div className='wrapper'>
+            <div />
+            <ul>
+              <li>
+                <ProfileLink className='button' to='/now/settings'>
+                  <DestinyKey type='more' />
+                  {t('Settings')}
+                </ProfileLink>
+              </li>
+            </ul>
+          </div>
+        </div>
       </>
     );
   }
@@ -189,4 +204,10 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(Now);
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withTranslation()
+)(Now);
