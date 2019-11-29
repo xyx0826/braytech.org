@@ -63,7 +63,7 @@ class SeasonalArtifact extends React.Component {
     // console.log(characterArtifact)
 
     return (
-      <>
+      <div className='seasonal-artifact'>
         {/* <ObservedImage className='image artifact' src='/static/images/extracts/flair/VEye.png' /> */}
         <div className='head'>
           <div className='module-header'>
@@ -173,7 +173,7 @@ class SeasonalArtifact extends React.Component {
             ) : null}
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

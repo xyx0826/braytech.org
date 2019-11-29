@@ -2,218 +2,119 @@
   "de": {
     "translated": 458,
     "notTranslated": 40,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
-    "removed": [
-      "Factions and foundries",
-      "Represent your people"
-    ]
+    "added": [],
+    "removed": []
   },
   "en": {
     "translated": 498,
     "notTranslated": 0,
     "added": [],
-    "removed": [
-      "Factions and foundries",
-      "Represent your people"
-    ]
+    "removed": []
   },
   "es-mx": {
     "translated": 0,
-    "notTranslated": 498,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
+    "notTranslated": 492,
+    "added": [],
     "removed": [
-      "Factions and foundries",
-      "Represent your people"
+      "Detailed",
+      "Detailed tooltips are an alternate design that display hidden stats and list socket plugs (perks and mods) exhaustively.",
+      "Emblem variant",
+      "Simple",
+      "Simple tooltips are displayed as per the game, displaying the same stats and socket plugs (perks and mods).",
+      "Tooltips"
     ]
   },
   "es": {
     "translated": 492,
     "notTranslated": 6,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
-    "removed": [
-      "Factions and foundries",
-      "Represent your people"
-    ]
+    "added": [],
+    "removed": []
   },
   "fr": {
     "translated": 357,
-    "notTranslated": 141,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
+    "notTranslated": 140,
+    "added": [],
     "removed": [
-      "Factions and foundries",
-      "Represent your people"
+      "Emblem variant"
     ]
   },
   "internal": {
     "translated": 0,
-    "notTranslated": 498,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
+    "notTranslated": 492,
+    "added": [],
     "removed": [
-      "Factions and foundries",
-      "Represent your people"
+      "Detailed",
+      "Detailed tooltips are an alternate design that display hidden stats and list socket plugs (perks and mods) exhaustively.",
+      "Emblem variant",
+      "Simple",
+      "Simple tooltips are displayed as per the game, displaying the same stats and socket plugs (perks and mods).",
+      "Tooltips"
     ]
   },
   "it": {
-    "translated": 492,
-    "notTranslated": 6,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
-    "removed": [
-      "Factions and foundries",
-      "Represent your people"
-    ]
+    "translated": 498,
+    "notTranslated": 0,
+    "added": [],
+    "removed": []
   },
   "ja": {
     "translated": 219,
-    "notTranslated": 279,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
+    "notTranslated": 278,
+    "added": [],
     "removed": [
-      "Factions and foundries",
-      "Represent your people"
+      "Emblem variant"
     ]
   },
   "ko": {
     "translated": 298,
-    "notTranslated": 200,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
+    "notTranslated": 199,
+    "added": [],
     "removed": [
-      "Factions and foundries",
-      "Represent your people"
+      "Emblem variant"
     ]
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 498,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
+    "notTranslated": 492,
+    "added": [],
     "removed": [
-      "Factions and foundries",
-      "Represent your people"
+      "Detailed",
+      "Detailed tooltips are an alternate design that display hidden stats and list socket plugs (perks and mods) exhaustively.",
+      "Emblem variant",
+      "Simple",
+      "Simple tooltips are displayed as per the game, displaying the same stats and socket plugs (perks and mods).",
+      "Tooltips"
     ]
   },
   "pt-br": {
     "translated": 458,
     "notTranslated": 40,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
-    "removed": [
-      "Factions and foundries",
-      "Represent your people"
-    ]
+    "added": [],
+    "removed": []
   },
   "ru": {
     "translated": 0,
-    "notTranslated": 498,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
+    "notTranslated": 492,
+    "added": [],
     "removed": [
-      "Factions and foundries",
-      "Represent your people"
+      "Detailed",
+      "Detailed tooltips are an alternate design that display hidden stats and list socket plugs (perks and mods) exhaustively.",
+      "Emblem variant",
+      "Simple",
+      "Simple tooltips are displayed as per the game, displaying the same stats and socket plugs (perks and mods).",
+      "Tooltips"
     ]
   },
   "zh-chs": {
     "translated": 469,
     "notTranslated": 29,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
-    "removed": [
-      "Factions and foundries",
-      "Represent your people"
-    ]
+    "added": [],
+    "removed": []
   },
   "zh-cht": {
     "translated": 469,
     "notTranslated": 29,
-    "added": [
-      "Available activities",
-      "Requires Destiny 2: Curse of Osiris",
-      "Requires Destiny 2: Forsaken",
-      "Requires Destiny 2: Shadowkeep",
-      "Requires Destiny 2: Warmind",
-      "Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better."
-    ],
-    "removed": [
-      "Factions and foundries",
-      "Represent your people"
-    ]
+    "added": [],
+    "removed": []
   }
 }

@@ -11,7 +11,7 @@ class Flashpoint extends React.Component {
   render() {
     const { t, member } = this.props;
     const milestones = member.data.milestones;
-    const definitionMilestoneFLashpoint = manifest.DestinyMilestoneDefinition[463010297];
+    const definitionMilestoneFlashpoint = manifest.DestinyMilestoneDefinition[463010297];
     const milestoneFlashpointQuestItem = milestones[463010297].availableQuests && milestones[463010297].availableQuests.length && manifest.DestinyMilestoneDefinition[463010297].quests[milestones[463010297].availableQuests[0].questItemHash];
     const definitionFlashpointVendor =
       milestoneFlashpointQuestItem &&
@@ -27,7 +27,7 @@ class Flashpoint extends React.Component {
     return (
       <>
         <div className='page-header'>
-          <div className='sub-name'>{definitionMilestoneFLashpoint.displayProperties && definitionMilestoneFLashpoint.displayProperties.name}</div>
+          <div className='sub-name'>{definitionMilestoneFlashpoint.displayProperties && definitionMilestoneFlashpoint.displayProperties.name}</div>
           <div className='name'>{manifest.DestinyDestinationDefinition[milestoneFlashpointQuestItem.destinationHash].displayProperties.name}</div>
         </div>
         {definitionFlashpointVendor && definitionFlashpointVendor.displayProperties ? (

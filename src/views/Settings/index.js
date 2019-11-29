@@ -188,7 +188,7 @@ class Settings extends React.Component {
                 <Checkbox linked checked={this.props.theme.selected === 'dark-mode'} text={t('Dark mode')} />
               </li>
             </ul>
-            <div className='sub-header sub'>
+            {/* <div className='sub-header sub'>
               <div>{t('Tooltips')}</div>
             </div>
             <ul className='list settings'>
@@ -214,7 +214,7 @@ class Settings extends React.Component {
                   <p>{t('Detailed tooltips are an alternate design that display hidden stats and list socket plugs (perks and mods) exhaustively.')}</p>
                 </div>
               </li>
-            </ul>
+            </ul> */}
             <div className='sub-header sub'>
               <div>{t('Local saved data')}</div>
             </div>

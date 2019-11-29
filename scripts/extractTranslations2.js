@@ -31,6 +31,7 @@ const SOURCE_LOCALE = 'en'; // oy!
 const ARG_VERBOSE = process.argv.includes('--verbose');
 const ARG_SKIP_SORT = process.argv.includes('--skip-sort');
 const ARG_STATS = process.argv.includes('--stats');
+const ARG_DELETEUNUSED = process.argv.includes('--delete-unused');
 const FilesLogic = {
     glob: promisify(glob),
     read: promisify(fs.readFile),
@@ -104,8 +105,9 @@ const FilesLogic = {
         const result = [];
         Object.keys(translatedStrings).forEach(rawKey => {
             const key = unplaceholdify(rawKey);
-            // Add this line to retain unused translations
-            // if (rawKey === key) return;
+            
+            if (!ARG_DELETEUNUSED && rawKey === key) return;
+
             if (!sourceStrings.has(key)) {
                 delete translatedStrings[rawKey];
                 result.push(key);

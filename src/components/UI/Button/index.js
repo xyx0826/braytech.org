@@ -48,7 +48,7 @@ class DestinyKey extends React.Component {
         }
       ]
     }
-  }
+  };
 
   render() {
     const { type, platform = 1 } = this.props;
@@ -56,23 +56,16 @@ class DestinyKey extends React.Component {
     return (
       <div className='destiny-key'>
         {this.buttons[platform][type].map((l, i) => {
-          
           return (
-            <span key={i} style={{ color: l.color }}>{l.char}</span>
-          )
+            <span key={i} style={{ color: l.color }}>
+              {l.char}
+            </span>
+          );
         })}
       </div>
-    )
+    );
   }
 }
-
-// function mapStateToProps(state, ownProps) {
-//   return {
-//     theme: state.theme
-//   };
-// }
-
-// DestinyKey = compose(connect(mapStateToProps))(DestinyKey);
 
 class Button extends React.Component {
   constructor(props) {
@@ -85,29 +78,30 @@ class Button extends React.Component {
     const { className, text, children, action, invisible, disabled, lined, anchor } = this.props;
 
     if (anchor) {
-      return (
-        <Link
-          className={cx('button', className, { lined: lined, disabled: disabled, invisible: invisible })}
-          onClick={e => {
+      const onClick = action
+        ? e => {
             if (action) {
               action(e);
             }
-          }}
-          to={this.props.to}
-        >
+          }
+        : this.props.onClick;
+
+      return (
+        <Link className={cx('button', className, { lined: lined, disabled: disabled, invisible: invisible })} onClick={onClick} to={this.props.to}>
           {text ? <div className='text'>{text}</div> : children}
         </Link>
       );
     } else {
-      return (
-        <button
-          className={cx('button', className, { lined: lined, disabled: disabled, invisible: invisible })}
-          onClick={e => {
+      const onClick = action
+        ? e => {
             if (action) {
               action(e);
             }
-          }}
-        >
+          }
+        : this.props.onClick;
+
+      return (
+        <button className={cx('button', className, { lined: lined, disabled: disabled, invisible: invisible })} onClick={onClick}>
           {text ? <div className='text'>{text}</div> : children}
         </button>
       );

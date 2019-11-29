@@ -1,0 +1,214 @@
+#now .module .list.activities {
+  display: grid;
+  grid-gap: 3px;
+}
+
+#now .module .list.activities li {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  font-size: 14px;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+#now .module .list.activities li > div:not(.name) {
+  display: grid;
+  grid-template-columns: 38px 55px 45px;
+  grid-template-columns: 38px 55px;
+  grid-gap: 6px;
+  text-align: right;
+  align-items: center;
+}
+
+#now .module .list.activities li .name {
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 1rem 0 0;
+}
+
+#now .module .list.activities li .game-version-icon {
+  height: 38px;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  background-color: rgba(211, 208, 36, 0.6);
+}
+
+#now .module .list.activities li.warmind .game-version-icon {
+  background-color: rgba(99, 182, 201, 0.6);
+}
+
+#now .module .list.activities li.forsaken .game-version-icon {
+  background-color: rgba(153, 61, 138, 0.6);
+}
+
+#now .module .list.activities li.shadowkeep .game-version-icon {
+  background-color: rgba(128, 34, 45, 0.6);
+}
+
+#now .module .list.activities li .game-version-icon span::before {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+#now .module .list.activities li .time {
+  color: rgba(255, 255, 255, 0.6);
+  grid-column: 2/3;
+}
+
+/* #now .module .list.activities li .light {
+  color: #e5d163;
+} */
+
+#now .module .list.activities li .light span {
+  position: relative;
+  margin: 0 0 0 8px;
+}
+
+#now .module .list.activities li .light span::before {
+  content: 'l';
+  position: absolute;
+  top: 3px;
+  left: -7px;
+  font-family: 'Braytech' !important;
+  font-size: 6px;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#now .module .list.modifiers li {
+  padding: 0 0rem;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  grid-template-rows: 1fr;
+  align-items: start;
+  height: unset;
+  margin: 0 0 14px;
+}
+
+#now .module .list.modifiers li:last-child {
+  margin: 0;
+}
+
+#now .module .list.modifiers li .icon {
+  padding: 3px 0 0;
+}
+
+#now .module .list.modifiers li .icon .image {
+  position: relative;
+  height: 32px;
+  width: 32px;
+}
+
+#now .module .list.modifiers li .text {
+  margin: 0 0 0 1rem;
+  font-size: 14px;
+}
+
+#now .module .list.modifiers li .text .name {
+  margin: 0 0 3px;
+}
+
+#now .module .list.modifiers li .text .description {
+  white-space: pre-line;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+
+
+
+
+#now .module .ranks {
+  margin: 25px 0 0;
+}
+
+#now .module .ranks > div {
+  position: relative;
+  font-size: 14px;
+  line-height: 10px;
+}
+
+#now .module .clan-roster {
+  position: relative;
+}
+
+#now .module .clan-roster .refresh {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#now .seasonal-artifact .tiers {
+  margin: 0 0 20px;
+}
+
+#now .group.season-pass {
+  grid-template-columns: 1fr 30px 2fr 30px;
+  grid-gap: 1rem;
+  background-color: rgba(255, 255, 255, 0.025);
+}
+
+#now .group.auth-upsell {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#now .group.auth-upsell .wrap {
+  grid-column: 2/4;
+}
+
+
+@media screen and (max-width: 1440px) {
+  #now .group.season-pass {
+    grid-template-columns: 1fr 30px 2fr 30px;
+  }
+
+  #now .group.auth-upsell {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  #now .group.auth-upsell .wrap {
+    grid-column: 2/5;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #now .group.auth-upsell {
+    grid-template-columns: 1fr;
+  }
+
+  #now .group.auth-upsell .wrap {
+    grid-column: unset;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  #now .group.season-pass {
+    grid-template-columns: 30px 2fr 30px;
+  }
+
+  #now .group.auth-upsell {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #now .group.season-pass {
+    grid-template-columns: 30px 2fr 30px;
+    grid-gap: 10px;
+  }
+
+  #now .group.auth-upsell {
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+  }
+}

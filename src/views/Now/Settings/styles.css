@@ -1,0 +1,71 @@
+#now.settings .groups {
+  padding: 0 0 38rem;
+}
+
+#now.settings .group.user {
+  align-items: start;
+  row-gap: 2rem;
+}
+
+#now.settings .group.user:not(.head) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#now.settings .group.user .column {
+}
+
+#now.settings .group.user .column .column-inner {
+  margin: 0 0 1rem;
+  min-height: 38px;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+#now.settings .group.user .module.button {
+  display: grid;
+  gap: 1rem;
+  max-width: unset;
+  height: unset;
+  min-height: 38px;
+  padding: 1rem;
+}
+
+#now.settings .group.user .module.button:last-child {
+  margin: 0;
+}
+
+#now.settings .group.user .module.button .text {
+  padding: 0;
+}
+
+#now.settings .group.user .module.button .text .description {
+  font-size: 14px;
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#now.settings .group.user .module.button.disabled .text .description {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+#now.settings .module .button.remove {
+  position: relative;
+  z-index: 5;
+  width: 38px;
+  justify-content: center;
+}
+
+#now.settings .button.remove:hover {
+  background-color: rgb(220, 81, 59);
+}
+
+#now.settings .button.remove.row{
+  grid-column: span 4;
+}
+
+#now.settings .modules-selector {
+  position: relative;
+}
+
+/* #now.settings .modules-selector .list {
+  position: absolute;
+} */

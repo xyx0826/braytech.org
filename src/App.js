@@ -276,7 +276,7 @@ class App extends React.Component {
                           <RedirectRoute path='/triumphs' />
                           <RedirectRoute path='/this-week' exact />
                           <RedirectRoute path='/reports' />
-                          <RedirectRoute path='/now' exact />
+                          <RedirectRoute path='/now' />
                           <RedirectRoute path='/pursuits' />
 
                           <Route path='/character-select' exact component={CharacterSelect} />
