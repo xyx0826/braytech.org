@@ -28,7 +28,42 @@ class Now extends React.Component {
     this.state = {};
 
     this.auth = ls.get('setting.auth');
-    this.groups = ls.get('setting.layouts');
+    this.groups = ls.get('setting.layouts') || [
+      {
+        id: 'userHead',
+        type: 'head',
+        cols: [
+          {
+            id: 'userHead-col-0',
+            mods: [
+              {
+                component: 'Flashpoint'
+              }
+            ]
+          },
+          {
+            id: 'userHead-col-1',
+            mods: [
+              {
+                component: 'DailyVanguardModifiers'
+              }
+            ]
+          },
+          {
+            id: 'userHead-col-2',
+            mods: [
+              {
+                component: 'HeroicStoryMissions'
+              }
+            ]
+          },
+          {
+            id: 'userHead-col-3',
+            mods: []
+          }
+        ]
+      }
+    ];
   }
 
   componentDidMount() {
@@ -80,7 +115,7 @@ class Now extends React.Component {
       {
         className: ['auth-upsell'],
         condition: !this.auth,
-        components: [<AuthUpsell key='au' />]
+        components: ['AuthUpsell']
       },
       ...userBody
     ];
@@ -88,6 +123,9 @@ class Now extends React.Component {
     console.log(modules)
 
     const components = {
+      AuthUpsell: {
+        c: <AuthUpsell />
+      },
       Flashpoint: {
         c: <Flashpoint />
       },
@@ -126,7 +164,7 @@ class Now extends React.Component {
             }
           } else if (grp.full) {
             const cols = grp.cols.slice(0, 1);
-            
+
             return (
               <div key={g} className={cx('group', ...(grp.className || []))}>
                 {cols
