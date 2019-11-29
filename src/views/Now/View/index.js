@@ -19,7 +19,7 @@ import Vendor from '../Modules/Vendor';
 import AuthUpsell from '../Modules/AuthUpsell';
 import Transitory from '../Modules/Transitory';
 
-import { moduleRules } from '../Settings';
+import { moduleRules } from '../Customise';
 
 import './styles.css';
 
@@ -44,6 +44,7 @@ class Now extends React.Component {
       .map(group => {
         const className = [];
 
+        if (group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length).length).length) className.push('full');
         if (group.cols.filter(c => c.mods.filter(m => 'SeasonPass' === m.component).length).length) className.push('season-pass');
 
         const cols = group.cols.map(c => {
@@ -55,15 +56,12 @@ class Now extends React.Component {
             ...c,
             className
           };
-        });
-
-        const full = Boolean(group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length).length).length);
+        });        
 
         return {
           ...group,
           className,
           type: 'user',
-          full,
           cols
         };
       });
@@ -120,18 +118,6 @@ class Now extends React.Component {
             } else {
               return null;
             }
-          } else if (group.full) {
-            const cols = group.cols.slice(0, 1);
-
-            return (
-              <div key={g} className={cx('group', ...(group.className || []))}>
-                {cols
-                  .reduce((a, v) => [...a, ...v.mods.map(m => m.component)], [])
-                  .map((c, i) => (
-                    <React.Fragment key={i}>{components[c].c}</React.Fragment>
-                  ))}
-              </div>
-            );
           } else {
             const modFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
             const modDoubleSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.double.includes(m.component)));
@@ -140,33 +126,25 @@ class Now extends React.Component {
 
             return (
               <div key={g} className={cx('group', ...(group.className || []))}>
-                {group.mods
-                  ? group.mods.map((mod, m) => {
+                {cols
+                  .map((col, c) => {
+                    if ((col.condition === undefined || col.condition) && col.mods.length) {
                       return (
-                        <div key={m} className={cx('module', ...(mod.className || []))}>
-                          {mod.component}
+                        <div key={c} className={cx('column', ...(col.className || []))}>
+                          {col.mods.map((mod, m) => {
+                            return (
+                              <div key={m} className={cx('module', ...(mod.className || []))}>
+                                {components[mod.component].c}
+                              </div>
+                            );
+                          })}
                         </div>
                       );
-                    })
-                  : cols
-                      .map((col, c) => {
-                        if (col.condition === undefined || col.condition) {
-                          return (
-                            <div key={c} className={cx('column', ...(col.className || []))}>
-                              {col.mods.map((mod, m) => {
-                                return (
-                                  <div key={m} className={cx('module', ...(mod.className || []))}>
-                                    {components[mod.component].c}
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          );
-                        } else {
-                          return false;
-                        }
-                      })
-                      .map(c => c)}
+                    } else {
+                      return false;
+                    }
+                  })
+                  .map(c => c)}
               </div>
             );
           }
@@ -176,9 +154,9 @@ class Now extends React.Component {
             <div />
             <ul>
               <li>
-                <ProfileLink className='button' to='/now/settings'>
+                <ProfileLink className='button' to='/now/customise'>
                   <DestinyKey type='more' />
-                  {t('Settings')}
+                  {t('Customise')}
                 </ProfileLink>
               </li>
             </ul>
@@ -204,10 +182,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(Now);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(Now);

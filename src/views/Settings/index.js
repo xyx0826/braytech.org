@@ -2,6 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
+import ReactMarkdown from 'react-markdown';
 
 import { getLanguageInfo } from '../../utils/languageInfo';
 import * as ls from '../../utils/localStorage';
@@ -127,6 +128,10 @@ class Settings extends React.Component {
     }
   };
 
+  handler_resetLayout = target => e => {
+    this.props.resetLayout(target);
+  }
+
   render() {
     const { t, availableLanguages, location } = this.props;
 
@@ -167,7 +172,7 @@ class Settings extends React.Component {
             <BungieAuth location={location} />
           </div>
           <div className='module'>
-            <div className='sub-header sub'>
+          <div className='sub-header sub'>
               <div>{t('Theme')}</div>
             </div>
             <ul className='list settings'>
@@ -188,6 +193,19 @@ class Settings extends React.Component {
                 <Checkbox linked checked={this.props.theme.selected === 'dark-mode'} text={t('Dark mode')} />
               </li>
             </ul>
+            <div className='sub-header sub'>
+              <div>{t('Layouts')}</div>
+            </div>
+            <div className='buttons'>
+              <Button action={this.handler_resetLayout('now')}>
+                <div className='text'>
+                  <ReactMarkdown source={t('Reset _Now_ view')} disallowedTypes={['paragraph']} unwrapDisallowed />
+                </div>
+              </Button>
+              <div className='info'>
+                <ReactMarkdown source={t('Resets the _Now_ view to its default layout')} />
+              </div>
+            </div>
             {/* <div className='sub-header sub'>
               <div>{t('Tooltips')}</div>
             </div>
@@ -411,6 +429,13 @@ function mapDispatchToProps(dispatch) {
     },
     setMaps: value => {
       dispatch({ type: 'SET_MAPS', payload: value });
+    },
+    resetLayout: value => {
+      dispatch({
+        type: 'RESET_LAYOUT', payload: {
+          target: value,
+        }
+      });
     }
   };
 }

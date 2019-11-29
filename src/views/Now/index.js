@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 import View from './View';
-import Settings from './Settings';
+import Customise from './Customise';
 
 import './styles.css';
 
@@ -24,9 +24,9 @@ class Now extends React.Component {
         'name': '',
         'component': View
       },
-      'settings': {
-        'name': 'settings',
-        'component': Settings
+      'customise': {
+        'name': 'customise',
+        'component': Customise
       }
     };
     

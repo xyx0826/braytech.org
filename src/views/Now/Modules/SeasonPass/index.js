@@ -171,7 +171,7 @@ class SeasonPass extends React.Component {
     // console.log(seasonPass);
 
     return (
-      <>
+      <div className='season-pass'>
         <div className='module status'>
           <div className='module-header'>
             <div className='sub-name'>{t('Season rank')}</div>
@@ -200,7 +200,10 @@ class SeasonPass extends React.Component {
               );
             }
 
-            if (r.rank <= progressData.level) {
+            if (progressData.level === progressData.levelCap) {
+              progressData.nextLevelAt = 1000;
+              progressData.progressToNextLevel = 1000;
+            } else if (r.rank <= progressData.level) {
               progressData.progressToNextLevel = progressData.nextLevelAt;
             } else if (r.rank > progressData.level + 1) {
               progressData.progressToNextLevel = 0;
@@ -244,7 +247,7 @@ class SeasonPass extends React.Component {
         <div className='page'>
           <Button text={<i className='segoe-uniE974' />} action={this.handler_seasonPassNext} disabled={seasonPass.slice + seasonPass.itemsPerPage >= 100} />
         </div>
-      </>
+      </div>
     );
   }
 }

@@ -13,6 +13,10 @@
   gap: 3rem;
 }
 
+#now .group.full {
+  grid-template-columns: 1fr;
+}
+
 #now .group.head {
   padding: 4rem 3rem 3rem;
   background-color: rgba(255, 255, 255, 0.05);
@@ -97,19 +101,20 @@
 
 
 @media screen and (max-width: 1440px) {
-  #now .group {
+  #now .group:not(.full) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 1024px) {
-  #now .group {
+  #now .group:not(.full) {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 600px) {
   #now .group,
+  #now .group:not(.full),
   #now .group.head {
     padding: 2rem;
     grid-template-columns: 1fr;

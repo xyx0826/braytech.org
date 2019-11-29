@@ -150,12 +150,6 @@
   margin: 0 0 20px;
 }
 
-#now .group.season-pass {
-  grid-template-columns: 1fr 30px 2fr 30px;
-  grid-gap: 1rem;
-  background-color: rgba(255, 255, 255, 0.025);
-}
-
 #now .group.auth-upsell {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 2rem;
@@ -168,10 +162,6 @@
 
 
 @media screen and (max-width: 1440px) {
-  #now .group.season-pass {
-    grid-template-columns: 1fr 30px 2fr 30px;
-  }
-
   #now .group.auth-upsell {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
@@ -192,21 +182,12 @@
 }
 
 @media screen and (max-width: 1023px) {
-  #now .group.season-pass {
-    grid-template-columns: 30px 2fr 30px;
-  }
-
   #now .group.auth-upsell {
     grid-template-columns: 1fr;
   }
 }
 
 @media screen and (max-width: 600px) {
-  #now .group.season-pass {
-    grid-template-columns: 30px 2fr 30px;
-    grid-gap: 10px;
-  }
-
   #now .group.auth-upsell {
     grid-template-columns: 1fr;
     grid-gap: 1rem;

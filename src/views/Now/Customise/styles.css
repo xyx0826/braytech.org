@@ -1,34 +1,34 @@
-#now.settings .groups {
+#now.customise .groups {
   
 }
 
-#now.settings .group.user {
+#now.customise .group.user {
   align-items: start;
   row-gap: 2rem;
 }
 
-#now.settings .group.user:not(.head) {
+#now.customise .group.user:not(.head):not(:last-child) {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-#now.settings .group.user.full {
+#now.customise .group.user.full {
   grid-template-columns: 1fr;
 }
 
-#now.settings .group.user .column.double {
+#now.customise .group.user .column.double {
   grid-column: span 2;
 }
 
-#now.settings .group.user .column {
+#now.customise .group.user .column {
 }
 
-#now.settings .group.user .column .column-inner {
+#now.customise .group.user .column .column-inner {
   margin: 0 0 1rem;
   min-height: 38px;
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-#now.settings .group.user .module {
+#now.customise .group.user .module {
   display: grid;
   gap: 1rem;
   max-width: unset;
@@ -37,40 +37,40 @@
   padding: 1rem;
 }
 
-#now.settings .group.user .module:last-child {
+#now.customise .group.user .module:last-child {
   margin: 0;
 }
 
-#now.settings .group.user .module .text {
+#now.customise .group.user .module .text {
   padding: 0;
 }
 
-#now.settings .group.user .module .text .description {
+#now.customise .group.user .module .text .description {
   font-size: 14px;
   margin: 6px 0 0;
   color: rgba(255, 255, 255, 0.6);
 }
 
-#now.settings .group.user .module.disabled .text .description {
+#now.customise .group.user .module.disabled .text .description {
   color: rgba(255, 255, 255, 0.2);
 }
 
-#now.settings .module .button.remove {
+#now.customise .module .button.remove {
   position: relative;
   z-index: 5;
   width: 38px;
   justify-content: center;
 }
 
-#now.settings .button.remove:hover {
+#now.customise .button.remove:hover {
   background-color: rgb(220, 81, 59);
 }
 
-#now.settings .modules-selector {
+#now.customise .modules-selector {
   position: relative;
 }
 
-/* #now.settings .modules-selector .list {
+/* #now.customise .modules-selector .list {
   position: absolute;
 } */
 
@@ -84,7 +84,11 @@
 }
 
 @media screen and (max-width: 600px) {
-  #now.settings .group.user {
+  #now.customise .group.user {
     row-gap: 1.5rem;
+  }
+
+  #now.customise .group.user .column.double {
+    grid-column: unset;
   }
 }
