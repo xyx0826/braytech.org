@@ -5,7 +5,6 @@ import { withTranslation } from 'react-i18next';
 import { groupBy } from 'lodash';
 
 import manifest from '../../../../utils/manifest';
-import * as ls from '../../../../utils/localStorage';
 import * as bungie from '../../../../utils/bungie';
 import Items from '../../../../components/Items';
 import Spinner from '../../../../components/UI/Spinner';
@@ -21,8 +20,6 @@ class Vendor extends React.Component {
       loading: true,
       data: false
     };
-
-    this.auth = ls.get('setting.auth');
   }
 
   componentDidMount() {
@@ -56,19 +53,19 @@ class Vendor extends React.Component {
   }
 
   render() {
-    const { t, member, hash: vendorHash } = this.props;
+    const { t, member, auth, hash: vendorHash } = this.props;
     
-    if (!this.auth) {
+    if (!auth) {
       return <NoAuth inline />;
     }
 
-    if (this.auth && !this.auth.destinyMemberships.find(m => m.membershipId === member.membershipId)) {
+    if (auth && !auth.destinyMemberships.find(m => m.membershipId === member.membershipId)) {
       return <DiffProfile inline />;
     }
 
     const definitionVendor = manifest.DestinyVendorDefinition[vendorHash];
 
-    if (this.auth && this.auth.destinyMemberships.find(m => m.membershipId === member.membershipId) && this.state.loading) {
+    if (auth && auth.destinyMemberships.find(m => m.membershipId === member.membershipId) && this.state.loading) {
       return (
         <>
           <div className='module-header'>
@@ -127,7 +124,8 @@ class Vendor extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    member: state.member
+    member: state.member,
+    auth: state.auth
   };
 }
 

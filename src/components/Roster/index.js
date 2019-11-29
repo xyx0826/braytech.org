@@ -42,10 +42,9 @@ class Roster extends React.Component {
   }
 
   callGetGroupMembers = async () => {
-    const { member, groupMembers } = this.props;
+    const { member, auth, groupMembers } = this.props;
     const result = member.data.groups.results.length > 0 ? member.data.groups.results[0] : false;
 
-    const auth = ls.get('setting.auth');
     const isAuthed = auth && auth.destinyMemberships && auth.destinyMemberships.find(m => m.membershipId === member.membershipId);
 
     let now = new Date();
@@ -537,6 +536,7 @@ class Roster extends React.Component {
 function mapStateToProps(state, ownProps) {
   return {
     member: state.member,
+    auth: state.auth,
     groupMembers: state.groupMembers
   };
 }

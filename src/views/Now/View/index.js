@@ -22,50 +22,6 @@ import { moduleRules } from '../Settings';
 import './styles.css';
 
 class Now extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-
-    this.auth = ls.get('setting.auth');
-    this.groups = ls.get('setting.layouts') || [
-      {
-        id: 'userHead',
-        type: 'head',
-        cols: [
-          {
-            id: 'userHead-col-0',
-            mods: [
-              {
-                component: 'Flashpoint'
-              }
-            ]
-          },
-          {
-            id: 'userHead-col-1',
-            mods: [
-              {
-                component: 'DailyVanguardModifiers'
-              }
-            ]
-          },
-          {
-            id: 'userHead-col-2',
-            mods: [
-              {
-                component: 'HeroicStoryMissions'
-              }
-            ]
-          },
-          {
-            id: 'userHead-col-3',
-            mods: []
-          }
-        ]
-      }
-    ];
-  }
-
   componentDidMount() {
     window.scrollTo(0, 0);
 
@@ -73,15 +29,15 @@ class Now extends React.Component {
   }
 
   render() {
-    const { member } = this.props;
+    const { auth, layout } = this.props;
 
     const userHead = {
-      ...this.groups.find(g => g.id === 'userHead'),
+      ...layout.groups.find(g => g.id === 'userHead'),
       type: 'user',
       className: ['head']
     };
 
-    const userBody = this.groups
+    const userBody = layout.groups
       .filter(g => g.type === 'body')
       .map(group => {
         const className = [];
@@ -114,13 +70,11 @@ class Now extends React.Component {
       userHead,
       {
         className: ['auth-upsell'],
-        condition: !this.auth,
+        condition: !auth,
         components: ['AuthUpsell']
       },
       ...userBody
     ];
-
-    console.log(modules)
 
     const components = {
       AuthUpsell: {
@@ -151,22 +105,24 @@ class Now extends React.Component {
 
     return (
       <>
-        {modules.map((grp, g) => {
-          if (grp.components) {
-            if (grp.condition === undefined || grp.condition) {
+        {modules.map((group, g) => {
+          if (group.components) {
+            if (group.condition === undefined || group.condition) {
               return (
-                <div key={g} className={cx('group', ...(grp.className || []))}>
-                  {grp.components.map(c => components[c].c)}
+                <div key={g} className={cx('group', ...(group.className || []))}>
+                  {group.components.map((c, i) => (
+                    <React.Fragment key={i}>{components[c].c}</React.Fragment>
+                  ))}
                 </div>
               );
             } else {
               return null;
             }
-          } else if (grp.full) {
-            const cols = grp.cols.slice(0, 1);
+          } else if (group.full) {
+            const cols = group.cols.slice(0, 1);
 
             return (
-              <div key={g} className={cx('group', ...(grp.className || []))}>
+              <div key={g} className={cx('group', ...(group.className || []))}>
                 {cols
                   .reduce((a, v) => [...a, ...v.mods.map(m => m.component)], [])
                   .map((c, i) => (
@@ -175,20 +131,24 @@ class Now extends React.Component {
               </div>
             );
           } else {
+            const modFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
+            const modDoubleSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.double.includes(m.component)));
+
+            const cols = modFullSpan > -1 ? group.cols.slice(0, 1) : modDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols;
+
             return (
-              <div key={g} className={cx('group', ...(grp.className || []))}>
-                {grp.mods
-                  ? grp.mods.map((mod, m) => {
+              <div key={g} className={cx('group', ...(group.className || []))}>
+                {group.mods
+                  ? group.mods.map((mod, m) => {
                       return (
                         <div key={m} className={cx('module', ...(mod.className || []))}>
                           {mod.component}
                         </div>
                       );
                     })
-                  : grp.cols
+                  : cols
                       .map((col, c) => {
                         if (col.condition === undefined || col.condition) {
-
                           return (
                             <div key={c} className={cx('column', ...(col.className || []))}>
                               {col.mods.map((mod, m) => {
@@ -216,7 +176,8 @@ class Now extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    member: state.member
+    auth: state.auth,
+    layout: state.layouts.now
   };
 }
 

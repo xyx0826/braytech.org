@@ -1,5 +1,5 @@
 #now.settings .groups {
-  padding: 0 0 38rem;
+  
 }
 
 #now.settings .group.user {
@@ -11,6 +11,14 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+#now.settings .group.user.full {
+  grid-template-columns: 1fr;
+}
+
+#now.settings .group.user .column.double {
+  grid-column: span 2;
+}
+
 #now.settings .group.user .column {
 }
 
@@ -20,7 +28,7 @@
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-#now.settings .group.user .module.button {
+#now.settings .group.user .module {
   display: grid;
   gap: 1rem;
   max-width: unset;
@@ -29,21 +37,21 @@
   padding: 1rem;
 }
 
-#now.settings .group.user .module.button:last-child {
+#now.settings .group.user .module:last-child {
   margin: 0;
 }
 
-#now.settings .group.user .module.button .text {
+#now.settings .group.user .module .text {
   padding: 0;
 }
 
-#now.settings .group.user .module.button .text .description {
+#now.settings .group.user .module .text .description {
   font-size: 14px;
   margin: 6px 0 0;
   color: rgba(255, 255, 255, 0.6);
 }
 
-#now.settings .group.user .module.button.disabled .text .description {
+#now.settings .group.user .module.disabled .text .description {
   color: rgba(255, 255, 255, 0.2);
 }
 
@@ -58,10 +66,6 @@
   background-color: rgb(220, 81, 59);
 }
 
-#now.settings .button.remove.row{
-  grid-column: span 4;
-}
-
 #now.settings .modules-selector {
   position: relative;
 }
@@ -69,3 +73,18 @@
 /* #now.settings .modules-selector .list {
   position: absolute;
 } */
+
+
+@media screen and (max-width: 1440px) {
+  
+}
+
+@media screen and (max-width: 1024px) {
+  
+}
+
+@media screen and (max-width: 600px) {
+  #now.settings .group.user {
+    row-gap: 1.5rem;
+  }
+}

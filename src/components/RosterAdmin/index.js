@@ -276,8 +276,6 @@ class RosterAdmin extends React.Component {
     };
   }
 
-  auth = ls.get('setting.auth');
-
   componentDidMount() {
     const { member } = this.props;
     const group = member.data.groups.results.length > 0 ? member.data.groups.results[0].group : false;
@@ -330,10 +328,10 @@ class RosterAdmin extends React.Component {
   };
 
   render() {
-    const { t, member, groupMembers, mini, showOnline = false } = this.props;
+    const { t, member, auth, groupMembers, mini, showOnline = false } = this.props;
 
     const isAdmin = member.data.groups.results.find(r => {
-      const authed = this.auth.destinyMemberships.find(m => m.membershipId === member.membershipId);
+      const authed = auth.destinyMemberships.find(m => m.membershipId === member.membershipId);
 
       if (r.member.memberType > 2 && authed && r.member.destinyUserInfo.membershipId === authed.membershipId) {
         return true;
@@ -580,6 +578,7 @@ class RosterAdmin extends React.Component {
 function mapStateToProps(state, ownProps) {
   return {
     member: state.member,
+    auth: state.auth,
     groupMembers: state.groupMembers
   };
 }

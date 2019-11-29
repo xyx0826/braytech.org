@@ -9,17 +9,15 @@ import ClanViewsLinks from '../ClanViewsLinks';
 
 import './styles.css';
 
-class AdminView extends React.Component {
-  auth = ls.get('setting.auth');
-  
+class AdminView extends React.Component { 
   componentDidMount() {
     window.scrollTo(0, 0);   
   }
 
   render() {
-    const { groupMembers } = this.props;
+    const { auth, groupMembers } = this.props;
 
-    if (!this.auth) {
+    if (!auth) {
       return <NoAuth />;
     }
 

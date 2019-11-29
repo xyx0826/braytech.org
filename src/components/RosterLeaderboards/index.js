@@ -37,11 +37,10 @@ class RosterLeaderboards extends React.Component {
   }
 
   callGetClanLeaderboards = async () => {
-    const { member, groupMembers, mode } = this.props;
+    const { member, auth, groupMembers, mode } = this.props;
 
     const result = member.data.groups.results.length > 0 ? member.data.groups.results[0] : false;
 
-    const auth = ls.get('setting.auth');
     const isAuthed = auth && auth.destinyMemberships && auth.destinyMemberships.find(m => m.membershipId === member.membershipId);
 
     if (!groupMembers.groupId && !groupMembers.loading) {
@@ -511,6 +510,7 @@ class RosterLeaderboards extends React.Component {
 function mapStateToProps(state, ownProps) {
   return {
     member: state.member,
+    auth: state.auth,
     groupMembers: state.groupMembers
   };
 }

@@ -38,7 +38,8 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
 // adds an item to a list
 const add = (destination, item) => {
-  const result = moduleRules.full.includes(item.component) ? [item] : [...destination, item];
+  // if a mod is "full" or "double", it occupies the entire column, erasing previous mods... mostly because i said so
+  const result = moduleRules.full.includes(item.component) || moduleRules.double.includes(item.component) ? [item] : [...destination, item];
 
   return result;
 };
@@ -70,48 +71,7 @@ export const moduleRules = {
 }
 
 class NowSettings extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      groups: ls.get('setting.layouts') || [
-        {
-          id: 'userHead',
-          type: 'head',
-          cols: [
-            {
-              id: 'userHead-col-0',
-              mods: [
-                {
-                  component: 'Flashpoint'
-                }
-              ]
-            },
-            {
-              id: 'userHead-col-1',
-              mods: [
-                {
-                  component: 'DailyVanguardModifiers'
-                }
-              ]
-            },
-            {
-              id: 'userHead-col-2',
-              mods: [
-                {
-                  component: 'HeroicStoryMissions'
-                }
-              ]
-            },
-            {
-              id: 'userHead-col-3',
-              mods: []
-            }
-          ]
-        }
-      ]
-    };
-  }
+  state = this.props.layout;
 
   getList = id => {
     const group = this.state.groups.find(g => g.cols.find(c => c.id === id));
@@ -254,6 +214,13 @@ class NowSettings extends React.Component {
 
       if (group && moduleRules.full.includes(key)) {
         group.cols[0].mods = result;
+      } else if (group && moduleRules.double.includes(key)) {
+        // find original insertion index
+        const index = group.cols.findIndex(c => c.id === destinationList.col.id);
+        // make sure index is less than 3 (4th column) as the mod occupies 2 columns
+        const ratifiedIndex = Math.min(index, 2);
+
+        group.cols[ratifiedIndex].mods = result;
       } else if (group) {
         const index = group.cols.findIndex(c => c.id === destinationList.col.id);
 
@@ -296,6 +263,7 @@ class NowSettings extends React.Component {
 
   componentDidMount() {
     this.mounted = true;
+
     window.scrollTo(0, 0);
   }
 
@@ -305,7 +273,7 @@ class NowSettings extends React.Component {
 
   componentDidUpdate(p, s) {
     if (s !== this.state) {
-      this.saveLayout();
+      this.props.setLayout(this.state);
     }
   }
   
@@ -349,6 +317,7 @@ class NowSettings extends React.Component {
       }
     };
 
+    // mark used modules
     Object.keys(modules).forEach(key => {
       modules[key].used = this.inUse(key);
     });
@@ -358,54 +327,95 @@ class NowSettings extends React.Component {
         <div className='groups'>
           <DragDropContext onDragEnd={this.onDragEnd}>
             {this.state.groups.map((group, i) => {
-              const groupFull = group.cols.find(c => c.mods.find(m => moduleRules.full.includes(m.component)));
+              const modFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
+              const modDoubleSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.double.includes(m.component)));
 
-              const cols = groupFull ? group.cols.slice(0, 1) : group.cols;
+              const cols = modFullSpan > -1 ? group.cols.slice(0, 1) : modDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols;
 
-              return (
-                <div key={i} className={cx('group', 'user', { head: group.id === 'userHead' })}>
-                  {cols.map((col, i) => {
-                    const columnFull = group.id === 'userHead' && col.mods.length;
+              // if col has mod such as SeasonPass, else normal 4 cols
+              if (2 === 4) {
+                return (
+                  <div key={i} className={cx('group', 'user', { head: group.id === 'userHead', 'single': modFullSpan > -1 })}>
+                    {cols.map((col, i) => {
+                      const columnFilled = group.id === 'userHead' && col.mods.length;
+  
+                      return (
+                        <div key={col.id} className='column'>
+                          <div className='column-inner'>
+                            {col.mods.map((mod, i) => {
+                              const { name, description } = modules[mod.component];
 
-                    return (
-                      <div key={col.id} className='column'>
-                        <Droppable droppableId={col.id}>
-                          {(provided, snapshot) => (
-                            <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} className='column-inner'>
-                              {col.mods.map((mod, i) => {
-                                const { name, description } = modules[mod.component];
+                              const id = mod.id || mod.component;
 
-                                const id = mod.id || mod.component;
-
-                                return (
-                                  <Draggable key={id} draggableId={id} index={i}>
-                                    {(provided, snapshot) => (
-                                      <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)} className='module button'>
-                                        <div className='text'>
-                                          <div className='name'>{name}</div>
-                                          <div className='description'>{description}</div>
-                                        </div>
-                                        <Button className='remove' onClick={this.handler_removeMod(col.id, id)}>
-                                          <i className='segoe-uniE1061' />
-                                        </Button>
-                                      </div>
-                                    )}
-                                  </Draggable>
-                                );
-                              })}
-                              {provided.placeholder}
-                            </div>
-                          )}
-                        </Droppable>
-                        <ModulesSelector disabled={columnFull || groupFull} modules={modules} column={col.id} addMod={this.handler_addMod} />
-                      </div>
-                    );
-                  })}
-                  {group.id === 'userHead' ? null : (
+                              return (
+                                <div className='module button'>
+                                  <div className='text'>
+                                    <div className='name'>{name}</div>
+                                    <div className='description'>{description}</div>
+                                  </div>
+                                  <Button className='remove' onClick={this.handler_removeMod(col.id, id)}>
+                                    <i className='segoe-uniE1061' />
+                                  </Button>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          <ModulesSelector disabled={columnFilled || modFullSpan > -1} modules={modules} column={col.id} addMod={this.handler_addMod} />
+                        </div>
+                      );
+                    })}
                     <Button className='remove row' text={t('Remove group')} onClick={this.handler_removeGroup(group.id)} />
-                  )}
-                </div>
-              );
+                  </div>
+                );
+              } else {
+                return (
+                  <div key={i} className={cx('group', 'user', { head: group.id === 'userHead', 'full': modFullSpan > -1 })}>
+                    {cols.map((col, i) => {
+                      const columnFilled = group.id === 'userHead' && col.mods.length;
+  
+                      return (
+                        <div key={col.id} className={cx('column', { 'double': i === modDoubleSpan })}>
+                        {col.id}
+                          <Droppable droppableId={col.id}>
+                            {(provided, snapshot) => (
+                              <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} className='column-inner'>
+                                {col.mods.map((mod, i) => {
+                                  const { name, description } = modules[mod.component];
+  
+                                  const id = mod.id || mod.component;
+  
+                                  return (
+                                    <Draggable key={id} draggableId={id} index={i}>
+                                      {(provided, snapshot) => (
+                                        <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)} className='module button'>
+                                          <div className='text'>
+                                            <div className='name'>{name}</div>
+                                            <div className='description'>{description}</div>
+                                          </div>
+                                          <Button className='remove' onClick={this.handler_removeMod(col.id, id)}>
+                                            <i className='segoe-uniE1061' />
+                                          </Button>
+                                        </div>
+                                      )}
+                                    </Draggable>
+                                  );
+                                })}
+                                {provided.placeholder}
+                              </div>
+                            )}
+                          </Droppable>
+                          <ModulesSelector disabled={columnFilled || modFullSpan > -1} modules={modules} column={col.id} addMod={this.handler_addMod} />
+                        </div>
+                      );
+                    })}
+                    {group.id === 'userHead' ? null : (
+                      <Button className='remove row' text={t('Remove group')} onClick={this.handler_removeGroup(group.id)} />
+                    )}
+                  </div>
+                );
+              }
+
+              
             })}
           </DragDropContext>
         </div>
@@ -503,8 +513,27 @@ ModulesSelector = compose(connect(mapStateToProps), withTranslation())(ModulesSe
 
 function mapStateToProps(state, ownProps) {
   return {
-    
+    layout: state.layouts.now
   };
 }
 
-export default compose(connect(mapStateToProps), withTranslation())(NowSettings);
+function mapDispatchToProps(dispatch) {
+  return {
+    setLayout: value => {
+      dispatch({
+        type: 'SET_LAYOUT', payload: {
+          target: 'now',
+          value
+        }
+      });
+    }
+  };
+}
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withTranslation()
+)(NowSettings);

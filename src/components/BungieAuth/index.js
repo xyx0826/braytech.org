@@ -1,5 +1,6 @@
 import React from 'react';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { Redirect, Link, withRouter } from 'react-router-dom';
 import cx from 'classnames';
@@ -7,7 +8,6 @@ import Moment from 'react-moment';
 import queryString from 'query-string';
 
 import store from '../../utils/reduxStore';
-import * as ls from '../../utils/localStorage';
 import * as bungie from '../../utils/bungie';
 import * as destinyEnums from '../../utils/destinyEnums';
 import * as paths from '../../utils/paths';
@@ -16,12 +16,6 @@ import Spinner from '../UI/Spinner';
 import ObservedImage from '../ObservedImage';
 
 import './styles.css';
-
-const handleErrors = response => {
-  if (response.error && response.error === 'invalid_grant') {
-    ls.del('setting.auth');
-  }
-}
 
 class BungieAuth extends React.Component {
   constructor(props) {
@@ -42,6 +36,12 @@ class BungieAuth extends React.Component {
     }
   };
 
+  handleErrors = response => {
+    if (response.error && response.error === 'invalid_grant') {
+      this.props.resetAuth();
+    }
+  };
+
   getMemberships = async () => {
     const response = await bungie.GetMembershipDataForCurrentUser();
 
@@ -53,17 +53,17 @@ class BungieAuth extends React.Component {
           memberships: response.Response
         }));
       } else if ((response && response.ErrorCode && response.ErrorCode !== 1) || (response && response.error)) {
-        handleErrors(response);
+        this.handleErrors(response);
 
         this.setState(p => ({
           ...p,
           loading: false,
           error: {
             ErrorCode: response.ErrorCode || response.error,
-            ErrorStatus: response.ErrorStatus || response.error_description,
+            ErrorStatus: response.ErrorStatus || response.error_description
           }
         }));
-      } else {        
+      } else {
         this.setState(p => ({
           ...p,
           loading: false,
@@ -76,14 +76,13 @@ class BungieAuth extends React.Component {
   componentDidMount() {
     this.mounted = true;
 
-    const { location } = this.props;
-    const tokens = ls.get('setting.auth');
+    const { location, auth } = this.props;
 
     const code = queryString.parse(location.search) && queryString.parse(location.search).code;
 
-    if (!tokens && code) {
+    if (!auth && code) {
       this.getAccessTokens(code);
-    } else if (tokens) {
+    } else if (auth) {
       this.getMemberships();
     } else if (this.mounted) {
       this.setState(p => ({
@@ -156,7 +155,7 @@ class BungieAuth extends React.Component {
             <Button
               text={t('Forget me')}
               action={() => {
-                ls.del('setting.auth');
+                this.props.resetAuth();
                 this.setState({
                   memberships: false
                 });
@@ -227,6 +226,12 @@ class BungieAuthMini extends React.Component {
     }
   };
 
+  handleErrors = response => {
+    if (response.error && response.error === 'invalid_grant') {
+      this.props.resetAuth();
+    }
+  };
+
   getMemberships = async () => {
     const response = await bungie.GetMembershipDataForCurrentUser();
 
@@ -238,14 +243,14 @@ class BungieAuthMini extends React.Component {
           memberships: response.Response
         }));
       } else if ((response && response.ErrorCode && response.ErrorCode !== 1) || (response && response.error)) {
-        handleErrors(response);
+        this.handleErrors(response);
 
         this.setState(p => ({
           ...p,
           loading: false,
           error: {
             ErrorCode: response.ErrorCode || response.error,
-            ErrorStatus: response.ErrorStatus || response.error_description,
+            ErrorStatus: response.ErrorStatus || response.error_description
           }
         }));
       } else {
@@ -261,14 +266,13 @@ class BungieAuthMini extends React.Component {
   componentDidMount() {
     this.mounted = true;
 
-    const { location } = this.props;
-    const tokens = ls.get('setting.auth');
+    const { location, auth } = this.props;
 
     const code = queryString.parse(location.search) && queryString.parse(location.search).code;
 
-    if (!tokens && code) {
+    if (!auth && code) {
       this.getAccessTokens(code);
-    } else if (tokens) {
+    } else if (auth) {
       this.getMemberships();
     } else if (this.mounted) {
       this.setState(p => ({
@@ -459,10 +463,8 @@ class DiffProfile extends React.Component {
   componentDidMount() {
     this.mounted = true;
 
-    const tokens = ls.get('setting.auth');
-
-    if (tokens) {
-      console.log(tokens);
+    if (this.props.auth) {
+      console.log(this.props.auth);
 
       this.getMemberships();
     }
@@ -561,17 +563,32 @@ class DiffProfile extends React.Component {
   }
 }
 
-BungieAuth = compose(withTranslation())(BungieAuth);
+function mapStateToProps(state, ownProps) {
+  return {
+    member: state.member,
+    auth: state.auth
+  };
+}
 
-BungieAuthMini = compose(withTranslation())(BungieAuthMini);
+function mapDispatchToProps(dispatch) {
+  return {
+    setAuth: value => {
+      dispatch({ type: 'SET_AUTH', payload: value });
+    },
+    resetAuth: () => {
+      dispatch({ type: 'RESET_AUTH' });
+    }
+  };
+}
 
-BungieAuthButton = compose(withTranslation())(BungieAuthButton);
+BungieAuth = compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(BungieAuth);
+
+BungieAuthMini = compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(BungieAuthMini);
+
+BungieAuthButton = compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(BungieAuthButton);
 
 NoAuth = compose(withTranslation())(NoAuth);
 
-DiffProfile = compose(
-  withTranslation(),
-  withRouter
-)(DiffProfile);
+DiffProfile = compose(connect(mapStateToProps, mapDispatchToProps), withTranslation(), withRouter)(DiffProfile);
 
 export { BungieAuth, BungieAuthMini, BungieAuthButton, NoAuth, DiffProfile };

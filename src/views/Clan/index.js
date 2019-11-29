@@ -63,8 +63,9 @@ class Clan extends React.Component {
 function mapStateToProps(state, ownProps) {
   return {
     member: state.member,
-    viewport: state.viewport,
-    groupMembers: state.groupMembers
+    auth: state.auth,
+    groupMembers: state.groupMembers,
+    viewport: state.viewport
   };
 }
 

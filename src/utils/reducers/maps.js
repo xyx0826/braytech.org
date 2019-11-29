@@ -1,6 +1,6 @@
 import * as ls from '../localStorage';
 
-let lsState = ls.get('setting.maps') ? ls.get('setting.maps') : false;
+let lsState = ls.get('setting.maps') ? ls.get('setting.maps') : {};
 
 export default function reducer(prevState = lsState, action) {
   switch (action.type) {

@@ -6,7 +6,6 @@ import { orderBy, groupBy } from 'lodash';
 import cx from 'classnames';
 
 import manifest from '../../utils/manifest';
-import * as ls from '../../utils/localStorage';
 import ObservedImage from '../../components/ObservedImage';
 import { NoAuth, DiffProfile } from '../../components/BungieAuth';
 import { ProfileLink } from '../../components/ProfileLink';
@@ -18,14 +17,6 @@ import { DestinyKey } from '../../components/UI/Button';
 import './styles.css';
 
 class Pursuits extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-
-    this.auth = ls.get('setting.auth');
-  }
-
   componentDidMount() {
     window.scrollTo(0, 0);
     this.props.rebindTooltips();
@@ -109,19 +100,19 @@ class Pursuits extends React.Component {
   }
 
   render() {
-    const { t, member, viewport } = this.props;
+    const { t, member, auth, viewport } = this.props;
     const order = this.props.match.params.order || 'rarity';
     const hash = this.props.match.params.hash;
 
-    if (!this.auth) {
+    if (!auth) {
       return <NoAuth />;
     }
 
-    if (this.auth && !this.auth.destinyMemberships.find(m => m.membershipId === member.membershipId)) {
+    if (auth && !auth.destinyMemberships.find(m => m.membershipId === member.membershipId)) {
       return <DiffProfile />;
     }
 
-    if (this.auth && this.auth.destinyMemberships.find(m => m.membershipId === member.membershipId) && !member.data.profile.profileInventory) {
+    if (auth && auth.destinyMemberships.find(m => m.membershipId === member.membershipId) && !member.data.profile.profileInventory) {
       return (
         <div className='view' id='pursuits'>
           <Spinner />
@@ -220,6 +211,7 @@ class Pursuits extends React.Component {
 function mapStateToProps(state, ownProps) {
   return {
     member: state.member,
+    auth: state.auth,
     viewport: state.viewport
   };
 }

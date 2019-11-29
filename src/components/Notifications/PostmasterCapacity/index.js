@@ -39,9 +39,9 @@ class PostmasterCapacity extends React.Component {
   }
 
   render() {
-    const { t, member } = this.props;
+    const { t, member, auth } = this.props;
 
-    const auth = ls.get('setting.auth');
+    console.log(auth)
 
     if (auth && auth.destinyMemberships.find(m => m.membershipId === member.membershipId) && member.data.profile.profileInventory) {
 
@@ -84,7 +84,8 @@ class PostmasterCapacity extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    member: state.member
+    member: state.member,
+    auth: state.auth
   };
 }
 
