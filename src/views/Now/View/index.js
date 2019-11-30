@@ -30,6 +30,36 @@ class Now extends React.Component {
     this.props.rebindTooltips();
   }
 
+  components = {
+    AuthUpsell: {
+      c: AuthUpsell
+    },
+    Flashpoint: {
+      c: Flashpoint
+    },
+    DailyVanguardModifiers: {
+      c: DailyVanguardModifiers
+    },
+    HeroicStoryMissions: {
+      c: HeroicStoryMissions
+    },
+    SeasonalArtifact: {
+      c: SeasonalArtifact
+    },
+    Ranks: {
+      c: Ranks
+    },
+    SeasonPass: {
+      c: SeasonPass
+    },
+    BlackArmoryForges: {
+      c: BlackArmoryForges
+    },
+    Vendor: {
+      c: Vendor
+    }
+  }
+
   render() {
     const { t, auth, layout } = this.props;
 
@@ -56,7 +86,7 @@ class Now extends React.Component {
             ...c,
             className
           };
-        });        
+        });
 
         return {
           ...group,
@@ -76,33 +106,6 @@ class Now extends React.Component {
       ...userBody
     ];
 
-    const components = {
-      AuthUpsell: {
-        c: <AuthUpsell />
-      },
-      Flashpoint: {
-        c: <Flashpoint />
-      },
-      DailyVanguardModifiers: {
-        c: <DailyVanguardModifiers />
-      },
-      HeroicStoryMissions: {
-        c: <HeroicStoryMissions />
-      },
-      SeasonalArtifact: {
-        c: <SeasonalArtifact />
-      },
-      Ranks: {
-        c: <Ranks />
-      },
-      SeasonPass: {
-        c: <SeasonPass />
-      },
-      BlackArmoryForges: {
-        c: <BlackArmoryForges />
-      }
-    };
-
     return (
       <>
         {modules.map((group, g) => {
@@ -110,9 +113,11 @@ class Now extends React.Component {
             if (group.condition === undefined || group.condition) {
               return (
                 <div key={g} className={cx('group', ...(group.className || []))}>
-                  {group.components.map((c, i) => (
-                    <React.Fragment key={i}>{components[c].c}</React.Fragment>
-                  ))}
+                  {group.components.map((c, i) => {
+                    const Component = this.components[c].c;
+
+                    return <Component key={i} />;
+                  })}
                 </div>
               );
             } else {
@@ -132,9 +137,15 @@ class Now extends React.Component {
                       return (
                         <div key={c} className={cx('column', ...(col.className || []))}>
                           {col.mods.map((mod, m) => {
+                            const Component = this.components[mod.component].c;
+                            const settings = (mod.settings || []).reduce(function (map, obj) {
+                              map[obj.id] = obj.value;
+                              return map;
+                            }, {});
+
                             return (
                               <div key={m} className={cx('module', ...(mod.className || []))}>
-                                {components[mod.component].c}
+                                <Component {...settings} />
                               </div>
                             );
                           })}

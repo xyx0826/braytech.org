@@ -23,7 +23,7 @@ class Vendor extends React.Component {
   }
 
   componentDidMount() {
-    const { hash: vendorHash } = this.props;
+    const { vendorHash = 672118013 } = this.props;
 
     this.getVendor(vendorHash)
   }
@@ -39,10 +39,10 @@ class Vendor extends React.Component {
 
     const response = await bungie.GetVendor(member.membershipType, member.membershipId, member.characterId, hash, [400, 402, 300, 301, 304, 305, 306, 307, 308, 600].join(','));
 
-    if (response) {
+    if (response && response.ErrorCode === 1 && response.Response) {
       this.setState({
         loading: false,
-        data: response
+        data: response.Response
       });
     } else {
       this.setState(p => ({
@@ -53,7 +53,7 @@ class Vendor extends React.Component {
   }
 
   render() {
-    const { t, member, auth, hash: vendorHash } = this.props;
+    const { t, member, auth, vendorHash = 672118013 } = this.props;
     
     if (!auth) {
       return <NoAuth inline />;

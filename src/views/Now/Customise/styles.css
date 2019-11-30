@@ -31,7 +31,7 @@
 
 #now.customise .group.user .column .column-inner {
   margin: 0 0 1rem;
-  min-height: 38px;
+  min-height: 5rem;
   background-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -60,6 +60,15 @@
 
 #now.customise .group.user .module.disabled .text .description {
   color: rgba(255, 255, 255, 0.2);
+}
+
+#now.customise .group.user .module .modules-settings .setting .name {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+
+#now.customise .group.user .module .modules-settings .setting:first-child:last-child .name {
+  display: none;
 }
 
 #now.customise .module .button.remove {

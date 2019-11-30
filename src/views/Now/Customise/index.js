@@ -8,6 +8,7 @@ import cx from 'classnames';
 import manifest from '../../../utils/manifest';
 import { ProfileLink } from '../../../components/ProfileLink';
 import { Button, DestinyKey } from '../../../components/UI/Button';
+import Checkbox from '../../../components/UI/Checkbox';
 
 import './styles.css';
 
@@ -72,7 +73,7 @@ export const moduleRules = {
   full: ['SeasonPass'],
   double: ['SeasonalArtifact'],
   head: ['Flashpoint', 'DailyVanguardModifiers', 'HeroicStoryMissions', 'BlackArmoryForges']
-}
+};
 
 class Customise extends React.Component {
   state = this.props.layout;
@@ -126,6 +127,8 @@ class Customise extends React.Component {
       if (destinationList.col.mods.length && destinationList.group.id === 'head') return;
       // no full or double mods in header group
       if (sourceList.col.mods.find(m => moduleRules.full.includes(m.component) || moduleRules.double.includes(m.component)) && destinationList.group.id === 'head') return;
+      // permit only approved mods to head
+      if (sourceList.col.mods.find(m => !moduleRules.head.includes(m.component)) && destinationList.group.id === 'head') return;
       // force full mods to first column
       if (sourceList.col.mods.find(m => moduleRules.full.includes(m.component))) {
         destination.droppableId = destinationList.group.cols[0].id;
@@ -280,6 +283,35 @@ class Customise extends React.Component {
     });
   };
 
+  handler_setSettings = (col, mod, value) => {
+    const destinationList = this.getList(col);
+    //console.log(destinationList)
+    //const setting = this.modules[key]
+
+    this.setState(p => {
+      const groups = p.groups;
+
+      const group = groups.find(g => g.id === destinationList.group.id);
+
+      if (group) {
+        const colIndex = group.cols.findIndex(c => c.id === destinationList.col.id);
+        const modIndex = colIndex > -1  && group.cols[colIndex].mods.findIndex(m => m.component === mod);
+
+        if (modIndex > -1) {
+          group.cols[colIndex].mods[modIndex].settings = [
+            //...group.cols[colIndex].settings || [],
+            value
+          ];
+        }
+      }
+
+      return {
+        ...p,
+        groups
+      };
+    });
+  }
+
   componentDidMount() {
     this.mounted = true;
 
@@ -296,45 +328,59 @@ class Customise extends React.Component {
     }
   }
 
+  modules = {
+    Flashpoint: {
+      name: manifest.DestinyMilestoneDefinition[463010297] && manifest.DestinyMilestoneDefinition[463010297].displayProperties && manifest.DestinyMilestoneDefinition[463010297].displayProperties.name,
+      description: manifest.DestinyMilestoneDefinition[463010297] && manifest.DestinyMilestoneDefinition[463010297].displayProperties && manifest.DestinyMilestoneDefinition[463010297].displayProperties.description
+    },
+    DailyVanguardModifiers: {
+      name: this.props.t('Vanguard Ops'),
+      description: this.props.t('Active modifiers for Vanguard operations')
+    },
+    HeroicStoryMissions: {
+      name: manifest.DestinyPresentationNodeDefinition[3028486709] && manifest.DestinyPresentationNodeDefinition[3028486709].displayProperties && manifest.DestinyPresentationNodeDefinition[3028486709].displayProperties.name,
+      description: this.props.t('Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better.')
+    },
+    BlackArmoryForges: {
+      name: this.props.t('Black Armory Forges'),
+      description: this.props.t('Forges are currently running in low-power mode and will only be available during maintenance periods.')
+    },
+    Ranks: {
+      name: this.props.t('Ranks'),
+      description: this.props.t('Competive multiplayer progression information')
+    },
+    Vendor: {
+      name: this.props.t('Vendor'),
+      description: this.props.t('Status and inventory for vendors'),
+      settings: [
+        {
+          id: 'vendorHash',
+          name: this.props.t('Selected vendor'),
+          options: {
+            name: hash => manifest.DestinyVendorDefinition[hash] && manifest.DestinyVendorDefinition[hash].displayProperties && manifest.DestinyVendorDefinition[hash].displayProperties.name,
+            values: [2917531897, 672118013, 3603221665, 863940356, 248695599, 69482069]
+          }
+        }
+      ]
+    },
+    SeasonalArtifact: {
+      name: this.props.t('Seasonal progression'),
+      description: this.props.t("Display your seaonal artifact's configuration and its progression")
+    },
+    SeasonPass: {
+      name: this.props.t('Season rank'),
+      description: this.props.t('Display your season pass progression and available rewards')
+    }
+  };
+
   inUse = key => this.state.groups.find(g => g.cols.find(c => c.mods.find(m => m.component === key)));
 
   render() {
     const { t } = this.props;
 
-    const modules = {
-      Flashpoint: {
-        name: manifest.DestinyMilestoneDefinition[463010297] && manifest.DestinyMilestoneDefinition[463010297].displayProperties && manifest.DestinyMilestoneDefinition[463010297].displayProperties.name,
-        description: manifest.DestinyMilestoneDefinition[463010297] && manifest.DestinyMilestoneDefinition[463010297].displayProperties && manifest.DestinyMilestoneDefinition[463010297].displayProperties.description
-      },
-      DailyVanguardModifiers: {
-        name: t('Vanguard Ops'),
-        description: t('Active modifiers for Vanguard operations')
-      },
-      HeroicStoryMissions: {
-        name: manifest.DestinyPresentationNodeDefinition[3028486709] && manifest.DestinyPresentationNodeDefinition[3028486709].displayProperties && manifest.DestinyPresentationNodeDefinition[3028486709].displayProperties.name,
-        description: t('Revisit the trials of times past. Reconcile with these emotions and challenge yourself to do better.')
-      },
-      BlackArmoryForges: {
-        name: t('Black Armory Forges'),
-        description: t('Forges are currently running in low-power mode and will only be available during maintenance periods.')
-      },
-      Ranks: {
-        name: t('Ranks'),
-        description: t('Competive multiplayer progression information')
-      },
-      SeasonalArtifact: {
-        name: t('Seasonal progression'),
-        description: t("Display your seaonal artifact's configuration and its progression")
-      },
-      SeasonPass: {
-        name: t('Season rank'),
-        description: t('Display your season pass progression and available rewards')
-      }
-    };
-
     // mark used modules
-    Object.keys(modules).forEach(key => {
-      modules[key].used = this.inUse(key);
+    Object.keys(this.modules).forEach(key => {
+      this.modules[key].used = this.inUse(key);
     });
 
     return (
@@ -348,20 +394,27 @@ class Customise extends React.Component {
               const cols = modFullSpan > -1 ? group.cols.slice(0, 1) : modDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols;
 
               return (
-                <div key={i} className={cx('group', 'user', { head: group.id === 'head', 'full': modFullSpan > -1 })}>
+                <div key={i} className={cx('group', 'user', { head: group.id === 'head', full: modFullSpan > -1 })}>
                   {cols.map((col, i) => {
                     const columnFilled = group.id === 'head' && col.mods.length;
 
                     return (
-                      <div key={col.id} className={cx('column', { 'double': i === modDoubleSpan })}>
+                      <div key={col.id} className={cx('column', { double: i === modDoubleSpan })}>
                         <div className='col-id'>{col.id}</div>
                         <Droppable droppableId={col.id}>
                           {(provided, snapshot) => (
                             <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} className='column-inner'>
                               {col.mods.map((mod, i) => {
-                                const { name, description } = modules[mod.component];
-
+                                const { name, description } = this.modules[mod.component];
                                 const id = mod.id || mod.component;
+
+                                const settings = (this.modules[mod.component].settings && this.modules[mod.component].settings.map(setting => {
+                                  const user = mod.settings && mod.settings.find(u => u.id === setting.id);
+                                  
+                                  if (user) setting.options.value = user.value
+
+                                  return setting;
+                                })) || false;
 
                                 return (
                                   <Draggable key={id} draggableId={id} index={i}>
@@ -371,6 +424,7 @@ class Customise extends React.Component {
                                           <div className='name'>{name}</div>
                                           <div className='description'>{description}</div>
                                         </div>
+                                        {settings ? <ModulesSettings settings={settings} column={col.id} mod={id} setSettings={this.handler_setSettings} /> : null}
                                         <Button className='remove' onClick={this.handler_removeMod(col.id, id)}>
                                           <i className='segoe-uniE1061' />
                                         </Button>
@@ -383,18 +437,13 @@ class Customise extends React.Component {
                             </div>
                           )}
                         </Droppable>
-                        <ModulesSelector disabled={columnFilled || modFullSpan > -1} modules={modules} groupType={group.type} column={col.id} addMod={this.handler_addMod} />
+                        <ModulesSelector disabled={columnFilled || modFullSpan > -1} modules={this.modules} groupType={group.type} column={col.id} addMod={this.handler_addMod} />
                       </div>
                     );
                   })}
-                  {group.id === 'head' ? null : (
-                    <Button className='remove row' text={t('Remove group')} onClick={this.handler_removeGroup(group.id)} />
-                  )}
+                  {group.id === 'head' ? null : <Button className='remove row' text={t('Remove group')} onClick={this.handler_removeGroup(group.id)} />}
                 </div>
               );
-              
-
-              
             })}
           </DragDropContext>
         </div>
@@ -423,13 +472,9 @@ class Customise extends React.Component {
 }
 
 class ModulesSelector extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      expanded: false
-    };
-  }
+  state = {
+    expanded: false
+  };
 
   componentDidMount() {
     this.mounted = true;
@@ -492,7 +537,52 @@ class ModulesSelector extends React.Component {
   }
 }
 
-ModulesSelector = compose(connect(mapStateToProps), withTranslation())(ModulesSelector);
+class ModulesSettings extends React.Component {
+  componentDidMount() {
+    this.mounted = true;
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
+  handler_optionsSelect = payload => e => {
+    if (this.mounted) {
+      this.props.setSettings(this.props.column, this.props.mod, payload);
+    }
+  };
+
+  render() {
+    const { settings } = this.props;
+
+    return (
+      <div className='modules-settings'>
+        {settings.map((setting, s) => (
+          <div key={s} className='setting'>
+            <div className='name'>{setting.name}</div>
+            <ul className='list settings'>
+              {setting.options.values.map((value, v) => {
+                const id = setting.id;
+                const name = setting.options.name(value);
+                const checked = setting.options.multi ? setting.options.value.includes(value) : setting.options.value === value;
+
+                return (
+                  <li key={v} onClick={this.handler_optionsSelect({ id, value })}>
+                    <Checkbox linked checked={checked} text={name} />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
+
+ModulesSelector = compose(withTranslation())(ModulesSelector);
+
+ModulesSettings = compose(withTranslation())(ModulesSettings);
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -504,7 +594,8 @@ function mapDispatchToProps(dispatch) {
   return {
     setLayout: value => {
       dispatch({
-        type: 'SET_LAYOUT', payload: {
+        type: 'SET_LAYOUT',
+        payload: {
           target: 'now',
           value
         }
@@ -513,10 +604,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(Customise);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(Customise);

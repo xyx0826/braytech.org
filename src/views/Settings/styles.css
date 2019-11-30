@@ -14,30 +14,6 @@
   margin-bottom: 0rem;
 }
 
-#settings .module .list.settings li {
-  height: unset;
-  display: block;
-  padding: 5px 0;
-  margin: 0 0 7px;
-}
-
-#settings .module .list.settings li:last-child {
-  margin: 0;
-}
-
-#settings .module .list.settings li .check-box {
-  width: 100%;
-}
-
-#settings .module .list.settings li .check-box .text {
-  flex-basis: calc(100% - 24px);
-  justify-content: space-between;
-}
-
-#settings .module .list.settings li .check-box .text .coverage {
-  color: rgba(255, 255, 255, 0.4);
-}
-
 #settings .info {
   margin: 10px 0 0;
   max-width: 300px;
