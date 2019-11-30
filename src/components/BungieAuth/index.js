@@ -29,9 +29,13 @@ class BungieAuth extends React.Component {
   }
 
   getAccessTokens = async code => {
-    await bungie.GetOAuthAccessToken(`client_id=${process.env.REACT_APP_BUNGIE_CLIENT_ID}&grant_type=authorization_code&code=${code}`);
+    const tokens = await bungie.GetOAuthAccessToken(`client_id=${process.env.REACT_APP_BUNGIE_CLIENT_ID}&grant_type=authorization_code&code=${code}`);
 
     if (this.mounted) {
+      if (tokens && tokens.ErrorCode === 1 && tokens.Response) {
+        this.props.setAuth(tokens.Response);
+      }
+        
       this.getMemberships();
     }
   };
@@ -218,14 +222,6 @@ class BungieAuthMini extends React.Component {
     };
   }
 
-  getAccessTokens = async code => {
-    await bungie.GetOAuthAccessToken(`client_id=${process.env.REACT_APP_BUNGIE_CLIENT_ID}&grant_type=authorization_code&code=${code}`);
-
-    if (this.mounted) {
-      this.getMemberships();
-    }
-  };
-
   handleErrors = response => {
     if (response.error && response.error === 'invalid_grant') {
       this.props.resetAuth();
@@ -266,13 +262,9 @@ class BungieAuthMini extends React.Component {
   componentDidMount() {
     this.mounted = true;
 
-    const { location, auth } = this.props;
+    const { auth } = this.props;
 
-    const code = queryString.parse(location.search) && queryString.parse(location.search).code;
-
-    if (!auth && code) {
-      this.getAccessTokens(code);
-    } else if (auth) {
+    if (auth) {
       this.getMemberships();
     } else if (this.mounted) {
       this.setState(p => ({
@@ -287,14 +279,8 @@ class BungieAuthMini extends React.Component {
   }
 
   render() {
-    const { t, location } = this.props;
+    const { t } = this.props;
     const { loading, memberships, error } = this.state;
-
-    const code = queryString.parse(location.search) && queryString.parse(location.search).code;
-
-    if (code) {
-      return <Redirect to='/settings' />;
-    }
 
     if (loading) {
       return <Spinner mini />;

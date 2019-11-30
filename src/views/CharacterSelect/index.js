@@ -81,7 +81,7 @@ class CharacterSelect extends React.Component {
             <div className='sub-header'>
               <div>{t('Bungie.net profile')}</div>
             </div>
-            <BungieAuthMini location={location} />
+            <BungieAuthMini />
             <ProfileSearch onProfileClick={this.profileClick} />
           </div>
           {!reverseUI && profileCharacterSelect && !error ? (

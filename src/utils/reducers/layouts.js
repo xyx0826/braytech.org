@@ -12,6 +12,7 @@ const defaultState = {
             id: 'head-col-0',
             mods: [
               {
+                id: 'Flashpoint-0',
                 component: 'Flashpoint'
               }
             ]
@@ -20,6 +21,7 @@ const defaultState = {
             id: 'head-col-1',
             mods: [
               {
+                id: 'DailyVanguardModifiers-0',
                 component: 'DailyVanguardModifiers'
               }
             ]
@@ -28,6 +30,7 @@ const defaultState = {
             id: 'head-col-2',
             mods: [
               {
+                id: 'HeroicStoryMissions-0',
                 component: 'HeroicStoryMissions'
               }
             ]
@@ -36,6 +39,7 @@ const defaultState = {
             id: 'head-col-3',
             mods: [
               {
+                id: 'BlackArmoryForges-0',
                 component: 'BlackArmoryForges'
               }
             ]
@@ -50,6 +54,7 @@ const defaultState = {
             id: 'body-1-col-0',
             mods: [
               {
+                id: 'SeasonalArtifact-0',
                 component: 'SeasonalArtifact'
               }
             ]
@@ -58,6 +63,7 @@ const defaultState = {
             id: 'body-1-col-1',
             mods: [
               {
+                id: 'Ranks-0',
                 component: 'Ranks'
               }
             ]
@@ -80,6 +86,7 @@ const defaultState = {
             id: 'body-2-col-0',
             mods: [
               {
+                id: 'SeasonPass-0',
                 component: 'SeasonPass'
               }
             ]

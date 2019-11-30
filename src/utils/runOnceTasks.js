@@ -31,4 +31,8 @@ export default function runOnceTasks() {
     ls.update('history.tasks', { id: 'manifest_november172019-2' });
   }
 
+  if (!history.find(t => t.id === 'resetLayoutsBETA_november302019')) {
+    ls.del('setting.layouts');
+  }
+
 }

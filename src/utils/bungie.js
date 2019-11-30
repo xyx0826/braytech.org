@@ -121,9 +121,10 @@ async function apiRequest(path, options = {}) {
           destinyMemberships: memberships.Response.destinyMemberships
         };
 
-        ls.set('setting.auth', tokens);
-
-        return response;
+        return {
+          ErrorCode: 1,
+          Response: tokens
+        };
       } else {
         return false;
       }

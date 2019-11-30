@@ -50,7 +50,7 @@ const add = (destination, item) => {
 
 // removes an item from a list
 const remove = (destination, item) => {
-  const result = [...destination].filter(i => i.component !== item.component);
+  const result = [...destination].filter(i => i.id !== item.id);
 
   return result;
 };
@@ -224,10 +224,17 @@ class Customise extends React.Component {
     });
   };
 
-  handler_addMod = (id, key) => {
-    const destinationList = this.getList(id);
+  handler_addMod = (groupId, key) => {
+    const destinationList = this.getList(groupId);
 
-    const result = add(destinationList.col.mods, { component: key });
+    if (!destinationList) {
+      console.warn(`Could not find a destinationList for: ${groupId}, ${key}`);
+      return;
+    }
+
+    const id = `${key}-${destinationList.col.mods.filter(m => m.component === key).length}`;
+
+    const result = add(destinationList.col.mods, { id, component: key });
 
     this.setState(p => {
       const groups = p.groups;
@@ -258,10 +265,10 @@ class Customise extends React.Component {
     });
   };
 
-  handler_removeMod = (id, key) => e => {
-    const destinationList = this.getList(id);
+  handler_removeMod = (groupId, id) => e => {
+    const destinationList = this.getList(groupId);
 
-    const result = remove(destinationList.col.mods, { component: key });
+    const result = remove(destinationList.col.mods, { id });
 
     this.setState(p => {
       const groups = p.groups;
@@ -285,8 +292,6 @@ class Customise extends React.Component {
 
   handler_setSettings = (col, mod, value) => {
     const destinationList = this.getList(col);
-    //console.log(destinationList)
-    //const setting = this.modules[key]
 
     this.setState(p => {
       const groups = p.groups;
@@ -295,7 +300,7 @@ class Customise extends React.Component {
 
       if (group) {
         const colIndex = group.cols.findIndex(c => c.id === destinationList.col.id);
-        const modIndex = colIndex > -1  && group.cols[colIndex].mods.findIndex(m => m.component === mod);
+        const modIndex = colIndex > -1 && group.cols[colIndex].mods.findIndex(m => m.id === mod);
 
         if (modIndex > -1) {
           group.cols[colIndex].mods[modIndex].settings = [
@@ -310,7 +315,7 @@ class Customise extends React.Component {
         groups
       };
     });
-  }
+  };
 
   componentDidMount() {
     this.mounted = true;
@@ -352,6 +357,7 @@ class Customise extends React.Component {
     Vendor: {
       name: this.props.t('Vendor'),
       description: this.props.t('Status and inventory for vendors'),
+      limit: 4,
       settings: [
         {
           id: 'vendorHash',
@@ -373,14 +379,31 @@ class Customise extends React.Component {
     }
   };
 
-  inUse = key => this.state.groups.find(g => g.cols.find(c => c.mods.find(m => m.component === key)));
+  inUse = key => {
+    const limit = this.modules[key].limit || 1;
+
+    const instances = this.state.groups.reduce((a, g) => {
+      return a + g.cols.reduce((a, c) => {
+        return a + c.mods.filter(m => m.component === key).length;
+      }, 0);
+    }, 0);
+
+    return {
+      used: instances >= limit,
+      instances,
+      limit
+    };
+  };
 
   render() {
     const { t } = this.props;
 
     // mark used modules
     Object.keys(this.modules).forEach(key => {
-      this.modules[key].used = this.inUse(key);
+      const { used, instances } = this.inUse(key);
+
+      this.modules[key].used = used;
+      this.modules[key].instances = instances;
     });
 
     return (
@@ -406,26 +429,28 @@ class Customise extends React.Component {
                             <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} className='column-inner'>
                               {col.mods.map((mod, i) => {
                                 const { name, description } = this.modules[mod.component];
-                                const id = mod.id || mod.component;
 
-                                const settings = (this.modules[mod.component].settings && this.modules[mod.component].settings.map(setting => {
-                                  const user = mod.settings && mod.settings.find(u => u.id === setting.id);
-                                  
-                                  if (user) setting.options.value = user.value
-
-                                  return setting;
-                                })) || false;
+                                const settings =
+                                  (this.modules[mod.component].settings &&
+                                    this.modules[mod.component].settings.map(setting => ({
+                                      ...setting,
+                                      options: {
+                                        ...setting.options,
+                                        value: mod.settings && mod.settings.find(u => u.id === setting.id) && mod.settings.find(u => u.id === setting.id).value
+                                      }
+                                    }))) ||
+                                  false;
 
                                 return (
-                                  <Draggable key={id} draggableId={id} index={i}>
+                                  <Draggable key={mod.id} draggableId={mod.id} index={i}>
                                     {(provided, snapshot) => (
                                       <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)} className='module button'>
                                         <div className='text'>
                                           <div className='name'>{name}</div>
                                           <div className='description'>{description}</div>
                                         </div>
-                                        {settings ? <ModulesSettings settings={settings} column={col.id} mod={id} setSettings={this.handler_setSettings} /> : null}
-                                        <Button className='remove' onClick={this.handler_removeMod(col.id, id)}>
+                                        {settings ? <ModulesSettings settings={settings} column={col.id} mod={mod.id} setSettings={this.handler_setSettings} /> : null}
+                                        <Button className='remove' onClick={this.handler_removeMod(col.id, mod.id)}>
                                           <i className='segoe-uniE1061' />
                                         </Button>
                                       </div>
@@ -509,7 +534,7 @@ class ModulesSelector extends React.Component {
           <Button text={t('Cancel')} onClick={this.handler_compress} />
           <div className='list'>
             {Object.keys(modules).map(key => {
-              const { name, description, used } = modules[key];
+              const { name, description, used, limit, instances } = modules[key];
 
               const unavailable = groupType === 'head' && !moduleRules.head.includes(key);
 
@@ -519,6 +544,7 @@ class ModulesSelector extends React.Component {
                 <div key={key} className={cx('module', 'button', { disabled: used || unavailable })} onClick={!used ? this.handler_select(key) : undefined}>
                   <div className='text'>
                     <div className='name'>{name}</div>
+                    {limit > 1 ? <div className='limit'>{instances}/{limit}</div> : null}
                     <div className='description'>{description}</div>
                   </div>
                 </div>
