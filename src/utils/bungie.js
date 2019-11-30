@@ -51,7 +51,7 @@ async function apiRequest(path, options = {}) {
     if (now > then) {
       const refreshRequest = await GetOAuthAccessToken(`grant_type=refresh_token&refresh_token=${tokens.refresh.value}`);
 
-      if (refreshRequest && !refreshRequest.access_token && !refreshRequest.ok) {
+      if (refreshRequest && refreshRequest.ErrorCode !== 1 && !refreshRequest.ok) {
         return await refreshRequest.json();
       }
 
@@ -120,6 +120,11 @@ async function apiRequest(path, options = {}) {
           bnetMembershipId: response.membership_id,
           destinyMemberships: memberships.Response.destinyMemberships
         };
+
+        store.dispatch({
+          type: 'SET_AUTH',
+          payload: tokens
+        });
 
         return {
           ErrorCode: 1,
