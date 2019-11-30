@@ -33,6 +33,8 @@ export default function runOnceTasks() {
 
   if (!history.find(t => t.id === 'resetLayoutsBETA_november302019')) {
     ls.del('setting.layouts');
+
+    ls.update('history.tasks', { id: 'resetLayoutsBETA_november302019' });
   }
 
 }
