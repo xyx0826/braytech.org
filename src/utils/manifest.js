@@ -1,6 +1,8 @@
 import { merge } from 'lodash';
 
 import braytech_EN from '../data/manifest/en/braytech/';
+import braytech_ES from '../data/manifest/es/braytech/';
+import braytech_IT from '../data/manifest/it/braytech/';
 import DestinyClanBannerDefinition from '../data/manifest/en/DestinyClanBannerDefinition/';
 import DestinyActivityDefinition from '../data/manifest/en/DestinyActivityDefinition/';
 
@@ -21,7 +23,7 @@ const customs = {
     DestinyClanBannerDefinition,
   },
   es: {
-    braytech: braytech_EN,
+    braytech: braytech_ES,
   },
   'es-mx': {
     braytech: braytech_EN,
@@ -30,7 +32,7 @@ const customs = {
     braytech: braytech_EN,
   },
   it: {
-    braytech: braytech_EN,
+    braytech: braytech_IT,
   },
   ja: {
     braytech: braytech_EN,
