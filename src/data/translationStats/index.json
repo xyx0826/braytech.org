@@ -1,120 +1,138 @@
 {
   "de": {
     "translated": 458,
-    "notTranslated": 40,
-    "added": [],
-    "removed": []
+    "notTranslated": 54,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
+    "removed": [
+      "Reset customisable layouts data"
+    ]
   },
   "en": {
-    "translated": 498,
+    "translated": 513,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "es-mx": {
     "translated": 0,
-    "notTranslated": 492,
-    "added": [],
+    "notTranslated": 506,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
     "removed": [
-      "Detailed",
-      "Detailed tooltips are an alternate design that display hidden stats and list socket plugs (perks and mods) exhaustively.",
-      "Emblem variant",
-      "Simple",
-      "Simple tooltips are displayed as per the game, displaying the same stats and socket plugs (perks and mods).",
-      "Tooltips"
+      "Reset customisable layouts data"
     ]
   },
   "es": {
-    "translated": 492,
-    "notTranslated": 6,
-    "added": [],
-    "removed": []
+    "translated": 498,
+    "notTranslated": 14,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
+    "removed": [
+      "Reset customisable layouts data"
+    ]
   },
   "fr": {
     "translated": 357,
-    "notTranslated": 140,
-    "added": [],
+    "notTranslated": 154,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
     "removed": [
-      "Emblem variant"
+      "Reset customisable layouts data"
     ]
   },
   "internal": {
     "translated": 0,
-    "notTranslated": 492,
-    "added": [],
+    "notTranslated": 506,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
     "removed": [
-      "Detailed",
-      "Detailed tooltips are an alternate design that display hidden stats and list socket plugs (perks and mods) exhaustively.",
-      "Emblem variant",
-      "Simple",
-      "Simple tooltips are displayed as per the game, displaying the same stats and socket plugs (perks and mods).",
-      "Tooltips"
+      "Reset customisable layouts data"
     ]
   },
   "it": {
     "translated": 498,
-    "notTranslated": 0,
-    "added": [],
-    "removed": []
+    "notTranslated": 14,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
+    "removed": [
+      "Reset customisable layouts data"
+    ]
   },
   "ja": {
     "translated": 219,
-    "notTranslated": 278,
-    "added": [],
+    "notTranslated": 292,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
     "removed": [
-      "Emblem variant"
+      "Reset customisable layouts data"
     ]
   },
   "ko": {
     "translated": 298,
-    "notTranslated": 199,
-    "added": [],
+    "notTranslated": 213,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
     "removed": [
-      "Emblem variant"
+      "Reset customisable layouts data"
     ]
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 492,
-    "added": [],
+    "notTranslated": 506,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
     "removed": [
-      "Detailed",
-      "Detailed tooltips are an alternate design that display hidden stats and list socket plugs (perks and mods) exhaustively.",
-      "Emblem variant",
-      "Simple",
-      "Simple tooltips are displayed as per the game, displaying the same stats and socket plugs (perks and mods).",
-      "Tooltips"
+      "Reset customisable layouts data"
     ]
   },
   "pt-br": {
     "translated": 458,
-    "notTranslated": 40,
-    "added": [],
-    "removed": []
+    "notTranslated": 54,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
+    "removed": [
+      "Reset customisable layouts data"
+    ]
   },
   "ru": {
     "translated": 0,
-    "notTranslated": 492,
-    "added": [],
+    "notTranslated": 506,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
     "removed": [
-      "Detailed",
-      "Detailed tooltips are an alternate design that display hidden stats and list socket plugs (perks and mods) exhaustively.",
-      "Emblem variant",
-      "Simple",
-      "Simple tooltips are displayed as per the game, displaying the same stats and socket plugs (perks and mods).",
-      "Tooltips"
+      "Reset customisable layouts data"
     ]
   },
   "zh-chs": {
     "translated": 469,
-    "notTranslated": 29,
-    "added": [],
-    "removed": []
+    "notTranslated": 43,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
+    "removed": [
+      "Reset customisable layouts data"
+    ]
   },
   "zh-cht": {
     "translated": 469,
-    "notTranslated": 29,
-    "added": [],
-    "removed": []
+    "notTranslated": 43,
+    "added": [
+      "Reset customisable layouts to their default arrangements"
+    ],
+    "removed": [
+      "Reset customisable layouts data"
+    ]
   }
 }

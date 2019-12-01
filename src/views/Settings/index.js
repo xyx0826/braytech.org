@@ -250,7 +250,7 @@ class Settings extends React.Component {
               </div>
               <Button text={t('Reset customisable layouts')} action={this.handler_resetLayouts} />
               <div className='info'>
-                <p>{t('Reset customisable layouts data')}</p>
+                <p>{t('Reset customisable layouts to their default arrangements')}</p>
               </div>
             </div>
           </div>
@@ -342,7 +342,7 @@ class Settings extends React.Component {
               </div>
               <Button text={t('Reset customisable layouts')} action={this.handler_resetLayouts} />
               <div className='info'>
-                <p>{t('Reset customisable layouts data')}</p>
+                <p>{t('Reset customisable layouts to their default arrangements')}</p>
               </div>
               {this.swAvailable && this.state.swInstalled ? (
                 <>
