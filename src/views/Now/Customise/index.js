@@ -128,7 +128,7 @@ class Customise extends React.Component {
       // no full or double mods in header group
       if (sourceList.col.mods.find(m => moduleRules.full.includes(m.component) || moduleRules.double.includes(m.component)) && destinationList.group.id === 'head') return;
       // permit only approved mods to head
-      if (sourceList.col.mods.find(m => !moduleRules.head.includes(m.component)) && destinationList.group.id === 'head') return;
+      if (!moduleRules.head.includes(sourceList.col.mods[source.index].component) && destinationList.group.id === 'head') return;
       // force full mods to first column
       if (sourceList.col.mods.find(m => moduleRules.full.includes(m.component))) {
         destination.droppableId = destinationList.group.cols[0].id;

@@ -12,19 +12,13 @@ import ProgressBar from '../../../../components/UI/ProgressBar';
 import './styles.css';
 
 class SeasonalArtifact extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   render() {
     const { t, member } = this.props;
     const profileProgression = member.data.profile.profileProgression.data;
     const characterEquipment = member.data.profile.characterEquipment.data[member.characterId].items;
     const characterProgressions = member.data.profile.characterProgressions.data[member.characterId];
 
-    const artifactAvailable = characterEquipment.find(i => i.itemHash === 1387688628) || false;
+    const artifactAvailable = characterEquipment.find(i => i.bucketHash === 1506418338) || false;
 
     if (!artifactAvailable) {
       return (
@@ -109,9 +103,9 @@ class SeasonalArtifact extends React.Component {
                         {characterArtifact.tiers[t].items
                           .map((item, i) => {
 
-                            const image = !item.isActive ? seasonalMods[1387688628][item.itemHash].inactive : seasonalMods[1387688628][item.itemHash].active;
-
                             const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
+
+                            const image = seasonalMods[artifactAvailable.itemHash] && seasonalMods[artifactAvailable.itemHash][item.itemHash] ? !item.isActive ? seasonalMods[artifactAvailable.itemHash][item.itemHash].inactive : seasonalMods[artifactAvailable.itemHash][item.itemHash].active : definitionItem && `https://www.bungie.net${definitionItem.displayProperties.icon}`;
 
                             const energyCost = definitionItem && definitionItem.plug && definitionItem.plug.energyCost ? definitionItem.plug.energyCost.energyCost : 0;
 

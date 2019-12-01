@@ -31,7 +31,7 @@ class Settings extends React.Component {
     };
   }
 
-  selectCollectibleDisplayState = state => {
+  selectCollectibleDisplayState = state => e => {
     let currentState = this.props.collectibles;
     let newState = currentState;
 
@@ -128,9 +128,31 @@ class Settings extends React.Component {
     }
   };
 
-  handler_resetLayout = target => e => {
-    this.props.resetLayout(target);
-  }
+  handler_setTheme = theme => e => {
+    this.props.setTheme(theme);
+  };
+
+  handler_resetLayouts = e => {
+    this.props.resetLayouts({ target: false });
+  };
+
+  handler_clearProfileHistory = e => {
+    ls.set('history.profiles', []);
+  };
+
+  handler_clearTrackedTriumphs = e => {
+    this.props.setTrackedTriumphs([]);
+  };
+
+  handler_resetNotificationsState = e => {
+    ls.set('history.notifications', []);
+  };
+
+  handler_reloadApp = e => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 50);
+  };
 
   render() {
     const { t, availableLanguages, location } = this.props;
@@ -172,40 +194,17 @@ class Settings extends React.Component {
             <BungieAuth location={location} />
           </div>
           <div className='module'>
-          <div className='sub-header sub'>
+            <div className='sub-header sub'>
               <div>{t('Theme')}</div>
             </div>
             <ul className='list settings'>
-              <li
-                key='light'
-                onClick={() => {
-                  this.props.setTheme('light-mode');
-                }}
-              >
+              <li onClick={this.handler_setTheme('light-mode')}>
                 <Checkbox linked checked={this.props.theme.selected === 'light-mode'} text={t('Light mode')} />
               </li>
-              <li
-                key='dark'
-                onClick={() => {
-                  this.props.setTheme('dark-mode');
-                }}
-              >
+              <li onClick={this.handler_setTheme('dark-mode')}>
                 <Checkbox linked checked={this.props.theme.selected === 'dark-mode'} text={t('Dark mode')} />
               </li>
             </ul>
-            <div className='sub-header sub'>
-              <div>{t('Layouts')}</div>
-            </div>
-            <div className='buttons'>
-              <Button action={this.handler_resetLayout('now')}>
-                <div className='text'>
-                  <ReactMarkdown source={t('Reset _Now_ view')} disallowedTypes={['paragraph']} unwrapDisallowed />
-                </div>
-              </Button>
-              <div className='info'>
-                <ReactMarkdown source={t('Resets the _Now_ view to its default layout')} />
-              </div>
-            </div>
             {/* <div className='sub-header sub'>
               <div>{t('Tooltips')}</div>
             </div>
@@ -237,32 +236,21 @@ class Settings extends React.Component {
               <div>{t('Local saved data')}</div>
             </div>
             <div className='buttons'>
-              <Button
-                text={t('Clear profile history')}
-                action={() => {
-                  ls.set('history.profiles', []);
-                }}
-              />
+              <Button text={t('Clear profile history')} action={this.handler_clearProfileHistory} />
               <div className='info'>
                 <p>{t('Deletes the stored list of previously loaded member profiles (character select).')}</p>
               </div>
-              <Button
-                text={t('Clear tracked triumphs')}
-                action={() => {
-                  this.props.setTrackedTriumphs([]);
-                }}
-              />
+              <Button text={t('Clear tracked triumphs')} action={this.handler_clearTrackedTriumphs} />
               <div className='info'>
                 <p>{t('Clears tracked triumphs permanently.')}</p>
               </div>
-              <Button
-                text={t('Reset notifications')}
-                action={() => {
-                  ls.set('history.notifications', []);
-                }}
-              />
+              <Button text={t('Reset notifications')} action={this.handler_resetNotificationsState} />
               <div className='info'>
                 <p>{t("Reset data pertaining to whether or not you've seen any active notifcation items.")}</p>
+              </div>
+              <Button text={t('Reset customisable layouts')} action={this.handler_resetLayouts} />
+              <div className='info'>
+                <p>{t('Reset customisable layouts data')}</p>
               </div>
             </div>
           </div>
@@ -271,61 +259,37 @@ class Settings extends React.Component {
               <div>{t('Visibility')}</div>
             </div>
             <ul className='list settings'>
-              <li
-                onClick={() => {
-                  this.selectCollectibleDisplayState('hideCompletedChecklistItems');
-                }}
-              >
+              <li onClick={this.selectCollectibleDisplayState('hideCompletedChecklistItems')}>
                 <Checkbox linked checked={this.props.collectibles.hideCompletedChecklistItems} text={t('Hide completed checklist items')} />
                 <div className='info'>
                   <p>{t('If a checklist item is completed, it will be hidden under Checklist view.')}</p>
                 </div>
               </li>
-              <li
-                onClick={() => {
-                  this.selectCollectibleDisplayState('hideCompletedRecords');
-                }}
-              >
+              <li onClick={this.selectCollectibleDisplayState('hideCompletedRecords')}>
                 <Checkbox linked checked={this.props.collectibles.hideCompletedRecords} text={t('Hide completed triumphs')} />
                 <div className='info'>
                   <p>{t('If a triumph record is completed and redeemed, it will be hidden under Triumphs views.')}</p>
                 </div>
               </li>
-              <li
-                onClick={() => {
-                  this.selectCollectibleDisplayState('hideInvisibleRecords');
-                }}
-              >
+              <li onClick={this.selectCollectibleDisplayState('hideInvisibleRecords')}>
                 <Checkbox linked checked={this.props.collectibles.hideInvisibleRecords} text={t('Hide invisible triumph records')} />
                 <div className='info'>
                   <p>{t('If the game specifies that you are unable to see a particular triumph record, it will be hidden under Triumphs views.')}</p>
                 </div>
               </li>
-              <li
-                onClick={() => {
-                  this.selectCollectibleDisplayState('hideDudRecords');
-                }}
-              >
+              <li onClick={this.selectCollectibleDisplayState('hideDudRecords')}>
                 <Checkbox linked checked={this.props.collectibles.hideDudRecords} text={t('Hide dud records')} />
                 <div className='info'>
                   <p>{t('Hides dud (empty, unused, or unobtainable) records from view')}</p>
                 </div>
               </li>
-              <li
-                onClick={() => {
-                  this.selectCollectibleDisplayState('hideCompletedCollectibles');
-                }}
-              >
+              <li onClick={this.selectCollectibleDisplayState('hideCompletedCollectibles')}>
                 <Checkbox linked checked={this.props.collectibles.hideCompletedCollectibles} text={t('Hide acquired collection items')} />
                 <div className='info'>
                   <p>{t('If a collectible has been acquired, it will be hidden under Collections views.')}</p>
                 </div>
               </li>
-              <li
-                onClick={() => {
-                  this.selectCollectibleDisplayState('hideInvisibleCollectibles');
-                }}
-              >
+              <li onClick={this.selectCollectibleDisplayState('hideInvisibleCollectibles')}>
                 <Checkbox linked checked={this.props.collectibles.hideInvisibleCollectibles} text={t('Hide invisible collection items')} />
                 <div className='info'>
                   <p>{t('If the game specifies that you are unable to see a particular collectible, it will be hidden under Collections views.')}</p>
@@ -372,16 +336,13 @@ class Settings extends React.Component {
               <div>{t('Troubleshooting')}</div>
             </div>
             <div className='buttons'>
-              <Button
-                text={t('Reload')}
-                action={() => {
-                  setTimeout(() => {
-                    window.location.reload();
-                  }, 50);
-                }}
-              />
+              <Button text={t('Reload')} action={this.handler_reloadApp} />
               <div className='info'>
                 <p>{t('Reload the app')}</p>
+              </div>
+              <Button text={t('Reset customisable layouts')} action={this.handler_resetLayouts} />
+              <div className='info'>
+                <p>{t('Reset customisable layouts data')}</p>
               </div>
               {this.swAvailable && this.state.swInstalled ? (
                 <>
@@ -430,20 +391,11 @@ function mapDispatchToProps(dispatch) {
     setMaps: value => {
       dispatch({ type: 'SET_MAPS', payload: value });
     },
-    resetLayout: value => {
-      dispatch({
-        type: 'RESET_LAYOUT', payload: {
-          target: value,
-        }
-      });
+    resetLayouts: value => {
+      console.log('fuck')
+      dispatch({ type: 'RESET_LAYOUTS', payload: value });
     }
   };
 }
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(Settings);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(Settings);

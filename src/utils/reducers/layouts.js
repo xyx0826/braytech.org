@@ -119,11 +119,18 @@ export default function reducer(state = {...defaultState, ...lsState}, action) {
 
       ls.set('setting.layouts', state);
       return state;
-    case 'RESET_LAYOUT':
-      state = {
-        ...state,
-        [action.payload.target]: defaultState[action.payload.target]
-      };
+    case 'RESET_LAYOUTS':
+      console.log(action.payload)
+      if (action.payload.target) {
+        state = {
+          ...state,
+          [action.payload.target]: defaultState[action.payload.target]
+        };
+      } else {
+        state = {
+          ...defaultState
+        };
+      }
 
       ls.set('setting.layouts', state);
       return state;
