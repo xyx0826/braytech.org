@@ -53,7 +53,7 @@ class Vendor extends React.Component {
 
       const locations = definitionVendor.locations && definitionVendor.locations.length && definitionVendor.locations;
 
-      const definitionDestination = locations && locations.length > 1 ? manifest.DestinyDestinationDefinition[definitionVendor.locations[1].destinationHash] : definitionVendor.locations.length && definitionVendor.locations[0].destinationHash && manifest.DestinyDestinationDefinition[definitionVendor.locations[0].destinationHash];
+      const definitionDestination = locations && locations.length > 1 ? manifest.DestinyDestinationDefinition[definitionVendor.locations[1].destinationHash] : definitionVendor.locations && definitionVendor.locations.length && definitionVendor.locations[0].destinationHash && manifest.DestinyDestinationDefinition[definitionVendor.locations[0].destinationHash];
 
       const destination = definitionDestination && Object.values(destinations).find(d => d.destination.hash === definitionDestination.hash);
       const bubble = destination && destination.map.bubbles.find(b => b.nodes.find(n => n.vendorHash === definitionVendor.hash));
