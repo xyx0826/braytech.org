@@ -18,6 +18,7 @@ import SeasonalArtifact from '../Modules/SeasonalArtifact';
 import Vendor from '../Modules/Vendor';
 import AuthUpsell from '../Modules/AuthUpsell';
 import Transitory from '../Modules/Transitory';
+import CharacterEquipment from '../Modules/CharacterEquipment';
 
 import { moduleRules } from '../Customise';
 
@@ -57,6 +58,9 @@ class Now extends React.Component {
     },
     Vendor: {
       c: Vendor
+    },
+    CharacterEquipment: {
+      c: CharacterEquipment
     }
   }
 

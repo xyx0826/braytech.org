@@ -3,7 +3,7 @@ import { keyBy, sumBy, sortBy, compact } from 'lodash';
 import manifest from '../manifest';
 import * as enums from '../destinyEnums';
 
-import * as utils from './utils';
+import { compareBy, getSocketsWithPlugCategoryHash, getSocketsWithStyle } from './utils';
 
 /**
  * These are the utilities that deal with Stats on items - specifically, how to calculate them.
@@ -283,10 +283,11 @@ function enhanceStatsWithPlugs(item, stats, statDisplays) {
  * Build the stats that come "live" from the API's data on real instances. This is required
  * for Armor 2.0 since it has random stat rolls.
  */
-function buildLiveStats(item, stats, statGroup, statDisplays) {
+function buildLiveStats(item, statsData, statGroup, statDisplays) {
   return compact(
-    Object.values(stats.stats).map((itemStat) => {
+    Object.values(statsData).map((itemStat) => {
       const statHash = itemStat.statHash;
+
       if (!itemStat || !shouldShowStat(item, statHash, statDisplays)) {
         return undefined;
       }
@@ -325,6 +326,52 @@ function buildLiveStats(item, stats, statGroup, statDisplays) {
   );
 }
 
+function buildStatsFromMods(sockets, statGroupHash, statDisplays) {
+  const statTracker = {};
+  const investmentStats = [];
+
+  const modSockets = getSocketsWithPlugCategoryHash(sockets, 4104513227);
+  const masterworkSockets = getSocketsWithStyle(sockets, enums.DestinySocketCategoryStyle.EnergyMeter);
+
+  for (const statHash of armorStats) {
+    statTracker[statHash] = 0;
+  }
+
+  // there should only be one masterwork socket
+  if (masterworkSockets.length) {
+    modSockets.push(masterworkSockets[0]);
+  }
+
+  for (const socket of modSockets) {
+    if (socket.plug.stats) {
+      for (const statHash of armorStats) {
+        if (socket.plug.stats[statHash]) {
+          statTracker[statHash] += socket.plug.stats[statHash];
+        }
+      }
+    }
+  }
+
+  for (const statHash of armorStats) {
+    const definitionStat = manifest.DestinyStatDefinition[statHash];
+    const definitionStatGroup = manifest.DestinyStatGroupDefinition[statGroupHash];
+
+    const hashAndValue = {
+      statTypeHash: statHash,
+      value: statTracker[statHash]
+    };
+
+    const builtStat = buildStat(hashAndValue, definitionStatGroup, definitionStat, statDisplays);
+
+    builtStat.maximumValue = 42;
+    investmentStats.push(builtStat);
+  }
+
+  // investmentStats.push(totalStat(investmentStats));
+
+  return investmentStats;
+}
+
 /** Build the full list of stats for an item. If the item has no stats, this returns null. */
 export const stats = item => {
   const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
@@ -348,26 +395,37 @@ export const stats = item => {
     );
   }
 
-  // For Armor, we always replace the previous stats with live stats, even if they were already created
-  // if ((!investmentStats.length || item.bucket.inArmor) && stats && stats[item.id]) {
-  //   // TODO: build a version of enhanceStatsWithPlugs that only calculates plug values
-  //   investmentStats = buildLiveStats(stats[item.id], itemDef, defs, statGroup, statDisplays);
-  //   if (item.bucket.inArmor) {
-  //     if (item.sockets && item.sockets.sockets.length) {
-  //       investmentStats = buildBaseStats(investmentStats, item.sockets.sockets);
-  //     }
+  const statsData =
+    (item.itemInstanceId &&
+      item.itemComponents && item.itemComponents.stats) ||
+    undefined;
 
-  //     // Add the "Total" stat for armor
-  //     investmentStats.push(totalStat(investmentStats));
-  //   }
-  // }
+  // For Armor, we always replace the previous stats with live stats, even if they were already created
+  if ((!investmentStats.length || definitionItem.itemType === 2) && statsData) {
+    // TODO: build a version of enhanceStatsWithPlugs that only calculates plug values
+    investmentStats = buildLiveStats(item, statsData, definitionItem.stats.statGroupHash, statDisplays);
+
+    if (definitionItem.itemType === 2) {
+      if (item.sockets.sockets.length) {
+        // investmentStats = buildBaseStats(investmentStats, createdItem.sockets.sockets);
+      }
+
+      // Add the "Total" stat for armor
+      //investmentStats.push(totalStat(investmentStats));
+    }
+  } else if (
+    definitionItem.inventory.bucketTypeHash === 1585787867 &&
+    item.sockets
+  ) {
+    investmentStats = buildStatsFromMods(item.sockets, definitionItem.stats.statGroupHash, statDisplays);
+  }
 
   if (definitionItem && definitionItem.itemType === 2 && investmentStats.length) {
     // Add the "Total" stat for armor
     investmentStats.push(totalStat(investmentStats));
   }
 
-  return investmentStats.length ? investmentStats.sort(utils.compareBy((s) => s.sort)) : null;
+  return investmentStats.length ? investmentStats.sort(compareBy((s) => s.sort)) : null;
 }
 
 

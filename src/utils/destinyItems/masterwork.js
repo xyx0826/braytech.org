@@ -54,18 +54,9 @@ function buildForsakenMasterworkInfo(item) {
 }
 
 function buildForsakenKillTracker(item) {
-  // const killTrackerSocket = item.sockets.sockets && item.sockets.sockets.find((socket) =>
-  //   Boolean(idx(socket.plug, (p) => p.plugObjectives.length))
-  // );
+  const killTrackerSocket = item.sockets.sockets && item.sockets.sockets.find((socket) => socket.plug && socket.plug.plugObjectives && socket.plug.plugObjectives.length);
 
-  const killTrackerSocket = null;
-
-  if (
-    killTrackerSocket &&
-    killTrackerSocket.plug &&
-    killTrackerSocket.plug.plugObjectives &&
-    killTrackerSocket.plug.plugObjectives.length
-  ) {
+  if (killTrackerSocket) {
     const plugObjective = killTrackerSocket.plug.plugObjectives[0];
 
     const objectiveDef = manifest.DestinyObjectiveDefinition[plugObjective.objectiveHash];
@@ -79,17 +70,18 @@ function buildForsakenKillTracker(item) {
         : 'Vanguard'
     };
   }
+
   return null;
 }
 
-const damageTypeNames = {
-  0: null,
-  1: 'kinetic',
-  2: 'arc',
-  3: 'solar',
-  4: 'void',
-  5: 'raid'
-};
+// const damageTypeNames = {
+//   0: null,
+//   1: 'kinetic',
+//   2: 'arc',
+//   3: 'solar',
+//   4: 'void',
+//   5: 'raid'
+// };
 
 function buildForsakenMasterworkStats(item) {
   const masterworkSocket = item.sockets.sockets && item.sockets.sockets.find((socket) =>

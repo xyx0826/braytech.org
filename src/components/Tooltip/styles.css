@@ -315,14 +315,6 @@
   opacity: 0.6;
 }
 
-#tooltip .stats .stat .value.mod {
-  color: #ddcd8c;
-}
-
-#tooltip .stats .stat .value.masterwork {
-  color: #c6ab3c;
-}
-
 #tooltip .stats .stat .value .bar {
   height: 100%;
   background-color: #fff;
@@ -346,6 +338,14 @@
 
 #tooltip .stats .stat .value .bar.masterwork {
   background-color: #c6ab3c;
+}
+
+#tooltip .stats .stat .value .bar.modded {
+  background-color: #4ac362;
+}
+
+#tooltip .stats .stat .value .text.masterwork {
+  color: #e0c452;
 }
 
 #tooltip .sockets {

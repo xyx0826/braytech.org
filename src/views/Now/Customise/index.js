@@ -376,6 +376,10 @@ class Customise extends React.Component {
     SeasonPass: {
       name: this.props.t('Season rank'),
       description: this.props.t('Display your season pass progression and available rewards')
+    },
+    CharacterEquipment: {
+      name: this.props.t('Character equipment'),
+      description: this.props.t('Display your season pass progression and available rewards')
     }
   };
 

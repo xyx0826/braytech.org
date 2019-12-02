@@ -5,6 +5,7 @@ import cx from 'classnames';
 import manifest from '../../../utils/manifest';
 import * as enums from '../../../utils/destinyEnums';
 import { damageTypeToString, ammoTypeToString, breakerTypeToIcon } from '../../../utils/destinyUtils';
+import { getModdedStatValue } from '../../../utils/destinyItems/utils';
 import { statsMs } from '../../../utils/destinyItems/stats';
 import ObservedImage from '../../ObservedImage';
 
@@ -62,8 +63,28 @@ const Equipment = props => {
           {stats.map(s => {
             // map through stats
 
-            const masterwork = (masterworkInfo && masterworkInfo.statHash === s.statHash && masterworkInfo.statValue) || 0;
-            const base = s.value - masterwork;
+            const moddedValue = getModdedStatValue(sockets, s);
+            const masterworkValue = (masterworkInfo && masterworkInfo.statHash === s.statHash && masterworkInfo.statValue) || 0;
+
+            let baseBar = s.value;
+
+            if (moddedValue) {
+              baseBar -= moddedValue;
+            }
+
+            if (masterworkValue) {
+              baseBar -= masterworkValue;
+            }
+
+            const segments = [[baseBar]];
+
+            if (moddedValue) {
+              segments.push([moddedValue, 'modded']);
+            }
+
+            if (masterworkValue) {
+              segments.push([masterworkValue, 'masterwork']);
+            }
 
             return (
               <div key={s.statHash} className='stat'>
@@ -71,14 +92,13 @@ const Equipment = props => {
                 <div className={cx('value', { bar: s.bar })}>
                   {s.bar ? (
                     <>
-                      <div className='bar' data-value={base} style={{ width: `${base}%` }} />
-                      <div className='bar masterwork' data-value={masterwork} style={{ width: `${masterwork}%` }} />
+                      {segments.map(([value, className], i) => <div key={i} className={cx('bar', className)} data-value={value} style={{ width: `${Math.min(100, Math.floor(100 * (value / s.maximumValue)))}%` }} />)}
                       <div className='int'>{s.value}</div>
                     </>
                   ) : (
-                    <>
+                    <div className={cx('text', { masterwork: masterworkValue !== 0 })}>
                       {s.value} {statsMs.includes(s.statHash) && 'ms'}
-                    </>
+                    </div>
                   )}
                 </div>
               </div>
@@ -86,12 +106,14 @@ const Equipment = props => {
           })}
         </div>
       ) : null}
-      {sockets && sockets.socketCategories && sockets.sockets.filter(s => (s.isPerk || s.isIntrinsic) && !s.isTracker).length ? (
+      {!stats && sockets && sockets.socketCategories && sockets.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker).length && <div className='line' />}
+      {sockets && sockets.socketCategories && sockets.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker).length ? (
         <div className={cx('sockets', {
+          // styling for single plug sockets
           one: sockets.sockets
-            .filter(s => (s.isPerk || s.isIntrinsic) && !s.isTracker)
+            .filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker)
             .map(s => s.plugOptions &&
-              s.plugOptions.filter(p => p.isEnabled && p.isActive)
+              s.plugOptions.filter(p => p.isEnabled)
             )
             .filter(s => s.length)
             .length === 1
@@ -101,7 +123,7 @@ const Equipment = props => {
               // map through socketCategories
 
               if (c.sockets.length) {
-                const plugs = c.sockets.filter(s => (s.isPerk || s.isIntrinsic) && !s.isTracker);
+                const plugs = c.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker);
 
                 if (plugs.length) {
                   return (
@@ -112,21 +134,15 @@ const Equipment = props => {
                         return (
                           <div key={s.socketIndex} className='socket'>
                             {s.plugOptions
-                              .filter(p => p.isEnabled && p.isActive)
+                              .filter(p => p.isEnabled && p.plugItem.hash === s.plug.plugItem.hash)
                               .map(p => {
                                 // filter for enabled plugs and map through
-
-                                let name = p.plugItem.displayProperties.name;
-
-                                if (name === 'Threat Detector') name = 'Teeth Detector';
-                                if (name === 'Grave Robber') name = 'Grave Rubber';
-                                if (name === 'Opening Shot') name = 'Winky Shot';
 
                                 return (
                                   <div key={p.plugItem.hash} className={cx('plug', { intrinsic: s.isIntrinsic, enabled: true })}>
                                     <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${p.plugItem.displayProperties.icon ? p.plugItem.displayProperties.icon : `/img/misc/missing_icon_d2.png`}`} />
                                     <div className='text'>
-                                      <div className='name'>{name}</div>
+                                      <div className='name'>{p.plugItem.displayProperties.name}</div>
                                       <div className='description'>{s.isIntrinsic ? p.plugItem.displayProperties.description : p.plugItem.itemTypeDisplayName}</div>
                                     </div>
                                   </div>

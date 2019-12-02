@@ -1,4 +1,4 @@
-import { compact } from 'lodash';
+import { compact, orderBy } from 'lodash';
 
 import manifest from '../manifest';
 import * as enums from '../destinyEnums';
@@ -30,6 +30,13 @@ const EXCLUDED_PLUGS = new Set([
   4248210736
 ]);
 
+// used in displaying the modded segments on item stats
+export const modItemCategoryHashes = [
+  1052191496, // weapon mods
+  4062965806, // armor mods (pre-2.0)
+  4104513227 // armor 2.0 mods
+];
+
 /** The item category hash for "intrinsic perk" */
 export const INTRINSIC_PLUG_CATEGORY = 2237038328;
 /** The item category hash for "masterwork mods" */
@@ -53,15 +60,15 @@ export const sockets = item => {
 
   const socketData =
     (item.itemInstanceId &&
-      item.itemComponents && item.itemComponents.sockets.data[item.itemInstanceId].sockets) ||
+      item.itemComponents && item.itemComponents.sockets) ||
     undefined;
   const reusablePlugData =
     (item.itemInstanceId &&
-      item.itemComponents && item.itemComponents.reusablePlugs.data[item.itemInstanceId].plugs) ||
+      item.itemComponents && item.itemComponents.reusablePlugs.plugs) ||
     undefined;
   const plugObjectivesData =
     (item.itemInstanceId &&
-      item.itemComponents && item.itemComponents.plugObjectives.data[item.itemInstanceId].objectivesPerPlug) ||
+      item.itemComponents && item.itemComponents.plugObjectives.objectivesPerPlug) ||
     undefined;
   
   if (socketData) {
@@ -90,6 +97,7 @@ export const sockets = item => {
  * Build information about an individual socket, and its plugs, using live information.
  */
 function buildSocket(
+  item,
   socket,
   socketDef,
   index,
@@ -106,6 +114,8 @@ function buildSocket(
   //   return undefined;
   // }
 
+  const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
+
   const socketTypeDef = manifest.DestinySocketTypeDefinition[socketDef.socketTypeHash];
   if (!socketTypeDef) {
     return undefined;
@@ -117,10 +127,11 @@ function buildSocket(
   }
 
   // Is this socket a perk-style socket, or something more general (mod-like)?
-  const isPerk = socketCategoryDef.categoryStyle === enums.DestinySocketCategoryStyle.Reusable;
+  const isPerk = (socketCategoryDef.categoryStyle === enums.DestinySocketCategoryStyle.Reusable) || (definitionItem.itemType === enums.DestinyItemType.Ghost && enums.DestinySocketCategoryStyle.Unlockable);
 
   // The currently equipped plug, if any.
   const plug = buildPlug(socket, socketDef, plugObjectivesData);
+
   // TODO: not sure if this should always be included!
   const plugOptions = plug ? [plug] : [];
 
@@ -168,6 +179,10 @@ function buildSocket(
   // TODO: is this still true?
   const hasRandomizedPlugItems =
     Boolean(socketDef && socketDef.randomizedPlugSetHash) || socketTypeDef.alwaysRandomizeSockets;
+  
+  const isIntrinsic = plug.plugItem && plug.plugItem.itemCategoryHashes && plug.plugItem.itemCategoryHashes.includes(2237038328);
+
+  const isMod = plug.plugItem && plug.plugItem.itemCategoryHashes && plug.plugItem.itemCategoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0;
 
   return {
     socketIndex: index,
@@ -175,6 +190,9 @@ function buildSocket(
     plugOptions,
     hasRandomizedPlugItems,
     isPerk,
+    isMod,
+    isIntrinsic,
+    isTracker: plug && plug.plugItem && plug.plugItem.plug && plug.plugItem.plug.plugCategoryIdentifier && plug.plugItem.plug.plugCategoryIdentifier.includes('trackers'),
     socketDefinition: socketDef
   };
 }
@@ -183,10 +201,12 @@ function buildSocket(
  * Build sockets that come from the live instance.
  */
 export function buildInstancedSockets(item, sockets, reusablePlugData, plugObjectivesData) {
+  const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
+
   if (
     !item.itemInstanceId ||
-    !item.sockets ||
-    !item.sockets.socketEntries.length ||
+    !definitionItem.sockets ||
+    !definitionItem.sockets.socketEntries.length ||
     !sockets ||
     !sockets.length
   ) {
@@ -195,15 +215,16 @@ export function buildInstancedSockets(item, sockets, reusablePlugData, plugObjec
 
   const realSockets = sockets.map((socket, i) =>
     buildSocket(
+      item,
       socket,
-      item.sockets.socketEntries[i],
+      definitionItem.sockets.socketEntries[i],
       i,
       reusablePlugData && reusablePlugData[i],
       plugObjectivesData
     )
   );
 
-  const categories = item.sockets.socketCategories.map(
+  const categories = definitionItem.sockets.socketCategories.map(
     (category) => {
       return {
         category: manifest.DestinySocketCategoryDefinition[category.socketCategoryHash],
@@ -216,7 +237,7 @@ export function buildInstancedSockets(item, sockets, reusablePlugData, plugObjec
 
   return {
     sockets: realSockets.filter(Boolean), // Flat list of sockets
-    socketCategories: categories.sort(utils.compareBy((c) => c.category.index)) // Sockets organized by category
+    socketCategories: orderBy(categories.sort(utils.compareBy((c) => c.category.index)), [c => c.sockets.filter(s => s.isIntrinsic).length], ['desc']) // sockets organized by category then I force intrinsic-containing categories to top
   };
 }
 
@@ -230,7 +251,7 @@ function buildDefinedSockets(item) {
     return null;
   }
 
-  const realSockets = definitionItem.sockets.socketEntries.map((socket, i) => buildDefinedSocket(socket, i));
+  const realSockets = definitionItem.sockets.socketEntries.map((socket, i) => buildDefinedSocket(item, socket, i));
   // TODO: check out intrinsicsockets as well
 
   const categories = definitionItem.sockets.socketCategories.map(
@@ -250,7 +271,9 @@ function buildDefinedSockets(item) {
   };
 }
 
-function buildDefinedSocket(socketDef, index) {
+function buildDefinedSocket(item, socketDef, index) {
+  const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
+
   if (!socketDef) {
     return undefined;
   }
@@ -266,7 +289,7 @@ function buildDefinedSocket(socketDef, index) {
   }
 
   // Is this socket a perk-style socket, or something more general (mod-like)?
-  const isPerk = socketCategoryDef.categoryStyle === enums.DestinySocketCategoryStyle.Reusable;
+  const isPerk = (socketCategoryDef.categoryStyle === enums.DestinySocketCategoryStyle.Reusable) || (definitionItem.itemType === enums.DestinyItemType.Ghost && enums.DestinySocketCategoryStyle.Unlockable);;
 
   const reusablePlugItems = (socketDef.reusablePlugSetHash && manifest.DestinyPlugSetDefinition[socketDef.reusablePlugSetHash] && manifest.DestinyPlugSetDefinition[socketDef.reusablePlugSetHash].reusablePlugItems) || [];
 
@@ -361,7 +384,6 @@ function buildDefinedPlug(socketDef, plug) {
   return {
     plugItem: definitionPlugItem,
     isEnabled: true,
-    isActive: plug.plugItemHash === socketDef.singleInitialItemHash,
     enableFailReasons: '',
     plugObjectives: [],
     perks: (definitionPlugItem.perks || []).map((perk) => manifest.DestinySandboxPerkDefinition[perk.perkHash]),

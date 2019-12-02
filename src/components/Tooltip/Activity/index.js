@@ -353,13 +353,13 @@ class Activity extends React.Component {
                 </div>
               </div>
             </div>
+            {eligibilityRequirements && !eligibilityRequirements.eligible ? <div className='important'>{eligibilityRequirements.unlock.text}</div> : null}
             <div className='black'>
               {activityTypeDisplay.pgcrImage && activityTypeDisplay.pgcrImage !== '/img/theme/destiny/bgs/pgcrs/placeholder.jpg' ? (
                 <div className='screenshot'>
                   <ObservedImage className='image' src={`https://www.bungie.net${activityTypeDisplay.pgcrImage}`} />
                 </div>
               ) : null}
-              {eligibilityRequirements && !eligibilityRequirements.eligible ? <div className='important'>{eligibilityRequirements.unlock.text}</div> : null}
               {activityTypeDisplay.destination || activityTypeDisplay.description ? (
                 <div className='description'>
                   {activityTypeDisplay.destination && activityTypeDisplay.destination.name ? (

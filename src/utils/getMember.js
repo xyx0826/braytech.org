@@ -5,7 +5,7 @@ import manifest from './manifest';
 
 async function getMember(membershipType, membershipId) {
 
-  const components = [100, 104, 200, 202, 204, 205, 300, 301, 302, 303, 304, 305, 306, 307, 800, 900];
+  const components = [100, 104, 200, 202, 204, 205, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 800, 900];
   let withAuth = false;
 
   try {

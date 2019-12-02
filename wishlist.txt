@@ -1,7 +1,7 @@
-Tom's API Wishlist
+## Tom's API Wishlist
 
-* Time Destiny profile was created
-* UNIX stamp (or better) for completion attached to high value records 
+* Time Destiny profile was created or time of first activity start
+* Time of completion attached to high value records 
   * Or even just seals? That'd be pretty cool
 * Ornaments get a set of presensation nodes in Collections
-* 
+* Artifact mods to have missing item category hashes i.e. 1052191496 for weapon mods

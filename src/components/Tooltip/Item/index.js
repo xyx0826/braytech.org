@@ -25,10 +25,12 @@ const woolworths = {
 class Item extends React.Component {
   render() {
     const { t, member, tooltips } = this.props;
+    const itemComponents = member.data.profile.itemComponents;
+    const characterUninstancedItemComponents = member.data.profile.characterUninstancedItemComponents;
 
     const item = {
       itemHash: this.props.hash,
-      instanceId: this.props.instanceid || false,
+      itemInstanceId: this.props.instanceid || false,
       itemComponents: false,
       quantity: parseInt(this.props.quantity, 10) || 1,
       state: (this.props.state && parseInt(this.props.state, 10)) || 0,
@@ -103,43 +105,46 @@ class Item extends React.Component {
       }
     }
 
-    if (item.instanceId && member.data && member.data.profile.itemComponents.instances.data[item.instanceId]) {
-      let itemComponents = member.data.profile.itemComponents;
+    // collects relevant instanced data for sockets and stats utils
+    if (item.itemInstanceId && member.data && itemComponents && itemComponents.instances.data[item.itemInstanceId]) {
+      const instancesTypes = ['instance', 'sockets', 'plugObjectives', 'reusablePlugs', 'perks', 'stats', 'objectives'];
 
-      item.itemComponents = {
-        instance: itemComponents.instances.data[item.instanceId] ? itemComponents.instances.data[item.instanceId] : false,
-        sockets: itemComponents.sockets.data[item.instanceId] ? itemComponents.sockets.data[item.instanceId].sockets : false,
-        perks: itemComponents.perks.data[item.instanceId] ? itemComponents.perks.data[item.instanceId].perks : false,
-        stats: itemComponents.stats.data[item.instanceId] ? itemComponents.stats.data[item.instanceId].stats : false,
-        objectives: itemComponents.objectives.data[item.instanceId] ? itemComponents.objectives.data[item.instanceId].objectives : false
-      };
-    } else if (item.instanceId && tooltips.itemComponents[item.instanceId]) {
-      item.itemComponents = tooltips.itemComponents[item.instanceId];
-    } else {
-      item.itemComponents = false;
+      item.itemComponents = instancesTypes.reduce((obj, key) => {
+        if (key === 'instance') {
+          obj[key] = itemComponents.instances.data[item.itemInstanceId] || false;
+          return obj;
+        } else if (['plugObjectives', 'reusablePlugs', 'objectives'].includes[key]) {
+          obj[key] = itemComponents[key].data[item.itemInstanceId] || false;
+          return obj;
+        } else {
+          obj[key] = (itemComponents[key].data[item.itemInstanceId] && itemComponents[key].data[item.itemInstanceId][key]) || false;
+          return obj;
+        }
+      }, {})
     }
 
-    if (member.data.profile && member.data.profile.characterUninstancedItemComponents && member.data.profile.characterUninstancedItemComponents[member.characterId].objectives && member.data.profile.characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash]) {
+    // what's this for
+    if (member.data && characterUninstancedItemComponents && characterUninstancedItemComponents[member.characterId].objectives && characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash]) {
       if (item.itemComponents) {
-        item.itemComponents.objectives = member.data.profile.characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash].objectives;
+        item.itemComponents.objectives = characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash].objectives;
       } else {
         item.itemComponents = {
-          objectives: member.data.profile.characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash].objectives
+          objectives: characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash].objectives
         };
       }
     }
 
-    if (item.instanceId && member.data.profile && member.data.profile.characterInventories && member.data.profile.characterInventories.data && member.data.profile.characterInventories.data[member.characterId] && member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemInstanceId === item.instanceId)) {
+    // what's this for
+    if (item.itemInstanceId && member.data.profile && member.data.profile.characterInventories && member.data.profile.characterInventories.data && member.data.profile.characterInventories.data[member.characterId] && member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemitemInstanceId === item.itemInstanceId)) {
       if (item.itemComponents) {
-        item.itemComponents.item = member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemInstanceId === item.instanceId);
+        item.itemComponents.item = member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemitemInstanceId === item.itemInstanceId);
       } else {
         item.itemComponents = {
-          item: member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemInstanceId === item.instanceId)
+          item: member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemitemInstanceId === item.itemInstanceId)
         };
       }
     }
 
-    item.masterwork = enums.enumerateItemState(item.state).masterwork;
     item.sockets = sockets(item);
     item.stats = stats(item);
     item.masterworkInfo = masterwork(item);
@@ -168,9 +173,9 @@ class Item extends React.Component {
     return (
       <>
         <div className='acrylic' />
-        <div className={cx('frame', item.type, item.rarity, { 'masterworked': item.masterwork || (item.masterworkInfo && item.masterworkInfo.tier === 10) })}>
+        <div className={cx('frame', item.type, item.rarity, { 'masterworked': item.masterwork || (item.masterworkInfo && item.masterworkInfo.tier >= 10) })}>
           <div className='header'>
-            {item.masterwork || (item.masterworkInfo && item.masterworkInfo.tier === 10) ? <ObservedImage className={cx('image', 'bg')} src={item.rarity === 'exotic' ? `/static/images/extracts/flair/01A3-00001DDC.PNG` : `/static/images/extracts/flair/01A3-00001DDE.PNG`} /> : null}
+            {item.masterwork || (item.masterworkInfo && item.masterworkInfo.tier >= 10) ? <ObservedImage className={cx('image', 'bg')} src={item.rarity === 'exotic' ? `/static/images/extracts/flair/01A3-00001DDC.PNG` : `/static/images/extracts/flair/01A3-00001DDE.PNG`} /> : null}
             <div className='name'>{definitionItem.displayProperties && definitionItem.displayProperties.name}</div>
             <div>
               {definitionItem.itemTypeDisplayName && definitionItem.itemTypeDisplayName !== '' ? <div className='kind'>{definitionItem.itemTypeDisplayName}</div> : null}
