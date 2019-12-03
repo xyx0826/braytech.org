@@ -25,3 +25,16 @@
 #now .character-equipment .stats .stat .progress-bar .bar .fill {
   background-color: rgba(228, 228, 228, 0.2);
 }
+
+@media screen and (max-width: 1279px) {
+  #now .character-equipment .list.inventory-items {
+    grid-template-columns: repeat(auto-fill, 48px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  #now .character-equipment .list.inventory-items {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
