@@ -144,5 +144,17 @@
       "description": "Hi.\n\nI did a thing. It's called _Legend_. It allows you to create a downloadable .PNG image of your profile basics. It's pretty and good for bragging with.\n\nCheck it out at braytech.org/legend. Also found under the fullscreen menu.",
       "prompt": true
     }
+  },
+  {
+    "id": "vxc2d61l2sia0piuoy4b36",
+    "date": "2019-12-03T17:36:03.876Z",
+    "expiry": 1209600000,
+    "showOnce": true,
+    "displayProperties": {
+      "name": "Customisable layouts",
+      "image": "/static/images/notifications/now-layouts.png",
+      "description": "It's been 12 days since our last contact.\n\nI return with experimental gifts.\n\nCustomisable layouts beginning with _Now_.\n\nDrag and drop modules to suit your individual tastes.\n\nThey taste even better when you're a patron of Braytech.\n\nAdditionally, in order to support these changes, there's been many amendments to core aspects of Braytech including authentication and tooltips.\n\nI'm _sure_ nothing is broken.\n\nWarlocks are the superior class.",
+      "prompt": true
+    }
   }
 ]
