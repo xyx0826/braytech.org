@@ -58,6 +58,12 @@ class Test extends React.Component {
           <Item hash='1852863732' />
         </div> */}
         <div id='tooltip' className='visible'>
+          <Item hash='572122304' />
+        </div>
+        <div id='tooltip' className='visible'>
+          <Item hash='1498852482' instanceid='6917529116167757369' />
+        </div>
+        <div id='tooltip' className='visible'>
           <Item hash='3948284065' />
         </div>
       </div>
@@ -69,7 +75,4 @@ function mapStateToProps(state, ownProps) {
   return {};
 }
 
-export default compose(
-  connect(mapStateToProps),
-  withTranslation()
-)(Test);
+export default compose(connect(mapStateToProps), withTranslation())(Test);

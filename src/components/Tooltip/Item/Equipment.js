@@ -4,13 +4,13 @@ import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
 import * as enums from '../../../utils/destinyEnums';
-import { damageTypeToString, ammoTypeToString, breakerTypeToIcon } from '../../../utils/destinyUtils';
+import { damageTypeToString, ammoTypeToString, breakerTypeToIcon, energyTypeToAsset, energyStatToType } from '../../../utils/destinyUtils';
 import { getModdedStatValue } from '../../../utils/destinyItems/utils';
 import { statsMs } from '../../../utils/destinyItems/stats';
 import ObservedImage from '../../ObservedImage';
 
 const Equipment = props => {
-  const { itemHash, instanceId, itemComponents, quantity, state, rarity, type, primaryStat, stats, sockets, masterwork, masterworkInfo } = props;
+  const { itemHash, instanceId, itemComponents, quantity, state, rarity, type, primaryStat, stats, sockets, masterworkInfo } = props;
 
   const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
 
@@ -23,6 +23,14 @@ const Equipment = props => {
   // weapon damage type
   let damageTypeHash = definitionItem.itemType === enums.DestinyItemType.Weapon && definitionItem.damageTypeHashes[0];
   damageTypeHash = itemComponents && itemComponents.instance ? itemComponents.instance.damageTypeHash : damageTypeHash;
+
+  const energy = definitionItem.itemType === enums.DestinyItemType.Armor && ((itemComponents && itemComponents.instance && itemComponents.instance.energy) || (masterworkInfo && {
+    energyTypeHash: energyStatToType(masterworkInfo.statHash),
+    energyCapacity: masterworkInfo.statValue
+  }));
+  const definitionEnergy = energy && energyTypeToAsset(energy.energyTypeHash);
+
+  console.log(energy, definitionEnergy)
 
   return (
     <>
@@ -47,7 +55,11 @@ const Equipment = props => {
               <div className='power'>
                 <div className='text'>{primaryStat.value}</div>
                 <div className='text'>{primaryStat.displayProperties.name}</div>
-              </div>
+                </div>
+                {energy ? <div className='energy'>
+                  <div className={cx('value', definitionEnergy.string)}><div className='icon'>{definitionEnergy.icon}</div> {energy.energyCapacity}</div>
+                  <div className='text'>{i18n.t('Energy')}</div>
+                </div> : null}
             </div>
           </>
         )
@@ -63,7 +75,7 @@ const Equipment = props => {
           {stats.map(s => {
             // map through stats
 
-            const moddedValue = getModdedStatValue(sockets, s);
+            const moddedValue = sockets && sockets.sockets && getModdedStatValue(sockets, s);
             const masterworkValue = (masterworkInfo && masterworkInfo.statHash === s.statHash && masterworkInfo.statValue) || 0;
 
             let baseBar = s.value;

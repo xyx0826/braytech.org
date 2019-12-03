@@ -24,9 +24,9 @@ const woolworths = {
 
 class Item extends React.Component {
   render() {
-    const { t, member, tooltips } = this.props;
-    const itemComponents = member.data.profile.itemComponents;
-    const characterUninstancedItemComponents = member.data.profile.characterUninstancedItemComponents;
+    const { t, member } = this.props;
+    const itemComponents = member.data && member.data.profile.itemComponents;
+    const characterUninstancedItemComponents = member.data && member.data.profile.characterUninstancedItemComponents;
 
     const item = {
       itemHash: this.props.hash,
@@ -123,7 +123,7 @@ class Item extends React.Component {
       }, {})
     }
 
-    // what's this for
+    // what's this for?
     if (member.data && characterUninstancedItemComponents && characterUninstancedItemComponents[member.characterId].objectives && characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash]) {
       if (item.itemComponents) {
         item.itemComponents.objectives = characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash].objectives;
@@ -134,7 +134,7 @@ class Item extends React.Component {
       }
     }
 
-    // what's this for
+    // what's this for?
     if (item.itemInstanceId && member.data.profile && member.data.profile.characterInventories && member.data.profile.characterInventories.data && member.data.profile.characterInventories.data[member.characterId] && member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemitemInstanceId === item.itemInstanceId)) {
       if (item.itemComponents) {
         item.itemComponents.item = member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemitemInstanceId === item.itemInstanceId);
@@ -170,12 +170,16 @@ class Item extends React.Component {
 
     const Meat = item.type && woolworths[item.type];
 
+    console.log(item)
+
+    const masterworked = enums.enumerateItemState(item.state).masterworked || (item.masterworkInfo && item.masterworkInfo.tier >= 10);
+
     return (
       <>
         <div className='acrylic' />
-        <div className={cx('frame', item.type, item.rarity, { 'masterworked': item.masterwork || (item.masterworkInfo && item.masterworkInfo.tier >= 10) })}>
+        <div className={cx('frame', item.type, item.rarity, { 'masterworked': masterworked })}>
           <div className='header'>
-            {item.masterwork || (item.masterworkInfo && item.masterworkInfo.tier >= 10) ? <ObservedImage className={cx('image', 'bg')} src={item.rarity === 'exotic' ? `/static/images/extracts/flair/01A3-00001DDC.PNG` : `/static/images/extracts/flair/01A3-00001DDE.PNG`} /> : null}
+            {masterworked ? <ObservedImage className={cx('image', 'bg')} src={item.rarity === 'exotic' ? `/static/images/extracts/flair/01A3-00001DDC.PNG` : `/static/images/extracts/flair/01A3-00001DDE.PNG`} /> : null}
             <div className='name'>{definitionItem.displayProperties && definitionItem.displayProperties.name}</div>
             <div>
               {definitionItem.itemTypeDisplayName && definitionItem.itemTypeDisplayName !== '' ? <div className='kind'>{definitionItem.itemTypeDisplayName}</div> : null}

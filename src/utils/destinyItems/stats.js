@@ -330,6 +330,8 @@ function buildStatsFromMods(sockets, statGroupHash, statDisplays) {
   const statTracker = {};
   const investmentStats = [];
 
+  if (!sockets || !sockets.sockets) return null;
+
   const modSockets = getSocketsWithPlugCategoryHash(sockets, 4104513227);
   const masterworkSockets = getSocketsWithStyle(sockets, enums.DestinySocketCategoryStyle.EnergyMeter);
 
@@ -420,12 +422,12 @@ export const stats = item => {
     investmentStats = buildStatsFromMods(item.sockets, definitionItem.stats.statGroupHash, statDisplays);
   }
 
-  if (definitionItem && definitionItem.itemType === 2 && investmentStats.length) {
+  if (definitionItem && definitionItem.itemType === 2 && investmentStats && investmentStats.length) {
     // Add the "Total" stat for armor
     investmentStats.push(totalStat(investmentStats));
   }
 
-  return investmentStats.length ? investmentStats.sort(compareBy((s) => s.sort)) : null;
+  return investmentStats && investmentStats.length ? investmentStats.sort(compareBy((s) => s.sort)) : null;
 }
 
 

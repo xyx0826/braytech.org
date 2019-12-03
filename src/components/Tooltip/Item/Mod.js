@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from 'i18next';
 import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
@@ -6,7 +7,7 @@ import { energyTypeToAsset } from '../../../utils/destinyUtils';
 // import ObservedImage from '../../ObservedImage';
 
 const Mod = props => {
-  const { itemHash, instanceId, itemComponents, quantity, state, rarity, type, primaryStat, stats, sockets, masterwork, masterworkInfo } = props;
+  const { itemHash } = props;
 
   const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
 
@@ -26,9 +27,9 @@ const Mod = props => {
   return (
     <>
       {energyCost ? (
-        <div className='energy-cost'>
+        <div className='energy'>
           <div className={cx('value', energyType.string)}><div className='icon'>{energyType.icon}</div> {energyCost.energyCost}</div>
-          <div className='text'>ENERGY COST</div>
+          <div className='text'>{i18n.t('Energy cost')}</div>
         </div>
       ) : null}
       {perks && perks.length ? (

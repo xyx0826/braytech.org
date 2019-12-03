@@ -180,9 +180,9 @@ function buildSocket(
   const hasRandomizedPlugItems =
     Boolean(socketDef && socketDef.randomizedPlugSetHash) || socketTypeDef.alwaysRandomizeSockets;
   
-  const isIntrinsic = plug.plugItem && plug.plugItem.itemCategoryHashes && plug.plugItem.itemCategoryHashes.includes(2237038328);
+  const isIntrinsic = plug && plug.plugItem && plug.plugItem.itemCategoryHashes && plug.plugItem.itemCategoryHashes.includes(2237038328);
 
-  const isMod = plug.plugItem && plug.plugItem.itemCategoryHashes && plug.plugItem.itemCategoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0;
+  const isMod = plug && plug.plugItem && plug.plugItem.itemCategoryHashes && plug.plugItem.itemCategoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0;
 
   return {
     socketIndex: index,

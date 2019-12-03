@@ -357,6 +357,23 @@ export function energyTypeToAsset(type) {
   };
 }
 
+export function energyStatToType(statHash) {
+  let typeHash;
+
+  switch (statHash) {
+    case 3625423501:
+      typeHash = 728351493; // arc
+      break;
+    case 16120457:
+      typeHash = 4069572561; // void
+      break;
+    default:
+      typeHash = 591714140; // solar
+  }
+
+  return typeHash;
+}
+
 export function breakerTypeToIcon(type) {
   let icon;
 

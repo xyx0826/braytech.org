@@ -40,8 +40,8 @@ function getNonReuseableModSockets(sockets) {
     (reusableSocketCategory && getPlugHashesFromCategory(reusableSocketCategory)) || [];
 
   return sockets.sockets.filter((socket) => {
-    const plugItemHash = socket.plug.plugItem.hash || null;
-    const categoryHashes = socket.plug.plugItem.itemCategoryHashes || [];
+    const plugItemHash = (socket.plug && socket.plug.plugItem.hash) || null;
+    const categoryHashes = (socket.plug && socket.plug.plugItem.itemCategoryHashes) || [];
     return (
       categoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0 &&
       !reusableSocketHashes.includes(plugItemHash)
@@ -83,6 +83,6 @@ export function getSocketsWithPlugCategoryHash(sockets, categoryHash) {
   return sockets.sockets.filter((socket) => {
     const categoryHashes = socket.plug.plugItem.itemCategoryHashes;
 
-    return categoryHashes.includes(categoryHash);
+    return categoryHashes && categoryHashes.includes(categoryHash);
   });
 }
