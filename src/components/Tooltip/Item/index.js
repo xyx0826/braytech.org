@@ -119,7 +119,7 @@ class Item extends React.Component {
         if (key === 'instance') {
           obj[key] = itemComponents.instances.data[item.itemInstanceId] || false;
           return obj;
-        } else if (['plugObjectives', 'reusablePlugs', 'objectives', 'talentGrids'].includes(key)) {
+        } else if (['plugObjectives', 'reusablePlugs', 'talentGrids'].includes(key)) {
           obj[key] = itemComponents[key].data[item.itemInstanceId] || false;
           return obj;
         } else {

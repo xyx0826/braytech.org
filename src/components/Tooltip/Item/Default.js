@@ -1,13 +1,12 @@
 import React from 'react';
+import i18n from 'i18next';
 import Moment from 'react-moment';
-import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
-import * as enums from '../../../utils/destinyEnums';
 import ObservedImage from '../../ObservedImage';
 import ProgressBar from '../../UI/ProgressBar';
 
-const Default = (props) => {
+const Default = props => {
   const { itemHash, instanceId, itemComponents, quantity, state, rarity, type, primaryStat, stats, sockets, masterwork, masterworkInfo } = props;
 
   const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
@@ -23,7 +22,7 @@ const Default = (props) => {
 
   const objectives = [];
   const rewards = [];
-  
+
   const expirationDate = itemComponents && itemComponents.item && itemComponents.item.expirationDate;
   const timestamp = expirationDate && new Date().getTime();
   const timestampExpiry = expirationDate && new Date(expirationDate).getTime();
@@ -35,7 +34,7 @@ const Default = (props) => {
     definitionItem.objectives.objectiveHashes.forEach(hash => {
       const definitionObjective = manifest.DestinyObjectiveDefinition[hash];
 
-      const instanceProgressObjective = itemComponents && itemComponents.objectives && itemComponents.objectives.find(o => o.objectiveHash === hash);
+      const instanceProgressObjective = itemComponents && itemComponents.objectives && itemComponents.objectives.length && itemComponents.objectives.find(o => o.objectiveHash === hash);
 
       let playerProgress = {
         complete: false,
@@ -79,26 +78,27 @@ const Default = (props) => {
           <pre>{description}</pre>
         </div>
       ) : null}
-      {objectives.length ? <div className='objectives'>{objectives}</div> : null}      
+      {objectives.length ? <div className='objectives'>{objectives}</div> : null}
       {rewards.length ? (
         <div className='rewards'>
+          <div>{i18n.t('Rewards')}</div>
           <ul>{rewards}</ul>
         </div>
-      ) : null}      
+      ) : null}
       {instanceProgress && instanceProgress.filter(o => !o.complete).length > 0 && expirationDate ? (
         <div className='expiry'>
           {timestampExpiry > timestamp ? (
             <>
-              Expires <Moment fromNow>{expirationDate}</Moment>.
+              {i18n.t('Expires')} <Moment fromNow>{expirationDate}</Moment>.
             </>
           ) : (
-            <>Expired.</>
+            <>{i18n.t('Expired')}.</>
           )}
         </div>
-      ) : null}      
+      ) : null}
       {quantity && definitionItem.inventory && definitionItem.inventory.maxStackSize > 1 && quantity === definitionItem.inventory.maxStackSize ? (
         <div className='quantity'>
-          Quantity: <span>{quantity}</span> (MAX)
+          {i18n.t('Quantity')}: <span>{quantity}</span> <span className='max'>({i18n.t('max')})</span>
         </div>
       ) : null}
     </>

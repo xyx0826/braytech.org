@@ -1,138 +1,216 @@
 {
   "de": {
     "translated": 458,
-    "notTranslated": 54,
+    "notTranslated": 63,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   },
   "en": {
-    "translated": 513,
+    "translated": 522,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "es-mx": {
     "translated": 0,
-    "notTranslated": 506,
+    "notTranslated": 515,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   },
   "es": {
-    "translated": 498,
-    "notTranslated": 14,
+    "translated": 512,
+    "notTranslated": 9,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   },
   "fr": {
     "translated": 357,
-    "notTranslated": 154,
+    "notTranslated": 163,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   },
   "internal": {
     "translated": 0,
-    "notTranslated": 506,
+    "notTranslated": 515,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   },
   "it": {
-    "translated": 498,
-    "notTranslated": 14,
+    "translated": 512,
+    "notTranslated": 9,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   },
   "ja": {
     "translated": 219,
-    "notTranslated": 292,
+    "notTranslated": 301,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   },
   "ko": {
     "translated": 298,
-    "notTranslated": 213,
+    "notTranslated": 222,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 506,
+    "notTranslated": 515,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   },
   "pt-br": {
     "translated": 458,
-    "notTranslated": 54,
+    "notTranslated": 63,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   },
   "ru": {
     "translated": 0,
-    "notTranslated": 506,
+    "notTranslated": 515,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   },
   "zh-chs": {
     "translated": 469,
-    "notTranslated": 43,
+    "notTranslated": 52,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   },
   "zh-cht": {
     "translated": 469,
-    "notTranslated": 43,
+    "notTranslated": 52,
     "added": [
-      "Reset customisable layouts to their default arrangements"
+      "Auxiliary",
+      "Character equipment",
+      "Energy",
+      "Energy cost",
+      "Expired",
+      "Expires",
+      "max",
+      "Quantity",
+      "Stats"
     ],
-    "removed": [
-      "Reset customisable layouts data"
-    ]
+    "removed": []
   }
 }

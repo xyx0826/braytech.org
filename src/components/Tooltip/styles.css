@@ -525,8 +525,12 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-#tooltip .quantity span {
+#tooltip .quantity span:not(.max) {
   color: #856621;
+}
+
+#tooltip .quantity span.max {
+  text-transform: uppercase;
 }
 
 #tooltip .expiry {
@@ -677,12 +681,13 @@
   font-size: 14px;
 }
 
-#tooltip .frame .rewards::before {
+#tooltip .frame .rewards > div {
   content: 'REWARDS:';
   display: block;
   margin: 0 0 10px;
   font-weight: 500;
-  color: hsla(126, 35%, 50%, 1);
+  text-transform: uppercase;
+  color: #53ac5c;
 }
 
 #tooltip .frame .rewards ul li {
@@ -850,7 +855,7 @@
   opacity: 0.2;
 }
 
-#tooltip .frame.subclass .black {
+#tooltip .background-overflow {
   position: relative;
   overflow: hidden;
 }

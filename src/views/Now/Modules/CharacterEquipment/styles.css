@@ -8,22 +8,25 @@
 
 #now .character-equipment .stats {
   display: grid;
-  gap: 6px;
+  gap: 3px;
 }
 
 #now .character-equipment .stats .stat {
   display: grid;
-  grid-template-columns: 24px auto;
+  grid-template-columns: 20px auto;
   gap: 10px;
   align-items: center;
 }
 
 #now .character-equipment .stats .stat [class^="destiny-"] {
-  font-size: 16px;
+  font-size: 14px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
 
 #now .character-equipment .stats .stat .progress-bar .bar .fill {
-  background-color: rgba(228, 228, 228, 0.2);
+  /* background-color: rgba(228, 228, 228, 0.2); */
 }
 
 @media screen and (max-width: 1279px) {

@@ -1,28 +1,20 @@
 import React from 'react';
-import i18n from 'i18next';
-import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
-import * as enums from '../../../utils/destinyEnums';
-import { damageTypeToString, getSubclassPathInfo } from '../../../utils/destinyUtils';
-import { getSocketsWithStyle, getModdedStatValue, getSumOfArmorStats } from '../../../utils/destinyItems/utils';
-import { statsMs } from '../../../utils/destinyItems/stats';
-import ObservedImage from '../../ObservedImage';
+import { getSubclassPathInfo } from '../../../utils/destinyUtils';
 
 const Subclass = props => {
-  const { itemHash, itemInstanceId, itemComponents, primaryStat, stats, sockets, masterworkInfo } = props;
+  const { itemHash, itemInstanceId, itemComponents } = props;
 
   const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
 
   const subClassInfo = getSubclassPathInfo(itemComponents, { itemHash, itemInstanceId });
 
-  console.log(subClassInfo);
-
   // description as flair string
   const flair = definitionItem.displayProperties && definitionItem.displayProperties.description !== '' && definitionItem.displayProperties.description;
 
   return (
-    <>
+    <div className='background-overflow'>
       {subClassInfo ? (
         <div className='super'>
           <div className='path'>
@@ -45,7 +37,7 @@ const Subclass = props => {
       <div className='flair'>
         <p>{flair}</p>
       </div>
-    </>
+    </div>
   );
 };
 
