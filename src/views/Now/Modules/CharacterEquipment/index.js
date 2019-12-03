@@ -2,11 +2,8 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
-import cx from 'classnames';
 
 import manifest from '../../../../utils/manifest';
-import * as utils from '../../../../utils/destinyUtils';
-import ObservedImage from '../../../../components/ObservedImage';
 import Items from '../../../../components/Items';
 
 import './styles.css';
@@ -16,8 +13,6 @@ class CharacterEquipment extends React.Component {
     const { t, member } = this.props;
     const character = member.data.profile.characters.data.find(c => c.characterId === member.characterId);
     const characterEquipment = member.data.profile.characterEquipment.data;
-
-    const subClassInfo = utils.getSubclassPathInfo(member.data.profile, member.characterId);
 
     const equipment =
       characterEquipment[member.characterId].items.map(item => {
@@ -34,12 +29,13 @@ class CharacterEquipment extends React.Component {
         }
       }) || [];
 
-    // console.log(equipment);
+    console.log(equipment);
 
     const weapons = [
+      equipment.find(item => item.inventory.bucketTypeHash === 3284755031),
       equipment.find(item => item.inventory.bucketTypeHash === 1498876634),
       equipment.find(item => item.inventory.bucketTypeHash === 2465295065),
-      equipment.find(item => item.inventory.bucketTypeHash === 953998645)
+      equipment.find(item => item.inventory.bucketTypeHash === 953998645)      
     ];
     
     const armor = [      
@@ -49,15 +45,18 @@ class CharacterEquipment extends React.Component {
       equipment.find(item => item.inventory.bucketTypeHash === 20886954),
       equipment.find(item => item.inventory.bucketTypeHash === 1585787867)
     ];
+    
+    const aux = [      
+      equipment.find(item => item.inventory.bucketTypeHash === 4023194814),
+      equipment.find(item => item.inventory.bucketTypeHash === 2025709351),
+      equipment.find(item => item.inventory.bucketTypeHash === 284967655),
+      equipment.find(item => item.inventory.bucketTypeHash === 1506418338)
+    ];
 
     return (
       <div className='character-equipment'>
         <div className='module-header'>
           <div className='sub-name'>{t('Character equipment')}</div>
-        </div>
-        <div className='super'>
-          <div className={cx('icon', `sbp_${subClassInfo && subClassInfo.super.hash}`)}>{subClassInfo && subClassInfo.super.icon}</div>
-          <div className='text'>{subClassInfo && subClassInfo.super.name}</div>
         </div>
         <h4>{t('Stats')}</h4>
         <div className='stats'>
@@ -95,6 +94,11 @@ class CharacterEquipment extends React.Component {
             );
           })}
         </div>
+        {/* <h4>{t('Super')}</h4>
+        <div className='super'>
+          <div className={cx('icon', `sbp_${subClassInfo && subClassInfo.super.hash}`)}>{subClassInfo && subClassInfo.super.icon}</div>
+          <div className='text'>{subClassInfo && subClassInfo.super.name}</div>
+        </div> */}
         <h4>{manifest.DestinyPresentationNodeDefinition[1528930164].displayProperties.name}</h4>
         <ul className='list inventory-items'>
           <Items items={weapons} />
@@ -102,6 +106,10 @@ class CharacterEquipment extends React.Component {
         <h4>{manifest.DestinyPresentationNodeDefinition[1605042242].displayProperties.name}</h4>
         <ul className='list inventory-items'>
           <Items items={armor} />
+        </ul>
+        <h4>{t('Auxiliary')}</h4>
+        <ul className='list inventory-items'>
+          <Items items={aux} />
         </ul>
       </div>
     );

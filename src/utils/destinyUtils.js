@@ -404,15 +404,11 @@ function getSubclassPath(gridDef, talentGrid) {
   return subclassPath;
 }
 
-export function getSubclassPathInfo(profile, characterId) {
-  if (!profile || !profile.characters || !profile.characterEquipment || !profile.itemComponents) {
-    console.warn('Profile data missing');
+export function getSubclassPathInfo(itemComponents, itemData) {
+  if (!itemComponents || !itemComponents.talentGrids || !itemData) {
+    console.warn('data missing');
     return false;
   }
-
-  const characters = profile.characters.data;
-  const characterEquipment = profile.characterEquipment.data;
-  const itemComponents = profile.itemComponents;
 
   const classTypes = { Titan: 0, Hunter: 1, Warlock: 2 };
   const damageTypes = { Arc: 2, Thermal: 3, Void: 4 };
@@ -637,32 +633,22 @@ export function getSubclassPathInfo(profile, characterId) {
     }
   ];
 
-  const equipment = characterEquipment[characterId].items.map(item => ({
-    ...manifest.DestinyInventoryItemDefinition[item.itemHash],
-    ...item,
-    itemComponents: {
-      perks: itemComponents.perks.data[item.itemInstanceId] ? itemComponents.perks.data[item.itemInstanceId].perks : null,
-      objectives: itemComponents.objectives.data[item.itemInstanceId] ? itemComponents.objectives.data[item.itemInstanceId].objectives : null
-    }
-  }));
-
-  const subclass = equipment.find(item => item.inventory.bucketTypeHash === 3284755031);
-  const talentGrid = itemComponents.talentGrids.data[subclass.itemInstanceId];
-  const definitionTalentGrid = manifest.DestinyTalentGridDefinition[talentGrid.talentGridHash];
+  const definitionItem = manifest.DestinyInventoryItemDefinition[itemData.itemHash];
+  const definitionTalentGrid = manifest.DestinyTalentGridDefinition[itemComponents.talentGrids.talentGridHash];
   const damageNames = ['', '', 'arc', 'solar', 'void'];
-  const damageType = subclass.talentGrid.hudDamageType;
+  const damageType = definitionItem.talentGrid.hudDamageType;
 
-  let activeTalentPath = getSubclassPath(definitionTalentGrid, talentGrid);
+  let activeTalentPath = getSubclassPath(definitionTalentGrid, itemComponents.talentGrids);
 
   if (activeTalentPath == null) {
     activeTalentPath = { displayProperties: { name: 'Unknown' }, identifier: 'FirstPath' };
   }
 
-  const pathCustom = pathsCustomInfo.find(p => p.classType === subclass.classType && p.damageType === damageType && p.identifier === activeTalentPath.identifier);
+  const pathCustom = pathsCustomInfo.find(p => p.classType === definitionItem.classType && p.damageType === damageType && p.identifier === activeTalentPath.identifier);
   
   const path = {
     name: activeTalentPath.displayProperties.name,
-    element: damageNames[subclass.talentGrid.hudDamageType],
+    element: damageNames[definitionItem.talentGrid.hudDamageType],
     art: pathCustom.art,
     super: {
       name: pathCustom.sandboxPerk && manifest.DestinySandboxPerkDefinition[pathCustom.sandboxPerk].displayProperties.name,

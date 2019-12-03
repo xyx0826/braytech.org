@@ -57,7 +57,7 @@ class Items extends React.Component {
                 linked: true,
                 masterworked: enums.enumerateItemState(item.state).masterworked,
                 exotic: definitionItem.inventory && definitionItem.inventory.tierType === 6,
-                'no-border': definitionItem.uiItemDisplayStyle === 'ui_display_style_engram' || (definitionItem.itemCategoryHashes && definitionItem.itemCategoryHashes.includes(268598612)) || (definitionItem.itemCategoryHashes && definitionItem.itemCategoryHashes.includes(18)) || noBorder,
+                'no-border': (definitionItem.uiItemDisplayStyle === 'ui_display_style_engram' && item.bucketHash !== 3284755031) || (definitionItem.itemCategoryHashes && definitionItem.itemCategoryHashes.includes(268598612)) || (definitionItem.itemCategoryHashes && definitionItem.itemCategoryHashes.includes(18)) || noBorder,
                 unavailable: (vendorItemStatus && !vendorItemStatus.success) || item.unavailable
               },
               bucketName

@@ -617,8 +617,6 @@ class Legend extends React.Component {
                 {[...characters, {}, {}].slice(0, 3).map((c, i) => {
                   // .filter(c => c.classType !== 1)
 
-                  const subClassInfo = c.characterId && utils.getSubclassPathInfo(member.data.profile, c.characterId);
-
                   const equipment = (c.characterId && characterEquipment[c.characterId].items.map(item => {
                     const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
                     
@@ -632,6 +630,10 @@ class Legend extends React.Component {
                       return false
                     }
                   })) || [];
+                  
+                  const subClassItem = equipment.find(item => item.inventory.bucketTypeHash === 3284755031);
+
+                  const subClassInfo = subClassItem && utils.getSubclassPathInfo({ talentGrids: member.data.profile.itemComponents.talentGrids.data[subClassItem.itemInstanceId] }, subClassItem);
 
                   const loadout = (c.characterId && [
                     equipment.find(item => item.inventory.bucketTypeHash === 1498876634),

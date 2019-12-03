@@ -1,4 +1,4 @@
-import { sum } from 'lodash';
+import { sum, sumBy } from 'lodash';
 
 import * as enums from '../destinyEnums';
 import { modItemCategoryHashes } from './sockets';
@@ -85,4 +85,13 @@ export function getSocketsWithPlugCategoryHash(sockets, categoryHash) {
 
     return categoryHashes && categoryHashes.includes(categoryHash);
   });
+}
+
+/**
+ * Sums up all the armor statistics from the plug in the socket.
+ */
+export function getSumOfArmorStats(sockets, armorStatHashes) {
+  return sumBy(sockets, (socket) =>
+    sumBy(armorStatHashes, (armorStatHash) => (socket.plug && socket.plug.stats && socket.plug.stats[armorStatHash]) || 0)
+  );
 }

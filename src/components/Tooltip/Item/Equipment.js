@@ -5,7 +5,7 @@ import cx from 'classnames';
 import manifest from '../../../utils/manifest';
 import * as enums from '../../../utils/destinyEnums';
 import { damageTypeToString, ammoTypeToString, breakerTypeToIcon, energyTypeToAsset, energyStatToType } from '../../../utils/destinyUtils';
-import { getModdedStatValue } from '../../../utils/destinyItems/utils';
+import { getSocketsWithStyle, getModdedStatValue, getSumOfArmorStats } from '../../../utils/destinyItems/utils';
 import { statsMs } from '../../../utils/destinyItems/stats';
 import ObservedImage from '../../ObservedImage';
 
@@ -32,6 +32,8 @@ const Equipment = props => {
 
   const displayStats = (stats && stats.length && !stats.find(s => s.statHash === -1000)) || (stats && stats.length && stats.find(s => s.statHash === -1000 && s.value !== 0));
   const displaySockets = sockets && sockets.socketCategories && sockets.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker).length;
+
+  const armor2MasterworkSockets = sockets && sockets.socketCategories && getSocketsWithStyle(sockets, enums.DestinySocketCategoryStyle.EnergyMeter);
 
   const blocks = [];
 
@@ -82,7 +84,7 @@ const Equipment = props => {
     )
   }
 
-  if (primaryStat && displayStats || flair && displayStats) blocks.push(<div className='line' />);
+  if ((primaryStat && displayStats) || (flair && displayStats)) blocks.push(<div className='line' />);
 
   // stats
   if (displayStats) {
@@ -91,8 +93,10 @@ const Equipment = props => {
         {stats.map(s => {
           // map through stats
 
+          const armor2MasterworkValue = armor2MasterworkSockets && getSumOfArmorStats(armor2MasterworkSockets, [s.statHash]);
+          
           const moddedValue = sockets && sockets.sockets && getModdedStatValue(sockets, s);
-          const masterworkValue = (masterworkInfo && masterworkInfo.statHash === s.statHash && masterworkInfo.statValue) || 0;
+          const masterworkValue = (masterworkInfo && masterworkInfo.statHash === s.statHash && masterworkInfo.statValue) || armor2MasterworkValue || 0;
 
           let baseBar = s.value;
 

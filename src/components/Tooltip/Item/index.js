@@ -13,11 +13,13 @@ import ObservedImage from '../../ObservedImage';
 
 import Default from './Default';
 import Equipment from './Equipment';
+import SubClass from './SubClass';
 import Emblem from './Emblem';
 import Mod from './Mod';
 
 const woolworths = {
   equipment: Equipment,
+  subclass: SubClass,
   emblem: Emblem,
   mod: Mod
 }
@@ -98,6 +100,8 @@ class Item extends React.Component {
         item.type = 'equipment';
       } else if (definitionItem.itemType === 28) {
         item.type = 'equipment';
+      } else if (definitionItem.itemType === 16) {
+        item.type = 'subclass';
       } else if (definitionItem.itemType === 14) {
         item.type = 'emblem';
       } else if (definitionItem.itemType === 19) {
@@ -107,13 +111,13 @@ class Item extends React.Component {
 
     // collects relevant instanced data for sockets and stats utils
     if (item.itemInstanceId && member.data && itemComponents && itemComponents.instances.data[item.itemInstanceId]) {
-      const instancesTypes = ['instance', 'sockets', 'plugObjectives', 'reusablePlugs', 'perks', 'stats', 'objectives'];
+      const instancesTypes = ['instance', 'sockets', 'plugObjectives', 'reusablePlugs', 'perks', 'stats', 'objectives', 'talentGrids'];
 
       item.itemComponents = instancesTypes.reduce((obj, key) => {
         if (key === 'instance') {
           obj[key] = itemComponents.instances.data[item.itemInstanceId] || false;
           return obj;
-        } else if (['plugObjectives', 'reusablePlugs', 'objectives'].includes[key]) {
+        } else if (['plugObjectives', 'reusablePlugs', 'objectives', 'talentGrids'].includes(key)) {
           obj[key] = itemComponents[key].data[item.itemInstanceId] || false;
           return obj;
         } else {
