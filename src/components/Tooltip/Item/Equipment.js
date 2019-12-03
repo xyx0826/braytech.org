@@ -10,7 +10,7 @@ import { statsMs } from '../../../utils/destinyItems/stats';
 import ObservedImage from '../../ObservedImage';
 
 const Equipment = props => {
-  const { itemHash, instanceId, itemComponents, quantity, state, rarity, type, primaryStat, stats, sockets, masterworkInfo } = props;
+  const { itemHash, itemComponents, primaryStat, stats, sockets, masterworkInfo } = props;
 
   const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
 
@@ -30,159 +30,186 @@ const Equipment = props => {
   }));
   const definitionEnergy = energy && energyTypeToAsset(energy.energyTypeHash);
 
-  console.log(energy, definitionEnergy)
+  const displayStats = (stats && stats.length && !stats.find(s => s.statHash === -1000)) || (stats && stats.length && stats.find(s => s.statHash === -1000 && s.value !== 0));
+  const displaySockets = sockets && sockets.socketCategories && sockets.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker).length;
 
-  return (
-    <>
-      {primaryStat ? (
-        definitionItem.itemType === enums.DestinyItemType.Weapon ? (
-          <>
-            <div className='damage weapon'>
-              <div className={cx('power', damageTypeToString(damageTypeHash).toLowerCase())}>
-                {definitionItem.breakerType > 0 && <div className='breaker-type'>{breakerTypeToIcon(definitionItem.breakerTypeHash)}</div>}
-                <div className={cx('icon', damageTypeToString(damageTypeHash).toLowerCase())} />
-                <div className='text'>{primaryStat.value}</div>
+  const blocks = [];
+
+  // primary stat block for weapons and armor
+  if (primaryStat) {
+    if (definitionItem.itemType === enums.DestinyItemType.Weapon) {
+      blocks.push(
+        <>
+          <div className='damage weapon'>
+            <div className={cx('power', damageTypeToString(damageTypeHash).toLowerCase())}>
+              {definitionItem.breakerType > 0 && <div className='breaker-type'>{breakerTypeToIcon(definitionItem.breakerTypeHash)}</div>}
+              <div className={cx('icon', damageTypeToString(damageTypeHash).toLowerCase())} />
+              <div className='text'>{primaryStat.value}</div>
+            </div>
+            <div className='slot'>
+              <div className={cx('icon', ammoTypeToString(definitionItem.equippingBlock.ammoType).toLowerCase())} />
+              <div className='text'>{ammoTypeToString(definitionItem.equippingBlock.ammoType)}</div>
+            </div>
+          </div>
+        </>
+      )
+    } else {
+      blocks.push(
+        <>
+          <div className='damage armour'>
+            <div className='power'>
+              <div className='text'>{primaryStat.value}</div>
+              <div className='text'>{primaryStat.displayProperties.name}</div>
               </div>
-              <div className='slot'>
-                <div className={cx('icon', ammoTypeToString(definitionItem.equippingBlock.ammoType).toLowerCase())} />
-                <div className='text'>{ammoTypeToString(definitionItem.equippingBlock.ammoType)}</div>
+              {energy ? <div className='energy'>
+                <div className={cx('value', definitionEnergy.string)}><div className='icon'>{definitionEnergy.icon}</div> {energy.energyCapacity}</div>
+                <div className='text'>{i18n.t('Energy')}</div>
+              </div> : null}
+          </div>
+        </>
+      )
+    }
+  }
+
+  if (primaryStat && flair) blocks.push(<div className='line' />);
+
+  // flair
+  if (flair) {
+    blocks.push(
+      <div className='flair'>
+        <p>{flair}</p>
+      </div>
+    )
+  }
+
+  if (primaryStat && displayStats || flair && displayStats) blocks.push(<div className='line' />);
+
+  // stats
+  if (displayStats) {
+    blocks.push(
+      <div className='stats'>
+        {stats.map(s => {
+          // map through stats
+
+          const moddedValue = sockets && sockets.sockets && getModdedStatValue(sockets, s);
+          const masterworkValue = (masterworkInfo && masterworkInfo.statHash === s.statHash && masterworkInfo.statValue) || 0;
+
+          let baseBar = s.value;
+
+          if (moddedValue) {
+            baseBar -= moddedValue;
+          }
+
+          if (masterworkValue) {
+            baseBar -= masterworkValue;
+          }
+
+          const segments = [[baseBar]];
+
+          if (moddedValue) {
+            segments.push([moddedValue, 'modded']);
+          }
+
+          if (masterworkValue) {
+            segments.push([masterworkValue, 'masterwork']);
+          }
+
+          return (
+            <div key={s.statHash} className='stat'>
+              <div className='name'>{s.statHash === -1000 ? i18n.t('Total') : s.displayProperties.name}</div>
+              <div className={cx('value', { bar: s.bar })}>
+                {s.bar ? (
+                  <>
+                    {segments.map(([value, className], i) => <div key={i} className={cx('bar', className)} data-value={value} style={{ width: `${Math.min(100, Math.floor(100 * (value / s.maximumValue)))}%` }} />)}
+                    <div className='int'>{s.value}</div>
+                  </>
+                ) : (
+                  <div className={cx('text', { masterwork: masterworkValue !== 0 })}>
+                    {s.value} {statsMs.includes(s.statHash) && 'ms'}
+                  </div>
+                )}
               </div>
             </div>
-          </>
-        ) : (
-          <>
-            <div className='damage armour'>
-              <div className='power'>
-                <div className='text'>{primaryStat.value}</div>
-                <div className='text'>{primaryStat.displayProperties.name}</div>
-                </div>
-                {energy ? <div className='energy'>
-                  <div className={cx('value', definitionEnergy.string)}><div className='icon'>{definitionEnergy.icon}</div> {energy.energyCapacity}</div>
-                  <div className='text'>{i18n.t('Energy')}</div>
-                </div> : null}
-            </div>
-          </>
-        )
-      ) : null}
-      {primaryStat && flair && <div className='line' />}
-      {flair ? (
-        <div className='flair'>
-          <p>{flair}</p>
-        </div>
-      ) : null}
-      {stats && stats.length ? (
-        <div className='stats'>
-          {stats.map(s => {
-            // map through stats
+          );
+        })}
+      </div>
+    )
+  }
 
-            const moddedValue = sockets && sockets.sockets && getModdedStatValue(sockets, s);
-            const masterworkValue = (masterworkInfo && masterworkInfo.statHash === s.statHash && masterworkInfo.statValue) || 0;
+  if (displayStats && displaySockets) blocks.push(<div className='line' />);
 
-            let baseBar = s.value;
+  if (displaySockets) {
+    blocks.push(
+      <div className={cx('sockets', {
+        // styling for single plug sockets
+        one: sockets.sockets
+          .filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker)
+          .map(s => s.plugOptions &&
+            s.plugOptions.filter(p => p.isEnabled)
+          )
+          .filter(s => s.length)
+          .length === 1
+      })}>
+        {sockets.socketCategories
+          .map((c, i) => {
+            // map through socketCategories
 
-            if (moddedValue) {
-              baseBar -= moddedValue;
-            }
+            if (c.sockets.length) {
+              const plugs = c.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker);
 
-            if (masterworkValue) {
-              baseBar -= masterworkValue;
-            }
+              if (plugs.length) {
+                return (
+                  <div key={c.category.hash} className='category'>
+                    {plugs.map(s => {
+                      // filter for perks and map through sockets
 
-            const segments = [[baseBar]];
+                      return (
+                        <div key={s.socketIndex} className='socket'>
+                          {s.plugOptions
+                            .filter(p => p.isEnabled && p.plugItem.hash === s.plug.plugItem.hash)
+                            .map(p => {
+                              // filter for enabled plugs and map through
 
-            if (moddedValue) {
-              segments.push([moddedValue, 'modded']);
-            }
-
-            if (masterworkValue) {
-              segments.push([masterworkValue, 'masterwork']);
-            }
-
-            return (
-              <div key={s.statHash} className='stat'>
-                <div className='name'>{s.statHash === -1000 ? i18n.t('Total') : s.displayProperties.name}</div>
-                <div className={cx('value', { bar: s.bar })}>
-                  {s.bar ? (
-                    <>
-                      {segments.map(([value, className], i) => <div key={i} className={cx('bar', className)} data-value={value} style={{ width: `${Math.min(100, Math.floor(100 * (value / s.maximumValue)))}%` }} />)}
-                      <div className='int'>{s.value}</div>
-                    </>
-                  ) : (
-                    <div className={cx('text', { masterwork: masterworkValue !== 0 })}>
-                      {s.value} {statsMs.includes(s.statHash) && 'ms'}
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      ) : null}
-      {!stats && sockets && sockets.socketCategories && sockets.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker).length && <div className='line' />}
-      {sockets && sockets.socketCategories && sockets.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker).length ? (
-        <div className={cx('sockets', {
-          // styling for single plug sockets
-          one: sockets.sockets
-            .filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker)
-            .map(s => s.plugOptions &&
-              s.plugOptions.filter(p => p.isEnabled)
-            )
-            .filter(s => s.length)
-            .length === 1
-        })}>
-          {sockets.socketCategories
-            .map((c, i) => {
-              // map through socketCategories
-
-              if (c.sockets.length) {
-                const plugs = c.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker);
-
-                if (plugs.length) {
-                  return (
-                    <div key={c.category.hash} className='category'>
-                      {plugs.map(s => {
-                        // filter for perks and map through sockets
-
-                        return (
-                          <div key={s.socketIndex} className='socket'>
-                            {s.plugOptions
-                              .filter(p => p.isEnabled && p.plugItem.hash === s.plug.plugItem.hash)
-                              .map(p => {
-                                // filter for enabled plugs and map through
-
-                                return (
-                                  <div key={p.plugItem.hash} className={cx('plug', { intrinsic: s.isIntrinsic, enabled: true })}>
-                                    <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${p.plugItem.displayProperties.icon ? p.plugItem.displayProperties.icon : `/img/misc/missing_icon_d2.png`}`} />
-                                    <div className='text'>
-                                      <div className='name'>{p.plugItem.displayProperties.name}</div>
-                                      <div className='description'>{s.isIntrinsic ? p.plugItem.displayProperties.description : p.plugItem.itemTypeDisplayName}</div>
-                                    </div>
+                              return (
+                                <div key={p.plugItem.hash} className={cx('plug', { intrinsic: s.isIntrinsic, enabled: true })}>
+                                  <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${p.plugItem.displayProperties.icon ? p.plugItem.displayProperties.icon : `/img/misc/missing_icon_d2.png`}`} />
+                                  <div className='text'>
+                                    <div className='name'>{p.plugItem.displayProperties.name}</div>
+                                    <div className='description'>{s.isIntrinsic ? p.plugItem.displayProperties.description : p.plugItem.itemTypeDisplayName}</div>
                                   </div>
-                                );
-                              })}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  );
-                } else {
-                  return false;
-                }
+                                </div>
+                              );
+                            })}
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
               } else {
                 return false;
               }
-            })
-            .filter(c => c)}
-        </div>
-      ) : null}
-      {sockets && sockets.socketCategories && sourceString && <div className='line' />}
-      {sourceString ? (
-        <div className='source'>
-          <p>{sourceString}</p>
-        </div>
-      ) : null}
-    </>
-  );
+            } else {
+              return false;
+            }
+          })
+          .filter(c => c)}
+      </div>
+    )
+  }
+
+  if (sourceString) blocks.push(<div className='line' />);
+
+  // sourceString
+  if (sourceString) {
+    blocks.push(
+      <div className='source'>
+        <p>{sourceString}</p>
+      </div>
+    )
+  }
+
+
+  return blocks.map((b, i) => <React.Fragment key={i}>{b}</React.Fragment>);
 };
 
 export default Equipment;

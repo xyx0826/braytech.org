@@ -113,7 +113,7 @@
 
 #tooltip .damage .power {
   font-size: 32px;
-  line-height: 30px;
+  line-height: 32px;
   display: flex;
   align-items: center;
   padding: 0 16px 0 0;
@@ -172,7 +172,6 @@
 
 #tooltip .damage.armour .power .text {
   padding: 0;
-  line-height: 1;
 }
 
 #tooltip .damage.armour .power .text:last-child {
@@ -181,6 +180,10 @@
   text-transform: uppercase;
   padding: 0 0 0 16px;
   line-height: 0;
+}
+
+#tooltip .damage.armour .energy {
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 #tooltip .damage .slot {
@@ -267,7 +270,6 @@
 
 #tooltip .stats {
   padding: 14px 16px 6px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 #tooltip .stats:first-child {
@@ -351,10 +353,6 @@
 #tooltip .sockets {
   display: block;
   padding: 0 0 12px;
-}
-
-#tooltip .stats ~ .sockets {
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 #tooltip .plug {
