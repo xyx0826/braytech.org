@@ -1,17 +1,27 @@
+
+
+#now .character-equipment .list.inventory-items {
+  grid-template-columns: repeat(auto-fill, 64px);
+  position: relative;
+  z-index: 2;
+}
+
 #now .character-equipment .stats {
   display: grid;
-  grid-auto-flow: column;
-  justify-content: space-between;
+  gap: 6px;
 }
 
 #now .character-equipment .stats .stat {
   display: grid;
-  grid-template-columns: 20px auto;
-  grid-gap: 6px;
+  grid-template-columns: 24px auto;
+  gap: 10px;
   align-items: center;
+}
+
+#now .character-equipment .stats .stat [class^="destiny-"] {
   font-size: 16px;
 }
 
-#now .character-equipment .list.inventory-items {
-  grid-template-columns: repeat(auto-fill, 64px);
+#now .character-equipment .stats .stat .progress-bar .bar .fill {
+  background-color: rgba(228, 228, 228, 0.2);
 }

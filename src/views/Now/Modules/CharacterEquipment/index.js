@@ -5,6 +5,7 @@ import { withTranslation } from 'react-i18next';
 
 import manifest from '../../../../utils/manifest';
 import Items from '../../../../components/Items';
+import ProgressBar from '../../../../components/UI/ProgressBar';
 
 import './styles.css';
 
@@ -58,47 +59,6 @@ class CharacterEquipment extends React.Component {
         <div className='module-header'>
           <div className='sub-name'>{t('Character equipment')}</div>
         </div>
-        <h4>{t('Stats')}</h4>
-        <div className='stats'>
-          {[
-            {
-              hash: 2996146975,
-              icon: 'destiny-mobility'
-            },
-            {
-              hash: 392767087,
-              icon: 'destiny-resilience'
-            },
-            {
-              hash: 1943323491,
-              icon: 'destiny-recovery'
-            },
-            {
-              hash: 1735777505,
-              icon: 'destiny-discipline'
-            },
-            {
-              hash: 144602215,
-              icon: 'destiny-intellect'
-            },
-            {
-              hash: 4244567218,
-              icon: 'destiny-strength'
-            }
-          ].map((stat, i) => {
-            return (
-              <div key={i} className='stat'>
-                <div className={stat.icon} />
-                <div className='value'>{character.stats[stat.hash] || 0}</div>
-              </div>
-            );
-          })}
-        </div>
-        {/* <h4>{t('Super')}</h4>
-        <div className='super'>
-          <div className={cx('icon', `sbp_${subClassInfo && subClassInfo.super.hash}`)}>{subClassInfo && subClassInfo.super.icon}</div>
-          <div className='text'>{subClassInfo && subClassInfo.super.name}</div>
-        </div> */}
         <h4>{manifest.DestinyPresentationNodeDefinition[1528930164].displayProperties.name}</h4>
         <ul className='list inventory-items'>
           <Items items={weapons} />
@@ -111,6 +71,50 @@ class CharacterEquipment extends React.Component {
         <ul className='list inventory-items'>
           <Items items={aux} />
         </ul>
+        <h4>{t('Stats')}</h4>
+        <div className='stats'>
+          {[
+            {
+              hash: 2996146975,
+              icon: 'destiny-mobility',
+              char: ''
+            },
+            {
+              hash: 392767087,
+              icon: 'destiny-resilience',
+              char: ''
+            },
+            {
+              hash: 1943323491,
+              icon: 'destiny-recovery',
+              char: ''
+            },
+            {
+              hash: 1735777505,
+              icon: 'destiny-discipline',
+              char: ''
+            },
+            {
+              hash: 144602215,
+              icon: 'destiny-intellect',
+              char: ''
+            },
+            {
+              hash: 4244567218,
+              icon: 'destiny-strength',
+              char: ''
+            }
+          ].map((stat, i) => {
+            const definitionStat = manifest.DestinyStatDefinition[stat.hash];
+
+            return (
+              <div key={i} className='stat'>
+                <div className={stat.icon} />
+                <ProgressBar description={definitionStat.displayProperties.name} progress={(character.stats[stat.hash] || 0)} completionValue='100' hideCheck hideFractionDenominator />
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
