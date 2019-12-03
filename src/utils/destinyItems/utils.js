@@ -1,6 +1,7 @@
 import { sum, sumBy } from 'lodash';
 
 import * as enums from '../destinyEnums';
+
 import { modItemCategoryHashes } from './sockets';
 
 /**
@@ -47,6 +48,14 @@ function getNonReuseableModSockets(sockets) {
       !reusableSocketHashes.includes(plugItemHash)
     );
   });
+}
+
+export function getOrnamentSocket(sockets) {
+  if (!sockets || !sockets.sockets) {
+    return false;
+  }
+
+  return sockets.sockets.find(socket => socket.plug && socket.plug.plugItem && socket.plug.plugItem.itemSubType === enums.DestinyItemSubType.Ornament);
 }
 
 /**

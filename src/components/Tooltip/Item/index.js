@@ -9,6 +9,7 @@ import * as enums from '../../../utils/destinyEnums';
 import { sockets } from '../../../utils/destinyItems/sockets';
 import { stats } from '../../../utils/destinyItems/stats';
 import { masterwork } from '../../../utils/destinyItems/masterwork';
+import { getOrnamentSocket } from '../../../utils/destinyItems/utils';
 import ObservedImage from '../../ObservedImage';
 
 import Default from './Default';
@@ -37,7 +38,7 @@ class Item extends React.Component {
       quantity: parseInt(this.props.quantity, 10) || 1,
       state: (this.props.state && parseInt(this.props.state, 10)) || 0,
       rarity: false,
-      type: false
+      type: false,
     };
 
     const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
@@ -107,9 +108,12 @@ class Item extends React.Component {
       } else if (definitionItem.itemType === 19) {
         item.type = 'mod';
       }
+
+      item.screenshot = definitionItem.screenshot;
     }
 
-    const hideScreenshotTypes = ['subclass'];
+    // subclass, artifact
+    const hideScreenshotBuckets = [3284755031, 1506418338];
 
     // collects relevant instanced data for sockets and stats utils
     if (item.itemInstanceId && member.data && itemComponents && itemComponents.instances.data[item.itemInstanceId]) {
@@ -175,8 +179,14 @@ class Item extends React.Component {
     }
 
     const Meat = item.type && woolworths[item.type];
+    
+    if (item.sockets) {
+      const ornament = getOrnamentSocket(item.sockets);
 
-    console.log(item)
+      if (ornament && ornament.plug && ornament.plug.plugItem && ornament.plug.plugItem.screenshot && ornament.plug.plugItem.screenshot !== '') {
+        item.screenshot = ornament.plug.plugItem.screenshot;
+      }
+    }
 
     const masterworked = enums.enumerateItemState(item.state).masterworked || (item.masterworkInfo && item.masterworkInfo.tier >= 10);
 
@@ -194,9 +204,9 @@ class Item extends React.Component {
           </div>
           {importantText ? <div className='important'>{importantText}</div> : null}
           <div className='black'>
-            {this.props.viewport.width <= 600 && definitionItem.screenshot && !(item.type && hideScreenshotTypes.includes(item.type)) ? (
+            {this.props.viewport.width <= 600 && item.screenshot && !(definitionItem && definitionItem.inventory && hideScreenshotBuckets.includes(definitionItem.inventory.bucketTypeHash)) ? (
               <div className='screenshot'>
-                <ObservedImage className='image' src={`https://www.bungie.net${definitionItem.screenshot}`} />
+                <ObservedImage className='image' src={`https://www.bungie.net${item.screenshot}`} />
               </div>
             ) : null}
             {woolworths[item.type] ? <Meat {...member} {...item} /> : <Default {...member} {...item} />}

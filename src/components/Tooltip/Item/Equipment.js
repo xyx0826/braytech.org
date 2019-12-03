@@ -24,16 +24,16 @@ const Equipment = props => {
   let damageTypeHash = definitionItem.itemType === enums.DestinyItemType.Weapon && definitionItem.damageTypeHashes[0];
   damageTypeHash = itemComponents && itemComponents.instance ? itemComponents.instance.damageTypeHash : damageTypeHash;
 
-  const energy = definitionItem.itemType === enums.DestinyItemType.Armor && ((itemComponents && itemComponents.instance && itemComponents.instance.energy) || (masterworkInfo && {
+  const displayStats = (stats && stats.length && !stats.find(s => s.statHash === -1000)) || (stats && stats.length && stats.find(s => s.statHash === -1000 && s.value !== 0));
+  const displaySockets = sockets && sockets.socketCategories && sockets.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod || s.isOrnament) && !s.isTracker && !s.isShader).length;
+
+  const armor2MasterworkSockets = sockets && sockets.socketCategories && getSocketsWithStyle(sockets, enums.DestinySocketCategoryStyle.EnergyMeter);
+
+  const energy = definitionItem.itemType === enums.DestinyItemType.Armor && ((itemComponents && itemComponents.instance && itemComponents.instance.energy) || (masterworkInfo && armor2MasterworkSockets.length && {
     energyTypeHash: energyStatToType(masterworkInfo.statHash),
     energyCapacity: masterworkInfo.statValue
   }));
   const definitionEnergy = energy && energyTypeToAsset(energy.energyTypeHash);
-
-  const displayStats = (stats && stats.length && !stats.find(s => s.statHash === -1000)) || (stats && stats.length && stats.find(s => s.statHash === -1000 && s.value !== 0));
-  const displaySockets = sockets && sockets.socketCategories && sockets.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker).length;
-
-  const armor2MasterworkSockets = sockets && sockets.socketCategories && getSocketsWithStyle(sockets, enums.DestinySocketCategoryStyle.EnergyMeter);
 
   const blocks = [];
 
@@ -84,7 +84,7 @@ const Equipment = props => {
     )
   }
 
-  if ((primaryStat && displayStats) || (flair && displayStats)) blocks.push(<div className='line' />);
+  if ((primaryStat && displayStats) || (flair && displayStats) || (flair && !displayStats && displaySockets)) blocks.push(<div className='line' />);
 
   // stats
   if (displayStats) {
@@ -147,7 +147,7 @@ const Equipment = props => {
       <div className={cx('sockets', {
         // styling for single plug sockets
         one: sockets.sockets
-          .filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker)
+          .filter(s => (s.isPerk || s.isIntrinsic || s.isMod || s.isOrnament) && !s.isTracker && !s.isShader)
           .map(s => s.plugOptions &&
             s.plugOptions.filter(p => p.isEnabled)
           )
@@ -159,7 +159,7 @@ const Equipment = props => {
             // map through socketCategories
 
             if (c.sockets.length) {
-              const plugs = c.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod) && !s.isTracker);
+              const plugs = c.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod || s.isOrnament) && !s.isTracker && !s.isShader);
 
               if (plugs.length) {
                 return (

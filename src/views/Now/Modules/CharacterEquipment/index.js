@@ -30,7 +30,7 @@ class CharacterEquipment extends React.Component {
         }
       }) || [];
 
-    console.log(equipment);
+    // console.log(equipment);
 
     const weapons = [
       equipment.find(item => item.inventory.bucketTypeHash === 3284755031),
