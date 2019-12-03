@@ -109,6 +109,8 @@ class Item extends React.Component {
       }
     }
 
+    const hideScreenshotTypes = ['subclass'];
+
     // collects relevant instanced data for sockets and stats utils
     if (item.itemInstanceId && member.data && itemComponents && itemComponents.instances.data[item.itemInstanceId]) {
       const instancesTypes = ['instance', 'sockets', 'plugObjectives', 'reusablePlugs', 'perks', 'stats', 'objectives', 'talentGrids'];
@@ -192,7 +194,7 @@ class Item extends React.Component {
           </div>
           {importantText ? <div className='important'>{importantText}</div> : null}
           <div className='black'>
-            {this.props.viewport.width <= 600 && definitionItem.screenshot ? (
+            {this.props.viewport.width <= 600 && definitionItem.screenshot && !(item.type && hideScreenshotTypes.includes(item.type)) ? (
               <div className='screenshot'>
                 <ObservedImage className='image' src={`https://www.bungie.net${definitionItem.screenshot}`} />
               </div>
