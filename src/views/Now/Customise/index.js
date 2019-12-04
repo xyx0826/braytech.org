@@ -72,7 +72,7 @@ const getListStyle = isDraggingOver => ({
 export const moduleRules = {
   full: ['SeasonPass'],
   double: ['SeasonalArtifact'],
-  head: ['Flashpoint', 'DailyVanguardModifiers', 'HeroicStoryMissions', 'BlackArmoryForges']
+  head: ['Flashpoint', 'DailyVanguardModifiers', 'HeroicStoryMissions', 'BlackArmoryForges', 'SeasonCountdown']
 };
 
 class Customise extends React.Component {
@@ -377,9 +377,13 @@ class Customise extends React.Component {
       name: this.props.t('Season rank'),
       description: this.props.t('Display your season pass progression and available rewards')
     },
+    SeasonCountdown: {
+      name: this.props.t('Season countdown'),
+      description: this.props.t('Time until next season is live')
+    },
     CharacterEquipment: {
       name: this.props.t('Character equipment'),
-      description: this.props.t('Display your season pass progression and available rewards')
+      description: this.props.t("Inspect your character's loadout and stat totals")
     }
   };
 

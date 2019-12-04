@@ -2,13 +2,17 @@
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.module .season-pass {
+#now .module .season-pass {
   display: grid;
   grid-template-columns: 1fr 30px 2fr 30px;
   grid-gap: 1rem;
 }
 
-.module .season-pass .status .text {
+#now .module .season-pass .status {
+  position: relative;
+}
+
+#now .module .season-pass .status .text {
   font-size: 16px;
   font-style: italic;
   letter-spacing: 0.5px;
@@ -16,35 +20,47 @@
   max-width: 400px;
 }
 
-.module .season-pass .status .season-text .name {
+#now .module .season-pass .status .season-text .name {
   font-size: 32px;
   font-weight: 500;
   text-transform: uppercase;
   margin: 0 0 12px;
 }
 
-.module .season-pass .status .season-text .description {
+#now .module .season-pass .status .season-text .description {
   font-size: 16px;
   font-style: italic;
   letter-spacing: 0.5px;
 }
 
-.module .season-pass .page .button {
+#now .module .season-pass .status .rank {
+  position: absolute;
+  right: 2rem;
+  bottom: 0;
+  font-size: 14vw;
+  line-height: 11vw;
+  font-weight: 500;
+  color: white;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+#now .module .season-pass .page .button {
   height: calc(100% - 20px - 2rem);
   margin: calc(20px + 2rem) 0 0;
 }
 
-.module .season-pass .page .button .text {
+#now .module .season-pass .page .button .text {
   padding: 0;
   width: 100%;
 }
 
-.module .season-pass .rewards {
+#now .module .season-pass .rewards {
   display: grid;
   grid-auto-flow: column;
 }
 
-.module .season-pass .rewards .rank {
+#now .module .season-pass .rewards .rank {
   display: grid;
   grid-template-rows: calc(5px + 1rem) 2fr 2fr;
   position: relative;
@@ -52,49 +68,49 @@
   margin: 20px 0 0;
 }
 
-.module .season-pass .rewards .rank::before {
+#now .module .season-pass .rewards .rank::before {
   content: attr(data-rank);
   position: absolute;
   top: 0;
   right: 0;
 }
 
-.module .season-pass .rewards .rank > div {
+#now .module .season-pass .rewards .rank > div {
   position: relative;
   padding: 1rem;
 }
 
-.module .season-pass .rewards .rank .progress-bar {
+#now .module .season-pass .rewards .rank .progress-bar {
   padding: 0;
   height: 4px;
 }
 
-.module .season-pass .rewards .rank .progress-bar .text {
+#now .module .season-pass .rewards .rank .progress-bar .text {
   display: none;
 }
 
-.module .season-pass .rewards .rank .progress-bar .fill {
+#now .module .season-pass .rewards .rank .progress-bar .fill {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-.module .season-pass .rewards .rank .free {
+#now .module .season-pass .rewards .rank .free {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.module .season-pass .rewards .rank .premium {
+#now .module .season-pass .rewards .rank .premium {
   background-color: rgba(0, 176, 176, 0.6);
 }
 
-.module .season-pass .rewards .rank .list.inventory-items {
+#now .module .season-pass .rewards .rank .list.inventory-items {
   position: relative;
   grid-template-columns: 1fr;
 }
 
-.module .season-pass .rewards .rank div:not(.earned):not(.claimed):not(.claimAllowed) li {
+#now .module .season-pass .rewards .rank div:not(.earned):not(.claimed):not(.claimAllowed) li {
   opacity: 0.6;
 }
 
-.module .season-pass .rewards .rank .claimAllowed:not(.progress-bar).earned:not(.claimed)::before {
+#now .module .season-pass .rewards .rank .claimAllowed:not(.progress-bar).earned:not(.claimed)::before {
   content: ' ';
   position: absolute;
   top: 0;
@@ -110,18 +126,18 @@
 
 
 @media screen and (max-width: 1023px) {
-  .module .season-pass {
+  #now .module .season-pass {
     display: grid;
     grid-template-columns: 30px 2fr 30px;
   }
 
-  .module .season-pass .status {
+  #now .module .season-pass .status {
     grid-column: 1/4;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .module .season-pass {
+  #now .module .season-pass {
     grid-gap: 10px;
   }
 }

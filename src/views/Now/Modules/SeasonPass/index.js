@@ -6,6 +6,7 @@ import cx from 'classnames';
 
 import manifest from '../../../../utils/manifest';
 import * as enums from '../../../../utils/destinyEnums';
+import * as utils from '../../../../utils/destinyUtils';
 import Button from '../../../../components/UI/Button';
 import ProgressBar from '../../../../components/UI/ProgressBar';
 import Items from '../../../../components/Items';
@@ -20,7 +21,7 @@ class SeasonPass extends React.Component {
     const characterProgressions = member.data.profile.characterProgressions.data;
 
     this.state = {
-      seasonPassRewardsPage: Math.ceil((Math.min(characterProgressions[member.characterId].progressions[1628407317].level, 99) + 1) / this.seasonPassItemsPerPage(viewport.width))
+      seasonPassRewardsPage: Math.ceil((Math.min((characterProgressions[member.characterId].progressions[1628407317] && characterProgressions[member.characterId].progressions[1628407317].level), 99) + 1) / this.seasonPassItemsPerPage(viewport.width))
     };
   }
 
@@ -32,7 +33,7 @@ class SeasonPass extends React.Component {
       this.props.rebindTooltips();
     }
 
-    if (p.member.data.profile.characterProgressions.data[p.member.characterId].progressions[1628407317].level !== characterProgressions[this.props.member.characterId].progressions[1628407317].level) {
+    if ((p.member.data.profile.characterProgressions.data[p.member.characterId].progressions[1628407317] && p.member.data.profile.characterProgressions.data[p.member.characterId].progressions[1628407317].level) !== (characterProgressions[this.props.member.characterId].progressions[1628407317] && characterProgressions[this.props.member.characterId].progressions[1628407317].level)) {
       this.setState(p => ({
         ...p,
         seasonPassRewardsPage: Math.ceil((characterProgressions[this.props.member.characterId].progressions[1628407317].level + 1) / this.seasonPassItemsPerPage(this.props.viewport.width))
@@ -75,6 +76,11 @@ class SeasonPass extends React.Component {
     const character = characters.find(c => c.characterId === member.characterId);
     const characterProgressions = member.data.profile.characterProgressions.data;
     const profile = member.data.profile.profile.data;
+
+    // just in case
+    if (!characterProgressions[member.characterId].progressions[1628407317]) {
+      return null;
+    }
 
     const seasonPassItemsPerPage = this.seasonPassItemsPerPage(viewport.width);
 
@@ -170,6 +176,8 @@ class SeasonPass extends React.Component {
 
     // console.log(seasonPass);
 
+    const progressSeasonalRank = utils.progressionSeasonRank(member);
+
     return (
       <div className='season-pass'>
         <div className='module status'>
@@ -182,6 +190,7 @@ class SeasonPass extends React.Component {
               <em>{seasonPass.season.displayProperties.description}</em>
             </p>
           </div>
+          <div className='rank'>{progressSeasonalRank.level}</div>
         </div>
         <div className='page'>
           <Button text={<i className='segoe-uniE973' />} action={this.handler_seasonPassPrev} disabled={this.state.seasonPassRewardsPage * seasonPassItemsPerPage - seasonPassItemsPerPage < 1} />

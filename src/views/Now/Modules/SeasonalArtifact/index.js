@@ -6,6 +6,7 @@ import cx from 'classnames';
 
 import manifest from '../../../../utils/manifest';
 import { seasonalMods } from '../../../../utils/destinyEnums';
+import Items from '../../../../components/Items';
 import ObservedImage from '../../../../components/ObservedImage';
 import ProgressBar from '../../../../components/UI/ProgressBar';
 
@@ -18,9 +19,9 @@ class SeasonalArtifact extends React.Component {
     const characterEquipment = member.data.profile.characterEquipment.data[member.characterId].items;
     const characterProgressions = member.data.profile.characterProgressions.data[member.characterId];
 
-    const artifactAvailable = characterEquipment.find(i => i.bucketHash === 1506418338) || false;
+    const equippedArtifact = characterEquipment.find(i => i.bucketHash === 1506418338) || false;
 
-    if (!artifactAvailable) {
+    if (!equippedArtifact) {
       return (
         <div className='head'>
           <div className='module-header'>
@@ -64,9 +65,9 @@ class SeasonalArtifact extends React.Component {
             <div className='sub-name'>{t('Seasonal progression')}</div>
           </div>
           <div className='artifact'>
-            <div className='icon'>
-              <ObservedImage src={`https://www.bungie.net${definitionArtifact.displayProperties.icon}`} />
-            </div>
+            <ul className='list inventory-items'>
+              <Items items={[equippedArtifact]} />
+            </ul>
             <div className='text'>
               <div className='name'>{definitionArtifact.displayProperties.name}</div>
               <div className='type'>{t('Seasonal Artifact')}</div>
@@ -105,7 +106,7 @@ class SeasonalArtifact extends React.Component {
 
                             const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
 
-                            const image = seasonalMods[artifactAvailable.itemHash] && seasonalMods[artifactAvailable.itemHash][item.itemHash] ? !item.isActive ? seasonalMods[artifactAvailable.itemHash][item.itemHash].inactive : seasonalMods[artifactAvailable.itemHash][item.itemHash].active : definitionItem && `https://www.bungie.net${definitionItem.displayProperties.icon}`;
+                            const image = seasonalMods[equippedArtifact.itemHash] && seasonalMods[equippedArtifact.itemHash][item.itemHash] ? !item.isActive ? seasonalMods[equippedArtifact.itemHash][item.itemHash].inactive : seasonalMods[equippedArtifact.itemHash][item.itemHash].active : definitionItem && `https://www.bungie.net${definitionItem.displayProperties.icon}`;
 
                             const energyCost = definitionItem && definitionItem.plug && definitionItem.plug.energyCost ? definitionItem.plug.energyCost.energyCost : 0;
 

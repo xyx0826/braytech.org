@@ -19,6 +19,7 @@ import Vendor from '../Modules/Vendor';
 import AuthUpsell from '../Modules/AuthUpsell';
 import Transitory from '../Modules/Transitory';
 import CharacterEquipment from '../Modules/CharacterEquipment';
+import SeasonCountdown from '../Modules/SeasonCountdown';
 
 import { moduleRules } from '../Customise';
 
@@ -61,6 +62,9 @@ class Now extends React.Component {
     },
     CharacterEquipment: {
       c: CharacterEquipment
+    },
+    SeasonCountdown: {
+      c: SeasonCountdown
     }
   }
 

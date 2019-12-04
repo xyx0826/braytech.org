@@ -25,11 +25,11 @@ class Items extends React.Component {
     }
 
     items.forEach((item, i) => {
-      const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
-      const definitionBucket = item.bucketHash && manifest.DestinyInventoryBucketDefinition[item.bucketHash];
+      const definitionItem = item && item.itemHash && manifest.DestinyInventoryItemDefinition[item.itemHash];
+      const definitionBucket = item && item.bucketHash && manifest.DestinyInventoryBucketDefinition[item.bucketHash];
 
       if (!definitionItem) {
-        console.log(`Items: Couldn't find item definition for ${item.itemHash}`);
+        console.log(`Items: Couldn't find item definition for:`, item);
         return null;
       }
 
