@@ -47,8 +47,13 @@ async function apiRequest(path, options = {}) {
     let now = new Date().getTime() + 10000;
     let then = new Date(tokens.access.expires).getTime();
 
+    // console.log('Adding auth');
+
+    // console.log('Auth requested and tokens are available');
+
     // refresh tokens before making auth-full request
     if (now > then) {
+      // console.log("Tokens are stale");
       const refreshRequest = await GetOAuthAccessToken(`grant_type=refresh_token&refresh_token=${tokens.refresh.value}`);
 
       if (refreshRequest && refreshRequest.ErrorCode !== 1 && !refreshRequest.ok) {
@@ -59,6 +64,7 @@ async function apiRequest(path, options = {}) {
 
       options.headers.Authorization = `Bearer ${tokens.access.value}`;
     } else {
+      // console.log("Tokens aren't stale");
       options.headers.Authorization = `Bearer ${tokens.access.value}`;
     }
   }
@@ -120,6 +126,8 @@ async function apiRequest(path, options = {}) {
           bnetMembershipId: response.membership_id,
           destinyMemberships: memberships.Response.destinyMemberships
         };
+
+        // console.log('Dispating new tokens');
 
         store.dispatch({
           type: 'SET_AUTH',

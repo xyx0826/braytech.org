@@ -29,7 +29,7 @@ class BungieAuth extends React.Component {
   }
 
   getAccessTokens = async code => {
-    const tokens = await bungie.GetOAuthAccessToken(`client_id=${process.env.REACT_APP_BUNGIE_CLIENT_ID}&grant_type=authorization_code&code=${code}`);
+    await bungie.GetOAuthAccessToken(`client_id=${process.env.REACT_APP_BUNGIE_CLIENT_ID}&grant_type=authorization_code&code=${code}`);
 
     if (this.mounted) {
       // if (tokens && tokens.ErrorCode === 1 && tokens.Response) {
@@ -84,7 +84,7 @@ class BungieAuth extends React.Component {
 
     const code = queryString.parse(location.search) && queryString.parse(location.search).code;
 
-    if (!auth && code) {
+    if (code) {
       this.getAccessTokens(code);
     } else if (auth) {
       this.getMemberships();
