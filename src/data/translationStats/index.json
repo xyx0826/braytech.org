@@ -2,18 +2,7 @@
   "de": {
     "translated": 458,
     "notTranslated": 73,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "added": [],
     "removed": []
   },
   "en": {
@@ -25,205 +14,73 @@
   "es-mx": {
     "translated": 0,
     "notTranslated": 525,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "added": [],
     "removed": []
   },
   "es": {
-    "translated": 512,
-    "notTranslated": 19,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "translated": 531,
+    "notTranslated": 0,
+    "added": [],
     "removed": []
   },
   "fr": {
     "translated": 357,
     "notTranslated": 173,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "added": [],
     "removed": []
   },
   "internal": {
     "translated": 0,
     "notTranslated": 525,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "added": [],
     "removed": []
   },
   "it": {
-    "translated": 521,
-    "notTranslated": 10,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "translated": 531,
+    "notTranslated": 0,
+    "added": [],
     "removed": []
   },
   "ja": {
     "translated": 219,
     "notTranslated": 311,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "added": [],
     "removed": []
   },
   "ko": {
     "translated": 298,
     "notTranslated": 232,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "added": [],
     "removed": []
   },
   "pl": {
     "translated": 0,
     "notTranslated": 525,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "added": [],
     "removed": []
   },
   "pt-br": {
-    "translated": 458,
-    "notTranslated": 73,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "translated": 531,
+    "notTranslated": 0,
+    "added": [],
     "removed": []
   },
   "ru": {
     "translated": 0,
     "notTranslated": 525,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "added": [],
     "removed": []
   },
   "zh-chs": {
     "translated": 469,
     "notTranslated": 62,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "added": [],
     "removed": []
   },
   "zh-cht": {
     "translated": 469,
     "notTranslated": 62,
-    "added": [
-      "hour",
-      "hours",
-      "Inspect your character's loadout and stat totals",
-      "minute",
-      "minutes",
-      "Season countdown",
-      "second",
-      "seconds",
-      "Time until next season is live",
-      "Time until {{eventName}} ends and change comes"
-    ],
+    "added": [],
     "removed": []
   }
 }

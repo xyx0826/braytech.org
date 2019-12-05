@@ -66,9 +66,12 @@ class Test extends React.Component {
         {/* <div id='tooltip' className='visible'>
           <Item hash='3948284065' />
         </div> */}
-        <div id='tooltip' className='visible'>
+        {/* <div id='tooltip' className='visible'>
           <Item hash='3887892656' instanceid='6917529029394206558' />
-        </div>
+        </div> */}
+        {/* <div id='tooltip' className='visible'>
+          <Item hash='3427785728' />
+        </div> */}
       </div>
     );
   }

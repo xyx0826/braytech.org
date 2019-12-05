@@ -2,11 +2,10 @@ import React from 'react';
 import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
-import * as enums from '../../../utils/destinyEnums';
 import ObservedImage from '../../ObservedImage';
 
 const Emblem = (props) => {
-  const { itemHash, instanceId, itemComponents, quantity, state, rarity, type, primaryStat, stats, sockets, masterwork, masterworkInfo } = props;
+  const { itemHash, sockets } = props;
 
   const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
 
@@ -25,7 +24,7 @@ const Emblem = (props) => {
               // map through socketCategories
 
               if (c.sockets.length) {
-                const plugs = c.sockets; // 
+                const plugs = c.sockets;
 
                 if (plugs.length) {
                   return (

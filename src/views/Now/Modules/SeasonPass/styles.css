@@ -140,4 +140,10 @@
   #now .module .season-pass {
     grid-gap: 10px;
   }
+  
+  #now .module .season-pass .status .rank {
+    right: 0;
+    font-size: 28vw;
+    line-height: 21vw;
+  }
 }

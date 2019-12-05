@@ -30,6 +30,7 @@
 
 .seasonal-artifact .artifact .list.inventory-items {
   grid-template-columns: 1fr;
+  align-items: start;
 }
 
 .seasonal-artifact .artifact .text {
