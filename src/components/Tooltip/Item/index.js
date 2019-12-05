@@ -68,7 +68,7 @@ class Item extends React.Component {
       );
     }
 
-    if (definitionItem && definitionItem.inventory) {
+    if (definitionItem?.inventory) {
       switch (definitionItem.inventory.tierType) {
         case 6:
           item.rarity = 'exotic';
@@ -116,7 +116,7 @@ class Item extends React.Component {
     const hideScreenshotBuckets = [3284755031, 1506418338];
 
     // collects relevant instanced data for sockets and stats utils
-    if (item.itemInstanceId && member.data && itemComponents && itemComponents.instances.data[item.itemInstanceId]) {
+    if (item.itemInstanceId && member.data && itemComponents?.instances?.data[item.itemInstanceId]) {
       const instancesTypes = ['instance', 'sockets', 'plugObjectives', 'reusablePlugs', 'perks', 'stats', 'objectives', 'talentGrids'];
 
       item.itemComponents = instancesTypes.reduce((obj, key) => {
@@ -134,7 +134,7 @@ class Item extends React.Component {
     }
 
     // what's this for?
-    if (member.data && characterUninstancedItemComponents && characterUninstancedItemComponents[member.characterId].objectives && characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash]) {
+    if (member.data && characterUninstancedItemComponents[member.characterId]?.objectives?.data[item.itemHash]) {
       if (item.itemComponents) {
         item.itemComponents.objectives = characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash].objectives;
       } else {
@@ -145,19 +145,19 @@ class Item extends React.Component {
     }
 
     // what's this for?
-    if (item.itemInstanceId && member.data.profile && member.data.profile.characterInventories && member.data.profile.characterInventories.data && member.data.profile.characterInventories.data[member.characterId] && member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemitemInstanceId === item.itemInstanceId)) {
+    if (item.itemInstanceId && member.data && member.data.profile?.characterInventories?.data[member.characterId]?.items?.find(i => i.itemInstanceId === item.itemInstanceId)) {
       if (item.itemComponents) {
-        item.itemComponents.item = member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemitemInstanceId === item.itemInstanceId);
+        item.itemComponents.item = member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemInstanceId === item.itemInstanceId);
       } else {
         item.itemComponents = {
-          item: member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemitemInstanceId === item.itemInstanceId)
+          item: member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemInstanceId === item.itemInstanceId)
         };
       }
     }
 
     item.sockets = sockets(item);
     item.stats = stats(item);
-    item.masterworkInfo = masterwork(item);
+    item.masterwork = masterwork(item);
 
     item.primaryStat = (definitionItem.itemType === 2 || definitionItem.itemType === 3) && definitionItem.stats && !definitionItem.stats.disablePrimaryStatDisplay && definitionItem.stats.primaryBaseStatHash && {
       hash: definitionItem.stats.primaryBaseStatHash,
@@ -165,7 +165,7 @@ class Item extends React.Component {
       value: 750
     };
 
-    if (item.primaryStat && item.itemComponents && item.itemComponents.instance && item.itemComponents.instance.primaryStat) {
+    if (item.primaryStat && item.itemComponents && item.itemComponents.instance?.primaryStat) {
       item.primaryStat.value = item.itemComponents.instance.primaryStat.value;
     } else if (item.primaryStat && member && member.data) {
       let character = member.data.profile.characters.data.find(c => c.characterId === member.characterId);
@@ -183,12 +183,14 @@ class Item extends React.Component {
     if (item.sockets) {
       const ornament = getOrnamentSocket(item.sockets);
 
-      if (ornament && ornament.plug && ornament.plug.plugItem && ornament.plug.plugItem.screenshot && ornament.plug.plugItem.screenshot !== '') {
+      if (ornament && ornament.plug?.plugItem?.screenshot !== '') {
         item.screenshot = ornament.plug.plugItem.screenshot;
       }
     }
 
     const masterworked = enums.enumerateItemState(item.state).masterworked || (item.masterworkInfo && item.masterworkInfo.tier >= 10);
+
+    console.log(item)
 
     return (
       <>

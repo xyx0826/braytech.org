@@ -156,5 +156,17 @@
       "description": "It's been 12 days since our last contact.\n\nI return with experimental gifts.\n\nCustomisable layouts beginning with _Now_.\n\nDrag and drop modules to suit your individual tastes.\n\nThey taste even better when you're a patron of Braytech.\n\nAdditionally, in order to support these changes, there's been many amendments to core aspects of Braytech including authentication and tooltips.\n\nI'm _sure_ nothing is broken.\n\nWarlocks are the superior class.",
       "prompt": true
     }
+  },
+  {
+    "id": "jcs9sn2w6enxvthdh4kma",
+    "date": "2019-12-05T16:06:55.455Z",
+    "expiry": 432000000,
+    "showOnce": true,
+    "displayProperties": {
+      "name": "Expiring: Last Days on Kraken Mare",
+      "image": "/static/images/notifications/LastDaysonKrakenMare.jpg",
+      "description": "You've just 5 more days to recover the lost pages of lore book _Last Days on Kraken Mare_.\n\nIt's recovered by completing _Vex Offensive_ bounties.",
+      "prompt": true
+    }
   }
 ]

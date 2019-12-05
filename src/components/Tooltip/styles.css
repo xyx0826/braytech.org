@@ -236,36 +236,15 @@
 }
 
 #tooltip .kill-tracker {
-  padding: 2px 16px 12px;
-  display: flex;
-  align-items: center;
-}
-
-#tooltip .kill-tracker .icon {
-  position: relative;
-  width: 16px;
-  height: 16px;
-  flex-basis: 16px;
-  background-size: contain;
+  padding: 12px 16px;
 }
 
 #tooltip .kill-tracker .text {
-  flex-basis: calc(100% - 16px);
-  padding: 0 0 0 10px;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
+  display: grid;
+  grid-template-columns: max-content min-content;
   justify-content: space-between;
   font-size: 14px;
   line-height: 1.4;
-}
-
-#tooltip .kill-tracker .text .description {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-#tooltip .kill-tracker .text .value {
-  text-align: right;
 }
 
 #tooltip .stats {
@@ -347,7 +326,7 @@
 }
 
 #tooltip .stats .stat .value .text.masterwork {
-  color: #e0c452;
+  color: #c6ab3c;
 }
 
 #tooltip .sockets {

@@ -838,5 +838,10 @@
     "date": "2019-12-03T17:36:03.876Z",
     "version": "2.12.0",
     "content": "- customisable layouts (_Now_)\n- hundreds of other changes"
+  },
+  {
+    "date": "2019-12-05T16:06:55.455Z",
+    "version": "2.12.4",
+    "content": "- adjusted rules for _Now_ modules\n- improved display of masterworked stats on item tooltips\n- added kill tracker counts to masterworked weapons tooltips"
   }
 ]

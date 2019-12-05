@@ -10,7 +10,7 @@ import { statsMs } from '../../../utils/destinyItems/stats';
 import ObservedImage from '../../ObservedImage';
 
 const Equipment = props => {
-  const { itemHash, itemComponents, primaryStat, stats, sockets, masterworkInfo } = props;
+  const { itemHash, itemComponents, primaryStat, stats, sockets, masterwork } = props;
 
   const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
 
@@ -29,10 +29,14 @@ const Equipment = props => {
 
   const armor2MasterworkSockets = sockets && sockets.socketCategories && getSocketsWithStyle(sockets, enums.DestinySocketCategoryStyle.EnergyMeter);
 
-  const energy = definitionItem.itemType === enums.DestinyItemType.Armor && ((itemComponents && itemComponents.instance && itemComponents.instance.energy) || (masterworkInfo && armor2MasterworkSockets.length && {
-    energyTypeHash: energyStatToType(masterworkInfo.statHash),
-    energyCapacity: masterworkInfo.statValue
-  }));
+  const energy =
+    definitionItem.itemType === enums.DestinyItemType.Armor &&
+    ((itemComponents && itemComponents.instance && itemComponents.instance.energy) ||
+      (masterwork &&
+        armor2MasterworkSockets.length && {
+          energyTypeHash: energyStatToType(masterwork.statHash),
+          energyCapacity: masterwork.statValue
+        }));
   const definitionEnergy = energy && energyTypeToAsset(energy.energyTypeHash);
 
   const blocks = [];
@@ -54,7 +58,7 @@ const Equipment = props => {
             </div>
           </div>
         </>
-      )
+      );
     } else {
       blocks.push(
         <>
@@ -62,14 +66,18 @@ const Equipment = props => {
             <div className='power'>
               <div className='text'>{primaryStat.value}</div>
               <div className='text'>{primaryStat.displayProperties.name}</div>
-              </div>
-              {energy ? <div className='energy'>
-                <div className={cx('value', definitionEnergy.string)}><div className='icon'>{definitionEnergy.icon}</div> {energy.energyCapacity}</div>
+            </div>
+            {energy ? (
+              <div className='energy'>
+                <div className={cx('value', definitionEnergy.string)}>
+                  <div className='icon'>{definitionEnergy.icon}</div> {energy.energyCapacity}
+                </div>
                 <div className='text'>{i18n.t('Energy')}</div>
-              </div> : null}
+              </div>
+            ) : null}
           </div>
         </>
-      )
+      );
     }
   }
 
@@ -81,10 +89,23 @@ const Equipment = props => {
       <div className='flair'>
         <p>{flair}</p>
       </div>
-    )
+    );
   }
 
   if ((primaryStat && displayStats) || (flair && displayStats) || (flair && !displayStats && displaySockets)) blocks.push(<div className='line' />);
+
+  if (masterwork?.objective?.progress) {
+    blocks.push(
+      <div className='kill-tracker'>
+        <div className='text'>
+          <div>{masterwork.objective.typeDesc}</div>
+          <div>{masterwork.objective.progress.toLocaleString()}</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (masterwork?.objective?.progress && displayStats) blocks.push(<div className='line' />);
 
   // stats
   if (displayStats) {
@@ -94,9 +115,9 @@ const Equipment = props => {
           // map through stats
 
           const armor2MasterworkValue = armor2MasterworkSockets && getSumOfArmorStats(armor2MasterworkSockets, [s.statHash]);
-          
+
           const moddedValue = sockets && sockets.sockets && getModdedStatValue(sockets, s);
-          const masterworkValue = (masterworkInfo && masterworkInfo.statHash === s.statHash && masterworkInfo.statValue) || armor2MasterworkValue || 0;
+          const masterworkValue = (masterwork && masterwork.stats?.find(m => m.hash === s.statHash) && masterwork.stats?.find(m => m.hash === s.statHash).value) || armor2MasterworkValue || 0;
 
           let baseBar = s.value;
 
@@ -124,7 +145,9 @@ const Equipment = props => {
               <div className={cx('value', { bar: s.bar })}>
                 {s.bar ? (
                   <>
-                    {segments.map(([value, className], i) => <div key={i} className={cx('bar', className)} data-value={value} style={{ width: `${Math.min(100, Math.floor(100 * (value / s.maximumValue)))}%` }} />)}
+                    {segments.map(([value, className], i) => (
+                      <div key={i} className={cx('bar', className)} data-value={value} style={{ width: `${Math.min(100, Math.floor(100 * (value / s.maximumValue)))}%` }} />
+                    ))}
                     <div className='int'>{s.value}</div>
                   </>
                 ) : (
@@ -137,23 +160,23 @@ const Equipment = props => {
           );
         })}
       </div>
-    )
+    );
   }
 
   if (displayStats && displaySockets) blocks.push(<div className='line' />);
 
   if (displaySockets) {
     blocks.push(
-      <div className={cx('sockets', {
-        // styling for single plug sockets
-        one: sockets.sockets
-          .filter(s => (s.isPerk || s.isIntrinsic || s.isMod || s.isOrnament) && !s.isTracker && !s.isShader)
-          .map(s => s.plugOptions &&
-            s.plugOptions.filter(p => p.isEnabled)
-          )
-          .filter(s => s.length)
-          .length === 1
-      })}>
+      <div
+        className={cx('sockets', {
+          // styling for single plug sockets
+          one:
+            sockets.sockets
+              .filter(s => (s.isPerk || s.isIntrinsic || s.isMod || s.isOrnament) && !s.isTracker && !s.isShader)
+              .map(s => s.plugOptions && s.plugOptions.filter(p => p.isEnabled))
+              .filter(s => s.length).length === 1
+        })}
+      >
         {sockets.socketCategories
           .map((c, i) => {
             // map through socketCategories
@@ -198,7 +221,7 @@ const Equipment = props => {
           })
           .filter(c => c)}
       </div>
-    )
+    );
   }
 
   if (sourceString) blocks.push(<div className='line' />);
@@ -209,9 +232,8 @@ const Equipment = props => {
       <div className='source'>
         <p>{sourceString}</p>
       </div>
-    )
+    );
   }
-
 
   return blocks.map((b, i) => <React.Fragment key={i}>{b}</React.Fragment>);
 };

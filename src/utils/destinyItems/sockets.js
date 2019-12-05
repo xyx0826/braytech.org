@@ -162,6 +162,7 @@ function buildSocket(item, socket, socketDef, index, reusablePlugs, plugObjectiv
     hasRandomizedPlugItems,
     isPerk,
     isIntrinsic,
+    isMasterwork: false,
     isMod,
     isShader,
     isOrnament,
@@ -272,6 +273,9 @@ function buildDefinedSocket(item, socketDef, index) {
   }
 
   const isIntrinsic = plugItem && plugItem.itemCategoryHashes && plugItem.itemCategoryHashes.includes(2237038328);
+  const isMod = plugItem && plugItem.itemCategoryHashes && plugItem.itemCategoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0;
+  const isShader = plugItem && plugItem.inventory && plugItem.inventory.bucketTypeHash === enums.DestinyInventoryBucket.Shaders;
+  const isOrnament = plugItem && plugItem.itemSubType === enums.DestinyItemSubType.Ornament && !EXCLUDED_PLUGS.has(plugItem.hash);
 
   return {
     socketIndex: index,
@@ -282,6 +286,10 @@ function buildDefinedSocket(item, socketDef, index) {
     hasRandomizedPlugItems: Boolean(socketDef.randomizedPlugSetHash) || socketTypeDef.alwaysRandomizeSockets,
     isPerk,
     isIntrinsic,
+    isMasterwork: false,
+    isMod,
+    isShader,
+    isOrnament,
     isTracker: plugItem && plugItem.plug && plugItem.plug.plugCategoryIdentifier && plugItem.plug.plugCategoryIdentifier.includes('trackers'),
     socketDefinition: socketDef
   };

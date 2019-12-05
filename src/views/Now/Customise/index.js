@@ -96,9 +96,9 @@ class Customise extends React.Component {
     const sourceList = this.getList(source.droppableId);
     const destinationList = this.getList(destination.droppableId);
 
-    // prevents modules being added or moved to groups with "full" modules i.e. SeasonPass
+    // prevents modules being added or moved to groups with "full" modules i.e. SeasonPass or "double" modules
     //if (sourceList.col.mods.find(m => moduleRules.full.includes(m.component))) return;
-    if (destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length).length).length) return;
+    if (destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length || moduleRules.double.filter(f => f === m.component).length).length).length) return;
 
     // if reordering a list (column), else list to list
     if (source.droppableId === destination.droppableId) {
@@ -419,18 +419,18 @@ class Customise extends React.Component {
         <div className='groups'>
           <DragDropContext onDragEnd={this.onDragEnd}>
             {this.state.groups.map((group, i) => {
-              const modFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
-              const modDoubleSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.double.includes(m.component)));
+              const groupFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
+              const groupDoubleSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.double.includes(m.component)));
 
-              const cols = modFullSpan > -1 ? group.cols.slice(0, 1) : modDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols;
+              const cols = groupFullSpan > -1 ? group.cols.slice(0, 1) : groupDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols;
 
               return (
-                <div key={i} className={cx('group', 'user', { head: group.id === 'head', full: modFullSpan > -1 })}>
+                <div key={i} className={cx('group', 'user', { head: group.id === 'head', full: groupFullSpan > -1 })}>
                   {cols.map((col, i) => {
-                    const columnFilled = group.id === 'head' && col.mods.length;
-
+                    const colDoubleSpan = col.mods.filter(m => moduleRules.double.includes(m.component));
+                    const columnFilled = (group.id === 'head' && col.mods.length > 0) || colDoubleSpan.length > 0;
                     return (
-                      <div key={col.id} className={cx('column', { double: i === modDoubleSpan })}>
+                      <div key={col.id} className={cx('column', { double: i === groupDoubleSpan })}>
                         <div className='col-id'>{col.id}</div>
                         <Droppable droppableId={col.id}>
                           {(provided, snapshot) => (
@@ -470,7 +470,7 @@ class Customise extends React.Component {
                             </div>
                           )}
                         </Droppable>
-                        <ModulesSelector disabled={columnFilled || modFullSpan > -1} modules={this.modules} groupType={group.type} column={col.id} addMod={this.handler_addMod} />
+                        <ModulesSelector disabled={columnFilled || groupFullSpan > -1} modules={this.modules} groupType={group.type} column={col.id} addMod={this.handler_addMod} />
                       </div>
                     );
                   })}
