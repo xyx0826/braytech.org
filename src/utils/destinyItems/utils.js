@@ -21,7 +21,7 @@ export function compareBy(fn) {
 }
 
 function getPlugHashesFromCategory(category) {
-  return category.sockets.map((socket) => socket.plug.plugItem.hash || null).filter(Boolean);
+  return category.sockets.map((socket) => socket.plug.plugItem?.hash || null).filter(Boolean);
 }
 
 /**

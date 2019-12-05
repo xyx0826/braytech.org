@@ -150,10 +150,10 @@ function buildSocket(item, socket, socketDef, index, reusablePlugs, plugObjectiv
   const hasRandomizedPlugItems = Boolean(socketDef && socketDef.randomizedPlugSetHash) || socketTypeDef.alwaysRandomizeSockets;
 
   const isIntrinsic = plug && plug.plugItem && plug.plugItem.itemCategoryHashes && plug.plugItem.itemCategoryHashes.includes(2237038328);
-
-  const isMod = plug && plug.plugItem && plug.plugItem.itemCategoryHashes && plug.plugItem.itemCategoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0;
-  const isShader = plug && plug.plugItem && plug.plugItem.inventory && plug.plugItem.inventory.bucketTypeHash === enums.DestinyInventoryBucket.Shaders;
-  const isOrnament = plug && plug.plugItem && plug.plugItem.itemSubType === enums.DestinyItemSubType.Ornament && !EXCLUDED_PLUGS.has(plug.plugItem.hash);
+  const isMod = Boolean(plug && plug.plugItem && plug.plugItem.itemCategoryHashes && plug.plugItem.itemCategoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0);
+  const isShader = Boolean(plug && plug.plugItem && plug.plugItem.inventory && plug.plugItem.inventory.bucketTypeHash === enums.DestinyInventoryBucket.Shaders);
+  const isOrnament = Boolean(plug && plug.plugItem && plug.plugItem.itemSubType === enums.DestinyItemSubType.Ornament && !EXCLUDED_PLUGS.has(plug.plugItem.hash));
+  const isTracker = Boolean(plug && plug.plugItem && plug.plugItem.plug && plug.plugItem.plug.plugCategoryIdentifier && plug.plugItem.plug.plugCategoryIdentifier.includes('trackers'));
 
   return {
     socketIndex: index,
@@ -166,7 +166,7 @@ function buildSocket(item, socket, socketDef, index, reusablePlugs, plugObjectiv
     isMod,
     isShader,
     isOrnament,
-    isTracker: plug && plug.plugItem && plug.plugItem.plug && plug.plugItem.plug.plugCategoryIdentifier && plug.plugItem.plug.plugCategoryIdentifier.includes('trackers'),
+    isTracker,
     socketDefinition: socketDef
   };
 }
@@ -266,20 +266,21 @@ function buildDefinedSocket(item, socketDef, index) {
     });
   }
 
-  const plugItem = socketDef.singleInitialItemHash && socketDef.singleInitialItemHash !== 0 && manifest.DestinyInventoryItemDefinition[socketDef.singleInitialItemHash];
+  const plugItem = (socketDef.singleInitialItemHash && socketDef.singleInitialItemHash !== 0 && manifest.DestinyInventoryItemDefinition[socketDef.singleInitialItemHash]) || false;
 
   if (plugOptions.length < 1 && plugItem) {
     plugOptions.push(buildDefinedPlug(socketDef, { plugItemHash: plugItem.hash }));
   }
 
   const isIntrinsic = plugItem && plugItem.itemCategoryHashes && plugItem.itemCategoryHashes.includes(2237038328);
-  const isMod = plugItem && plugItem.itemCategoryHashes && plugItem.itemCategoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0;
-  const isShader = plugItem && plugItem.inventory && plugItem.inventory.bucketTypeHash === enums.DestinyInventoryBucket.Shaders;
-  const isOrnament = plugItem && plugItem.itemSubType === enums.DestinyItemSubType.Ornament && !EXCLUDED_PLUGS.has(plugItem.hash);
+  const isMod = Boolean(plugItem && plugItem.itemCategoryHashes && plugItem.itemCategoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0);
+  const isShader = Boolean(plugItem && plugItem.inventory && plugItem.inventory.bucketTypeHash === enums.DestinyInventoryBucket.Shaders);
+  const isOrnament = Boolean(plugItem && plugItem.itemSubType === enums.DestinyItemSubType.Ornament && !EXCLUDED_PLUGS.has(plugItem.hash));
+  const isTracker = Boolean(plugItem && plugItem.plug && plugItem.plug.plugCategoryIdentifier && plugItem.plug.plugCategoryIdentifier.includes('trackers'));
 
   return {
     socketIndex: index,
-    plug: {
+    plug: plugItem && {
       plugItem
     },
     plugOptions,
@@ -290,7 +291,7 @@ function buildDefinedSocket(item, socketDef, index) {
     isMod,
     isShader,
     isOrnament,
-    isTracker: plugItem && plugItem.plug && plugItem.plug.plugCategoryIdentifier && plugItem.plug.plugCategoryIdentifier.includes('trackers'),
+    isTracker,
     socketDefinition: socketDef
   };
 }
@@ -327,6 +328,7 @@ function buildPlug(plug, socketDef, plugObjectivesData) {
 function buildDefinedPlug(socketDef, plug) {
   const plugHash = isDestinyItemPlug(plug) ? plug.plugItemHash : plug.plugHash;
   // const isEnabled = isDestinyItemPlug(plug) ? plug.enabled : plug.isEnabled;
+  const isEnabled = socketDef.singleInitialItemHash !== 0;
 
   const definitionPlugItem = plug && manifest.DestinyInventoryItemDefinition[plug.plugItemHash];
 
@@ -336,7 +338,7 @@ function buildDefinedPlug(socketDef, plug) {
 
   return {
     plugItem: definitionPlugItem,
-    isEnabled: true,
+    isEnabled,
     enableFailReasons: '',
     plugObjectives: [],
     perks: (definitionPlugItem.perks || []).map(perk => manifest.DestinySandboxPerkDefinition[perk.perkHash]),
