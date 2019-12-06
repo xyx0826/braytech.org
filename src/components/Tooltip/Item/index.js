@@ -183,7 +183,7 @@ class Item extends React.Component {
     if (item.sockets) {
       const ornament = getOrnamentSocket(item.sockets);
 
-      if (ornament && ornament.plug?.plugItem?.screenshot !== '') {
+      if (ornament && ornament.plug?.plugItem?.screenshot && ornament.plug?.plugItem?.screenshot !== '') {
         item.screenshot = ornament.plug.plugItem.screenshot;
       }
     }
