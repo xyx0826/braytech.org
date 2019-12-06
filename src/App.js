@@ -56,6 +56,7 @@ import ClanBannerBuilder from './views/ClanBannerBuilder';
 import PGCR from './views/PGCR';
 
 import Test from './views/Test';
+import TestThree from './views/TestThree';
 
 const RedirectRoute = props => <Route {...props} render={({ location }) => <Redirect to={{ pathname: '/character-select', state: { from: location } }} />} />;
 
@@ -291,6 +292,7 @@ class App extends React.Component {
                           <Route path='/clan-banner-builder/:decalBackgroundColorId?/:decalColorId?/:decalId?/:gonfalonColorId?/:gonfalonDetailColorId?/:gonfalonDetailId?/:gonfalonId?/' exact component={ClanBannerBuilder} />
                           <Route path='/oob' component={OOB} />
                           <Route path='/test' component={Test} />
+                          <Route path='/three' component={TestThree} />
                           <Route path='/' component={Index} />
                         </Switch>
                       </>
