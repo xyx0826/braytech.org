@@ -3,7 +3,11 @@ import * as THREE from 'three';
 import * as utils from './utils';
 import TGXMaterial from './material';
 
+let vertexOffset = 0;
+
 export const compose = async content => {
+
+  vertexOffset = 0;
 
   const geometry = new THREE.Geometry();
 
@@ -15,7 +19,7 @@ export const compose = async content => {
   });
   defaultMaterial.name = 'DefaultMaterial';
 
-  const materials = [defaultMaterial];
+  const materials = [];
 
   // Figure out which geometry should be loaded ie class, gender
   //var geometryHashes = [], geometryTextures = {};
@@ -506,8 +510,6 @@ const parseStagePart = (stagePart) => {
   return part;
 }
 
-let vertexOffset = 0
-
 function checkRenderPart(part) {
   var shouldRender = false;
 
@@ -879,7 +881,9 @@ const parseGeometry = (content, materials, geometry, geometryHash, geometryTextu
         //materialParams.envMap = contentLoaded.textures[DEFAULT_CUBEMAP].texture;
         for (var textureId in geometryTextures[geometryHash]) {
           var texture = geometryTextures[geometryHash][textureId];
-console.log(texture)
+
+          console.log(texture);
+          
           materialParams[textureId] = texture;
           //
           ////if (j == 0) logTexture(textureId, texture);

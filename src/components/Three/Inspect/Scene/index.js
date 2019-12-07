@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import * as THREE from 'three';
 import OrbitControls from 'three-orbitcontrols';
 
-import TGXLoader from '../TGXLoader';
+import TGXLoader from '../../TGXLoader';
 
-class ThreeScene extends Component {
+class Scene extends Component {
   componentDidMount() {
     const width = this.mount.clientWidth;
     const height = this.mount.clientHeight;
@@ -64,7 +64,7 @@ class ThreeScene extends Component {
   }
 
   model = async () => {
-    const response = await fetch("https://lowlidev.com.au/destiny/api/gearasset/3580904581?destiny2")
+    const response = await fetch(`https://lowlidev.com.au/destiny/api/gearasset/${this.props.itemHash || 3580904581}?destiny2`)
       .then(async r => await r.json());
 
     const content = {
@@ -92,12 +92,6 @@ class ThreeScene extends Component {
     const mesh = await TGXLoader.compose(content);
 
     console.log(mesh);
-
-    const material = new THREE.MeshPhysicalMaterial({
-      metalness: 0.5,
-      roughness: 0.5,
-      side: THREE.DoubleSide
-    });
 
     //const mesh = new THREE.Mesh(geometry, material);
 
@@ -164,4 +158,4 @@ class ThreeScene extends Component {
   }
 }
 
-export default ThreeScene;
+export default Scene;

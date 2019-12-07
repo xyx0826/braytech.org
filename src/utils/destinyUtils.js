@@ -394,6 +394,32 @@ export function breakerTypeToIcon(type) {
   return icon;
 }
 
+export function itemRarityToString(tierType) {
+  let string;
+
+  switch (tierType) {
+    case 6:
+      string = 'exotic';
+      break;
+    case 5:
+      string = 'legendary';
+      break;
+    case 4:
+      string = 'rare';
+      break;
+    case 3:
+      string = 'uncommon';
+      break;
+    case 2:
+      string = 'common';
+      break;
+    default:
+      string = 'common';
+  }
+
+  return string;
+}
+
 function getSubclassPath(gridDef, talentGrid) {
   let activatedNodes = talentGrid.nodes.filter(node => node.isActivated).map(node => node.nodeIndex);
   let selectedSkills = gridDef.nodeCategories.filter(category => {

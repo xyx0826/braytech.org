@@ -1,7 +1,0 @@
-
-// geometry
-/common/destiny2_content/geometry/platform/mobile/geometry/3215144d589b17cb6116efa88d3f9afd.tgxm
-
-// textures
-/common/destiny2_content/geometry/platform/mobile/textures/64ae9b461a741c224774f2b2ba3aeafe.tgxm.bin
-

@@ -5,7 +5,7 @@ import { withTranslation } from 'react-i18next';
 
 import manifest from '../../utils/manifest';
 
-import Scene from '../../components/Three/Scene';
+import Scene from '../../components/Three/Inspect/Scene';
 
 import './styles.css';
 
