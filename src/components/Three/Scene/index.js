@@ -73,7 +73,9 @@ class ThreeScene extends Component {
         loaded: false
       },
       tgx: {
-        geometry: response.gearAsset.content[0].geometry.map(filename => ({ filename, loaded: false }))
+        geometry: response.gearAsset.content[0].geometry.map(filename => ({ filename, loaded: false })),
+        textures: response.gearAsset.content[0].textures.map(filename => ({ filename, loaded: false })),
+        platedTextures: []
       },
       indexes: {
         dye_index_set: response.gearAsset.content[0].dye_index_set,
@@ -87,9 +89,9 @@ class ThreeScene extends Component {
 
     console.log(content);
 
-    const geometry = TGXLoader.compose(content);
+    const mesh = await TGXLoader.compose(content);
 
-    console.log(geometry);
+    console.log(mesh);
 
     const material = new THREE.MeshPhysicalMaterial({
       metalness: 0.5,
@@ -97,7 +99,7 @@ class ThreeScene extends Component {
       side: THREE.DoubleSide
     });
 
-    const mesh = new THREE.Mesh(geometry, material);
+    //const mesh = new THREE.Mesh(geometry, material);
 
     mesh.rotation.x = -(Math.PI / 2);
 

@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+
 import * as utils from './utils';
 
 export const load = async content => {
@@ -18,14 +20,19 @@ export const load = async content => {
 
 }
 
-const get = async (url, arrayBuffer) => {
+const get = async (url, type) => {
   const response = await fetch(url).then(async response => {
 
     /* This is where all of the TGX magic starts - these are basically ZIPs */
-    if (arrayBuffer) {
+    if (type === 'arrayBuffer') {
       const arrayBuffer = await response.arrayBuffer();
 
       return new Uint8Array(arrayBuffer);
+    } else if (type === 'objectURL') {
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+
+      return url;
     } else {
       const json = await response.json();
 
@@ -38,7 +45,7 @@ const get = async (url, arrayBuffer) => {
 }
 
 const TGX = async url => {
-  const data = await get(url, true);
+  const data = await get(url, 'arrayBuffer');
 
   var magic = utils.string(data, 0x0, 0x4); // TGXM
   var version = utils.uint(data, 0x4);
@@ -86,6 +93,8 @@ const TGX = async url => {
   return tgxBin;
   //contentLoaded.tgxms[url.indexOf('.bin') != -1 ? 'textures' : 'geometry'][url.slice(url.lastIndexOf('/')+1).split('.')[0]] = tgxBin;
 }
+
+const DEFAULT_CUBEMAP = '2164797681_default_monocrome_cubemap'/*'env_0'*/;
 
 const loadContent = async content => {
 
@@ -143,7 +152,7 @@ const loadContent = async content => {
   }
 
   // Remember everything for later
-  const contentRegions = {
+  content.regions = {
     //indexSets: filteredRegionIndexSets,
     geometry: {},
     textures: {},
@@ -164,9 +173,219 @@ const loadContent = async content => {
       }
     }
   }));
-  
-  content.regions = contentRegions;
+
+  //if (loadTextures) {  
+   
+
+    // Load Textures
+    await Promise.all(content.tgx.textures.map(async (geometry, i) => {
+      if (textureIndexes.indexOf(i) > -1) {
+        const filename = content.tgx.textures[i].filename;
+        const tgx = await TGX(`https://www.bungie.net/common/destiny2_content/geometry/platform/mobile/textures/${filename}`);
+    
+        content.tgx.textures[i] = {
+          ...content.tgx.textures[i],
+          ...tgx,
+          reference_id: filename.split('.')[0],
+          data: await createTexture(tgx),
+          loaded: true
+        }
+      }
+    }));
+
+  //   // Load Plated Textures
+  //   for (var platedTextureIndex in platedTextureIndexes) {
+  //     (function(platedTextureIndex) {
+  //       var platedTexture = content.plate_regions[platedTextureIndex];
+  //       loadTexture(platedTexture, true, function(textureData) {
+  //         contentRegions.platedTextures[platedTextureIndex] = textureData.reference_id;
+  //         assetLoadCount++;
+  //         checkContentLoaded();
+  //       });
+  //     })(platedTextureIndex);
+  //   }
+  // //}
+
+
+
+
+  // EnvMap
+  const canvas_EnvMap = document.createElement('canvas');
+  canvas_EnvMap.width = 64;
+  canvas_EnvMap.height = 64;
+  const ctx_EnvMap = canvas_EnvMap.getContext('2d');
+  ctx_EnvMap.fillStyle = '#000000';
+  ctx_EnvMap.fillRect(0, 0, canvas_EnvMap.width, canvas_EnvMap.height);
+  const canvas_EnvMapUrl = canvas_EnvMap.toDataURL('image/png');
+  const texture_envMap = new THREE.TextureLoader().load(canvas_EnvMapUrl);
+
+  console.log(texture_envMap, content)
+
+  // add envMap to content.textures
+  content.tgx.textures.splice(0, 1, {
+    name: 'defaultCubemap',
+    reference_id: DEFAULT_CUBEMAP,
+    filename: DEFAULT_CUBEMAP,
+    data: texture_envMap,
+    loaded: true
+  });
+
+  console.log(`Party.`, content);
 
   return content;
 
+}
+
+const createTexture = async tgx => {
+
+    return await Promise.all(tgx.files.map(async (texture, i) => {
+    
+      const data = await loadMobileTexture(texture);
+
+      data.name = texture.name;
+      data.flipY = false;
+      data.minFilter = THREE.LinearFilter;
+      data.magFilter = THREE.LinearFilter;
+      data.wrapS = THREE.RepeatWrapping;
+      data.wrapT = THREE.RepeatWrapping;
+      
+      // contentLoaded['textures'][texture.name] = {
+      //   url: url,
+      //   mobilereference_id: reference_id,
+      //   reference_id: texture.name,
+      //   texture: textureData
+      // };
+
+      return data;
+  
+    })
+  );
+
+  // if (texture.indexOf('.bin') != -1) { // Mobile texture
+  //   loadTGXBin(url, function(tgxBin) {
+  //     //console.log('MobileTexture', tgxBin);
+  //     contentLoaded.mobileTextures[reference_id] = {
+  //       url: url,
+  //       reference_id: reference_id,
+  //       fileIdentifier: tgxBin.fileIdentifier,
+  //       texture: tgxBin.lookup
+  //     };
+  //     var count = 0;
+  //     var total = tgxBin.files.length;
+  //     for (var i=0; i<tgxBin.files.length; i++) {
+  //       (function(fileIndex) {
+  //         var textureFile = tgxBin.files[fileIndex];
+  //         if (contentLoaded['textures'][textureFile.name] !== undefined) {
+  //           //console.warn('CachedTexture', textureFile);
+  //           count++;
+  //           if (count == total && onLoad) onLoad(contentLoaded.mobileTextures[reference_id]);
+  //           return;
+  //         }
+  //         var textureData = loadMobileTexture(textureFile, function() {
+  //           count++;
+  //           //console.log('MobileTexture['+reference_id+']', textureFile.name, textureData.image.src);
+  //           if (count == total && onLoad) onLoad(contentLoaded.mobileTextures[reference_id]);
+  //         });
+  //         textureData.name = textureFile.name;
+  //         textureData.flipY = false;
+  //         textureData.minFilter = THREE.LinearFilter;
+  //         textureData.magFilter = THREE.LinearFilter;
+  //         textureData.wrapS = THREE.RepeatWrapping;
+  //         textureData.wrapT = THREE.RepeatWrapping;
+  //         contentLoaded['textures'][textureFile.name] = {
+  //           url: url,
+  //           mobilereference_id: reference_id,
+  //           reference_id: textureFile.name,
+  //           texture: textureData
+  //         };
+  //       })(i);
+  //     }
+  //   });
+  // }
+
+  // else {
+  //   var contentId = isPlated ? 'platedTextures' : 'textures';
+  //   if (contentLoaded[contentId][reference_id] !== undefined) {
+  //     //console.warn('CachedTexture', contentId+'_'+reference_id);
+  //     if (onLoad) onLoad(contentLoaded[contentId][reference_id]);
+  //     return;
+  //   }
+
+  //   var loader = new THREE.TextureLoader(this.manager);
+  //   var textureData = loader.load(url, function(texture) {
+  //     //console.log('Texture['+reference_id+']', textureData.image.src);
+  //     if (onLoad) onLoad(texture);
+  //   }, onProgressCallback, onErrorCallback);
+  //   textureData.name = reference_id;
+  //   textureData.flipY = false;
+  //   textureData.minFilter = THREE.LinearFilter;
+  //   textureData.magFilter = THREE.LinearFilter;
+  //   textureData.wrapS = THREE.RepeatWrapping;
+  //   textureData.wrapT = THREE.RepeatWrapping;
+
+  //   contentLoaded[contentId][reference_id] = {
+  //     url: url,
+  //     reference_id: reference_id,
+  //     texture: textureData
+  //   };
+  // }
+}
+
+const loadMobileTexture = async tgx => {
+  const isPng = utils.string(tgx.data, 1, 3) === 'PNG';
+  const mimeType = 'image/'+(isPng ? 'png' : 'jpeg');
+
+  const objectURL = URL.createObjectURL(new Blob([tgx.data], {type: mimeType}));
+
+  const texture = new THREE.Texture();
+
+  texture.image = await new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.src = objectURL;
+  });
+  texture.needsUpdate = true;
+
+  return texture;
+}
+
+export const loadTexture = async (url, reference_id) => {
+  const texture = {}
+
+  // if (isPlated === undefined) isPlated = false;
+
+  // var contentId = isPlated ? 'platedTextures' : 'textures';
+
+  const objectURL = await get(`https://www.bungie.net${url}`, 'objectURL');
+
+  texture.data = new THREE.TextureLoader().load(objectURL);
+  texture.data.flipY = false;
+  texture.data.minFilter = THREE.LinearMipMapLinearFilter;
+  //texture.data .magFilter = THREE.NearestFilter;
+  texture.data.wrapS = THREE.RepeatWrapping;
+  texture.data.wrapT = THREE.RepeatWrapping;
+
+  texture.reference_id = reference_id;
+  texture.url = url;
+  texture.name = '';
+
+  texture.data = new THREE.Texture();
+  texture.data.flipY = false;
+  texture.data.minFilter = THREE.LinearMipMapLinearFilter;
+  //texture.data .magFilter = THREE.NearestFilter;
+  texture.data.wrapS = THREE.RepeatWrapping;
+  texture.data.wrapT = THREE.RepeatWrapping;
+
+  texture.reference_id = reference_id;
+  texture.url = url;
+  texture.name = '';
+
+  texture.image = await Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.src = objectURL;
+  });
+  texture.needsUpdate = true;
+
+  return texture;
 }

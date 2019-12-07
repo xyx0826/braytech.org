@@ -1,17 +1,17 @@
 import * as THREE from 'three';
 
 import * as utils from './utils';
+import { loadTexture } from './loader';
+import TGXMaterial from './material';
 
-export const compose = content => {
+export const compose = async content => {
 
   const geometry = new THREE.Geometry();
 
   // Set up default white material
-  const defaultMaterial = new THREE.MeshLambertMaterial({
-    emissive: 0x444444,
-    color: 0x777777,
-    //shading: THREE.FlatShading,
-    flatShading: true,
+  const defaultMaterial = new THREE.MeshPhysicalMaterial({
+    metalness: 0.5,
+    roughness: 0.5,
     side: THREE.DoubleSide
   });
   defaultMaterial.name = 'DefaultMaterial';
@@ -111,11 +111,11 @@ export const compose = content => {
   //console.log('GeometryHashes', geometryHashes);
   //var geometryTextures = parseTextures(geometryHashes);
   // var geometryTextures = textures(content, artRegionPatterns);
-  const geometryTextures = false;
+  const geometryTextures = await parseTextures(content, artRegionPatterns);
 
   //var gearDyes = parseGearDyes(content.gear, shaderGear);
   //console.log('GearDyes', gearDyes);
-  const gearDyes = false;
+  const gearDyes = parseGearDyes(content, null);
 
   // Compress geometry into a single THREE.Geometry
   //if (geometryHashes.length == 0) console.warn('NoGeometry');
@@ -181,7 +181,7 @@ export const compose = content => {
 
       //var renderMeshes = parseTGXAsset(tgxBin, geometryHash);
 
-      parseGeometry(content, geometry, geometryHash, geometryTextures, gearDyes);
+      parseGeometry(content, materials, geometry, geometryHash, geometryTextures, gearDyes);
     }
   }
 
@@ -189,9 +189,11 @@ export const compose = content => {
   //geometry.computeVertexNormals();
 
 
+  console.log(materials)
 
+  //return geometry;
 
-  return geometry;
+  return new THREE.Mesh(geometry, materials)
 
 }
 
@@ -543,7 +545,305 @@ function checkRenderPart(part) {
   return shouldRender;
 }
 
-const parseGeometry = (content, geometry, geometryHash, geometryTextures, gearDyes) => {
+function copyGearDyeParams(gearDye, materialParams) {
+  for (var dyeKey in gearDye) {
+    var paramKey = dyeKey;
+    var dyeTexture = false;
+    switch(dyeKey) {
+      case 'hash':
+      case 'investmentHash':
+      case 'slotTypeIndex':
+      case 'variant':
+        paramKey = '';
+        break;
+      case 'diffuse': paramKey = 'detailMap'; dyeTexture = true; break;
+      case 'normal': paramKey = 'detailNormalMap'; dyeTexture = true; break;
+      case 'decal': paramKey = 'detailDecalMap'; dyeTexture = true; break;
+
+      case 'primaryDiffuse': paramKey = 'primaryDetailMap'; dyeTexture = true; break;
+      case 'secondaryDiffuse': paramKey = 'secondaryDetailMap'; dyeTexture = true; break;
+    }
+    if (paramKey) {
+      materialParams[paramKey] = gearDye[dyeKey];
+    }
+  }
+}
+
+function parseMaterial(content, part, gearDye, geometryTextures) {
+  //console.log(content, part, gearDye, geometryTextures)
+  
+  var materialParams = {
+    //side: THREE.DoubleSide,
+    //overdraw: true,
+    skinning: false,
+    //color: 0x777777,
+    //emissive: 0x444444,
+    //envMap: dyeMaterial.envMap ? dyeMaterial.envMap : null,
+    //metalness: ,
+    envMap: null,
+    usePrimaryColor: part.usePrimaryColor
+  };
+
+  var textureLookup = [];
+
+  // Use these for debugging
+  var color = 0x333333;
+  var emissive = new THREE.Color(Math.random(), Math.random(), Math.random());
+
+  if (part.variantShaderIndex != -1) console.warn('VariantShaderPresent['+part.variantShaderIndex+']', part);
+
+  var textures = {
+    map: null,
+    normalMap: null,
+    gearstackMap: null,
+    envMap: null
+  };
+  for (var textureId in geometryTextures) {
+    textures[textureId] = geometryTextures[textureId];
+  }
+
+  if (part.shader) {
+    var shader = part.shader;
+    var staticTextureIds = shader.staticTextures ? shader.staticTextures : [];
+    var staticTextureCount = staticTextureIds.length;
+
+    copyGearDyeParams(gearDye, materialParams);
+
+    //if (!(part.flags & 0x1)) {
+    //	materialParams.useDye = false;
+    //	console.warn('NoDye', part, gearDye);
+    //}
+    //console.warn('SlotTypeIndex', gearDye.slotTypeIndex);
+
+    //
+
+    if (part.flags & 0x8) {
+      //materialParams.useDye = true;
+      materialParams.useAlphaTest = true;
+      console.warn('AlphaTest', part, gearDye);
+    }
+
+    if (part.flags & 0x4) {
+      //materialParams.emissive = emissive;
+    }
+
+    if (part.flags & ~(0x8|0x10|0x5)) {
+      console.warn('UnknownFlags', part.flags);
+    }
+
+    if (part.flags & 0x20) {
+      //materialParams.color = color;
+      //materialParams.emissive = emissive;
+      //materialParams.color = 0xff0000;
+      //textureLookup.push('map');
+      //textures.normalMap = null;
+      //textures.gearstackMap = null;
+
+    }
+
+    // Worldline Zero hack fix
+    if (materialParams.primaryColor.r == 1 && materialParams.primaryColor.g == 0 && materialParams.primaryColor.b == 0) {
+      materialParams.useDye = false;
+      materialParams.useAlphaTest = false;
+    }
+
+
+    for (var i=0; i<staticTextureIds.length; i++) {
+      const staticTextureId = staticTextureIds[i];
+      console.log(staticTextureId)
+
+      const textureLookup = content.tgx.textures.find(f => f.loaded && f.lookup?.indexOf(staticTextureId) > -1);
+      const staticTextureContent = textureLookup && textureLookup.data?.find(t => t.name === staticTextureId);
+
+      if (!staticTextureContent) {
+        console.warn('MissingTexture['+staticTextureId+']');
+        //continue;
+      }
+      var staticTexture = staticTextureContent ? staticTextureContent.texture : null;
+      
+      logTexture('staticTexture' + i + (textureLookup[i] !== undefined ? '[' + textureLookup[i] + ']' : ''), staticTexture);
+    }
+
+    var skipShader = false;
+
+    switch(shader.type) {
+      case 7:
+        for (var textureId in textures) {
+          materialParams[textureId] = textures[textureId];
+        }
+
+        if (staticTextureIds.length > 0) {
+          console.warn('StaticTexturesFound', staticTextureIds);
+        }
+
+        if (part.flags & 0x10) {
+          //materialParams.color = color;
+          //materialParams.emissive = emissive;
+          //textures.map = null;
+          //textures.normalMap = null;
+          //textures.gearstackMap = null;
+
+          switch(staticTextureIds.length) {
+            case 1:
+              textureLookup.push('cubeMap');
+              break;
+            //case 2:
+            //	materialParams.map = null;
+            //	textures.normalMap = null;
+            //	materialParams.gearstackMap = null;
+            //	textureLookup.push('detailEnvMap');
+            //	textureLookup.push('cubeMap');
+            //	break;
+            case 3:
+              materialParams.map = null;
+              materialParams.normalMap = null;
+              materialParams.gearstackMap = null;
+              textureLookup.push('map');
+              textureLookup.push('map2');
+              textureLookup.push('cubeMap');
+              break;
+          }
+
+          for (var i=0; i<textureLookup.length; i++) {
+            var textureId = textureLookup[i];
+
+            var staticTextureId = staticTextureIds[i];
+            var staticTextureContent = content.textures[staticTextureId];
+
+            console.warn(textureId+'Texture', staticTextureContent ? staticTextureContent.reference_id : staticTextureContent);
+
+          }
+
+          //var staticTextureId = staticTextureIds[staticTextureIds.length-1];
+          //var staticTextureContent = contentLoaded.textures[staticTextureId];
+          //
+          //console.warn('CubeMapTexture', staticTextureContent ? staticTextureContent.reference_id : staticTextureContent);
+          //textureLookup.push('cubeMap');
+        }
+        break;
+      //case 8:
+      //	for (var textureId in textures) {
+      //		materialParams[textureId] = textures[textureId];
+      //	}
+      //	break;
+      default:
+        console.warn('UnknownShader', shader, part, gearDye);
+        skipShader = true;
+        break;
+    }
+
+    if (!skipShader) {
+      for (var i=0; i<textureLookup.length; i++) {
+        var textureId = textureLookup[i];
+        var staticTextureId = staticTextureIds[i];
+        var staticTextureContent = content.textures[staticTextureId];
+        if (!staticTextureContent) {
+          console.warn('MissingTexture['+staticTextureId+']');
+          //continue;
+        }
+        var staticTexture = staticTextureContent ? staticTextureContent.texture : null;
+        switch(textureId) {
+          case 'alphaMap':
+            materialParams.transparent = true;
+            break;
+          case 'cubeMap':
+            staticTexture = loadCubeTexture(staticTexture);
+            textureId = 'envMap';
+            break;
+        }
+        materialParams[textureId] = staticTexture;
+      }
+
+      //console.log('MaterialParams', materialParams);
+
+      return new TGXMaterial(materialParams);
+    }
+  } else {
+    console.warn('NoShader', part);
+  }
+
+  return false;
+}
+
+function loadCubeTexture(content, texture) {
+  var textureId = (texture ? texture.name : 'null')+'__';
+  if (content.textures[textureId] !== undefined) {
+    return content.textures[textureId].texture;
+  }
+
+  var loader = new THREE.CubeTextureLoader();
+
+  var cubeWidth = 256;
+  var cubeHeight = 256;
+
+  var canvas = document.createElement('canvas');
+  if (texture) {
+    cubeWidth = texture.image.width/4;
+    cubeHeight = texture.image.height/3;
+  }
+  var cubeSize = Math.floor(cubeWidth/4)*4;
+  canvas.width = cubeSize;
+  canvas.height = cubeSize;
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#000000';
+  ctx.fillRect(0, 0, cubeSize, cubeSize);
+  //ctx.drawImage(texture.image, 0, 0);
+  var offsets = [
+    [0, 0],
+    [0, 1],
+    [1, 1],
+    [2, 1],
+    [3, 1],
+    [0, 2]
+  ];
+  var images = [];
+  for (var i=0; i<offsets.length; i++) {
+    var offset = offsets[i];
+    if (texture) {
+      ctx.drawImage(texture.image, offset[0]*cubeWidth, offset[1]*cubeHeight, cubeWidth, cubeHeight, 0, 0, cubeSize, cubeSize);
+    }
+    var cubeFace = canvas.toDataURL('image/png');
+    //logImageSrc(cubeFace);
+    images.push(cubeFace);
+  }
+
+  var cubeTexture = loader.load(images);
+  cubeTexture.name = textureId;
+  content.textures[textureId] = {
+    reference_id: textureId,
+    texture: cubeTexture
+  };
+
+  return cubeTexture;
+}
+
+function logTexture(textureId, texture) {
+  var src = null;
+  var logName = '';
+  if (texture) {
+    src = texture.image ? texture.image.src : texture.src;
+    logName = texture.name+(src && src.indexOf('blob') != -1 ? ' '+src : '');
+  }
+
+  console.log("\t"+textureId+': '+logName);
+
+  if (src && src.indexOf('blob') != -1) {
+    var canvas = document.createElement('canvas');
+    canvas.width = texture.image.width;
+    canvas.height = texture.image.height;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(texture.image, 0, 0, canvas.width, canvas.height);
+    src = canvas.toDataURL('image/png');
+  }
+
+  if (src) logImageSrc(src);
+}
+
+function logImageSrc(src) {
+  console.log("\t\t"+'%c  ', 'font-size: 50px; background: url("'+src+'") center no-repeat; background-size: contain; border: 1px solid;');
+}
+
+const parseGeometry = (content, materials, geometry, geometryHash, geometryTextures, gearDyes) => {
   const tgxBin = content.tgx.geometry.find(t => t.fileIdentifier === geometryHash);
   const renderMeshes = parseTGXAsset(geometryHash, tgxBin);
 
@@ -555,50 +855,50 @@ const parseGeometry = (content, geometry, geometryHash, geometryTextures, gearDy
   var gearDyeSlotOffsets = [];
 
   // if (loadTextures) {
-  //   for (var i=0; i<gearDyes.length; i++) {
-  //     var gearDye = gearDyes[i];
+    for (var i=0; i<gearDyes.length; i++) {
+      var gearDye = gearDyes[i];
 
-  //     gearDyeSlotOffsets.push(materials.length);
+      gearDyeSlotOffsets.push(materials.length);
 
-  //     // Create a material for both primary and secondary color variants
-  //     for (var j=0; j<2; j++) {
-  //       var materialParams = {
-  //         game: game,
-  //         //side: THREE.DoubleSide,
-  //         //overdraw: true,
-  //         skinning: hasBones,
-  //         //color: 0x777777,
-  //         //emissive: 0x444444,
-  //         usePrimaryColor: j == 0,
-  //         envMap: null
-  //       };
-  //       //materialParams.envMap = contentLoaded.textures[DEFAULT_CUBEMAP].texture;
-  //       for (var textureId in geometryTextures[geometryHash]) {
-  //         var texture = geometryTextures[geometryHash][textureId];
+      // Create a material for both primary and secondary color variants
+      for (var j=0; j<2; j++) {
+        var materialParams = {
+          //side: THREE.DoubleSide,
+          //overdraw: true,
+          skinning: false,
+          //color: 0x777777,
+          //emissive: 0x444444,
+          usePrimaryColor: j == 0,
+          envMap: null
+        };
+        //materialParams.envMap = contentLoaded.textures[DEFAULT_CUBEMAP].texture;
+        for (var textureId in geometryTextures[geometryHash]) {
+          var texture = geometryTextures[geometryHash][textureId];
 
-  //         materialParams[textureId] = texture;
-  //         //
-  //         ////if (j == 0) logTexture(textureId, texture);
-  //         //
-  //         //switch(textureId) {
-  //         //	case 'diffuse': materialParams.map = texture; break;
-  //         //	case 'normal': materialParams.normalMap = texture; break;
-  //         //	case 'gearstack': materialParams.gearstackMap = texture; break;
-  //         //	default:
-  //         //		console.warn('UnknownGeometryTexture', textureId);
-  //         //		break;
-  //         //}
-  //       }
+          materialParams[textureId] = texture;
+          //
+          ////if (j == 0) logTexture(textureId, texture);
+          //
+          //switch(textureId) {
+          //	case 'diffuse': materialParams.map = texture; break;
+          //	case 'normal': materialParams.normalMap = texture; break;
+          //	case 'gearstack': materialParams.gearstackMap = texture; break;
+          //	default:
+          //		console.warn('UnknownGeometryTexture', textureId);
+          //		break;
+          //}
+        }
 
-  //       copyGearDyeParams(gearDye, materialParams);
+        copyGearDyeParams(gearDye, materialParams);
 
-  //       var material = new THREE.TGXMaterial(materialParams);
-  //       //var material = new THREE.MeshPhongMaterial(materialParams);
-  //       material.name = geometryHash+'-'+(j == 0 ? 'Primary' : 'Secondary')+i;
-  //       materials.push(material);
-  //       //console.log('MaterialName:'+material.name);
-  //     }
-  //   }
+        var material = new TGXMaterial(materialParams);
+        //var material = new THREE.MeshPhongMaterial(materialParams);
+        material.name = geometryHash + '-' + (j == 0 ? 'Primary' : 'Secondary') + i;
+        
+        materials.push(material);
+        //console.log('MaterialName:'+material.name, material);
+      }
+    }
   // }
 
   for (var m=0; m<renderMeshes.length; m++) {
@@ -653,22 +953,23 @@ const parseGeometry = (content, geometry, geometryHash, geometryTextures, gearDy
       //console.log('RenderMeshPart['+geometryHash+':'+m+':'+p+']', part);
 
       // Load Material
-      // if (loadTextures) {
-      //   var textures = geometryTextures[geometryHash];
-      //   if (!textures) {
-      //     //console.warn('NoGeometryTextures['+geometryHash+']', part);
-      //   } else {
-      //     //continue;
-      //   }
-      //   var material = parseMaterial(part, gearDyes[gearDyeSlot], textures);
+      //if (loadTextures) {
+        var textures = geometryTextures[geometryHash];
+        if (!textures) {
+          //console.warn('NoGeometryTextures['+geometryHash+']', part);
+        } else {
+          //continue;
+      }
 
-      //   if (material) {
-      //     material.name = geometryHash+'-CustomShader'+m+'-'+p;
-      //     materials.push(material);
-      //     materialIndex = materials.length-1;
-      //     //console.log('MaterialName['+materialIndex+']:'+material.name);
-      //   }
-      // }
+      var material = parseMaterial(content, part, gearDyes[gearDyeSlot], textures);
+
+        if (material) {
+          material.name = geometryHash+'-CustomShader'+m+'-'+p;
+          materials.push(material);
+          materialIndex = materials.length-1;
+          //console.log('MaterialName['+materialIndex+']:'+material.name);
+        }
+      //}
 
       // Load Vertex Stream
       var increment = 3;
@@ -790,148 +1091,329 @@ const parseGeometry = (content, geometry, geometryHash, geometryTextures, gearDy
   }
 }
 
-const textures = (content, artRegionPatterns) => {
+const parseTextures = async (content, artRegionPatterns) => {
+  var canvas, ctx;
+  var canvasPlates = {};
+  var geometryTextures = [];
 
-  // var canvas, ctx;
-  // var canvasPlates = {};
-  // var geometryTextures = [];
+  //for (var g=0; g<geometryHashes.length; g++) {
+  //var geometryHash = geometryHashes[g];
+  for (var a = 0; a < artRegionPatterns.length; a++) {
+    var artRegionPattern = artRegionPatterns[a];
 
-  // //for (var g=0; g<geometryHashes.length; g++) {
-  //   //var geometryHash = geometryHashes[g];
-  // for (var a=0; a<artRegionPatterns.length; a++) {
-  //   var artRegionPattern = artRegionPatterns[a];
+    for (var g = 0; g < artRegionPattern.geometry.length; g++) {
+      const geometryHash = artRegionPattern.geometry[g];
 
-  //   for (var g=0; g<artRegionPattern.geometry.length; g++) {
-  //     const geometryHash = artRegionPattern.geometry[g];
+      console.log(geometryHash);
 
-  //     var tgxBin = content.tgx.geometry.find(t => t.fileIdentifier === geometryHash);
+      const tgxBin = content.tgx.geometry.find(f => f.fileIdentifier === geometryHash);
 
-  //     if (!tgxBin) {
-  //       console.warn('MissingTGXBinGeometry['+g+']', geometryHash);
-  //       continue;
-  //     }
+      if (!tgxBin) {
+        console.warn('MissingTGXBinGeometry[' + g + ']', geometryHash);
+        continue;
+      }
 
-  //     var metadata = tgxBin.metadata;
-  //     var texturePlates = metadata.texture_plates;
+      var metadata = tgxBin.metadata;
+      var texturePlates = metadata.texture_plates;
 
+      //console.log('Metadata['+geometryHash+']', tgxBin);
 
-  //     //console.log('Metadata['+geometryHash+']', tgxBin);
+      // Spasm.TGXAssetLoader.prototype.getGearRenderableModel
+      //console.log('TexturePlates['+g+']', texturePlates);
+      if (texturePlates.length == 1) {
+        var texturePlate = texturePlates[0];
+        var texturePlateSet = texturePlate.plate_set;
 
-  //     // Spasm.TGXAssetLoader.prototype.getGearRenderableModel
-  //     //console.log('TexturePlates['+g+']', texturePlates);
+        // Stitch together plate sets
+        // Web versions are pre-stitched
+
+        for (var texturePlateId in texturePlateSet) {
+          var texturePlate = texturePlateSet[texturePlateId];
+          var texturePlateRef = texturePlateId + '_' + texturePlate.plate_index;
+          //var texturePlateRef = geometryHash+'_'+texturePlateId+'_'+texturePlate.plate_index;
+
+          var textureId = texturePlateId;
+          switch (texturePlateId) {
+            case 'diffuse':
+              textureId = 'map';
+              break;
+            case 'normal':
+              textureId = 'normalMap';
+              break;
+            case 'gearstack':
+              textureId = 'gearstackMap';
+              break;
+            default:
+              console.warn('UnknownTexturePlateId', texturePlateId, texturePlateSet);
+              break;
+          }
+
+          if (texturePlate.texture_placements.length == 0) {
+            //console.warn('SkippedEmptyTexturePlate['+texturePlateId+'_'+texturePlate.plate_index+']');
+            //continue;
+          }
+
+          var canvasPlate = canvasPlates[texturePlateRef];
+          if (!canvasPlate) {
+            //console.log('NewTexturePlacementCanvas['+texturePlateRef+']');
+            canvas = document.createElement('canvas');
+            canvas.width = texturePlate.plate_size[0];
+            canvas.height = texturePlate.plate_size[1];
+            ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#FFFFFF';
+            canvasPlate = {
+              plateId: texturePlateId,
+              textureId: textureId,
+              canvas: canvas,
+              hashes: []
+            };
+            canvasPlates[texturePlateRef] = canvasPlate;
+          }
+          canvas = canvasPlate.canvas;
+          ctx = canvas.getContext('2d');
+          if (canvasPlate.hashes.indexOf(geometryHash) == -1) canvasPlate.hashes.push(geometryHash);
+
+          for (var p = 0; p < texturePlate.texture_placements.length; p++) {
+            const placement = texturePlate.texture_placements[p];
+            // console.log(texturePlate)
+
+            // var placementTexture = content.textures[placement.texture_tag_name];
+            const textureLookup = content.tgx.textures.find(f => f.loaded && f.lookup?.indexOf(placement.texture_tag_name) > -1);
+            const placementTexture = textureLookup && textureLookup.data?.find(t => t.name === placement.texture_tag_name);
+
+            // console.log(placementTexture)
+
+            const scale = 1;
+
+            // Fill draw area with white in case there are textures with an alpha channel
+            //ctx.fillRect(placement.position_x*scale, placement.position_y*scale, placement.texture_size_x*scale, placement.texture_size_y*scale);
+            // Actually it looks like the alpha channel is being used for masking
+            ctx.clearRect(placement.position_x * scale, placement.position_y * scale, placement.texture_size_x * scale, placement.texture_size_y * scale);
+
+            if (!placementTexture) {
+              console.warn('MissingPlacementTexture', placement.texture_tag_name, content.textures);
+              continue;
+            }
+            if (!placementTexture.image) {
+              console.warn('TextureNotLoaded', placementTexture);
+              continue;
+            }
+            // console.log(placementTexture, placementTexture.image)
+
+            ctx.drawImage(placementTexture.image, placement.position_x, placement.position_y, placement.texture_size_x, placement.texture_size_y);
+          }
+        }
+      } else if (texturePlates.length > 1) {
+        console.warn('MultipleTexturePlates?', texturePlates);
+      }
+    }
+  }
+
+  for (var canvasPlateId in canvasPlates) {
+    const canvasPlate = canvasPlates[canvasPlateId];
+    const dataUrl = canvasPlate.canvas.toDataURL('image/png');
+
+    console.log(canvasPlate, canvasPlates, dataUrl);
+    logImageSrc(dataUrl);
+
+    const platedTexture = await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.src = dataUrl;
+    });
+
+    content.tgx.platedTextures[canvasPlateId] = {
+      texture: platedTexture
+    }
+
+    for (var i = 0; i < canvasPlate.hashes.length; i++) {
+      var geometryHash = canvasPlate.hashes[i];
+
+      if (geometryTextures[geometryHash] == undefined) {
+        geometryTextures[geometryHash] = {};
+      }
       
-  //     if (texturePlates.length == 1) {
-  //       var texturePlate = texturePlates[0];
-  //       var texturePlateSet = texturePlate.plate_set;
+      console.log(geometryTextures)
 
-  //       // Stitch together plate sets
-  //       // Web versions are pre-stitched
+      //if (geometryTextures[geometryHash][canvasPlate.plateId] != undefined) {
+      if (geometryTextures[geometryHash][canvasPlate.textureId] != undefined) {
+        //console.warn('OverridingTexturePlate['+geometryHash+':'+canvasPlate.plateId+']', geometryTextures[geometryHash][canvasPlate.plateId]);
+        console.warn('OverridingTexturePlate[' + geometryHash + ':' + canvasPlate.textureId + ']', geometryTextures[geometryHash][canvasPlate.textureId]);
+        continue;
+      }
 
-  //       for (var texturePlateId in texturePlateSet) {
-  //         var texturePlate = texturePlateSet[texturePlateId];
-  //         var texturePlateRef = texturePlateId+'_'+texturePlate.plate_index;
-  //         //var texturePlateRef = geometryHash+'_'+texturePlateId+'_'+texturePlate.plate_index;
+      var texture = content.tgx.platedTextures[canvasPlateId].texture;
+      //geometryTextures[geometryHash][canvasPlate.plateId] = texture;
+      geometryTextures[geometryHash][canvasPlate.textureId] = texture;
+    }
+  }
 
-  //         var textureId = texturePlateId;
-  //         switch(texturePlateId) {
-  //           case 'diffuse': textureId = 'map'; break;
-  //           case 'normal': textureId = 'normalMap'; break;
-  //           case 'gearstack': textureId = 'gearstackMap'; break;
-  //           default:
-  //             console.warn('UnknownTexturePlateId', texturePlateId, texturePlateSet);
-  //             break;
-  //         }
+  return geometryTextures;
+}
 
-  //         var canvasPlate = canvasPlates[texturePlateRef];
-  //         if (!canvasPlate) {
-  //           //console.log('NewTexturePlacementCanvas['+texturePlateRef+']');
-  //           canvas = document.createElement('canvas');
-  //           canvas.width = texturePlate.plate_size[0];
-  //           canvas.height = texturePlate.plate_size[1];
-  //           ctx = canvas.getContext('2d');
+// Spasm.TGXAssetLoader.prototype.getGearDyes
+function getGearDyes(content) {
+  var dyeGroups = {
+    customDyes: content.gear.custom_dyes || [],
+    defaultDyes: content.gear.default_dyes || [],
+    lockedDyes: content.gear.locked_dyes || []
+  };
 
-  //           ctx.fillStyle = '#000000';
-  //           ctx.fillRect(0, 0, canvas.width, canvas.height);
+  var gearDyeGroups = {};
 
-  //           ctx.fillStyle = '#FFFFFF';
-  //           canvasPlate = {
-  //             plateId: texturePlateId,
-  //             textureId: textureId,
-  //             canvas: canvas,
-  //             hashes: []
-  //           };
-  //           canvasPlates[texturePlateRef] = canvasPlate;
-  //         }
-  //         canvas = canvasPlate.canvas;
-  //         ctx = canvas.getContext('2d');
-  //         if (canvasPlate.hashes.indexOf(geometryHash) == -1) canvasPlate.hashes.push(geometryHash);
+  for (var dyeType in dyeGroups) {
+    var dyes = dyeGroups[dyeType];
+    var gearDyes = [];
+    for (var i=0; i<dyes.length; i++) {
+      var dye = dyes[i];
+      var dyeTextures = dye.textures;
+      var materialProperties = dye.material_properties;
+      console.log('GearDye['+dyeType+']['+i+']', dye);
 
-  //         for (var p=0; p<texturePlate.texture_placements.length; p++) {
-  //           var placement = texturePlate.texture_placements[p];
-  //           var placementTexture = contentLoaded.textures[placement.texture_tag_name];
-  //           //VertexColorsent);
+      var gearDyeTextures = {};
 
-  //           // Fill draw area with white in case there are textures with an alpha channel
-  //           //ctx.fillRect(placement.position_x*scale, placement.position_y*scale, placement.texture_size_x*scale, placement.texture_size_y*scale);
-  //           // Actually it looks like the alpha channel is being used for masking
-  //           ctx.clearRect(
-  //             placement.position_x*scale, placement.position_y*scale,
-  //             placement.texture_size_x*scale, placement.texture_size_y*scale
-  //           );
+      for (var dyeTextureId in dyeTextures) {
+        const dyeTexture = dyeTextures[dyeTextureId];
+        //console.log('DyeTexture['+dyeTextureId+']', dyeTexture);
 
-  //           if (platedTexture) {
-  //             ctx.drawImage(
-  //               platedTexture.texture.image,
-  //               placement.position_x*scale, placement.position_y*scale,
-  //               placement.texture_size_x*scale, placement.texture_size_y*scale,
-  //               placement.position_x*scale, placement.position_y*scale,
-  //               placement.texture_size_x*scale, placement.texture_size_y*scale
-  //             );
-  //           } else {
-  //             // Should be fixed, but add these checks in case
-  //             if (!placementTexture) {
-  //               console.warn('MissingPlacementTexture', placement.texture_tag_name, contentLoaded.textures);
-  //               continue;
-  //             }
-  //             if (!placementTexture.texture.image) {
-  //               console.warn('TextureNotLoaded', placementTexture);
-  //               continue;
-  //             }
-  //             ctx.drawImage(
-  //               placementTexture.texture.image,
-  //               placement.position_x, placement.position_y,
-  //               placement.texture_size_x, placement.texture_size_y);
-  //           }
-  //         }
-  //       }
-  //     }
-  //     else if (texturePlates.length > 1) {
-  //       console.warn('MultipleTexturePlates?', texturePlates);
-  //     }
+        const texture = content.tgx.textures.find(t => t.reference_id === dyeTexture.reference_id);
+        if (texture) {
+          gearDyeTextures[dyeTextureId] = texture;
+        }
+        // else if (dyeTexture.name && contentLoaded.textures[dyeTexture.name] !== undefined) {
+        //   gearDyeTextures[dyeTextureId] = contentLoaded.textures[dyeTexture.name];
+        // }
+      }
 
-  //   }
-  // }
+      //console.log('DyeTextures', gearDyeTextures);
 
-  // for (var canvasPlateId in canvasPlates) {
-  //   var canvasPlate = canvasPlates[canvasPlateId];
-  //   var dataUrl = canvasPlate.canvas.toDataURL('image/png');
-  //   loadDataTexture(dataUrl, canvasPlateId, null, true);
-  //   for (var i=0; i<canvasPlate.hashes.length; i++) {
-  //     var geometryHash = canvasPlate.hashes[i];
-  //     if (geometryTextures[geometryHash] == undefined) {
-  //       geometryTextures[geometryHash] = {};
-  //     }
-  //     //if (geometryTextures[geometryHash][canvasPlate.plateId] != undefined) {
-  //     if (geometryTextures[geometryHash][canvasPlate.textureId] != undefined) {
-  //       //console.warn('OverridingTexturePlate['+geometryHash+':'+canvasPlate.plateId+']', geometryTextures[geometryHash][canvasPlate.plateId]);
-  //       console.warn('OverridingTexturePlate['+geometryHash+':'+canvasPlate.textureId+']', geometryTextures[geometryHash][canvasPlate.textureId]);
-  //       continue;
-  //     }
-  //     var texture = contentLoaded.platedTextures[canvasPlateId].texture;
-  //     //geometryTextures[geometryHash][canvasPlate.plateId] = texture;
-  //     geometryTextures[geometryHash][canvasPlate.textureId] = texture;
-  //   }
-  // }
+      // Spasm.GearDye
+      var gearDye = {
+        //identifier: dye.identifier, // Doesn't exist?
+        hash: dye.hash,
+        investmentHash: dye.investment_hash,
+        slotTypeIndex: dye.slot_type_index,
 
-  // return geometryTextures;
+        diffuse: gearDyeTextures.diffuse ? gearDyeTextures.diffuse.texture : null,
+        normal: gearDyeTextures.normal ? gearDyeTextures.normal.texture : null,
+        decal: gearDyeTextures.decal ? gearDyeTextures.decal.texture : null,
+
+        // Not used?
+        //primaryColor: 0x000000,
+        primaryDiffuse: gearDyeTextures.primary_diffuse ? gearDyeTextures.primary_diffuse.texture : null,
+        //secondaryColor: 0x000000,
+        secondaryDiffuse: gearDyeTextures.secondary_diffuse ? gearDyeTextures.secondary_diffuse.texture : null,
+
+        isCloth: dye.cloth
+      };
+
+      var dyeMat = dye.material_properties;
+
+      gearDye.primaryColor = new THREE.Color().fromArray(dyeMat.primary_albedo_tint);
+      // primary_material_params
+      gearDye.secondaryColor = new THREE.Color().fromArray(dyeMat.secondary_albedo_tint);
+      // secondary_material_params
+      gearDye.wornColor = new THREE.Color().fromArray(dyeMat.worn_albedo_tint);
+      // worn_material_parameters
+
+      var spec = dyeMat.specular_properties;
+      console.log('MatSpecularParams', dyeMat.specular_properties);
+      //gearDye.specular = new THREE.Color(spec[0], spec[0], spec[0]);
+      //gearDye.shininess = spec[1];
+      //gearDye.specular = new THREE.Color(0xffffff);
+      //gearDye.shininess = 32;
+
+      gearDye.detailDiffuseTransform = dyeMat.detail_diffuse_transform;
+      gearDye.detailNormalTransform = dyeMat.detail_normal_transform;
+
+      // Physically Based Rendering
+      // emissive_pbr_params
+      // emissive_tint_color_and_intensity_bias
+      // lobe_pbr_params
+      // tint_pbr_params
+
+      //gearDye.metalness = 1;//dyeMat.tint_pbr_params[0];
+
+      //if (i == 0) gearDye.metalness = 0;
+
+      // spec_aa_xform
+
+      gearDye.primaryParams = dyeMat.primary_material_params;
+      //gearDye.primaryParamsAdvanced = dyeMat.primary_material_advanced_params;
+      gearDye.secondaryParams = dyeMat.secondary_material_params;
+      gearDye.wornParams = dyeMat.worn_material_parameters;
+
+      //if (dyeMat.primary_material_advanced_params[0] == -1) {
+      //	gearDye.useDye = false;
+      //}
+
+
+      console.warn('PrimaryMatParams', dyeMat.primary_material_params, dyeMat.primary_material_advanced_params);
+      console.warn('SecondaryMatParams', dyeMat.secondary_material_params);
+      console.warn('WornMatParams', dyeMat.worn_material_parameters);
+
+      logColors([gearDye.primaryColor, gearDye.secondaryColor, gearDye.wornColor]);
+
+      //console.log(gearDye);
+      gearDyes.push(gearDye);
+    }
+    gearDyeGroups[dyeType] = gearDyes;
+  }
+  return gearDyeGroups;
+}
+
+function logColors(colors) {
+  var format = [];
+  var args = [];
+  for (var i=0; i<colors.length; i++) {
+    var color = colors[i];
+    if (!color) continue;
+    color = new THREE.Color(color);
+    format.push("%c #"+color.getHexString());
+    args.push("border-left: 14px solid #"+color.getHexString()+';');
+  }
+  console.log.apply(null, [format.join(' ')].concat(args));
+}
+
+function parseGearDyes(content, shaderGear) {
+
+  var gearDyeGroups = getGearDyes(content);
+  var shaderDyeGroups = shaderGear ? getGearDyes(shaderGear) : gearDyeGroups;
+
+  console.log('GearDyes', gearDyeGroups);
+  //console.log('ShaderGearDyes', shaderDyeGroups);
+
+  // Spasm.GearRenderable.prototype.getResolvedDyeList
+  var resolvedDyes = [];
+  var dyeTypeOrder = ['defaultDyes', 'customDyes', 'lockedDyes'];
+  for (var i=0; i<dyeTypeOrder.length; i++) {
+    var dyeType = dyeTypeOrder[i];
+    var dyes = [];
+    switch(dyeType) {
+      case 'defaultDyes':
+        dyes = gearDyeGroups[dyeType];
+        break;
+      case 'customDyes':
+        dyes = shaderDyeGroups[dyeType];
+        break;
+      case 'lockedDyes':
+        dyes = gearDyeGroups[dyeType];
+        break;
+    }
+    for (var j=0; j<dyes.length; j++) {
+      var dye = dyes[j];
+      //console.log('DyeSlotIndex', j, dye.slotTypeIndex, dye);
+      //if (dyeType == 'lockedDyes' && ignoreLockedDyes && resolvedDyes[dye.slotTypeIndex]) continue;
+      resolvedDyes[dye.slotTypeIndex] = dye;
+      //resolvedDyes[j] = dye;
+    }
+  }
+
+  console.log('ResolvedGearDyes', resolvedDyes);
+
+  return resolvedDyes;
 }
