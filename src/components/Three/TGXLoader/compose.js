@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 
 import * as utils from './utils';
-import { loadTexture } from './loader';
 import TGXMaterial from './material';
 
 export const compose = async content => {
@@ -659,7 +658,7 @@ function parseMaterial(content, part, gearDye, geometryTextures) {
         console.warn('MissingTexture['+staticTextureId+']');
         //continue;
       }
-      var staticTexture = staticTextureContent ? staticTextureContent.texture : null;
+      var staticTexture = staticTextureContent;
       
       logTexture('staticTexture' + i + (textureLookup[i] !== undefined ? '[' + textureLookup[i] + ']' : ''), staticTexture);
     }
@@ -737,6 +736,12 @@ function parseMaterial(content, part, gearDye, geometryTextures) {
         var textureId = textureLookup[i];
         var staticTextureId = staticTextureIds[i];
         var staticTextureContent = content.textures[staticTextureId];
+
+        console.log(`!skipShader`, textureId, staticTextureId)
+
+        //const textureLookup = content.tgx.textures.find(f => f.loaded && f.lookup?.indexOf(staticTextureId) > -1);
+        //const staticTextureContent = textureLookup && textureLookup.data?.find(t => t.name === staticTextureId);
+        
         if (!staticTextureContent) {
           console.warn('MissingTexture['+staticTextureId+']');
           //continue;
@@ -754,7 +759,7 @@ function parseMaterial(content, part, gearDye, geometryTextures) {
         materialParams[textureId] = staticTexture;
       }
 
-      //console.log('MaterialParams', materialParams);
+      console.log('MaterialParams', materialParams);
 
       return new TGXMaterial(materialParams);
     }
@@ -874,7 +879,7 @@ const parseGeometry = (content, materials, geometry, geometryHash, geometryTextu
         //materialParams.envMap = contentLoaded.textures[DEFAULT_CUBEMAP].texture;
         for (var textureId in geometryTextures[geometryHash]) {
           var texture = geometryTextures[geometryHash][textureId];
-
+console.log(texture)
           materialParams[textureId] = texture;
           //
           ////if (j == 0) logTexture(textureId, texture);
@@ -1246,8 +1251,21 @@ const parseTextures = async (content, artRegionPatterns) => {
         continue;
       }
 
-      var texture = content.tgx.platedTextures[canvasPlateId].texture;
       //geometryTextures[geometryHash][canvasPlate.plateId] = texture;
+
+
+      // fuck ay
+
+      const texture = new THREE.Texture();
+      texture.flipY = false;
+      texture.minFilter = THREE.LinearMipMapLinearFilter;
+      //texture.data .magFilter = THREE.NearestFilter;
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+    
+      texture.image = content.tgx.platedTextures[canvasPlateId].texture;
+      texture.needsUpdate = true;
+
       geometryTextures[geometryHash][canvasPlate.textureId] = texture;
     }
   }

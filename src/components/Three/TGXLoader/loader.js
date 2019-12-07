@@ -369,23 +369,23 @@ export const loadTexture = async (url, reference_id) => {
   texture.url = url;
   texture.name = '';
 
-  texture.data = new THREE.Texture();
-  texture.data.flipY = false;
-  texture.data.minFilter = THREE.LinearMipMapLinearFilter;
-  //texture.data .magFilter = THREE.NearestFilter;
-  texture.data.wrapS = THREE.RepeatWrapping;
-  texture.data.wrapT = THREE.RepeatWrapping;
+  // texture.data = new THREE.Texture();
+  // texture.data.flipY = false;
+  // texture.data.minFilter = THREE.LinearMipMapLinearFilter;
+  // //texture.data .magFilter = THREE.NearestFilter;
+  // texture.data.wrapS = THREE.RepeatWrapping;
+  // texture.data.wrapT = THREE.RepeatWrapping;
 
-  texture.reference_id = reference_id;
-  texture.url = url;
-  texture.name = '';
+  // texture.reference_id = reference_id;
+  // texture.url = url;
+  // texture.name = '';
 
-  texture.image = await Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = () => resolve(img);
-    img.src = objectURL;
-  });
-  texture.needsUpdate = true;
+  // texture.image = await Promise((resolve, reject) => {
+  //   const img = new Image();
+  //   img.onload = () => resolve(img);
+  //   img.src = objectURL;
+  // });
+  // texture.needsUpdate = true;
 
   return texture;
 }
