@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import store from './utils/reduxStore';
+import store from './store';
 
 import Clan from './views/Clan';
 import Character from './views/Character';

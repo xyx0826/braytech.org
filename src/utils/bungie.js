@@ -1,4 +1,4 @@
-import store from './reduxStore';
+import store from '../store';
 import * as ls from './localStorage';
 
 // Bungie API access convenience methods

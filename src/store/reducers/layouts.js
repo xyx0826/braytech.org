@@ -1,4 +1,4 @@
-import * as ls from '../localStorage';
+import * as ls from '../../utils/localStorage';
 
 const lsState = ls.get('setting.layouts') ? ls.get('setting.layouts') : {};
 const defaultState = {

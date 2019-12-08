@@ -1,6 +1,6 @@
-import store from '../reduxStore';
-import getMember from '../getMember';
-import * as voluspa from '../voluspa';
+import store from '../';
+import getMember from '../../utils/getMember';
+import * as voluspa from '../../utils/voluspa';
 
 const defaultState = {
   membershipType: false,

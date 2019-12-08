@@ -1,4 +1,4 @@
-import * as ls from '../localStorage';
+import * as ls from '../../utils/localStorage';
 
 let lsState = ls.get('setting.theme') ? ls.get('setting.theme') : false;
 lsState = lsState && lsState.selected ? lsState : { selected: 'light-mode' };

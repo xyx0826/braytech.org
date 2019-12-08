@@ -1,4 +1,4 @@
-import * as ls from '../localStorage';
+import * as ls from '../../utils/localStorage';
 
 let lsState = ls.get('setting.maps') ? ls.get('setting.maps') : {};
 

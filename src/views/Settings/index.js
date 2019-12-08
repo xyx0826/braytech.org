@@ -2,7 +2,6 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
-import ReactMarkdown from 'react-markdown';
 
 import { getLanguageInfo } from '../../utils/languageInfo';
 import * as ls from '../../utils/localStorage';
@@ -32,31 +31,21 @@ class Settings extends React.Component {
   }
 
   selectCollectibleDisplayState = state => e => {
-    let currentState = this.props.collectibles;
-    let newState = currentState;
-
-    newState = {
-      hideCompletedRecords: state === 'hideCompletedRecords' ? !currentState.hideCompletedRecords : currentState.hideCompletedRecords,
-      hideCompletedChecklistItems: state === 'hideCompletedChecklistItems' ? !currentState.hideCompletedChecklistItems : currentState.hideCompletedChecklistItems,
-      hideInvisibleCollectibles: state === 'hideInvisibleCollectibles' ? !currentState.hideInvisibleCollectibles : currentState.hideInvisibleCollectibles,
-      hideInvisibleRecords: state === 'hideInvisibleRecords' ? !currentState.hideInvisibleRecords : currentState.hideInvisibleRecords,
-      hideDudRecords: state === 'hideDudRecords' ? !currentState.hideDudRecords : currentState.hideDudRecords,
-      hideCompletedCollectibles: state === 'hideCompletedCollectibles' ? !currentState.hideCompletedCollectibles : currentState.hideCompletedCollectibles
-    };
-
-    this.props.setCollectibleDisplayState(newState);
+    this.props.setCollectibleDisplayState({
+      ...this.props.collectibles,
+      [state]: !this.props.collectibles[state]
+    });
   };
 
   selectLanguage = lang => {
-    let temp = this.state.language;
-    temp.selected = lang;
-    this.setState(temp);
+    this.setState(p => ({ ...p, language: { ...p.language, selected: lang } }));
   };
 
   saveAndRestart = () => {
-    console.log(this);
     const { i18n } = this.props;
+
     i18n.setCurrentLanguage(this.state.language.selected);
+
     setTimeout(() => {
       window.location.reload();
     }, 50);
@@ -132,6 +121,14 @@ class Settings extends React.Component {
     this.props.setTheme(theme);
   };
 
+  handler_toggleThree = e => {
+    this.props.setThree({ enabled: !this.props.three.enabled });
+  };
+
+  handler_toggleThreeDebugMode = e => {
+    this.props.setThree({ debug: !this.props.three.debug });
+  };
+
   handler_resetLayouts = e => {
     this.props.resetLayouts({ target: false });
   };
@@ -194,7 +191,7 @@ class Settings extends React.Component {
             <BungieAuth location={location} />
           </div>
           <div className='module'>
-            <div className='sub-header sub'>
+          <div className='sub-header sub'>
               <div>{t('Theme')}</div>
             </div>
             <ul className='list settings'>
@@ -205,33 +202,6 @@ class Settings extends React.Component {
                 <Checkbox linked checked={this.props.theme.selected === 'dark-mode'} text={t('Dark mode')} />
               </li>
             </ul>
-            {/* <div className='sub-header sub'>
-              <div>{t('Tooltips')}</div>
-            </div>
-            <ul className='list settings'>
-              <li
-                key='simple'
-                onClick={() => {
-                  this.props.setTooltipDetailMode(false);
-                }}
-              >
-                <Checkbox linked checked={!this.props.tooltips.settings.detailedMode} text={t('Simple')} />
-                <div className='info'>
-                  <p>{t('Simple tooltips are displayed as per the game, displaying the same stats and socket plugs (perks and mods).')}</p>
-                </div>
-              </li>
-              <li
-                key='detailed'
-                onClick={() => {
-                  this.props.setTooltipDetailMode(true);
-                }}
-              >
-                <Checkbox linked checked={this.props.tooltips.settings.detailedMode} text={t('Detailed')} />
-                <div className='info'>
-                  <p>{t('Detailed tooltips are an alternate design that display hidden stats and list socket plugs (perks and mods) exhaustively.')}</p>
-                </div>
-              </li>
-            </ul> */}
             <div className='sub-header sub'>
               <div>{t('Local saved data')}</div>
             </div>
@@ -256,7 +226,18 @@ class Settings extends React.Component {
           </div>
           <div className='module'>
             <div className='sub-header sub'>
-              <div>{t('Visibility')}</div>
+              <div>{t('3D models')}</div>
+            </div>
+            <ul className='list settings'>
+              <li onClick={this.handler_toggleThree}>
+                <Checkbox linked checked={this.props.three.enabled} text={t('Display 3D models')} />
+              </li>
+              <div className='info'>
+                <p>{t('Enable 3D model display, where available. Not recommended for phones or low processing-power devices.')}</p>
+              </div>
+            </ul>
+            <div className='sub-header sub'>
+              <div>{t('Item visibility')}</div>
             </div>
             <ul className='list settings'>
               <li onClick={this.selectCollectibleDisplayState('hideCompletedChecklistItems')}>
@@ -309,6 +290,12 @@ class Settings extends React.Component {
               <div>{t('Developer')}</div>
             </div>
             <ul className='list settings'>
+              <li onClick={this.handler_toggleThreeDebugMode}>
+                <Checkbox linked checked={this.props.three.debug} text={t('Three.js debug mode')} />
+                <div className='info'>
+                  <p>{t('Displays extra information for debugging Three.js instances')}</p>
+                </div>
+              </li>
               <li onClick={this.handler_toggleMapsDebugMode}>
                 <Checkbox linked checked={this.props.maps.debug} text={t('Maps debug mode')} />
                 <div className='info'>
@@ -370,7 +357,8 @@ function mapStateToProps(state, ownProps) {
     theme: state.theme,
     tooltips: state.tooltips,
     collectibles: state.collectibles,
-    maps: state.maps
+    maps: state.maps,
+    three: state.three
   };
 }
 
@@ -394,6 +382,9 @@ function mapDispatchToProps(dispatch) {
     resetLayouts: value => {
       console.log('fuck')
       dispatch({ type: 'RESET_LAYOUTS', payload: value });
+    },
+    setThree: value => {
+      dispatch({ type: 'SET_THREE', payload: value });
     }
   };
 }

@@ -10,7 +10,7 @@ import * as bungie from '../../utils/bungie';
 import * as responseUtils from '../../utils/responseUtils';
 import * as utils from '../../utils/destinyUtils';
 import userFlair from '../../data/userFlair';
-import store from '../../utils/reduxStore';
+import store from '../../store';
 import ObservedImage from '../ObservedImage';
 import Spinner from '../UI/Spinner';
 import { Button, DestinyKey } from '../UI/Button';

@@ -1,4 +1,4 @@
-import store from './reduxStore';
+import store from '../store';
 import * as bungie from './bungie';
 
 export async function getPGCR(membershipId, id) {

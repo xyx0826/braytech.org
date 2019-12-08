@@ -7,7 +7,7 @@ import runOnceTasks from './utils/runOnceTasks';
 import packageJSON from '../package.json';
 import App from './App';
 
-import store from './utils/reduxStore';
+import store from './store';
 
 class AppEntry extends React.Component {
   constructor(props) {

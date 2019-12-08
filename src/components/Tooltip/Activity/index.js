@@ -340,6 +340,8 @@ class Activity extends React.Component {
 
       const eligibilityRequirements = member.data && member.data.profile && definitionActivity.eligibilityRequirements && utils.gameVersion(member.data.profile.profile.data.versionsOwned, definitionActivity.eligibilityRequirements.gameVersion);
 
+      if (checklist) console.log('// do something with me plz', checklist)
+
       return (
         <>
           <div className='acrylic' />

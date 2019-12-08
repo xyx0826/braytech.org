@@ -27,7 +27,7 @@ import * as bungie from './utils/bungie';
 import * as voluspa from './utils/voluspa';
 import * as ls from './utils/localStorage';
 import GoogleAnalytics from './components/GoogleAnalytics';
-import store from './utils/reduxStore';
+import store from './store';
 import manifest from './utils/manifest';
 
 import Header from './components/UI/Header';

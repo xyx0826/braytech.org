@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
 
-import store from '../../utils/reduxStore';
+import store from '../../store';
 import * as ls from '../../utils/localStorage';
 import Spinner from '../../components/UI/Spinner';
 import { BungieAuthMini } from '../../components/BungieAuth';

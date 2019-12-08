@@ -1,4 +1,4 @@
-import * as ls from '../localStorage';
+import * as ls from '../../utils/localStorage';
 
 const savedState = ls.get('setting.collectibleDisplayState') ? ls.get('setting.collectibleDisplayState') : {};
 const defaultState = {

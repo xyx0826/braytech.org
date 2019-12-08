@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import getMember from '../../utils/getMember';
-import store from '../../utils/reduxStore';
+import store from '../../store';
 
 const AUTO_REFRESH_INTERVAL = 30 * 1000;
 const TIMEOUT = 60 * 60 * 1000;

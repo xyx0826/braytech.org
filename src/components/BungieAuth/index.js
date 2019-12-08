@@ -7,7 +7,7 @@ import cx from 'classnames';
 import Moment from 'react-moment';
 import queryString from 'query-string';
 
-import store from '../../utils/reduxStore';
+import store from '../../store';
 import * as bungie from '../../utils/bungie';
 import * as destinyEnums from '../../utils/destinyEnums';
 import * as paths from '../../utils/paths';

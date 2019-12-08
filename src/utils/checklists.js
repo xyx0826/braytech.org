@@ -1,7 +1,7 @@
 import React from 'react';
 import { orderBy } from 'lodash';
 
-import store from './reduxStore';
+import store from '../store';
 import i18n from './i18n';
 
 import data from '../data/lowlines/checklists';

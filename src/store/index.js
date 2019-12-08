@@ -13,6 +13,7 @@ import collectibles from './reducers/collectibles.js';
 import viewport from './reducers/viewport.js';
 import maps from './reducers/maps.js';
 import layouts from './reducers/layouts.js';
+import three from './reducers/three.js';
 
 const rootReducer = combineReducers({
   theme,
@@ -27,16 +28,17 @@ const rootReducer = combineReducers({
   collectibles,
   viewport,
   maps,
-  layouts
+  layouts,
+  three
 });
 
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__({
-      actionsBlacklist: [],
-      // trace: true
-    })
+  // window.__REDUX_DEVTOOLS_EXTENSION__ &&
+  //   window.__REDUX_DEVTOOLS_EXTENSION__({
+  //     actionsBlacklist: [],
+  //     // trace: true
+  //   })
 );
 
 export default store;

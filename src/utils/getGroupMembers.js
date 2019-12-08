@@ -1,4 +1,4 @@
-import store from './reduxStore';
+import store from '../store';
 import * as bungie from './bungie';
 import * as responseUtils from './responseUtils';
 

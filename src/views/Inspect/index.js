@@ -25,7 +25,7 @@ class Inspect extends React.Component {
   }
 
   render() {
-    const { t, member, tooltips } = this.props;
+    const { t, member, three } = this.props;
 
     const definitionItem = manifest.DestinyInventoryItemDefinition[this.props.match.params.hash];
 
@@ -42,7 +42,7 @@ class Inspect extends React.Component {
             <div className='description'>{definitionItem.displayProperties.description}</div>
           </div>
         </div>
-        <Scene itemHash={definitionItem.hash} />
+        {three.enabled && <Scene itemHash={definitionItem.hash} />}
       </div>
     );
   }
@@ -50,7 +50,8 @@ class Inspect extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    member: state.member
+    member: state.member,
+    three: state.three
   };
 }
 
