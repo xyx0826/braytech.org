@@ -5,7 +5,7 @@ import TGXMaterial from './material';
 
 let vertexOffset = 0;
 
-export const compose = async content => {
+export const mesh = async data => {
 
   vertexOffset = 0;
 
@@ -27,8 +27,8 @@ export const compose = async content => {
 
   //--------
 
-  // var artContent = content.gear.art_content;
-  // var artContentSets = content.gear.art_content_sets;
+  // var artContent = data.gear.art_content;
+  // var artContentSets = data.gear.art_content_sets;
   // if (artContentSets && artContentSets.length > 1) {
   //   //console.log('Requires Arrangement', artContentSets);
   //   for (var r=0; r<artContentSets.length; r++) {
@@ -42,7 +42,7 @@ export const compose = async content => {
   //   artContent = artContentSets[0].arrangement;
   // }
 
-  const artContent = content.gear.art_content_sets[0].arrangement;
+  const artContent = data.gear.art_content_sets[0].arrangement;
 
   //--------
 
@@ -95,10 +95,10 @@ export const compose = async content => {
         }
       }
     } else {
-      var overrideArtArrangement = 1===1 ? gearSet.female_override_art_arrangement : gearSet.base_art_arrangement;
+      var overrideArtArrangement = 1===2 ? gearSet.female_override_art_arrangement : gearSet.base_art_arrangement;
       artRegionPatterns.push({
         hash: overrideArtArrangement.hash,
-        artRegion: 1===1 ? 'female' : 'male',
+        artRegion: 1===2 ? 'female' : 'male',
         patternIndex: -1,
         regionIndex: -1,
         geometry: overrideArtArrangement.geometry_hashes,
@@ -113,12 +113,12 @@ export const compose = async content => {
 
   //console.log('GeometryHashes', geometryHashes);
   //var geometryTextures = parseTextures(geometryHashes);
-  // var geometryTextures = textures(content, artRegionPatterns);
-  const geometryTextures = await parseTextures(content, artRegionPatterns);
+  // var geometryTextures = textures(data, artRegionPatterns);
+  const geometryTextures = await parseTextures(data, artRegionPatterns);
 
-  //var gearDyes = parseGearDyes(content.gear, shaderGear);
+  //var gearDyes = parseGearDyes(data.gear, shaderGear);
   //console.log('GearDyes', gearDyes);
-  const gearDyes = parseGearDyes(content, null);
+  const gearDyes = parseGearDyes(data, null);
 
   // Compress geometry into a single THREE.Geometry
   //if (geometryHashes.length == 0) console.warn('NoGeometry');
@@ -171,7 +171,9 @@ export const compose = async content => {
 
     for (var g=0; g<artRegionPattern.geometry.length; g++) {
       const geometryHash = artRegionPattern.geometry[g];
-      const tgxBin = content.tgx.geometry.find(t => t.fileIdentifier === geometryHash);
+      const tgxBin = data.tgx.geometry.find(t => t.fileIdentifier === geometryHash);
+
+      console.log(data.tgx.geometry, geometryHash)
 
       //if (g != 0) continue;
       //if (g != 1) continue;
@@ -184,7 +186,7 @@ export const compose = async content => {
 
       //var renderMeshes = parseTGXAsset(tgxBin, geometryHash);
 
-      parseGeometry(content, materials, geometry, geometryHash, geometryTextures, gearDyes);
+      parseGeometry(data, materials, geometry, geometryHash, geometryTextures, gearDyes);
     }
   }
 
@@ -196,7 +198,7 @@ export const compose = async content => {
 
   //return geometry;
 
-  return new THREE.Mesh(geometry, materials)
+  return new THREE.Mesh(geometry, materials);
 
 }
 
@@ -570,8 +572,8 @@ function copyGearDyeParams(gearDye, materialParams) {
   }
 }
 
-function parseMaterial(content, part, gearDye, geometryTextures) {
-  //console.log(content, part, gearDye, geometryTextures)
+function parseMaterial(data, part, gearDye, geometryTextures) {
+  //console.log(data, part, gearDye, geometryTextures)
   
   var materialParams = {
     //side: THREE.DoubleSide,
@@ -599,47 +601,23 @@ function parseMaterial(content, part, gearDye, geometryTextures) {
     gearstackMap: null,
     envMap: null
   };
-  for (var textureId in geometryTextures) {
+  
+  for (const textureId in geometryTextures) {
     textures[textureId] = geometryTextures[textureId];
   }
 
   if (part.shader) {
-    var shader = part.shader;
-    var staticTextureIds = shader.staticTextures ? shader.staticTextures : [];
-    var staticTextureCount = staticTextureIds.length;
+    const staticTextureIds = part.shader.staticTextures || [];
 
     copyGearDyeParams(gearDye, materialParams);
 
-    //if (!(part.flags & 0x1)) {
-    //	materialParams.useDye = false;
-    //	console.warn('NoDye', part, gearDye);
-    //}
-    //console.warn('SlotTypeIndex', gearDye.slotTypeIndex);
-
-    //
-
     if (part.flags & 0x8) {
-      //materialParams.useDye = true;
       materialParams.useAlphaTest = true;
       console.warn('AlphaTest', part, gearDye);
     }
 
-    if (part.flags & 0x4) {
-      //materialParams.emissive = emissive;
-    }
-
     if (part.flags & ~(0x8|0x10|0x5)) {
       console.warn('UnknownFlags', part.flags);
-    }
-
-    if (part.flags & 0x20) {
-      //materialParams.color = color;
-      //materialParams.emissive = emissive;
-      //materialParams.color = 0xff0000;
-      //textureLookup.push('map');
-      //textures.normalMap = null;
-      //textures.gearstackMap = null;
-
     }
 
     // Worldline Zero hack fix
@@ -648,12 +626,11 @@ function parseMaterial(content, part, gearDye, geometryTextures) {
       materialParams.useAlphaTest = false;
     }
 
-
     for (var i=0; i<staticTextureIds.length; i++) {
       const staticTextureId = staticTextureIds[i];
       console.log(staticTextureId)
 
-      const textureLookup = content.tgx.textures.find(f => f.loaded && f.lookup?.indexOf(staticTextureId) > -1);
+      const textureLookup = data.tgx.textures.find(f => f.loaded && f.lookup?.indexOf(staticTextureId) > -1);
       const staticTextureContent = textureLookup && textureLookup.data?.find(t => t.name === staticTextureId);
 
       if (!staticTextureContent) {
@@ -667,7 +644,7 @@ function parseMaterial(content, part, gearDye, geometryTextures) {
 
     var skipShader = false;
 
-    switch(shader.type) {
+    switch(part.shader.type) {
       case 7:
         for (var textureId in textures) {
           materialParams[textureId] = textures[textureId];
@@ -709,7 +686,7 @@ function parseMaterial(content, part, gearDye, geometryTextures) {
             var textureId = textureLookup[i];
 
             var staticTextureId = staticTextureIds[i];
-            var staticTextureContent = content.textures[staticTextureId];
+            var staticTextureContent = data.textures[staticTextureId];
 
             console.warn(textureId+'Texture', staticTextureContent ? staticTextureContent.reference_id : staticTextureContent);
 
@@ -728,7 +705,7 @@ function parseMaterial(content, part, gearDye, geometryTextures) {
       //	}
       //	break;
       default:
-        console.warn('UnknownShader', shader, part, gearDye);
+        console.warn('UnknownShader', part.shader, part, gearDye);
         skipShader = true;
         break;
     }
@@ -737,18 +714,22 @@ function parseMaterial(content, part, gearDye, geometryTextures) {
       for (var i=0; i<textureLookup.length; i++) {
         var textureId = textureLookup[i];
         var staticTextureId = staticTextureIds[i];
-        var staticTextureContent = content.textures[staticTextureId];
+        var staticTextureContent = data.textures[staticTextureId];
 
         console.log(`!skipShader`, textureId, staticTextureId)
 
-        //const textureLookup = content.tgx.textures.find(f => f.loaded && f.lookup?.indexOf(staticTextureId) > -1);
+        //const textureLookup = data.tgx.textures.find(f => f.loaded && f.lookup?.indexOf(staticTextureId) > -1);
         //const staticTextureContent = textureLookup && textureLookup.data?.find(t => t.name === staticTextureId);
         
         if (!staticTextureContent) {
           console.warn('MissingTexture['+staticTextureId+']');
           //continue;
         }
+
+        console.log(staticTextureContent)
+
         var staticTexture = staticTextureContent ? staticTextureContent.texture : null;
+
         switch(textureId) {
           case 'alphaMap':
             materialParams.transparent = true;
@@ -757,7 +738,9 @@ function parseMaterial(content, part, gearDye, geometryTextures) {
             staticTexture = loadCubeTexture(staticTexture);
             textureId = 'envMap';
             break;
+          default:
         }
+        
         materialParams[textureId] = staticTexture;
       }
 
@@ -772,10 +755,10 @@ function parseMaterial(content, part, gearDye, geometryTextures) {
   return false;
 }
 
-function loadCubeTexture(content, texture) {
+function loadCubeTexture(data, texture) {
   var textureId = (texture ? texture.name : 'null')+'__';
-  if (content.textures[textureId] !== undefined) {
-    return content.textures[textureId].texture;
+  if (data.textures[textureId] !== undefined) {
+    return data.textures[textureId].texture;
   }
 
   var loader = new THREE.CubeTextureLoader();
@@ -816,7 +799,7 @@ function loadCubeTexture(content, texture) {
 
   var cubeTexture = loader.load(images);
   cubeTexture.name = textureId;
-  content.textures[textureId] = {
+  data.textures[textureId] = {
     reference_id: textureId,
     texture: cubeTexture
   };
@@ -854,61 +837,35 @@ const parseGeometry = (content, materials, geometry, geometryHash, geometryTextu
   const tgxBin = content.tgx.geometry.find(t => t.fileIdentifier === geometryHash);
   const renderMeshes = parseTGXAsset(geometryHash, tgxBin);
 
-  //console.log('ParseGeometry', geometryHash, geometryTextures, gearDyes, materials.length);
+  const gearDyeSlotOffsets = [];
 
-  //if (geometryHash != '1780854371-0') return;
+  for (let i=0; i<gearDyes.length; i++) {
+    const gearDye = gearDyes[i];
 
-  //console.log('RenderMeshes', renderMeshes);
-  var gearDyeSlotOffsets = [];
+    gearDyeSlotOffsets.push(materials.length);
 
-  // if (loadTextures) {
-    for (var i=0; i<gearDyes.length; i++) {
-      var gearDye = gearDyes[i];
+    // Create a material for both primary and secondary color variants
+    for (let j=0; j<2; j++) {
+      const materialParams = {
+        skinning: false,
+        usePrimaryColor: j == 0,
+        envMap: null
+      };
 
-      gearDyeSlotOffsets.push(materials.length);
-
-      // Create a material for both primary and secondary color variants
-      for (var j=0; j<2; j++) {
-        var materialParams = {
-          //side: THREE.DoubleSide,
-          //overdraw: true,
-          skinning: false,
-          //color: 0x777777,
-          //emissive: 0x444444,
-          usePrimaryColor: j == 0,
-          envMap: null
-        };
-        //materialParams.envMap = contentLoaded.textures[DEFAULT_CUBEMAP].texture;
-        for (var textureId in geometryTextures[geometryHash]) {
-          var texture = geometryTextures[geometryHash][textureId];
-
-          console.log(texture);
-          
-          materialParams[textureId] = texture;
-          //
-          ////if (j == 0) logTexture(textureId, texture);
-          //
-          //switch(textureId) {
-          //	case 'diffuse': materialParams.map = texture; break;
-          //	case 'normal': materialParams.normalMap = texture; break;
-          //	case 'gearstack': materialParams.gearstackMap = texture; break;
-          //	default:
-          //		console.warn('UnknownGeometryTexture', textureId);
-          //		break;
-          //}
-        }
-
-        copyGearDyeParams(gearDye, materialParams);
-
-        var material = new TGXMaterial(materialParams);
-        //var material = new THREE.MeshPhongMaterial(materialParams);
-        material.name = geometryHash + '-' + (j == 0 ? 'Primary' : 'Secondary') + i;
+      for (const textureId in geometryTextures[geometryHash]) {
+        const texture = geometryTextures[geometryHash][textureId];
         
-        materials.push(material);
-        //console.log('MaterialName:'+material.name, material);
+        materialParams[textureId] = texture;
       }
+
+      copyGearDyeParams(gearDye, materialParams);
+
+      const material = new TGXMaterial(materialParams);
+      material.name = geometryHash + '-' + (j == 0 ? 'Primary' : 'Secondary') + i;
+      
+      materials.push(material);
     }
-  // }
+  }
 
   for (var m=0; m<renderMeshes.length; m++) {
     var renderMesh = renderMeshes[m];
@@ -921,20 +878,16 @@ const parseGeometry = (content, materials, geometry, geometryHash, geometryTextu
     var texcoordScale = renderMesh.texcoordScale;
     var parts = renderMesh.parts;
 
-    //if (m != 0) continue;
-    //if (m != 1) continue;
-
     if (parts.length == 0) {
       console.log('Skipped RenderMesh['+geometryHash+':'+m+']: No parts');
       continue;
-    } // Skip meshes with no parts
-
-    //console.log('RenderMesh['+m+']', renderMesh);
+    }
 
     // Spasm.Renderable.prototype.render
-    var partCount = -1;
-    for (var p=0; p<parts.length; p++) {
-      var part = parts[p];
+    let partCount = -1;
+
+    for (let p=0; p<parts.length; p++) {
+      const part = parts[p];
 
       if (!checkRenderPart(part)) continue;
 
@@ -948,42 +901,43 @@ const parseGeometry = (content, materials, geometry, geometryHash, geometryTextu
       // Phoenix Strife Type 0 - Feathers
       //if (m != 1 && p != 1) continue;
 
-      console.log('RenderMeshPart['+geometryHash+':'+m+':'+p+']', part);
+      console.log('RenderMeshPart[' + geometryHash + ':' + m + ':' + p + ']', part);
+      
       partCount++;
 
-      var gearDyeSlot = part.gearDyeSlot;
+      if (gearDyeSlotOffsets[part.gearDyeSlot] == undefined) {
+        console.warn('MissingDefaultDyeSlot', part.gearDyeSlot);
 
-      if (gearDyeSlotOffsets[gearDyeSlot] == undefined) {
-        console.warn('MissingDefaultDyeSlot', gearDyeSlot);
-        gearDyeSlot = 0;
+        part.gearDyeSlot = 0;
       }
-      var materialIndex = gearDyeSlotOffsets[gearDyeSlot]+(part.usePrimaryColor ? 0 : 1);
+
+      let materialIndex = gearDyeSlotOffsets[part.gearDyeSlot]+(part.usePrimaryColor ? 0 : 1);
 
       //console.log('RenderMeshPart['+geometryHash+':'+m+':'+p+']', part);
 
       // Load Material
       //if (loadTextures) {
-        var textures = geometryTextures[geometryHash];
-        if (!textures) {
-          //console.warn('NoGeometryTextures['+geometryHash+']', part);
-        } else {
-          //continue;
+      const textures = geometryTextures[geometryHash];
+      
+      if (!textures) {
+        //console.warn('NoGeometryTextures['+geometryHash+']', part);
+      } else {
+        //continue;
       }
 
-      var material = parseMaterial(content, part, gearDyes[gearDyeSlot], textures);
+      const material = parseMaterial(content, part, gearDyes[part.gearDyeSlot], textures);
 
-        if (material) {
-          material.name = geometryHash+'-CustomShader'+m+'-'+p;
-          materials.push(material);
-          materialIndex = materials.length-1;
-          //console.log('MaterialName['+materialIndex+']:'+material.name);
-        }
-      //}
+      if (material) {
+        material.name = geometryHash+'-CustomShader'+m+'-'+p;
+        materials.push(material);
+        materialIndex = materials.length-1;
+        //console.log('MaterialName['+materialIndex+']:'+material.name);
+      }
 
       // Load Vertex Stream
-      var increment = 3;
-      var start = part.indexStart;
-      var count = part.indexCount;
+      let increment = 3;
+      let start = part.indexStart;
+      let count = part.indexCount;
 
       // PrimitiveType, 3=TRIANGLES, 5=TRIANGLE_STRIP
       // https://stackoverflow.com/questions/3485034/convert-triangle-strips-to-triangles
@@ -993,39 +947,40 @@ const parseGeometry = (content, materials, geometry, geometryHash, geometryTextu
         count -= 2;
       }
 
-      for (var i=0; i<count; i+= increment) {
-        var faceVertexNormals = [];
-        var faceVertexUvs = [];
-        var faceVertex = [];
+      for (let i=0; i<count; i+= increment) {
+        const faceVertexNormals = [];
+        const faceVertexUvs = [];
+        const faceVertex = [];
 
-        var faceColors = [];
+        const faceColors = [];
 
-        var detailVertexUvs = [];
+        const detailVertexUvs = [];
 
-        var faceIndex = start+i;
+        const faceIndex = start+i;
 
-        var tri = part.primitiveType === 3 || i & 1 ? [0, 1, 2] : [2, 1, 0];
+        const tri = part.primitiveType === 3 || i & 1 ? [0, 1, 2] : [2, 1, 0];
 
-        for (var j=0; j<3; j++) {
-          var index = indexBuffer[faceIndex+tri[j]];
-          var vertex = vertexBuffer[index];
+        for (let j=0; j<3; j++) {
+          const index = indexBuffer[faceIndex+tri[j]];
+          const vertex = vertexBuffer[index];
           if (!vertex) { // Verona Mesh
             console.warn('MissingVertex['+index+']');
             i=count;
             break;
           }
-          var normal = vertex.normal0;
-          var uv = vertex.texcoord0;
-          var color = vertex.color0;
 
-          var detailUv = vertex.texcoord2;
+          const normal = vertex.normal0;
+          const uv = vertex.texcoord0;
+          const color = vertex.color0;
+
+          let detailUv = vertex.texcoord2;
           if (!detailUv) detailUv = [0, 0];
 
           faceVertex.push(index+vertexOffset);
           faceVertexNormals.push(new THREE.Vector3(-normal[0], -normal[1], -normal[2]));
 
-          var uvu = uv[0]*texcoordScale[0]+texcoordOffset[0];
-          var uvv = uv[1]*texcoordScale[1]+texcoordOffset[1];
+          const uvu = uv[0]*texcoordScale[0]+texcoordOffset[0];
+          const uvv = uv[1]*texcoordScale[1]+texcoordOffset[1];
           faceVertexUvs.push(new THREE.Vector2(uvu, uvv));
 
           if (color) {
@@ -1033,46 +988,36 @@ const parseGeometry = (content, materials, geometry, geometryHash, geometryTextu
             faceColors.push(new THREE.Color(color[0], color[1], color[2]));
           }
 
-          //if (p == 10) {
-          //	console.log('Vertex['+j+']', index, vertex);
-          //}
-
-          //console.log(
-          //	uv[0]+','+uv[1],
-          //	texcoordScale[0]+'x'+texcoordScale[1],
-          //	texcoordOffset[0]+','+texcoordOffset[1],
-          //	detailUv[0]+','+detailUv[1]
-          //);
-
           detailVertexUvs.push(new THREE.Vector2(
             uvu*detailUv[0],
             uvv*detailUv[1]
           ));
         }
-        var face = new THREE.Face3(faceVertex[0], faceVertex[1], faceVertex[2], faceVertexNormals);
+
+        const face = new THREE.Face3(faceVertex[0], faceVertex[1], faceVertex[2], faceVertexNormals);
+
         face.materialIndex = materialIndex;
+
         if (faceColors.length > 0) face.vertexColors = faceColors;
+
         geometry.faces.push(face);
         geometry.faceVertexUvs[0].push(faceVertexUvs);
 
         if (geometry.faceVertexUvs.length < 2) geometry.faceVertexUvs.push([]);
-        //geometry.faceVertexUvs[1].push(detailVertexUvs);
       }
     }
 
-    //return;
-
-    for (var v=0; v<vertexBuffer.length; v++) {
+    for (let v=0; v<vertexBuffer.length; v++) {
       var vertex = vertexBuffer[v];
       var position = vertex.position0;
-      var x = position[0];//*positionScale[0]+positionOffset[0];
-      var y = position[1];//*positionScale[1]+positionOffset[1];
-      var z = position[2];//*positionScale[2]+positionOffset[2]; // Apply negative scale to fix lighting
+      var x = position[0];
+      var y = position[1];
+      var z = position[2];
 
       geometry.vertices.push(new THREE.Vector3(x, y, z));
 
       // Set bone weights
-      var boneIndex = position[3];//Math.abs((positionOffset[3] * 32767.0) + 0.01);
+      var boneIndex = position[3];
       //var bone = geometry.bones[boneIndex];
 
       var blendIndices = vertex.blendindices0 ? vertex.blendindices0 : [boneIndex, 255, 255, 255];
@@ -1082,13 +1027,15 @@ const parseGeometry = (content, materials, geometry, geometryHash, geometryTextu
       var skinWeight = [0, 0, 0, 0];
 
       var totalWeights = 0;
+
       for (var w=0; w<blendIndices.length; w++) {
         if (blendIndices[w] == 255) break;
         skinIndex[w] = blendIndices[w];
         skinWeight[w] = blendWeights[w];
         totalWeights += blendWeights[w]*255;
       }
-      if (totalWeights != 255) console.error('MissingBoneWeight', 255-totalWeights, i, j);
+
+      if (totalWeights != 255) console.error('MissingBoneWeight', 255-totalWeights);
 
       geometry.skinIndices.push(new THREE.Vector4().fromArray(skinIndex));
       geometry.skinWeights.push(new THREE.Vector4().fromArray(skinWeight));
@@ -1101,9 +1048,9 @@ const parseGeometry = (content, materials, geometry, geometryHash, geometryTextu
 }
 
 const parseTextures = async (content, artRegionPatterns) => {
-  var canvas, ctx;
-  var canvasPlates = {};
-  var geometryTextures = [];
+  let canvas, ctx;
+  const canvasPlates = {};
+  const geometryTextures = [];
 
   //for (var g=0; g<geometryHashes.length; g++) {
   //var geometryHash = geometryHashes[g];
@@ -1226,7 +1173,7 @@ const parseTextures = async (content, artRegionPatterns) => {
     const canvasPlate = canvasPlates[canvasPlateId];
     const dataUrl = canvasPlate.canvas.toDataURL('image/png');
 
-    console.log(canvasPlate, canvasPlates, dataUrl);
+    console.log(canvasPlate, canvasPlates);
     logImageSrc(dataUrl);
 
     const platedTexture = await new Promise((resolve, reject) => {

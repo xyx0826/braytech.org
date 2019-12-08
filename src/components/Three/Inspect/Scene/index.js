@@ -6,31 +6,105 @@ import TGXLoader from '../../TGXLoader';
 
 class Scene extends Component {
   componentDidMount() {
+    this.createScene();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize, false);
+
+    this.stop();
+
+    this.mount.removeChild(this.renderer.domElement);
+  }
+
+  createScene = () => {
+    const { debug, gender } = this.props;
+
+    const lightShadows = {
+      enabled: true,
+      type: THREE.PCFSoftShadowMap,
+      mapSize: {
+        width: 1024,
+        height: 1024
+      },
+      radius: 2
+    }
+
     const width = this.mount.clientWidth;
     const height = this.mount.clientHeight;
-
-    this.scene = new THREE.Scene();
-
-    this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    this.camera.position.set(0, 4, 12);
-    this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     this.renderer.setClearColor(0x000000, 0);
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(width, height);
+    this.renderer.shadowMap.enabled = lightShadows.enabled;
+    this.renderer.shadowMap.type = lightShadows.type;
 
-    this.ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-    this.ambientLight.position.set(0, 0, 0);
-    this.scene.add(this.ambientLight);
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
 
-    this.mainLight = new THREE.PointLight(0xffffff, 0.8);
-    this.mainLight.position.set(2, 5, 2);
-    this.mainLightHelper = new THREE.PointLightHelper(this.mainLight, 0.4, 'red');
-    this.scene.add(this.mainLight, this.mainLightHelper);
+    // as per game
+    this.camera.position.set(0, 2, 7);
 
-    this.gridHelper = new THREE.GridHelper(10, 10, 0xffffff, 0xffffff);
-    this.scene.add(this.gridHelper);
+    // bird's eye
+    // this.camera.position.set(0, 30, 0);
+
+    this.camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+    window.camera = this.camera;
+
+    this.group = new THREE.Group();
+    this.group.position.set(2, 0.5, 0);
+
+    this.scene.add(this.group);
+
+    this.topLight = new THREE.DirectionalLight(0xffffff, 2);
+    this.topLight.position.set(0, 100, 0);
+    this.topLight.castShadow = true;
+    this.topLight.shadow.mapSize.width = lightShadows.mapSize.width;
+    this.topLight.shadow.mapSize.height = lightShadows.mapSize.height;
+    this.topLight.shadow.radius = lightShadows.radius;
+    this.scene.add(this.topLight);
+
+    this.rightLight = new THREE.DirectionalLight(0xffffff, 1);
+    this.rightLight.position.set(-8, 10, -8);
+    this.rightLight.castShadow = false;
+    this.rightLight.shadow.mapSize.width = lightShadows.mapSize.width;
+    this.rightLight.shadow.mapSize.height = lightShadows.mapSize.height;
+    this.rightLight.shadow.radius = lightShadows.radius;
+    this.scene.add(this.rightLight);
+
+    this.leftLight = new THREE.DirectionalLight(0xffffff, 1);
+    this.leftLight.position.set(8, 2, 8);
+    this.leftLight.castShadow = false;
+    this.leftLight.shadow.mapSize.width = lightShadows.mapSize.width;
+    this.leftLight.shadow.mapSize.height = lightShadows.mapSize.height;
+    this.leftLight.shadow.radius = lightShadows.radius;
+    this.scene.add(this.leftLight);
+
+    if (debug) {
+
+      const plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(20, 20, 32, 32), new THREE.MeshStandardMaterial({ color: 0x00ff00 }));
+      plane.receiveShadow = true;
+      plane.rotation.set(THREE.Math.degToRad(-90), 0, 0);
+      plane.position.set(0, -2.5, 0);
+      this.scene.add(plane);
+
+      this.gridHelper = new THREE.GridHelper(300, 200, 0xffffff, 0xffffff);
+      this.scene.add(this.gridHelper);
+
+      window.group = this.group;
+
+      window.topLight = this.topLight
+      window.rightLight = this.rightLight
+      window.leftLight = this.leftLight
+
+      this.topLightHeper = new THREE.DirectionalLightHelper(this.topLight, 0.4, 'black');
+      this.leftLightHeper = new THREE.DirectionalLightHelper(this.leftLight, 0.4, 'red');
+      this.rightLightHeper = new THREE.DirectionalLightHelper(this.rightLight, 0.4, 'green');
+      this.scene.add(this.topLightHeper, this.leftLightHeper, this.rightLightHeper);
+      
+    }
 
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
     controls.enableDamping = true;
@@ -41,33 +115,15 @@ class Scene extends Component {
 
     window.addEventListener('resize', this.handleResize, false);
 
-    const group = new THREE.Group();
-    // group.position.set(-5, 0, -5);
-
-    this.group = group;
-
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshPhysicalMaterial({
-      metalness: 0.5,
-      roughness: 0.5
-    });
-
-    const mesh = new THREE.Mesh(geometry, material);
-
-    // this.group.add(mesh);
-
-    this.scene.add(this.group);
-
     this.start();
 
-    this.model();
-  }
+    this.model(debug, gender);
+  };
 
-  model = async () => {
-    const response = await fetch(`https://lowlidev.com.au/destiny/api/gearasset/${this.props.itemHash || 3580904581}?destiny2`)
-      .then(async r => await r.json());
+  model = async (debug, gender) => {
+    const response = await fetch(`https://lowlidev.com.au/destiny/api/gearasset/${this.props.itemHash || 3580904581}?destiny2`).then(async r => await r.json());
 
-    const content = {
+    const data = {
       gear: {
         filename: response.gearAsset.gear[0],
         loaded: false
@@ -83,34 +139,35 @@ class Scene extends Component {
         female_index_set: response.gearAsset.content[0].female_index_set,
         male_index_set: response.gearAsset.content[0].male_index_set
       }
-    }
+    };
 
-    await TGXLoader.load(content);
+    // apply params to data
+    data.debug = Boolean(debug);
+    data.gender = gender || 'male';
 
-    console.log(content);
+    // trigger TGXLoader
+    await TGXLoader.load(data);
 
-    const mesh = await TGXLoader.compose(content);
+    // data loaded to self, get the mesh
+    const mesh = await TGXLoader.mesh(data);
 
-    console.log(mesh);
+    console.log(data, mesh);
 
-    //const mesh = new THREE.Mesh(geometry, material);
+    // rotate
+    mesh.rotation.set(THREE.Math.degToRad(-90), 0, THREE.Math.degToRad(-140));
 
-    mesh.rotation.x = -(Math.PI / 2);
+    // scale
+    mesh.scale.set(10, 10, 10);
 
-    mesh.scale.set(10, 10, 10)
+    // center
+    mesh.geometry.center();
 
-    // this.scene.add(mesh);
+    // shadow
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+
     this.group.add(mesh);
-
   };
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize, false);
-
-    this.stop();
-
-    this.mount.removeChild(this.renderer.domElement);
-  }
 
   handleResize = () => {
     const width = this.mount.clientWidth;
@@ -118,6 +175,7 @@ class Scene extends Component {
 
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
+
     this.renderer.setSize(width, height);
   };
 

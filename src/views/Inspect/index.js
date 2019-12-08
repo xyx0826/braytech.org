@@ -42,7 +42,7 @@ class Inspect extends React.Component {
             <div className='description'>{definitionItem.displayProperties.description}</div>
           </div>
         </div>
-        {three.enabled && <Scene itemHash={definitionItem.hash} />}
+        {three.enabled && <Scene itemHash={definitionItem.hash} {...three} />}
       </div>
     );
   }

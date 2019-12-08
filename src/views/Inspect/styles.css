@@ -23,6 +23,7 @@
   left: 0;
   height: 100%;
   width: 100%;
+  z-index: 10;
 }
 
 #inspect .image.screenshot {
@@ -49,6 +50,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-gap: 3rem;
+  display: none;
 }
 
 #inspect.weapon .row {

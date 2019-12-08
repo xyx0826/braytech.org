@@ -1,7 +1,7 @@
 import { load } from './loader.js';
-import { compose } from './compose.js';
+import { mesh } from './mesh.js';
 
 export default {
   load,
-  compose
+  mesh
 };

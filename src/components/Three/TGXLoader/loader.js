@@ -103,7 +103,7 @@ const loadContent = async content => {
   const filteredRegionIndexSets = [];
 
   if (content.indexes.dye_index_set) {
-    filteredRegionIndexSets.push(content.dye_index_set);
+    filteredRegionIndexSets.push(content.indexes.dye_index_set);
   }
 
   if (content.indexes.region_index_sets) { // Use gender neutral sets
@@ -114,9 +114,9 @@ const loadContent = async content => {
         filteredRegionIndexSets.push(regionIndexSet[j]);
       }
     }
-  } else if (content.female_index_set && content.male_index_set) { // Use gender-specific set (i.e. armor)
-
-    // filteredRegionIndexSets.push(isFemale ? content.female_index_set : content.male_index_set);
+  } else if (content.indexes.female_index_set && content.indexes.male_index_set) { // Use gender-specific set (i.e. armor)
+    let isFemale = false;
+    filteredRegionIndexSets.push(isFemale ? content.indexes.female_index_set : content.indexes.male_index_set);
   } else {
     // This is probably a shader
   }
@@ -172,26 +172,23 @@ const loadContent = async content => {
         loaded: true
       }
     }
-  }));
+  }));   
 
-  //if (loadTextures) {  
-   
-
-    // Load Textures
-    await Promise.all(content.tgx.textures.map(async (geometry, i) => {
-      if (textureIndexes.indexOf(i) > -1) {
-        const filename = content.tgx.textures[i].filename;
-        const tgx = await TGX(`https://www.bungie.net/common/destiny2_content/geometry/platform/mobile/textures/${filename}`);
-    
-        content.tgx.textures[i] = {
-          ...content.tgx.textures[i],
-          ...tgx,
-          reference_id: filename.split('.')[0],
-          data: await createTexture(tgx),
-          loaded: true
-        }
+  // Load Textures
+  await Promise.all(content.tgx.textures.map(async (geometry, i) => {
+    if (textureIndexes.indexOf(i) > -1) {
+      const filename = content.tgx.textures[i].filename;
+      const tgx = await TGX(`https://www.bungie.net/common/destiny2_content/geometry/platform/mobile/textures/${filename}`);
+  
+      content.tgx.textures[i] = {
+        ...content.tgx.textures[i],
+        ...tgx,
+        reference_id: filename.split('.')[0],
+        data: await createTexture(tgx),
+        loaded: true
       }
-    }));
+    }
+  }));
 
   //   // Load Plated Textures
   //   for (var platedTextureIndex in platedTextureIndexes) {
