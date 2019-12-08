@@ -18,10 +18,10 @@ class Scene extends Component {
   }
 
   createScene = () => {
-    const { debug, gender } = this.props;
+    const { debug, gender, shadows } = this.props;
 
     const lightShadows = {
-      enabled: true,
+      enabled: shadows,
       type: THREE.PCFSoftShadowMap,
       mapSize: {
         width: 1024,
@@ -58,7 +58,7 @@ class Scene extends Component {
 
     this.scene.add(this.group);
 
-    this.topLight = new THREE.DirectionalLight(0xffffff, 2);
+    this.topLight = new THREE.DirectionalLight(0xffffff, lightShadows.enabled ? 2 : 1);
     this.topLight.position.set(0, 100, 0);
     this.topLight.castShadow = true;
     this.topLight.shadow.mapSize.width = lightShadows.mapSize.width;
@@ -83,7 +83,6 @@ class Scene extends Component {
     this.scene.add(this.leftLight);
 
     if (debug) {
-
       const plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(20, 20, 32, 32), new THREE.MeshStandardMaterial({ color: 0x00ff00 }));
       plane.receiveShadow = true;
       plane.rotation.set(THREE.Math.degToRad(-90), 0, 0);
@@ -103,7 +102,6 @@ class Scene extends Component {
       this.leftLightHeper = new THREE.DirectionalLightHelper(this.leftLight, 0.4, 'red');
       this.rightLightHeper = new THREE.DirectionalLightHelper(this.rightLight, 0.4, 'green');
       this.scene.add(this.topLightHeper, this.leftLightHeper, this.rightLightHeper);
-      
     }
 
     const controls = new OrbitControls(this.camera, this.renderer.domElement);

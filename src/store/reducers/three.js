@@ -3,7 +3,8 @@ import * as ls from '../../utils/localStorage';
 const lsState = ls.get('setting.three') ? ls.get('setting.three') : {};
 const defaultState = {
   debug: false,
-  enabled: false
+  enabled: false,
+  shadows: true
 };
 
 export default function reducer(state = {...defaultState, ...lsState}, action) {

@@ -129,6 +129,10 @@ class Settings extends React.Component {
     this.props.setThree({ debug: !this.props.three.debug });
   };
 
+  handler_toggleThreeShadows = e => {
+    this.props.setThree({ shadows: !this.props.three.shadows });
+  };
+
   handler_resetLayouts = e => {
     this.props.resetLayouts({ target: false });
   };
@@ -230,11 +234,21 @@ class Settings extends React.Component {
             </div>
             <ul className='list settings'>
               <li onClick={this.handler_toggleThree}>
-                <Checkbox linked checked={this.props.three.enabled} text={t('Display 3D models')} />
+                <Checkbox linked checked={this.props.three.enabled} text={t('Use 3D models')} />
+                <div className='info'>
+                  <p>{t('Where available, use 3D models. Not recommended for phones or low processing-power devices.')}</p>
+                </div>
               </li>
-              <div className='info'>
-                <p>{t('Enable 3D model display, where available. Not recommended for phones or low processing-power devices.')}</p>
-              </div>
+              {this.props.three.enabled ? (
+                <>
+                  <li onClick={this.handler_toggleThreeShadows}>
+                    <Checkbox linked checked={this.props.three.shadows} text={t('Use shadows')} />
+                    <div className='info'>
+                      <p>{t('Models will cast shadows upon themselves for a more realistic and true representation. Affects performance.')}</p>
+                    </div>
+                  </li>
+                </>
+              ) : null}
             </ul>
             <div className='sub-header sub'>
               <div>{t('Item visibility')}</div>
