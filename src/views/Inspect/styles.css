@@ -17,15 +17,6 @@
   --commonDark: 0, 0%, 7%;
 }
 
-#inspect .render {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 10;
-}
-
 #inspect .image.screenshot {
   position: fixed;
   top: 40px;

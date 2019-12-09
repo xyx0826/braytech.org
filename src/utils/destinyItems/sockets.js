@@ -218,7 +218,7 @@ function buildDefinedSockets(item) {
 
   return {
     sockets: compact(realSockets), // Flat list of sockets
-    socketCategories: categories.sort(utils.compareBy(c => c.category.index)) // Sockets organized by category
+    socketCategories: orderBy(categories.sort(utils.compareBy(c => c.category.index)), [c => c.sockets.filter(s => s.isIntrinsic).length], ['desc']) // sockets organized by category then I force intrinsic-containing categories to top
   };
 }
 

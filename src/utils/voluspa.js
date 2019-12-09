@@ -25,6 +25,30 @@ export async function statistics(payload) {
   } catch (e) {}
 }
 
+export async function gearAsset(reference_id) {
+  try {
+    const request = await fetch(`https://voluspa.braytech.org/manifest/gear-asset/?reference_id=${reference_id}`, {
+      method: 'GET',
+      cache: 'no-cache',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (request.ok) {
+      const response = await request.json();
+
+      if (response.ErrorCode === 1) {
+        return response.Response;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  } catch (e) {}
+}
+
 class VoluspaError extends Error {
   constructor(request) {
     super(request.Message);

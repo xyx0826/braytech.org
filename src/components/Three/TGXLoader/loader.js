@@ -2,21 +2,21 @@ import * as THREE from 'three';
 
 import * as utils from './utils';
 
-export const load = async content => {
+export const load = async data => {
 
-  if (!content.gear.loaded) {
-    const response = await get(`https://www.bungie.net/common/destiny2_content/geometry/gear/${content.gear.filename}`);
+  if (!data.gear.loaded) {
+    const response = await get(`https://www.bungie.net/common/destiny2_content/geometry/gear/${data.gear.filename}`);
     
-    content.gear = {
-      ...content.gear,
+    data.gear = {
+      ...data.gear,
       ...response,
       loaded: true
     };
   }
 
-  await loadContent(content);
+  await loadContent(data);
 
-  return content;
+  return data;
 
 }
 
@@ -54,7 +54,7 @@ const TGX = async url => {
   var fileIdentifier = utils.string(data, 0x10, 0x100);
   //console.log(magic, version, fileOffset.toString(16), fileCount, fileIdentifier);
   if (magic != 'TGXM') {
-    console.error('Invalid TGX File', url);
+    if (data.debug) console.error('Invalid TGX File', url);
     return;
   }
   var files = [];
@@ -94,29 +94,28 @@ const TGX = async url => {
   //contentLoaded.tgxms[url.indexOf('.bin') != -1 ? 'textures' : 'geometry'][url.slice(url.lastIndexOf('/')+1).split('.')[0]] = tgxBin;
 }
 
-const DEFAULT_CUBEMAP = '2164797681_default_monocrome_cubemap'/*'env_0'*/;
+const DEFAULT_CUBEMAP = '2164797681_default_monocrome_cubemap'; /*'env_0'*/;
 
-const loadContent = async content => {
+const loadContent = async data => {
 
   // determine what should be loaded i.e. male or female bits
 
   const filteredRegionIndexSets = [];
 
-  if (content.indexes.dye_index_set) {
-    filteredRegionIndexSets.push(content.indexes.dye_index_set);
+  if (data.indexes.dye_index_set) {
+    filteredRegionIndexSets.push(data.indexes.dye_index_set);
   }
 
-  if (content.indexes.region_index_sets) { // Use gender neutral sets
-    for (var setIndex in content.indexes.region_index_sets) {
-      const regionIndexSet = content.indexes.region_index_sets[setIndex];
+  if (data.indexes.region_index_sets) { // Use gender neutral sets
+    for (var setIndex in data.indexes.region_index_sets) {
+      const regionIndexSet = data.indexes.region_index_sets[setIndex];
       
       for (var j=0; j<regionIndexSet.length; j++) {
         filteredRegionIndexSets.push(regionIndexSet[j]);
       }
     }
-  } else if (content.indexes.female_index_set && content.indexes.male_index_set) { // Use gender-specific set (i.e. armor)
-    let isFemale = false;
-    filteredRegionIndexSets.push(isFemale ? content.indexes.female_index_set : content.indexes.male_index_set);
+  } else if (data.indexes.female_index_set && data.indexes.male_index_set) { // Use gender-specific set (i.e. armor)
+    filteredRegionIndexSets.push(data.gender === 'female' ? data.indexes.female_index_set : data.indexes.male_index_set);
   } else {
     // This is probably a shader
   }
@@ -132,7 +131,7 @@ const loadContent = async content => {
     var index, i;
 
     if (filteredRegionIndexSet == undefined) {
-      console.warn('MissingFilterRegionIndexSet', filteredRegionIndex, filteredRegionIndexSets);
+      if (data.debug) console.warn('MissingFilterRegionIndexSet', filteredRegionIndex, filteredRegionIndexSets);
       continue;
     }
 
@@ -147,12 +146,12 @@ const loadContent = async content => {
     }
 
     if (filteredRegionIndexSet.shaders) {
-      console.warn('AssetHasShaders['+i+']', filteredRegionIndexSet.shaders);
+      if (data.debug) console.warn('AssetHasShaders['+i+']', filteredRegionIndexSet.shaders);
     }
   }
 
   // Remember everything for later
-  content.regions = {
+  data.regions = {
     //indexSets: filteredRegionIndexSets,
     geometry: {},
     textures: {},
@@ -161,13 +160,13 @@ const loadContent = async content => {
   };
 
   // Load Geometry
-  await Promise.all(content.tgx.geometry.map(async (geometry, i) => {
+  await Promise.all(data.tgx.geometry.map(async (geometry, i) => {
     if (geometryIndexes.indexOf(i) > -1) {
-      const filename = content.tgx.geometry[i].filename;
+      const filename = data.tgx.geometry[i].filename;
       const tgx = await TGX(`https://www.bungie.net/common/destiny2_content/geometry/platform/mobile/geometry/${filename}`);
   
-      content.tgx.geometry[i] = {
-        ...content.tgx.geometry[i],
+      data.tgx.geometry[i] = {
+        ...data.tgx.geometry[i],
         ...tgx,
         loaded: true
       }
@@ -175,13 +174,13 @@ const loadContent = async content => {
   }));   
 
   // Load Textures
-  await Promise.all(content.tgx.textures.map(async (geometry, i) => {
+  await Promise.all(data.tgx.textures.map(async (geometry, i) => {
     if (textureIndexes.indexOf(i) > -1) {
-      const filename = content.tgx.textures[i].filename;
+      const filename = data.tgx.textures[i].filename;
       const tgx = await TGX(`https://www.bungie.net/common/destiny2_content/geometry/platform/mobile/textures/${filename}`);
   
-      content.tgx.textures[i] = {
-        ...content.tgx.textures[i],
+      data.tgx.textures[i] = {
+        ...data.tgx.textures[i],
         ...tgx,
         reference_id: filename.split('.')[0],
         data: await createTexture(tgx),
@@ -193,7 +192,7 @@ const loadContent = async content => {
   //   // Load Plated Textures
   //   for (var platedTextureIndex in platedTextureIndexes) {
   //     (function(platedTextureIndex) {
-  //       var platedTexture = content.plate_regions[platedTextureIndex];
+  //       var platedTexture = data.plate_regions[platedTextureIndex];
   //       loadTexture(platedTexture, true, function(textureData) {
   //         contentRegions.platedTextures[platedTextureIndex] = textureData.reference_id;
   //         assetLoadCount++;
@@ -216,10 +215,10 @@ const loadContent = async content => {
   const canvas_EnvMapUrl = canvas_EnvMap.toDataURL('image/png');
   const texture_envMap = new THREE.TextureLoader().load(canvas_EnvMapUrl);
 
-  console.log(texture_envMap, content)
+  if (data.debug) console.log(texture_envMap, data)
 
-  // add envMap to content.textures
-  content.tgx.textures.splice(0, 1, {
+  // add envMap to data.textures
+  data.tgx.textures.splice(0, 1, {
     name: 'defaultCubemap',
     reference_id: DEFAULT_CUBEMAP,
     filename: DEFAULT_CUBEMAP,
@@ -227,9 +226,9 @@ const loadContent = async content => {
     loaded: true
   });
 
-  console.log(`Party.`, content);
+  if (data.debug) console.log(`Party.`, data);
 
-  return content;
+  return data;
 
 }
 

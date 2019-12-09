@@ -11,14 +11,6 @@ export const mesh = async data => {
 
   const geometry = new THREE.Geometry();
 
-  // Set up default white material
-  const defaultMaterial = new THREE.MeshPhysicalMaterial({
-    metalness: 0.5,
-    roughness: 0.5,
-    side: THREE.DoubleSide
-  });
-  defaultMaterial.name = 'DefaultMaterial';
-
   const materials = [];
 
   // Figure out which geometry should be loaded ie class, gender
@@ -27,22 +19,22 @@ export const mesh = async data => {
 
   //--------
 
-  // var artContent = data.gear.art_content;
-  // var artContentSets = data.gear.art_content_sets;
-  // if (artContentSets && artContentSets.length > 1) {
-  //   //console.log('Requires Arrangement', artContentSets);
-  //   for (var r=0; r<artContentSets.length; r++) {
-  //     var artContentSet = artContentSets[r];
-  //     if (artContentSet.classHash == classHash) {
-  //       artContent = artContentSet.arrangement;
-  //       break;
-  //     }
-  //   }
-  // } else if (artContentSets && artContentSets.length > 0) {
-  //   artContent = artContentSets[0].arrangement;
-  // }
+  let artContent = data.gear.art_content;
+  let artContentSets = data.gear.art_content_sets;
 
-  const artContent = data.gear.art_content_sets[0].arrangement;
+  if (artContentSets && artContentSets.length > 1) {
+    //console.log('Requires Arrangement', artContentSets);
+    for (const r=0; r<artContentSets.length; r++) {
+      const artContentSet = artContentSets[r];
+
+      if (artContentSet.classHash == data.classHash) {
+        artContent = artContentSet.arrangement;
+        break;
+      }
+    }
+  } else if (artContentSets && artContentSets.length > 0) {
+    artContent = artContentSets[0].arrangement;
+  }
 
   //--------
 
@@ -95,10 +87,10 @@ export const mesh = async data => {
         }
       }
     } else {
-      var overrideArtArrangement = 1===2 ? gearSet.female_override_art_arrangement : gearSet.base_art_arrangement;
+      var overrideArtArrangement = data.gender === 'female' ? gearSet.female_override_art_arrangement : gearSet.base_art_arrangement;
       artRegionPatterns.push({
         hash: overrideArtArrangement.hash,
-        artRegion: 1===2 ? 'female' : 'male',
+        artRegion: data.gender === 'female' ? 'female' : 'male',
         patternIndex: -1,
         regionIndex: -1,
         geometry: overrideArtArrangement.geometry_hashes,
@@ -155,7 +147,7 @@ export const mesh = async data => {
       case 26: // ghost shell cube?
         break;
       default:
-        console.warn('UnknownArtRegion['+a+']', artRegionPattern.regionIndex);
+          console.warn('UnknownArtRegion['+a+']', artRegionPattern.regionIndex);
         skipRegion = true;
         break;
     }
@@ -833,8 +825,8 @@ function logImageSrc(src) {
   console.log("\t\t"+'%c  ', 'font-size: 50px; background: url("'+src+'") center no-repeat; background-size: contain; border: 1px solid;');
 }
 
-const parseGeometry = (content, materials, geometry, geometryHash, geometryTextures, gearDyes) => {
-  const tgxBin = content.tgx.geometry.find(t => t.fileIdentifier === geometryHash);
+const parseGeometry = (data, materials, geometry, geometryHash, geometryTextures, gearDyes) => {
+  const tgxBin = data.tgx.geometry.find(t => t.fileIdentifier === geometryHash);
   const renderMeshes = parseTGXAsset(geometryHash, tgxBin);
 
   const gearDyeSlotOffsets = [];
@@ -925,7 +917,7 @@ const parseGeometry = (content, materials, geometry, geometryHash, geometryTextu
         //continue;
       }
 
-      const material = parseMaterial(content, part, gearDyes[part.gearDyeSlot], textures);
+      const material = parseMaterial(data, part, gearDyes[part.gearDyeSlot], textures);
 
       if (material) {
         material.name = geometryHash+'-CustomShader'+m+'-'+p;
@@ -1047,7 +1039,7 @@ const parseGeometry = (content, materials, geometry, geometryHash, geometryTextu
   }
 }
 
-const parseTextures = async (content, artRegionPatterns) => {
+const parseTextures = async (data, artRegionPatterns) => {
   let canvas, ctx;
   const canvasPlates = {};
   const geometryTextures = [];
@@ -1062,7 +1054,7 @@ const parseTextures = async (content, artRegionPatterns) => {
 
       console.log(geometryHash);
 
-      const tgxBin = content.tgx.geometry.find(f => f.fileIdentifier === geometryHash);
+      const tgxBin = data.tgx.geometry.find(f => f.fileIdentifier === geometryHash);
 
       if (!tgxBin) {
         console.warn('MissingTGXBinGeometry[' + g + ']', geometryHash);
@@ -1137,8 +1129,8 @@ const parseTextures = async (content, artRegionPatterns) => {
             const placement = texturePlate.texture_placements[p];
             // console.log(texturePlate)
 
-            // var placementTexture = content.textures[placement.texture_tag_name];
-            const textureLookup = content.tgx.textures.find(f => f.loaded && f.lookup?.indexOf(placement.texture_tag_name) > -1);
+            // var placementTexture = data.textures[placement.texture_tag_name];
+            const textureLookup = data.tgx.textures.find(f => f.loaded && f.lookup?.indexOf(placement.texture_tag_name) > -1);
             const placementTexture = textureLookup && textureLookup.data?.find(t => t.name === placement.texture_tag_name);
 
             // console.log(placementTexture)
@@ -1151,7 +1143,7 @@ const parseTextures = async (content, artRegionPatterns) => {
             ctx.clearRect(placement.position_x * scale, placement.position_y * scale, placement.texture_size_x * scale, placement.texture_size_y * scale);
 
             if (!placementTexture) {
-              console.warn('MissingPlacementTexture', placement.texture_tag_name, content.textures);
+              console.warn('MissingPlacementTexture', placement.texture_tag_name, data.textures);
               continue;
             }
             if (!placementTexture.image) {
@@ -1182,7 +1174,7 @@ const parseTextures = async (content, artRegionPatterns) => {
       img.src = dataUrl;
     });
 
-    content.tgx.platedTextures[canvasPlateId] = {
+    data.tgx.platedTextures[canvasPlateId] = {
       texture: platedTexture
     }
 
@@ -1214,7 +1206,7 @@ const parseTextures = async (content, artRegionPatterns) => {
       texture.wrapS = THREE.RepeatWrapping;
       texture.wrapT = THREE.RepeatWrapping;
     
-      texture.image = content.tgx.platedTextures[canvasPlateId].texture;
+      texture.image = data.tgx.platedTextures[canvasPlateId].texture;
       texture.needsUpdate = true;
 
       geometryTextures[geometryHash][canvasPlate.textureId] = texture;
@@ -1225,11 +1217,11 @@ const parseTextures = async (content, artRegionPatterns) => {
 }
 
 // Spasm.TGXAssetLoader.prototype.getGearDyes
-function getGearDyes(content) {
+function getGearDyes(data) {
   var dyeGroups = {
-    customDyes: content.gear.custom_dyes || [],
-    defaultDyes: content.gear.default_dyes || [],
-    lockedDyes: content.gear.locked_dyes || []
+    customDyes: data.gear.custom_dyes || [],
+    defaultDyes: data.gear.default_dyes || [],
+    lockedDyes: data.gear.locked_dyes || []
   };
 
   var gearDyeGroups = {};
@@ -1249,7 +1241,7 @@ function getGearDyes(content) {
         const dyeTexture = dyeTextures[dyeTextureId];
         //console.log('DyeTexture['+dyeTextureId+']', dyeTexture);
 
-        const texture = content.tgx.textures.find(t => t.reference_id === dyeTexture.reference_id);
+        const texture = data.tgx.textures.find(t => t.reference_id === dyeTexture.reference_id);
         if (texture) {
           gearDyeTextures[dyeTextureId] = texture;
         }
@@ -1348,9 +1340,9 @@ function logColors(colors) {
   console.log.apply(null, [format.join(' ')].concat(args));
 }
 
-function parseGearDyes(content, shaderGear) {
+function parseGearDyes(data, shaderGear) {
 
-  var gearDyeGroups = getGearDyes(content);
+  var gearDyeGroups = getGearDyes(data);
   var shaderDyeGroups = shaderGear ? getGearDyes(shaderGear) : gearDyeGroups;
 
   console.log('GearDyes', gearDyeGroups);

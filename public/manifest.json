@@ -15,26 +15,22 @@
     {
       "src": "/static/images/icon-64.png",
       "type": "image/png",
-      "sizes": "64x64",
-      "purpose": "maskable any"
+      "sizes": "64x64"
     },
     {
       "src": "/static/images/icon-96.png",
       "type": "image/png",
-      "sizes": "96x96",
-      "purpose": "maskable any"
+      "sizes": "96x96"
     },
     {
       "src": "/static/images/icon-128.png",
       "type": "image/png",
-      "sizes": "128x128",
-      "purpose": "maskable any"
+      "sizes": "128x128"
     },
     {
       "src": "/static/images/icon-192.png",
       "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "maskable any"
+      "sizes": "192x192"
     },
     {
       "src": "/static/images/icon-512.png",
