@@ -37,8 +37,10 @@ class SeasonalArtifact extends React.Component {
     const profileArtifact = profileProgression.seasonalArtifact;
     const characterArtifact = characterProgressions.seasonalArtifact;
 
-    const definitionArtifact = profileArtifact.artifactHash && manifest.DestinyArtifactDefinition[profileArtifact.artifactHash];
-    const definitionVendor = profileArtifact.artifactHash && manifest.DestinyVendorDefinition[profileArtifact.artifactHash];
+    const definitionArtifact = profileArtifact.artifactHash && manifest.DestinyArtifactDefinition[equippedArtifact.itemHash];
+    //const definitionVendor = profileArtifact.artifactHash && manifest.DestinyVendorDefinition[profileArtifact.artifactHash];
+
+    console.log(equippedArtifact,characterArtifact)
 
     // let string = ''
     //     definitionArtifact.tiers.forEach(tier => {
@@ -73,7 +75,7 @@ class SeasonalArtifact extends React.Component {
               <div className='type'>{t('Seasonal Artifact')}</div>
             </div>
             <div className='description'>
-              <p>{definitionVendor.displayProperties.description}</p>
+              <p>{definitionArtifact.displayProperties.description}</p>
             </div>
           </div>
         </div>
@@ -88,7 +90,7 @@ class SeasonalArtifact extends React.Component {
                   //       .includes(i.itemHash)
                   //   ).filter(i => i.obtained).length;
 
-                  const tierUnlocksUsed = characterArtifact.tiers[t].items.filter(i => i.isActive).length;
+                  const tierUnlocksUsed = characterArtifact.tiers[t]?.items.filter(i => i.isActive).length || 0;
 
                   // console.log(t, tier.minimumUnlockPointsUsedRequirement, previousTierUnlocksUsed)
 
@@ -97,11 +99,11 @@ class SeasonalArtifact extends React.Component {
                       key={t}
                       className={cx('tier', {
                         available: characterArtifact.pointsUsed >= tier.minimumUnlockPointsUsedRequirement,
-                        last: (t < 4 && characterArtifact.pointsUsed < definitionArtifact.tiers[t + 1].minimumUnlockPointsUsedRequirement && tierUnlocksUsed > 0) || t === 4
+                        last: (t < 4 && characterArtifact.pointsUsed < definitionArtifact.tiers[t + 1]?.minimumUnlockPointsUsedRequirement && tierUnlocksUsed > 0) || t === 4
                       })}
                     >
                       <ul className='list inventory-items'>
-                        {characterArtifact.tiers[t].items
+                        {characterArtifact.tiers[t]?.items
                           .map((item, i) => {
 
                             const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
@@ -150,7 +152,7 @@ class SeasonalArtifact extends React.Component {
               <div>
                 <div className='name'>{t('Artifact unlocks')}</div>
                 <div className='value'>
-                  {profileArtifact.pointProgression.level}/{profileArtifact.pointProgression.levelCap}
+                  {profileArtifact.pointProgression?.level}/{profileArtifact.pointProgression?.levelCap}
                 </div>
               </div>
               <div>
@@ -160,7 +162,7 @@ class SeasonalArtifact extends React.Component {
             </div>
             <p>{t('Next power bonus')}</p>
             <ProgressBar {...profileArtifact.powerBonusProgression} hideCheck />
-            {profileArtifact.pointProgression.level < profileArtifact.pointProgression.levelCap ? (
+            {profileArtifact.pointProgression?.level < profileArtifact.pointProgression?.levelCap ? (
               <>
                 <p>{t('Next artifact unlock')}</p>
                 <ProgressBar {...profileArtifact.pointProgression} hideCheck />
