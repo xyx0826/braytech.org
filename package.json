@@ -4,7 +4,7 @@
   "bugs": {
     "url": "https://github.com/justrealmilk/braytech.org/issues"
   },
-  "version": "2.12.16",
+  "version": "2.12.17",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
@@ -41,7 +41,8 @@
     "translations": "node scripts/extractTranslations2.js --stats",
     "map-nodes": "node --experimental-modules scripts/prepareNodesData.mjs",
     "checklists": "node --experimental-modules scripts/checklists/prepare.mjs",
-    "story-missions": "node --experimental-modules scripts/prepareStoryMissionData.mjs"
+    "story-missions": "node --experimental-modules scripts/prepareStoryMissionData.mjs",
+    "nightfalls": "node --experimental-modules scripts/prepareNightfallsData.mjs"
   },
   "eslintConfig": {
     "extends": "react-app"

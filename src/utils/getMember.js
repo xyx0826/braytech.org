@@ -47,7 +47,7 @@ async function getMember(membershipType, membershipId) {
 
     const [profile, groups, milestones] = await Promise.all(requests);
   
-    if (profile && profile.ErrorCode && profile.ErrorCode === 1 && profile.Response.profileProgression.data && groups && groups.ErrorCode && groups.ErrorCode === 1 && milestones && milestones.ErrorCode && milestones.ErrorCode === 1) {
+    if (profile?.ErrorCode === 1 && profile.Response?.profileProgression?.data && groups?.ErrorCode === 1 && milestones?.ErrorCode === 1) {
 
       return {
         profile: {

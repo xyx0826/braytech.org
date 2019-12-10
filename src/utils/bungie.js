@@ -87,7 +87,8 @@ async function apiRequest(path, options = {}) {
         });
       }
     });
-  const response = request && request.ok && await request.json();
+  
+  const response = request && await request.json();
 
   if (response && response.ErrorCode && response.ErrorCode !== 1) {
     if (!options.errors.hide) {

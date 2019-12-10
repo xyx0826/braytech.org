@@ -9,14 +9,13 @@ async function request(path) {
     }
   };
 
-  return await fetch(`https://www.bungie.net${path}`, opts).then(response => {
-    return response;
-  }).then(r => {
-    return r.json();
-  }).catch(e => {
-    console.error('[manifest.js] request()');
-    console.error(e);
-  });
+  const request = await fetch(`https://www.bungie.net${path}`, opts);
+
+  if (request.ok) {
+    return await request.json()
+  } else {
+    return false;
+  }
 }
   
 
@@ -35,6 +34,8 @@ if (fs.existsSync(`./manifest/index.json`)) {
 
 async function downloadManifest(liveManifest) {
   const response = await request(liveManifest.jsonWorldContentPaths.en);
+
+  if (!response) return false;
 
   manifestData = response;
 
@@ -61,7 +62,13 @@ async function checkManifest() {
   if (!cachedManifest || !manifestData || cachedManifest.jsonWorldContentPaths.en !== liveManifest.jsonWorldContentPaths.en) {
     console.warn('Manifest out of date. Downloading a new one...');
 
-    await downloadManifest(liveManifest);
+    const download = await downloadManifest(liveManifest);
+
+    if (download) {
+      console.log('Manifest updated.');
+    } else {
+      console.warn('Manifest update failed.');
+    }
   } else if (cachedManifest.jsonWorldContentPaths.en === liveManifest.jsonWorldContentPaths.en) {
     console.log('Manifest is up to date.');
   }

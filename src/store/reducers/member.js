@@ -49,8 +49,14 @@ async function loadMember(membershipType, membershipId, characterId) {
       if (!data[key].ErrorCode || data[key].ErrorCode !== 1) {
         
         store.dispatch({ type: 'MEMBER_LOAD_ERROR', payload: { membershipId, membershipType, error: { ...data[key] } } });
-  
-        throw Error('SILENT');
+
+        if (data[key].ErrorCode) {
+          throw {
+            ...data[key]
+          }
+        } else {
+          throw Error('BUNGIE');
+        }
       }
     });    
 
@@ -72,10 +78,8 @@ async function loadMember(membershipType, membershipId, characterId) {
 
   } catch (error) {
 
-    if (error.message !== 'SILENT') {
-      store.dispatch({ type: 'MEMBER_LOAD_ERROR', payload: { membershipId, membershipType, error } });
-    }
-
+    store.dispatch({ type: 'MEMBER_LOAD_ERROR', payload: { membershipId, membershipType, error } });
+    
     return;
   }
 }

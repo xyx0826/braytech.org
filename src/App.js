@@ -173,7 +173,7 @@ class App extends React.Component {
     const manifestIndex = await this.startupRequests.manifestIndex;
     const bungieSettings = await this.startupRequests.bungieSettings;
 
-    if ((bungieSettings.ErrorCode === 1 && bungieSettings.Response.settings && bungieSettings.Response.settings.systems && !bungieSettings.Response.settings.systems.D2Profiles.enabled) || bungieSettings.ErrorCode === 5 || manifestIndex.ErrorCode === 5) {
+    if ((bungieSettings.ErrorCode === 1 && !bungieSettings.Response?.systems?.D2Profiles?.enabled) || bungieSettings.ErrorCode === 5 || manifestIndex.ErrorCode === 5) {
       throw new Error('maintenance');
     }
 

@@ -40,7 +40,7 @@ class SeasonalArtifact extends React.Component {
     const definitionArtifact = profileArtifact.artifactHash && manifest.DestinyArtifactDefinition[equippedArtifact.itemHash];
     //const definitionVendor = profileArtifact.artifactHash && manifest.DestinyVendorDefinition[profileArtifact.artifactHash];
 
-    console.log(equippedArtifact,characterArtifact)
+    console.log(equippedArtifact, profileArtifact, characterArtifact)
 
     // let string = ''
     //     definitionArtifact.tiers.forEach(tier => {

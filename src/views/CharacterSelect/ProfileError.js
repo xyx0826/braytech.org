@@ -8,6 +8,8 @@ class ProfileError extends React.Component {
   render() {
     const { t, error } = this.props;
 
+    console.log(error)
+
     if (error.ErrorCode && error.ErrorStatus && error.Message) {
       return (
         <div className='error'>
@@ -18,6 +20,17 @@ class ProfileError extends React.Component {
             {error.ErrorCode}: {error.ErrorStatus}
           </p>
           <p>{error.Message}</p>
+        </div>
+      );
+    }
+
+    if (error.message === 'BUNGIE') {
+      return (
+        <div className='error'>
+          <div className='sub-header'>
+            <div>{t('Bungie error')}</div>
+          </div>
+          <p>{t('Unknown error')}</p>
         </div>
       );
     }
@@ -45,7 +58,7 @@ class ProfileError extends React.Component {
         <div className='sub-header'>
           <div>{t('Error')}</div>
         </div>
-        <p>{error.message}</p>
+        <p>{error.message || t('Unknown error')}</p>
       </div>
     );
   }
