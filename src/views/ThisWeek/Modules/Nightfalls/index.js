@@ -48,7 +48,7 @@ class Nightfalls extends React.Component {
             <div className='name'>{nightfall.selectionScreenDisplayProperties.name}</div>
           </div>
           <h4>{t('Collectibles')}</h4>
-          {enums.nightfalls[nightfall.hash].collectibles.length ? (
+          {enums.nightfalls[nightfall.hash]?.collectibles.length ? (
             <>
               <ul className='list collection-items'>
                 <Collectibles selfLinkFrom='/this-week' hashes={enums.nightfalls[nightfall.hash].collectibles} />
@@ -62,7 +62,7 @@ class Nightfalls extends React.Component {
             </div>
           )}
           <h4>{t('Triumphs')}</h4>
-          {enums.nightfalls[nightfall.hash].triumphs.length ? (
+          {enums.nightfalls[nightfall.hash]?.triumphs.length ? (
             <>
               <ul className='list record-items'>
                 <Records selfLinkFrom='/this-week' hashes={enums.nightfalls[nightfall.hash].triumphs} ordered />
