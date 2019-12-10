@@ -327,8 +327,8 @@ function buildPlug(plug, socketDef, plugObjectivesData) {
 
 function buildDefinedPlug(socketDef, plug) {
   const plugHash = isDestinyItemPlug(plug) ? plug.plugItemHash : plug.plugHash;
-  // const isEnabled = isDestinyItemPlug(plug) ? plug.enabled : plug.isEnabled;
-  const isEnabled = socketDef.singleInitialItemHash !== 0;
+
+  const isActive = socketDef.singleInitialItemHash && socketDef.singleInitialItemHash === plugHash;
 
   const definitionPlugItem = plug && manifest.DestinyInventoryItemDefinition[plug.plugItemHash];
 
@@ -336,9 +336,19 @@ function buildDefinedPlug(socketDef, plug) {
     return null;
   }
 
+  const isMod = Boolean(definitionPlugItem.itemCategoryHashes && definitionPlugItem.itemCategoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0);
+  const isShader = Boolean(definitionPlugItem.inventory && definitionPlugItem.inventory.bucketTypeHash === enums.DestinyInventoryBucket.Shaders);
+  const isOrnament = Boolean(definitionPlugItem.itemSubType === enums.DestinyItemSubType.Ornament && !EXCLUDED_PLUGS.has(definitionPlugItem.hash));
+  const isTracker = Boolean(definitionPlugItem.plug && definitionPlugItem.plug.plugCategoryIdentifier && definitionPlugItem.plug.plugCategoryIdentifier.includes('trackers'));
+
   return {
     plugItem: definitionPlugItem,
-    isEnabled,
+    isEnabled: true,
+    isActive,
+    isMod,
+    isShader,
+    isOrnament,
+    isTracker,
     enableFailReasons: '',
     plugObjectives: [],
     perks: (definitionPlugItem.perks || []).map(perk => manifest.DestinySandboxPerkDefinition[perk.perkHash]),

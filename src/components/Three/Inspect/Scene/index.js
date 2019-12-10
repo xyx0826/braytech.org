@@ -8,6 +8,38 @@ import Spinner from '../../../UI/Spinner';
 
 import './styles.css';
 
+const cameraDimensions = camera => {
+  const half_fov = camera.fov / 2;
+  const half_fov_radians = THREE.Math.degToRad(half_fov);
+  const half_fov_height = Math.tan(half_fov_radians) * (camera.position.z - 2);
+  const half_fov_width = (half_fov_height * 2 * camera.aspect) / 2;
+
+  return {
+    width: half_fov_width * 2,
+    height: half_fov_height * 2
+  };
+};
+
+const scaleMesh = (camera, mesh) => {
+  const meshSize = new THREE.Vector3();
+  const boundingBox = new THREE.Box3().setFromObject(mesh);
+  boundingBox.getSize(meshSize);
+
+  const cameraView = cameraDimensions(camera);
+  const goalWidth = cameraView.width > cameraView.height ? cameraView.width * 0.8 : cameraView.width * 0.8;
+  const goalHeight = cameraView.width > cameraView.height ? cameraView.height * 0.8 : cameraView.height * 0.5;
+  const scaleByWidth = goalWidth / meshSize.x;
+  const scaleByHeight = goalHeight / meshSize.y;
+
+  // console.log(meshSize, cameraView);
+
+  const scale = Math.min(scaleByWidth, scaleByHeight);
+
+  mesh.scale.set(scale, scale, scale);
+
+  return scale;
+}
+
 class Scene extends Component {
   state = {
     loading: true,
@@ -26,8 +58,35 @@ class Scene extends Component {
     this.mount.removeChild(this.renderer.domElement);
   }
 
+  async componentDidUpdate(p) {
+    const { itemHash = 3580904581, ornamentHash, debug, gender } = this.props;
+
+    if (p.ornamentHash !== ornamentHash) {
+      this.group.remove(this.group.children[0]);
+
+      this.setState({
+        loading: true,
+        error: false
+      });
+
+      const model = await this.import(ornamentHash || itemHash, debug, gender);
+
+      if (model.error) {
+        this.setState({
+          loading: false,
+          error: true
+        });
+      } else {
+        this.setState({
+          loading: false,
+          error: false
+        });
+      }
+    }
+  }
+
   scene = async () => {
-    const { debug, gender, shadows } = this.props;
+    const { itemHash = 3580904581, ornamentHash, debug, gender, shadows } = this.props;
 
     const lightShadows = {
       enabled: shadows,
@@ -49,11 +108,13 @@ class Scene extends Component {
     this.renderer.shadowMap.enabled = lightShadows.enabled;
     this.renderer.shadowMap.type = lightShadows.type;
 
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
+    this.clock = new THREE.Clock();
+    this.time = 0;
 
-    // as per game
-    this.camera.position.set(0, 2, 7);
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(25, width / height, 0.1, 1000);
+
+    this.camera.position.set(0, 0.28571428 * 7, 7);
 
     // bird's eye
     // this.camera.position.set(0, 30, 0);
@@ -61,11 +122,11 @@ class Scene extends Component {
     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     this.group = new THREE.Group();
-    this.group.position.set(2, 0.5, 0);
+    this.group.position.set(width > height ? 1.21 : 0, 0.21, 0);
 
     this.scene.add(this.group);
 
-    this.topLight = new THREE.DirectionalLight(0xffffff, lightShadows.enabled ? 2 : 1);
+    this.topLight = new THREE.DirectionalLight(0xffffff, lightShadows.enabled ? 1.8 : 1);
     this.topLight.position.set(0, 100, 0);
     this.topLight.castShadow = true;
     this.topLight.shadow.mapSize.width = lightShadows.mapSize.width;
@@ -81,7 +142,7 @@ class Scene extends Component {
     this.rightLight.shadow.radius = lightShadows.radius;
     this.scene.add(this.rightLight);
 
-    this.leftLight = new THREE.DirectionalLight(0xffffff, 1);
+    this.leftLight = new THREE.DirectionalLight(0xffffff, 0.8);
     this.leftLight.position.set(8, 2, 8);
     this.leftLight.castShadow = false;
     this.leftLight.shadow.mapSize.width = lightShadows.mapSize.width;
@@ -96,7 +157,7 @@ class Scene extends Component {
       plane.position.set(0, -3, 0);
       this.scene.add(plane);
 
-      this.gridHelper = new THREE.GridHelper(300, 200, 0xffffff, 0xffffff);
+      this.gridHelper = new THREE.GridHelper(300, 200, 0xeeeeee, 0xeeeeee);
       this.scene.add(this.gridHelper);
 
       window.camera = this.camera;
@@ -124,7 +185,7 @@ class Scene extends Component {
 
     this.start();
 
-    const model = await this.import(debug, gender);
+    const model = await this.import(ornamentHash || itemHash, debug, gender);
 
     if (model.error) {
       this.setState({
@@ -139,51 +200,55 @@ class Scene extends Component {
     }
   };
 
-  import = async (debug, gender) => {
-    const data = await voluspa.gearAsset(this.props.itemHash || 3580904581);
-
-    if (!data) return { error: true };
+  import = async (reference_id, debug, gender) => {
+    const data = await voluspa.gearAsset(reference_id).then(response => {
+      if (response.ErrorCode === 1) {
+        return response.Response;
+      } else if (response.ErrorCode === 1623) {
+        return { error: false };
+      } else {
+        return { error: true };
+      }
+    });
 
     // apply params to data
     data.debug = Boolean(debug);
     data.gender = gender || 'male';
 
-    // trigger TGXLoader
-    await TGXLoader.load(data);
+    try {
+      // trigger TGXLoader
+      await TGXLoader.load(data);
 
-    // data loaded to self, get the mesh
-    const mesh = await TGXLoader.mesh(data);
+      // data loaded to self, get the mesh
+      const mesh = await TGXLoader.mesh(data);
 
-    console.log(data, mesh);
+      console.log(data, mesh);
 
-    // rotate
-    mesh.rotation.set(THREE.Math.degToRad(-90), 0, THREE.Math.degToRad(-140));
+      // rotate
+      mesh.rotation.set(THREE.Math.degToRad(-90), 0, THREE.Math.degToRad(-140));   
 
-    // scale
-    mesh.scale.set(10, 10, 10);
+      // center
+      mesh.geometry.center();
 
-    // center
-    mesh.geometry.center();
+      // shadow
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
 
-    // shadow
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
+      // scale
+      scaleMesh(this.camera, mesh);
 
-    if (debug) {
-      const boxHelper = new THREE.BoxHelper(mesh, 'fuchsia');
+      if (debug) {
+        const boxHelper = new THREE.BoxHelper(mesh, 'fuchsia');
 
-      this.group.add(boxHelper);
+        this.group.add(boxHelper);
+      }
+
+      this.group.add(mesh);
+
+    } catch (e) {
+      return { error: e };
     }
-
-    // const boundingBox = new THREE.Box3().setFromObject(mesh);
-    // const height = boundingBox.size().y;
-    // const dist = height / (2 * Math.tan(this.camera.fov * Math.PI / 360));
-
-    // this.camera.position.set(this.camera.position.x, this.camera.position.y, dist * 1.5);
-
-    this.group.add(mesh);
     
-
     return { error: false };
   };
 
@@ -208,11 +273,12 @@ class Scene extends Component {
   };
 
   animate = () => {
-    // if (this.group) {
-    //   this.group.rotation.z += 0.01;
-    //   this.group.rotation.x += 0.01;
-    //   this.group.rotation.y += 0.01;
-    // }
+    if (this.group) {
+      const delta = this.clock.getDelta();
+      this.time += delta;
+
+      this.group.position.y = 0.03 + Math.abs(Math.sin(this.time * 1)) * 0.02;
+    }
 
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);

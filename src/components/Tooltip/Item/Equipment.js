@@ -193,7 +193,7 @@ const Equipment = props => {
                       return (
                         <div key={s.socketIndex} className='socket'>
                           {s.plugOptions
-                            .filter(p => p.isEnabled && p.plugItem.hash === s.plug.plugItem.hash)
+                            .filter(p => p.isEnabled && p.plugItem?.hash === s.plug.plugItem?.hash)
                             .map(p => {
                               // filter for enabled plugs and map through
 

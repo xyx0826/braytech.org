@@ -239,7 +239,7 @@ class Settings extends React.Component {
                   <p>{t('Where available, use 3D models. Not recommended for phones or low processing-power devices.')}</p>
                 </div>
               </li>
-              {this.props.three.enabled ? (
+              {this.props.three.enabled && 2 === 3 ? (
                 <>
                   <li onClick={this.handler_toggleThreeShadows}>
                     <Checkbox linked checked={this.props.three.shadows} text={t('Use shadows')} />

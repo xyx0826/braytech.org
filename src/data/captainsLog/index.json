@@ -843,5 +843,10 @@
     "date": "2019-12-05T16:06:55.455Z",
     "version": "2.12.4",
     "content": "- adjusted rules for _Now_ modules\n- improved display of masterworked stats on item tooltips\n- added kill tracker counts to masterworked weapons tooltips"
+  },
+  {
+    "date": "2019-12-10T15:09:13.756Z",
+    "version": "2.12.14",
+    "content": "_the night before the dawn_"
   }
 ]

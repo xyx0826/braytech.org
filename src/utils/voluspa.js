@@ -35,14 +35,19 @@ export async function gearAsset(reference_id) {
       }
     });
 
+    // if (request.ok) {
+    //   const response = await request.json();
+
+    //   if (response.ErrorCode === 1) {
+    //     return response.Response;
+    //   } else {
+    //     return false;
+    //   }
+    // } else {
     if (request.ok) {
       const response = await request.json();
 
-      if (response.ErrorCode === 1) {
-        return response.Response;
-      } else {
-        return false;
-      }
+      return response;
     } else {
       return false;
     }

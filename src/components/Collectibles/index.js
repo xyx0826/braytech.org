@@ -86,8 +86,7 @@ class Collectibles extends React.Component {
   }
 
   render() {
-    const { t, member, collectibles, viewport, selfLinkFrom, forceDisplay, forceTooltip } = this.props;
-    const inspect = this.props.inspect ? true : false;
+    const { t, member, collectibles, viewport, selfLinkFrom, forceDisplay, forceTooltip, inspect } = this.props;
     const highlight = parseInt(this.props.match && this.props.match.params.quinary ? this.props.match.params.quinary : this.props.highlight, 10) || false;
 
     let output = [];

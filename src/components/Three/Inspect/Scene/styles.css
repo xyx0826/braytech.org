@@ -4,10 +4,12 @@
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: 10;  
   display: grid;
   justify-content: center;
   align-content: center;
+  /* background-image: url('/tiger_release_final_20191210_015420.png');
+  background-size: cover;
+  background-position: center top; */
 }
 
 .scene .render {

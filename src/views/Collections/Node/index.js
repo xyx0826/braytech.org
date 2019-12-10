@@ -171,7 +171,7 @@ class PresentationNode extends React.Component {
             </ul>
           ) : (
             <ul className={cx('list', 'tertiary', 'collection-items', { sets: primaryHash === '1605042242' })}>
-              <Collectibles node={definitionTertiary.hash} highlight={quaternaryHash} inspect selfLinkFrom={paths.removeMemberIds(this.props.location.pathname)} />
+              <Collectibles node={definitionTertiary.hash} highlight={quaternaryHash} inspect selfLinkFrom={this.props.location.pathname} />
             </ul>
           )}
         </div>
