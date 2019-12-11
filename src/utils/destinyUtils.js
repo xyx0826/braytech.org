@@ -72,10 +72,13 @@ export function progressionSeasonRank(member) {
     return false;
   }
 
-  let progression = {...member.data.profile.characterProgressions.data[member.characterId].progressions[3256821400]};
+  const definitionSeason = manifest.DestinySeasonDefinition[manifest.settings.destiny2CoreSettings.currentSeasonHash];
+  const definitionSeasonPass = manifest.DestinySeasonPassDefinition[definitionSeason.seasonPassHash];
+
+  let progression = {...member.data.profile.characterProgressions.data[member.characterId].progressions[definitionSeasonPass.rewardProgressionHash]};
 
   if (progression.level === progression.levelCap) {
-    progression = { ...member.data.profile.characterProgressions.data[member.characterId].progressions[3298204156] };
+    progression = { ...member.data.profile.characterProgressions.data[member.characterId].progressions[definitionSeasonPass.prestigeProgressionHash] };
     progression.level += 100;
   }
   

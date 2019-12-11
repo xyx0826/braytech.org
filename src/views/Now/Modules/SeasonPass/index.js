@@ -20,8 +20,11 @@ class SeasonPass extends React.Component {
     const { member, viewport } = this.props;
     const characterProgressions = member.data.profile.characterProgressions.data;
 
+    const definitionSeason = manifest.DestinySeasonDefinition[manifest.settings.destiny2CoreSettings.currentSeasonHash];
+    this.progressionHash = definitionSeason.seasonPassProgressionHash;
+
     this.state = {
-      seasonPassRewardsPage: Math.ceil((Math.min((characterProgressions[member.characterId].progressions[3256821400] && characterProgressions[member.characterId].progressions[3256821400].level), 99) + 1) / this.seasonPassItemsPerPage(viewport.width))
+      seasonPassRewardsPage: Math.ceil((Math.min((characterProgressions[member.characterId].progressions[this.progressionHash] && characterProgressions[member.characterId].progressions[this.progressionHash].level), 99) + 1) / this.seasonPassItemsPerPage(viewport.width))
     };
   }
 
@@ -33,17 +36,17 @@ class SeasonPass extends React.Component {
       this.props.rebindTooltips();
     }
 
-    if ((p.member.data.profile.characterProgressions.data[p.member.characterId].progressions[3256821400] && p.member.data.profile.characterProgressions.data[p.member.characterId].progressions[3256821400].level) !== (characterProgressions[this.props.member.characterId].progressions[3256821400] && characterProgressions[this.props.member.characterId].progressions[3256821400].level)) {
+    if ((p.member.data.profile.characterProgressions.data[p.member.characterId].progressions[this.progressionHash] && p.member.data.profile.characterProgressions.data[p.member.characterId].progressions[this.progressionHash].level) !== (characterProgressions[this.props.member.characterId].progressions[this.progressionHash] && characterProgressions[this.props.member.characterId].progressions[this.progressionHash].level)) {
       this.setState(p => ({
         ...p,
-        seasonPassRewardsPage: Math.ceil((characterProgressions[this.props.member.characterId].progressions[3256821400].level + 1) / this.seasonPassItemsPerPage(this.props.viewport.width))
+        seasonPassRewardsPage: Math.ceil((characterProgressions[this.props.member.characterId].progressions[this.progressionHash].level + 1) / this.seasonPassItemsPerPage(this.props.viewport.width))
       }));
     }
 
     if (p.viewport.width !== viewport.width) {
       this.setState(p => ({
         ...p,
-        seasonPassRewardsPage: Math.ceil((Math.min(characterProgressions[member.characterId].progressions[3256821400].level, 99) + 1) / this.seasonPassItemsPerPage(viewport.width))
+        seasonPassRewardsPage: Math.ceil((Math.min(characterProgressions[member.characterId].progressions[this.progressionHash].level, 99) + 1) / this.seasonPassItemsPerPage(viewport.width))
       }));
     }
   }
@@ -78,7 +81,7 @@ class SeasonPass extends React.Component {
     const profile = member.data.profile.profile.data;
 
     // just in case
-    if (!characterProgressions[member.characterId].progressions[3256821400]) {
+    if (!characterProgressions[member.characterId].progressions[this.progressionHash]) {
       return null;
     }
 
@@ -88,13 +91,13 @@ class SeasonPass extends React.Component {
       season: manifest.DestinySeasonDefinition[profile.currentSeasonHash],
       slice: this.state.seasonPassRewardsPage * seasonPassItemsPerPage - seasonPassItemsPerPage,
       itemsPerPage: seasonPassItemsPerPage,
-      ranks: manifest.DestinyProgressionDefinition[3256821400].steps.map((s, x) => {
+      ranks: manifest.DestinyProgressionDefinition[this.progressionHash].steps.map((s, x) => {
         const rank = x + 1;
-        const rewards = manifest.DestinyProgressionDefinition[3256821400].rewardItems
+        const rewards = manifest.DestinyProgressionDefinition[this.progressionHash].rewardItems
           .map((r, i) => {
             return {
               ...r,
-              state: enums.enumerateProgressionRewardItemState(characterProgressions[member.characterId].progressions[3256821400].rewardItemStates[i])
+              state: enums.enumerateProgressionRewardItemState(characterProgressions[member.characterId].progressions[this.progressionHash].rewardItemStates[i])
             };
           })
           .filter((r, i) => r.rewardedAtProgressionLevel === rank);
@@ -197,7 +200,7 @@ class SeasonPass extends React.Component {
         </div>
         <div className='rewards'>
           {[...seasonPass.ranks, { filler: true }, { filler: true }].slice(seasonPass.slice, seasonPass.slice + seasonPass.itemsPerPage).map((r, i) => {
-            const progressData = { ...characterProgressions[member.characterId].progressions[3256821400] };
+            const progressData = { ...characterProgressions[member.characterId].progressions[this.progressionHash] };
 
             if (r.filler) {
               return (
