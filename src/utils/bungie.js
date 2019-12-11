@@ -56,8 +56,8 @@ async function apiRequest(path, options = {}) {
       // console.log("Tokens are stale");
       const refreshRequest = await GetOAuthAccessToken(`grant_type=refresh_token&refresh_token=${tokens.refresh.value}`);
 
-      if (refreshRequest && refreshRequest.ErrorCode !== 1 && !refreshRequest.ok) {
-        return await refreshRequest.json();
+      if (refreshRequest && refreshRequest.ErrorCode !== 1) {
+        return await refreshRequest;
       }
 
       tokens = ls.get('setting.auth');

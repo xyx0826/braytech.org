@@ -40,8 +40,8 @@
 }
 
 #loading .bg .containment svg {
-  fill: #ffffff;
-  opacity: 0.02;
+  fill: #502d8f;
+  opacity: 0.1;
   transform: scale(2);
 }
 
