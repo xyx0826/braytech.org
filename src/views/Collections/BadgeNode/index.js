@@ -71,7 +71,7 @@ class BadgeNode extends React.Component {
         
         children = (
           <ul className='list tertiary collection-items'>
-            <Collectibles node={node.presentationNodeHash} inspect selfLinkFrom={paths.removeMemberIds(this.props.location.pathname)} />
+            <Collectibles node={node.presentationNodeHash} inspect selfLinkFrom={this.props.location.pathname} />
           </ul>
         );
       }

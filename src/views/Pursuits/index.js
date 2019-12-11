@@ -92,7 +92,7 @@ class Pursuits extends React.Component {
                 hideCheck
               />
             ) : null}
-            {isQuest ? <ProfileLink to={`/pursuits/${item.itemHash}`} /> : null}
+            {isQuest ? <ProfileLink to={`/quests/${item.itemHash}`} /> : null}
           </li>
         )
       });
@@ -164,7 +164,7 @@ class Pursuits extends React.Component {
               <div />
               <ul>
                 <li>
-                  <ProfileLink className='button' to='/pursuits'>
+                  <ProfileLink className='button' to='/quests'>
                     <DestinyKey type='dismiss' />
                     {t('Back')}
                   </ProfileLink>

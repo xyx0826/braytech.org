@@ -216,10 +216,17 @@ export const rewardsQuestLineOverrides = {
       quantity: 1
     }
   ],
-  // Field Testing
+  // An Education
   2354690788: [
     {
       itemHash: 2984240082, // Eriana's Vow Catalyst
+      quantity: 1
+    }
+  ],
+  // New Enhancements
+  3383977090: [
+    {
+      itemHash: 4218954970, // Symmetry Catalyst
       quantity: 1
     }
   ],

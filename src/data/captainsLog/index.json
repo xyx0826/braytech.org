@@ -853,5 +853,10 @@
     "date": "2019-12-11T07:03:59.090Z",
     "version": "2.12.18",
     "content": "- _Season of Dawn_ adjustments"
+  },
+  {
+    "date": "2019-12-11T12:29:10.244Z",
+    "version": "2.12.21",
+    "content": "- renamed _Pursuits_ to _Quests_ to match game\n- further adjustments to tooltips logic"
   }
 ]

@@ -281,7 +281,7 @@ class App extends React.Component {
                           <RedirectRoute path='/this-week' exact />
                           <RedirectRoute path='/reports' />
                           <RedirectRoute path='/now' />
-                          <RedirectRoute path='/pursuits' />
+                          <RedirectRoute path='/quests' />
 
                           <Route path='/character-select' exact component={CharacterSelect} />
                           <Route path='/pgcr/:instanceId?' exact render={route => <PGCR {...route} />} />

@@ -188,7 +188,7 @@ class Item extends React.Component {
       }
     }
 
-    const masterworked = enums.enumerateItemState(item.state).masterworked || (item.masterworkInfo && item.masterworkInfo.tier >= 10);
+    const masterworked = enums.enumerateItemState(item.state).masterworked || item.masterwork?.stats?.filter(s => s.value >= 9).length;
 
     console.log(item)
 

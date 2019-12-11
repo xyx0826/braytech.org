@@ -158,9 +158,9 @@ class Header extends React.Component {
         group: 0
       },
       {
-        name: t('Pursuits'),
+        name: t('Quests'),
         desc: t('Quests and bounties, step by step, reward by reward'),
-        slug: '/pursuits',
+        slug: '/quests',
         exact: false,
         profile: true,
         inline: !isProfileRoute || viewport.width >= 1320,
