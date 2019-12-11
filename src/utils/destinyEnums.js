@@ -57,7 +57,7 @@ export const DestinyItemType = {
   Wrapper: 27,
   SeasonalArtifact: 28,
   Finisher: 29
-}
+};
 
 export const DestinyItemSubType = {
   None: 0,
@@ -85,12 +85,12 @@ export const DestinyItemSubType = {
   LegArmor: 29,
   ClassArmor: 30,
   Bow: 31
-}
+};
 
 export const DestinyInventoryBucket = {
   Shaders: 2973005342,
   Modifications: 3313201758 // costmetics
-}
+};
 
 export const DestinySocketCategoryStyle = {
   Unknown: 0,
@@ -100,20 +100,20 @@ export const DestinySocketCategoryStyle = {
   Intrinsic: 4,
   EnergyMeter: 5,
   LargePerk: 6
-}
+};
 
 export const DestinyStatAggregationType = {
   CharacterAverage: 0,
   Character: 1,
   Item: 2
-}
+};
 
 export const DestinyStatCategory = {
   Gameplay: 0,
   Weapon: 1,
   Defense: 2,
   Primary: 3
-}
+};
 
 const flagEnum = (state, value) => !!(state & value);
 
@@ -221,7 +221,9 @@ export const bookCovers = {
   628625882: '0597_02BD_00.png',
   2474271317: '0597_02CC_00.png',
   2341654316: '0597_02AF_00.png',
-  1596399902: '0597_02B6_00.png'
+  1596399902: '0597_02B6_00.png',
+  2487458163: '0709-00003972.png',
+  2090388805: '0709-00003964.png'
 };
 
 export const sealImages = {
@@ -237,7 +239,8 @@ export const sealImages = {
   1002334440: '0560-00007495.png',
   3303651244: '0597_057C_00.png',
   4097789885: '0597_0573_00.png',
-  2209950401: '0597_056A_00.png'
+  2209950401: '0597_056A_00.png',
+  3303651245: '0709-00003850.png'
 };
 
 export const badgeImages = {
@@ -256,7 +259,8 @@ export const badgeImages = {
   2759158924: '0560-00006562.png',
   2388540594: '0597_045D_00.png',
   3267852685: '0597_0464_00.png',
-  223465203: '0597_048E_00.png'
+  223465203: '0597_048E_00.png',
+  4257248973: '0709-00003436.png'
 };
 
 export const associationsCollectionsBadgesClasses = {
@@ -274,7 +278,9 @@ export const associationsCollectionsBadgesClasses = {
   543101070: 1,
   555927954: 2,
   558738844: 0,
+  587677888: 2,
   604768449: 0,
+  605410965: 0,
   805054563: 1,
   811225638: 0,
   964388375: 1,
@@ -313,6 +319,7 @@ export const associationsCollectionsBadgesClasses = {
   3233768126: 1,
   3252380766: 0,
   3304578900: 0,
+  3566355363: 1,
   3711698756: 2,
   3745240322: 1,
   3784478466: 0,
@@ -368,21 +375,42 @@ export const associationsCollectionsBadges = [
   {
     recordHash: 697150349, // Season of the Undying
     badgeHash: 3267852685
+  },
+  {
+    recordHash: 1087859470, // Season of Dawn
+    badgeHash: 4257248973
   }
 ];
 
 export const nightfalls = {
   272852450: {
-    triumphs: [1039797865, 3013611925],
+    triumphs: [
+      1039797865,
+      3013611925
+    ],
     items: [],
-    collectibles: [2466440635, 1766893928],
+    collectibles: [
+      2466440635,
+      1766893928
+    ],
     ordealHashes: []
   },
   522318687: {
-    triumphs: [165166474, 1871570556],
+    triumphs: [
+      165166474,
+      1871570556
+    ],
     items: [],
-    collectibles: [1534387877, 1766893929],
-    ordealHashes: [966580527, 2357524344, 3392133546, 4196546910]
+    collectibles: [
+      1534387877,
+      1766893929
+    ],
+    ordealHashes: [
+      3883876600,
+      3883876605,
+      3883876606,
+      3883876607
+    ]
   },
   629542775: {
     triumphs: [],
@@ -391,96 +419,208 @@ export const nightfalls = {
     ordealHashes: []
   },
   936308438: {
-    triumphs: [2692332187, 1398454187],
+    triumphs: [
+      2692332187,
+      1398454187
+    ],
     items: [],
-    collectibles: [2448009818, 3490589931],
-    ordealHashes: [102545131, 1272746497, 1822476598, 4044386747]
+    collectibles: [
+      2448009818,
+      3490589931
+    ],
+    ordealHashes: [
+      2533203704,
+      2533203706,
+      2533203707,
+      2533203709
+    ]
   },
   1034003646: {
-    triumphs: [599303591, 3399168111],
+    triumphs: [
+      599303591,
+      3399168111
+    ],
     items: [],
-    collectibles: [1186314105, 465974149],
-    ordealHashes: []
+    collectibles: [
+      1186314105,
+      465974149
+    ],
+    ordealHashes: [
+      3200108049,
+      3200108052,
+      3200108054,
+      3200108055
+    ]
   },
   1282886582: {
-    triumphs: [1526865549, 2140068897],
+    triumphs: [
+      1526865549,
+      2140068897
+    ],
     items: [],
-    collectibles: [3036030067, 3490589927],
+    collectibles: [
+      3036030067,
+      3490589927
+    ],
     ordealHashes: []
   },
   1391780798: {
-    triumphs: [3042714868, 4156350130],
+    triumphs: [
+      3042714868,
+      4156350130
+    ],
     items: [],
     collectibles: [],
     ordealHashes: []
   },
   3034843176: {
-    triumphs: [3951275509, 3641166665],
+    triumphs: [
+      3951275509,
+      3641166665
+    ],
     items: [],
-    collectibles: [1099984904, 1410290331],
+    collectibles: [
+      1099984904,
+      1410290331
+    ],
     ordealHashes: []
   },
   3108813009: {
-    triumphs: [2836924866, 1469598452],
+    triumphs: [
+      2836924866,
+      1469598452
+    ],
     items: [],
-    collectibles: [1279318101, 2263264048],
+    collectibles: [
+      1279318101,
+      2263264048
+    ],
     ordealHashes: []
   },
   3145298904: {
-    triumphs: [3340846443, 4267516859],
+    triumphs: [
+      3340846443,
+      4267516859
+    ],
     items: [],
-    collectibles: [3036030066, 3490589921],
-    ordealHashes: []
+    collectibles: [
+      3036030066,
+      3490589921
+    ],
+    ordealHashes: [
+      1358381368,
+      1358381370,
+      1358381371,
+      1358381373
+    ]
   },
   3280234344: {
-    triumphs: [2099501667, 1442950315],
+    triumphs: [
+      2099501667,
+      1442950315
+    ],
     items: [],
-    collectibles: [1333654061, 3490589926],
-    ordealHashes: [997759433, 1114928259, 2021103427, 3815447166]
+    collectibles: [
+      1333654061,
+      3490589926
+    ],
+    ordealHashes: [
+      3849697856,
+      3849697858,
+      3849697859,
+      3849697861
+    ]
   },
   3289589202: {
-    triumphs: [1060780635, 1142177491],
+    triumphs: [
+      1060780635,
+      1142177491
+    ],
     items: [],
-    collectibles: [1152758802, 3490589930],
-    ordealHashes: [282531137, 1198226683, 2380555126, 3407296811]
+    collectibles: [
+      1152758802,
+      3490589930
+    ],
+    ordealHashes: [
+      3265488360,
+      3265488362,
+      3265488363,
+      3265488365
+    ]
   },
   3372160277: {
-    triumphs: [1329556468, 413743786],
+    triumphs: [
+      1329556468,
+      413743786
+    ],
     items: [],
-    collectibles: [1602518767, 3896331530],
+    collectibles: [
+      1602518767,
+      3896331530
+    ],
     ordealHashes: []
   },
   3701132453: {
-    triumphs: [3450793480, 3847579126],
+    triumphs: [
+      3450793480,
+      3847579126
+    ],
     items: [],
-    collectibles: [1074861258, 3314387486],
+    collectibles: [
+      1074861258,
+      3314387486
+    ],
     ordealHashes: []
   },
   3718330161: {
-    triumphs: [2282894388, 3636866482],
+    triumphs: [
+      2282894388,
+      3636866482
+    ],
     items: [],
-    collectibles: [1279318110, 3490589924],
-    ordealHashes: []
+    collectibles: [
+      1279318110,
+      3490589924
+    ],
+    ordealHashes: [
+      2660931442,
+      2660931444,
+      2660931445,
+      2660931447
+    ]
   },
   3856436847: {
     triumphs: [],
     items: [],
     collectibles: [],
-    ordealHashes: [694558778, 1940967975, 1193451437, 2359276231]
+    ordealHashes: [
+      887176537,
+      887176540,
+      887176542,
+      887176543
+    ]
   },
   4259769141: {
-    triumphs: [3973165904, 1498229894],
+    triumphs: [
+      3973165904,
+      1498229894
+    ],
     items: [],
-    collectibles: [1718922261, 3490589925],
-    ordealHashes: [1173782160, 1244305605, 1390900084, 3094633658]
+    collectibles: [
+      1718922261,
+      3490589925
+    ],
+    ordealHashes: [
+      1801803624,
+      1801803625,
+      1801803627,
+      1801803630
+    ]
   }
-}
+};
 
 export const ordealHashes = Object.values(nightfalls).reduce((a, h) => {
-  return [
-    ...a,
-    ...h.ordealHashes
-  ]
+  return [...a, ...h.ordealHashes];
 }, []);
 
 export const seasonalMods = {
@@ -637,4 +777,4 @@ export const seasonalMods = {
       inactive: '/static/images/extracts/ui/artifact/0593_0439_00.png'
     }
   }
-}
+};

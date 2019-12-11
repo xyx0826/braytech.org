@@ -16,11 +16,7 @@ class Flashpoint extends React.Component {
     const definitionFlashpointVendor =
       milestoneFlashpointQuestItem &&
       Object.values(manifest.DestinyVendorDefinition).find(v => {
-        if (milestoneFlashpointQuestItem.destinationHash === 1993421442) {
-          return v.locations && v.locations.find(l => l.destinationHash === 3669933163);
-        } else {
-          return v.locations && v.locations.find(l => l.destinationHash === milestoneFlashpointQuestItem.destinationHash);
-        }
+        return v.locations?.find(l => l.destinationHash === milestoneFlashpointQuestItem.destinationHash);
       });
     const definitionFlashpointFaction = definitionFlashpointVendor && manifest.DestinyFactionDefinition[definitionFlashpointVendor.factionHash];
 

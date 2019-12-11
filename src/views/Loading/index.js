@@ -8,6 +8,7 @@ import packageJSON from '../../../package.json';
 import Spinner from '../../components/UI/Spinner';
 import ObservedImage from '../../components/ObservedImage';
 import { ReactComponent as Logo } from '../../components/BraytechDevice.svg';
+import { ReactComponent as Saint14 } from '../../media/miscellaneous/saint14.svg';
 
 import './styles.css';
 
@@ -103,7 +104,7 @@ class Loading extends React.Component {
         <div className='view' id='loading'>
           <div className='bg'>
             <div className='containment'>
-              {/* <ObservedImage className='image' src='/static/images/extracts/flair/01E3-0000130C.png' /> */}
+              <Saint14 />
             </div>
           </div>
           <div className='logo-feature'>

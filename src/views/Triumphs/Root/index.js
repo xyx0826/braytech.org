@@ -28,6 +28,7 @@ class Root extends React.Component {
     const sealNodes = [];
     const recordsStates = [];
 
+    // standard nodes
     parent.children.presentationNodes.forEach(child => {
       const definitionNode = manifest.DestinyPresentationNodeDefinition[child.presentationNodeHash];
       const states = [];
@@ -80,10 +81,12 @@ class Root extends React.Component {
       );
     });
 
+    // seal nodes
     sealsParent.children.presentationNodes.forEach(child => {
       const definitionSeal = manifest.DestinyPresentationNodeDefinition[child.presentationNodeHash];
 
       if (definitionSeal.redacted) {
+        console.log(`Seal ${child.presentationNodeHash} is redacted`);
         return;
       }
 
@@ -91,7 +94,9 @@ class Root extends React.Component {
 
       const completionRecordData = definitionSeal && definitionSeal.completionRecordHash && definitionSeal.scope === 1 ? characterRecords[member.characterId].records[definitionSeal.completionRecordHash] : profileRecords[definitionSeal.completionRecordHash];
 
-      if (completionRecordData && enumerateRecordState(completionRecordData.state).rewardUnavailable && enumerateRecordState(completionRecordData.state).objectiveNotCompleted) {
+      // temporary fix for https://github.com/Bungie-net/api/issues/1167
+      if (completionRecordData && enumerateRecordState(completionRecordData.state).rewardUnavailable && enumerateRecordState(completionRecordData.state).objectiveNotCompleted && child.presentationNodeHash !== 2209950401) {
+        console.log(`Completion record for seal ${child.presentationNodeHash} says it's no longer available`, enumerateRecordState(completionRecordData.state));
         return;
       }
 

@@ -95,7 +95,7 @@ class PresentationNode extends React.Component {
       secondaryChildren.push(
         <li key={definitionNode.hash} className={cx('linked', { completed: secondaryProgress === secondaryTotal && secondaryTotal !== 0, active: definitionTertiary.hash === child.presentationNodeHash })}>
           <div className='text'>
-            <div className='name'>{definitionNode.displayProperties.name.length > 24 ? definitionNode.displayProperties.name.slice(0, 24) + '...' : definitionNode.displayProperties.name}</div>
+            <div className='name'>{definitionNode.displayProperties.name}</div>
             <div className='progress'>
               <span>{secondaryProgress}</span> / {secondaryTotal}
             </div>

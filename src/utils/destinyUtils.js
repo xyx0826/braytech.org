@@ -72,10 +72,10 @@ export function progressionSeasonRank(member) {
     return false;
   }
 
-  let progression = {...member.data.profile.characterProgressions.data[member.characterId].progressions[1628407317]};
+  let progression = {...member.data.profile.characterProgressions.data[member.characterId].progressions[3256821400]};
 
   if (progression.level === progression.levelCap) {
-    progression = { ...member.data.profile.characterProgressions.data[member.characterId].progressions[3184735011] };
+    progression = { ...member.data.profile.characterProgressions.data[member.characterId].progressions[3298204156] };
     progression.level += 100;
   }
   

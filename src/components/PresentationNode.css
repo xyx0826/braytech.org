@@ -90,7 +90,9 @@
 
 .presentation-node .list.secondary li .text {
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto max-content;
+  column-gap: 16px;
   justify-content: space-between;
   padding: 0 1rem;
 }
@@ -98,6 +100,9 @@
 .presentation-node .list.secondary li .text .name {
   color: rgba(255, 255, 255, 0.6);
   letter-spacing: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .presentation-node .list.secondary li .text .progress {

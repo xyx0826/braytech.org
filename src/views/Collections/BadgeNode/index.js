@@ -27,7 +27,7 @@ class BadgeNode extends React.Component {
     const character = characters.find(c => c.characterId === member.characterId);
 
     // associates class with hash
-    //
+    
     // let obj = {}
     // for (const n of Object.values(manifest.DestinyPresentationNodeDefinition)) {
     //   n.children && n.children.presentationNodes && n.children.presentationNodes.length && n.children.presentationNodes.forEach(p => {

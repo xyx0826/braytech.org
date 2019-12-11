@@ -60,7 +60,7 @@ class RecordsAlmost extends React.Component {
       let progressValueTotal = 0;
 
       if (record.intervalObjectives) {
-        console.log(record)
+        // console.log(record)
         const nextIncomplete = record.intervalObjectives.find(o => !o.complete);
 
         // interval record all completed

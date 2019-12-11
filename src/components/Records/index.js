@@ -150,7 +150,7 @@ class Records extends React.Component {
     const tracked = triumphs.tracked;
 
     let recordsOutput = [];
-    recordsRequested.forEach(hash => {
+    recordsRequested.forEach((hash, i) => {
       const definitionRecord = manifest.DestinyRecordDefinition[hash];
 
       const recordScope = definitionRecord.scope || 0;
@@ -326,7 +326,7 @@ class Records extends React.Component {
           hash: definitionRecord.hash,
           element: (
             <li
-              key={definitionRecord.hash}
+              key={`${definitionRecord.hash}${i}`}
               ref={ref}
               className={cx('redacted', {
                 highlight: highlight && highlight === definitionRecord.hash
@@ -398,7 +398,7 @@ class Records extends React.Component {
           hash: definitionRecord.hash,
           element: (
             <li
-              key={definitionRecord.hash}
+              key={`${definitionRecord.hash}${i}`}
               ref={ref}
               className={cx({
                 linked: link && linkTo,
