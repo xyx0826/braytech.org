@@ -384,33 +384,16 @@ export const associationsCollectionsBadges = [
 
 export const nightfalls = {
   272852450: {
-    triumphs: [
-      1039797865,
-      3013611925
-    ],
+    triumphs: [1039797865, 3013611925],
     items: [],
-    collectibles: [
-      2466440635,
-      1766893928
-    ],
+    collectibles: [2466440635, 1766893928],
     ordealHashes: []
   },
   522318687: {
-    triumphs: [
-      165166474,
-      1871570556
-    ],
+    triumphs: [165166474, 1871570556],
     items: [],
-    collectibles: [
-      1534387877,
-      1766893929
-    ],
-    ordealHashes: [
-      3883876600,
-      3883876605,
-      3883876606,
-      3883876607
-    ]
+    collectibles: [1534387877, 1766893929],
+    ordealHashes: [3883876600, 3883876605, 3883876606, 3883876607]
   },
   629542775: {
     triumphs: [],
@@ -419,203 +402,88 @@ export const nightfalls = {
     ordealHashes: []
   },
   936308438: {
-    triumphs: [
-      2692332187,
-      1398454187
-    ],
+    triumphs: [2692332187, 1398454187],
     items: [],
-    collectibles: [
-      2448009818,
-      3490589931
-    ],
-    ordealHashes: [
-      2533203704,
-      2533203706,
-      2533203707,
-      2533203709
-    ]
+    collectibles: [2448009818, 3490589931],
+    ordealHashes: [2533203704, 2533203706, 2533203707, 2533203709]
   },
   1034003646: {
-    triumphs: [
-      599303591,
-      3399168111
-    ],
+    triumphs: [599303591, 3399168111],
     items: [],
-    collectibles: [
-      1186314105,
-      465974149
-    ],
-    ordealHashes: [
-      3200108049,
-      3200108052,
-      3200108054,
-      3200108055
-    ]
+    collectibles: [1186314105, 465974149],
+    ordealHashes: [3200108049, 3200108052, 3200108054, 3200108055]
   },
   1282886582: {
-    triumphs: [
-      1526865549,
-      2140068897
-    ],
+    triumphs: [1526865549, 2140068897],
     items: [],
-    collectibles: [
-      3036030067,
-      3490589927
-    ],
+    collectibles: [3036030067, 3490589927],
     ordealHashes: []
   },
   1391780798: {
-    triumphs: [
-      3042714868,
-      4156350130
-    ],
+    triumphs: [3042714868, 4156350130],
     items: [],
     collectibles: [],
     ordealHashes: []
   },
   3034843176: {
-    triumphs: [
-      3951275509,
-      3641166665
-    ],
+    triumphs: [3951275509, 3641166665],
     items: [],
-    collectibles: [
-      1099984904,
-      1410290331
-    ],
+    collectibles: [1099984904, 1410290331],
     ordealHashes: []
   },
   3108813009: {
-    triumphs: [
-      2836924866,
-      1469598452
-    ],
+    triumphs: [2836924866, 1469598452],
     items: [],
-    collectibles: [
-      1279318101,
-      2263264048
-    ],
+    collectibles: [1279318101, 2263264048],
     ordealHashes: []
   },
   3145298904: {
-    triumphs: [
-      3340846443,
-      4267516859
-    ],
+    triumphs: [3340846443, 4267516859],
     items: [],
-    collectibles: [
-      3036030066,
-      3490589921
-    ],
-    ordealHashes: [
-      1358381368,
-      1358381370,
-      1358381371,
-      1358381373
-    ]
+    collectibles: [3036030066, 3490589921],
+    ordealHashes: [1358381368, 1358381370, 1358381371, 1358381373]
   },
   3280234344: {
-    triumphs: [
-      2099501667,
-      1442950315
-    ],
+    triumphs: [2099501667, 1442950315],
     items: [],
-    collectibles: [
-      1333654061,
-      3490589926
-    ],
-    ordealHashes: [
-      3849697856,
-      3849697858,
-      3849697859,
-      3849697861
-    ]
+    collectibles: [1333654061, 3490589926],
+    ordealHashes: [3849697856, 3849697858, 3849697859, 3849697861]
   },
   3289589202: {
-    triumphs: [
-      1060780635,
-      1142177491
-    ],
+    triumphs: [1060780635, 1142177491],
     items: [],
-    collectibles: [
-      1152758802,
-      3490589930
-    ],
-    ordealHashes: [
-      3265488360,
-      3265488362,
-      3265488363,
-      3265488365
-    ]
+    collectibles: [1152758802, 3490589930],
+    ordealHashes: [3265488360, 3265488362, 3265488363, 3265488365]
   },
   3372160277: {
-    triumphs: [
-      1329556468,
-      413743786
-    ],
+    triumphs: [1329556468, 413743786],
     items: [],
-    collectibles: [
-      1602518767,
-      3896331530
-    ],
+    collectibles: [1602518767, 3896331530],
     ordealHashes: []
   },
   3701132453: {
-    triumphs: [
-      3450793480,
-      3847579126
-    ],
+    triumphs: [3450793480, 3847579126],
     items: [],
-    collectibles: [
-      1074861258,
-      3314387486
-    ],
+    collectibles: [1074861258, 3314387486],
     ordealHashes: []
   },
   3718330161: {
-    triumphs: [
-      2282894388,
-      3636866482
-    ],
+    triumphs: [2282894388, 3636866482],
     items: [],
-    collectibles: [
-      1279318110,
-      3490589924
-    ],
-    ordealHashes: [
-      2660931442,
-      2660931444,
-      2660931445,
-      2660931447
-    ]
+    collectibles: [1279318110, 3490589924],
+    ordealHashes: [2660931442, 2660931444, 2660931445, 2660931447]
   },
   3856436847: {
     triumphs: [],
     items: [],
     collectibles: [],
-    ordealHashes: [
-      887176537,
-      887176540,
-      887176542,
-      887176543
-    ]
+    ordealHashes: [887176537, 887176540, 887176542, 887176543]
   },
   4259769141: {
-    triumphs: [
-      3973165904,
-      1498229894
-    ],
+    triumphs: [3973165904, 1498229894],
     items: [],
-    collectibles: [
-      1718922261,
-      3490589925
-    ],
-    ordealHashes: [
-      1801803624,
-      1801803625,
-      1801803627,
-      1801803630
-    ]
+    collectibles: [1718922261, 3490589925],
+    ordealHashes: [1801803624, 1801803625, 1801803627, 1801803630]
   }
 };
 
@@ -629,152 +497,304 @@ export const seasonalMods = {
     4088080601: {
       hash: 4088080601,
       perkHash: 758376759,
-      active: '/static/images/extracts/ui/artifact/0593_0376_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_0378_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_0376_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_0378_00.png'
     },
     // Labyrinth Miner
     4088080602: {
       hash: 4088080602,
-      active: '/static/images/extracts/ui/artifact/0593_0383_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_0385_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_0383_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_0385_00.png'
     },
     // Biomonetizer
     4088080603: {
       hash: 4088080603,
-      active: '/static/images/extracts/ui/artifact/0593_038D_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_038F_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_038D_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_038F_00.png'
     },
     // Circuit Scavenger
     4088080604: {
       hash: 4088080604,
-      active: '/static/images/extracts/ui/artifact/0593_0397_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_0399_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_0397_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_0399_00.png'
     },
     // Dissection Matrix
     4088080605: {
       hash: 4088080605,
-      active: '/static/images/extracts/ui/artifact/0593_03A1_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_03A3_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_03A1_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_03A3_00.png'
     },
     // Anti-Barrier Rounds
     2102702010: {
       hash: 2102702010,
-      active: '/static/images/extracts/ui/artifact/0593_0460_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_0462_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_0460_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_0462_00.png'
     },
     // Anti-Barrier Hand Cannon
     2102702009: {
       hash: 2102702009,
-      active: '/static/images/extracts/ui/artifact/0593_046A_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_046B_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_046A_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_046B_00.png'
     },
     // Overload Rounds
     2102702008: {
       hash: 2102702008,
-      active: '/static/images/extracts/ui/artifact/0593_0473_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_0476_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_0473_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_0476_00.png'
     },
     // Overload Arrowheads
     2102702015: {
       hash: 2102702015,
-      active: '/static/images/extracts/ui/artifact/0593_047D_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_0480_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_047D_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_0480_00.png'
     },
     // Unstoppable Hand Cannon
     2102702014: {
       hash: 2102702014,
-      active: '/static/images/extracts/ui/artifact/0593_0488_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_048A_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_0488_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_048A_00.png'
     },
     // Enhanced Hand Cannon Loader
     3333771943: {
       hash: 3333771943,
-      active: '/static/images/extracts/ui/artifact/0593_03AB_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_03AC_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_03AB_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_03AC_00.png'
     },
     // Enhanced Submachine Gun Loader
     3333771940: {
       hash: 3333771940,
-      active: '/static/images/extracts/ui/artifact/0593_03B5_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_03B6_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_03B5_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_03B6_00.png'
     },
     // Enhanced Bow Loader
     3333771941: {
       hash: 3333771941,
-      active: '/static/images/extracts/ui/artifact/0593_03BE_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_03C1_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_03BE_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_03C1_00.png'
     },
     // Enhanced Fusion Rifle Loader
     3333771938: {
       hash: 3333771938,
-      active: '/static/images/extracts/ui/artifact/0593_03C9_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_03CA_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_03C9_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_03CA_00.png'
     },
     // Enhanced Auto Rifle Loader
     3333771939: {
       hash: 3333771939,
-      active: '/static/images/extracts/ui/artifact/0593_03D3_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_03D4_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_03D3_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_03D4_00.png'
     },
     // Breach Refractor
     2402696710: {
       hash: 2402696710,
-      active: '/static/images/extracts/ui/artifact/0593_03DD_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_03DF_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_03DD_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_03DF_00.png'
     },
     // Ballistic Combo
     2402696706: {
       hash: 2402696706,
-      active: '/static/images/extracts/ui/artifact/0593_0405_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_0406_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_0405_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_0406_00.png'
     },
     // Overload Grenades
     2402696709: {
       hash: 2402696709,
-      active: '/static/images/extracts/ui/artifact/0593_03E7_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_03E9_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_03E7_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_03E9_00.png'
     },
     // Disruptor Spike
     2402696708: {
       hash: 2402696708,
-      active: '/static/images/extracts/ui/artifact/0593_03F1_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_03F3_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_03F1_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_03F3_00.png'
     },
     // Unstoppable Melee
     2402696707: {
       hash: 2402696707,
-      active: '/static/images/extracts/ui/artifact/0593_03FB_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_03FD_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_03FB_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_03FD_00.png'
     },
     // Heavy Finisher
     2612707365: {
       hash: 2612707365,
-      active: '/static/images/extracts/ui/artifact/0593_040F_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_0411_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_040F_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_0411_00.png'
     },
     // Oppressive Darkness
     2612707366: {
       hash: 2612707366,
-      active: '/static/images/extracts/ui/artifact/0593_0419_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_041A_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_0419_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_041A_00.png'
     },
     // Arc Battery
     2612707367: {
       hash: 2612707367,
-      active: '/static/images/extracts/ui/artifact/0593_0423_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_0424_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_0423_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_0424_00.png'
     },
     // Thunder Coil
     2612707360: {
       hash: 2612707360,
-      active: '/static/images/extracts/ui/artifact/0593_042D_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_042F_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_042D_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_042F_00.png'
     },
     // From the Depths
     2612707361: {
       hash: 2612707361,
-      active: '/static/images/extracts/ui/artifact/0593_0437_00.png',
-      inactive: '/static/images/extracts/ui/artifact/0593_0439_00.png'
+      active: '/static/images/extracts/ui/artifact/1387688628/0593_0437_00.png',
+      inactive: '/static/images/extracts/ui/artifact/1387688628/0593_0439_00.png'
+    }
+  },
+  3360014173: {
+    // Anti-Barrier Ranger
+    2055287902: {
+      hash: 2055287902,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001978.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001980.png'
+    },
+    // Unstoppable Shot
+    2055287901: {
+      hash: 2055287901,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001987.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001989.png'
+    },
+    // Unstoppable Burst
+    2055287900: {
+      hash: 2055287900,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001996.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001998.png'
+    },
+    // Unstoppable Arrows
+    2055287899: {
+      hash: 2055287899,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00002005.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00002008.png'
+    },
+    // Overload Rounds
+    2055287898: {
+      hash: 2055287898,
+      active: '/static/images/extracts/ui/artifact/3360014173/0593_0473_00.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0593_0476_00.png'
+    },
+    // Enhanced Rifle Loader
+    3102998661: {
+      hash: 3102998661,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001849.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001851.png'
+    },
+    // Enhanced Unflinching Rifle Aim
+    3102998662: {
+      hash: 3102998662,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001858.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001860.png'
+    },
+    // Enhanced Bow Loader
+    3102998663: {
+      hash: 3102998663,
+      active: '/static/images/extracts/ui/artifact/3360014173/0593_03BE_00.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0593_03C1_00.png'
+    },
+    // Enhanced Sniper Rifle Loader
+    3102998656: {
+      hash: 3102998656,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001867.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001870.png'
+    },
+    // Enhanced Linear Fusion Targeting
+    3102998657: {
+      hash: 3102998657,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001876.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001878.png'
+    },
+    // Solidus Strike
+    3264050278: {
+      hash: 3264050278,
+      active: '/static/images/extracts/ui/artifact/3360014173/0593_0376_00.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0593_0378_00.png'
+    },
+    // Splintered Gladius
+    3264050277: {
+      hash: 3264050277,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001889.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001891.png'
+    },
+    // Biomonetizer
+    3264050276: {
+      hash: 3264050276,
+      active: '/static/images/extracts/ui/artifact/3360014173/0593_038D_00.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0593_038F_00.png'
+    },
+    // Tithe Collector's Sigil
+    3264050275: {
+      hash: 3264050275,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001899.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001900.png'
+    },
+    // Knight Errant
+    3264050274: {
+      hash: 3264050274,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001907.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001909.png'
+    },
+    // Breach Resonator
+    4195125383: {
+      hash: 4195125383,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001917.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001919.png'
+    },
+    // Molten Overload
+    4195125380: {
+      hash: 4195125380,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001925.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001927.png'
+    },
+    // Disruptor Spike
+    4195125381: {
+      hash: 4195125381,
+      active: '/static/images/extracts/ui/artifact/3360014173/0593_03F1_00.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0593_03F3_00.png'
+    },
+    // Unstoppable Schwarzschild Condensor
+    4195125378: {
+      hash: 4195125378,
+      active: '/static/images/extracts/ui/artifact/3360014173/0593_03FB_00.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0593_03FD_00.png'
+    },
+    // Tenderizer
+    4195125379: {
+      hash: 4195125379,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001942.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001944.png'
+    },
+    // Guardian Angel
+    3979891912: {
+      hash: 3979891912,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001952.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001953.png'
+    },
+    // Void Battery
+    3979891915: {
+      hash: 3979891915,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001961.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001963.png'
+    },
+    // Heavy Finisher
+    3979891914: {
+      hash: 3979891914,
+      active: '/static/images/extracts/ui/artifact/3360014173/0593_040F_00.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0593_0411_00.png'
+    },
+    // Solar Plexus
+    3979891917: {
+      hash: 3979891917,
+      active: '/static/images/extracts/ui/artifact/3360014173/0708-00001969.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0708-00001971.png'
+    },
+    // From the Depths
+    3979891916: {
+      hash: 3979891916,
+      active: '/static/images/extracts/ui/artifact/3360014173/0593_0437_00.png',
+      inactive: '/static/images/extracts/ui/artifact/3360014173/0593_0439_00.png'
     }
   }
 };

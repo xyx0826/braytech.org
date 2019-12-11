@@ -15,6 +15,7 @@ import SealNode from './SealNode/';
 import AlmostComplete from './AlmostComplete/';
 import Tracked from './Tracked/';
 import Unredeemed from './Unredeemed/';
+import DudDebug from './DudDebug/';
 
 class Triumphs extends React.Component {
   constructor(props) {
@@ -158,6 +159,27 @@ class Triumphs extends React.Component {
         <>
           <div className='view' id='triumphs'>
             <Tracked />
+          </div>
+          <div className='sticky-nav'>
+            <div className='wrapper'>
+              <div />
+              <ul>
+                <li>
+                  <ProfileLink className='button' to={backLinkPath}>
+                    <DestinyKey type='dismiss' />
+                    {t('Back')}
+                  </ProfileLink>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </>
+      );
+    } else if (primaryHash === 'dud-debug') {
+      return (
+        <>
+          <div className='view' id='triumphs'>
+            <DudDebug />
           </div>
           <div className='sticky-nav'>
             <div className='wrapper'>

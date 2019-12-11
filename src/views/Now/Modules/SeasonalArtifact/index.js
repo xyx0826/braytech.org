@@ -31,16 +31,16 @@ class SeasonalArtifact extends React.Component {
             <p>{t("This profile hasn't received an artifact yet.")}</p>
           </div>
         </div>
-      )
+      );
     }
 
     const profileArtifact = profileProgression.seasonalArtifact;
     const characterArtifact = characterProgressions.seasonalArtifact;
 
     const definitionArtifact = profileArtifact.artifactHash && manifest.DestinyArtifactDefinition[equippedArtifact.itemHash];
-    //const definitionVendor = profileArtifact.artifactHash && manifest.DestinyVendorDefinition[profileArtifact.artifactHash];
+    const definitionVendor = profileArtifact.artifactHash && manifest.DestinyVendorDefinition[profileArtifact.artifactHash];
 
-    console.log(equippedArtifact, profileArtifact, characterArtifact)
+    console.log(equippedArtifact, profileArtifact, characterArtifact);
 
     // let string = ''
     //     definitionArtifact.tiers.forEach(tier => {
@@ -50,8 +50,8 @@ class SeasonalArtifact extends React.Component {
     // // ${definitionItem.displayProperties.name}
     // ${item.itemHash}: {
     //   hash: ${item.itemHash},
-    //   active: '/static/images/extracts/ui/artifact/0000000.png',
-    //   inactive: '/static/images/extracts/ui/artifact/0000000.png'
+    //   active: '/static/images/extracts/ui/artifact/3360014173/0000000.png',
+    //   inactive: '/static/images/extracts/ui/artifact/3360014173/0000000.png'
     // },`
     //       })
     //     })
@@ -61,7 +61,6 @@ class SeasonalArtifact extends React.Component {
 
     return (
       <div className='seasonal-artifact'>
-        {/* <ObservedImage className='image artifact' src='/static/images/extracts/flair/VEye.png' /> */}
         <div className='head'>
           <div className='module-header'>
             <div className='sub-name'>{t('Seasonal progression')}</div>
@@ -84,63 +83,53 @@ class SeasonalArtifact extends React.Component {
             <h4>{t('Mods')}</h4>
             <div className='tiers'>
               {definitionArtifact.tiers.map((tier, t) => {
-                  // const previousTierUnlocksUsed = items
-                  //   .filter(i => definitionArtifact.tiers[Math.max(0, t - 1)]
-                  //       .items.map(i => i.itemHash)
-                  //       .includes(i.itemHash)
-                  //   ).filter(i => i.obtained).length;
+                const tierUnlocksUsed = characterArtifact.tiers[t]?.items.filter(i => i.isActive).length || 0;
 
-                  const tierUnlocksUsed = characterArtifact.tiers[t]?.items.filter(i => i.isActive).length || 0;
+                return (
+                  <div
+                    key={t}
+                    className={cx('tier', {
+                      available: characterArtifact.pointsUsed >= tier.minimumUnlockPointsUsedRequirement,
+                      last: (t < 4 && characterArtifact.pointsUsed < definitionArtifact.tiers[t + 1]?.minimumUnlockPointsUsedRequirement && tierUnlocksUsed > 0) || t === 4
+                    })}
+                  >
+                    <ul className='list inventory-items'>
+                      {(characterArtifact.tiers[t]?.items || tier.items).map((item, i) => {
+                        const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
 
-                  // console.log(t, tier.minimumUnlockPointsUsedRequirement, previousTierUnlocksUsed)
+                        const image = seasonalMods[equippedArtifact.itemHash] && seasonalMods[equippedArtifact.itemHash][item.itemHash] ? (!item.isActive ? seasonalMods[equippedArtifact.itemHash][item.itemHash].inactive : seasonalMods[equippedArtifact.itemHash][item.itemHash].active) : definitionItem && `https://www.bungie.net${definitionItem.displayProperties.icon}`;
 
-                  return (
-                    <div
-                      key={t}
-                      className={cx('tier', {
-                        available: characterArtifact.pointsUsed >= tier.minimumUnlockPointsUsedRequirement,
-                        last: (t < 4 && characterArtifact.pointsUsed < definitionArtifact.tiers[t + 1]?.minimumUnlockPointsUsedRequirement && tierUnlocksUsed > 0) || t === 4
+                        const energyCost = definitionItem && definitionItem.plug && definitionItem.plug.energyCost ? definitionItem.plug.energyCost.energyCost : 0;
+
+                        return (
+                          <li
+                            key={i}
+                            className={cx({
+                              tooltip: true,
+                              linked: true,
+                              'no-border': true,
+                              unavailable: !item.isActive
+                            })}
+                            data-hash={item.itemHash}
+                            data-instanceid={item.itemInstanceId}
+                            data-state={item.state}
+                            // data-vendorhash={item.vendorHash}
+                            // data-vendorindex={item.vendorItemIndex}
+                            // data-vendorstatus={item.saleStatus}
+                            data-quantity={item.quantity && item.quantity > 1 ? item.quantity : null}
+                          >
+                            <div className='icon'>
+                              {!item.isActive ? <ObservedImage className='image background' src='/static/images/extracts/ui/artifact/01A3_12DB_00.png' /> : null}
+                              <ObservedImage src={image} />
+                              <div className='cost'>{energyCost}</div>
+                            </div>
+                          </li>
+                        );
                       })}
-                    >
-                      <ul className='list inventory-items'>
-                        {characterArtifact.tiers[t]?.items
-                          .map((item, i) => {
-
-                            const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
-
-                            const image = seasonalMods[equippedArtifact.itemHash] && seasonalMods[equippedArtifact.itemHash][item.itemHash] ? !item.isActive ? seasonalMods[equippedArtifact.itemHash][item.itemHash].inactive : seasonalMods[equippedArtifact.itemHash][item.itemHash].active : definitionItem && `https://www.bungie.net${definitionItem.displayProperties.icon}`;
-
-                            const energyCost = definitionItem && definitionItem.plug && definitionItem.plug.energyCost ? definitionItem.plug.energyCost.energyCost : 0;
-
-                            return (
-                              <li
-                                key={i}
-                                className={cx({
-                                  tooltip: true,
-                                  linked: true,
-                                  'no-border': true,
-                                  unavailable: !item.isActive
-                                })}
-                                data-hash={item.itemHash}
-                                data-instanceid={item.itemInstanceId}
-                                data-state={item.state}
-                                // data-vendorhash={item.vendorHash}
-                                // data-vendorindex={item.vendorItemIndex}
-                                // data-vendorstatus={item.saleStatus}
-                                data-quantity={item.quantity && item.quantity > 1 ? item.quantity : null}
-                              >
-                                <div className='icon'>
-                                  {!item.isActive ? <ObservedImage className='image background' src='/static/images/extracts/ui/artifact/01A3_12DB_00.png' /> : null}
-                                  <ObservedImage src={image} />
-                                  <div className='cost'>{energyCost}</div>
-                                </div>
-                              </li>
-                            );
-                          })}
-                      </ul>
-                    </div>
-                  );
-                })}
+                    </ul>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className='progression'>
@@ -152,12 +141,18 @@ class SeasonalArtifact extends React.Component {
               <div>
                 <div className='name'>{t('Artifact unlocks')}</div>
                 <div className='value'>
-                  {profileArtifact.pointProgression?.level}/{profileArtifact.pointProgression?.levelCap}
+                  {profileArtifact.pointProgression?.level ? (
+                    <>
+                      {profileArtifact.pointProgression.level} / {profileArtifact.pointProgression.levelCap}
+                    </>
+                  ) : (
+                    <>—</>
+                  )}
                 </div>
               </div>
               <div>
                 <div className='name'>{t('Power bonus')}</div>
-                <div className='value power'>+{profileArtifact.powerBonus}</div>
+                {profileArtifact.powerBonus > 0 ? <div className='value power'>+{profileArtifact.powerBonus}</div> : <div className='value'>—</div>}
               </div>
             </div>
             <p>{t('Next power bonus')}</p>
@@ -189,10 +184,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(SeasonalArtifact);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(SeasonalArtifact);

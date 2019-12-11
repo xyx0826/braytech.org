@@ -142,7 +142,7 @@ class Records extends React.Component {
   render() {
     const { t, hashes, member, triumphs, collectibles, ordered, limit, selfLinkFrom, readLink, forceDisplay = false } = this.props;
     const highlight = parseInt(this.props.highlight, 10) || false;
-    const recordsRequested = collectibles.hideDudRecords ? hashes.filter(hash => dudRecords.indexOf(hash) === -1) : hashes;
+    const recordsRequested = collectibles.hideDudRecords && !forceDisplay ? hashes.filter(hash => dudRecords.indexOf(hash) === -1) : hashes;
     const characterId = member && member.characterId;
     const characterRecords = member && member.data && member.data.profile.characterRecords.data;
     const profileRecords = member && member.data && member.data.profile.profileRecords.data.records;
