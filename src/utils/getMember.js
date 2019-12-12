@@ -3,7 +3,7 @@ import * as bungie from './bungie';
 import * as responseUtils from './responseUtils';
 import manifest from './manifest';
 
-async function getMember(membershipType, membershipId) {
+async function getMember(membershipType, membershipId, silent = false) {
 
   const components = [100, 104, 200, 202, 204, 205, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 800, 900];
   let withAuth = false;
@@ -34,15 +34,25 @@ async function getMember(membershipType, membershipId) {
           membershipId,
           components: components.join(',')
         },
-        withAuth
+        withAuth,        
+        errors: {
+          hide: silent
+        }
       }), 
       bungie.GetGroupsForMember({
         params: {
           membershipType,
           membershipId
+        },
+        errors: {
+          hide: silent
         }
       }), 
-      bungie.GetPublicMilestones()
+      bungie.GetPublicMilestones({
+        errors: {
+          hide: silent
+        }
+      })
     ];
 
     const [profile, groups, milestones] = await Promise.all(requests);

@@ -150,6 +150,8 @@ class MemberLink extends React.Component {
   };
 
   activateOverlay = async e => {
+    if (this.props.disableOverlay) return;
+
     e.stopPropagation();
 
     this.setState((prevState, props) => {

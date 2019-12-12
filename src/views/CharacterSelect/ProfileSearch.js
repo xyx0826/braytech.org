@@ -44,15 +44,45 @@ class ProfileSearch extends React.Component {
 
     this.setState({ searching: true });
     try {
-      const results = await bungie.SearchDestinyPlayer('-1', displayName);
+      const isSteamID64 = displayName.match(/\b\d{17}\b/);
+      const response = isSteamID64 ? await bungie.GetMembershipFromHardLinkedCredential({ params: { crType: 'SteamId', credential: displayName } }) : await bungie.SearchDestinyPlayer('-1', displayName);
+
+      const results =
+        isSteamID64 && response.ErrorCode === 1
+          ? [
+              await bungie
+                .GetProfile({
+                  params: {
+                    membershipType: response.Response.membershipType,
+                    membershipId: response.Response.membershipId,
+                    components: '100'
+                  },
+                  errors: {
+                    hide: false
+                  }
+                })
+                .then(response => {
+                  return {
+                    displayName: response.Response.profile.data.userInfo.displayName,
+                    membershipId: response.Response.profile.data.userInfo.membershipId,
+                    membershipType: response.Response.profile.data.userInfo.membershipType
+                  };
+                })
+            ]
+          : response.Response;
 
       if (this.mounted) {
-        if (results && results.ErrorCode === 1) this.setState({ results: results.Response, searching: false });
+        if (results) {
+          this.setState({ results, searching: false });
+        } else {
+          throw Error();
+        }
       }
     } catch (e) {
       // If we get an error here it's usually because somebody is being cheeky
       // (eg entering invalid search data), so log it only.
       console.warn(`Error while searching for ${displayName}: ${e}`);
+      if (this.mounted) this.setState({ results: false, searching: false });
     }
   }, 500);
 

@@ -159,7 +159,7 @@ class Header extends React.Component {
       },
       {
         name: t('Quests'),
-        desc: t('Quests and bounties, step by step, reward by reward'),
+        desc: t('Your pursuits including quests and bounties'),
         slug: '/quests',
         exact: false,
         profile: true,
@@ -323,7 +323,7 @@ class Header extends React.Component {
             <div className='logo'>
               <Link to='/' onClick={this.closeNav}>
                 <span className='destiny-clovis_bray_device' />
-                Braytech
+                {process.env.REACT_APP_BETA === 'true' ? 'Braytech Beta' : 'Braytech'}
               </Link>
             </div>
             {!viewsInline || this.state.navOpen ? this.navOverlayLink(this.state.navOpen) : null}

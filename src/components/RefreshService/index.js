@@ -103,7 +103,7 @@ class RefreshService extends React.Component {
     const { membershipType, membershipId, characterId } = this.props.member;
 
     try {
-      const data = await getMember(membershipType, membershipId);
+      const data = await getMember(membershipType, membershipId, true);
 
       ['profile', 'groups', 'milestones'].forEach(key => {
         if (data[key].ErrorCode !== 1) {
