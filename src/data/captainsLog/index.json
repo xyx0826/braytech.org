@@ -858,5 +858,10 @@
     "date": "2019-12-11T12:29:10.244Z",
     "version": "2.12.21",
     "content": "- renamed _Pursuits_ to _Quests_ to match game\n- further adjustments to tooltips logic"
+  },
+  {
+    "date": "2019-12-12T05:05:20.465Z",
+    "version": "2.12.22",
+    "content": "- added SteamID64 search support to _Character Select_"
   }
 ]
