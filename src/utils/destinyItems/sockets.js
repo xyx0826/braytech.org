@@ -143,19 +143,18 @@ function buildSocket(item, socket, socketDef, index, reusablePlugs, plugObjectiv
     } else if (socketDef.reusablePlugItems) {
       // This perk's list of plugs come from the definition's list of items?
       // TODO: should we fill this in for perks?
-
-      if (socketDef.reusablePlugItems.length) {
-        socketDef.reusablePlugItems.forEach(reusablePlug => {
-          if (!plugOptions.find(p => p.plugItem.hash === reusablePlug.plugItem.hash)) {
-            plugOptions.push(buildDefinedPlug(socketDef, reusablePlug));
-          }
-        });
-      }
     } else if (socketDef.reusablePlugSetHash) {
       // This perk's list of plugs come from a plugSet
       // TODO: should we fill this in for perks?
     }
   }
+  // } else if (socketDef.reusablePlugItems?.length && isMasterwork) {
+  //   socketDef.reusablePlugItems.forEach(reusablePlug => {
+  //     if (!plugOptions.find(p => p.plugItem.hash === reusablePlug.plugItemHash)) {
+  //       plugOptions.push(buildDefinedPlug(socketDef, reusablePlug));
+  //     }
+  //   });
+  // }
 
   // TODO: is this still true?
   const hasRandomizedPlugItems = Boolean(socketDef && socketDef.randomizedPlugSetHash) || socketTypeDef.alwaysRandomizeSockets;
