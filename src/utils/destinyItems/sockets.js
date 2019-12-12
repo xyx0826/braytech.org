@@ -113,6 +113,8 @@ function buildSocket(item, socket, socketDef, index, reusablePlugs, plugObjectiv
 
   // TODO: not sure if this should always be included!
   const plugOptions = plug ? [plug] : [];
+  
+  const isMasterwork = Boolean(plug.plugItem?.plug?.plugCategoryIdentifier?.includes('masterworks.stat') || plug.plugItem?.plug?.plugCategoryIdentifier?.endsWith('_masterwork'));
 
   // We only build a larger list of plug options if this is a perk socket, since users would
   // only want to see (and search) the plug options for perks. For other socket types (mods, shaders, etc.)
@@ -121,6 +123,7 @@ function buildSocket(item, socket, socketDef, index, reusablePlugs, plugObjectiv
     if (reusablePlugs) {
       // This perk's list of plugs comes from the live reusablePlugs component.
       const reusableDimPlugs = reusablePlugs ? compact(reusablePlugs.map(reusablePlug => buildPlug(reusablePlug, socketDef, plugObjectivesData))) : [];
+
       if (reusableDimPlugs.length) {
         reusableDimPlugs.forEach(reusablePlug => {
           if (filterReusablePlug(reusablePlug)) {
@@ -140,6 +143,14 @@ function buildSocket(item, socket, socketDef, index, reusablePlugs, plugObjectiv
     } else if (socketDef.reusablePlugItems) {
       // This perk's list of plugs come from the definition's list of items?
       // TODO: should we fill this in for perks?
+
+      if (socketDef.reusablePlugItems.length) {
+        socketDef.reusablePlugItems.forEach(reusablePlug => {
+          if (!plugOptions.find(p => p.plugItem.hash === reusablePlug.plugItem.hash)) {
+            plugOptions.push(buildDefinedPlug(socketDef, reusablePlug));
+          }
+        });
+      }
     } else if (socketDef.reusablePlugSetHash) {
       // This perk's list of plugs come from a plugSet
       // TODO: should we fill this in for perks?
@@ -149,11 +160,11 @@ function buildSocket(item, socket, socketDef, index, reusablePlugs, plugObjectiv
   // TODO: is this still true?
   const hasRandomizedPlugItems = Boolean(socketDef && socketDef.randomizedPlugSetHash) || socketTypeDef.alwaysRandomizeSockets;
 
-  const isIntrinsic = plug && plug.plugItem && plug.plugItem.itemCategoryHashes && plug.plugItem.itemCategoryHashes.includes(2237038328);
-  const isMod = Boolean(plug && plug.plugItem && plug.plugItem.itemCategoryHashes && plug.plugItem.itemCategoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0);
-  const isShader = Boolean(plug && plug.plugItem && plug.plugItem.inventory && plug.plugItem.inventory.bucketTypeHash === enums.DestinyInventoryBucket.Shaders);
-  const isOrnament = Boolean(plug && plug.plugItem && plug.plugItem.itemSubType === enums.DestinyItemSubType.Ornament && !EXCLUDED_PLUGS.has(plug.plugItem.hash));
-  const isTracker = Boolean(plug && plug.plugItem && plug.plugItem.plug && plug.plugItem.plug.plugCategoryIdentifier && plug.plugItem.plug.plugCategoryIdentifier.includes('trackers'));
+  const isIntrinsic = plug.plugItem?.itemCategoryHashes?.includes(2237038328);
+  const isMod = Boolean(plug.plugItem?.itemCategoryHashes?.filter(hash => modItemCategoryHashes.includes(hash)).length > 0);
+  const isShader = Boolean(plug.plugItem?.inventory?.bucketTypeHash === enums.DestinyInventoryBucket.Shaders);
+  const isOrnament = Boolean(plug.plugItem?.itemSubType === enums.DestinyItemSubType.Ornament && !EXCLUDED_PLUGS.has(plug.plugItem?.hash));
+  const isTracker = Boolean(plug.plugItem?.plug?.plugCategoryIdentifier?.includes('trackers'));
 
   return {
     socketIndex: index,
@@ -162,7 +173,7 @@ function buildSocket(item, socket, socketDef, index, reusablePlugs, plugObjectiv
     hasRandomizedPlugItems,
     isPerk,
     isIntrinsic,
-    isMasterwork: false,
+    isMasterwork,
     isMod,
     isShader,
     isOrnament,

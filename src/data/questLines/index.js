@@ -284,7 +284,17 @@ export const rewardsQuestLineOverridesShadowkeep = [
     itemHash: 1029660100,
     rewards: [
       {
-        itemHash: 2591746970, // Leviathan's Breath 
+        itemHash: 2591746970, // Leviathan's Breath
+        quantity: 1
+      }
+    ]
+  },
+  // Recovering The Past
+  {
+    itemHash: 14014810,
+    rewards: [
+      {
+        itemHash: 3393519051, // Perfect Paradox
         quantity: 1
       }
     ]

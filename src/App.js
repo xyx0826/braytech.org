@@ -83,7 +83,7 @@ class App extends React.Component {
 
     // We do these as early as possible - we don't want to wait
     // for the component to mount before starting the web requests
-    this.startupRequests = {
+    this.startupRequests = window.navigator.onLine && {
       storedManifest: timed('storedManifest', this.getStoredManifest()),
       manifestIndex: timed('GetDestinyManifest', bungie.GetDestinyManifest({ errors: { hide: true } })),
       bungieSettings: timed('GetCommonSettings', bungie.GetCommonSettings({ errors: { hide: true } })),
@@ -139,6 +139,11 @@ class App extends React.Component {
   async componentDidMount() {
     this.updateViewport();
     window.addEventListener('resize', this.updateViewport);
+
+    if (!window.navigator.onLine) {
+      this.setState({ status: { code: 'navigator_offline' } });
+      return;
+    }
 
     try {
       await timed('setUpManifest', this.setUpManifest());

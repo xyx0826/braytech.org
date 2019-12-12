@@ -53,6 +53,14 @@ class Loading extends React.Component {
           description: t('The Bungie API is currently down for maintenance.\n\nTune into @BungieHelp on Twitter for more information.')
         }
       },
+      navigator_offline: {
+        isError: true,
+        status: t('No internet'),
+        displayProperties: {
+          name: t('No internet'),
+          description: t('Are you offline? Your web browser thinks you are...')
+        }
+      },
       checkManifest: {
         status: t('Verifying manifest data')
       },
