@@ -196,6 +196,13 @@ export const EquipItem = async body =>
     body
   });
 
+export const ClaimSeasonPassReward = async body =>
+  apiRequest(`/Platform/Destiny2/Actions/Seasons/ClaimReward/`, {
+    withAuth: true,
+    method: 'post',
+    body
+  });
+
 export const KickMember = async (groupId, membershipType, membershipId) =>
   apiRequest(`/Platform/GroupV2/${groupId}/Members/${membershipType}/${membershipId}/Kick/`, {
     withAuth: true,

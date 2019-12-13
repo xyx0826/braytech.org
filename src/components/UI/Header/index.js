@@ -5,7 +5,6 @@ import { Link, NavLink } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
 
-import manifest from '../../../utils/manifest';
 import * as utils from '../../../utils/destinyUtils';
 import { ProfileNavLink } from '../../ProfileLink';
 import ProgressBar from '../../UI/ProgressBar';

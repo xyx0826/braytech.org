@@ -234,7 +234,7 @@ html.backdropfilter .wrapper.dark-mode #header .braytech {
 }
 
 #header.profile-header .background .image.very-light {
-  filter: brightness(0.8);
+  filter: brightness(0.75);
 }
 
 #header.profile-header .background .image.missing.dl {

@@ -27,7 +27,7 @@ export class EmblemBackground extends React.Component {
 
     const definitionEmblem = manifest.DestinyInventoryItemDefinition[hash];
 
-    const veryLightEmblems = [4182480236, 3961503937];
+    const veryLightEmblems = [4182480236, 3961503937, 2526736321];
 
     return (
       <ObservedImage

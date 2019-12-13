@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Braytech';
-  src: url('Braytech.woff?uywl1e') format('woff');
+  src: url('Braytech.woff?lol763') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -169,7 +169,7 @@
   content: "\e9dd";
 }
 .destiny-jade_rabbit:before {
-  content: "\e92a";
+  content: "\e92b";
 }
 .destiny-jade_rabbit_2:before {
   content: "\e93a";
@@ -357,31 +357,36 @@
 .destiny-adventure:before {
   content: "\e992";
 }
-.destiny-vex-invasion .path1:before {
+.destiny-seasonal-arena .path1:before {
   content: "\e905";
   color: rgb(42, 128, 132);
 }
-.destiny-vex-invasion .path2:before {
+.destiny-seasonal-arena .path2:before {
   content: "\e907";
   margin-left: -0.94921875em;
   color: rgb(255, 255, 255);
 }
-.destiny-vex-invasion .path3:before {
+.destiny-seasonal-arena .path3:before {
   content: "\e908";
   margin-left: -0.94921875em;
   color: rgb(255, 255, 255);
 }
+.destiny-seasonal-arena .path4:before {
+  content: "\e92a";
+  margin-left: -0.94921875em;
+  color: rgb(255, 255, 255);
+}
 .destiny-dungeon .path1:before {
-  content: "\e92b";
+  content: "\e92c";
   color: rgb(158, 130, 109);
 }
 .destiny-dungeon .path2:before {
-  content: "\e92c";
+  content: "\e92d";
   margin-left: -0.94921875em;
   color: rgb(255, 255, 255);
 }
 .destiny-dungeon .path3:before {
-  content: "\e92d";
+  content: "\e947";
   margin-left: -0.94921875em;
   color: rgb(255, 255, 255);
 }

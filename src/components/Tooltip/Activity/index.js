@@ -79,8 +79,8 @@ class Activity extends React.Component {
           return 'gambit';
         } else if (activityTypeHash === 332181804) {
           return 'nightmare-hunt';
-        } else if (hash === 2999911583) {
-          return 'vex-offensive';
+        } else if (activityModeHashes.includes(2319502047)) {
+          return 'seasonal-arena';
         } else if (activityModeHashes.includes(608898761)) {
           return 'dungeon';
         }
@@ -304,21 +304,6 @@ class Activity extends React.Component {
         };
       }
 
-      if (modeFiltered === 'vex-offensive') {
-        activityTypeDisplay = {
-          ...activityTypeDisplay,
-          mode: manifest.DestinyActivityTypeDefinition[definitionActivity.activityTypeHash].displayProperties.name,
-          className: 'vex-offensive',
-          icon: (
-            <span className='destiny-vex-invasion'>
-              <span className='path1' />
-              <span className='path2' />
-              <span className='path3' />
-            </span>
-          )
-        };
-      }
-
       if (modeFiltered === 'dungeon') {
         activityTypeDisplay = {
           ...activityTypeDisplay,
@@ -328,6 +313,23 @@ class Activity extends React.Component {
               <span className='path1' />
               <span className='path2' />
               <span className='path3' />
+            </span>
+          )
+        };
+      }
+
+      if (modeFiltered === 'seasonal-arena') {
+        activityTypeDisplay = {
+          ...activityTypeDisplay,
+          name: definitionActivityPlaylist.displayProperties.name,
+          mode: manifest.DestinyActivityTypeDefinition[263019149].displayProperties.name,
+          className: 'seasonal-arena',
+          icon: (
+            <span className='destiny-seasonal-arena'>
+              <span className='path1' />
+              <span className='path2' />
+              <span className='path3' />
+              <span className='path4' />
             </span>
           )
         };

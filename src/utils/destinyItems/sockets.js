@@ -114,7 +114,7 @@ function buildSocket(item, socket, socketDef, index, reusablePlugs, plugObjectiv
   // TODO: not sure if this should always be included!
   const plugOptions = plug ? [plug] : [];
   
-  const isMasterwork = Boolean(plug.plugItem?.plug?.plugCategoryIdentifier?.includes('masterworks.stat') || plug.plugItem?.plug?.plugCategoryIdentifier?.endsWith('_masterwork'));
+  const isMasterwork = plug && Boolean(plug.plugItem?.plug?.plugCategoryIdentifier?.includes('masterworks.stat') || plug.plugItem?.plug?.plugCategoryIdentifier?.endsWith('_masterwork'));
 
   // We only build a larger list of plug options if this is a perk socket, since users would
   // only want to see (and search) the plug options for perks. For other socket types (mods, shaders, etc.)
@@ -159,11 +159,11 @@ function buildSocket(item, socket, socketDef, index, reusablePlugs, plugObjectiv
   // TODO: is this still true?
   const hasRandomizedPlugItems = Boolean(socketDef && socketDef.randomizedPlugSetHash) || socketTypeDef.alwaysRandomizeSockets;
 
-  const isIntrinsic = plug.plugItem?.itemCategoryHashes?.includes(2237038328);
-  const isMod = Boolean(plug.plugItem?.itemCategoryHashes?.filter(hash => modItemCategoryHashes.includes(hash)).length > 0);
-  const isShader = Boolean(plug.plugItem?.inventory?.bucketTypeHash === enums.DestinyInventoryBucket.Shaders);
-  const isOrnament = Boolean(plug.plugItem?.itemSubType === enums.DestinyItemSubType.Ornament && !EXCLUDED_PLUGS.has(plug.plugItem?.hash));
-  const isTracker = Boolean(plug.plugItem?.plug?.plugCategoryIdentifier?.includes('trackers'));
+  const isIntrinsic = plug && Boolean(plug.plugItem?.itemCategoryHashes?.includes(2237038328));
+  const isMod = plug && Boolean(plug.plugItem?.itemCategoryHashes?.filter(hash => modItemCategoryHashes.includes(hash)).length > 0);
+  const isShader = plug && Boolean(plug.plugItem?.inventory?.bucketTypeHash === enums.DestinyInventoryBucket.Shaders);
+  const isOrnament = plug && Boolean(plug.plugItem?.itemSubType === enums.DestinyItemSubType.Ornament && !EXCLUDED_PLUGS.has(plug.plugItem?.hash));
+  const isTracker = plug && Boolean(plug.plugItem?.plug?.plugCategoryIdentifier?.includes('trackers'));
 
   return {
     socketIndex: index,

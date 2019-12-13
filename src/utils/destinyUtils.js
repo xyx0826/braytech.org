@@ -867,9 +867,9 @@ export function lastPlayerActivity(member) {
 
         lastActivityString = definitionActivity.selectionScreenDisplayProperties && definitionActivity.selectionScreenDisplayProperties.name ? `${definitionActivityMode.displayProperties.name}: ${definitionActivity.selectionScreenDisplayProperties.name}` : `${definitionActivityMode.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
 
-      } else if (lastActivity.currentActivityModeHash === 1963485238) { // Vex Offensive
+      } else if (lastActivity.currentActivityModeHash === 2319502047) { // The Sundial
 
-        lastActivityString = `${manifest.DestinyActivityTypeDefinition[definitionActivity.activityTypeHash].displayProperties.name}: ${definitionActivity.displayProperties.name}`;
+        lastActivityString = `${definitionActivity.displayProperties.name}`;
 
       } else if (definitionActivity.activityTypeHash === 838603889) { // Forge Ignition
 

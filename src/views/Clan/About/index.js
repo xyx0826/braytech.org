@@ -21,7 +21,7 @@ class BannerPerks extends React.Component {
   render() {
     const { level } = this.props;
 
-    const definitionBanner = manifest.DestinyInventoryItemDefinition[1460578935];
+    const definitionBanner = manifest.DestinyInventoryItemDefinition[2873099163];
     const perks =
       definitionBanner &&
       definitionBanner.sockets.socketEntries
