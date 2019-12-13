@@ -27,16 +27,30 @@ class Matches extends React.Component {
   }
 
   cacheMachine = async (mode, characterId) => {
-    const { member, PGCRcache, limit = 15, offset = 0 } = this.props;
+    const { member, auth, PGCRcache, limit = 15, offset = 0 } = this.props;
 
     let charactersIds = characterId ? [characterId] : member.data.profile.characters.data.map(c => c.characterId);
 
     // console.log(charactersIds)
 
     let requests = charactersIds.map(async c => {
-      let response = await bungie.GetActivityHistory(member.membershipType, member.membershipId, c, limit, mode, offset);
+      let response = await bungie.GetActivityHistory({
+        params: {
+          membershipType: member.membershipType,
+          membershipId: member.membershipId,
+          characterId: c,
+          count: limit,
+          mode,
+          page: offset
+        },
+        withAuth: Boolean(auth?.destinyMemberships?.find(d => d.membershipId === member.membershipId))
+      });
 
-      return (response && response.ErrorCode === 1 && response.Response.activities) || [];
+      if (response && response.ErrorCode === 1 && response.Response.activities) {
+        return response.Response.activities;
+      } else {
+        throw Error('privacy');
+      }
     });
 
     let activities = await Promise.all(requests);
@@ -78,29 +92,21 @@ class Matches extends React.Component {
       // console.log('matches refresh start');
       this.running = true;
 
-      if (this.mounted) {
-        this.setState(p => {
-          p.loading = true;
-          return p;
-        });
-      }
-
-      let ignition = mode
-        ? await [mode].map(m => {
-            return this.cacheMachine(m, member.characterId);
-          })
-        : [await this.cacheMachine(false, member.characterId)];
+      if (this.mounted) this.setState({ loading: true });
 
       try {
+        let ignition = mode
+          ? await [mode].map(m => {
+              return this.cacheMachine(m, member.characterId);
+            })
+          : [await this.cacheMachine(false, member.characterId)];
+      
         await Promise.all(ignition);
-      } catch (e) {}
-
-      if (this.mounted) {
-        this.setState(p => {
-          p.loading = false;
-          return p;
-        });
+      } catch (e) {
+        if (e.message === 'privacy' && this.mounted) this.setState({ loading: false });
       }
+
+      if (this.mounted) this.setState({ loading: false });
       this.running = false;
 
       // console.log('matches refresh end');
@@ -153,13 +159,14 @@ class Matches extends React.Component {
 
   render() {
     const { t, member, PGCRcache, mode, offset, root } = this.props;
+    const { loading, instances } = this.state;
 
     // get PGCRs for current membership
     let PGCRs = PGCRcache[member.membershipId] || [];
 
     // filter available PGCRs and ensure uniqueness
     PGCRs = PGCRs
-      .filter(pgcr => this.state.instances.includes(pgcr.activityDetails.instanceId))
+      .filter(pgcr => instances.includes(pgcr.activityDetails.instanceId))
       .filter((obj, pos, arr) => {
         return arr.map(mapObj => mapObj.activityDetails.instanceId).indexOf(obj.activityDetails.instanceId) === pos;
       });
@@ -169,26 +176,27 @@ class Matches extends React.Component {
 
     return PGCRs.length ? (
       <div className='matches'>
-        {this.state.loading ? <Spinner mini /> : null}
+        {loading ? <Spinner mini /> : null}
         <ul className='list reports'>
           {PGCRs.map((r, i) => (
             <PGCR key={r.activityDetails.instanceId} report={r} />
           ))}
         </ul>
         <div className='pages'>
-          <Button classNames='previous' text={t('Previous page')} disabled={this.state.loading ? true : offset > 0 ? false : true} anchor to={`/${member.membershipType}/${member.membershipId}/${member.characterId}${root}/${mode ? mode : '-1'}/${offset - 1}`} action={this.scrollToMatchesHandler} />
-          <Button classNames='next' text={t('Next page')} disabled={this.state.loading} anchor to={`/${member.membershipType}/${member.membershipId}/${member.characterId}${root}/${mode ? mode : '-1'}/${offset + 1}`} action={this.scrollToMatchesHandler} />
+          <Button classNames='previous' text={t('Previous page')} disabled={loading ? true : offset > 0 ? false : true} anchor to={`/${member.membershipType}/${member.membershipId}/${member.characterId}${root}/${mode ? mode : '-1'}/${offset - 1}`} action={this.scrollToMatchesHandler} />
+          <Button classNames='next' text={t('Next page')} disabled={loading} anchor to={`/${member.membershipType}/${member.membershipId}/${member.characterId}${root}/${mode ? mode : '-1'}/${offset + 1}`} action={this.scrollToMatchesHandler} />
         </div>
       </div>
-    ) : (
+    ) : loading ? (
       <Spinner />
-    );
+    ) : null;
   }
 }
 
 function mapStateToProps(state, ownProps) {
   return {
     member: state.member,
+    auth: state.auth,
     PGCRcache: state.PGCRcache
   };
 }
