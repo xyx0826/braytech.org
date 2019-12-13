@@ -88,7 +88,8 @@ async function apiRequest(path, options = {}) {
       }
     });
   
-  const response = request && await request.json();
+  const contentType = request.headers.get('content-type');
+  const response = request && contentType.indexOf("application/json") !== -1 && await request.json();
 
   if (response && response.ErrorCode && response.ErrorCode !== 1) {
     if (!options.errors.hide) {
