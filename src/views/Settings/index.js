@@ -207,7 +207,7 @@ class Settings extends React.Component {
               </li>
             </ul>
             <div className='sub-header sub'>
-              <div>{t('Local saved data')}</div>
+              <div>{t('Local data')}</div>
             </div>
             <div className='buttons'>
               <Button text={t('Clear profile history')} action={this.handler_clearProfileHistory} />

@@ -95,7 +95,7 @@ class Header extends React.Component {
     const views = [
       {
         name: t('Clan'),
-        desc: t('Check in on your clan'),
+        desc: t('About your clan, its roster, summative historical stats for all members, and admin mode'),
         slug: '/clan',
         exact: false,
         profile: true,
@@ -104,7 +104,7 @@ class Header extends React.Component {
       },
       {
         name: t('Collections'),
-        desc: t('Items your Guardian has acquired'),
+        desc: t('Items your Guardian has acquired over their lifetime'),
         slug: '/collections',
         exact: false,
         profile: true,
@@ -113,7 +113,7 @@ class Header extends React.Component {
       },
       {
         name: t('Triumphs'),
-        desc: t('Records your Guardian has achieved'),
+        desc: t('Records your Guardian has achieved through their trials'),
         slug: '/triumphs',
         exact: false,
         profile: true,
@@ -122,7 +122,7 @@ class Header extends React.Component {
       },
       {
         name: t('Checklists'),
-        desc: t('Complete lists of collectibles, scannables, etc.'),
+        desc: t('Ghost scans and item checklists spanning the Sol system'),
         slug: '/checklists',
         exact: true,
         profile: true,
@@ -131,7 +131,7 @@ class Header extends React.Component {
       },
       {
         name: t('Maps'),
-        desc: t('Checklists on maps'),
+        desc: t('Interactive maps charting checklists and other notable destinations'),
         slug: '/maps',
         exact: false,
         profile: false,
@@ -140,7 +140,7 @@ class Header extends React.Component {
       },
       {
         name: t('This Week'),
-        desc: t('Prestigious records and valued items up for grabs this week'),
+        desc: t('Noteworthy records and collectibles which are available at a weekly cadence'),
         slug: '/this-week',
         exact: true,
         profile: true,
@@ -149,7 +149,7 @@ class Header extends React.Component {
       },
       {
         name: t('Now'),
-        desc: t('View the state of your Guardian, ranks, milestones'),
+        desc: t('The state of your Guardian, artifact, ranks, season pass, daily activities, and more'),
         slug: '/now',
         exact: false,
         profile: true,
@@ -158,7 +158,7 @@ class Header extends React.Component {
       },
       {
         name: t('Quests'),
-        desc: t('Your pursuits including quests and bounties'),
+        desc: t('Track your pursuits, including quests and bounties'),
         slug: '/quests',
         exact: false,
         profile: true,
@@ -167,7 +167,7 @@ class Header extends React.Component {
       },
       {
         name: t('Reports'),
-        desc: t('Explore your Post Game Carnage Reports'),
+        desc: t('Explore and filter your Post Game Carnage Reports in detail'),
         slug: '/reports',
         exact: false,
         profile: true,
@@ -176,7 +176,6 @@ class Header extends React.Component {
       },
       {
         name: t('More'),
-        desc: t('Prestigious records and valued items up for grabs this week'),
         slug: '/',
         exact: true,
         profile: false,
@@ -185,7 +184,7 @@ class Header extends React.Component {
       },
       {
         name: '',
-        desc: t('Account, theme, tooltips, visibility, language, and saved data'),
+        desc: t('Account, theme, local data, item visibility, language, developer, troubleshooting'),
         slug: '/settings',
         exact: true,
         inline: true,
@@ -193,7 +192,7 @@ class Header extends React.Component {
       },
       {
         name: t('Legend'),
-        desc: t("Generate an infographic that details your Destiny legend"),
+        desc: t('Generate an infographic that details your Destiny legend'),
         slug: '/legend',
         exact: false,
         profile: false,
@@ -428,24 +427,10 @@ class Header extends React.Component {
                       })}
                   </ul>
                 </div>
-                {/* <div className='type auxiliary'>
-                  {manifest.statistics.general ? (
-                    <div className='module stats'>
-                      <ul>
-                        <li>
-                          <div className='value'>{manifest.statistics.general.tracking.toLocaleString('en-us')}</div>
-                          <div className='name'>{t('Tracked players')}</div>
-                        </li>
-                        <li>
-                          <div className='value'>{manifest.statistics.general.playedSeason.toLocaleString('en-us')}</div>
-                          <div className='name'>{t('Played season')}</div>
-                        </li>
-                      </ul>
-                    </div>
-                  ) : null}
-                </div>
-                <div className='type external'>
-                  DIM<br/>Ishtar Collective
+                {/* <div className='type external'>
+                  DIM
+                  <br />
+                  Ishtar Collective
                 </div> */}
               </div>
               <Footer minimal linkOnClick={this.closeNav} />
@@ -465,7 +450,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default compose(
-  connect(mapStateToProps),
-  withTranslation()
-)(Header);
+export default compose(connect(mapStateToProps), withTranslation())(Header);
