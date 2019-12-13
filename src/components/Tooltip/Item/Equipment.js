@@ -34,8 +34,8 @@ const Equipment = props => {
     ((itemComponents && itemComponents.instance && itemComponents.instance.energy) ||
       (masterwork &&
         armor2MasterworkSockets.length && {
-          energyTypeHash: energyStatToType(masterwork.statHash),
-          energyCapacity: masterwork.statValue
+          energyTypeHash: energyStatToType(masterwork.stats[0].hash),
+          energyCapacity: masterwork.stats[0].value
         }));
   const definitionEnergy = energy && energyTypeToAsset(energy.energyTypeHash);
 
