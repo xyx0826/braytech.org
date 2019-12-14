@@ -863,5 +863,10 @@
     "date": "2019-12-12T05:05:20.465Z",
     "version": "2.12.22",
     "content": "- added SteamID64 search support to _Character Select_"
+  },
+  {
+    "date": "2019-12-14T15:49:46.935Z",
+    "version": "2.12.30",
+    "content": "- update rollup"
   }
 ]

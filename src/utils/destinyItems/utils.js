@@ -90,7 +90,7 @@ export function getSocketsWithStyle(sockets, style) {
 
 export function getSocketsWithPlugCategoryHash(sockets, categoryHash) {
   return sockets.sockets.filter((socket) => {
-    const categoryHashes = socket.plug.plugItem?.itemCategoryHashes;
+    const categoryHashes = socket.plug?.plugItem?.itemCategoryHashes;
 
     return categoryHashes && categoryHashes.includes(categoryHash);
   });
