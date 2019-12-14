@@ -711,94 +711,74 @@ export function ammoTypeToString(type) {
 }
 
 // matches first bracketed thing in the string, or certain private unicode characters
-const hashExtract = /^([^[\]]*)(\[[^[\]]+?\]|[\uE099-\uE154])(.*)$/u;
+const iconPlaceholder = /(\[[^\]]+\]|[\uE000-\uF8FF])/g;
 
-function supplementedConversionTable() {
-  // conversionTable holds input & output rules for icon replacement. baseConversionTable is used to build it.
-  const baseConversionTable = [
-    { char: '', objectiveHash: 3924246227, substring: '' },
-    { char: '', objectiveHash: 2994623161, substring: '' },
-    { char: '', objectiveHash: 2178780271, substring: '' },
-    { char: '', objectiveHash: 695106797, substring: '' },
-    { char: '', objectiveHash: 3951261483, substring: '' },
-    { char: '', objectiveHash: 3711356257, substring: '' },
-    { char: '', objectiveHash: 3287913530, substring: '' },
-    { char: '', objectiveHash: 1242546978, substring: '' },
-    { char: '', objectiveHash: 532914921, substring: '' },
-    { char: '', objectiveHash: 2161000034, substring: '' },
-    { char: '', objectiveHash: 2062881933, substring: '' },
-    { char: '', objectiveHash: 53304862, substring: '' },
-    { char: '', objectiveHash: 635284441, substring: '' },
-    { char: '', objectiveHash: 3527067345, substring: '' },
-    { char: '', objectiveHash: 3296270292, substring: '' },
-    { char: '', objectiveHash: 2722409947, substring: '' },
-    { char: '', objectiveHash: 2203404732, substring: '' },
-    { char: '', objectiveHash: 299893109, substring: '' },
-    { char: '', objectiveHash: 2152699013, substring: '' },
-    { char: '', objectiveHash: 3080184954, substring: '' },
-    { char: '', objectiveHash: 2923868331, substring: '' },
-    { char: '', objectiveHash: 989767424, substring: '' },
-    { char: '', objectiveHash: 1788114534, substring: '' },
-    // { char: '', objectiveHash: 276438067, substring: '' },
-    // { char: '', objectiveHash: 3792840449, substring: '' },
-    // { char: '', objectiveHash: 2031240843, substring: '' }
-  ];
+const baseConversionTable = [
+  { exampleObjectiveHash: 1242546978, unicode: '', substring: null },
+  { exampleObjectiveHash: 532914921,  unicode: '', substring: null },
+  { exampleObjectiveHash: 2161000034, unicode: '', substring: null },
+  { exampleObjectiveHash: 2062881933, unicode: '', substring: null },
+  { exampleObjectiveHash: 53304862,   unicode: '', substring: null },
+  { exampleObjectiveHash: 635284441,  unicode: '', substring: null },
+  { exampleObjectiveHash: 3527067345, unicode: '', substring: null },
+  { exampleObjectiveHash: 3296270292, unicode: '', substring: null },
+  { exampleObjectiveHash: 1629676179, unicode: '', substring: null },
+  { exampleObjectiveHash: 2722409947, unicode: '', substring: null },
+  { exampleObjectiveHash: 2203404732, unicode: '', substring: null },
+  { exampleObjectiveHash: 299893109,  unicode: '', substring: null },
+  { exampleObjectiveHash: 316370331,  unicode: '', substring: null },
+  { exampleObjectiveHash: 3711356257, unicode: '', substring: null },
+  { exampleObjectiveHash: 2152699013, unicode: '', substring: null },
+  { exampleObjectiveHash: 3080184954, unicode: '', substring: null },
+  { exampleObjectiveHash: 2994623161, unicode: '', substring: null },
+  { exampleObjectiveHash: 2344484405, unicode: '', substring: null },
+  { exampleObjectiveHash: 512417371, unicode: '', substring: null },
+  { exampleObjectiveHash: 2178780271, unicode: '', substring: null },
+  { exampleObjectiveHash: 3535952788, unicode: '', substring: null },
+  { exampleObjectiveHash: 743499071,  unicode: '', substring: null },
+  { exampleObjectiveHash: 989767424,  unicode: '', substring: null },
+  { exampleObjectiveHash: 1788114534, unicode: '', substring: null },
+  { exampleObjectiveHash: 276438067,  unicode: '', substring: null },
+  { exampleObjectiveHash: 3792840449, unicode: '', substring: null },
+  { exampleObjectiveHash: 2031240843, unicode: '', substring: null }
+];
 
+/**
+ * given defs, uses known examples from the manifest
+ * and returns a localized string-to-icon conversion table
+ *           "[Rocket launcher]" -> <svg>
+ */
+const generateConversionTable = once(() => {
   // loop through conversionTable entries to update them with manifest string info
-  baseConversionTable.forEach((iconEntry, index) => {
-    const objectiveDef = manifest.DestinyObjectiveDefinition[iconEntry.objectiveHash];
+  baseConversionTable.forEach((iconEntry) => {
+    const objectiveDef = manifest.DestinyObjectiveDefinition[iconEntry.exampleObjectiveHash];
     if (!objectiveDef) {
       return;
     }
-    delete baseConversionTable[index].objectiveHash;
-
     // lookup this lang's string for the objective
-    const progressDescription = objectiveDef.progressDescription;
-
-    // match the first bracketed item, or the first zh character, plus beforestuff and afterstuff
-    const iconString = progressDescription.match(hashExtract)[2];
-
-    // the identified iconString is the manifest's replacement marker for this icon. put back into table
-    baseConversionTable[index].substring = iconString;
+    const progressDescriptionMatch = objectiveDef.progressDescription.match(iconPlaceholder);
+    const iconString = progressDescriptionMatch && progressDescriptionMatch[0];
+    // this language's localized replacement, which we will detect and un-replace back into an icon
+    iconEntry.substring = iconString;
   });
-
   return baseConversionTable;
-}
+});
 
-// returns the string-to-svg conversion table
-const conversionTable = once(supplementedConversionTable);
-
-// recurses progressDescription, looking for sequences to replace with icons
-function replaceWithIcons(conversionRules, remainingObjectiveString, alreadyProcessed = []) {
-  // check remainingObjectiveString for replaceable strings
-  const matchResults = remainingObjectiveString.match(hashExtract);
-
-  // return immediately if there's nothing to try and replace
-  if (!matchResults) {
-    return alreadyProcessed.concat([remainingObjectiveString]);
-  }
-
-  // set variables to do replacement
-  const [, beforeMatch, iconString, afterMatch] = matchResults;
-
-  // look through conversionRules, find corresponding icon, group with processed material
-  const replacementIndex = conversionRules.find(iconEntry => iconEntry.substring === iconString);
-  const replacement = replacementIndex ? replacementIndex.char : iconString;
-
-  // what was this even for?
-  // if (replacement === iconString) console.log(iconString)
-
-  const nowProcessed = alreadyProcessed.concat([beforeMatch, replacement]);
-
-  // send the rest to recurse and check for more brackets
-  return replaceWithIcons(conversionRules, afterMatch, nowProcessed);
-}
+const replaceWithIcon = (conversionRules, textSegment) => {
+  const replacement = conversionRules.find(
+    (r) => r.substring === textSegment || r.unicode === textSegment
+  );
+  return (replacement && replacement.unicode) || textSegment;
+};
 
 export function stringToIcons(string) {
   // powered by DIM brilliance: @delphiactual, @sundevour, @bhollis
   // https://github.com/DestinyItemManager/DIM/blob/master/src/app/progress/ObjectiveDescription.tsx
 
-  return replaceWithIcons(conversionTable(), string);
+  return string
+    .split(iconPlaceholder)
+    .filter(Boolean)
+    .map(t => replaceWithIcon(generateConversionTable(), t));
 }
 
 // thank you DIM (https://github.com/DestinyItemManager/DIM/blob/master/src/app/inventory/store/well-rested.ts)

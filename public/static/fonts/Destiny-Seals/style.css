@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'Destiny-Seals';
-  src: url('Destiny-Seals.woff?ht1qoq') format('woff');
+  font-family: 'Destiny Seals';
+  src: url('Destiny-Seals.woff?hi1cl5');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
 [class^="destiny-seal-"], [class*=" destiny-seal-"] {
-  font-family: 'Destiny-Seals' !important;
+  font-family: 'Destiny Seals' !important;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -17,6 +17,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.destiny-seal-3303651245:before {
+  content: "\e90d";
+}
 .destiny-seal-991908404:before {
   content: "\e908";
 }
