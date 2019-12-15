@@ -210,7 +210,7 @@ class Collectibles extends React.Component {
                   <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${manifest.settings.destiny2CoreSettings.undiscoveredCollectibleImage}`} />
                 </div>
                 <div className='text'>
-                  <div className='name'>Classified</div>
+                  <div className='name'>{t('Classified')}</div>
                   <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[collectibleDefinition.hash] ? manifest.statistics.collections[collectibleDefinition.hash] : `0.00`}%</div>
                 </div>
               </li>

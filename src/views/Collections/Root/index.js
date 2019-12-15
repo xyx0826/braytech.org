@@ -13,7 +13,7 @@ import { enumerateCollectibleState } from '../../../utils/destinyEnums';
 
 class Root extends React.Component {
   render() {
-    const { t, member } = this.props;
+    const { t, member, viewport } = this.props;
 
     const characterCollectibles = member.data.profile.characterCollectibles.data;
     const profileCollectibles = member.data.profile.profileCollectibles.data;
@@ -130,8 +130,11 @@ class Root extends React.Component {
           key={definitionNode.hash}
           className={cx('badge', 'linked', {
             semiComplete: semiComplete,
-            fullComplete: fullComplete === 3
+            fullComplete: fullComplete === 3,
+            tooltip: viewport.width > 600
           })}
+          data-hash={definitionNode.hash}
+          data-type='CollectionsBadge'
         >
           <ProfileLink to={`/collections/badge/${definitionNode.hash}`}>
             <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionNode.originalIcon}`} />
@@ -190,7 +193,8 @@ class Root extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    member: state.member
+    member: state.member,
+    viewport: state.viewport
   };
 }
 

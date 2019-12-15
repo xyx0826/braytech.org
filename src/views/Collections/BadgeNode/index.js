@@ -88,16 +88,14 @@ class BadgeNode extends React.Component {
       return Math.max(a, obj.states.filter(collectible => !enums.enumerateCollectibleState(collectible).invisible).length);
     }, 0);
     
-    const progress = [];
-
-    classStates.forEach(obj => {
+    const progress = classStates.map((obj, i) => {
       
       if (obj.states.filter(collectible => !enums.enumerateCollectibleState(collectible).notAcquired).length === classTotal) {
         completed++;
       }
 
-      progress.push(
-        <div key={obj.class} className='progress'>
+      return (
+        <div key={i} className='progress'>
           <div className='class-icon'>
             <span className={`destiny-class_${obj.class}`} />
           </div>

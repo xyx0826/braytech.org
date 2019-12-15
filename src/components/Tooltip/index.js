@@ -10,6 +10,7 @@ import Activity from './Activity';
 import Vendor from './Vendor';
 import Stat from './Stat';
 import { Checklist, Record, Node } from './Maps';
+import CollectionsBadge from './CollectionsBadge';
 
 class Tooltip extends React.Component {
   constructor(props) {
@@ -76,6 +77,7 @@ class Tooltip extends React.Component {
       this.setState({
         hash: e.currentTarget.dataset.hash,
         table: e.currentTarget.dataset.table,
+        type: e.currentTarget.dataset.type,
         data: {
           ...e.currentTarget.dataset
         }
@@ -111,6 +113,7 @@ class Tooltip extends React.Component {
         this.setState({
           hash: e.currentTarget.dataset.hash,
           table: e.currentTarget.dataset.table,
+          type: e.currentTarget.dataset.type,
           data: {
             ...e.currentTarget.dataset
           }
@@ -218,6 +221,7 @@ class Tooltip extends React.Component {
       if (this.state.table === 'DestinyChecklistDefinition') Tooltip = Checklist;
       if (this.state.table === 'DestinyRecordDefinition') Tooltip = Record;
       if (this.state.table === 'BraytechMapsDefinition') Tooltip = Node;
+      if (this.state.type === 'CollectionsBadge') Tooltip = CollectionsBadge;
     }
 
     return (

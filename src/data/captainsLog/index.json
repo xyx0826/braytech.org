@@ -868,5 +868,10 @@
     "date": "2019-12-14T15:49:46.935Z",
     "version": "2.12.30",
     "content": "- update rollup"
+  },
+  {
+    "date": "2019-12-15T23:04:45.953Z",
+    "version": "2.12.32",
+    "content": "- added collections badge tooltip"
   }
 ]

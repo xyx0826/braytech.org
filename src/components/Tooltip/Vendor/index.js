@@ -29,14 +29,14 @@ class Vendor extends React.Component {
           <div className='acrylic' />
           <div className={cx('frame', 'common')}>
             <div className='header'>
-              <div className='name'>Classified</div>
+              <div className='name'>{t('Classified')}</div>
               <div>
-                <div className='kind'>Insufficient clearance</div>
+                <div className='kind'>{t('Insufficient clearance')}</div>
               </div>
             </div>
             <div className='black'>
               <div className='description'>
-                <pre>Keep it clean.</pre>
+                <pre>{t('Keep it clean.')}</pre>
               </div>
             </div>
           </div>
