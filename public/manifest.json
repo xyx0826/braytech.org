@@ -3,47 +3,68 @@
   "name": "Braytech",
   "icons": [
     {
-      "src": "/static/images/icon-16.png",
+      "src": "/static/images/icons/icon-16.png",
       "type": "image/png",
       "sizes": "16x16"
     },
     {
-      "src": "/static/images/icon-32.png",
+      "src": "/static/images/icons/icon-32.png",
       "type": "image/png",
       "sizes": "32x32"
     },
     {
-      "src": "/static/images/icon-64.png",
+      "src": "/static/images/icons/icon-64.png",
       "type": "image/png",
       "sizes": "64x64"
     },
     {
-      "src": "/static/images/icon-96.png",
+      "src": "/static/images/icons/icon-96.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "/static/images/icon-128.png",
+      "src": "/static/images/icons/icon-128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/static/images/icons/icon-128-maskable.png",
       "type": "image/png",
       "sizes": "128x128",
       "purpose": "maskable"
     },
     {
-      "src": "/static/images/icon-192.png",
+      "src": "/static/images/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static/images/icons/icon-192-maskable.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "maskable"
     },
     {
-      "src": "/static/images/icon-512.png",
+      "src": "/static/images/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/static/images/icons/icon-512-maskable.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
     },
     {
-      "src": "/static/images/icon-1024.png",
+      "src": "/static/images/icons/icon-1024.png",
       "type": "image/png",
       "sizes": "1024x1024"
+    },
+    {
+      "src": "/static/images/icons/icon-1024-maskable.png",
+      "type": "image/png",
+      "sizes": "1024x1024",
+      "purpose": "maskable"
     }
   ],
   "start_url": "/now?utm_source=pwa",
