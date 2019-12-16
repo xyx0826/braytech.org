@@ -767,8 +767,10 @@ class Legend extends React.Component {
 
                       const completionRecordData = definitionSeal && definitionSeal.completionRecordHash && definitionSeal.scope === 1 ? characterRecords[member.characterId].records[definitionSeal.completionRecordHash] : profileRecords[definitionSeal.completionRecordHash];
 
-                      if (completionRecordData && enumerateRecordState(completionRecordData.state).rewardUnavailable && enumerateRecordState(completionRecordData.state).objectiveNotCompleted) {
-                        return null;
+                      // temporary fix for https://github.com/Bungie-net/api/issues/1167
+                      if (completionRecordData && enumerateRecordState(completionRecordData.state).rewardUnavailable && enumerateRecordState(completionRecordData.state).objectiveNotCompleted && child.presentationNodeHash !== 2209950401) {
+                        console.log(`Completion record for seal ${child.presentationNodeHash} says it's no longer available`, enumerateRecordState(completionRecordData.state));
+                        return;
                       }
 
                       const states = [];

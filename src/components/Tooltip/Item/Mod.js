@@ -3,7 +3,7 @@ import i18n from 'i18next';
 import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
-import { energyTypeToAsset } from '../../../utils/destinyUtils';
+import { energyTypeToAsset, stringToIcons } from '../../../utils/destinyUtils';
 // import ObservedImage from '../../ObservedImage';
 
 const Mod = props => {
@@ -41,10 +41,10 @@ const Mod = props => {
               return (
                 <div key={p.perkHash} className='socket'>
                   <div className={cx('plug', { one: true, enabled: true, 'no-icon': true })}>
-                    {/* <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionPerk.displayProperties.icon ? definitionPerk.displayProperties.icon : `/img/misc/missing_icon_d2.png`}`} /> */}
+                    {/* <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionPerk.displayProperties?.icon || `/img/misc/missing_icon_d2.png`}`} /> */}
                     <div className='text'>
                       {/* <div className='name'>{definitionPerk.displayProperties && definitionPerk.displayProperties.name}</div> */}
-                      <div className='description'>{definitionPerk.displayProperties && definitionPerk.displayProperties.description}</div>
+                      <div className='description'>{stringToIcons(definitionPerk.displayProperties?.description)}</div>
                     </div>
                   </div>
                 </div>

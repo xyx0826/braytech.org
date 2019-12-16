@@ -770,7 +770,7 @@ const generateConversionTable = once(() => {
     if (!def) {
       return;
     }
-    const string = def.progressDescription || def.displayProperties.name;
+    const string = def.progressDescription || def.displayProperties.description;
     // lookup this lang's string for the objective
     const progressDescriptionMatch = string.match(iconPlaceholder);
     const iconString = progressDescriptionMatch && progressDescriptionMatch[0];
