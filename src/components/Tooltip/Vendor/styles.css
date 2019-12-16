@@ -33,12 +33,16 @@
   background-color: hsla(var(--commonDark), 0.9);
 }
 
+#tooltip .frame.vendor .header {
+  border-top-color: #9feb84;
+}
+
 #tooltip .frame.vendor .header .icon {
-  background-color: hsla(140, 62%, 10%, 0.9);
+  background-color: rgba(38, 54, 33, 0.9);
 }
 
 #tooltip .frame.vendor .header .text {
-  background-color: hsla(140, 65%, 15%, 0.8);
+  background-color: hsla(105, 26%, 31%, 0.8);
 }
 
 #tooltip .frame.vendor .black .screenshot:not(.extras) {

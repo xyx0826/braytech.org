@@ -5,7 +5,7 @@
   background-color: transparent;
   color: #fff;
   padding: 0;
-  border-top: 2px solid #f5eac4;
+  border-top: 2px solid #a3a3a3;
 }
 
 #tooltip .frame.activity .header .icon {
@@ -32,12 +32,20 @@
   background-color: hsla(var(--commonDark), 0.9);
 }
 
+#tooltip .frame.activity.strike .header {
+  border-top-color: #73a3c4;
+}
+
 #tooltip .frame.activity.strike .header .icon {
-  background-color: hsla(202, 60%, 5%, 0.8);
+  background-color: hsla(204, 35%, 21%, 0.8);
 }
 
 #tooltip .frame.activity.strike .header .text {
-  background-color: hsla(202, 60%, 10%, 0.8);
+  background-color: hsla(204, 35%, 30%, 0.8);
+}
+
+#tooltip .frame.activity.raid .header {
+  border-top-color: #000;
 }
 
 #tooltip .frame.activity.raid .header .icon {
@@ -48,12 +56,20 @@
   background-color: hsla(202, 0%, 3%, 0.9);
 }
 
+#tooltip .frame.activity.story .header {
+  border-top-color: #8088e0;
+}
+
 #tooltip .frame.activity.story .header .icon {
   background-color: hsla(233, 84%, 11%, 0.8);
 }
 
 #tooltip .frame.activity.story .header .text {
   background-color: hsla(233, 54%, 21%, 0.8);
+}
+
+#tooltip .frame.activity.adventure .header {
+  border-top-color: #ff7837;
 }
 
 #tooltip .frame.activity.adventure .header .icon {
@@ -64,12 +80,20 @@
   background-color: hsla(19, 83%, 31%, 0.8);
 }
 
+#tooltip .frame.activity.reckoning .header {
+  border-top-color: #8cd6ed;
+}
+
 #tooltip .frame.activity.reckoning .header .icon {
   background-color: hsla(166, 70%, 10%, 0.8);
 }
 
 #tooltip .frame.activity.reckoning .header .text {
   background-color: hsla(166, 50%, 20%, 0.8);
+}
+
+#tooltip .frame.activity.gambit .header {
+  border-top-color: #8cd6ed;
 }
 
 #tooltip .frame.activity.gambit .header .icon {
@@ -80,12 +104,20 @@
   background-color: hsla(166, 50%, 20%, 0.8);
 }
 
+#tooltip .frame.activity.crucible .header {
+  border-top-color: #cf5e58;
+}
+
 #tooltip .frame.activity.crucible .header .icon {
   background-color: hsla(3, 80%, 15%, 0.8);
 }
 
 #tooltip .frame.activity.crucible .header .text {
   background-color: hsla(3, 60%, 22%, 0.8);
+}
+
+#tooltip .frame.activity.forge .header {
+  border-top-color: #583743;
 }
 
 #tooltip .frame.activity.forge .header .icon {
@@ -96,12 +128,20 @@
   background-color: hsla(339, 50%, 17%, 0.8);
 }
 
+#tooltip .frame.activity.menagerie .header {
+  border-top-color: #9c5d49;
+}
+
 #tooltip .frame.activity.menagerie .header .icon {
   background-color: hsla(12, 72%, 5%, 0.8);
 }
 
 #tooltip .frame.activity.menagerie .header .text {
   background-color: hsla(12, 72%, 12%, 0.8);
+}
+
+#tooltip .frame.activity.seasonal-arena .header {
+  border-top-color: #00d3d3;
 }
 
 #tooltip .frame.activity.seasonal-arena .header .icon {
@@ -112,12 +152,20 @@
   background-color: hsla(183, 52%, 34%, 0.8);
 }
 
+#tooltip .frame.activity.dungeon .header {
+  border-top-color: #cea98e;
+}
+
 #tooltip .frame.activity.dungeon .header .icon {
   background-color: hsla(26, 20%, 30%, 0.8);
 }
 
 #tooltip .frame.activity.dungeon .header .text {
   background-color: hsla(26, 20%, 42%, 0.8);
+}
+
+#tooltip .frame.activity.nightmare-hunt .header {
+  border-top-color: #a22e3b;
 }
 
 #tooltip .frame.activity.nightmare-hunt .header .icon {

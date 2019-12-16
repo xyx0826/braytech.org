@@ -14,7 +14,7 @@ import './styles.css';
 
 class Activity extends React.Component {
   render() {
-    const { t, member, hash, mode, playlist } = this.props;
+    const { t, member, hash, mode, playlist, lastorbiteddestination } = this.props;
 
     const definitionActivity = manifest.DestinyActivityDefinition[hash];
     const definitionActivityMode = manifest.DestinyActivityModeDefinition[mode];
@@ -113,11 +113,12 @@ class Activity extends React.Component {
       // console.log(activityTypeDisplay, definitionActivity, mode, definitionActivityPlaylist)
 
       if (definitionActivity.placeHash === 2961497387) {
+        console.log(lastorbiteddestination)
         activityTypeDisplay = {
           ...activityTypeDisplay,
           name: manifest.DestinyPlaceDefinition[2961497387].displayProperties.name,
           destination: false,
-          description: false,
+          description: t('In orbit, planning something terribly heroic.'),
           activityLightLevel: false
         };
       }

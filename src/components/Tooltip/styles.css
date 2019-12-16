@@ -23,8 +23,6 @@
   --rareDark: 213, 34%, 6%;
   --uncommonDark: 126, 35%, 5%;
   --commonDark: 0, 0%, 7%;
-  --strikeAlpha: 203, 31%, 13%;
-  --strikeBeta: 203, 32%, 8%;
 }
 
 #tooltip.visible {

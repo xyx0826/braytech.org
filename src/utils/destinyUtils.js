@@ -714,49 +714,65 @@ export function ammoTypeToString(type) {
 const iconPlaceholder = /(\[[^\]]+\]|[\uE000-\uF8FF])/g;
 
 const baseConversionTable = [
-  { exampleObjectiveHash: 1242546978, unicode: '', substring: null },
-  { exampleObjectiveHash: 532914921,  unicode: '', substring: null },
-  { exampleObjectiveHash: 2161000034, unicode: '', substring: null },
-  { exampleObjectiveHash: 2062881933, unicode: '', substring: null },
-  { exampleObjectiveHash: 53304862,   unicode: '', substring: null },
-  { exampleObjectiveHash: 635284441,  unicode: '', substring: null },
-  { exampleObjectiveHash: 3527067345, unicode: '', substring: null },
-  { exampleObjectiveHash: 3296270292, unicode: '', substring: null },
-  { exampleObjectiveHash: 1629676179, unicode: '', substring: null },
-  { exampleObjectiveHash: 2722409947, unicode: '', substring: null },
-  { exampleObjectiveHash: 2203404732, unicode: '', substring: null },
-  { exampleObjectiveHash: 299893109,  unicode: '', substring: null },
-  { exampleObjectiveHash: 3981442775,  unicode: '', substring: null },
-  { exampleObjectiveHash: 3711356257, unicode: '', substring: null },
-  { exampleObjectiveHash: 2152699013, unicode: '', substring: null },
-  { exampleObjectiveHash: 3080184954, unicode: '', substring: null },
-  { exampleObjectiveHash: 2994623161, unicode: '', substring: null },
-  { exampleObjectiveHash: 2344484405, unicode: '', substring: null },
-  { exampleObjectiveHash: 512417371, unicode: '', substring: null },
-  { exampleObjectiveHash: 2178780271, unicode: '', substring: null },
-  { exampleObjectiveHash: 516719433, unicode: '', substring: null },
-  { exampleObjectiveHash: 743499071,  unicode: '', substring: null },
-  { exampleObjectiveHash: 989767424,  unicode: '', substring: null },
-  { exampleObjectiveHash: 1788114534, unicode: '', substring: null },
-  { exampleObjectiveHash: 276438067,  unicode: '', substring: null },
-  { exampleObjectiveHash: 3792840449, unicode: '', substring: null },
-  { exampleObjectiveHash: 2031240843, unicode: '', substring: null }
+  // Damage Types
+  { objectiveHash: 2178780271, unicode: '', substring: null },
+  { objectiveHash:  400711454, unicode: '', substring: null },
+  { objectiveHash: 2994623161, unicode: '', substring: null },
+  { objectiveHash: 1554970245, unicode: '', substring: null },
+  // Precision
+  { objectiveHash:  437290134, unicode: '', substring: null },
+  // Abilities
+  { objectiveHash:  314405660, unicode: '', substring: null },
+  { objectiveHash: 3711356257, unicode: '', substring: null },
+  // All Rifle-class
+  { objectiveHash:  532914921, unicode: '', substring: null },
+  { objectiveHash: 2161000034, unicode: '', substring: null },
+  { objectiveHash: 2062881933, unicode: '', substring: null },
+  { objectiveHash: 3527067345, unicode: '', substring: null },
+  { objectiveHash: 3296270292, unicode: '', substring: null },
+  { objectiveHash: 3080184954, unicode: '', substring: null },
+  { objectiveHash: 3373536132, unicode: '', substring: null },
+  // Remaining weapons, that are not heavy
+  { objectiveHash:   53304862, unicode: '', substring: null },
+  { objectiveHash:  635284441, unicode: '', substring: null },
+  { objectiveHash: 2722409947, unicode: '', substring: null },
+  { objectiveHash: 1242546978, unicode: '', substring: null },
+  { objectiveHash:  299893109, unicode: '', substring: null },
+  { objectiveHash: 2258101260, unicode: '', substring: null },
+  // Heavy Weapons
+  { objectiveHash: 2152699013, unicode: '', substring: null },
+  { objectiveHash: 2203404732, unicode: '', substring: null },
+  { objectiveHash: 1788114534, unicode: '', substring: null },
+  { objectiveHash:  989767424, unicode: '', substring: null },
+  // Artifacts that can be picked up and used as weapons
+  { objectiveHash: 4231452845, unicode: '', substring: null },
+  // Gambit - Blockers
+  { objectiveHash:  276438067, unicode: '', substring: null },
+  { objectiveHash: 3792840449, unicode: '', substring: null },
+  { objectiveHash: 2031240843, unicode: '', substring: null },
+  // Quest Markers
+  { objectiveHash: 3915460773, unicode: '', substring: null },
+  // Breakers
+  { sandboxPerk: 3068403538, unicode: '', substring: null },
+  { sandboxPerk: 2678922819, unicode: '', substring: null },
+  { sandboxPerk: 3879088617, unicode: '', substring: null }
 ];
 
 /**
  * given defs, uses known examples from the manifest
  * and returns a localized string-to-icon conversion table
- *           "[Rocket launcher]" -> <svg>
+ *           "[Rocket Launcher]" -> <svg>
  */
 const generateConversionTable = once(() => {
   // loop through conversionTable entries to update them with manifest string info
   baseConversionTable.forEach((iconEntry) => {
-    const objectiveDef = manifest.DestinyObjectiveDefinition[iconEntry.exampleObjectiveHash];
-    if (!objectiveDef) {
+    const def = (iconEntry.sandboxPerk && manifest.DestinySandboxPerkDefinition[iconEntry.sandboxPerk]) || manifest.DestinyObjectiveDefinition[iconEntry.objectiveHash];
+    if (!def) {
       return;
     }
+    const string = def.progressDescription || def.displayProperties.name;
     // lookup this lang's string for the objective
-    const progressDescriptionMatch = objectiveDef.progressDescription.match(iconPlaceholder);
+    const progressDescriptionMatch = string.match(iconPlaceholder);
     const iconString = progressDescriptionMatch && progressDescriptionMatch[0];
     // this language's localized replacement, which we will detect and un-replace back into an icon
     iconEntry.substring = iconString;
