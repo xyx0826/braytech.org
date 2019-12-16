@@ -1,138 +1,86 @@
 {
   "de": {
     "translated": 458,
-    "notTranslated": 94,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "notTranslated": 95,
+    "added": [],
     "removed": []
   },
   "en": {
-    "translated": 556,
+    "translated": 557,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "es-mx": {
     "translated": 0,
-    "notTranslated": 520,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "notTranslated": 521,
+    "added": [],
     "removed": []
   },
   "es": {
-    "translated": 531,
-    "notTranslated": 24,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "translated": 552,
+    "notTranslated": 4,
+    "added": [],
     "removed": []
   },
   "fr": {
-    "translated": 392,
-    "notTranslated": 147,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "translated": 432,
+    "notTranslated": 108,
+    "added": [],
     "removed": []
   },
   "internal": {
     "translated": 0,
-    "notTranslated": 520,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "notTranslated": 521,
+    "added": [],
     "removed": []
   },
   "it": {
     "translated": 552,
-    "notTranslated": 3,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "notTranslated": 4,
+    "added": [],
     "removed": []
   },
   "ja": {
     "translated": 219,
-    "notTranslated": 314,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "notTranslated": 315,
+    "added": [],
     "removed": []
   },
   "ko": {
     "translated": 298,
-    "notTranslated": 240,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "notTranslated": 241,
+    "added": [],
     "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 520,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "notTranslated": 521,
+    "added": [],
     "removed": []
   },
   "pt-br": {
     "translated": 531,
-    "notTranslated": 24,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "notTranslated": 25,
+    "added": [],
     "removed": []
   },
   "ru": {
     "translated": 0,
-    "notTranslated": 520,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "notTranslated": 521,
+    "added": [],
     "removed": []
   },
   "zh-chs": {
     "translated": 469,
-    "notTranslated": 85,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "notTranslated": 86,
+    "added": [],
     "removed": []
   },
   "zh-cht": {
     "translated": 469,
-    "notTranslated": 85,
-    "added": [
-      "Classified",
-      "Insufficient clearance",
-      "Keep it clean."
-    ],
+    "notTranslated": 86,
+    "added": [],
     "removed": []
   }
 }
