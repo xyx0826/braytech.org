@@ -873,5 +873,10 @@
     "date": "2019-12-15T23:04:45.953Z",
     "version": "2.12.32",
     "content": "- added collections badge tooltip"
+  },
+  {
+    "date": "2019-12-17T06:24:57.024Z",
+    "version": "2.12.40",
+    "content": "- added _Now_ view's customisability to _This Week_ view and collated modules\n- many other minor improvements"
   }
 ]
