@@ -7,17 +7,17 @@ import cx from 'classnames';
 import { ProfileLink } from '../../../components/ProfileLink';
 import { Button, DestinyKey } from '../../../components/UI/Button';
 
-import Flashpoint from '../Modules/Flashpoint';
-import FeaturedActivities from '../Modules/FeaturedActivities';
-import CrucibleRotators from '../Modules/CrucibleRotators';
-import Nightfalls from '../Modules/Nightfalls';
-import Raid from '../Modules/Raid';
-import DreamingCityAscendantChallenge from '../Modules/DreamingCityAscendantChallenge';
-import DreamingCityCurse from '../Modules/DreamingCityCurse';
-import DreamingCityShatteredThrone from '../Modules/DreamingCityShatteredThrone';
-import Menagerie from '../Modules/Menagerie';
-import EscalationProtocol from '../Modules/EscalationProtocol';
-import Reckoning from '../Modules/Reckoning';
+import Flashpoint from '../../../components/UserModules/Flashpoint';
+import FeaturedActivities from '../../../components/UserModules/FeaturedActivities';
+import CrucibleRotators from '../../../components/UserModules/CrucibleRotators';
+import Nightfalls from '../../../components/UserModules/Nightfalls';
+import Raid from '../../../components/UserModules/Raid';
+import DreamingCityAscendantChallenge from '../../../components/UserModules/DreamingCityAscendantChallenge';
+import DreamingCityCurse from '../../../components/UserModules/DreamingCityCurse';
+import DreamingCityShatteredThrone from '../../../components/UserModules/DreamingCityShatteredThrone';
+import Menagerie from '../../../components/UserModules/Menagerie';
+import EscalationProtocol from '../../../components/UserModules/EscalationProtocol';
+import Reckoning from '../../../components/UserModules/Reckoning';
 
 import { moduleRules, headOverride } from '../Customise';
 

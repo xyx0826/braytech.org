@@ -7,19 +7,19 @@ import cx from 'classnames';
 import { ProfileLink } from '../../../components/ProfileLink';
 import { Button, DestinyKey } from '../../../components/UI/Button';
 
-import Flashpoint from '../Modules/Flashpoint';
-import HeroicStoryMissions from '../Modules/HeroicStoryMissions';
-import VanguardStrikes from '../Modules/VanguardStrikes';
-import BlackArmoryForges from '../Modules/BlackArmoryForges';
-import DailyVanguardModifiers from '../Modules/DailyVanguardModifiers';
-import Ranks from '../Modules/Ranks';
-import SeasonPass from '../Modules/SeasonPass';
-import SeasonalArtifact from '../Modules/SeasonalArtifact';
-import Vendor from '../Modules/Vendor';
-import AuthUpsell from '../Modules/AuthUpsell';
-import Transitory from '../Modules/Transitory';
-import CharacterEquipment from '../Modules/CharacterEquipment';
-import SeasonCountdown from '../Modules/SeasonCountdown';
+import Flashpoint from '../../../components/UserModules/Flashpoint';
+import HeroicStoryMissions from '../../../components/UserModules/HeroicStoryMissions';
+import VanguardStrikes from '../../../components/UserModules/VanguardStrikes';
+import BlackArmoryForges from '../../../components/UserModules/BlackArmoryForges';
+import DailyVanguardModifiers from '../../../components/UserModules/DailyVanguardModifiers';
+import Ranks from '../../../components/UserModules/Ranks';
+import SeasonPass from '../../../components/UserModules/SeasonPass';
+import SeasonalArtifact from '../../../components/UserModules/SeasonalArtifact';
+import Vendor from '../../../components/UserModules/Vendor';
+import AuthUpsell from '../../../components/UserModules/AuthUpsell';
+import Transitory from '../../../components/UserModules/Transitory';
+import CharacterEquipment from '../../../components/UserModules/CharacterEquipment';
+import SeasonCountdown from '../../../components/UserModules/SeasonCountdown';
 
 import { moduleRules } from '../Customise';
 
