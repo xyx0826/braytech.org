@@ -50,7 +50,7 @@ class Search extends React.Component {
   };
 
   performSearch = debounce((term = this.state.search) => {
-    if (!term || term.length < 2) {
+    if (!term || term.length < 3) {
       this.setState({ results: [] });
       return;
     };

@@ -156,12 +156,12 @@ class Collectibles extends React.Component {
 
           if (row.filter(c => c).length === 0 && collectibles && collectibles.hideCompletedCollectibles && !forceDisplay) {
             row.push(
-                <li key='lol' className='all-completed'>
-                  <div className='properties'>
-                    <div className='text'>{t('All discovered')}</div>
-                  </div>
-                </li>
-              );
+              <li key='lol' className='all-completed'>
+                <div className='properties'>
+                  <div className='text'>{t('All discovered')}</div>
+                </div>
+              </li>
+            );
           }
 
           let ref = definitionNode.children.collectibles.find(c => c.collectibleHash === highlight) ? this.scrollToRecordRef : null;
