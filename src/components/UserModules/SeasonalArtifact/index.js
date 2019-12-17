@@ -37,10 +37,8 @@ class SeasonalArtifact extends React.Component {
     const profileArtifact = profileProgression.seasonalArtifact;
     const characterArtifact = characterProgressions.seasonalArtifact;
 
-    const definitionArtifact = profileArtifact.artifactHash && manifest.DestinyArtifactDefinition[equippedArtifact.itemHash];
-    const definitionVendor = profileArtifact.artifactHash && manifest.DestinyVendorDefinition[profileArtifact.artifactHash];
-
-    console.log(equippedArtifact, profileArtifact, characterArtifact);
+    const definitionArtifact = profileArtifact.artifactHash && manifest.DestinyArtifactDefinition[profileArtifact.artifactHash];
+    // const definitionVendor = profileArtifact.artifactHash && manifest.DestinyVendorDefinition[profileArtifact.artifactHash];  
 
     // let string = ''
     //     definitionArtifact.tiers.forEach(tier => {
@@ -58,6 +56,21 @@ class SeasonalArtifact extends React.Component {
     //     console.log(string)
 
     // console.log(characterArtifact)
+
+    if (!definitionArtifact) {
+      return (
+        <div className='seasonal-artifact'>
+          <div className='head'>
+            <div className='module-header'>
+              <div className='sub-name'>{t('Seasonal progression')}</div>
+            </div>
+            <div className='artifact'>
+              
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className='seasonal-artifact'>
