@@ -3,7 +3,6 @@
   width: 440px;
   pointer-events: none;
   z-index: 2000;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
   color: rgba(255, 255, 255, 0.8);
   font-size: 16px;
   line-height: 1;
@@ -23,6 +22,14 @@
   --rareDark: 213, 34%, 6%;
   --uncommonDark: 126, 35%, 5%;
   --commonDark: 0, 0%, 7%;
+}
+
+.wrapper #tooltip {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6)
+}
+
+.wrapper.dark-mode #tooltip {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
 }
 
 #tooltip.visible {

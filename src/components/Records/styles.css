@@ -48,22 +48,20 @@
 
 .list.record-items li .properties .text {
   margin: 0 0 0 1rem;
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: 1fr max-content;
   justify-content: space-between;
+  column-gap: 10px;
 }
 
 .list.record-items li .properties .text .name {
-  flex-basis: calc(100% - 100px);
-}
-
-.list.record-items li.has-intervals .properties .text .name {
-  flex-basis: calc(100% - 200px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .list.record-items li .properties .text .meta {
   display: flex;
-  justify-content: flex-end;
 }
 
 .list.record-items li .properties .text .meta .commonality,
@@ -91,7 +89,7 @@
 }
 
 .list.record-items li .properties .text .description {
-  flex-basis: 100%;
+  grid-column: span 2;
   color: rgba(255, 255, 255, 0.6);
   margin: 10px 0 0;
   padding: 10px 0 0;
