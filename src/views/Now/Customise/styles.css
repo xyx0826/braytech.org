@@ -3,6 +3,8 @@
 }
 
 #now.customise .group.user {
+  padding: 3rem;
+  margin: 0;
   align-items: start;
   row-gap: 2rem;
 }
@@ -107,6 +109,8 @@
 @media screen and (max-width: 600px) {
   #now.customise .group.user {
     row-gap: 1.5rem;
+    padding: 2rem;
+    margin: 0;
   }
 
   #now.customise .group.user .column.double {

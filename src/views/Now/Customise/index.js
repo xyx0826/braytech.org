@@ -98,8 +98,10 @@ class Customise extends React.Component {
     const destinationList = this.getList(destination.droppableId);
 
     // prevents modules being added or moved to groups with "full" modules i.e. SeasonPass or "double" modules
-    //if (sourceList.col.mods.find(m => moduleRules.full.includes(m.component))) return;
-    if (destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length || moduleRules.double.filter(f => f === m.component).length).length).length) return;
+    if (destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length || moduleRules.double.filter(f => f === m.component).length).length).length) {
+      console.log('User attempted to add/move module to group with full/double module');
+      return;
+    };
 
     // if reordering a list (column), else list to list
     if (source.droppableId === destination.droppableId) {

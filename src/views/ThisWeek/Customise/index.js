@@ -136,8 +136,10 @@ class Customise extends React.Component {
     const destinationList = this.getList(destination.droppableId);
 
     // prevents modules being added or moved to groups with "full" modules i.e. SeasonPass or "double" modules
-    //if (sourceList.col.mods.find(m => moduleRules.full.includes(m.component))) return;
-    if (destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length || moduleRules.double.filter(f => f === m.component).length).length).length) return;
+    if (destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length || moduleRules.double.filter(f => f === m.component).length).length).length) {
+      console.log('User attempted to add/move module to group with full/double module');
+      return;
+    };
 
     // if reordering a list (column), else list to list
     if (source.droppableId === destination.droppableId) {
@@ -429,11 +431,11 @@ class Customise extends React.Component {
     },
     DreamingCityCurse: {
       name: `${manifest.DestinyPresentationNodeDefinition[2516503814]?.displayProperties.name}: ${this.props.t("Savathûn's Curse")}`,
-      description: '???'
+      description: manifest.DestinyActivityDefinition[1893059148]?.displayProperties.description
     },
     DreamingCityShatteredThrone: {
       name: `${manifest.DestinyPresentationNodeDefinition[2516503814]?.displayProperties.name}: ${this.props.t('The Shattered Throne')}`,
-      description: '???'
+      description: manifest.DestinyActivityDefinition[1893059148]?.displayProperties.description
     },
     Menagerie: {
       name: manifest.DestinyPlaceDefinition[2096719558]?.displayProperties.name,
@@ -441,7 +443,7 @@ class Customise extends React.Component {
     },
     EscalationProtocol: {
       name: this.props.t('Escalation Protocol'),
-      description: '???'
+      description: manifest.DestinyInventoryItemDefinition[4132073280]?.displayProperties.description
     },
     Reckoning: {
       name: manifest.DestinyPlaceDefinition[4148998934]?.displayProperties.name,
