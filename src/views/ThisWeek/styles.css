@@ -7,10 +7,11 @@
 
 #this-week .group {
   width: 100%;
-  padding: 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 3rem;
+  padding: 0 3rem;
+  margin: 0 0 3rem;
 }
 
 #this-week .group.full {
@@ -131,13 +132,15 @@
   #this-week .group,
   #this-week .group:not(.full),
   #this-week .group.head {
-    padding: 2rem;
     grid-template-columns: 1fr;
     gap: 2rem;
+    padding: 0 2rem;
+    margin: 0 0 2rem;
   }
 
   #this-week .group.head {
     padding-top: 3rem;
+    padding-bottom: 2rem;
   }
 
   #this-week .column.double {
@@ -154,5 +157,11 @@
 
   #this-week .module .module-header .name {
     font-size: 27px;
+  }
+
+  #this-week .column.double .module .record-items,
+  #this-week .column.double .module .collection-items,
+  #this-week .column.double .module .inventory-items {
+    grid-template-columns: 1fr;
   }
 }

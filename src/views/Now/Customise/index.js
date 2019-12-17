@@ -6,6 +6,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
+import { defaultState } from '../../../store/reducers/layouts';
 import { ProfileLink } from '../../../components/ProfileLink';
 import { Button, DestinyKey } from '../../../components/UI/Button';
 import Checkbox from '../../../components/UI/Checkbox';
@@ -232,7 +233,8 @@ class Customise extends React.Component {
       return;
     }
 
-    const id = `${key}-${destinationList.col.mods.filter(m => m.component === key).length}`;
+    const { instances } = this.inUse(key);
+    const id = `${key}-${instances + 1}`;
 
     const result = add(destinationList.col.mods, { id, component: key });
 
@@ -316,6 +318,10 @@ class Customise extends React.Component {
       };
     });
   };
+
+  handler_resetLayout = e => {
+    if (this.mounted) this.setState(defaultState['now']);
+  }
 
   componentDidMount() {
     this.mounted = true;
@@ -484,6 +490,12 @@ class Customise extends React.Component {
           <div className='wrapper'>
             <div />
             <ul>
+              <li>
+                <Button onClick={this.handler_resetLayout}>
+                  <DestinyKey type='more' />
+                  {t('Reset')}
+                </Button>
+              </li>
               <li>
                 <Button onClick={this.handler_addGroup}>
                   <DestinyKey type='accept' />

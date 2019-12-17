@@ -66,7 +66,7 @@ class Now extends React.Component {
     SeasonCountdown: {
       c: SeasonCountdown
     }
-  }
+  };
 
   render() {
     const { t, auth, layout } = this.props;
@@ -116,58 +116,60 @@ class Now extends React.Component {
 
     return (
       <>
-        {modules.map((group, g) => {
-          if (group.components) {
-            if (group.condition === undefined || group.condition) {
+        <div className='groups'>
+          {modules.map((group, g) => {
+            if (group.components) {
+              if (group.condition === undefined || group.condition) {
+                return (
+                  <div key={g} className={cx('group', ...(group.className || []))}>
+                    {group.components.map((c, i) => {
+                      const Component = this.components[c].c;
+
+                      return <Component key={i} />;
+                    })}
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            } else {
+              const modFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
+              const modDoubleSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.double.includes(m.component)));
+
+              const cols = modFullSpan > -1 ? group.cols.slice(0, 1) : modDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols;
+
               return (
                 <div key={g} className={cx('group', ...(group.className || []))}>
-                  {group.components.map((c, i) => {
-                    const Component = this.components[c].c;
+                  {cols
+                    .map((col, c) => {
+                      if ((col.condition === undefined || col.condition) && col.mods.length) {
+                        return (
+                          <div key={c} className={cx('column', ...(col.className || []))}>
+                            {col.mods.map((mod, m) => {
+                              const Component = this.components[mod.component].c;
+                              const settings = (mod.settings || []).reduce(function(map, obj) {
+                                map[obj.id] = obj.value;
+                                return map;
+                              }, {});
 
-                    return <Component key={i} />;
-                  })}
+                              return (
+                                <div key={m} className={cx('module', ...(mod.className || []))}>
+                                  <Component {...settings} />
+                                </div>
+                              );
+                            })}
+                          </div>
+                        );
+                      } else {
+                        return false;
+                      }
+                    })
+                    .map(c => c)}
                 </div>
               );
-            } else {
-              return null;
             }
-          } else {
-            const modFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
-            const modDoubleSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.double.includes(m.component)));
-
-            const cols = modFullSpan > -1 ? group.cols.slice(0, 1) : modDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols;
-
-            return (
-              <div key={g} className={cx('group', ...(group.className || []))}>
-                {cols
-                  .map((col, c) => {
-                    if ((col.condition === undefined || col.condition) && col.mods.length) {
-                      return (
-                        <div key={c} className={cx('column', ...(col.className || []))}>
-                          {col.mods.map((mod, m) => {
-                            const Component = this.components[mod.component].c;
-                            const settings = (mod.settings || []).reduce(function (map, obj) {
-                              map[obj.id] = obj.value;
-                              return map;
-                            }, {});
-
-                            return (
-                              <div key={m} className={cx('module', ...(mod.className || []))}>
-                                <Component {...settings} />
-                              </div>
-                            );
-                          })}
-                        </div>
-                      );
-                    } else {
-                      return false;
-                    }
-                  })
-                  .map(c => c)}
-              </div>
-            );
-          }
-        })}
+          })}
+        </div>
         <div className='sticky-nav'>
           <div className='wrapper'>
             <div />

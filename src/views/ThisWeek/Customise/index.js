@@ -272,7 +272,6 @@ class Customise extends React.Component {
     }
 
     const { instances } = this.inUse(key);
-
     const id = `${key}-${instances + 1}`;
 
     const result = add(destinationList.col.mods, { id, component: key });
@@ -359,7 +358,7 @@ class Customise extends React.Component {
   };
 
   handler_resetLayout = e => {
-    this.setState(defaultState['this-week']);
+    if (this.mounted) this.setState(defaultState['this-week']);
   }
 
   componentDidMount() {
@@ -552,7 +551,7 @@ class Customise extends React.Component {
               <li>
                 <Button onClick={this.handler_resetLayout}>
                   <DestinyKey type='more' />
-                  {t('Reset layout')}
+                  {t('Reset')}
                 </Button>
               </li>
               <li>

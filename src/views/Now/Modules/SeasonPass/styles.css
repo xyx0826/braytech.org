@@ -1,5 +1,11 @@
 #now .group.season-pass {
   background-color: rgba(255, 255, 255, 0.05);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+#now .group.season-pass:last-child {
+  margin-bottom: 0;
 }
 
 #now .module .season-pass {
@@ -137,6 +143,11 @@
 }
 
 @media screen and (max-width: 600px) {
+  #now .group.season-pass {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
   #now .module .season-pass {
     grid-gap: 10px;
   }

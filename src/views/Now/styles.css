@@ -7,10 +7,11 @@
 
 #now .group {
   width: 100%;
-  padding: 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 3rem;
+  gap: 3rem;  
+  padding: 0 3rem;
+  margin: 0 0 3rem;
 }
 
 #now .group.full {
@@ -121,13 +122,15 @@
   #now .group,
   #now .group:not(.full),
   #now .group.head {
-    padding: 2rem;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2rem;    
+    padding: 0 2rem;
+    margin: 0 0 2rem;
   }
 
   #now .group.head {
     padding-top: 3rem;
+    padding-bottom: 2rem;
   }
 
   #now .column.double {
