@@ -244,7 +244,8 @@ function mapStateToProps(state, ownProps) {
   return {
     member: state.member,
     auth: state.auth,
-    layout: state.layouts['this-week']
+    layout: state.layouts['this-week'],
+    collectibles: state.collectibles
   };
 }
 

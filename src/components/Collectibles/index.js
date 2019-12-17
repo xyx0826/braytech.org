@@ -50,7 +50,7 @@ class Collectibles extends React.Component {
               } else if (nodeQuaternary.children.presentationNodes.length) {
                 nodeQuaternary.children.presentationNodes.forEach(nQ => {
                   let nodeQuinary = manifest.DestinyPresentationNodeDefinition[nQ.presentationNodeHash];
-    
+
                   if (nodeQuinary.children.collectibles.length) {
                     let found = nodeQuinary.children.collectibles.find(c => c.collectibleHash === hash);
                     if (found) {
@@ -88,8 +88,9 @@ class Collectibles extends React.Component {
   render() {
     const { t, member, collectibles, viewport, selfLinkFrom, forceDisplay, forceTooltip, inspect } = this.props;
     const highlight = parseInt(this.props.match && this.props.match.params.quinary ? this.props.match.params.quinary : this.props.highlight, 10) || false;
+    const collectiblesRequested = this.props.hashes?.filter(h => h);
 
-    let output = [];
+    let collectiblesOutput = [];
 
     if (this.props.node) {
       const tertiaryDefinition = manifest.DestinyPresentationNodeDefinition[this.props.node];
@@ -125,35 +126,47 @@ class Collectibles extends React.Component {
               return;
             }
 
-            row.push(
-              <li
-                key={definitionCollectible.hash}
-                className={cx('item', 'tooltip', {
-                  completed: !enumerateCollectibleState(state).notAcquired && !enumerateCollectibleState(state).invisible,
-                  // eslint-disable-next-line eqeqeq
-                  highlight: highlight && highlight == definitionCollectible.hash
-                })}
-                data-hash={definitionCollectible.itemHash}
-              >
-                <div className='icon'>
-                  <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionCollectible.displayProperties.icon}`} />
-                </div>
-                <div className='text'>
-                  <div className='name'>{definitionCollectible.displayProperties.name}</div>
-                  <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[definitionCollectible.hash] ? manifest.statistics.collections[definitionCollectible.hash] : `0.00`}%</div>
-                </div>
-                {inspect && definitionCollectible.itemHash ? <Link to={{ pathname: `/inspect/${definitionCollectible.itemHash}`, state: { from: selfLinkFrom } }} /> : null}
-              </li>
-            );
+            row.push({
+              discovered: !enumerateCollectibleState(state).notAcquired,
+              hash: definitionCollectible.hash,
+              element: (
+                <li
+                  key={definitionCollectible.hash}
+                  className={cx('item', 'tooltip', {
+                    completed: !enumerateCollectibleState(state).notAcquired && !enumerateCollectibleState(state).invisible,
+                    // eslint-disable-next-line eqeqeq
+                    highlight: highlight && highlight == definitionCollectible.hash
+                  })}
+                  data-hash={definitionCollectible.itemHash}
+                >
+                  <div className='icon'>
+                    <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionCollectible.displayProperties.icon}`} />
+                  </div>
+                  <div className='text'>
+                    <div className='name'>{definitionCollectible.displayProperties.name}</div>
+                    <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[definitionCollectible.hash] ? manifest.statistics.collections[definitionCollectible.hash] : `0.00`}%</div>
+                  </div>
+                  {inspect && definitionCollectible.itemHash ? <Link to={{ pathname: `/inspect/${definitionCollectible.itemHash}`, state: { from: selfLinkFrom } }} /> : null}
+                </li>
+              )
+            });
           });
 
-          if (row.length === 0) {
-            return;
+          row = row.filter(c => c).map(obj => obj.element);
+
+          if (row.filter(c => c).length === 0 && collectibles && collectibles.hideCompletedCollectibles && !forceDisplay) {
+            row.push(
+                <li key='lol' className='all-completed'>
+                  <div className='properties'>
+                    <div className='text'>{t('All discovered')}</div>
+                  </div>
+                </li>
+              );
           }
 
           let ref = definitionNode.children.collectibles.find(c => c.collectibleHash === highlight) ? this.scrollToRecordRef : null;
 
-          output.push(
+          collectiblesOutput.push(
             <li
               key={definitionNode.hash}
               ref={ref}
@@ -172,7 +185,7 @@ class Collectibles extends React.Component {
         });
       } else {
         tertiaryDefinition.children.collectibles.forEach(child => {
-          const collectibleDefinition = manifest.DestinyCollectibleDefinition[child.collectibleHash];
+          const definitionCollectible = manifest.DestinyCollectibleDefinition[child.collectibleHash];
 
           let state = 0;
           if (member.data) {
@@ -193,60 +206,80 @@ class Collectibles extends React.Component {
             }
           }
 
-          let ref = highlight === collectibleDefinition.hash ? this.scrollToRecordRef : null;
+          let ref = highlight === definitionCollectible.hash ? this.scrollToRecordRef : null;
 
-          if (collectibleDefinition.redacted || collectibleDefinition.itemHash === 0) {
-            output.push(
-              <li
-                key={collectibleDefinition.hash}
-                ref={ref}
-                className={cx('redacted', 'tooltip', {
-                  // eslint-disable-next-line eqeqeq
-                  highlight: highlight && highlight == collectibleDefinition.hash
-                })}
-                data-hash='343'
-              >
-                <div className='icon'>
-                  <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${manifest.settings.destiny2CoreSettings.undiscoveredCollectibleImage}`} />
-                </div>
-                <div className='text'>
-                  <div className='name'>{t('Classified')}</div>
-                  <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[collectibleDefinition.hash] ? manifest.statistics.collections[collectibleDefinition.hash] : `0.00`}%</div>
-                </div>
-              </li>
-            );
+          if (definitionCollectible.redacted || definitionCollectible.itemHash === 0) {
+            collectiblesOutput.push({
+              discovered: !enumerateCollectibleState(state).notAcquired,
+              hash: definitionCollectible.hash,
+              element: (
+                <li
+                  key={definitionCollectible.hash}
+                  ref={ref}
+                  className={cx('redacted', 'tooltip', {
+                    // eslint-disable-next-line eqeqeq
+                    highlight: highlight && highlight == definitionCollectible.hash
+                  })}
+                  data-hash='343'
+                >
+                  <div className='icon'>
+                    <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${manifest.settings.destiny2CoreSettings.undiscoveredCollectibleImage}`} />
+                  </div>
+                  <div className='text'>
+                    <div className='name'>{t('Classified')}</div>
+                    <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[definitionCollectible.hash] ? manifest.statistics.collections[definitionCollectible.hash] : `0.00`}%</div>
+                  </div>
+                </li>
+              )
+            });
           } else {
-            output.push(
-              <li
-                key={collectibleDefinition.hash}
-                ref={ref}
-                className={cx('tooltip', {
-                  completed: !enumerateCollectibleState(state).notAcquired,
-                  // eslint-disable-next-line eqeqeq
-                  highlight: highlight && highlight == collectibleDefinition.hash
-                })}
-                data-hash={collectibleDefinition.itemHash}
-              >
-                <div className='icon'>
-                  <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${collectibleDefinition.displayProperties.icon}`} />
-                </div>
-                <div className='text'>
-                  <div className='name'>{collectibleDefinition.displayProperties.name}</div>
-                  <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[collectibleDefinition.hash] ? manifest.statistics.collections[collectibleDefinition.hash] : `0.00`}%</div>
-                </div>
-                {inspect && collectibleDefinition.itemHash ? <Link to={{ pathname: `/inspect/${collectibleDefinition.itemHash}`, state: { from: selfLinkFrom } }} /> : null}
-              </li>
-            );
+            collectiblesOutput.push({
+              discovered: !enumerateCollectibleState(state).notAcquired,
+              hash: definitionCollectible.hash,
+              element: (
+                <li
+                  key={definitionCollectible.hash}
+                  ref={ref}
+                  className={cx('tooltip', {
+                    completed: !enumerateCollectibleState(state).notAcquired,
+                    // eslint-disable-next-line eqeqeq
+                    highlight: highlight && highlight == definitionCollectible.hash
+                  })}
+                  data-hash={definitionCollectible.itemHash}
+                >
+                  <div className='icon'>
+                    <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionCollectible.displayProperties.icon}`} />
+                  </div>
+                  <div className='text'>
+                    <div className='name'>{definitionCollectible.displayProperties.name}</div>
+                    <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[definitionCollectible.hash] ? manifest.statistics.collections[definitionCollectible.hash] : `0.00`}%</div>
+                  </div>
+                  {inspect && definitionCollectible.itemHash ? <Link to={{ pathname: `/inspect/${definitionCollectible.itemHash}`, state: { from: selfLinkFrom } }} /> : null}
+                </li>
+              )
+            });
           }
         });
+
+        if (collectiblesOutput.filter(c => c).length === 0 && collectibles && collectibles.hideCompletedCollectibles && !forceDisplay) {
+          collectiblesOutput.push({
+            element: (
+              <li key='lol' className='all-completed'>
+                <div className='properties'>
+                  <div className='text'>{t('All discovered')}</div>
+                </div>
+              </li>
+            )
+          });
+        }
+
+        collectiblesOutput = collectiblesOutput.filter(c => c).map(obj => obj.element);
       }
     } else {
-      let collectiblesRequested = this.props.hashes.filter(h => h);
-
       collectiblesRequested.forEach(hash => {
-        let collectibleDefinition = manifest.DestinyCollectibleDefinition[hash];
+        const definitionCollectible = manifest.DestinyCollectibleDefinition[hash];
 
-        if (!collectibleDefinition) return null;
+        if (!definitionCollectible) return null;
 
         let link = this.selfLink(hash);
 
@@ -271,41 +304,49 @@ class Collectibles extends React.Component {
           }
         }
 
-        output.push(
-          <li
-            key={collectibleDefinition.hash}
-            className={cx({
-              tooltip: viewport.width <= 600 && (link && selfLinkFrom) && !forceTooltip ? false : true,
-              linked: link && selfLinkFrom,
-              completed: !enumerateCollectibleState(state).notAcquired
-            })}
-            data-hash={collectibleDefinition.itemHash}
-          >
-            <div className='icon'>
-              <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${collectibleDefinition.displayProperties.icon}`} />
-            </div>
-            <div className='text'>
-              <div className='name'>{collectibleDefinition.displayProperties.name}</div>
-              <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[collectibleDefinition.hash] ? manifest.statistics.collections[collectibleDefinition.hash] : `0.00`}%</div>
-            </div>
-            {link && selfLinkFrom && !inspect ? <ProfileLink to={{ pathname: link, state: { from: selfLinkFrom } }} /> : null}
-            {inspect && collectibleDefinition.itemHash ? <Link to={{ pathname: `/inspect/${collectibleDefinition.itemHash}`, state: { from: selfLinkFrom } }} /> : null}
-          </li>
-        );
+        collectiblesOutput.push({
+          discovered: !enumerateCollectibleState(state).notAcquired,
+          hash: definitionCollectible.hash,
+          element: (
+            <li
+              key={definitionCollectible.hash}
+              className={cx({
+                tooltip: viewport.width <= 600 && link && selfLinkFrom && !forceTooltip ? false : true,
+                linked: link && selfLinkFrom,
+                completed: !enumerateCollectibleState(state).notAcquired
+              })}
+              data-hash={definitionCollectible.itemHash}
+            >
+              <div className='icon'>
+                <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionCollectible.displayProperties.icon}`} />
+              </div>
+              <div className='text'>
+                <div className='name'>{definitionCollectible.displayProperties.name}</div>
+                <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[definitionCollectible.hash] ? manifest.statistics.collections[definitionCollectible.hash] : `0.00`}%</div>
+              </div>
+              {link && selfLinkFrom && !inspect ? <ProfileLink to={{ pathname: link, state: { from: selfLinkFrom } }} /> : null}
+              {inspect && definitionCollectible.itemHash ? <Link to={{ pathname: `/inspect/${definitionCollectible.itemHash}`, state: { from: selfLinkFrom } }} /> : null}
+            </li>
+          )
+        });
       });
+
+      if (collectiblesRequested?.length > 0 && collectiblesOutput.length === 0 && collectibles && collectibles.hideCompletedCollectibles && !forceDisplay) {
+        collectiblesOutput.push({
+          element: (
+            <li key='lol' className='all-completed'>
+              <div className='properties'>
+                <div className='text'>{t('All discovered')}</div>
+              </div>
+            </li>
+          )
+        });
+      }
+
+      collectiblesOutput = collectiblesOutput.filter(c => c).map(obj => obj.element);
     }
 
-    if (output.length === 0 && collectibles && collectibles.hideCompletedCollectibles && !forceDisplay) {
-      output.push(
-        <li key='lol' className='all-completed'>
-          <div className='properties'>
-            <div className='text'>{t('All discovered')}</div>
-          </div>
-        </li>
-      );
-    }
-
-    return output;
+    return collectiblesOutput;
   }
 }
 
@@ -325,11 +366,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(
-  withRouter,
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(Collectibles);
+export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps), withTranslation())(Collectibles);

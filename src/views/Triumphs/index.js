@@ -26,13 +26,10 @@ class Triumphs extends React.Component {
     };
   }
 
-  toggleCompleted = () => {
-    let currentState = this.props.collectibles;
-    let newState = {
-      hideCompletedRecords: !currentState.hideCompletedRecords
-    };
-
-    this.props.setCollectibleDisplayState(newState);
+  handler_toggleCompleted = e => {
+    this.props.setCollectibleDisplayState({
+      hideCompletedRecords: !this.props.collectibles.hideCompletedRecords
+    });
   };
 
   toggleAlmostCompleteSort = () => {
@@ -61,7 +58,7 @@ class Triumphs extends React.Component {
     let primaryHash = this.props.match.params.primary ? this.props.match.params.primary : false;
 
     const toggleCompletedLink = (
-      <Button action={this.toggleCompleted}>
+      <Button action={this.handler_toggleCompleted}>
         {this.props.collectibles.hideCompletedRecords ? (
           <>
             <i className='segoe-uniF16E' />

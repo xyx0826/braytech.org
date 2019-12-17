@@ -20,13 +20,10 @@ class Collections extends React.Component {
     this.state = {};
   }
 
-  toggleCompleted = () => {
-    let currentState = this.props.collectibles;
-    let newState = {
-      hideCompletedCollectibles: !currentState.hideCompletedCollectibles
-    };
-
-    this.props.setCollectibleDisplayState(newState);
+  handler_toggleCompleted = e => {
+    this.props.setCollectibleDisplayState({
+      hideCompletedCollectibles: !this.props.collectibles.hideCompletedCollectibles
+    });
   };
 
   componentDidMount() {
@@ -50,7 +47,7 @@ class Collections extends React.Component {
     let backLinkPath = this.props.location.state && this.props.location.state.from ? this.props.location.state.from : '/collections';
 
     const toggleCompletedLink = (
-      <Button action={this.toggleCompleted}>
+      <Button action={this.handler_toggleCompleted}>
         {this.props.collectibles.hideCompletedCollectibles ? (
           <>
             <i className='segoe-uniF16E' />
