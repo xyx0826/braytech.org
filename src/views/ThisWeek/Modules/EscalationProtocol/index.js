@@ -71,7 +71,7 @@ class EscalationProtocol extends React.Component {
     };
 
     return (
-      <React.Fragment key='escalation-protocol'>
+      <>
         <div className='module-header'>
           <div className='sub-name'>{t('Escalation Protocol')}</div>
           <div className='name'>{rotation[cycleInfo.week.ep].boss}</div>
@@ -92,7 +92,7 @@ class EscalationProtocol extends React.Component {
           />
         </ul>
         <div className='aside'>{t('Braytech can not determine which Worldline Zero catalyst components you have attained, but it can tell you which bosses drop which items in case you happened to be keeping a list.')}</div>
-      </React.Fragment>
+      </>
     );
   }
 }

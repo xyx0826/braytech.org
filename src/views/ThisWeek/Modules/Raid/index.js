@@ -3,7 +3,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
-import cx from 'classnames';
 
 import manifest from '../../../../utils/manifest';
 import ObservedImage from '../../../../components/ObservedImage';
@@ -13,9 +12,9 @@ import Records from '../../../../components/Records';
 
 import './styles.css';
 
-class Raids extends React.Component {
+class Raid extends React.Component {
   render() {
-    const { t, member } = this.props;
+    const { t, member, raidKey = 'gos' } = this.props;
     const milestones = member.data.milestones;
     const characterActivities = member.data.profile.characterActivities.data;
 
@@ -202,138 +201,106 @@ class Raids extends React.Component {
     };
 
     const leviathanStyle = key => {
-      return {
-        className: [],
-        mods: [
-          {
-            className: [],
-            component: (
-              <React.Fragment key={key}>
-                <div className='module-header'>
-                  <div className='sub-name'>{t('Raid')}</div>
-                  <div className='name'>{data[key].name}</div>
-                </div>
-                <h4>{t('Challenge')}</h4>
-                <ul className='list modifiers'>
-                  {data[key].challenge.map((p, i) => {
-                    return (
-                      <li key={i}>
-                        <div className='icon'>
-                          <ObservedImage className='image' src={`https://www.bungie.net${data[key].challenges[p].icon || (manifest.DestinyActivityModifierDefinition[p] && manifest.DestinyActivityModifierDefinition[p].displayProperties && manifest.DestinyActivityModifierDefinition[p].displayProperties.icon)}`} />
-                        </div>
-                        <div className='text'>
-                          <div className='name'>{data[key].challenges[p].name || (manifest.DestinyActivityModifierDefinition[p] && manifest.DestinyActivityModifierDefinition[p].displayProperties && manifest.DestinyActivityModifierDefinition[p].displayProperties.name)}</div>
-                          <div className='description'>
-                            <p>{data[key].challenges[p].description}</p>
-                          </div>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
-                {data[key].phases ? (
-                  <>
-                    <h4>{t('Rotation')}</h4>
-                    <ul className='list modifiers'>
-                      {data[key].phaseOrder.map((p, i) => {
-                        return (
-                          <li key={i}>
-                            <div className='icon'>
-                              <ObservedImage className='image' src={`https://www.bungie.net${data[key].phases[p].icon}`} />
-                            </div>
-                            <div className='text'>
-                              <div className='name'>{data[key].phases[p].name}</div>
-                              <div className='description'>{data[key].phases[p].description}</div>
-                            </div>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </>
-                ) : null}
-                <h4>{t('Collectibles')}</h4>
-                <ul className='list collection-items'>
-                  <Collectibles selfLinkFrom='/this-week' hashes={data[key].collectibles} />
-                </ul>
-                {(data[key].challenges[data[key].challenge[0]].triumphs || []).concat(data[key].triumphs).length ? (
-                  <>
-                    <h4>{t('Triumphs')}</h4>
-                    <ul className='list record-items'>
-                      <Records selfLinkFrom='/this-week' hashes={(data[key].challenges[data[key].challenge[0]] || []).triumphs.concat(data[key].triumphs)} ordered />
-                    </ul>
-                  </>
-                ) : null}
-              </React.Fragment>
-            )
-          }
-        ]
-      };
+      return (
+        <>
+          <div className='module-header'>
+            <div className='sub-name'>{t('Raid')}</div>
+            <div className='name'>{data[key].name}</div>
+          </div>
+          <h4>{t('Challenge')}</h4>
+          <ul className='list modifiers'>
+            {data[key].challenge.map((p, i) => {
+              return (
+                <li key={i}>
+                  <div className='icon'>
+                    <ObservedImage className='image' src={`https://www.bungie.net${data[key].challenges[p].icon || (manifest.DestinyActivityModifierDefinition[p] && manifest.DestinyActivityModifierDefinition[p].displayProperties && manifest.DestinyActivityModifierDefinition[p].displayProperties.icon)}`} />
+                  </div>
+                  <div className='text'>
+                    <div className='name'>{data[key].challenges[p].name || (manifest.DestinyActivityModifierDefinition[p] && manifest.DestinyActivityModifierDefinition[p].displayProperties && manifest.DestinyActivityModifierDefinition[p].displayProperties.name)}</div>
+                    <div className='description'>
+                      <p>{data[key].challenges[p].description}</p>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+          {data[key].phases ? (
+            <>
+              <h4>{t('Rotation')}</h4>
+              <ul className='list modifiers'>
+                {data[key].phaseOrder.map((p, i) => {
+                  return (
+                    <li key={i}>
+                      <div className='icon'>
+                        <ObservedImage className='image' src={`https://www.bungie.net${data[key].phases[p].icon}`} />
+                      </div>
+                      <div className='text'>
+                        <div className='name'>{data[key].phases[p].name}</div>
+                        <div className='description'>{data[key].phases[p].description}</div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </>
+          ) : null}
+          <h4>{t('Collectibles')}</h4>
+          <ul className='list collection-items'>
+            <Collectibles selfLinkFrom='/this-week' hashes={data[key].collectibles} />
+          </ul>
+          {(data[key].challenges[data[key].challenge[0]].triumphs || []).concat(data[key].triumphs).length ? (
+            <>
+              <h4>{t('Triumphs')}</h4>
+              <ul className='list record-items'>
+                <Records selfLinkFrom='/this-week' hashes={(data[key].challenges[data[key].challenge[0]] || []).triumphs.concat(data[key].triumphs)} ordered />
+              </ul>
+            </>
+          ) : null}
+        </>
+      );
     };
 
     const bountyStyle = key => {
-      return {
-        className: [],
-        mods: [
-          {
-            className: [],
-            component: (
-              <React.Fragment key={key}>
-                <div className='module-header'>
-                  <div className='sub-name'>{t('Raid')}</div>
-                  <div className='name'>{data[key].name}</div>
-                </div>
-                <h4>{t('Challenge')}</h4>
-                <div className='raid-challenge'>
-                  <ul className='list inventory-items'>
-                    <Items
-                      items={data[key].challenge.map(c => {
-                        return {
-                          itemHash: c
-                        };
-                      })}
-                    />
-                  </ul>
-                  <div className='text'>
-                    <div className='name'>{data[key].challenges[data[key].challenge[0]].name}</div>
-                    <ReactMarkdown className='description' source={data[key].challenges[data[key].challenge[0]].description} />
-                  </div>
-                </div>
-                <h4>{t('Collectibles')}</h4>
-                <ul className='list collection-items'>
-                  <Collectibles selfLinkFrom='/this-week' hashes={data[key].collectibles} />
-                </ul>
-                <h4>{t('Triumphs')}</h4>
-                <ul className='list record-items'>
-                  <Records selfLinkFrom='/this-week' hashes={data[key].challenges[data[key].challenge[0]].triumphs.concat(data[key].triumphs)} ordered />
-                </ul>
-              </React.Fragment>
-            )
-          }
-        ]
-      };
+      return (
+        <>
+          <div className='module-header'>
+            <div className='sub-name'>{t('Raid')}</div>
+            <div className='name'>{data[key].name}</div>
+          </div>
+          <h4>{t('Challenge')}</h4>
+          <div className='raid-challenge'>
+            <ul className='list inventory-items'>
+              <Items
+                items={data[key].challenge.map(c => {
+                  return {
+                    itemHash: c
+                  };
+                })}
+              />
+            </ul>
+            <div className='text'>
+              <div className='name'>{data[key].challenges[data[key].challenge[0]].name}</div>
+              <ReactMarkdown className='description' source={data[key].challenges[data[key].challenge[0]].description} />
+            </div>
+          </div>
+          <h4>{t('Collectibles')}</h4>
+          <ul className='list collection-items'>
+            <Collectibles selfLinkFrom='/this-week' hashes={data[key].collectibles} />
+          </ul>
+          <h4>{t('Triumphs')}</h4>
+          <ul className='list record-items'>
+            <Records selfLinkFrom='/this-week' hashes={data[key].challenges[data[key].challenge[0]].triumphs.concat(data[key].triumphs)} ordered />
+          </ul>
+        </>
+      );
     };
 
-    return ['gos', 'cos', 'sotp', 'lw', 'levi']
-      .map(r => {
-        if (['gos', 'levi'].includes(r)) {
-          return leviathanStyle(r);
-        } else {
-          return bountyStyle(r);
-        }
-      })
-      .map((col, c) => {
-        return (
-          <div key={c} className={cx('column', ...col.className)}>
-            {col.mods.map((mod, m) => {
-              return (
-                <div key={m} className={cx('module', ...mod.className)}>
-                  {mod.component}
-                </div>
-              );
-            })}
-          </div>
-        );
-      });
+    if (['gos', 'levi'].includes(raidKey)) {
+      return leviathanStyle(raidKey);
+    } else {
+      return bountyStyle(raidKey);
+    }
   }
 }
 
@@ -343,7 +310,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default compose(
-  connect(mapStateToProps),
-  withTranslation()
-)(Raids);
+export default compose(connect(mapStateToProps), withTranslation())(Raid);

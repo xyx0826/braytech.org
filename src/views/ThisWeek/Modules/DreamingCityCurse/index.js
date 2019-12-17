@@ -61,7 +61,7 @@ class DreamingCityCurse extends React.Component {
     };
 
     return (
-      <React.Fragment key='city-curse'>
+      <>
         <div className='module-header'>
           <div className='sub-name'>{t("Savathûn's Curse")}</div>
           <div className='name'>
@@ -72,7 +72,7 @@ class DreamingCityCurse extends React.Component {
         <ul className='list record-items'>
           <Records selfLinkFrom='/this-week' hashes={rotation[cycleInfo.week.curse].triumphs} ordered />
         </ul>
-      </React.Fragment>
+      </>
     );
   }
 }

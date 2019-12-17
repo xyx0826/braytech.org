@@ -30,9 +30,9 @@ class Reckoning extends React.Component {
     const reckoningTierI = characterActivities[member.characterId].availableActivities.find(a => a.activityHash === 3143659188);
 
     return (
-      <React.Fragment key='escalation-protocol'>
+      <>
         <div className='module-header'>
-          <div className='sub-name'>{manifest.DestinyPlaceDefinition[4148998934].displayProperties.name}</div>
+          <div className='sub-name'>{manifest.DestinyPlaceDefinition[4148998934]?.displayProperties.name}</div>
           <div className='name'>{rotation[cycleInfo.week.reckoning].boss}</div>
         </div>
         <h4>{t('Active modifiers')}</h4>
@@ -57,7 +57,7 @@ class Reckoning extends React.Component {
         <ul className='list record-items'>
           <Records selfLinkFrom='/this-week' hashes={rotation[cycleInfo.week.reckoning].triumphs} ordered />
         </ul>
-      </React.Fragment>
+      </>
     );
   }
 }

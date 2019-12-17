@@ -1,7 +1,7 @@
 import * as ls from '../../utils/localStorage';
 
 const lsState = ls.get('setting.layouts') ? ls.get('setting.layouts') : {};
-const defaultState = {
+export const defaultState = {
   now: {
     groups: [
       {
@@ -106,10 +106,203 @@ const defaultState = {
         ]
       }
     ]
+  },
+  'this-week': {
+    groups: [
+      {
+        id: 'head',
+        type: 'head',
+        cols: [
+          {
+            id: 'head-col-0',
+            mods: []
+          },
+          {
+            id: 'head-col-1',
+            mods: []
+          },
+          {
+            id: 'head-col-2',
+            mods: []
+          },
+          {
+            id: 'head-col-3',
+            mods: []
+          }
+        ]
+      },
+      {
+        id: 'body-1',
+        type: 'body',
+        cols: [
+          {
+            id: 'body-1-col-0',
+            mods: [
+              {
+                id: 'Nightfalls-1',
+                component: 'Nightfalls'
+              }
+            ]
+          },
+          {
+            id: 'body-1-col-1',
+            mods: []
+          },
+          {
+            id: 'body-1-col-2',
+            mods: []
+          },
+          {
+            id: 'body-1-col-3',
+            mods: []
+          }
+        ]
+      },
+      {
+        id: 'body-2',
+        type: 'body',
+        cols: [
+          {
+            id: 'body-2-col-0',
+            mods: [
+              {
+                id: 'Raid-1',
+                component: 'Raid',
+                settings: [
+                  {
+                    id: 'raidKey',
+                    value: 'gos'
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: 'body-2-col-1',
+            mods: [
+              {
+                id: 'Raid-2',
+                component: 'Raid',
+                settings: [
+                  {
+                    id: 'raidKey',
+                    value: 'sotp'
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: 'body-2-col-2',
+            mods: [
+              {
+                id: 'Raid-3',
+                component: 'Raid',
+                settings: [
+                  {
+                    id: 'raidKey',
+                    value: 'lw'
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: 'body-2-col-3',
+            mods: [
+              {
+                id: 'Raid-4',
+                component: 'Raid',
+                settings: [
+                  {
+                    id: 'raidKey',
+                    value: 'levi'
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'body-3',
+        type: 'body',
+        cols: [
+          {
+            id: 'body-3-col-0',
+            mods: [
+              {
+                id: 'DreamingCityAscendantChallenge-1',
+                component: 'DreamingCityAscendantChallenge'
+              }
+            ]
+          },
+          {
+            id: 'body-3-col-1',
+            mods: [
+              {
+                id: 'DreamingCityCurse-1',
+                component: 'DreamingCityCurse'
+              }
+            ]
+          },
+          {
+            id: 'body-3-col-2',
+            mods: [
+              {
+                id: 'DreamingCityShatteredThrone-1',
+                component: 'DreamingCityShatteredThrone'
+              }
+            ]
+          },
+          {
+            id: 'body-3-col-3',
+            mods: []
+          }
+        ]
+      },
+      {
+        id: 'body-4',
+        type: 'body',
+        cols: [
+          {
+            id: 'body-4-col-0',
+            mods: [
+              {
+                id: 'Menagerie-1',
+                component: 'Menagerie'
+              }
+            ]
+          },
+          {
+            id: 'body-4-col-1',
+            mods: [
+              {
+                id: 'Reckoning-1',
+                component: 'Reckoning'
+              }
+            ]
+          },
+          {
+            id: 'body-4-col-2',
+            mods: [
+              {
+                id: 'EscalationProtocol-1',
+                component: 'EscalationProtocol'
+              }
+            ]
+          },
+          {
+            id: 'body-4-col-3',
+            mods: []
+          }
+        ]
+      }
+    ]
   }
 };
 
-export default function reducer(state = {...defaultState, ...lsState}, action) {
+export default function reducer(state = { ...defaultState, ...lsState }, action) {
   switch (action.type) {
     case 'SET_LAYOUT':
       state = {
@@ -120,7 +313,6 @@ export default function reducer(state = {...defaultState, ...lsState}, action) {
       ls.set('setting.layouts', state);
       return state;
     case 'RESET_LAYOUTS':
-      console.log(action.payload)
       if (action.payload.target) {
         state = {
           ...state,

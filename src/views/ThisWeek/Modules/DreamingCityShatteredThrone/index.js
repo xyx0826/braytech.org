@@ -38,8 +38,8 @@ class DreamingCityShatteredThrone extends React.Component {
     };
 
     return (
-      <React.Fragment key='shattered-throne'>
-        <div key='moduleShatteredThrone' className='content'>
+      <>
+        <div className='content'>
           <div className='module-header'>
             <div className='sub-name'>{t("Savathûn's Curse")}</div>
             <div className='name'>{t('The Shattered Throne')}</div>
@@ -49,7 +49,7 @@ class DreamingCityShatteredThrone extends React.Component {
             <Records selfLinkFrom='/this-week' hashes={data.triumphs} ordered />
           </ul>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

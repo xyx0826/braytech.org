@@ -141,7 +141,7 @@ class DreamingCityAscendantChallenge extends React.Component {
     };
 
     return (
-      <React.Fragment key='ascendant-challenge'>
+      <>
         <div className='module-header'>
           <div className='sub-name'>{t('Ascendant Challenge')}</div>
           <div className='name'>
@@ -152,7 +152,7 @@ class DreamingCityAscendantChallenge extends React.Component {
         <ul className='list record-items'>
           <Records selfLinkFrom='/this-week' hashes={rotation[cycleInfo.week.ascendant].triumphs} ordered />
         </ul>
-      </React.Fragment>
+      </>
     );
   }
 }

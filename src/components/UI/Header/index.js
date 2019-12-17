@@ -142,7 +142,7 @@ class Header extends React.Component {
         name: t('This Week'),
         desc: t('Noteworthy records and collectibles which are available at a weekly cadence'),
         slug: '/this-week',
-        exact: true,
+        exact: false,
         profile: true,
         inline: true,
         group: 0

@@ -60,10 +60,10 @@ class Menagerie extends React.Component {
       }
     });
 
-    return [
-      <React.Fragment key='menagerie'>
+    return (
+      <>
         <div className='module-header'>
-          <div className='sub-name'>{t('The Menagerie')}</div>
+          <div className='sub-name'>{manifest.DestinyPlaceDefinition[2096719558]?.displayProperties.name}</div>
           <div className='name'>{rotation[cycleInfo.week.menagerie].boss}</div>
         </div>
         {heroicMenagerie ? (
@@ -96,30 +96,8 @@ class Menagerie extends React.Component {
         <ul className='list record-items'>
           <Records selfLinkFrom='/this-week' hashes={rotation[cycleInfo.week.menagerie].triumphs} />
         </ul>
-      </React.Fragment>
-    ]
-      .map(m => ({
-        className: [],
-        mods: [
-          {
-            className: [],
-            component: m
-          }
-        ]
-      }))
-      .map((col, c) => {
-        return (
-          <div key={c} className={cx('column', ...col.className)}>
-            {col.mods.map((mod, m) => {
-              return (
-                <div key={m} className={cx('module', ...mod.className)}>
-                  {mod.component}
-                </div>
-              );
-            })}
-          </div>
-        );
-      });
+      </>
+    );
   }
 }
 
@@ -129,7 +107,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default compose(
-  connect(mapStateToProps),
-  withTranslation()
-)(Menagerie);
+export default compose(connect(mapStateToProps), withTranslation())(Menagerie);
