@@ -878,5 +878,10 @@
     "date": "2019-12-17T06:24:57.024Z",
     "version": "2.12.40",
     "content": "- added _Now_ view's customisability to _This Week_ view and collated modules\n- many other minor improvements"
+  },
+  {
+    "date": "2019-12-17T17:53:23.596Z",
+    "version": "2.12.45",
+    "content": "- updated hide collectibles logic\n- updated how records deal with small spaces\n- other secret stuff"
   }
 ]

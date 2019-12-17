@@ -6,9 +6,8 @@ import cx from 'classnames';
 
 import packageJSON from '../../../package.json';
 import Spinner from '../../components/UI/Spinner';
-import ObservedImage from '../../components/ObservedImage';
 import { ReactComponent as Logo } from '../../components/BraytechDevice.svg';
-import { ReactComponent as Saint14 } from '../../media/miscellaneous/saint14.svg';
+import { ReactComponent as Saint14 } from '../../media/miscellaneous/svg/saint14.svg';
 
 import './styles.css';
 

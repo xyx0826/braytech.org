@@ -98,6 +98,15 @@ class NotificationLink extends React.Component {
       let isError, image;
       if (state && state.error && state.javascript && state.javascript.message === 'maintenance') {
         image = '/static/images/extracts/ui/01A3-00001EE8.PNG';
+        state.actions = [
+          {
+            type: 'external',
+            target: 'https://twitter.com/BungieHelp',
+            text: 'View post',
+            key: 'accept',
+            dismiss: false
+          }
+        ];
       } else if (state && state.error) {
         isError = true;
         image = '/static/images/extracts/ui/010A-00000552.PNG';
@@ -132,25 +141,28 @@ class NotificationLink extends React.Component {
                 <div className='sticky-nav-inner'>
                   <div />
                   <ul>
-                    <li>
-                      <Button action={this.deactivateOverlay}>
-                        <DestinyKey type='dismiss' /> {t('Dismiss')}
-                      </Button>
-                    </li>
-                    {state.actions && state.actions.length && state.actions.map((action, i) => {
-
-                      if (action.type === 'external') {
-                        return (
-                          <li key={i}>
-                            <a className='button' href={action.target} onClick={action.dismiss ? this.deactivateOverlay : null} target='_blank' rel='noreferrer noopener'>
-                              <DestinyKey type={action.key || 'dismiss'} /> {action.text}
-                            </a>
-                          </li>
-                        )
-                      } else {
-                        return null;
-                      }
-                    })}
+                    {!state.javascript?.message === 'maintenance' ? (
+                      <li>
+                        <Button action={this.deactivateOverlay}>
+                          <DestinyKey type='dismiss' /> {t('Dismiss')}
+                        </Button>
+                      </li>
+                    ) : null}
+                    {state.actions &&
+                      state.actions.length &&
+                      state.actions.map((action, i) => {
+                        if (action.type === 'external') {
+                          return (
+                            <li key={i}>
+                              <a className='button' href={action.target} onClick={action.dismiss ? this.deactivateOverlay : null} target='_blank' rel='noreferrer noopener'>
+                                <DestinyKey type={action.key || 'dismiss'} /> {action.text}
+                              </a>
+                            </li>
+                          );
+                        } else {
+                          return null;
+                        }
+                      })}
                   </ul>
                 </div>
               </div>
@@ -204,10 +216,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(NotificationLink);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(NotificationLink);

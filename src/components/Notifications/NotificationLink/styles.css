@@ -346,7 +346,7 @@ html.backdropfilter #notification-bar .background .acrylic {
     padding: 6px 0 1rem;
   }
 
-  #notification-overlay.error .wrapper-inner:not(.has-image) > div:first-child {
+  #notification-overlay .wrapper-inner:not(.has-image) > div:first-child {
     display: none;
   }
 
