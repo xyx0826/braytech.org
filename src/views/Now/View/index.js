@@ -107,7 +107,7 @@ class Now extends React.Component {
     const modules = [
       userHead,
       {
-        className: ['auth-upsell'],
+        className: ['full', 'auth-upsell'],
         condition: !auth,
         components: ['AuthUpsell']
       },
