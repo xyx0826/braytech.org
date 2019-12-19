@@ -34,37 +34,37 @@ class Now extends React.Component {
 
   components = {
     AuthUpsell: {
-      c: AuthUpsell
+      reference: AuthUpsell
     },
     Flashpoint: {
-      c: Flashpoint
+      reference: Flashpoint
     },
     DailyVanguardModifiers: {
-      c: DailyVanguardModifiers
+      reference: DailyVanguardModifiers
     },
     HeroicStoryMissions: {
-      c: HeroicStoryMissions
+      reference: HeroicStoryMissions
     },
     SeasonalArtifact: {
-      c: SeasonalArtifact
+      reference: SeasonalArtifact
     },
     Ranks: {
-      c: Ranks
+      reference: Ranks
     },
     SeasonPass: {
-      c: SeasonPass
+      reference: SeasonPass
     },
     BlackArmoryForges: {
-      c: BlackArmoryForges
+      reference: BlackArmoryForges
     },
     Vendor: {
-      c: Vendor
+      reference: Vendor
     },
     CharacterEquipment: {
-      c: CharacterEquipment
+      reference: CharacterEquipment
     },
     SeasonCountdown: {
-      c: SeasonCountdown
+      reference: SeasonCountdown
     }
   };
 
@@ -123,7 +123,7 @@ class Now extends React.Component {
                 return (
                   <div key={g} className={cx('group', ...(group.className || []))}>
                     {group.components.map((c, i) => {
-                      const Component = this.components[c].c;
+                      const Component = this.components[c].reference;
 
                       return <Component key={i} />;
                     })}
@@ -146,7 +146,7 @@ class Now extends React.Component {
                         return (
                           <div key={c} className={cx('column', ...(col.className || []))}>
                             {col.mods.map((mod, m) => {
-                              const Component = this.components[mod.component].c;
+                              const Component = this.components[mod.component].reference;
                               const settings = (mod.settings || []).reduce(function(map, obj) {
                                 map[obj.id] = obj.value;
                                 return map;

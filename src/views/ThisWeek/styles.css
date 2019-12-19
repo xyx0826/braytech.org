@@ -21,6 +21,7 @@
 #this-week .group.head {
   padding: 4rem 3rem 3rem;
   background-color: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
 }
 
 #this-week .group.head .module .text p {

@@ -1,0 +1,22 @@
+.module .flashpoint {
+  position: relative;
+}
+
+.module .flashpoint .icon {
+  position: absolute;
+  top: -24px;
+  right: 0;
+  height: 130%;
+  width: 80%;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.module .flashpoint .icon svg {
+  height: 100%;
+  width: 100%;
+}
+
+.module .flashpoint .text {
+  position: relative;
+}
