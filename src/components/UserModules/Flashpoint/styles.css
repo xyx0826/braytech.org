@@ -20,3 +20,9 @@
 .module .flashpoint .text {
   position: relative;
 }
+
+@media screen and (max-width: 600px) {
+  .module .flashpoint .icon {
+    opacity: 0.25;
+  }
+}
