@@ -133,26 +133,21 @@ class Item extends React.Component {
       }, {})
     }
 
-    // what's this for?
+    // characterUninstancedItemComponents
     if (member.data && characterUninstancedItemComponents[member.characterId]?.objectives?.data[item.itemHash]) {
-      if (item.itemComponents) {
-        item.itemComponents.objectives = characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash].objectives;
-      } else {
-        item.itemComponents = {
-          objectives: characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash].objectives
-        };
-      }
+      item.itemComponents = {
+        ...item.itemComponents,
+        objectives: characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash].objectives
+      };
     }
 
     // what's this for?
     if (item.itemInstanceId && member.data && member.data.profile?.characterInventories?.data[member.characterId]?.items?.find(i => i.itemInstanceId === item.itemInstanceId)) {
-      if (item.itemComponents) {
-        item.itemComponents.item = member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemInstanceId === item.itemInstanceId);
-      } else {
-        item.itemComponents = {
-          item: member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemInstanceId === item.itemInstanceId)
-        };
-      }
+      item.itemComponents = {
+        ...item.itemComponents,
+        item: member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemInstanceId === item.itemInstanceId)
+      };
+      item.state = item.itemComponents.item.state;
     }
 
     item.sockets = sockets(item);

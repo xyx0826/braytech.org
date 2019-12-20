@@ -6,6 +6,7 @@ import { orderBy, groupBy } from 'lodash';
 import cx from 'classnames';
 
 import manifest from '../../utils/manifest';
+import * as enums from '../../utils/destinyEnums';
 import ObservedImage from '../../components/ObservedImage';
 import { NoAuth, DiffProfile } from '../../components/BungieAuth';
 import { ProfileLink } from '../../components/ProfileLink';
@@ -65,6 +66,7 @@ class Pursuits extends React.Component {
             className={cx(
               {
                 linked: true,
+                masterworked: enums.enumerateItemState(item.state).masterworked,
                 tooltip: (enableTooltip && viewport.width > 600) || (enableTooltip && !isQuest),
                 exotic: definitionItem.inventory && definitionItem.inventory.tierType === 6
               },
