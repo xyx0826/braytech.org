@@ -309,7 +309,7 @@ class Records extends React.Component {
 
       const enumerableState = recordData && Number.isInteger(recordData.state) ? recordData.state : 4;
 
-      if (enumerateRecordState(enumerableState).invisible && (collectibles && collectibles.hideInvisibleRecords)) {
+      if (enumerateRecordState(enumerableState).invisible && (collectibles && collectibles.hideInvisibleRecords) && !forceDisplay) {
         return;
       }
 

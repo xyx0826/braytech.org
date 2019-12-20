@@ -408,7 +408,7 @@ export const stats = item => {
     investmentStats = buildLiveStats(item, statsData, definitionItem.stats.statGroupHash, statDisplays);
 
     if (definitionItem.itemType === 2) {
-      if (item.sockets.sockets.length) {
+      if (item.sockets.sockets?.length) {
         // investmentStats = buildBaseStats(investmentStats, createdItem.sockets.sockets);
       }
 

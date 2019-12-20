@@ -51,7 +51,7 @@ class Nightfalls extends React.Component {
           {enums.nightfalls[nightfall.hash]?.collectibles.length ? (
             <>
               <ul className='list collection-items'>
-                <Collectibles selfLinkFrom='/this-week' hashes={enums.nightfalls[nightfall.hash].collectibles} />
+                <Collectibles selfLinkFrom='/this-week' hashes={enums.nightfalls[nightfall.hash].collectibles} forceDisplay />
               </ul>
             </>
           ) : (
@@ -65,7 +65,7 @@ class Nightfalls extends React.Component {
           {enums.nightfalls[nightfall.hash]?.triumphs.length ? (
             <>
               <ul className='list record-items'>
-                <Records selfLinkFrom='/this-week' hashes={enums.nightfalls[nightfall.hash].triumphs} ordered />
+                <Records selfLinkFrom='/this-week' hashes={enums.nightfalls[nightfall.hash].triumphs} ordered forceDisplay />
               </ul>
             </>
           ) : (
