@@ -134,7 +134,7 @@ class Root extends React.Component {
             tooltip: viewport.width > 600
           })}
           data-hash={definitionNode.hash}
-          data-type='CollectionsBadge'
+          data-type='collections-badge'
         >
           <ProfileLink to={`/collections/badge/${definitionNode.hash}`}>
             <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionNode.originalIcon}`} />

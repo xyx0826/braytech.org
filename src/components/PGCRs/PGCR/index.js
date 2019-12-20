@@ -856,7 +856,7 @@ class ReportItem extends React.Component {
                                   let icon = definitionMedal.iconImage && definitionMedal.iconImage !== '' ? definitionMedal.iconImage : manifest.settings.destiny2CoreSettings.undiscoveredCollectibleImage;
 
                                   return (
-                                    <li key={m} className={cx('item', 'tooltip')} data-hash={m} data-table='DestinyHistoricalStatsDefinition'>
+                                    <li key={m} className={cx('item', 'tooltip')} data-hash={m} data-type='stat'>
                                       <ObservedImage className={cx('image', 'icon')} src={`${!definitionMedal.localIcon ? 'https://www.bungie.net' : ''}${icon}`} />
                                       <div className='value'>{value}</div>
                                     </li>

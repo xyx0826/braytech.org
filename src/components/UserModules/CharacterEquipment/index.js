@@ -105,12 +105,10 @@ class CharacterEquipment extends React.Component {
               char: ''
             }
           ].map((stat, i) => {
-            const definitionStat = manifest.DestinyStatDefinition[stat.hash];
-
             return (
-              <div key={i} className='stat'>
+              <div key={i} className='stat tooltip' data-hash={stat.hash} data-type='stat'>
+                <div className='value'>{character.stats[stat.hash] || 0}</div>
                 <div className={stat.icon} />
-                <ProgressBar description={definitionStat.displayProperties.name} progress={(character.stats[stat.hash] || 0)} completionValue='100' hideCheck hideFractionDenominator />
               </div>
             );
           })}

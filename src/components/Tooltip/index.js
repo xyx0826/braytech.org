@@ -215,13 +215,13 @@ class Tooltip extends React.Component {
 
     if (this.state.hash) {
       if (this.state.table === 'BraytechDefinition') Tooltip = UI;
-      if (this.state.table === 'DestinyHistoricalStatsDefinition') Tooltip = Stat;
       if (this.state.table === 'DestinyActivityDefinition') Tooltip = Activity;
       if (this.state.table === 'DestinyVendorDefinition') Tooltip = Vendor;
       if (this.state.table === 'DestinyChecklistDefinition') Tooltip = Checklist;
       if (this.state.table === 'DestinyRecordDefinition') Tooltip = Record;
       if (this.state.table === 'BraytechMapsDefinition') Tooltip = Node;
-      if (this.state.type === 'CollectionsBadge') Tooltip = CollectionsBadge;
+      if (this.state.type === 'stat') Tooltip = Stat;
+      if (this.state.type === 'collections-badge') Tooltip = CollectionsBadge;
     }
 
     return (

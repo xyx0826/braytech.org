@@ -11,9 +11,8 @@ class Stat extends React.Component {
     const { t, member, tooltips } = this.props;
 
     const item = {
-      hash: this.props.hash,
-      table: this.props.table,
-      instanceId: this.props.instanceid || false,
+      itemHash: this.props.hash,
+      itemInstanceId: this.props.itemInstanceId || false,
       itemComponents: false,
       quantity: parseInt(this.props.quantity, 10) || 1,
       state: (this.props.state && parseInt(this.props.state, 10)) || 0,
@@ -21,7 +20,7 @@ class Stat extends React.Component {
       type: 'ui'
     };
 
-    const definition = manifest[item.table][item.hash];
+    const definition = manifest.DestinyStatDefinition[item.itemHash] || manifest.DestinyHistoricalStatsDefinition[item.itemHash];
 
     if (!definition) {
       return null;
@@ -49,10 +48,10 @@ class Stat extends React.Component {
     }
 
     // name
-    const name = definition.statName;
+    const name = definition.displayProperties?.name || definition.statName;
   
     // description
-    const description = definition.statDescription;
+    const description = definition.displayProperties?.description || definition.statDescription;
 
     return (
       <>
