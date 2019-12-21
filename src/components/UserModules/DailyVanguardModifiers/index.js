@@ -51,8 +51,8 @@ class DailyVanguardModifiers extends React.Component {
     if (vanguardStrikes) {
       return (
         <>
-          <div className='module-header'>
-            <div className='sub-name'>{t('Vanguard Ops')}</div>
+          <div className='sub-header'>
+            <div>{t('Vanguard Ops')}</div>
           </div>
           <div className='text'>
             <p>

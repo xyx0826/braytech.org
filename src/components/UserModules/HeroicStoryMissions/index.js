@@ -32,8 +32,8 @@ class HeroicStoryMissions extends React.Component {
 
     return (
       <>
-        <div className='module-header'>
-          <div className='sub-name'>{dailyHeroicStories.displayProperties.name}</div>
+        <div className='sub-header'>
+          <div>{dailyHeroicStories.displayProperties.name}</div>
         </div>
         <div className='text'>
           <p>

@@ -84,8 +84,8 @@ class CrucibleRotators extends React.Component {
 
     return (
       <>
-        <div className='module-header'>
-          <div className='sub-name'>{manifest.DestinyPlaceDefinition[4088006058]?.displayProperties.name}</div>
+        <div className='sub-header'>
+          <div>{manifest.DestinyPlaceDefinition[4088006058]?.displayProperties.name}</div>
         </div>
         <div className='text'>
           <p>

@@ -16,8 +16,8 @@ class RanksComp extends React.Component {
 
     return (
       <>
-        <div className='module-header'>
-          <div className='sub-name'>{t('Ranks')}</div>
+        <div className='sub-header'>
+          <div>{t('Ranks')}</div>
         </div>
         <div className='ranks'>
           {[2772425241, 2626549951, 2000925172].map(hash => {

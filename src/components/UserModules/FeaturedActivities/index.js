@@ -42,8 +42,8 @@ class FeaturedActivities extends React.Component {
 
     return (
       <>
-        <div className='module-header'>
-          <div className='sub-name'>{t('Featured activities')}</div>
+        <div className='sub-header'>
+          <div>{t('Featured activities')}</div>
         </div>
         <div className='text'>
           <p>

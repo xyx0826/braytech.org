@@ -60,8 +60,8 @@ class SeasonCountdown extends React.Component {
 
     return (
       <div className='countdown'>
-        <div className='module-header'>
-          <div className='sub-name'>{t('Season countdown')}</div>
+        <div className='sub-header'>
+          <div>{t('Season countdown')}</div>
         </div>
         <div className='text'>
           <p>

@@ -56,8 +56,8 @@ class CharacterEquipment extends React.Component {
 
     return (
       <div className='character-equipment'>
-        <div className='module-header'>
-          <div className='sub-name'>{t('Character equipment')}</div>
+        <div className='sub-header'>
+          <div>{t('Character equipment')}</div>
         </div>
         <h4>{manifest.DestinyPresentationNodeDefinition[1528930164].displayProperties.name}</h4>
         <ul className='list inventory-items'>

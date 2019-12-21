@@ -42,8 +42,8 @@ class BlackArmoryForges extends React.Component {
 
     return (
       <>
-        <div className='module-header'>
-          <div className='sub-name'>{t('Black Armory Forges')}</div>
+        <div className='sub-header'>
+          <div>{t('Black Armory Forges')}</div>
         </div>
         <div className='text'>
           <p>

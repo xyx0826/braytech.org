@@ -441,37 +441,6 @@ button.square.active {
   border-width: 0 1px 1px 0;
 }
 
-.sub-header {
-  position: relative;
-  margin: 0 0 1rem;
-  padding: 0 0 10px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
-  width: 100%;
-  margin: 0 0 1rem;
-  color: rgba(255, 255, 255, 0.4);
-  text-transform: uppercase;
-  font-size: 14px;
-  letter-spacing: 6px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-}
-
-.sub-header {
-  border-bottom: 2px solid rgba(255, 255, 255, 0);
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.sub-header::after {
-  content: ' ';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 2rem;
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.4);
-}
-
 .page-header {
   position: relative;
   margin: 24px 0 2rem;
@@ -523,6 +492,32 @@ button.square.active {
   .page-header .name {
     font-size: 36px;
   }
+}
+
+.sub-header {
+  position: relative;
+  margin: 2rem 0 10px;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+}
+
+.sub-header::after {
+  content: ' ';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 16px;
+  border-bottom: 3px solid #ffffff;
+  opacity: 0.2;
+}
+
+.sub-header div {
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 4px;
+  margin: 0 0 6px;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 #error {

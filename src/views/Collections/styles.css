@@ -20,9 +20,6 @@
 
 #collections .sidebar {
   width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  align-content: flex-start;
 }
 
 #collections .sidebar .recently-discovered {
