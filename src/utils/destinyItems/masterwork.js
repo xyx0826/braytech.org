@@ -46,8 +46,8 @@ function buildForsakenMasterworkInfo(item) {
   const masterworkStats = buildForsakenMasterworkStats(item);
   const killTracker = buildForsakenKillTracker(item);
 
-  // override stats values with killtracker if it's available
-  if (masterworkStats && killTracker) {
+  // not all masterworks have masterworked stats i.e. outbreak prime
+  if (killTracker) {
     return { ...masterworkStats, objective: killTracker };
   }
 
@@ -55,7 +55,7 @@ function buildForsakenMasterworkInfo(item) {
 }
 
 function buildForsakenKillTracker(item) {
-  const killTrackerSocket = item.sockets.sockets && item.sockets.sockets.find((socket) => socket.plug && socket.plug.plugObjectives && socket.plug.plugObjectives.length);
+  const killTrackerSocket = item.sockets.sockets?.find((socket) => socket.plug?.plugObjectives?.length);
 
   if (killTrackerSocket) {
     const plugObjective = killTrackerSocket.plug.plugObjectives[0];
@@ -78,8 +78,7 @@ function buildForsakenKillTracker(item) {
 function buildForsakenMasterworkStats(item) {
   const index = item.sockets.sockets && item.sockets.sockets.findIndex((socket) =>
     Boolean(
-      socket.plug &&
-        socket.plug.plugItem.plug &&
+      socket.plug?.plugItem?.plug &&
         (socket.plug.plugItem.plug.plugCategoryIdentifier.includes('masterworks.stat') ||
           socket.plug.plugItem.plug.plugCategoryIdentifier.endsWith('_masterwork'))
     )
@@ -87,26 +86,11 @@ function buildForsakenMasterworkStats(item) {
 
   const socket = item.sockets.sockets && item.sockets.sockets[index];
   
-  if (
-    socket &&
-    socket.plug &&
-    socket.plug.plugItem.investmentStats.length
-  ) {
-    const masterwork = socket.plug.plugItem.investmentStats[0];
-
-    // const dmg = damageTypeNames[
-    //   (instanceDef ? instanceDef.damageType : itemDef.defaultDamageType) || DamageType.None
-    // ] ||
-    // (instanceDef && instanceDef.energy && energyCapacityTypeNames[instanceDef.energy.energyType]) ||
-    // null;
-
-    // if (!dmg && item.bucket && item.bucket.sort === 'Armor') {
-    //   dmg = [null, 'heroic', 'arc', 'solar', 'void'][
-    //     resistanceMods[masterwork.statTypeHash]
-    //   ];
-    // }
+  if (socket?.plug?.plugItem?.investmentStats?.length) {
 
     socket.isMasterwork = true;
+
+    const masterwork = socket.plug.plugItem.investmentStats[0];
 
     return {
       socketIndex: index,
@@ -125,6 +109,7 @@ function buildForsakenMasterworkStats(item) {
       }
     };
   }
+
   return null;
 }
 
@@ -133,17 +118,12 @@ function buildForsakenMasterworkStats(item) {
  */
 function buildMasterworkInfo(sockets) {
   const index = sockets.sockets.findIndex((socket) =>
-    Boolean(socket.plug && socket.plug.plugObjectives.length)
+    Boolean(socket?.plug?.plugObjectives?.length)
   );
 
   const socket = sockets.sockets[index];
 
-  if (
-    !socket ||
-    !socket.plug ||
-    !socket.plug.plugObjectives ||
-    !socket.plug.plugObjectives.length
-  ) {
+  if (!socket?.plug?.plugObjectives?.length) {
     return null;
   }
 
