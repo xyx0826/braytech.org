@@ -31,15 +31,15 @@ class Raid extends React.Component {
             triumphs: [3281243931]
           },
           2472478405: {
-            description: t('Unknown 1'),
+            description: t('Must always deposit 10 motes at any time during the Consecrated Mind encounter.'),
             triumphs: [1661612473]
           },
           4080157289: {
-            description: t('Unknown 2'),
+            description: t('During the Sanctified Mind encounter, bank 30 motes at each Vex relay. At each relay, all 30 motes must be deposited within 10 seconds of one another.'),
             triumphs: [3167166053]
           },
           405180260: {
-            description: t('All players must refresh their Enlightened buff at approximately the same time. However, the team may be split up at different tethers.'),
+            description: t('During the Consecrated Mind encounter, all players must refresh their Enlightened buff at approximately the same time. However, the team may be split up at different tethers.'),
             triumphs: [1925300422]
           }
         }
@@ -203,10 +203,10 @@ class Raid extends React.Component {
     const leviathanStyle = key => {
       return (
         <>
-          <div className='module-header'>
-            <div className='sub-name'>{t('Raid')}</div>
-            <div className='name'>{data[key].name}</div>
+          <div className='sub-header'>
+            <div>{t('Raid')}</div>
           </div>
+          <h3>{data[key].name}</h3>
           <h4>{t('Challenge')}</h4>
           <ul className='list modifiers'>
             {data[key].challenge.map((p, i) => {
@@ -264,10 +264,10 @@ class Raid extends React.Component {
     const bountyStyle = key => {
       return (
         <>
-          <div className='module-header'>
-            <div className='sub-name'>{t('Raid')}</div>
-            <div className='name'>{data[key].name}</div>
+          <div className='sub-header'>
+            <div>{t('Raid')}</div>
           </div>
+          <h3>{data[key].name}</h3>
           <h4>{t('Challenge')}</h4>
           <div className='raid-challenge'>
             <ul className='list inventory-items'>

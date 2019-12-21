@@ -9,6 +9,7 @@
 }
 
 #collections.root .nodes .node {
+  margin: 20px 0 0;
   grid-template-columns: 1fr;
 }
 
@@ -18,16 +19,13 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-#collections .sidebar .recently-discovered {
-  margin: 0 0 calc(2rem + 24px);
-}
-
 #collections .sidebar .recently-discovered .list {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 7px;
   justify-items: stretch;
   align-items: stretch;
+  margin: 20px 0 calc(2rem + 24px);
 }
 
 #collections .sidebar .recently-discovered .list li {
@@ -56,10 +54,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-column-gap: 7px;
-  grid-row-gap: 7px;
+  column-gap: 7px;
+  row-gap: 7px;
   justify-items: stretch;
   align-items: stretch;
+  margin: 20px 0 0;
 }
 
 #collections .sidebar .badges .badge {

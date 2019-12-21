@@ -98,9 +98,10 @@ class Vendor extends React.Component {
 
     return (
       <>
-        <div className='module-header'>
-          <div className='sub-name'>{definitionVendor.displayProperties.name}</div>
+        <div className='sub-header'>
+          <div>{t('Vendor')}</div>
         </div>
+        <h3>{definitionVendor.displayProperties.name}</h3>
         {definitionVendor.displayCategories.map((category, c) => {
 
           if (itemsGrouped[category.index]) {

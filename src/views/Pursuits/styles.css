@@ -15,7 +15,8 @@
 
 #pursuits .list.inventory-items {
   grid-template-columns: repeat(auto-fill, 64px);
-  grid-gap: 3px;
+  gap: 3px;
+  margin: 20px 0 0;
 }
 
 

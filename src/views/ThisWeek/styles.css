@@ -50,15 +50,15 @@
   row-gap: 2rem;
 }
 
-#this-week .group .module .module-header {
+/* #this-week .group .module .module-header {
   margin: 24px 0 20px;
-}
+} */
 
 #this-week .module .sub-header ~ .sub-header {
   margin: 3rem 0 1rem;
 }
 
-#this-week .module .module-header {
+/* #this-week .module .module-header {
   position: relative;
   margin: 48px 0 0;
 }
@@ -93,7 +93,7 @@
   font-size: 32px;
   line-height: 1;
   font-weight: 500;
-}
+} */
 
 #this-week .module .aside {
   margin: 10px 0 0;

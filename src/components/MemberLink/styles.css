@@ -346,7 +346,8 @@ html.backdropfilter #member-overlay .background .acrylic {
 
 #member-overlay .wrapper-inner .characters {
   display: grid;
-  grid-gap: 22px;
+  gap: 22px;
+  margin: 20px 0 0;
 }
 
 #member-overlay .wrapper-inner .characters .char {

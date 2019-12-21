@@ -142,12 +142,10 @@ class DreamingCityAscendantChallenge extends React.Component {
 
     return (
       <>
-        <div className='module-header'>
-          <div className='sub-name'>{t('Ascendant Challenge')}</div>
-          <div className='name'>
-            {rotation[cycleInfo.week.ascendant].challenge}, {rotation[cycleInfo.week.ascendant].region}
-          </div>
+        <div className='sub-header'>
+          <div>{t('Ascendant Challenge')}</div>
         </div>
+        <h3>{rotation[cycleInfo.week.ascendant].challenge}, {rotation[cycleInfo.week.ascendant].region}</h3>
         <h4>{t('Triumphs')}</h4>
         <ul className='list record-items'>
           <Records selfLinkFrom='/this-week' hashes={rotation[cycleInfo.week.ascendant].triumphs} ordered />

@@ -1,9 +1,9 @@
 .index-search {
-  padding: 0 0 1rem;
+  margin: 20px 0 calc(1rem + 24px);
 }
 
 .index-search.has-results {
-  padding: 0 0 2rem;
+  margin: 20px 0 calc(2rem + 24px);
 }
 
 .index-search .list.record-items {

@@ -31,10 +31,10 @@ class Reckoning extends React.Component {
 
     return (
       <>
-        <div className='module-header'>
-          <div className='sub-name'>{manifest.DestinyPlaceDefinition[4148998934]?.displayProperties.name}</div>
-          <div className='name'>{rotation[cycleInfo.week.reckoning].boss}</div>
+        <div className='sub-header'>
+          <div>{manifest.DestinyPlaceDefinition[4148998934]?.displayProperties.name}</div>
         </div>
+        <h3>{rotation[cycleInfo.week.reckoning].boss}</h3>
         <h4>{t('Active modifiers')}</h4>
         <ul className='list modifiers'>
           {reckoningTierI.modifierHashes.map((hash, h) => {

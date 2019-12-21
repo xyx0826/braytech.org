@@ -72,10 +72,10 @@ class EscalationProtocol extends React.Component {
 
     return (
       <>
-        <div className='module-header'>
-          <div className='sub-name'>{t('Escalation Protocol')}</div>
-          <div className='name'>{rotation[cycleInfo.week.ep].boss}</div>
+        <div className='sub-header'>
+          <div>{t('Escalation Protocol')}</div>
         </div>
+        <h3>{rotation[cycleInfo.week.ep].boss}</h3>
         <h4>{t('Collectibles')}</h4>
         <ul className='list collection-items'>
           <Collectibles selfLinkFrom='/this-week' hashes={rotation[cycleInfo.week.ep].collectibles} />

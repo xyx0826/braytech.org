@@ -43,10 +43,10 @@ class Nightfalls extends React.Component {
 
       nightfalls.push(
         <React.Fragment key={nightfall.hash}>
-          <div className='module-header'>
-            <div className='sub-name'>{activity.ordeal ? stringNightfallOrdeal : stringNightfall}</div>
-            <div className='name'>{nightfall.selectionScreenDisplayProperties.name}</div>
+          <div className='sub-header'>
+            <div>{activity.ordeal ? stringNightfallOrdeal : stringNightfall}</div>
           </div>
+          <h3>{nightfall.selectionScreenDisplayProperties.name}</h3>
           <h4>{t('Collectibles')}</h4>
           {enums.nightfalls[nightfall.hash]?.collectibles.length ? (
             <>

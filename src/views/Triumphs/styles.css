@@ -21,6 +21,7 @@
 
 #triumphs.root .almost-complete .list.record-items,
 #triumphs.root .tracked .list.record-items {
+  margin: 20px 0 0;
   grid-template-columns: 1fr;
 }
 
@@ -32,8 +33,8 @@
 #triumphs .list.parents {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 3px;
-  margin: 0 0 calc(2rem + 24px);
+  gap: 3px;
+  margin: 20px 0 calc(2rem + 24px);
 }
 
 #triumphs .list.parents li {
@@ -86,7 +87,7 @@
 }
 
 #triumphs .list.parents.seals {
-  margin: 0;
+  margin: 20px 0 0;
 }
 
 #triumphs .list.parents.seals li.completed {
@@ -240,6 +241,7 @@
 
 #triumphs > .almost-complete .list.record-items {
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 20px 0 0;
 }
 
 

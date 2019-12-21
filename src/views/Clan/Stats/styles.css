@@ -13,7 +13,7 @@
 
 #clan.stats .wrapper .bread {
   grid-column: 1/end;
-  margin: 0 0 2rem;
+  margin: 16px 0 2rem;
 }
 
 #clan.stats .wrapper .bread span {
@@ -46,6 +46,7 @@
 
 #clan .module.views.scopes .list {
   width: unset;
+  margin: 0;
 }
 
 #clan .module.views.scopes .list li {

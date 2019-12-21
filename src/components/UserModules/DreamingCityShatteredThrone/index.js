@@ -9,7 +9,7 @@ import './styles.css';
 
 class DreamingCityShatteredThrone extends React.Component {
   render() {
-    const { t, cycleInfo } = this.props;
+    const { t } = this.props;
 
     const data = {
       triumphs: [
@@ -40,10 +40,10 @@ class DreamingCityShatteredThrone extends React.Component {
     return (
       <>
         <div className='content'>
-          <div className='module-header'>
-            <div className='sub-name'>{t("Savathûn's Curse")}</div>
-            <div className='name'>{t('The Shattered Throne')}</div>
+          <div className='sub-header'>
+            <div>{t("Savathûn's Curse")}</div>
           </div>
+          <h3>{t('The Shattered Throne')}</h3>
           <h4>{t('Triumphs')}</h4>
           <ul className='list record-items'>
             <Records selfLinkFrom='/this-week' hashes={data.triumphs} ordered />

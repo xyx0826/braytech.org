@@ -62,12 +62,10 @@ class DreamingCityCurse extends React.Component {
 
     return (
       <>
-        <div className='module-header'>
-          <div className='sub-name'>{t("Savathûn's Curse")}</div>
-          <div className='name'>
-            {t('Week')} {cycleInfo.week.curse}: {rotation[cycleInfo.week.curse].strength}
-          </div>
+        <div className='sub-header'>
+          <div>{t("Savathûn's Curse")}</div>
         </div>
+        <h3>{t('Week')} {cycleInfo.week.curse}: {rotation[cycleInfo.week.curse].strength}</h3>
         <h4>{t('Triumphs')}</h4>
         <ul className='list record-items'>
           <Records selfLinkFrom='/this-week' hashes={rotation[cycleInfo.week.curse].triumphs} ordered />
