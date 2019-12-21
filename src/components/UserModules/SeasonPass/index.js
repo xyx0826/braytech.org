@@ -24,7 +24,7 @@ class SeasonPass extends React.Component {
     this.progressionHash = definitionSeason.seasonPassProgressionHash;
 
     this.state = {
-      seasonPassRewardsPage: Math.ceil((Math.min((characterProgressions[member.characterId].progressions[this.progressionHash] && characterProgressions[member.characterId].progressions[this.progressionHash].level), 99) + 1) / this.seasonPassItemsPerPage(viewport.width))
+      seasonPassRewardsPage: Math.ceil((Math.min(characterProgressions[member.characterId].progressions[this.progressionHash] && characterProgressions[member.characterId].progressions[this.progressionHash].level, 99) + 1) / this.seasonPassItemsPerPage(viewport.width))
     };
   }
 
@@ -184,14 +184,16 @@ class SeasonPass extends React.Component {
     return (
       <div className='season-pass'>
         <div className='module status'>
-          <div className='module-header'>
-            <div className='sub-name'>{t('Season rank')}</div>
-            <div className='name'>{seasonPass.season.displayProperties.name}</div>
+          <div className='sub-header'>
+            <div>{t('Season rank')}</div>
           </div>
           <div className='text'>
-            <p>
-              <em>{seasonPass.season.displayProperties.description}</em>
-            </p>
+            <div className='name'>{seasonPass.season.displayProperties.name}</div>
+            <div className='description'>
+              <p>
+                <em>{seasonPass.season.displayProperties.description}</em>
+              </p>
+            </div>
           </div>
           <div className='rank'>{progressSeasonalRank.level}</div>
         </div>
@@ -279,10 +281,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(SeasonPass);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(SeasonPass);

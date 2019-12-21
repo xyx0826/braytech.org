@@ -496,7 +496,7 @@ button.square.active {
 
 .sub-header {
   position: relative;
-  margin: 2rem 0 10px;
+  margin: 24px 0 10px;
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;

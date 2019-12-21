@@ -104,8 +104,8 @@ class AboutView extends React.Component {
           <Markdown className={cx('bio', { 'includes-motto': group.motto !== '' })} escapeHtml disallowedTypes={['image', 'imageReference']} source={group.motto !== '' ? `_${group.motto}_\n\n${group.about}` : group.about} />
         </div>
         <div className='module progression'>
-          <div className='module-header'>
-            <div className='sub-name'>{t('Progression')}</div>
+          <div className='sub-header'>
+            <div>{t('Progression')}</div>
           </div>
           {clanLevel.level === clanLevel.levelCap ? (
             <ProgressBar
@@ -142,8 +142,8 @@ class AboutView extends React.Component {
           </ul>
         </div>
         <div className='module roster'>
-          <div className='module-header'>
-            <div className='sub-name'>{t('Leadership')}</div>
+          <div className='sub-header'>
+            <div>{t('Leadership')}</div>
           </div>
           {groupMembers.loading && groupMembers.members.length === 0 ? <Spinner mini /> : <Roster mini limit='10' filter='admins' />}
         </div>

@@ -33,7 +33,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 3px;
-  margin: 0 0 2rem;
+  margin: 0 0 calc(2rem + 24px);
 }
 
 #triumphs .list.parents li {

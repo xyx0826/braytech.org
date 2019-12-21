@@ -19,6 +19,7 @@
 
 .presentation-node .header {
   grid-column: 1/3;
+  margin: 12px 0 0;
 }
 
 .presentation-node .header .name {

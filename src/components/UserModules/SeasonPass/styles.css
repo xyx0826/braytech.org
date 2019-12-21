@@ -18,7 +18,13 @@
   position: relative;
 }
 
-#now .module .season-pass .status .text {
+#now .module .season-pass .status .text .name {
+  font-size: 38px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+#now .module .season-pass .status .text .description {
   font-size: 16px;
   font-style: italic;
   letter-spacing: 0.5px;

@@ -70,6 +70,7 @@
 
 #this-week .module .module-header .sub-name {
   font-size: 18px;
+  margin: 0 0 6px;
 }
 
 #this-week .module .module-header::after {

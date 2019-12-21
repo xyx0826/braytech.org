@@ -24,8 +24,8 @@ class SeasonalArtifact extends React.Component {
     if (!equippedArtifact) {
       return (
         <div className='head'>
-          <div className='module-header'>
-            <div className='sub-name'>{t('Seasonal progression')}</div>
+          <div className='sub-header'>
+            <div>{t('Seasonal progression')}</div>
           </div>
           <div className='text'>
             <p>{t("This profile hasn't received an artifact yet.")}</p>
@@ -61,8 +61,8 @@ class SeasonalArtifact extends React.Component {
       return (
         <div className='seasonal-artifact'>
           <div className='head'>
-            <div className='module-header'>
-              <div className='sub-name'>{t('Seasonal progression')}</div>
+            <div className='sub-header'>
+              <div>{t('Seasonal progression')}</div>
             </div>
             <div className='artifact'>
               
@@ -75,8 +75,8 @@ class SeasonalArtifact extends React.Component {
     return (
       <div className='seasonal-artifact'>
         <div className='head'>
-          <div className='module-header'>
-            <div className='sub-name'>{t('Seasonal progression')}</div>
+          <div className='sub-header'>
+            <div>{t('Seasonal progression')}</div>
           </div>
           <div className='artifact'>
             <ul className='list inventory-items'>
