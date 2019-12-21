@@ -513,10 +513,16 @@ button.square.active {
 }
 
 .sub-header div {
+  position: relative;
   text-transform: uppercase;
   font-size: 14px;
   letter-spacing: 4px;
   color: rgba(255, 255, 255, 0.6);
+}
+
+.sub-header div .spinner {
+  position: absolute;
+  right: 0;
 }
 
 #error {

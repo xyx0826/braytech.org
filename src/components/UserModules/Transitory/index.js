@@ -6,95 +6,109 @@ import { withTranslation } from 'react-i18next';
 import manifest from '../../../utils/manifest';
 import * as bungie from '../../../utils/bungie';
 import Spinner from '../../UI/Spinner';
+import MemberLink from '../../MemberLink';
 
 import './styles.css';
 
 class Transitory extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: false
-    };
-  }
+  state = {};
 
   componentDidMount() {
-    const {} = this.props;
+    this.mounted = true;
 
-    this.getTransitory();
+    this.getTransitoryResponse();
+  }
+
+  componentWillDsmount() {
+    this.mounted = false;
   }
 
   componentDidUpdate(p, s) {
     if (s.loading !== this.state.loading) {
       this.props.rebindTooltips();
     }
+
+    if (this.props.member.data?.updated !== p.member.data?.updated) {
+      this.getTransitoryResponse();
+    }
   }
 
-  getTransitory = async () => {
+  getTransitoryResponse = async () => {
     const { member } = this.props;
 
-    const response = await bungie.GetProfile({
-      params: {
-        membershipType: member.membershipType,
-        membershipId: member.membershipId,
-        components: '200,204,1000'
-      }
-    })
-    .then(response => {
-      if (response && response.ErrorCode === 1 && response.Response && response.Response.profileTransitoryData.data) { 
-        response.Response.characterActivities.data = Object.keys(response.Response.characterActivities.data)
-          .map(key => ({ ...response.Response.characterActivities.data[key], characterId: key }))
-          .sort(function(a, b) {
-            return new Date(b.dateActivityStarted).getTime() - new Date(a.dateActivityStarted).getTime();
-          });
-      }
-        
-      return response;
+    if (!this.mounted) return;
+
+    this.setState({
+      loading: true
     });
 
-    if (response && response.ErrorCode === 1 && response.Response && response.Response.profileTransitoryData.data) {
+    const response = await bungie
+      .GetProfile({
+        params: {
+          membershipType: member.membershipType,
+          membershipId: member.membershipId,
+          components: '200,204,1000'
+        }
+      })
+      .then(response => {
+        if (response && response.ErrorCode === 1 && response.Response && response.Response.profileTransitoryData.data) {
+          response.Response.characterActivities.data = Object.keys(response.Response.characterActivities.data)
+            .map(key => ({ ...response.Response.characterActivities.data[key], characterId: key }))
+            .sort(function(a, b) {
+              return new Date(b.dateActivityStarted).getTime() - new Date(a.dateActivityStarted).getTime();
+            });
+        }
 
-      response.Response.profileTransitoryData.data.partyMembers = await Promise.all(
-        response.Response.profileTransitoryData.data.partyMembers.map(async m => {
-          const response = await bungie.GetLinkedProfiles(m.membershipId);
-
-          if (response && response.ErrorCode === 1) {
-            m.linkedProfiles = response.Response;
-          }
-
-          return m;
-        })
-      );
-
-      this.setState({
-        loading: false,
-        error: false,
-        data: response.Response
+        return response;
       });
+
+    if (response && response.ErrorCode === 1) {
+      if (this.mounted) {
+        this.setState({
+          loading: false,
+          error: false,
+          data: response.Response
+        });
+      }
     } else {
-      this.setState(p => ({
-        ...p,
-        loading: false,
-        error: true
-      }));
+      if (this.mounted) {
+        this.setState(p => ({
+          ...p,
+          loading: false,
+          error: true
+        }));
+      }
     }
   };
 
   render() {
-    const { t, member } = this.props;
+    const { t } = this.props;
     const { loading, data } = this.state;
-
-    console.log(data)
+    const partyMembers = data?.profileTransitoryData.data?.partyMembers || [];
 
     return (
-      <>
-        <div className='module-header'>
-          <div className='sub-name'>{t('Fireteam')}</div>
+      <div className='user-module fireteam'>
+        <div className='sub-header'>
+          <div>{t('Fireteam')}</div>
+          <div>{data && loading ? <Spinner mini /> : null}</div>
         </div>
-        <div className='fireteam'>
-          
-        </div>
-      </>
+        <h4>{t('Members')}</h4>
+        {data && partyMembers.length ? (
+          <ul className='list fireteam-members'>
+            {partyMembers.map((member, m) => {
+              return (
+                <li key={m}>
+                  <MemberLink id={member.membershipId} displayName={member.displayName} />
+                </li>
+              );
+            })}
+          </ul>
+        ) : data && partyMembers.length < 1 ? (
+          <div className='aside'>{t('You appear to be offline!')}</div>
+        ) : (
+          <Spinner />
+        )}
+      </div>
     );
   }
 }

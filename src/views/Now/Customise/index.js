@@ -392,6 +392,10 @@ class Customise extends React.Component {
     CharacterEquipment: {
       name: this.props.t('Character equipment'),
       description: this.props.t("Inspect your character's loadout and stat totals")
+    },
+    Transitory: {
+      name: this.props.t('Fireteam'),
+      description: this.props.t("Track your fireteam")
     }
   };
 

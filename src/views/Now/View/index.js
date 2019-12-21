@@ -5,11 +5,10 @@ import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
 
 import { ProfileLink } from '../../../components/ProfileLink';
-import { Button, DestinyKey } from '../../../components/UI/Button';
+import { DestinyKey } from '../../../components/UI/Button';
 
 import Flashpoint from '../../../components/UserModules/Flashpoint';
 import HeroicStoryMissions from '../../../components/UserModules/HeroicStoryMissions';
-import VanguardStrikes from '../../../components/UserModules/VanguardStrikes';
 import BlackArmoryForges from '../../../components/UserModules/BlackArmoryForges';
 import DailyVanguardModifiers from '../../../components/UserModules/DailyVanguardModifiers';
 import Ranks from '../../../components/UserModules/Ranks';
@@ -65,6 +64,9 @@ class Now extends React.Component {
     },
     SeasonCountdown: {
       reference: SeasonCountdown
+    },
+    Transitory: {
+      reference: Transitory
     }
   };
 

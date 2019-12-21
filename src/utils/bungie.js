@@ -262,7 +262,7 @@ export const GetCommonSettings = async options => apiRequest(`/Platform/Settings
 
 export const GetPublicMilestones = async options => apiRequest('/Platform/Destiny2/Milestones/', options);
 
-export const GetLinkedProfiles = async membershipId => apiRequest(`/Platform/Destiny2/-1/Profile/${membershipId}/LinkedProfiles/`);
+export const GetLinkedProfiles = async options => apiRequest(`/Platform/Destiny2/-1/Profile/${options.params.membershipId}/LinkedProfiles/`, options);
 
 export const GetGroupsForMember = async options => apiRequest(`/Platform/GroupV2/User/${options.params.membershipType}/${options.params.membershipId}/0/1/`, options);
 

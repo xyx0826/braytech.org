@@ -55,7 +55,7 @@ class CharacterEquipment extends React.Component {
     ];
 
     return (
-      <div className='character-equipment'>
+      <div className='user-module character-equipment'>
         <div className='sub-header'>
           <div>{t('Character equipment')}</div>
         </div>

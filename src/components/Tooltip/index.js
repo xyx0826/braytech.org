@@ -190,7 +190,7 @@ class Tooltip extends React.Component {
       this.bind_TooltipItem(true);
     }
 
-    if (this.props.member.data !== prevProps.member.data) {
+    if (this.props.member.data?.updated !== prevProps.member.data?.updated) {
       this.bind_TooltipItem();
     }
 
