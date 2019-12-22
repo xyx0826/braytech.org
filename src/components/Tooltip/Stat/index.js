@@ -12,10 +12,10 @@ class Stat extends React.Component {
 
     const item = {
       itemHash: this.props.hash,
-      itemInstanceId: this.props.itemInstanceId || false,
-      itemComponents: false,
-      quantity: parseInt(this.props.quantity, 10) || 1,
-      state: (this.props.state && parseInt(this.props.state, 10)) || 0,
+      itemInstanceId: this.props.instanceid,
+      itemComponents: null,
+      quantity: parseInt(this.props.quantity || 1, 10),
+      state: parseInt(this.props.state || 0, 10),
       rarity: 'common',
       type: 'ui'
     };

@@ -6,6 +6,10 @@ import cx from 'classnames';
 
 import manifest from '../../utils/manifest';
 import * as enums from '../../utils/destinyEnums';
+import { itemComponents } from '../../utils/destinyItems/itemComponents';
+import { sockets } from '../../utils/destinyItems/sockets';
+import { stats } from '../../utils/destinyItems/stats';
+import { masterwork } from '../../utils/destinyItems/masterwork';
 import ObservedImage from '../../components/ObservedImage';
 import ProgressBar from '../../components/UI/ProgressBar';
 
@@ -14,8 +18,6 @@ import './styles.css';
 class Items extends React.Component {
   render() {
     const { member, items, order, asTab, noBorder, showHash, inspect, action } = this.props;
-    const itemComponents = member && member.data && member.data.profile.itemComponents;
-    const characterUninstancedItemComponents = false //member.data.profile.characterUninstancedItemComponents[member.characterId].objectives.data;
 
     let output = [];
 
@@ -33,17 +35,22 @@ class Items extends React.Component {
         return null;
       }
 
-      const progressData = item.itemInstanceId && itemComponents.objectives.data[item.itemInstanceId] ? itemComponents.objectives.data[item.itemInstanceId].objectives : characterUninstancedItemComponents && characterUninstancedItemComponents[item.itemHash] ? characterUninstancedItemComponents[item.itemHash].objectives : false;
+      item.itemComponents = itemComponents(item, member);
+      item.sockets = sockets(item);
+      item.stats = stats(item);
+      item.masterwork = masterwork(item);
 
-      // if (progressData) console.log(definitionItem.displayProperties.name, progressData, definitionItem)
+      const objectivesData = item.itemInstanceId && item.itemComponents.objectives?.data && item.itemComponents.objectives.data[item.itemInstanceId]?.objectives;
 
-      const bucketsToExcludeFromProgressDataDisplay = [
+      const bucketsToExcludeFromObjectivesDataDisplay = [
         4274335291 // Emblems
       ];
 
       const bucketName = definitionBucket && definitionBucket.displayProperties && definitionBucket.displayProperties.name && definitionBucket.displayProperties.name.replace(' ', '-').toLowerCase();
 
       const vendorItemStatus = item.unavailable === undefined && item.saleStatus && enums.enumerateVendorItemStatus(item.saleStatus);
+
+      const masterworked = enums.enumerateItemState(item.state).masterworked || (!item.itemInstanceId && (definitionItem.itemType === enums.DestinyItemType.Armor ? item.masterwork?.stats?.filter(s => s.value > 9).length : item.masterwork?.stats?.filter(s => s.value >= 9).length));
 
       output.push({
         name: definitionItem.displayProperties && definitionItem.displayProperties.name,
@@ -55,7 +62,7 @@ class Items extends React.Component {
               {
                 tooltip: !this.props.disableTooltip,
                 linked: true,
-                masterworked: enums.enumerateItemState(item.state).masterworked,
+                masterworked,
                 exotic: definitionItem.inventory && definitionItem.inventory.tierType === 6,
                 'no-border': (definitionItem.uiItemDisplayStyle === 'ui_display_style_engram' && item.bucketHash !== 3284755031) || (definitionItem.itemCategoryHashes && definitionItem.itemCategoryHashes.includes(268598612)) || (definitionItem.itemCategoryHashes && definitionItem.itemCategoryHashes.includes(18)) || noBorder,
                 unavailable: (vendorItemStatus && !vendorItemStatus.success) || item.unavailable
@@ -84,16 +91,16 @@ class Items extends React.Component {
                 {showHash ? <div className='hash'>{definitionItem.hash}</div> : null}
               </div>
             ) : null}
-            {progressData && progressData.filter(o => !o.complete).length > 0 && !bucketsToExcludeFromProgressDataDisplay.includes(item.bucketHash) ? (
+            {objectivesData && objectivesData.filter(o => !o.complete).length > 0 && !bucketsToExcludeFromObjectivesDataDisplay.includes(item.bucketHash) ? (
               <ProgressBar
                 progress={{
-                  progress: progressData.reduce((acc, curr) => {
+                  progress: objectivesData.reduce((acc, curr) => {
                     return acc + curr.progress;
                   }, 0),
-                  objectiveHash: progressData[0].objectiveHash
+                  objectiveHash: objectivesData[0].objectiveHash
                 }}
                 objective={{
-                  completionValue: progressData.reduce((acc, curr) => {
+                  completionValue: objectivesData.reduce((acc, curr) => {
                     return acc + curr.completionValue;
                   }, 0)
                 }}

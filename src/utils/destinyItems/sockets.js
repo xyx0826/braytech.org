@@ -58,9 +58,9 @@ export const sockets = item => {
   let sockets = null;
   let missingSockets = false;
 
-  const socketData = (item.itemInstanceId && item.itemComponents && item.itemComponents.sockets) || undefined;
-  const reusablePlugData = (item.itemInstanceId && item.itemComponents && item.itemComponents.reusablePlugs.plugs) || undefined;
-  const plugObjectivesData = (item.itemInstanceId && item.itemComponents && item.itemComponents.plugObjectives.objectivesPerPlug) || undefined;
+  const socketData = (item.itemInstanceId && item.itemComponents.sockets) || undefined;
+  const reusablePlugData = (item.itemInstanceId && item.itemComponents.reusablePlugs?.plugs) || undefined;
+  const plugObjectivesData = (item.itemInstanceId && item.itemComponents.plugObjectives?.objectivesPerPlug) || undefined;
 
   if (socketData) {
     sockets = buildInstancedSockets(item, socketData, reusablePlugData, plugObjectivesData);

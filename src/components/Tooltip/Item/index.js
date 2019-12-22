@@ -6,6 +6,7 @@ import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
 import * as enums from '../../../utils/destinyEnums';
+import { itemComponents } from '../../../utils/destinyItems/itemComponents';
 import { sockets } from '../../../utils/destinyItems/sockets';
 import { stats } from '../../../utils/destinyItems/stats';
 import { masterwork } from '../../../utils/destinyItems/masterwork';
@@ -28,17 +29,15 @@ const woolworths = {
 class Item extends React.Component {
   render() {
     const { t, member } = this.props;
-    const itemComponents = member.data && member.data.profile.itemComponents;
-    const characterUninstancedItemComponents = member.data && member.data.profile.characterUninstancedItemComponents;
 
     const item = {
       itemHash: this.props.hash,
-      itemInstanceId: this.props.instanceid || false,
-      itemComponents: false,
-      quantity: parseInt(this.props.quantity, 10) || 1,
-      state: (this.props.state && parseInt(this.props.state, 10)) || 0,
-      rarity: false,
-      type: false,
+      itemInstanceId: this.props.instanceid,
+      itemComponents: null,
+      quantity: parseInt(this.props.quantity || 1, 10),
+      state: parseInt(this.props.state || 0, 10),
+      rarity: null,
+      type: null
     };
 
     const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
@@ -115,41 +114,7 @@ class Item extends React.Component {
     // subclass, artifact
     const hideScreenshotBuckets = [3284755031, 1506418338];
 
-    // collects relevant instanced data for sockets and stats utils
-    if (item.itemInstanceId && member.data && itemComponents?.instances?.data[item.itemInstanceId]) {
-      const instancesTypes = ['instance', 'sockets', 'plugObjectives', 'reusablePlugs', 'perks', 'stats', 'objectives', 'talentGrids'];
-
-      item.itemComponents = instancesTypes.reduce((obj, key) => {
-        if (key === 'instance') {
-          obj[key] = itemComponents.instances.data[item.itemInstanceId] || false;
-          return obj;
-        } else if (['plugObjectives', 'reusablePlugs', 'talentGrids'].includes(key)) {
-          obj[key] = itemComponents[key].data[item.itemInstanceId] || false;
-          return obj;
-        } else {
-          obj[key] = (itemComponents[key].data[item.itemInstanceId] && itemComponents[key].data[item.itemInstanceId][key]) || false;
-          return obj;
-        }
-      }, {})
-    }
-
-    // characterUninstancedItemComponents
-    if (member.data && characterUninstancedItemComponents[member.characterId]?.objectives?.data[item.itemHash]) {
-      item.itemComponents = {
-        ...item.itemComponents,
-        objectives: characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash].objectives
-      };
-    }
-
-    // what's this for?
-    if (item.itemInstanceId && member.data && member.data.profile?.characterInventories?.data[member.characterId]?.items?.find(i => i.itemInstanceId === item.itemInstanceId)) {
-      item.itemComponents = {
-        ...item.itemComponents,
-        item: member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemInstanceId === item.itemInstanceId)
-      };
-      item.state = item.itemComponents.item.state;
-    }
-
+    item.itemComponents = itemComponents(item, member);
     item.sockets = sockets(item);
     item.stats = stats(item);
     item.masterwork = masterwork(item);
@@ -183,7 +148,7 @@ class Item extends React.Component {
       }
     }
 
-    const masterworked = enums.enumerateItemState(item.state).masterworked || (definitionItem.itemType === enums.DestinyItemType.Armor ? item.masterwork?.stats?.filter(s => s.value > 9).length : item.masterwork?.stats?.filter(s => s.value >= 9).length);
+    const masterworked = enums.enumerateItemState(item.state).masterworked || (!item.itemInstanceId && (definitionItem.itemType === enums.DestinyItemType.Armor ? item.masterwork?.stats?.filter(s => s.value > 9).length : item.masterwork?.stats?.filter(s => s.value >= 9).length));
 
     console.log(item)
 

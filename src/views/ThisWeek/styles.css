@@ -50,8 +50,8 @@
   row-gap: 2rem;
 }
 
-#this-week .module .sub-header ~ .sub-header {
-  margin: 3rem 0 1rem;
+#this-week .module .sub-header + .text {
+  margin: 20px 0 0;
 }
 
 #this-week .module .aside {

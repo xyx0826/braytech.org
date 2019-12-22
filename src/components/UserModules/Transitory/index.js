@@ -3,7 +3,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 
-import manifest from '../../../utils/manifest';
 import * as bungie from '../../../utils/bungie';
 import Spinner from '../../UI/Spinner';
 import MemberLink from '../../MemberLink';

@@ -54,8 +54,8 @@
   margin: 24px 0 20px;
 }
 
-#now .module .sub-header ~ .sub-header {
-  margin: 3rem 0 1rem;
+#now .module .sub-header + .text {
+  margin: 20px 0 0;
 }
 
 #now .module .module-header {

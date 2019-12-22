@@ -19,17 +19,17 @@ class UI extends React.Component {
     const { t, member, tooltips } = this.props;
 
     const item = {
-      hash: this.props.hash,
+      itemHash: this.props.hash,
+      itemInstanceId: this.props.instanceid,
+      itemComponents: null,
       table: this.props.table,
-      instanceId: this.props.instanceid || false,
-      itemComponents: false,
-      quantity: parseInt(this.props.quantity, 10) || 1,
-      state: (this.props.state && parseInt(this.props.state, 10)) || 0,
+      quantity: parseInt(this.props.quantity || 1, 10),
+      state: parseInt(this.props.state || 0, 10),
       rarity: 'common',
       type: 'ui'
     };
 
-    const definition = manifest[item.table][item.hash];
+    const definition = manifest[item.table][item.itemHash];
 
     if (!definition) {
       return null;
