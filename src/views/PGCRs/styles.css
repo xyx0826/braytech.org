@@ -5,6 +5,10 @@
   grid-gap: 3rem;
 }
 
+#multiplayer .sub-header {
+  margin-bottom: 20px;
+}
+
 #multiplayer .module-l1 {
   display: grid;
   grid-template-columns: 1fr;
@@ -236,7 +240,6 @@
 }
 
 
-
 @media screen and (max-width: 1280px) {
 
   #multiplayer {
@@ -301,11 +304,6 @@
     margin: 5px 0 0;
     font-size: 18px;
     line-height: 14px;
-  }
-
-  #multiplayer ul.list.reports {
-    margin: 0 0 0 calc(-2rem + 4px);
-    width: calc(100% + 4rem - 8px);
   }
 
 }

@@ -6,10 +6,11 @@ import cx from 'classnames';
 import { orderBy, groupBy } from 'lodash';
 
 import manifest from '../../../utils/manifest';
+import * as bungie from '../../../utils/bungie';
 import ObservedImage from '../../ObservedImage';
 import { Button, DestinyKey } from '../../UI/Button';
 import MemberLink from '../../MemberLink';
-import * as bungie from '../../../utils/bungie';
+import ReportPlayer from '../ReportPlayer';
 
 import { ReportHeader, ReportHeaderLarge } from './ReportHeader';
 
@@ -807,6 +808,9 @@ class ReportItem extends React.Component {
                   </div>
                 );
               })}
+              <div className='behaviour'>
+                <ReportPlayer />
+              </div>
             </div>
             <div className='expanded'>
               {displayStats.expanded.map((g, h) => {

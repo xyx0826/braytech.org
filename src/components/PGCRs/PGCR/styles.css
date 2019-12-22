@@ -532,6 +532,11 @@
   box-shadow: none;
 }
 
+.list.reports li .entries .list .inline .behaviour {
+  grid-column: 8/10;
+  display: grid;
+  justify-content: right;
+}
 
 .list.reports li > .sticky-nav {
   position: sticky;
@@ -604,20 +609,21 @@
     font-size: 3vh;
   }
 
-  .list.reports li .entries .list li .member .member-link {
-    
-  }
-
   .list.reports li .entries .team-head,
   .list.reports li .entries .list li .inline,
   .list.reports li .entries .list li .expanded {
-    grid-template-columns: auto 20px 30px 30px 30px 40px;
+    grid-template-columns: minmax(120px, 270px) 30px 30px 30px 40px 38px;
     font-size: 12px;
   }
 
-  /* .list.reports li .entries .team-head {
-    grid-template-columns: calc(38px + 16px + 10px) auto 2rem 2rem 2rem 3rem;
-  } */
+  .list.reports li .entries .team-head .team.name,
+  .list.reports li .entries .list li .member {
+    grid-column: unset;
+  }
+
+  .list.reports li .entries .list .inline .behaviour {
+    grid-column: 6/8;
+  }
   
   .list.reports li .entries .team-head .hideInline,
   .list.reports li .entries .team-head .hideInline,
@@ -680,10 +686,3 @@
 
 
 }
-
-/* @media screen and (max-width: 400px) {
-  .list.reports li .entries .list li .member {
-    max-width: 50px;
-    overflow: hidden;
-  }
-} */
