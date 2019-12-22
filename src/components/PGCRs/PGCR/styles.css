@@ -612,7 +612,7 @@
   .list.reports li .entries .team-head,
   .list.reports li .entries .list li .inline,
   .list.reports li .entries .list li .expanded {
-    grid-template-columns: minmax(120px, 270px) 30px 30px 30px 40px 38px;
+    grid-template-columns: minmax(120px, 270px) 30px 30px 30px 40px;
     font-size: 12px;
   }
 

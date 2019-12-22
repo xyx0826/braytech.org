@@ -59,7 +59,12 @@ class MemberLink extends React.Component {
           });
 
           if (linkedProfilesResponse && linkedProfilesResponse.ErrorCode === 1) {
-            const activeProfile = linkedProfilesResponse.Response.profiles?.length === 1 ? linkedProfilesResponse.Response.profiles[0] : linkedProfilesResponse.Response.profiles?.find(p => p.crossSaveOverride === p.membershipType);
+            const activeProfile = linkedProfilesResponse.Response.profiles?.find(p => p.crossSaveOverride === p.membershipType)
+              ? linkedProfilesResponse.Response.profiles?.find(p => p.crossSaveOverride === p.membershipType)
+              : linkedProfilesResponse.Response.profiles?.length &&
+                Object.values(linkedProfilesResponse.Response.profiles).sort(function(a, b) {
+                  return new Date(b.dateLastPlayed).getTime() - new Date(a.dateLastPlayed).getTime();
+                })[0];
 
             this.membershipType = activeProfile.membershipType;
           } else {

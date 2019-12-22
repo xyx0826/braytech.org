@@ -808,9 +808,9 @@ class ReportItem extends React.Component {
                   </div>
                 );
               })}
-              <div className='behaviour'>
+              {/* <div className='behaviour'>
                 <ReportPlayer />
-              </div>
+              </div> */}
             </div>
             <div className='expanded'>
               {displayStats.expanded.map((g, h) => {
