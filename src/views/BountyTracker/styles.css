@@ -1,0 +1,77 @@
+#bounty-tracker {
+  padding: 4rem 3rem 3rem;
+  display: grid;
+}
+
+#bounty-tracker .list.bounties li {
+  height: unset;
+  display: grid;
+  font-size: 14px;
+}
+
+#bounty-tracker .list.bounties > li {
+  padding: 10px 0;
+}
+
+#bounty-tracker .list.bounties > li::after {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  top: unset;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: none;
+}
+
+#bounty-tracker .list.bounties > li > ul {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 48px minmax(280px, 800px) minmax(200px, 420px) minmax(100px, 140px) minmax(100px, 140px);
+  align-items: start;
+}
+
+#bounty-tracker .list.bounties > li > ul > li {
+  margin: 0;
+}
+
+#bounty-tracker .list.bounties > li > ul > .bounty-item .list.inventory-items {
+  width: 100%;
+  grid-template-columns: 1fr;
+}
+
+#bounty-tracker .list.bounties > li > ul > .text .name {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+#bounty-tracker .list.bounties > li > ul > .text .description {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#bounty-tracker .list.bounties > li > ul > .text .description pre {
+  white-space: pre-line;
+  line-height: 1.6;
+}
+
+#bounty-tracker .list.bounties > li > ul > .objectives .progress-bar {
+  max-width: 360px;
+}
+
+#bounty-tracker .list.bounties > li > ul > .reward-items .list.inventory-items {
+  grid-template-columns: repeat(auto-fill, 24px);
+}
+
+#bounty-tracker .list.bounties > li > ul > .expires {
+  display: block;
+  text-align: right;
+}
+
+
+
+@media screen and (max-width: 600px) {
+  #bounty-tracker {
+    padding: 3rem 2rem 2rem;
+  }
+}

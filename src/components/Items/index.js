@@ -17,7 +17,7 @@ import './styles.css';
 
 class Items extends React.Component {
   render() {
-    const { member, items, order, asTab, noBorder, showHash, inspect, action } = this.props;
+    const { member, items, order, asTab, noBorder, hideQuantity, showHash, inspect, action } = this.props;
 
     let output = [];
 
@@ -40,9 +40,7 @@ class Items extends React.Component {
       item.stats = stats(item);
       item.masterwork = masterwork(item);
 
-      const objectivesData = item.itemInstanceId && item.itemComponents.objectives?.data && item.itemComponents.objectives.data[item.itemInstanceId]?.objectives;
-
-      const bucketsToExcludeFromObjectivesDataDisplay = [
+      const bucketsToExcludeFromInstanceProgressDisplay = [
         4274335291 // Emblems
       ];
 
@@ -91,23 +89,23 @@ class Items extends React.Component {
                 {showHash ? <div className='hash'>{definitionItem.hash}</div> : null}
               </div>
             ) : null}
-            {objectivesData && objectivesData.filter(o => !o.complete).length > 0 && !bucketsToExcludeFromObjectivesDataDisplay.includes(item.bucketHash) ? (
+            {item.itemComponents?.objectives && item.itemComponents?.objectives.filter(o => !o.complete).length > 0 && !bucketsToExcludeFromInstanceProgressDisplay.includes(item.bucketHash) ? (
               <ProgressBar
                 progress={{
-                  progress: objectivesData.reduce((acc, curr) => {
+                  progress: item.itemComponents?.objectives.reduce((acc, curr) => {
                     return acc + curr.progress;
                   }, 0),
-                  objectiveHash: objectivesData[0].objectiveHash
+                  objectiveHash: item.itemComponents?.objectives[0].objectiveHash
                 }}
                 objective={{
-                  completionValue: objectivesData.reduce((acc, curr) => {
+                  completionValue: item.itemComponents?.objectives.reduce((acc, curr) => {
                     return acc + curr.completionValue;
                   }, 0)
                 }}
                 hideCheck
               />
             ) : null}
-            {item.quantity && item.quantity > 1 ? <div className={cx('quantity', { 'max-stack': definitionItem.inventory && definitionItem.inventory.maxStackSize === item.quantity })}>{item.quantity}</div> : null}
+            {!hideQuantity && item.quantity && item.quantity > 1 ? <div className={cx('quantity', { 'max-stack': definitionItem.inventory && definitionItem.inventory.maxStackSize === item.quantity })}>{item.quantity}</div> : null}
             {inspect && definitionItem.itemHash ? <Link to={{ pathname: `/inspect/${definitionItem.itemHash}`, state: { from: this.props.selfLinkFrom } }} /> : null}
           </li>
         )

@@ -28,13 +28,11 @@ const Default = props => {
   const timestampExpiry = expirationDate && new Date(expirationDate).getTime();
 
   // item objectives
-  const instanceProgress = itemComponents && itemComponents.objectives;
-
   definitionItem.objectives &&
     definitionItem.objectives.objectiveHashes.forEach(hash => {
       const definitionObjective = manifest.DestinyObjectiveDefinition[hash];
 
-      const instanceProgressObjective = itemComponents && itemComponents.objectives && itemComponents.objectives.length && itemComponents.objectives.find(o => o.objectiveHash === hash);
+      const instanceProgressObjective = itemComponents?.objectives?.length && itemComponents.objectives.find(o => o.objectiveHash === hash);
 
       let playerProgress = {
         complete: false,
@@ -85,7 +83,7 @@ const Default = props => {
           <ul>{rewards}</ul>
         </div>
       ) : null}
-      {instanceProgress && instanceProgress.filter(o => !o.complete).length > 0 && expirationDate ? (
+      {itemComponents?.objectives?.length && itemComponents.objectives.filter(o => !o.complete).length > 0 && expirationDate ? (
         <div className='expiry'>
           {timestampExpiry > timestamp ? (
             <>

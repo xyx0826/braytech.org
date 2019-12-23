@@ -3,14 +3,12 @@ import React from 'react';
 import manifest from '../../../utils/manifest';
 
 const Default = (props) => {
-  const { hash, table, instanceId, itemComponents, quantity, state, rarity, type } = props;
+  const { itemHash, table } = props;
 
-  const definition = manifest[table][hash];
+  const definition = manifest[table][itemHash];
 
   // description
   const description = definition.displayProperties && definition.displayProperties.description !== '' && definition.displayProperties.description;
-
-  
 
   return (
     <>

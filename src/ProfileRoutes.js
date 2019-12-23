@@ -12,7 +12,8 @@ import Triumphs from './views/Triumphs';
 import Checklists from './views/Checklists';
 import ThisWeek from './views/ThisWeek';
 import Now from './views/Now';
-import Pursuits from './views/Pursuits';
+import Quests from './views/Quests';
+import BountyTracker from './views/BountyTracker';
 
 import Header from './components/UI/Header';
 import Spinner from './components/UI/Spinner';
@@ -62,7 +63,8 @@ class ProfileRoutes extends React.Component {
           <Route path={`${match.url}/this-week/:view?`} render={route => <ThisWeek {...route} />} />
           <Route path={`${match.url}/reports/:type?/:mode?/:offset?`} render={route => <PGCRs {...route} />} />
           <Route path={`${match.url}/now/:view?`} render={route => <Now {...route} />} />
-          <Route path={`${match.url}/quests/:hash?`} render={route => <Pursuits {...route} />} />
+          <Route path={`${match.url}/quests/bounty-tracker/:sort?`} render={route => <BountyTracker {...route} />} />
+          <Route path={`${match.url}/quests/:hash?`} render={route => <Quests {...route} />} />
           <Route path={`${match.url}/`} render={route => <Redirect to={{ pathname: `${match.url}/now` }} />} />
         </Switch>
       </>
