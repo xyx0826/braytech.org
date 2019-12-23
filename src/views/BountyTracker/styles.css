@@ -28,7 +28,7 @@
 #bounty-tracker .list.bounties > li > ul {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 48px minmax(280px, 800px) minmax(200px, 420px) minmax(100px, 140px) minmax(100px, 140px);
+  grid-template-columns: 48px minmax(280px, 800px) minmax(200px, auto) minmax(100px, 180px) minmax(100px, 140px);
   align-items: start;
 }
 
