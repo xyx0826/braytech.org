@@ -389,7 +389,7 @@ class Roster extends React.Component {
           full: (
             <li key='header-row' className='row header'>
               <ul>
-                <li className='col member' />
+                <li className='col member no-sort' />
                 <li className={cx('col', 'lastCharacter', { sort: this.state.order.sort === 'lastCharacter', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('lastCharacter')}>
                   <div className='full'>{t('Last character')}</div>
                   <div className='abbr'>{t('Char')}</div>

@@ -281,7 +281,7 @@ class BountyTracker extends React.Component {
         el: (
           <li key='header-row' className='header'>
             <ul>
-              <li className={cx('col', 'bounty-item')} />
+              <li className={cx('col', 'bounty-item', 'no-sort')} />
               <li className={cx('col', 'bounty-text', { sort: !this.state.order.sort, asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo(false)}>
                 <div className='full'>{t('Bounty')}</div>
               </li>

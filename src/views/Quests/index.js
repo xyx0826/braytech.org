@@ -117,7 +117,7 @@ class Quests extends React.Component {
 
     if (auth && auth.destinyMemberships.find(m => m.membershipId === member.membershipId) && !member.data.profile.profileInventory) {
       return (
-        <div className='view' id='pursuits'>
+        <div className='view' id='quests'>
           <Spinner />
         </div>
       );

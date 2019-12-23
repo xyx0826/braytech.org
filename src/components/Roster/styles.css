@@ -37,11 +37,16 @@
 
 .list.roster .row.header ul .col {
   color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
 }
 
-.list.roster .row.header ul .col:hover {
+.list.roster .row.header ul .col:not(.no-sort):hover {
   background-color: rgba(255, 255, 255, 0.2);
   color: rgba(255, 255, 255, 0.8);
+}
+
+.list.roster .row.header ul .col.no-sort {
+  cursor: not-allowed;
 }
 
 .list.roster .row.header ul .col.sort {
