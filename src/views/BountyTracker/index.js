@@ -209,7 +209,7 @@ class BountyTracker extends React.Component {
   render() {
     const { t, member, auth, viewport } = this.props;
 
-    if (viewport.width < 960) {
+    if (viewport.width < 940) {
       return (
         <>
           <div className='view error viewport-width' id='bounty-tracker'>
