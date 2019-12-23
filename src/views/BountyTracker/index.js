@@ -212,7 +212,7 @@ class BountyTracker extends React.Component {
     if (viewport.width < 960) {
       return (
         <>
-          <div className='view viewport-width' id='bounty-tracker'>
+          <div className='view error viewport-width' id='bounty-tracker'>
             <div className='properties'>
               <div className='name'>{t('Bounty Tracker')}</div>
               <div className='description'>
@@ -301,13 +301,41 @@ class BountyTracker extends React.Component {
       ...orderBy(this.process(constructed.bounties), [i => i.sorts[this.state.order.sort || 'vendorHash'], i => (this.state.order.sort !== 'timestampExpiry' ? i.sorts.timestampExpiry : 0), i => i.sorts.rarity, i => i.sorts.name], [this.state.order.dir, 'asc', 'asc', 'desc', 'asc'])
     ];
 
+    if (bounties.length < 2) {
+      return (
+        <>
+          <div className='view error' id='bounty-tracker'>
+            <div className='properties'>
+              <div className='name'>{t('Bounty Tracker')}</div>
+              <div className='description'>
+                <p>{t("You've got no bounties to track, boss!")}</p>
+              </div>
+            </div>
+          </div>
+          <div className='sticky-nav'>
+            <div className='wrapper'>
+              <div />
+              <ul>
+                <li>
+                  <ProfileLink className='button' to='/quests'>
+                    <DestinyKey type='dismiss' />
+                    {t('Back')}
+                  </ProfileLink>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </>
+      );
+    }
+
     return (
       <>
         <div className='view' id='bounty-tracker'>
           {bounties.length ? (
             <ul className='list bounties'>{bounties.map(i => i.el)}</ul>
           ) : (
-            <div className='aside'>
+            <div className='info'>
               <p>{t("No bounties. Go and see if there's anything you can do for Failsafe. If nothing else, keep her company...")}</p>
             </div>
           )}

@@ -171,7 +171,7 @@ class Quests extends React.Component {
               {bounties.length ? (
                 <ul className='list inventory-items'>{bounties.map(i => i.el)}</ul>
               ) : (
-                <div>
+                <div className='info'>
                   <p>{t("No bounties. Go and see if there's anything you can do for Failsafe. If nothing else, keep her company...")}</p>
                 </div>
               )}
@@ -183,7 +183,7 @@ class Quests extends React.Component {
               {quests.length ? (
                 <ul className='list inventory-items'>{quests.concat(questsItems).map(i => i.el)}</ul>
               ) : (
-                <div>
+                <div className='info'>
                   <p>{t('No quests. Speak to Zavala, maybe?')}</p>
                 </div>
               )}

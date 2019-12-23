@@ -1,10 +1,10 @@
 {
   "name": "braytech.org",
-  "author": "Tom Chapman <askMeOnTwitter@justrealmilk> (https://thomchap.com.au)",
+  "author": "Tom Chapman <twitter://justrealmilk> (https://thomchap.com.au)",
   "bugs": {
     "url": "https://github.com/justrealmilk/braytech.org/issues"
   },
-  "version": "2.12.70",
+  "version": "2.12.71",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",

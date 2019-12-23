@@ -27,7 +27,7 @@ class SeasonalArtifact extends React.Component {
           <div className='sub-header'>
             <div>{t('Seasonal progression')}</div>
           </div>
-          <div className='text'>
+          <div className='info'>
             <p>{t("This profile hasn't received an artifact yet.")}</p>
           </div>
         </div>

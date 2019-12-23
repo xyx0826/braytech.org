@@ -108,10 +108,14 @@ p:last-child {
 
 .info {
   font-style: italic;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   font-size: 14px;
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.4);
+}
+
+.sub-header + .info {
+  margin: 20px 0 0;
 }
 
 .list li {

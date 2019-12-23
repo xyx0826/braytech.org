@@ -126,7 +126,7 @@ class ProfileSearch extends React.Component {
         </div>
         <div className='form'>
           <div className='field'>
-            <input onChange={this.onSearchChange} type='text' placeholder={t('insert gamertag')} spellCheck='false' value={search} onKeyPress={this.onSearchKeyPress} />
+            <input onChange={this.onSearchChange} type='text' placeholder={t('insert gamertag or SteamId64')} spellCheck='false' value={search} onKeyPress={this.onSearchKeyPress} />
           </div>
         </div>
 

@@ -40,7 +40,7 @@ class Clan extends React.Component {
           'component': Stats
         },
         'admin': {
-          'name': viewport.width >= 1280 ? 'admin' : 'viewport-width',
+          'name': viewport.width >= 1280 ? 'admin' : 'error',
           'component': viewport.width >= 1280 ? Admin : ViewportWidth
         }
       };

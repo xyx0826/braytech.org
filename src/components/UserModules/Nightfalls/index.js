@@ -55,7 +55,7 @@ class Nightfalls extends React.Component {
               </ul>
             </>
           ) : (
-            <div className='aside'>
+            <div className='info'>
               <p>
                 <em>{t("This Nightfall doesn't have any associated collectibles.")}</em>
               </p>
@@ -69,7 +69,7 @@ class Nightfalls extends React.Component {
               </ul>
             </>
           ) : (
-            <div className='aside'>
+            <div className='info'>
               <p>
                 <em>{t("This Nightfall doesn't have any associated records.")}</em>
               </p>

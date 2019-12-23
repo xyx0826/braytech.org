@@ -126,17 +126,18 @@
 
 
 
-#bounty-tracker.viewport-width {
+#bounty-tracker.error {
   padding: 4rem 3rem 3rem;
+  grid-template-columns: minmax(auto, 800px);
   justify-content: center;
 }
 
-#bounty-tracker.viewport-width .properties {
-  max-width: 800px;
+#bounty-tracker.error .properties {
+  width: 100%;
   margin: 0 auto;
 }
 
-#bounty-tracker.viewport-width .properties .name {
+#bounty-tracker.error .properties .name {
   font-size: 38px;
   font-weight: 600;
   margin: 0 0 7px;
@@ -147,22 +148,22 @@
   margin-bottom: 1rem;
 }
 
-#bounty-tracker.viewport-width .properties .description {
+#bounty-tracker.error .properties .description {
   color: rgba(255, 255, 255, 0.6);
   font-size: 16px;
 }
 
 @media screen and (max-width: 600px) {
 
-  #bounty-tracker.viewport-width {
+  #bounty-tracker.error {
     padding: 3rem 2rem 2rem;
   }
 
-  #bounty-tracker.viewport-width .properties .name {
+  #bounty-tracker.error .properties .name {
     font-size: 24px;
   }
   
-  #bounty-tracker.viewport-width .properties .description {
+  #bounty-tracker.error .properties .description {
     font-size: 14px;
   }  
 

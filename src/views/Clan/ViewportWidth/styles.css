@@ -1,16 +1,16 @@
-#clan.viewport-width {
+#clan.error {
   padding: 4rem 3rem 3rem;
   display: grid;
-  grid-template-columns: 60px 1fr;
+  grid-template-columns: 60px minmax(auto, 800px);
   justify-content: center;
 }
 
-#clan.viewport-width .properties {
-  max-width: 800px;
+#clan.error .properties {
+  width: 100%;
   margin: 0 auto;
 }
 
-#clan.viewport-width .properties .name {
+#clan.error .properties .name {
   font-size: 38px;
   font-weight: 600;
   margin: 0 0 7px;
@@ -21,23 +21,23 @@
   margin-bottom: 1rem;
 }
 
-#clan.viewport-width .properties .description {
+#clan.error .properties .description {
   color: rgba(255, 255, 255, 0.6);
   font-size: 16px;
 }
 
 @media screen and (max-width: 600px) {
 
-  #clan.viewport-width {
+  #clan.error {
     padding: 3rem 2rem 2rem;
-    grid-template-columns: 40px 1fr;
+    grid-template-columns: 40px minmax(auto, 800px);
   }
 
-  #clan.viewport-width .properties .name {
+  #clan.error .properties .name {
     font-size: 24px;
   }
   
-  #clan.viewport-width .properties .description {
+  #clan.error .properties .description {
     font-size: 14px;
   }  
 
