@@ -9,7 +9,7 @@
   font-size: 14px;
 }
 
-#bounty-tracker .list.bounties > li {
+#bounty-tracker .list.bounties > li:not(.header) > ul > li {
   padding: 10px 0;
 }
 
@@ -29,7 +29,43 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: 48px minmax(280px, 800px) minmax(200px, auto) minmax(100px, 180px) minmax(100px, 140px);
-  align-items: start;
+  align-items: center;
+}
+
+#bounty-tracker .list.bounties .header,
+#bounty-tracker .list.bounties .header li {
+  height: 38px;
+  user-select: none;
+}
+
+#bounty-tracker .list.bounties .header ul .col {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#bounty-tracker .list.bounties .header ul .col:not(.no-sort):hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#bounty-tracker .list.bounties .header ul .col.no-sort {
+  cursor: not-allowed;
+}
+
+#bounty-tracker .list.bounties .header ul .col.sort {
+  font-size: 16px;
+}
+
+#bounty-tracker .list.bounties .header ul .col.sort.asc .full {
+  position: relative;
+}
+
+#bounty-tracker .list.bounties .header ul .col.sort.asc .full::after {
+  content: ' ASC';
+  position: relative;
+  top: -6px;
+  left: 4px;
+  font-size: 12px;
+  pointer-events: none;
 }
 
 #bounty-tracker .list.bounties > li > ul > li {
@@ -41,16 +77,16 @@
   grid-template-columns: 1fr;
 }
 
-#bounty-tracker .list.bounties > li > ul > .text .name {
+#bounty-tracker .list.bounties > li > ul > .bounty-text .name {
   margin: 0 0 6px;
   font-size: 16px;
 }
 
-#bounty-tracker .list.bounties > li > ul > .text .description {
+#bounty-tracker .list.bounties > li > ul > .bounty-text .description {
   color: rgba(255, 255, 255, 0.6);
 }
 
-#bounty-tracker .list.bounties > li > ul > .text .description pre {
+#bounty-tracker .list.bounties > li > ul > .bounty-text .description pre {
   white-space: pre-line;
   line-height: 1.6;
 }
@@ -64,8 +100,7 @@
 }
 
 #bounty-tracker .list.bounties > li > ul > .expires {
-  display: block;
-  text-align: right;
+  justify-content: right;
 }
 
 
@@ -74,4 +109,59 @@
   #bounty-tracker {
     padding: 3rem 2rem 2rem;
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#bounty-tracker.viewport-width {
+  padding: 4rem 3rem 3rem;
+  justify-content: center;
+}
+
+#bounty-tracker.viewport-width .properties {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#bounty-tracker.viewport-width .properties .name {
+  font-size: 38px;
+  font-weight: 600;
+  margin: 0 0 7px;
+  color: rgba(255, 255, 255, 1);
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  padding-bottom: 7px;
+  margin-bottom: 1rem;
+}
+
+#bounty-tracker.viewport-width .properties .description {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+}
+
+@media screen and (max-width: 600px) {
+
+  #bounty-tracker.viewport-width {
+    padding: 3rem 2rem 2rem;
+  }
+
+  #bounty-tracker.viewport-width .properties .name {
+    font-size: 24px;
+  }
+  
+  #bounty-tracker.viewport-width .properties .description {
+    font-size: 14px;
+  }  
+
 }

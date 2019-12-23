@@ -64,7 +64,7 @@ class Roster extends React.Component {
     window.clearInterval(this.refreshClanDataInterval);
   }
 
-  changeSortTo = to => {
+  handler_changeSortTo = to => e => {
     this.setState(p => ({
       ...p,
       order: {
@@ -75,9 +75,8 @@ class Roster extends React.Component {
     }));
   };
 
-  calculateResets = (progressionHash, characterId, characterProgressions, characterRecords, profileRecords) => { 
+  calculateResets = (progressionHash, characterId, characterProgressions, characterRecords, profileRecords) => {
     const infamySeasons = [{ recordHash: 3901785488, objectiveHash: 4210654397 }].map(season => {
-
       const definitionRecord = manifest.DestinyRecordDefinition[season.recordHash];
 
       const recordScope = definitionRecord.scope || 0;
@@ -110,7 +109,6 @@ class Roster extends React.Component {
         objectiveHash: 2011701344
       }
     ].map(season => {
-
       const definitionRecord = manifest.DestinyRecordDefinition[season.recordHash];
 
       const recordScope = definitionRecord.scope || 0;
@@ -139,8 +137,8 @@ class Roster extends React.Component {
 
   createRow = m => {
     const { member } = this.props;
-    
-    const isPrivate = !m.profile || (!m.profile.characterActivities.data || !m.profile.characters.data.length);
+
+    const isPrivate = !m.profile || !m.profile.characterActivities.data || !m.profile.characters.data.length;
     const isSelf = !isPrivate ? m.profile.profile.data.userInfo.membershipType.toString() === member.membershipType && m.profile.profile.data.userInfo.membershipId === member.membershipId : false;
 
     const characterIds = !isPrivate ? m.profile.characters.data.map(c => c.characterId) : [];
@@ -156,7 +154,7 @@ class Roster extends React.Component {
           return characterProgress + currentValue;
         }, 0)
       : 0;
-    
+
     const seasonRank = !isPrivate ? utils.progressionSeasonRank({ characterId: m.profile.characters.data[0].characterId, data: m }).level : 0;
 
     const triumphScore = !isPrivate ? m.profile.profileRecords.data.score : 0;
@@ -178,7 +176,7 @@ class Roster extends React.Component {
       // console.log(lastCharacterId, lastPlayed, lastActivity, lastActivityString, lastMode);
     }
 
-    return ({
+    return {
       sorts: {
         private: isPrivate,
         isOnline: m.isOnline,
@@ -275,15 +273,14 @@ class Roster extends React.Component {
           </li>
         )
       }
-    });
-  
-  }
+    };
+  };
 
   render() {
     const { t, groupMembers, mini, showOnline, filter } = this.props;
 
     let results = [...groupMembers.members];
-    
+
     if (showOnline) {
       results = results.filter(r => r.isOnline);
     }
@@ -295,27 +292,27 @@ class Roster extends React.Component {
     const fireteams = [];
     let roster = [];
 
-    results.filter(r => r.profile && r.profile.profileTransitoryData && r.profile.profileTransitoryData.data).forEach((m, i) => {
-      const membershipId = m.profile.profile.data.userInfo.membershipId;
-      const transitory = m.profile.profileTransitoryData.data;
+    results
+      .filter(r => r.profile && r.profile.profileTransitoryData && r.profile.profileTransitoryData.data)
+      .forEach((m, i) => {
+        const membershipId = m.profile.profile.data.userInfo.membershipId;
+        const transitory = m.profile.profileTransitoryData.data;
 
-      const index = fireteams.findIndex(f => f.members.find(m => m.membershipId === membershipId));
+        const index = fireteams.findIndex(f => f.members.find(m => m.membershipId === membershipId));
 
-      if (index < 0 && transitory.partyMembers.length > 1) {
-        fireteams.push({
-          id: i,
-          currentActivity: transitory.currentActivity,
-          members: transitory.partyMembers
-        });
-      }
-    });
+        if (index < 0 && transitory.partyMembers.length > 1) {
+          fireteams.push({
+            id: i,
+            currentActivity: transitory.currentActivity,
+            members: transitory.partyMembers
+          });
+        }
+      });
 
     const order = this.state.order;
 
     if (!order.sort) {
-
       fireteams.forEach(f => {
-
         const group = [];
 
         f.members.forEach(n => {
@@ -324,13 +321,13 @@ class Roster extends React.Component {
           if (!m) return;
           // they're not a clan member
 
-          const isPrivate = !m.profile || (!m.profile.characterActivities.data || !m.profile.characters.data.length);
-    
+          const isPrivate = !m.profile || !m.profile.characterActivities.data || !m.profile.characters.data.length;
+
           const fireteam = !isPrivate ? fireteams.find(f => f.members.find(n => n.membershipId === m.profile.profile.data.userInfo.membershipId)) : false;
           m.fireteamId = fireteam && fireteam.id;
 
           const row = this.createRow(m);
-    
+
           group.push(row);
         });
 
@@ -344,32 +341,29 @@ class Roster extends React.Component {
           },
           group
         });
-
       });
 
-      results.filter(r => !fireteams.find(f => f.members.find(n => n.membershipId === r.destinyUserInfo.membershipId))).forEach(m => {
-        
-        const fireteam = fireteams.find(f => f.members.find(n => n.membershipId === m.destinyUserInfo.membershipId));
-        m.fireteamId = fireteam && fireteam.id;
-  
-        const row = this.createRow(m);
-  
-        roster.push(row);
-      });
+      results
+        .filter(r => !fireteams.find(f => f.members.find(n => n.membershipId === r.destinyUserInfo.membershipId)))
+        .forEach(m => {
+          const fireteam = fireteams.find(f => f.members.find(n => n.membershipId === m.destinyUserInfo.membershipId));
+          m.fireteamId = fireteam && fireteam.id;
 
+          const row = this.createRow(m);
+
+          roster.push(row);
+        });
     } else {
-
       results.forEach(m => {
-        const isPrivate = !m.profile || (!m.profile.characterActivities.data || !m.profile.characters.data.length);
-    
+        const isPrivate = !m.profile || !m.profile.characterActivities.data || !m.profile.characters.data.length;
+
         const fireteam = !isPrivate ? fireteams.find(f => f.members.find(n => n.membershipId === m.profile.profile.data.userInfo.membershipId)) : false;
         m.fireteamId = fireteam && fireteam.id;
-  
+
         const row = this.createRow(m);
-  
+
         roster.push(row);
       });
-
     }
 
     if (order.sort === 'lastCharacter') {
@@ -396,66 +390,31 @@ class Roster extends React.Component {
             <li key='header-row' className='row header'>
               <ul>
                 <li className='col member' />
-                <li
-                  className={cx('col', 'lastCharacter', { sort: this.state.order.sort === 'lastCharacter', asc: this.state.order.dir === 'asc' })}
-                  onClick={() => {
-                    this.changeSortTo('lastCharacter');
-                  }}
-                >
+                <li className={cx('col', 'lastCharacter', { sort: this.state.order.sort === 'lastCharacter', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('lastCharacter')}>
                   <div className='full'>{t('Last character')}</div>
                   <div className='abbr'>{t('Char')}</div>
                 </li>
-                <li
-                  className={cx('col', 'lastActivity', { sort: !this.state.order.sort })}
-                  onClick={() => {
-                    this.changeSortTo(false);
-                  }}
-                >
+                <li className={cx('col', 'lastActivity', { sort: !this.state.order.sort })} onClick={this.handler_changeSortTo(false)}>
                   <div className='full'>{t('Last activity')}</div>
                   <div className='abbr'>{t('Activity')}</div>
                 </li>
-                <li
-                  className={cx('col', 'triumphScore', { sort: this.state.order.sort === 'triumphScore', asc: this.state.order.dir === 'asc' })}
-                  onClick={() => {
-                    this.changeSortTo('triumphScore');
-                  }}
-                >
+                <li className={cx('col', 'triumphScore', { sort: this.state.order.sort === 'triumphScore', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('triumphScore')}>
                   <div className='full'>{t('Triumph score')}</div>
                   <div className='abbr'>{t('T. Scr')}</div>
                 </li>
-                <li
-                  className={cx('col', 'glory', { sort: this.state.order.sort === 'glory', asc: this.state.order.dir === 'asc' })}
-                  onClick={() => {
-                    this.changeSortTo('glory');
-                  }}
-                >
+                <li className={cx('col', 'glory', { sort: this.state.order.sort === 'glory', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('glory')}>
                   <div className='full'>{t('Glory')}</div>
                   <div className='abbr'>{t('Gly')}</div>
                 </li>
-                <li
-                  className={cx('col', 'valor', { sort: this.state.order.sort === 'valor', asc: this.state.order.dir === 'asc' })}
-                  onClick={() => {
-                    this.changeSortTo('valor');
-                  }}
-                >
+                <li className={cx('col', 'valor', { sort: this.state.order.sort === 'valor', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('valor')}>
                   <div className='full'>{t('Valor (Resets)')}</div>
                   <div className='abbr'>{t('Vlr (R)')}</div>
                 </li>
-                <li
-                  className={cx('col', 'infamy', { sort: this.state.order.sort === 'infamy', asc: this.state.order.dir === 'asc' })}
-                  onClick={() => {
-                    this.changeSortTo('infamy');
-                  }}
-                >
+                <li className={cx('col', 'infamy', { sort: this.state.order.sort === 'infamy', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('infamy')}>
                   <div className='full'>{t('Infamy (Resets)')}</div>
                   <div className='abbr'>{t('Inf (R)')}</div>
                 </li>
-                <li
-                  className={cx('col', 'weeklyXp', { sort: this.state.order.sort === 'weeklyXp', asc: this.state.order.dir === 'asc' })}
-                  onClick={() => {
-                    this.changeSortTo('weeklyXp');
-                  }}
-                >
+                <li className={cx('col', 'weeklyXp', { sort: this.state.order.sort === 'weeklyXp', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('weeklyXp')}>
                   <div className='full'>{t('Weekly Clan XP')}</div>
                   <div className='abbr'>{t('Clan XP')}</div>
                 </li>
@@ -479,48 +438,41 @@ class Roster extends React.Component {
       return (
         <>
           <ul className={cx('list', 'roster', { mini: mini })}>
-            {mini ? (
-              this.props.limit ?
-                roster.slice(0, this.props.limit).map(r => {
+            {mini
+              ? this.props.limit
+                ? roster.slice(0, this.props.limit).map(r => {
+                    if (r.isFireteam) {
+                      return (
+                        <li key={r.sorts.fireteamId} className='fireteam'>
+                          <ul>{r.group.map(m => m.el.mini)}</ul>
+                        </li>
+                      );
+                    } else {
+                      return r.el.mini;
+                    }
+                  })
+                : roster.map(r => {
+                    if (r.isFireteam) {
+                      return (
+                        <li key={r.sorts.fireteamId} className='fireteam'>
+                          <ul>{r.group.map(m => m.el.mini)}</ul>
+                        </li>
+                      );
+                    } else {
+                      return r.el.mini;
+                    }
+                  })
+              : roster.map(r => {
                   if (r.isFireteam) {
                     return (
                       <li key={r.sorts.fireteamId} className='fireteam'>
-                        <ul>
-                          {r.group.map(m => m.el.mini)}
-                        </ul>
+                        <ul>{r.group.map(m => m.el.full)}</ul>
                       </li>
-                    )
-                  } else {
-                    return r.el.mini;
-                  }
-                }) :
-                roster.map(r => {
-                  if (r.isFireteam) {
-                    return (
-                      <li key={r.sorts.fireteamId} className='fireteam'>
-                        <ul>
-                          {r.group.map(m => m.el.mini)}
-                        </ul>
-                      </li>
-                    )
-                  } else {
-                    return r.el.mini;
-                  }
-                })) :
-                roster.map(r => {
-                  if (r.isFireteam) {
-                    return (
-                      <li key={r.sorts.fireteamId} className='fireteam'>
-                        <ul>
-                          {r.group.map(m => m.el.full)}
-                        </ul>
-                      </li>
-                    )
+                    );
                   } else {
                     return r.el.full;
                   }
-                })
-            }
+                })}
           </ul>
           {mini ? (
             <ProfileLink className='button' to='/clan/roster'>
@@ -549,10 +501,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(Roster);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(Roster);

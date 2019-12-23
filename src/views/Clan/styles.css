@@ -1,6 +1,6 @@
 
 #clan {
-  padding: 3rem;
+  padding: 4rem 3rem 3rem;
   display: grid;
   grid-template-columns: 60px repeat(9, 1fr);
   gap: 3rem;
@@ -106,7 +106,6 @@
 #clan .module.views > .list {
   position: sticky;
   top: 3rem;
-  margin: 24px 0 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 3px;
@@ -170,7 +169,7 @@
 @media screen and (max-width: 600px) {
 
   #clan {
-    padding: 2rem;
+    padding: 3rem 2rem 2rem;
     grid-template-columns: 40px 1fr;
     grid-gap: 2rem;
   }

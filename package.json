@@ -4,7 +4,7 @@
   "bugs": {
     "url": "https://github.com/justrealmilk/braytech.org/issues"
   },
-  "version": "2.12.64",
+  "version": "2.12.65",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",

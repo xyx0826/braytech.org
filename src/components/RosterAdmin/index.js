@@ -255,13 +255,7 @@ class Actions extends React.Component {
   }
 }
 
-Actions = compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(Actions);
+Actions = compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(Actions);
 
 class RosterAdmin extends React.Component {
   constructor(props) {
@@ -319,26 +313,30 @@ class RosterAdmin extends React.Component {
     });
   };
 
-  changeSortTo = to => {
-    this.setState((prevState, props) => {
-      prevState.order.dir = prevState.order.sort === to && prevState.order.dir === 'desc' ? 'asc' : 'desc';
-      prevState.order.sort = to;
-      return prevState;
-    });
+  handler_changeSortTo = to => e => {
+    this.setState(p => ({
+      ...p,
+      order: {
+        ...p.order,
+        dir: p.order.sort === to && p.order.dir === 'desc' ? 'asc' : 'desc',
+        sort: to
+      }
+    }));
   };
 
   render() {
     const { t, member, auth, groupMembers, mini, showOnline = false } = this.props;
 
-    const isAdmin = member.data.groups.results.find(r => {
-      const authed = auth.destinyMemberships.find(m => m.membershipId === member.membershipId);
+    const isAdmin =
+      member.data.groups.results.find(r => {
+        const authed = auth.destinyMemberships.find(m => m.membershipId === member.membershipId);
 
-      if (r.member.memberType > 2 && authed && r.member.destinyUserInfo.membershipId === authed.membershipId) {
-        return true;
-      } else {
-        return false;
-      }
-    }) || member.membershipId === '4611686018449662397';
+        if (r.member.memberType > 2 && authed && r.member.destinyUserInfo.membershipId === authed.membershipId) {
+          return true;
+        } else {
+          return false;
+        }
+      }) || member.membershipId === '4611686018449662397';
 
     const results = showOnline ? groupMembers.members.filter(r => r.isOnline) : groupMembers.members.concat(groupMembers.pending);
     let members = [];
@@ -348,7 +346,7 @@ class RosterAdmin extends React.Component {
         return;
       }
 
-      const isPrivate = !m.profile || (!m.profile.characterActivities.data || !m.profile.characters.data.length);
+      const isPrivate = !m.profile || !m.profile.characterActivities.data || !m.profile.characters.data.length;
       const isSelf = !isPrivate ? m.profile.profile.data.userInfo.membershipType.toString() === member.membershipType && m.profile.profile.data.userInfo.membershipId === member.membershipId : false;
 
       const characterIds = !isPrivate ? m.profile.characters.data.map(c => c.characterId) : [];
@@ -499,48 +497,23 @@ class RosterAdmin extends React.Component {
             <li key='header-row' className='row header'>
               <ul>
                 <li className='col member' />
-                <li
-                  className={cx('col', 'lastCharacter', { sort: this.state.order.sort === 'lastCharacter', asc: this.state.order.dir === 'asc' })}
-                  onClick={() => {
-                    this.changeSortTo('lastCharacter');
-                  }}
-                >
+                <li className={cx('col', 'lastCharacter', { sort: this.state.order.sort === 'lastCharacter', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('lastCharacter')}>
                   <div className='full'>{t('Last character')}</div>
                   <div className='abbr'>{t('Char')}</div>
                 </li>
-                <li
-                  className={cx('col', 'lastActivity', { sort: !this.state.order.sort })}
-                  onClick={() => {
-                    this.changeSortTo(false);
-                  }}
-                >
+                <li className={cx('col', 'lastActivity', { sort: !this.state.order.sort })} onClick={this.handler_changeSortTo(false)}>
                   <div className='full'>{t('Last activity')}</div>
                   <div className='abbr'>{t('Activity')}</div>
                 </li>
-                <li
-                  className={cx('col', 'joinDate', { sort: this.state.order.sort === 'joinDate', asc: this.state.order.dir === 'asc' })}
-                  onClick={() => {
-                    this.changeSortTo('joinDate');
-                  }}
-                >
+                <li className={cx('col', 'joinDate', { sort: this.state.order.sort === 'joinDate', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('joinDate')}>
                   <div className='full'>{t('Joined')}</div>
                   <div className='abbr'>{t('Jind')}</div>
                 </li>
-                <li
-                  className={cx('col', 'weeklyXp', { sort: this.state.order.sort === 'weeklyXp', asc: this.state.order.dir === 'asc' })}
-                  onClick={() => {
-                    this.changeSortTo('weeklyXp');
-                  }}
-                >
+                <li className={cx('col', 'weeklyXp', { sort: this.state.order.sort === 'weeklyXp', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('weeklyXp')}>
                   <div className='full'>{t('Weekly Clan XP')}</div>
                   <div className='abbr'>{t('Clan XP')}</div>
                 </li>
-                <li
-                  className={cx('col', 'rank', { sort: this.state.order.sort === 'rank', asc: this.state.order.dir === 'asc' })}
-                  onClick={() => {
-                    this.changeSortTo('rank');
-                  }}
-                >
+                <li className={cx('col', 'rank', { sort: this.state.order.sort === 'rank', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('rank')}>
                   <div className='full'>{t('Rank')}</div>
                   <div className='abbr'>{t('Rank')}</div>
                 </li>
@@ -597,10 +570,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(RosterAdmin);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(RosterAdmin);

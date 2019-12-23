@@ -1,7 +1,6 @@
 #clan.about .module.banner {
   grid-column: 2/4;
   position: relative;
-  margin: 24px 0 0;
 }
 
 #clan.about .module.banner .button.customise {
@@ -25,7 +24,7 @@
 #clan.about .module.about > .name {
   font-size: 38px;
   font-weight: 500;
-  margin: 24px 0 1rem;
+  margin: 0 0 1rem;
 }
 
 #clan.about .module.about .members {
@@ -175,6 +174,7 @@
 
   #clan.about .module.about > .name {
     font-size: 24px;
+    margin-top: 0;
   }
 
   #clan.about .module.about,

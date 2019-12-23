@@ -19,7 +19,32 @@ import Items from '../../components/Items';
 
 import './styles.css';
 
+const stackUniqueLabelLookup = itemHash => {
+  const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
+
+  const map = {
+    crucible: 3603221665, // Lord Shaxx
+    strikes: 69482069, // Commander Zavala
+    gambit: 248695599, // The Drifter
+    gunsmith: 672118013, // Banshee-44
+    'luna.public_loop': 1616085565, // Eris Morn
+    'luna.nightmare': 3411552308, // The Drifter
+    dawning: 919809084 // Eva Levante
+  };
+
+  const find = Object.entries(map).find(([string, vendorHash]) => definitionItem.inventory?.stackUniqueLabel.includes(string));
+
+  return find?.[1];
+};
+
 class BountyTracker extends React.Component {
+  state = {
+    order: {
+      sort: false,
+      dir: 'desc'
+    }
+  };
+
   componentDidMount() {
     window.scrollTo(0, 0);
     this.props.rebindTooltips();
@@ -58,7 +83,11 @@ class BountyTracker extends React.Component {
         const timestampExpiry = expirationDate && new Date(expirationDate).getTime();
 
         const bucketName = definitionBucket?.displayProperties?.name?.replace(' ', '-').toLowerCase();
-        const vendorSource = Object.keys(manifest.DestinyVendorDefinition).find(key => manifest.DestinyVendorDefinition[key].itemList?.find(i => i.itemHash === item.itemHash));
+        const vendorHash = Number(Object.keys(manifest.DestinyVendorDefinition).find(key => manifest.DestinyVendorDefinition[key].itemList?.find(i => i.itemHash === item.itemHash)) || stackUniqueLabelLookup(item.itemHash) || 0);
+
+        if (vendorHash === 0) {
+          console.log(`Couldn't dtermine vendor hash: ${item.itemHash}`);
+        }
 
         const objectives = [];
         definitionItem.objectives &&
@@ -78,16 +107,34 @@ class BountyTracker extends React.Component {
             objectives.push(<ProgressBar key={definitionObjective.hash} objectiveHash={definitionObjective.hash} {...playerProgress} />);
           });
 
+        const objectivesProgress =
+          (item.itemComponents?.objectives &&
+            item.itemComponents?.objectives.filter(o => !o.complete).length > 0 &&
+            item.itemComponents.objectives.reduce((acc, curr) => {
+              return acc + curr.progress;
+            }, 0)) ||
+          0;
+        const objectivesCompletionValue =
+          (item.itemComponents?.objectives &&
+            item.itemComponents?.objectives.filter(o => !o.complete).length > 0 &&
+            item.itemComponents.objectives.reduce((acc, curr) => {
+              return acc + curr.completionValue;
+            }, 0)) ||
+          0;
+
         return {
           ...item,
-          name: definitionItem.displayProperties?.name,
-          rarity: definitionItem.inventory?.tierType,
-          vendorSource,
-          timestampExpiry: timestampExpiry || 10000 * 10000 * 10000 * 10000,
+          sorts: {
+            name: definitionItem.displayProperties?.name,
+            rarity: definitionItem.inventory?.tierType,
+            vendorHash,
+            objectives: objectivesProgress / objectivesCompletionValue,
+            timestampExpiry: timestampExpiry || 10000 * 10000 * 10000 * 10000
+          },
           el: (
             <li key={item.itemHash}>
               <ul>
-                <li className='bounty-item'>
+                <li className='col bounty-item'>
                   <ul className='list inventory-items'>
                     <li
                       className={cx(
@@ -109,44 +156,34 @@ class BountyTracker extends React.Component {
                       {item.quantity && item.quantity > 1 ? <div className={cx('quantity', { 'max-stack': definitionItem.inventory?.maxStackSize === item.quantity })}>{item.quantity}</div> : null}
                       {item.itemComponents?.objectives && item.itemComponents?.objectives.filter(o => !o.complete).length === 0 ? <div className='completed' /> : null}
                       {item.itemComponents?.objectives && item.itemComponents?.objectives.filter(o => !o.complete).length > 0 && nowMs + 7200 * 1000 > timestampExpiry ? <div className='expires-soon' /> : null}
-                      {item.itemComponents?.objectives && item.itemComponents?.objectives.filter(o => !o.complete).length > 0 ? (
-                        <ProgressBar
-                          objectiveHash={item.itemComponents?.objectives[0].objectiveHash}
-                          progress={item.itemComponents?.objectives.reduce((acc, curr) => {
-                            return acc + curr.progress;
-                          }, 0)}
-                          completionValue={item.itemComponents?.objectives.reduce((acc, curr) => {
-                            return acc + curr.completionValue;
-                          }, 0)}
-                          hideCheck
-                        />
-                      ) : null}
+                      {item.itemComponents?.objectives && item.itemComponents?.objectives.filter(o => !o.complete).length > 0 ? <ProgressBar objectiveHash={item.itemComponents.objectives[0].objectiveHash} progress={objectivesProgress} completionValue={objectivesCompletionValue} hideCheck /> : null}
                     </li>
                   </ul>
                 </li>
-                <li className='text'>
+                <li className='col bounty-text'>
                   <div className='name'>{definitionItem.displayProperties?.name}</div>
                   <div className='description'>
                     <pre>{definitionItem.displayProperties?.description}</pre>
                   </div>
                 </li>
-                {/* <li className='source'>{manifest.DestinyVendorDefinition[vendorSource]?.displayProperties?.name}</li> */}
-                <li className='objectives'>{objectives}</li>
-                <li className='reward-items'>
+                <li className='col objectives'>{objectives}</li>
+                <li className='col reward-items'>
                   <ul className='list inventory-items'>
                     <Items items={definitionItem.value.itemValue.filter(i => i.itemHash !== 0)} noBorder hideQuantity />
                   </ul>
                 </li>
-                <li className='expires'>
-                  {item.itemComponents?.objectives?.length && item.itemComponents.objectives.filter(o => !o.complete).length > 0 && expirationDate ? (
-                    timestampExpiry > timestamp ? (
-                      <>
-                        {t('Expires')} <Moment fromNow>{expirationDate}</Moment>.
-                      </>
-                    ) : (
-                      <>{t('Expired')}.</>
-                    )
-                  ) : null}
+                <li className='col expires'>
+                  <div>
+                    {item.itemComponents?.objectives?.length && item.itemComponents.objectives.filter(o => !o.complete).length > 0 && expirationDate ? (
+                      timestampExpiry > timestamp ? (
+                        <>
+                          {t('Expires')} <Moment fromNow>{expirationDate}</Moment>.
+                        </>
+                      ) : (
+                        <>{t('Expired')}.</>
+                      )
+                    ) : null}
+                  </div>
                 </li>
               </ul>
             </li>
@@ -156,9 +193,32 @@ class BountyTracker extends React.Component {
       .filter(i => i);
   };
 
+  handler_changeSortTo = to => e => {
+    this.setState(p => ({
+      ...p,
+      order: {
+        ...p.order,
+        dir: p.order.sort === to && p.order.dir === 'desc' ? 'asc' : 'desc',
+        sort: to
+      }
+    }));
+  };
+
   render() {
-    const { t, member, auth } = this.props;
-    const order = this.props.match.params.order || 'rarity';
+    const { t, member, auth, viewport } = this.props;
+
+    if (viewport.width < 960) {
+      return (
+        <div className='view viewport-width' id='bounty-tracker'>
+          <div className='properties'>
+            <div className='name'>{t('Bounty Tracker')}</div>
+            <div className='description'>
+              <p>{t('Bounty Tracker is intended for use on larger displays. Please use a display with a viewport of atleast 960px.')}</p>
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     if (!auth) {
       return <NoAuth />;
@@ -199,7 +259,30 @@ class BountyTracker extends React.Component {
       return 'bounties';
     });
 
-    const bounties = orderBy(this.process(constructed.bounties), [i => i.timestampExpiry, i => i[order], i => i.name], ['asc', 'desc', 'asc']);
+    const bounties = [
+      {
+        el: (
+          <li key='header-row' className='header'>
+            <ul>
+              <li className={cx('col', 'bounty-item')} />
+              <li className={cx('col', 'bounty-text', { sort: !this.state.order.sort, asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo(false)}>
+                <div className='full'>{t('Bounty')}</div>
+              </li>
+              <li className={cx('col', 'objectives', { sort: this.state.order.sort === 'objectives', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('objectives')}>
+                <div className='full'>{t('Objectives')}</div>
+              </li>
+              <li className={cx('col', 'reward-items', 'no-sort')}>
+                <div className='full'>{t('Rewards')}</div>
+              </li>
+              <li className={cx('col', 'expires', { sort: this.state.order.sort === 'timestampExpiry', asc: this.state.order.dir === 'asc' })} onClick={this.handler_changeSortTo('timestampExpiry')}>
+                <div className='full'>{t('Expiry')}</div>
+              </li>
+            </ul>
+          </li>
+        )
+      },
+      ...orderBy(this.process(constructed.bounties), [i => i.sorts[this.state.order.sort || 'vendorHash'], i => i.sorts.rarity, i => i.sorts.name], [this.state.order.dir, 'asc', 'desc', 'asc'])
+    ];
 
     return (
       <>
