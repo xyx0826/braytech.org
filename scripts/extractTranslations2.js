@@ -52,7 +52,7 @@ const FilesLogic = {
             const code = (await FilesLogic.read(filename)).toString('utf8');
             const ast = parse(code, {
                 sourceType: 'module',
-                plugins: ['jsx', 'classProperties']
+                plugins: ['jsx', 'classProperties', 'optionalChaining']
             });
             traverse(ast, {
                 CallExpression: function (astPath) {
