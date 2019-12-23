@@ -84,7 +84,7 @@ const FilesLogic = {
         entries.forEach(([key]) => delete translatedStrings[key]);
         entries.forEach(([key, value]) => (translatedStrings[key] = value));
     },
-    addStrings(translatedStrings, sourceStrings, isSourceLocale) {
+    addStrings(translatedStrings, sourceStrings, isSourceLocale, debugLocale) {
         const result = [];
         sourceStrings.forEach(key => {
             if (!translatedStrings[key]) {
@@ -92,7 +92,7 @@ const FilesLogic = {
                     translatedStrings[key] = key;
                     return;
                 }
-                const placeholderKey = placeholdify(key);
+                const placeholderKey = debugLocale ? key : placeholdify(key);
                 if (!translatedStrings[placeholderKey]) {
                     translatedStrings[placeholderKey] = MISSING_TRANSLATION;
                     result.push(key);
@@ -209,10 +209,10 @@ const NodesLogic = {
         let count = 0;
         for (let file of sourcefiles) {
             count++;
-            if (Date.now() - lastT > 200 || count === sourcefiles.length) {
-                lastT = Date.now();
+            // if (Date.now() - lastT > 200 || count === sourcefiles.length) {
+            //    lastT = Date.now();
                 console.log(` Processing [${count}/${sourcefiles.length}]`, relative(resolve(__dirname, '..'), file));
-            }
+            //}
             await FilesLogic.scrapeStrings(file, sourceStrings);
         }
         // if you want to see current status activate following line:
@@ -232,7 +232,7 @@ const NodesLogic = {
             const translatedStrings = await FilesLogic.readJson(jsonFile);
             if (!translatedStrings)
                 throw new Error(`Failed to parse ${jsonFile}.`);
-            const addResult = await FilesLogic.addStrings(translatedStrings, sourceStrings, locale === SOURCE_LOCALE);
+            const addResult = await FilesLogic.addStrings(translatedStrings, sourceStrings, locale === SOURCE_LOCALE, locale === 'debug');
             const deprecateResult = await FilesLogic.deprecateStrings(translatedStrings, sourceStrings);
             if (!ARG_SKIP_SORT)
                 FilesLogic.sortTranslatedStrings(translatedStrings);

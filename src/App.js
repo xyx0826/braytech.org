@@ -81,6 +81,8 @@ class App extends React.Component {
 
     this.currentLanguage = props.i18n.getCurrentLanguage();
 
+    if (this.currentLanguage === 'debug') this.currentLanguage = 'en';
+
     // We do these as early as possible - we don't want to wait
     // for the component to mount before starting the web requests
     this.startupRequests = window.navigator.onLine && {
@@ -199,7 +201,7 @@ class App extends React.Component {
 
     tmpManifest.settings = bungieSettings && bungieSettings.ErrorCode === 1 && bungieSettings.Response;
 
-    this.availableLanguages = Object.keys(manifestIndex.Response.jsonWorldContentPaths);
+    this.availableLanguages = ['debug', ...Object.keys(manifestIndex.Response.jsonWorldContentPaths)];
 
     tmpManifest.statistics = (await this.startupRequests.voluspaStatistics) || {};
 
