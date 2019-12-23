@@ -883,5 +883,10 @@
     "date": "2019-12-17T17:53:23.596Z",
     "version": "2.12.45",
     "content": "- updated hide collectibles logic\n- updated how records deal with small spaces\n- other secret stuff"
+  },
+  {
+    "date": "2019-12-23T07:06:59.645Z",
+    "version": "2.13.0",
+    "content": "- added new _Bounty Tracker_ view\n- slightly improved clamn roster perf\n- added some beautiful icons to the flashpoint module for _Now_ and _This Week_ views\n- fixed a glaring PGCR UI bug\n- general improvements every where\n- unified sub header styles"
   }
 ]

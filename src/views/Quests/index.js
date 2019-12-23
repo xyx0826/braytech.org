@@ -48,8 +48,6 @@ class Quests extends React.Component {
 
         item.itemComponents = itemComponents(item, member);
 
-        console.log(item);
-
         const expiryMs = item.expirationDate && new Date(item.expirationDate).getTime();
 
         const bucketName = definitionBucket?.displayProperties?.name?.replace(' ', '-').toLowerCase();
