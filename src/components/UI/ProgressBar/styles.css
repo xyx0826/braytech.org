@@ -80,7 +80,7 @@
   max-width: 100%;
   height: 100%;
   background-color: #5aa366;
-  transition: background-color 0.25s;
+  transition: background-color 0.25s, width 1s ease-in-out;
 }
 
 .wrapper.dark-mode .progress-bar .check:not(.ed)::before {
