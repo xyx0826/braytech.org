@@ -22,7 +22,7 @@ import './styles.css';
 const stackUniqueLabelLookup = itemHash => {
   const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
 
-  if (!definitionItem) return null;
+  if (!definitionItem.inventory?.stackUniqueLabel) return null;
 
   const map = {
     crucible: 3603221665, // Lord Shaxx
@@ -34,7 +34,7 @@ const stackUniqueLabelLookup = itemHash => {
     dawning: 919809084 // Eva Levante
   };
 
-  const find = Object.entries(map).find(([string, vendorHash]) => definitionItem.inventory?.stackUniqueLabel?.includes(string));
+  const find = Object.entries(map).find(([string, vendorHash]) => definitionItem.inventory.stackUniqueLabel.includes(string));
 
   return find?.[1];
 };
