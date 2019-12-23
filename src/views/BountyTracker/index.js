@@ -76,7 +76,13 @@ class BountyTracker extends React.Component {
 
         item.itemComponents = itemComponents(item, member);
 
+        // bounty complete
         if (item.itemComponents?.objectives && item.itemComponents?.objectives.filter(o => !o.complete).length === 0) {
+          return false;
+        }
+
+        // no expiry
+        if (!item.itemComponents.item?.expirationDate) {
           return false;
         }
 
