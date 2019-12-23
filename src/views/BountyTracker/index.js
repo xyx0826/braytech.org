@@ -281,7 +281,7 @@ class BountyTracker extends React.Component {
           </li>
         )
       },
-      ...orderBy(this.process(constructed.bounties), [i => i.sorts[this.state.order.sort || 'vendorHash'], i => i.sorts.rarity, i => i.sorts.name], [this.state.order.dir, 'asc', 'desc', 'asc'])
+      ...orderBy(this.process(constructed.bounties), [i => i.sorts[this.state.order.sort || 'vendorHash'], i => this.state.order.sort !== 'timestampExpiry' ? i.sorts.timestampExpiry : 0, i => i.sorts.rarity, i => i.sorts.name], [this.state.order.dir, 'asc', 'asc', 'desc', 'asc'])
     ];
 
     return (
