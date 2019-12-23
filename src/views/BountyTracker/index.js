@@ -88,7 +88,7 @@ class BountyTracker extends React.Component {
         const vendorHash = Number(Object.keys(manifest.DestinyVendorDefinition).find(key => manifest.DestinyVendorDefinition[key].itemList?.find(i => i.itemHash === item.itemHash)) || stackUniqueLabelLookup(item.itemHash) || 0);
 
         if (vendorHash === 0) {
-          console.log(`Couldn't dtermine vendor hash: ${item.itemHash}`);
+          console.log(`Couldn't determine vendor hash: ${item.itemHash}`);
         }
 
         const objectives = [];
@@ -171,7 +171,7 @@ class BountyTracker extends React.Component {
                 <li className='col objectives'>{objectives}</li>
                 <li className='col reward-items'>
                   <ul className='list inventory-items'>
-                    <Items items={definitionItem.value.itemValue.filter(i => i.itemHash !== 0)} noBorder hideQuantity />
+                    <Items items={definitionItem.value?.itemValue?.filter(i => i.itemHash !== 0)} noBorder hideQuantity />
                   </ul>
                 </li>
                 <li className='col expires'>
