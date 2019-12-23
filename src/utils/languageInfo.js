@@ -1,5 +1,10 @@
 export function getLanguageInfo(code) {
   switch (code) {
+    case 'debug':
+      return {
+        name: 'Debug',
+        code: code
+      };
     case 'de':
       return {
         name: 'Deutsch',

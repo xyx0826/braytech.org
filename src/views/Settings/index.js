@@ -158,8 +158,8 @@ class Settings extends React.Component {
   render() {
     const { t, availableLanguages, location } = this.props;
 
-    let languageButtons = availableLanguages.map(code => {
-      let langInfo = getLanguageInfo(code);
+    const languageButtons = availableLanguages.map(code => {
+      const langInfo = getLanguageInfo(code);
 
       return (
         <li
@@ -172,7 +172,7 @@ class Settings extends React.Component {
             <div className='text'>
               <div className='name'>{langInfo.name || langInfo.code}</div>
               <div className='coverage tooltip' data-hash='coverage' data-table='BraytechDefinition'>
-                {translationStats[langInfo.code] && Math.floor(((translationStats['internal'].notTranslated - translationStats[langInfo.code].notTranslated) / translationStats['internal'].notTranslated) * 100)}%
+                {translationStats[langInfo.code] && Math.floor(((translationStats['en'].translated - translationStats[langInfo.code].notTranslated) / translationStats['en'].translated) * 100)}%
               </div>
             </div>
           </Checkbox>

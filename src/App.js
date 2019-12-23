@@ -201,7 +201,9 @@ class App extends React.Component {
 
     tmpManifest.settings = bungieSettings && bungieSettings.ErrorCode === 1 && bungieSettings.Response;
 
-    this.availableLanguages = ['debug', ...Object.keys(manifestIndex.Response.jsonWorldContentPaths)];
+    this.availableLanguages = Object.keys(manifestIndex.Response.jsonWorldContentPaths);
+
+    if (process.env.NODE_ENV === 'development') this.availableLanguages.unshift('debug');
 
     tmpManifest.statistics = (await this.startupRequests.voluspaStatistics) || {};
 
