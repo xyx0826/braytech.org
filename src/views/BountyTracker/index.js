@@ -209,14 +209,29 @@ class BountyTracker extends React.Component {
 
     if (viewport.width < 960) {
       return (
-        <div className='view viewport-width' id='bounty-tracker'>
-          <div className='properties'>
-            <div className='name'>{t('Bounty Tracker')}</div>
-            <div className='description'>
-              <p>{t('Bounty Tracker is intended for use on larger displays. Please use a display with a viewport of atleast 960px.')}</p>
+        <>
+          <div className='view viewport-width' id='bounty-tracker'>
+            <div className='properties'>
+              <div className='name'>{t('Bounty Tracker')}</div>
+              <div className='description'>
+                <p>{t('Bounty Tracker is intended for use on larger displays. Please use a display with a viewport of atleast 960px.')}</p>
+              </div>
             </div>
           </div>
-        </div>
+          <div className='sticky-nav'>
+            <div className='wrapper'>
+              <div />
+              <ul>
+                <li>
+                  <ProfileLink className='button' to='/quests'>
+                    <DestinyKey type='dismiss' />
+                    {t('Back')}
+                  </ProfileLink>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </>
       );
     }
 
@@ -281,7 +296,7 @@ class BountyTracker extends React.Component {
           </li>
         )
       },
-      ...orderBy(this.process(constructed.bounties), [i => i.sorts[this.state.order.sort || 'vendorHash'], i => this.state.order.sort !== 'timestampExpiry' ? i.sorts.timestampExpiry : 0, i => i.sorts.rarity, i => i.sorts.name], [this.state.order.dir, 'asc', 'asc', 'desc', 'asc'])
+      ...orderBy(this.process(constructed.bounties), [i => i.sorts[this.state.order.sort || 'vendorHash'], i => (this.state.order.sort !== 'timestampExpiry' ? i.sorts.timestampExpiry : 0), i => i.sorts.rarity, i => i.sorts.name], [this.state.order.dir, 'asc', 'asc', 'desc', 'asc'])
     ];
 
     return (
