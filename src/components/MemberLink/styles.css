@@ -184,16 +184,25 @@
   display: grid;
   align-content: center;
   -webkit-overflow-scrolling: touch;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 html.backdropfilter #member-overlay {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+html.backdropfilter .wrapper.dark-mode #member-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 #member-overlay .wrapper-outer {
   position: relative;
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.2);
+}
+
+.wrapper.dark-mode #member-overlay .wrapper-outer {
+  position: relative;
+  box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.5);
 }
 
 #member-overlay .background .border-top {

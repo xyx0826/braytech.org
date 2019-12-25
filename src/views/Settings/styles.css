@@ -14,6 +14,10 @@
   margin-bottom: 0rem;
 }
 
+#settings .sub-header {
+  margin-bottom: 20px;
+}
+
 #settings .info {
   margin: 10px 0 0;
   max-width: 300px;
@@ -28,7 +32,7 @@
 }
 
 #settings .module .sub-header:not(:first-child) {
-  margin: calc(3rem - 14px) 0 1rem;
+  margin: calc(2rem + 20px) 0 20px;
 }
 
 #settings .module .list ~ .button {
@@ -70,10 +74,6 @@
 @media screen and (max-width: 600px) {
   #settings > .module.head {
     padding: calc(3rem + 40px) 2rem 2rem;
-  }
-
-  #settings .module .sub-header:not(:first-child) {
-    margin: 2rem 0 1rem;
   }
 
   #settings > .padder {

@@ -39,7 +39,7 @@ class Flashpoint extends React.Component {
     const Icon = icons[milestoneFlashpointQuestItem.destinationHash] || null;
 
     return (
-      <div className='flashpoint'>
+      <div className='user-module flashpoint'>
         <div className='icon'>
           {Icon && <Icon />}
         </div>

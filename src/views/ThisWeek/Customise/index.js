@@ -72,7 +72,7 @@ const getListStyle = isDraggingOver => ({
 
 export const moduleRules = {
   full: ['Nightfalls'],
-  double: ['DreamingCityShatteredThrone'],
+  double: ['DreamingCityShatteredThrone', 'Events'],
   head: []
 };
 
@@ -93,19 +93,14 @@ export const headOverride = {
       id: 'head-col-1',
       mods: [
         {
-          id: 'FeaturedActivities-0',
-          component: 'FeaturedActivities'
+          id: 'CrucibleRotators-0',
+          component: 'CrucibleRotators'
         }
       ]
     },
     {
       id: 'head-col-2',
-      mods: [
-        {
-          id: 'CrucibleRotators-0',
-          component: 'CrucibleRotators'
-        }
-      ]
+      mods: []
     },
     {
       id: 'head-col-3',
@@ -383,10 +378,6 @@ class Customise extends React.Component {
     Flashpoint: {
       name: manifest.DestinyMilestoneDefinition[463010297]?.displayProperties.name,
       description: manifest.DestinyMilestoneDefinition[463010297]?.displayProperties.description
-    },
-    FeaturedActivities: {
-      name: this.props.t('Featured activities'),
-      description: this.props.t('Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.')
     },
     CrucibleRotators: {
       name: manifest.DestinyPlaceDefinition[4088006058]?.displayProperties.name,

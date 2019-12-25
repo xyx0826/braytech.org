@@ -5,10 +5,10 @@ import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
 
 import { ProfileLink } from '../../../components/ProfileLink';
-import { Button, DestinyKey } from '../../../components/UI/Button';
+import { DestinyKey } from '../../../components/UI/Button';
 
 import Flashpoint from '../../../components/UserModules/Flashpoint';
-import FeaturedActivities from '../../../components/UserModules/FeaturedActivities';
+import Events from '../../../components/UserModules/Events';
 import CrucibleRotators from '../../../components/UserModules/CrucibleRotators';
 import Nightfalls from '../../../components/UserModules/Nightfalls';
 import Raid from '../../../components/UserModules/Raid';
@@ -34,8 +34,8 @@ class ThisWeek extends React.Component {
     Flashpoint: {
       c: Flashpoint
     },
-    FeaturedActivities: {
-      c: FeaturedActivities
+    Events: {
+      c: Events
     },
     CrucibleRotators: {
       c: CrucibleRotators
@@ -113,13 +113,19 @@ class ThisWeek extends React.Component {
     };
 
     userHead.cols = userHead.cols.map(c => {
-      const FeaturedActivitiesIndex = c.mods.findIndex(m => m.component === 'FeaturedActivities');
+      const className = [];
 
-      if (FeaturedActivitiesIndex > -1) {
-        c.mods[FeaturedActivitiesIndex].condition = Boolean(characterActivities[member.characterId].availableActivities.filter(a => [3753505781, 1454880421].includes(a.activityHash)).length);
-      }
+      // const FeaturedActivitiesIndex = c.mods.findIndex(m => m.component === 'FeaturedActivities');
+      // if (FeaturedActivitiesIndex > -1) {
+      //   c.mods[FeaturedActivitiesIndex].condition = Boolean(characterActivities[member.characterId].availableActivities.filter(a => [3753505781, 1454880421].includes(a.activityHash)).length);
+      // }
 
-      return c;
+      if (c.mods.filter(m => moduleRules.double.filter(f => f === m.component).length).length) className.push('double');
+
+      return {
+        ...c,
+        className
+      };
     });
 
     const userBody = layout.groups

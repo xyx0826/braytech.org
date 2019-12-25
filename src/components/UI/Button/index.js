@@ -84,7 +84,7 @@ class Button extends React.Component {
   }
 
   render() {
-    const { className, text, children, action, invisible, disabled, lined, anchor } = this.props;
+    const { className, text, children, action, disabled, lined, anchor } = this.props;
 
     if (anchor) {
       const onClick = action
@@ -96,7 +96,7 @@ class Button extends React.Component {
         : this.props.onClick;
 
       return (
-        <Link className={cx('button', className, { lined: lined, disabled: disabled, invisible: invisible })} onClick={onClick} to={this.props.to}>
+        <Link className={cx('button', className, { lined: lined, disabled: disabled })} onClick={onClick} to={this.props.to}>
           {text ? <div className='text'>{text}</div> : children}
         </Link>
       );
@@ -110,7 +110,7 @@ class Button extends React.Component {
         : this.props.onClick;
 
       return (
-        <button className={cx('button', className, { lined: lined, disabled: disabled, invisible: invisible })} onClick={onClick}>
+        <button className={cx('button', className, { lined: lined, disabled: disabled })} onClick={onClick}>
           {text ? <div className='text'>{text}</div> : children}
         </button>
       );

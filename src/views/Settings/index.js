@@ -297,7 +297,7 @@ class Settings extends React.Component {
               <div>{t('Language')}</div>
             </div>
             <ul className='list settings'>{languageButtons}</ul>
-            <Button text={t('Save and restart')} invisible={this.state.language.current === this.state.language.selected} action={this.saveAndRestart} />
+            <Button text={t('Save and restart')} disabled={this.state.language.current === this.state.language.selected} action={this.saveAndRestart} />
           </div>
           <div className='module'>
             <div className='sub-header sub'>

@@ -22,7 +22,7 @@ import { ReactComponent as CrucibleIconIronBanner } from '../../../media/crucibl
 import './styles.css';
 
 const crucibleRotators = [
-  // 3753505781, // Iron Banner
+  3753505781, // Iron Banner
   2303927902, // Clash
   3780095688, // Supremacy
   1219083526, // Team Scorched
@@ -83,7 +83,7 @@ class CrucibleRotators extends React.Component {
     });
 
     return (
-      <>
+      <div className='user-module crucible-rotators'>
         <div className='sub-header'>
           <div>{manifest.DestinyPlaceDefinition[4088006058]?.displayProperties.name}</div>
         </div>
@@ -103,7 +103,7 @@ class CrucibleRotators extends React.Component {
             );
           })}
         </div>
-      </>
+      </div>
     );
   }
 }

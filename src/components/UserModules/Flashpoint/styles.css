@@ -1,8 +1,8 @@
-.module .flashpoint {
+.user-module.flashpoint {
   position: relative;
 }
 
-.module .flashpoint .icon {
+.user-module.flashpoint .icon {
   position: absolute;
   top: -24px;
   right: 0;
@@ -12,17 +12,17 @@
   opacity: 0.5;
 }
 
-.module .flashpoint .icon svg {
+.user-module.flashpoint .icon svg {
   height: 100%;
   width: 100%;
 }
 
-.module .flashpoint .text {
+.user-module.flashpoint .text {
   position: relative;
 }
 
 @media screen and (max-width: 600px) {
-  .module .flashpoint .icon {
+  .user-module.flashpoint .icon {
     opacity: 0.25;
   }
 }
