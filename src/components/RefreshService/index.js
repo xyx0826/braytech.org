@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 
 import getMember from '../../utils/getMember';
 import store from '../../store';
+import Spinner from '../UI/Spinner';
+
+import './styles.css';
 
 const AUTO_REFRESH_INTERVAL = 30 * 1000;
 const TIMEOUT = 60 * 60 * 1000;
 
 class RefreshService extends React.Component {
-  running = false;
+  state = {
+    loading: false
+  }
 
   componentDidMount() {
     // start the countdown
@@ -44,14 +49,23 @@ class RefreshService extends React.Component {
   }
 
   render() {
-    return null;
+    const { loading } = this.state;
+
+    if (loading) {
+      return (
+        <div id='refresh-service'>
+          <Spinner mini />
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 
   init() {
     if (this.props.member.membershipId && this.props.refreshService.config.enabled) {
-      // console.log('RefreshService: init');
-
       this.track();
+
       document.addEventListener('click', this.clickHandler);
       document.addEventListener('visibilitychange', this.visibilityHandler);
 
@@ -60,8 +74,6 @@ class RefreshService extends React.Component {
   }
 
   quit() {
-    // console.log('RefreshService: quit');
-
     document.removeEventListener('click', this.clickHandler);
     document.removeEventListener('visibilitychange', this.visibilityHandler);
 
@@ -96,6 +108,13 @@ class RefreshService extends React.Component {
   };
 
   service = async () => {
+
+    // service is already asking for fresh data
+    if (this.state.loading) {
+      return;
+    }
+
+    // user has been inactive for TIMEOUT so we'll stop pinging the API
     if (!this.activeWithinTimespan(TIMEOUT)) {
       return;
     }
@@ -103,6 +122,8 @@ class RefreshService extends React.Component {
     const { membershipType, membershipId, characterId } = this.props.member;
 
     try {
+      this.setState({ loading: true });
+
       const data = await getMember(membershipType, membershipId, true);
 
       ['profile', 'groups', 'milestones'].forEach(key => {
@@ -126,8 +147,11 @@ class RefreshService extends React.Component {
           }
         });
       }
+
+      this.setState({ loading: false });
+
     } catch (e) {
-      console.warn(`Error while refreshing profile, ignoring: (${e.name}, ${e.message})`);
+      console.warn(`Error while refreshing profile - ignoring`, e);
     }
   };
 }

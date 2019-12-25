@@ -100,7 +100,12 @@ export const headOverride = {
     },
     {
       id: 'head-col-2',
-      mods: []
+      mods: [
+        {
+          id: 'WeeklyVanguardSinge-0',
+          component: 'WeeklyVanguardSinge'
+        }
+      ]
     },
     {
       id: 'head-col-3',

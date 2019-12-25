@@ -1,0 +1,16 @@
+#refresh-service {
+  position: absolute;
+  right: 3rem;
+  top: calc(152px + 3rem);
+  z-index: 300;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 600px) {
+
+  #refresh-service {
+    right: 2rem;
+    top: calc(112px + 3rem);
+  }
+
+}

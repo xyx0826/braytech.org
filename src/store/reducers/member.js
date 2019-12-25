@@ -143,6 +143,11 @@ export default function memberReducer(state = defaultState, action) {
         stale: false,
         error: false
       };
+    case 'MEMBER_LOADING':
+      return {
+        ...state,
+        loading: true
+      };
     case 'MEMBER_IS_STALE':
       return {
         ...state,

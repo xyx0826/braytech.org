@@ -9,6 +9,7 @@ import { DestinyKey } from '../../../components/UI/Button';
 
 import Flashpoint from '../../../components/UserModules/Flashpoint';
 import Events from '../../../components/UserModules/Events';
+import WeeklyVanguardSinge from '../../../components/UserModules/WeeklyVanguardSinge';
 import CrucibleRotators from '../../../components/UserModules/CrucibleRotators';
 import Nightfalls from '../../../components/UserModules/Nightfalls';
 import Raid from '../../../components/UserModules/Raid';
@@ -39,6 +40,9 @@ class ThisWeek extends React.Component {
     },
     CrucibleRotators: {
       c: CrucibleRotators
+    },
+    WeeklyVanguardSinge: {
+      c: WeeklyVanguardSinge
     },
     Nightfalls: {
       c: Nightfalls
