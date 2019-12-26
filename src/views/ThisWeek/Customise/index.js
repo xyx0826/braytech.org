@@ -384,6 +384,10 @@ class Customise extends React.Component {
       name: manifest.DestinyMilestoneDefinition[463010297]?.displayProperties.name,
       description: manifest.DestinyMilestoneDefinition[463010297]?.displayProperties.description
     },
+    WeeklyVanguardSinge: {
+      name: this.props.t('Vanguard singe'),
+      description: this.props.t('The elemental burn shared by most activities this week.')
+    },
     CrucibleRotators: {
       name: manifest.DestinyPlaceDefinition[4088006058]?.displayProperties.name,
       description: this.props.t('Crucible modes that are currently in rotation and available for you to test your vigour in against other Guardians.')

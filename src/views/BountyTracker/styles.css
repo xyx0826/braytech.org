@@ -11,7 +11,7 @@
 }
 
 #bounty-tracker .list.bounties > li:not(.header) > ul > li {
-  padding: 10px 0;
+  padding: 6px 0;
 }
 
 #bounty-tracker .list.bounties > li::after {
@@ -29,7 +29,7 @@
 #bounty-tracker .list.bounties > li > ul {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 48px minmax(280px, 800px) minmax(200px, auto) minmax(100px, 180px) minmax(100px, 140px);
+  grid-template-columns: 36px minmax(280px, 800px) minmax(200px, auto) minmax(100px, 180px) minmax(100px, 140px);
   align-items: center;
 }
 
@@ -80,7 +80,7 @@
 }
 
 #bounty-tracker .list.bounties > li > ul > .bounty-text .name {
-  margin: 0 0 6px;
+  margin: 0 0 2px;
   font-size: 16px;
 }
 
@@ -90,7 +90,7 @@
 
 #bounty-tracker .list.bounties > li > ul > .bounty-text .description pre {
   white-space: pre-line;
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
 #bounty-tracker .list.bounties > li > ul > .objectives .progress-bar {
