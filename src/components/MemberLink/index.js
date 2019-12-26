@@ -14,6 +14,7 @@ import store from '../../store';
 import ObservedImage from '../ObservedImage';
 import Spinner from '../UI/Spinner';
 import { Button, DestinyKey } from '../UI/Button';
+import Characters from '../UI/Characters';
 import Flair from '../UI/Flair';
 import Ranks from '../Ranks';
 
@@ -184,6 +185,7 @@ class MemberLink extends React.Component {
 
   deactivateOverlay = e => {
     e.stopPropagation();
+
     if (this.mounted) {
       this.setState((prevState, props) => {
         prevState.overlay = false;
@@ -191,6 +193,10 @@ class MemberLink extends React.Component {
       });
     }
   };
+
+  handler_onCharacterClick = characterId => e => {
+    store.dispatch({ type: 'MEMBER_LOAD_MEMBERSHIP', payload: { membershipType: this.membershipType, membershipId: this.props.id, characterId: characterId } });
+  }
 
   render() {
     const { t, id, displayName, characterId, hideFlair, showClassIcon, hideEmblemIcon } = this.props;
@@ -295,53 +301,7 @@ class MemberLink extends React.Component {
                       <div className='sub-header'>
                         <div>{t('Characters')}</div>
                       </div>
-                      <div className='characters'>
-                        {this.state.all.data.characters.data.map(c => {
-                          const lastActivity = lastActivities.find(a => a.characterId === c.characterId);
-
-                          const state = (
-                            <>
-                              <div className='activity'>{lastActivity.lastActivityString}</div>
-                              <Moment fromNow>{lastActivity.lastPlayed}</Moment>
-                            </>
-                          );
-
-                          return (
-                            <div key={c.characterId} className='char'>
-                              <Button
-                                className='linked'
-                                anchor
-                                to={`/${this.membershipType}/${id}/${c.characterId}`}
-                                action={() => {
-                                  store.dispatch({ type: 'MEMBER_LOAD_MEMBERSHIP', payload: { membershipType: this.membershipType, membershipId: id, characterId: c.characterId } });
-                                }}
-                              >
-                                <div className='icon'>
-                                  <i
-                                    className={`destiny-class_${utils
-                                      .classTypeToString(c.classType)
-                                      .toString()
-                                      .toLowerCase()}`}
-                                  />
-                                </div>
-                                <div className='text'>
-                                  <div>
-                                    {utils.raceHashToString(c.raceHash, c.genderType, true)} {utils.classHashToString(c.classHash, c.genderType)}
-                                  </div>
-                                  <div>
-                                    <span>{c.baseCharacterLevel}</span>
-                                    <span>
-                                      <span>{c.light}</span>
-                                    </span>
-                                  </div>
-                                </div>
-                              </Button>
-                              {c.titleRecordHash ? <div className='title'>{manifest.DestinyRecordDefinition[c.titleRecordHash].titleInfo.titlesByGenderHash[c.genderHash]}</div> : null}
-                              <div className='state'>{state}</div>
-                            </div>
-                          );
-                        })}
-                      </div>
+                      <Characters member={{ data: { profile: this.state.all.data }, membershipId: id, membershipType: this.membershipType, characterId: lastCharacterPlayed }} characterClick={this.handler_onCharacterClick} mini />
                     </div>
                     <div className='module'>
                       <div className='sub-header'>

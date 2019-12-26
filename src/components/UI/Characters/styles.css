@@ -275,3 +275,60 @@
     height: 7px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+.characters-list.mini {
+  width: 100%;
+}
+
+.characters-list.mini .char .button {
+  height: 38px;
+  max-width: unset;
+  padding-bottom: unset;
+  display: grid;
+  grid-template-columns: calc(38px + 16px) 1fr min-content;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.characters-list.mini .char .button .image.emblem {
+  position: relative;
+  width: 38px;
+}
+
+.characters-list.mini .char .button .class {
+  position: unset;
+  left: unset;
+  top: unset;
+  font-size: 16px;
+}
+
+.characters-list.mini .char .button .species,
+.characters-list.mini .char .button .progress-bar {
+  display: none;
+}
+
+.characters-list.mini .char .button .light {
+  position: relative;
+  right: unset;
+  top: unset;
+  padding: 0 1rem 0 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+.characters-list.mini .char .button .light:before {
+  left: -8px;
+  top: 3px;
+  font-size: 7px;
+}

@@ -44,7 +44,7 @@ class Profile extends React.Component {
             </div>
           </div>
         </div>
-        <Characters data={member.data} location={location} characterClick={this.props.onCharacterClick} />
+        <Characters member={member} location={location} characterClick={this.props.onCharacterClick} />
       </div>
     );
   }

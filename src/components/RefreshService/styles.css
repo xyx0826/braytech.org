@@ -2,7 +2,7 @@
   position: absolute;
   right: 3rem;
   top: calc(152px + 3rem);
-  z-index: 300;
+  z-index: 16;
   pointer-events: none;
 }
 

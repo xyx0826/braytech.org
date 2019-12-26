@@ -242,13 +242,13 @@ html.backdropfilter #member-overlay .background .acrylic {
   max-width: 1280px;
   width: 100%;
   display: grid;
-  grid-template-columns: 1.4fr 2fr 2fr;
+  grid-template-columns: 0.8fr 1fr 1fr;
   grid-gap: 3rem;
   font-size: 14px;
 }
 
-#member-overlay .wrapper-inner .sub-header ~ .sub-header {
-  margin: 2rem 0 1rem;
+#member-overlay .wrapper-inner .sub-header {
+  margin: 24px 0 20px;
 }
 
 #member-overlay .wrapper-inner .names {

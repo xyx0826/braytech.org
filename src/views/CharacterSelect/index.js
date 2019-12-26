@@ -21,7 +21,7 @@ class CharacterSelect extends React.Component {
     window.scrollTo(0, 0);
   }
 
-  characterClick = characterId => {
+  characterClick = characterId => e => {
     const { membershipType, membershipId } = this.props.member;
 
     ls.set('setting.profile', { membershipType, membershipId, characterId });
