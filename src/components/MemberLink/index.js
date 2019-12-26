@@ -171,7 +171,7 @@ class MemberLink extends React.Component {
   };
 
   activateOverlay = async e => {
-    if (this.props.disableOverlay) return;
+    if (this.props.disableOverlay || !(!this.state.basic.loading && this.state.basic.data)) return;
 
     e.stopPropagation();
 
@@ -215,7 +215,7 @@ class MemberLink extends React.Component {
     const primaryFlair = flair && flair.trophies.find(t => t.primary);
 
     const memberLink = (
-      <div className='member-link' onClick={this.activateOverlay}>
+      <div className={cx('member-link', { wait: !(!this.state.basic.loading && this.state.basic.data) })} onClick={this.activateOverlay}>
         {!hideFlair && primaryFlair ? (
           <div className={cx('user-flair', primaryFlair.classnames)}>
             <i className={primaryFlair.icon} />
@@ -233,7 +233,7 @@ class MemberLink extends React.Component {
                 />
               </div>
             ) : !hideEmblemIcon ? (
-              <ObservedImage className='image' src={`https://www.bungie.net${characterBasic.emblemPath}`} />
+              <ObservedImage className='image' src={`https://www.bungie.net${characterBasic.emblemPath || '/img/misc/missing_icon_d2.png'}`} />
             ) : null
           ) : null}
         </div>

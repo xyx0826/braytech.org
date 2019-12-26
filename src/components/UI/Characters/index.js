@@ -56,7 +56,7 @@ class Characters extends React.Component {
                   className={cx('image', 'emblem', {
                     missing: !emblemPath
                   })}
-                  src={`https://www.bungie.net${emblemPath || `/img/misc/missing_icon_d2.png`}`}
+                  src={`https://www.bungie.net${emblemPath || '/img/misc/missing_icon_d2.png'}`}
                 />
                 <div className='class'>{utils.classHashToString(character.classHash, character.genderType)}</div>
                 <div className='species'>{utils.raceHashToString(character.raceHash, character.genderType)}</div>
