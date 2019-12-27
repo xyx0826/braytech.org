@@ -30,7 +30,8 @@ class DreamingCityCurseCycle extends React.Component {
         </div>
         <h3>{rotation[cycleInfo.week.curse].strength}</h3>
         <div className='text'>
-          <p><em>{t('The Dreaming City is in stage {{week}} of its ongoing curse.', { week: cycleInfo.week.curse })}</em></p>
+          <p>{t('The Dreaming City is in stage {{week}} of its ongoing curse.', { week: cycleInfo.week.curse })}</p>
+          <p><em>{t("Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.")}</em></p>
         </div>
         <div className='icon'>
           <CurseCycle />
