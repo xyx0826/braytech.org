@@ -4,9 +4,9 @@
 
 .user-module.flashpoint .icon {
   position: absolute;
-  top: -24px;
+  top: 0;
   right: 0;
-  height: 130%;
+  height: 100%;
   width: 80%;
   pointer-events: none;
   opacity: 0.5;

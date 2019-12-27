@@ -109,7 +109,12 @@ export const headOverride = {
     },
     {
       id: 'head-col-3',
-      mods: []
+      mods: [
+        {
+          id: 'DreamingCityCurseCycle-0',
+          component: 'DreamingCityCurseCycle'
+        }
+      ]
     }
   ]
 };
@@ -430,6 +435,10 @@ class Customise extends React.Component {
       description: manifest.DestinyInventoryItemDefinition[128980839]?.displayProperties.description
     },
     DreamingCityCurse: {
+      name: `${manifest.DestinyPresentationNodeDefinition[2516503814]?.displayProperties.name}: ${this.props.t("Savathûn's Curse")}`,
+      description: manifest.DestinyActivityDefinition[1893059148]?.displayProperties.description
+    },
+    DreamingCityCurseCycle: {
       name: `${manifest.DestinyPresentationNodeDefinition[2516503814]?.displayProperties.name}: ${this.props.t("Savathûn's Curse")}`,
       description: manifest.DestinyActivityDefinition[1893059148]?.displayProperties.description
     },

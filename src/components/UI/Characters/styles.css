@@ -298,6 +298,7 @@
   grid-template-columns: calc(38px + 16px) 1fr min-content;
   justify-content: space-between;
   align-items: center;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .characters-list.mini .char .button .image.emblem,

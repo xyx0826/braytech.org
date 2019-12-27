@@ -14,9 +14,9 @@
 
 .user-module.weekly-vanguard-singe .icon .outer {
   position: absolute;
-  top: -24px;
+  top: 0;
   right: 0;
-  height: 210%;
+  height: 100%;
   width: 80%;
   pointer-events: none;
   opacity: 0.2;
@@ -50,7 +50,6 @@
 @media screen and (max-width: 600px) {
 
   .user-module.weekly-vanguard-singe .icon .outer {
-    height: 130%;
     opacity: 0.1;
   }
 

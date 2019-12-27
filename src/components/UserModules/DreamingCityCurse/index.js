@@ -13,7 +13,7 @@ class DreamingCityCurse extends React.Component {
 
     const rotation = {
       1: {
-        strength: t('Weak'),
+        strength: t('Lesser'),
         triumphs: [
           // DestinyRecordDefinition.Hashes
           2144075646, // The Scorn Champion (Heroic Blind Well)
@@ -39,7 +39,7 @@ class DreamingCityCurse extends React.Component {
         checklists: []
       },
       3: {
-        strength: t('Full strength'),
+        strength: t('Greater'),
         triumphs: [
           2144075645, // The Taken Champion (Heroic Blind Well)
           3675740698, // War Chests (Ascendant Chests)
@@ -65,7 +65,7 @@ class DreamingCityCurse extends React.Component {
         <div className='sub-header'>
           <div>{t("Savathûn's Curse")}</div>
         </div>
-        <h3>{t('Week')} {cycleInfo.week.curse}: {rotation[cycleInfo.week.curse].strength}</h3>
+        <h3>{t('Stage')} {cycleInfo.week.curse}: {rotation[cycleInfo.week.curse].strength}</h3>
         <h4>{t('Triumphs')}</h4>
         <ul className='list record-items'>
           <Records selfLinkFrom='/this-week' hashes={rotation[cycleInfo.week.curse].triumphs} ordered />

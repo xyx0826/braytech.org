@@ -15,6 +15,7 @@ import Nightfalls from '../../../components/UserModules/Nightfalls';
 import Raid from '../../../components/UserModules/Raid';
 import DreamingCityAscendantChallenge from '../../../components/UserModules/DreamingCityAscendantChallenge';
 import DreamingCityCurse from '../../../components/UserModules/DreamingCityCurse';
+import DreamingCityCurseCycle from '../../../components/UserModules/DreamingCityCurseCycle';
 import DreamingCityShatteredThrone from '../../../components/UserModules/DreamingCityShatteredThrone';
 import Menagerie from '../../../components/UserModules/Menagerie';
 import EscalationProtocol from '../../../components/UserModules/EscalationProtocol';
@@ -55,6 +56,9 @@ class ThisWeek extends React.Component {
     },
     DreamingCityCurse: {
       c: DreamingCityCurse
+    },
+    DreamingCityCurseCycle: {
+      c: DreamingCityCurseCycle
     },
     DreamingCityShatteredThrone: {
       c: DreamingCityShatteredThrone
