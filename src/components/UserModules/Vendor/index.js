@@ -97,7 +97,7 @@ class Vendor extends React.Component {
     // const displayCategories = [...definitionVendor.displayCategories];
 
     return (
-      <>
+      <div className='user-module vendor'>
         <div className='sub-header'>
           <div>{t('Vendor')}</div>
         </div>
@@ -118,7 +118,7 @@ class Vendor extends React.Component {
           }
           
         })}
-      </>
+      </div>
     );
   }
 }

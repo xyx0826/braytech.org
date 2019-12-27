@@ -50,7 +50,7 @@ class DailyVanguardModifiers extends React.Component {
 
     if (vanguardStrikes) {
       return (
-        <>
+        <div className='user-module daily-vanguard-modifiers'>
           <div className='sub-header'>
             <div>{t('Vanguard Ops')}</div>
           </div>
@@ -79,10 +79,10 @@ class DailyVanguardModifiers extends React.Component {
               );
             })}
           </ul>
-        </>
+        </div>
       );
     } else {
-      return <></>;
+      return null;
     }
   }
 }

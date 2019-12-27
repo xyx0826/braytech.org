@@ -41,7 +41,7 @@ class BlackArmoryForges extends React.Component {
     const definitionActivity = manifest.DestinyActivityDefinition[dailyBlackArmoryForges.active.activityHash];
 
     return (
-      <>
+      <div className='user-module black-armory-forges'>
         <div className='sub-header'>
           <div>{t('Black Armory Forges')}</div>
         </div>
@@ -57,7 +57,7 @@ class BlackArmoryForges extends React.Component {
             <div className='text'>{definitionActivity.displayProperties.name}</div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
