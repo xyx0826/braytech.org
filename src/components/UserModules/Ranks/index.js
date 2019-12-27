@@ -15,7 +15,7 @@ class RanksComp extends React.Component {
     const profileRecords = member.data.profile.profileRecords.data.records;
 
     return (
-      <>
+      <div className='user-module ranks'>
         <div className='sub-header'>
           <div>{t('Ranks')}</div>
         </div>
@@ -24,7 +24,7 @@ class RanksComp extends React.Component {
             return <Ranks key={hash} hash={hash} data={{ membershipType: member.membershipType, membershipId: member.membershipId, characterId: member.characterId, characters: member.data.profile.characters.data, characterProgressions, characterRecords, profileRecords }} />;
           })}
         </div>
-      </>
+      </div>
     );
   }
 }

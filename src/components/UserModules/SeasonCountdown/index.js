@@ -59,7 +59,7 @@ class SeasonCountdown extends React.Component {
     const definitionSeason = manifest.DestinySeasonDefinition[profile.currentSeasonHash];
 
     return (
-      <div className='countdown'>
+      <div className='user-module season-countdown'>
         <div className='sub-header'>
           <div>{t('Season countdown')}</div>
         </div>

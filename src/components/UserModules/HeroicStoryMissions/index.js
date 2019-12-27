@@ -31,7 +31,7 @@ class HeroicStoryMissions extends React.Component {
     };
 
     return (
-      <>
+      <div className='user-module heroic-story-missions'>
         <div className='sub-header'>
           <div>{dailyHeroicStories.displayProperties.name}</div>
         </div>
@@ -75,7 +75,7 @@ class HeroicStoryMissions extends React.Component {
             ['asc']
           ).map(e => e.el)}
         </ul>
-      </>
+      </div>
     );
   }
 }
