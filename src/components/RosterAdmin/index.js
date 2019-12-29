@@ -26,7 +26,7 @@ class Actions extends React.Component {
     };
   }
 
-  memberRank = async (membershipId, promote = false) => {
+  memberRank = (membershipId, promote = false) => async e => {
     const { groupMembers } = this.props;
 
     let member = groupMembers.members.concat(groupMembers.pending).find(r => r.destinyUserInfo.membershipId === membershipId);
@@ -55,7 +55,7 @@ class Actions extends React.Component {
     }
   };
 
-  memberKick = async membershipId => {
+  memberKick = membershipId => async e => {
     const { groupMembers } = this.props;
 
     let member = groupMembers.members.concat(groupMembers.pending).find(r => r.destinyUserInfo.membershipId === membershipId);
@@ -90,7 +90,7 @@ class Actions extends React.Component {
     }
   };
 
-  memberApprove = async membershipId => {
+  memberApprove = membershipId => async e => {
     const { groupMembers } = this.props;
     const group = this.props.member.data.groups.results.length > 0 ? this.props.member.data.groups.results[0].group : false;
 
@@ -125,7 +125,7 @@ class Actions extends React.Component {
     }
   };
 
-  memberDeny = async membershipId => {
+  memberDeny = membershipId => async e => {
     const { groupMembers } = this.props;
 
     let member = groupMembers.members.concat(groupMembers.pending).find(r => r.destinyUserInfo.membershipId === membershipId);
@@ -160,7 +160,7 @@ class Actions extends React.Component {
     }
   };
 
-  memberBan = async membershipId => {
+  memberBan = membershipId => async e => {
     const { groupMembers } = this.props;
 
     let member = groupMembers.members.concat(groupMembers.pending).find(r => r.destinyUserInfo.membershipId === membershipId);
@@ -200,62 +200,124 @@ class Actions extends React.Component {
     if (member.pending) {
       return (
         <>
-          <Button
-            text={t('Approve')}
-            disabled={this.state.frozen || !available}
-            action={() => {
-              this.memberApprove(member.destinyUserInfo.membershipId);
-            }}
-          />
-          <Button
-            text={t('Deny')}
-            disabled={this.state.frozen || !available}
-            action={() => {
-              this.memberDeny(member.destinyUserInfo.membershipId);
-            }}
-          />
-          <Button
-            text={t('Ban')}
-            className={cx({ primed: this.state.primed })}
-            disabled={this.state.frozen || !available}
-            action={() => {
-              this.memberBan(member.destinyUserInfo.membershipId);
-            }}
-          />
+          <Button text={t('Approve')} disabled={this.state.frozen || !available} action={this.memberApprove(member.destinyUserInfo.membershipId)} />
+          <Button text={t('Deny')} disabled={this.state.frozen || !available} action={this.memberDeny(member.destinyUserInfo.membershipId)} />
+          <Button text={t('Ban')} className={cx({ primed: this.state.primed })} disabled={this.state.frozen || !available} action={this.memberBan(member.destinyUserInfo.membershipId)} />
         </>
       );
     } else {
       return (
         <>
-          <Button
-            text={t('Promote')}
-            disabled={this.state.frozen || !available || member.memberType > 2}
-            action={() => {
-              this.memberRank(member.destinyUserInfo.membershipId, true);
-            }}
-          />
-          <Button
-            text={t('Demote')}
-            disabled={this.state.frozen || !available || member.memberType > 3 || member.memberType === 1}
-            action={() => {
-              this.memberRank(member.destinyUserInfo.membershipId, false);
-            }}
-          />
-          <Button
-            text={t('Kick')}
-            className={cx({ primed: this.state.primed })}
-            disabled={this.state.frozen || !available || member.memberType === 5}
-            action={() => {
-              this.memberKick(member.destinyUserInfo.membershipId);
-            }}
-          />
+          <Button text={t('Promote')} disabled={this.state.frozen || !available || member.memberType > 2} action={this.memberRank(member.destinyUserInfo.membershipId, true)} />
+          <Button text={t('Demote')} disabled={this.state.frozen || !available || member.memberType > 3 || member.memberType === 1} action={this.memberRank(member.destinyUserInfo.membershipId, false)} />
+          <Button text={t('Kick')} className={cx({ primed: this.state.primed })} disabled={this.state.frozen || !available || member.memberType === 5} action={this.memberKick(member.destinyUserInfo.membershipId)} />
         </>
       );
     }
   }
 }
 
+class DownloadData extends React.Component {
+  state = {
+    generated: false
+  }
+
+  handler_generate = e => {
+    const { groupMembers } = this.props;
+
+    if (!this.state.generated) {
+      e.preventDefault();
+    } else {
+      return;
+    }
+
+    const members = groupMembers.members.map(m => {
+
+      const isPrivate = !m.profile || !m.profile.characterActivities.data || !m.profile.characters.data.length;
+
+      const characterIds = !isPrivate ? m.profile.characters.data.map(c => c.characterId) : [];
+
+      const lastActivities = utils.lastPlayerActivity(m);
+      const { characterId: lastCharacterId, lastPlayed, lastActivity, lastActivityString, lastMode } = orderBy(lastActivities, [a => a.lastPlayed], ['desc'])[0];
+
+      const weeklyXp = !isPrivate
+        ? characterIds.reduce((currentValue, characterId) => {
+          let characterProgress = m.profile.characterProgressions.data[characterId].progressions[540048094].weeklyProgress || 0;
+          return characterProgress + currentValue;
+        }, 0)
+        : 0;
+      
+      const seasonRank = !isPrivate ? utils.progressionSeasonRank({ characterId: m.profile.characters.data[0].characterId, data: m }).level : 0;
+
+      const triumphScore = !isPrivate ? m.profile.profileRecords.data.score : 0;
+      
+      let valorPoints = !isPrivate ? m.profile.characterProgressions.data[m.profile.characters.data[0].characterId].progressions[2626549951].currentProgress : 0;
+      let valorResets = !isPrivate ? utils.calculateResets(3882308435, m.profile.characters.data[0].characterId, m.profile.characterProgressions.data, m.profile.characterRecords.data, m.profile.profileRecords.data.records).total : 0;
+      let gloryPoints = !isPrivate ? m.profile.characterProgressions.data[m.profile.characters.data[0].characterId].progressions[2000925172].currentProgress : 0;
+      let infamyPoints = !isPrivate ? m.profile.characterProgressions.data[m.profile.characters.data[0].characterId].progressions[2772425241].currentProgress : 0;
+      let infamyResets = !isPrivate ? utils.calculateResets(2772425241, m.profile.characters.data[0].characterId, m.profile.characterProgressions.data, m.profile.characterRecords.data, m.profile.profileRecords.data.records).total : 0;
+
+      const preferredClass = !isPrivate ? m.profile.characters.data[0].classType : null;
+
+      // required by CSV spec
+      const displayName = `"${(m.destinyUserInfo.LastSeenDisplayName || m.destinyUserInfo.displayName).replace(/"/g, '""')}"`;
+
+      return {
+        isPrivate,
+        membershipId: m.destinyUserInfo.membershipId,
+        displayName,
+        lastPlayed,
+        preferredClass,
+        joinDate: m.joinDate,
+        weeklyClanXP: weeklyXp,
+        seasonRank,
+        triumphScore,
+        glorySeason: gloryPoints,
+        valorSeason: valorPoints,
+        valorResets,
+        infamySeason: infamyPoints,
+        infamyResets
+      }
+    });
+
+    const keys = members && members.length && Object.keys(members[0]);
+    const values = members.reduce((a, v) => {
+      const values = v.isPrivate ? [true, v.membershipId, v.displayName, '', '', v.joinDate, '', '', '', '', '', '', '', ''] : Object.values(v);
+
+      return [...a, values];
+    }, []);
+
+    const csv = `${keys.join(',')}\n${values.map(m => `${m.join(',')}`).join(`\n`)}`;
+
+    const url = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+    this.setState({ generated: url });
+  }
+
+  componentDidUpdate(p, s) {
+    if (p.groupMembers.lastUpdated !== this.props.groupMembers.lastUpdated) {
+      this.setState({ generated: false })
+    }
+  }
+
+  render() {
+    const { t, groupMembers } = this.props;
+
+    const buttonDisabled = !groupMembers.groupId || groupMembers.loading;
+    const time = new Date().toISOString();
+
+    return (
+      <div className='download-data'>
+        <a className={cx('button', { disabled: buttonDisabled })} href={this.state.generated || undefined} download={`Braytech-Clans_${groupMembers.groupId}_${time}.csv`} onClick={this.handler_generate}>
+          <div className='text'>{this.state.generated ? t('Download CSV file') : t('Generate CSV file')}</div>
+        </a>
+      </div>
+    )
+  }
+}
+
 Actions = compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(Actions);
+DownloadData = compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(DownloadData);
 
 class RosterAdmin extends React.Component {
   constructor(props) {
@@ -390,7 +452,7 @@ class RosterAdmin extends React.Component {
             <li key={m.destinyUserInfo.membershipType + m.destinyUserInfo.membershipId} className={cx('row', { self: isSelf })}>
               <ul>
                 <li className='col member'>
-                  <MemberLink type={m.destinyUserInfo.membershipType} id={m.destinyUserInfo.membershipId} groupId={m.destinyUserInfo.groupId} displayName={m.destinyUserInfo.displayName} hideEmblemIcon={!m.isOnline} />
+                  <MemberLink type={m.destinyUserInfo.membershipType} id={m.destinyUserInfo.membershipId} groupId={m.destinyUserInfo.groupId} displayName={m.destinyUserInfo.LastSeenDisplayName || m.destinyUserInfo.displayName} hideEmblemIcon={!m.isOnline} />
                 </li>
                 {!isPrivate ? (
                   <>
@@ -538,6 +600,7 @@ class RosterAdmin extends React.Component {
               : members.filter(m => !m.pending).map(m => m.el.mini)
             : members.filter(m => !m.pending).map(m => m.el.full)}
         </ul>
+        {!mini && <DownloadData />}
         {mini ? (
           <ProfileLink className='button' to='/clan/roster'>
             <div className='text'>{t('See full roster')}</div>

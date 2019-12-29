@@ -40,7 +40,11 @@
   grid-column: 1/end;
 }
 
-
+#clan.admin .download-data {
+  margin: 2rem 0 0;
+  display: grid;
+  justify-content: right;
+}
 
 
 

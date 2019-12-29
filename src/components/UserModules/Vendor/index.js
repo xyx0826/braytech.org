@@ -100,7 +100,6 @@ class Vendor extends React.Component {
         {definitionVendor.displayCategories.map((category, c) => {
           if (itemsGrouped[category.index]) {
             if (category.identifier === 'category_materials_exchange' && definitionVendor.hash === 863940356) {
-              console.log(itemsGrouped[category.index]);
               return (
                 <React.Fragment key={c}>
                   <h4>{category.displayProperties.name}</h4>

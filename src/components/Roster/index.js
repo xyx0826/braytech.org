@@ -75,66 +75,6 @@ class Roster extends React.Component {
     }));
   };
 
-  calculateResets = (progressionHash, characterId, characterProgressions, characterRecords, profileRecords) => {
-    const infamySeasons = [{ recordHash: 3901785488, objectiveHash: 4210654397 }].map(season => {
-      const definitionRecord = manifest.DestinyRecordDefinition[season.recordHash];
-
-      const recordScope = definitionRecord.scope || 0;
-      const recordData = recordScope === 1 ? characterRecords && characterRecords[characterId].records[definitionRecord.hash] : profileRecords && profileRecords[definitionRecord.hash];
-
-      season.resets = (recordData && recordData.objectives && recordData.objectives.find(o => o.objectiveHash === season.objectiveHash) && recordData.objectives.find(o => o.objectiveHash === season.objectiveHash).progress) || 0;
-
-      return season;
-    });
-
-    const valorSeasons = [
-      {
-        recordHash: 1341325320,
-        objectiveHash: 1089010148
-      },
-      {
-        recordHash: 2462707519,
-        objectiveHash: 2048068317
-      },
-      {
-        recordHash: 3666883430,
-        objectiveHash: 3211089622
-      },
-      {
-        recordHash: 2110987253,
-        objectiveHash: 1898743615
-      },
-      {
-        recordHash: 510151900,
-        objectiveHash: 2011701344
-      }
-    ].map(season => {
-      const definitionRecord = manifest.DestinyRecordDefinition[season.recordHash];
-
-      const recordScope = definitionRecord.scope || 0;
-      const recordData = recordScope === 1 ? characterRecords && characterRecords[characterId].records[definitionRecord.hash] : profileRecords && profileRecords[definitionRecord.hash];
-
-      season.resets = (recordData && recordData.objectives && recordData.objectives.find(o => o.objectiveHash === season.objectiveHash) && recordData.objectives.find(o => o.objectiveHash === season.objectiveHash).progress) || 0;
-
-      return season;
-    });
-
-    return {
-      current: characterProgressions[characterId].progressions[progressionHash] && Number.isInteger(characterProgressions[characterId].progressions[progressionHash].currentResetCount) ? characterProgressions[characterId].progressions[progressionHash].currentResetCount : '?',
-      // total:
-      //   characterProgressions[characterId].progressions[progressionHash] && characterProgressions[characterId].progressions[progressionHash].seasonResets
-      //     ? characterProgressions[characterId].progressions[progressionHash].seasonResets.reduce((acc, curr) => {
-      //         if (curr.season > 3) {
-      //           return acc + curr.resets;
-      //         } else {
-      //           return acc;
-      //         }
-      //       }, 0)
-      //     : '?'
-      total: (progressionHash === 3882308435 ? valorSeasons : infamySeasons).reduce((a, v) => a + v.resets, 0)
-    };
-  };
-
   createRow = m => {
     const { member } = this.props;
 
@@ -160,10 +100,10 @@ class Roster extends React.Component {
     const triumphScore = !isPrivate ? m.profile.profileRecords.data.score : 0;
 
     let valorPoints = !isPrivate ? m.profile.characterProgressions.data[m.profile.characters.data[0].characterId].progressions[2626549951].currentProgress : 0;
-    let valorResets = !isPrivate ? this.calculateResets(3882308435, m.profile.characters.data[0].characterId, m.profile.characterProgressions.data, m.profile.characterRecords.data, m.profile.profileRecords.data.records).total : 0;
+    let valorResets = !isPrivate ? utils.calculateResets(3882308435, m.profile.characters.data[0].characterId, m.profile.characterProgressions.data, m.profile.characterRecords.data, m.profile.profileRecords.data.records).total : 0;
     let gloryPoints = !isPrivate ? m.profile.characterProgressions.data[m.profile.characters.data[0].characterId].progressions[2000925172].currentProgress : 0;
     let infamyPoints = !isPrivate ? m.profile.characterProgressions.data[m.profile.characters.data[0].characterId].progressions[2772425241].currentProgress : 0;
-    let infamyResets = !isPrivate ? this.calculateResets(2772425241, m.profile.characters.data[0].characterId, m.profile.characterProgressions.data, m.profile.characterRecords.data, m.profile.profileRecords.data.records).total : 0;
+    let infamyResets = !isPrivate ? utils.calculateResets(2772425241, m.profile.characters.data[0].characterId, m.profile.characterProgressions.data, m.profile.characterRecords.data, m.profile.profileRecords.data.records).total : 0;
 
     const totalValor = utils.totalValor();
     const totalInfamy = utils.totalInfamy();
@@ -195,7 +135,7 @@ class Roster extends React.Component {
           <li key={m.destinyUserInfo.membershipType + m.destinyUserInfo.membershipId} className={cx('row', { self: isSelf })}>
             <ul>
               <li className='col member'>
-                <MemberLink type={m.destinyUserInfo.membershipType} id={m.destinyUserInfo.membershipId} groupId={m.destinyUserInfo.groupId} displayName={m.destinyUserInfo.displayName} hideEmblemIcon={!m.isOnline} />
+                <MemberLink type={m.destinyUserInfo.membershipType} id={m.destinyUserInfo.membershipId} groupId={m.destinyUserInfo.groupId} displayName={m.destinyUserInfo.LastSeenDisplayName || m.destinyUserInfo.displayName} hideEmblemIcon={!m.isOnline} />
               </li>
               {!isPrivate ? (
                 <>
