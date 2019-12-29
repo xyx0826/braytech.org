@@ -66,6 +66,9 @@ class Menagerie extends React.Component {
           <div>{manifest.DestinyPlaceDefinition[2096719558]?.displayProperties.name}</div>
         </div>
         <h3>{rotation[cycleInfo.week.menagerie].boss}</h3>
+        <div className='text'>
+          <p><em>{manifest.DestinyPlaceDefinition[2096719558]?.displayProperties?.description}</em></p>
+        </div>
         {heroicMenagerie ? (
           <>
             <h4>{t('Active modifiers')}</h4>

@@ -2,11 +2,13 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
+import ReactMarkdown from 'react-markdown';
 
 import Collectibles from '../../Collectibles';
 import Items from '../../Items';
 
 import './styles.css';
+import manifest from '../../../utils/manifest';
 
 class EscalationProtocol extends React.Component {
   render() {
@@ -14,58 +16,73 @@ class EscalationProtocol extends React.Component {
 
     const rotation = {
       1: {
-        boss: t('Nur Abath, Crest of Xol'),
+        boss: {
+          name: t('Nur Abath, Crest of Xol'),
+          description: t('As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.')
+        },
         items: [
           // https://github.com/Bungie-net/api/issues/732
-          3243866699 // Worldline Ideasthesia: Torsion
+          3243866699  // Worldline Ideasthesia: Torsion
         ],
         collectibles: [
-          1041306082 // IKELOS_SG
+          1041306082  // IKELOS_SG
         ]
       },
       2: {
-        boss: t('Kathok, Roar of Xol'),
+        boss: {
+          name: t('Kathok, Roar of Xol'),
+          description: t('A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.')
+        },
         triumphs: [],
         items: [
-          3243866698 // Worldline Ideasthesia: Anarkhiia
+          3243866698  // Worldline Ideasthesia: Anarkhiia
         ],
         collectibles: [
-          2998976141 // IKELOS_SMG
+          2998976141  // IKELOS_SMG
         ]
       },
       3: {
-        boss: t('Damkath, The Mask'),
+        boss: {
+          name: t('Damkath, The Mask'),
+          description: t("A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.")
+        },
         triumphs: [],
         items: [
           // https://youtu.be/lrPf16ZHevU?t=104
-          3243866697 //Worldline Ideasthesia: Cavalry
+          3243866697  //Worldline Ideasthesia: Cavalry
         ],
         collectibles: [
-          1203091693 // IKELOS_SR
+          1203091693  // IKELOS_SR
         ]
       },
       4: {
-        boss: t('Naksud, the Famine'),
+        boss: {
+          name: t('Naksud, the Famine'),
+          description: t('A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.')
+        },
         triumphs: [],
         items: [
-          3243866696 //  Worldline Ideasthesia: Faktura
+          3243866696  //  Worldline Ideasthesia: Faktura
         ],
         collectibles: [
           1041306082, // IKELOS_SG
           2998976141, // IKELOS_SMG
-          1203091693 // IKELOS_SR
+          1203091693  // IKELOS_SR
         ]
       },
       5: {
-        boss: t('Bok Litur, Hunger of Xol'),
+        boss: {
+          name: t('Bok Litur, Hunger of Xol'),
+          description: t('A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.')
+        },
         triumphs: [],
         items: [
-          3243866703 // Worldline Ideasthesia: Black Square
+          3243866703  // Worldline Ideasthesia: Black Square
         ],
         collectibles: [
           1041306082, // IKELOS_SG
           2998976141, // IKELOS_SMG
-          1203091693 // IKELOS_SR
+          1203091693  // IKELOS_SR
         ]
       }
     };
@@ -75,20 +92,24 @@ class EscalationProtocol extends React.Component {
         <div className='sub-header'>
           <div>{t('Escalation Protocol')}</div>
         </div>
-        <h3>{rotation[cycleInfo.week.ep].boss}</h3>
+        <h3>{rotation[cycleInfo.week.ep].boss.name}</h3>
+        <div className='text'>
+          <ReactMarkdown source={rotation[cycleInfo.week.ep].boss.description} />
+          <p><em>{manifest.DestinyInventoryItemDefinition[4132073280]?.displayProperties?.description}</em></p>
+        </div>
         <h4>{t('Collectibles')}</h4>
         <ul className='list collection-items'>
           <Collectibles selfLinkFrom='/this-week' hashes={rotation[cycleInfo.week.ep].collectibles} />
         </ul>
         <h4>{t('Catalyst item')}</h4>
-        <ul className='list inventory-items as-tab'>
+        <ul className='list inventory-items as-panels'>
           <Items
             items={rotation[cycleInfo.week.ep].items.map(i => {
               return {
                 itemHash: i
               };
             })}
-            asTab
+            asPanels
           />
         </ul>
         <div className='info'>{t('Braytech can not determine which Worldline Zero catalyst components you have attained, but it can tell you which bosses drop which items in case you happened to be keeping a list.')}</div>

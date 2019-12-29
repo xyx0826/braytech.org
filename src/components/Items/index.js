@@ -17,7 +17,7 @@ import './styles.css';
 
 class Items extends React.Component {
   render() {
-    const { member, items, order, noBorder, hideQuantity, showHash, inspect, action } = this.props;
+    const { member, items, order, noBorder, hideQuantity, asPanels, showHash, inspect, action } = this.props;
 
     let output = [];
 
@@ -83,6 +83,12 @@ class Items extends React.Component {
             <div className='icon'>
               <ObservedImage className='image' src={definitionItem.displayProperties.localIcon ? `${definitionItem.displayProperties.icon}` : `https://www.bungie.net${definitionItem.displayProperties.icon}`} />
             </div>
+            {asPanels ? (
+              <div className='text'>
+                <div className='name'>{definitionItem.displayProperties.name}</div>
+                {showHash ? <div className='hash'>{definitionItem.hash}</div> : null}
+              </div>
+            ) : null}
             {item.itemComponents?.objectives && item.itemComponents?.objectives.filter(o => !o.complete).length > 0 && !bucketsToExcludeFromInstanceProgressDisplay.includes(item.bucketHash) ? (
               <ProgressBar
                 progress={{

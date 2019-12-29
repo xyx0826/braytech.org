@@ -33,11 +33,11 @@
   margin: 0;
 }
 
-#this-week .group.head .module .text p {
+#this-week .group .module .text p {
   font-size: 16px;
 }
 
-#this-week .group.head .module .text p:last-child {
+#this-week .group .module .text p:last-child {
   font-size: 14px;
 }
 

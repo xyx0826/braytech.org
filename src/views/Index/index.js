@@ -160,8 +160,8 @@ class Index extends React.Component {
           {diffItems.length ? (
             <>
               <h4>{t('Items')}</h4>
-              <ul className='list inventory-items as-tab'>
-                <Items asTab items={diffItems.slice(0, 6).map(i => ({ itemHash: i }))} />
+              <ul className='list inventory-items as-panels'>
+                <Items asPanels items={diffItems.slice(0, 6).map(i => ({ itemHash: i }))} />
               </ul>
               {diffItems.length > 6 ? <div className='overflow'>{t('And {{diff}} more which are not displayed for the sake of brevity', { diff: diffItems.length - 6 })}</div> : null}
             </>

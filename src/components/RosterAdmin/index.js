@@ -225,9 +225,7 @@ class DownloadData extends React.Component {
   handler_generate = e => {
     const { groupMembers } = this.props;
 
-    if (!this.state.generated) {
-      e.preventDefault();
-    } else {
+    if (!groupMembers.members?.length) {
       return;
     }
 
@@ -296,8 +294,12 @@ class DownloadData extends React.Component {
 
   componentDidUpdate(p, s) {
     if (p.groupMembers.lastUpdated !== this.props.groupMembers.lastUpdated) {
-      this.setState({ generated: false })
+      this.handler_generate();
     }
+  }
+
+  componentDidMount() {
+    this.handler_generate();
   }
 
   render() {
@@ -308,8 +310,8 @@ class DownloadData extends React.Component {
 
     return (
       <div className='download-data'>
-        <a className={cx('button', { disabled: buttonDisabled })} href={this.state.generated || undefined} download={`Braytech-Clans_${groupMembers.groupId}_${time}.csv`} onClick={this.handler_generate}>
-          <div className='text'>{this.state.generated ? t('Download CSV file') : t('Generate CSV file')}</div>
+        <a className={cx('button', { disabled: buttonDisabled })} href={this.state.generated || undefined} download={`Braytech-Clans_${groupMembers.groupId}_${time}.csv`}>
+          <div className='text'>{t('Download roster data')}</div>
         </a>
       </div>
     )

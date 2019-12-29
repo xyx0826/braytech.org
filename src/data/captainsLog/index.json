@@ -893,5 +893,15 @@
     "date": "2019-12-27T13:29:55.037Z",
     "version": "2.13.15",
     "content": "- updates rollup"
+  },
+  {
+    "date": "2019-12-29T04:51:27.877Z",
+    "version": "2.13.17",
+    "content": "- added a CSV data export feature to _Clan Admin_ view"
+  },
+  {
+    "date": "2019-12-29T14:37:51.170Z",
+    "version": "2.13.18",
+    "content": "- added new handwritten copy to _This Week_ view modules to better explain the related activity and objectives"
   }
 ]

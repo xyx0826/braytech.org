@@ -4,6 +4,10 @@
   grid-gap: 3px;
 }
 
+.list.inventory-items.as-panels {
+  grid-template-columns: 1fr;
+}
+
 .list.inventory-items li {
   padding: 0;
   margin: 0;
@@ -14,6 +18,10 @@
 
 .list.inventory-items li::before {
   box-shadow: inset 0 0 0 2px rgb(185, 185, 185);
+}
+
+.list.inventory-items.as-panels li::before {
+  box-shadow: inset 0 0 0 1px rgba(214, 214, 214, 0.4);
 }
 
 .list.inventory-items li.masterworked::before {
@@ -56,6 +64,14 @@
   overflow: hidden;
 }
 
+.list.inventory-items.as-panels li .icon {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  flex-basis: 48px;
+  padding-bottom: 0;
+}
+
 .list.inventory-items li.subclass .icon .image {
   transform: rotate(-45deg) scale(1.4);
 }
@@ -88,6 +104,14 @@
 
 .list.inventory-items li .quantity.max-stack {
   color: #856621;
+}
+
+.list.inventory-items.as-panels li .text {
+  flex-basis: calc(100% - 48px - 1rem);
+  margin: 0 0 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
 }
 
 
