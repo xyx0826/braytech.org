@@ -18,7 +18,7 @@ class EscalationProtocol extends React.Component {
       1: {
         boss: {
           name: t('Nur Abath, Crest of Xol'),
-          description: t('As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.')
+          description: t('A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.')
         },
         items: [
           // https://github.com/Bungie-net/api/issues/732
@@ -31,7 +31,7 @@ class EscalationProtocol extends React.Component {
       2: {
         boss: {
           name: t('Kathok, Roar of Xol'),
-          description: t('A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.')
+          description: t('A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.')
         },
         triumphs: [],
         items: [
@@ -44,7 +44,7 @@ class EscalationProtocol extends React.Component {
       3: {
         boss: {
           name: t('Damkath, The Mask'),
-          description: t("A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.")
+          description: t("A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.")
         },
         triumphs: [],
         items: [
@@ -73,7 +73,7 @@ class EscalationProtocol extends React.Component {
       5: {
         boss: {
           name: t('Bok Litur, Hunger of Xol'),
-          description: t('A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.')
+          description: t('A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.')
         },
         triumphs: [],
         items: [

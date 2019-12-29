@@ -36,7 +36,7 @@ class Reckoning extends React.Component {
         </div>
         <h3>{rotation[cycleInfo.week.reckoning].boss}</h3>
         <div className='text'>
-          <p><em>{t("The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour.")}</em></p>
+          <p><em>{t("The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour.")}</em></p>
         </div>
         <h4>{t('Active modifiers')}</h4>
         <ul className='list modifiers'>
