@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { groupBy } from 'lodash';
+import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
 import * as bungie from '../../../utils/bungie';
@@ -25,7 +26,7 @@ class Vendor extends React.Component {
   componentDidMount() {
     const { vendorHash = 672118013 } = this.props;
 
-    this.getVendor(vendorHash)
+    this.getVendor(vendorHash);
   }
 
   componentDidUpdate(p, s) {
@@ -50,11 +51,11 @@ class Vendor extends React.Component {
         loading: false
       }));
     }
-  }
+  };
 
   render() {
     const { t, member, auth, vendorHash = 672118013 } = this.props;
-    
+
     if (!auth) {
       return <NoAuth inline />;
     }
@@ -76,25 +77,19 @@ class Vendor extends React.Component {
       );
     }
 
-    console.log(this.state.data)
-
     const items = [];
 
     if (this.state.data) {
       Object.values(this.state.data.sales.data).forEach(sale => {
-
         items.push({
           vendorHash: definitionVendor.hash,
           ...sale,
-          ...(sale.vendorItemIndex !== undefined && definitionVendor && definitionVendor.itemList && definitionVendor.itemList[sale.vendorItemIndex]) || {}
-        })
-
+          ...((sale.vendorItemIndex !== undefined && definitionVendor && definitionVendor.itemList && definitionVendor.itemList[sale.vendorItemIndex]) || {})
+        });
       });
     }
 
     const itemsGrouped = groupBy(items, i => i.displayCategoryIndex);
-
-    // const displayCategories = [...definitionVendor.displayCategories];
 
     return (
       <div className='user-module vendor'>
@@ -103,8 +98,35 @@ class Vendor extends React.Component {
         </div>
         <h3>{definitionVendor.displayProperties.name}</h3>
         {definitionVendor.displayCategories.map((category, c) => {
-
           if (itemsGrouped[category.index]) {
+            if (category.identifier === 'category_materials_exchange' && definitionVendor.hash === 863940356) {
+              console.log(itemsGrouped[category.index]);
+              return (
+                <React.Fragment key={c}>
+                  <h4>{category.displayProperties.name}</h4>
+                  <ul className='list special'>
+                    {itemsGrouped[category.index].map((item, i) => (
+                      <li key={i}>
+                        <ul>
+                          <li>
+                            <ul className='list inventory-items'>
+                              <Items items={[item]} />
+                            </ul>
+                          </li>
+                          <li>{manifest.DestinyInventoryItemDefinition[item.itemHash]?.displayProperties?.name}</li>
+                          <li><ul>{item.costs.map((cost, t) => <li key={t}>
+                            <ul><li>{cost.quantity}</li><li><ul className='list inventory-items'>
+                              <Items items={[cost]} hideQuantity />
+                            </ul></li></ul> 
+                          </li>)}</ul></li>
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                </React.Fragment>
+              );
+            }
+
             return (
               <React.Fragment key={c}>
                 <h4>{category.displayProperties.name}</h4>
@@ -112,11 +134,10 @@ class Vendor extends React.Component {
                   <Items items={itemsGrouped[category.index]} />
                 </ul>
               </React.Fragment>
-            )
+            );
           } else {
             return null;
           }
-          
         })}
       </div>
     );
@@ -138,10 +159,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(Vendor);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(Vendor);

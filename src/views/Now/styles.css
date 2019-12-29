@@ -48,6 +48,7 @@
 #now .group .column {
   display: grid;
   row-gap: 2rem;
+  align-content: start;
 }
 
 #now .group .module .module-header {
