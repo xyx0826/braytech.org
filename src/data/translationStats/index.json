@@ -1,265 +1,192 @@
 {
   "de": {
     "translated": 458,
-    "notTranslated": 119,
+    "notTranslated": 126,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "debug": {
-    "translated": 557,
+    "translated": 564,
     "notTranslated": 0,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
     "removed": []
   },
   "en": {
-    "translated": 582,
+    "translated": 589,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "es-mx": {
     "translated": 0,
-    "notTranslated": 550,
+    "notTranslated": 557,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Featured activities",
-      "Full strength",
-      "Playlists",
-      "These activities are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Weak",
-      "Week"
-    ]
+    "removed": []
   },
   "es": {
-    "translated": 552,
-    "notTranslated": 28,
+    "translated": 580,
+    "notTranslated": 7,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "fr": {
     "translated": 505,
-    "notTranslated": 67,
+    "notTranslated": 74,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "These activities are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "it": {
     "translated": 552,
-    "notTranslated": 28,
+    "notTranslated": 35,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "ja": {
-    "translated": 272,
-    "notTranslated": 291,
+    "translated": 304,
+    "notTranslated": 266,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
     "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Featured activities",
-      "These activities are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Weak"
+      "Featured activities"
     ]
   },
   "ko": {
     "translated": 298,
-    "notTranslated": 270,
+    "notTranslated": 277,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Featured activities",
-      "Playlists",
-      "These activities are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 550,
+    "notTranslated": 557,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Featured activities",
-      "Full strength",
-      "Playlists",
-      "These activities are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Weak",
-      "Week"
-    ]
+    "removed": []
   },
   "pt-br": {
-    "translated": 531,
-    "notTranslated": 49,
+    "translated": 580,
+    "notTranslated": 7,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "ru": {
     "translated": 0,
-    "notTranslated": 550,
+    "notTranslated": 557,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Featured activities",
-      "Full strength",
-      "Playlists",
-      "These activities are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Weak",
-      "Week"
-    ]
+    "removed": []
   },
   "zh-chs": {
     "translated": 469,
-    "notTranslated": 111,
+    "notTranslated": 118,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "zh-cht": {
     "translated": 469,
-    "notTranslated": 111,
+    "notTranslated": 118,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
+      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
+      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
+      "A well-defended ogre, _Naksud_ can be damaged at any time. Although, he regularly calls forth cursed thrall which sprint towards him, bursting upon him, healing him.",
+      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
+      "Download roster data",
+      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   }
 }
