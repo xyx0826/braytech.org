@@ -267,11 +267,6 @@ class App extends React.Component {
               <NotificationLink />
               <NotificationProgress />
 
-              {/* Don't run the refresh service if we're currently selecting
-                a character, as the refresh will cause the member to
-                continually reload itself */}
-              <Route path='/character-select' children={({ match, ...rest }) => !match && <RefreshService {...this.props} />} />
-
               <Tooltip {...route} onRef={ref => (this.TooltipComponent = ref)} />
               <Route component={GoogleAnalytics.GoogleAnalytics} />
               <div className='main'>
@@ -312,6 +307,12 @@ class App extends React.Component {
                   />
                 </Switch>
               </div>
+
+              {/* Don't run the refresh service if we're currently selecting
+                a character, as the refresh will cause the member to
+                continually reload itself */}
+              <Route path='/character-select' children={({ match, ...rest }) => !match && <RefreshService {...this.props} />} />
+
               <Footer />
             </div>
           )}

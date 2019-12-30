@@ -6,6 +6,7 @@ import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
 
 import manifest from '../../utils/manifest';
+import dudRecords from '../../data/dudRecords';
 import Records from '../Records';
 import Collectibles from '../Collectibles';
 
@@ -30,10 +31,10 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
-    const { scope } = this.props;
+    const { collectibles, scope } = this.props;
 
     if (scope === 'records') {
-      this.index.push(...Object.entries(manifest.DestinyRecordDefinition).filter(([hash, definition]) => !definition.redacted))
+      this.index.push(...Object.entries(manifest.DestinyRecordDefinition).filter(([hash, definition]) => !definition.redacted && collectibles.hideDudRecords ? !dudRecords.includes(definition.hash) : true))
     } else if (scope === 'collectibles') {
       this.index.push(...Object.entries(manifest.DestinyCollectibleDefinition).filter(([hash, definition]) => !definition.redacted))
     }
@@ -154,7 +155,8 @@ class Search extends React.Component {
 function mapStateToProps(state, ownProps) {
   return {
     member: state.member,
-    tooltips: state.tooltips
+    tooltips: state.tooltips,
+    collectibles: state.collectibles
   };
 }
 

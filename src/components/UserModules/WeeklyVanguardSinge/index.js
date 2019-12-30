@@ -39,7 +39,7 @@ class WeeklyVanguardSinge extends React.Component {
     const characterActivities = member.data.profile.characterActivities.data;
 
     const vanguardStrikes = characterActivities[member.characterId].availableActivities.find(a => a.activityHash === 4252456044);
-    const activeSinge = singeMap.find(s => vanguardStrikes.modifierHashes.indexOf(s.hash) > -1);
+    const activeSinge = vanguardStrikes && singeMap.find(s => vanguardStrikes.modifierHashes.indexOf(s.hash) > -1);
 
     const activityNames = [
       {
@@ -100,7 +100,20 @@ class WeeklyVanguardSinge extends React.Component {
         </div>
       );
     } else {
-      return null;
+      return (
+        <div className='user-module weekly-vanguard-singe'>
+          <div className='sub-header'>
+            <div>{t('Vanguard singe')}</div>
+          </div>
+          <h3>{t('Unknown')}</h3>
+          <div className='text'>
+            <p>{t('Vanguard Strikes are unavailable for this character.')}</p>
+            <p>
+              <em>{t('The elemental burn shared by most activities this week. These activities include {{activities}}.', { activities: activityNames.join(', ') })}</em>
+            </p>
+          </div>
+        </div>
+      );
     }
   }
 }
