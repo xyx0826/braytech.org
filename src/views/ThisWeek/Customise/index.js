@@ -93,8 +93,8 @@ export const headOverride = {
       id: 'head-col-1',
       mods: [
         {
-          id: 'CrucibleRotators-0',
-          component: 'CrucibleRotators'
+          id: 'WeeklyVanguardSinge-0',
+          component: 'WeeklyVanguardSinge'
         }
       ]
     },
@@ -102,8 +102,8 @@ export const headOverride = {
       id: 'head-col-2',
       mods: [
         {
-          id: 'WeeklyVanguardSinge-0',
-          component: 'WeeklyVanguardSinge'
+          id: 'DreamingCityCurseCycle-0',
+          component: 'DreamingCityCurseCycle'
         }
       ]
     },
@@ -111,8 +111,8 @@ export const headOverride = {
       id: 'head-col-3',
       mods: [
         {
-          id: 'DreamingCityCurseCycle-0',
-          component: 'DreamingCityCurseCycle'
+          id: 'CrucibleRotators-0',
+          component: 'CrucibleRotators'
         }
       ]
     }
