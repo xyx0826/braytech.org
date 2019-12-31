@@ -1,5 +1,5 @@
 export const itemComponents = (item, member) => {
-  let data = {};
+  let data = null;
 
   if (!member.data) return null;
   
@@ -24,7 +24,7 @@ export const itemComponents = (item, member) => {
   // characterUninstancedItemComponents
   if (member.data?.profile.characterUninstancedItemComponents[member.characterId]?.objectives?.data[item.itemHash]?.objectives) {
     data = {
-      ...data,
+      ...(data || {}),
       objectives: member.data.profile.characterUninstancedItemComponents[member.characterId].objectives.data[item.itemHash].objectives
     };
   }
@@ -32,7 +32,7 @@ export const itemComponents = (item, member) => {
   // extra item data in cvase it's msising i guess idk
   if (item.itemInstanceId && member.data?.profile.characterInventories?.data[member.characterId]?.items?.find(i => i.itemInstanceId === item.itemInstanceId)) {
     data = {
-      ...data,
+      ...(data || {}),
       item: member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemInstanceId === item.itemInstanceId)
     }
   }

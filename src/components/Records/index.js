@@ -423,17 +423,17 @@ class Records extends React.Component {
                   <div className='name'>{definitionRecord.displayProperties.name}</div>
                   <div className='meta'>
                     {manifest.statistics.triumphs && manifest.statistics.triumphs[definitionRecord.hash] ? (
-                      <div className='commonality tooltip' data-hash='commonality' data-table='BraytechDefinition'>
+                      <div className='commonality tooltip' data-hash='commonality' data-type='braytech'>
                         {manifest.statistics.triumphs[definitionRecord.hash]}%
                       </div>
                     ) : null}
                     {recordState.intervals.length && recordState.intervals.filter(i => i.complete).length !== recordState.intervals.length ? (
-                      <div className='intervals tooltip' data-hash='record_intervals' data-table='BraytechDefinition'>
+                      <div className='intervals tooltip' data-hash='record_intervals' data-type='braytech'>
                         {t('{{a}} of {{b}}', { a: recordState.intervals.filter(i => i.complete).length, b: recordState.intervals.length })}
                       </div>
                     ) : null}
                     {recordState.score.value !== 0 ? (
-                      <div className='score tooltip' data-hash='score' data-table='BraytechDefinition'>
+                      <div className='score tooltip' data-hash='score' data-type='braytech'>
                         {recordState.intervals.length && recordState.score.progress !== recordState.score.value ? `${recordState.score.next}/${recordState.score.value}` : recordState.score.value}
                       </div>
                     ) : null}

@@ -56,7 +56,7 @@ const Checklist = props => {
         <div className='module-header'>
           <div className='sub-name'>{checklistItemName_plural}</div>
           {checklistCharacterBound ? (
-            <div className='tooltip' data-hash='character_bound' data-table='BraytechDefinition'>
+            <div className='tooltip' data-hash='character_bound' data-type='braytech'>
               <i className='segoe-uniE902' />
             </div>
           ) : null}

@@ -1,36 +1,22 @@
 {
   "de": {
     "translated": 458,
-    "notTranslated": 126,
+    "notTranslated": 127,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
-    "removed": [
-      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
-    ]
+    "removed": []
   },
   "debug": {
-    "translated": 569,
+    "translated": 570,
     "notTranslated": 0,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
     "removed": []
   },
   "en": {
-    "translated": 594,
+    "translated": 595,
     "notTranslated": 0,
     "added": [],
     "removed": []
@@ -39,198 +25,100 @@
     "translated": 0,
     "notTranslated": 557,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
     "removed": [
-      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Non-instanced item (displaying collections roll)"
     ]
   },
   "es": {
     "translated": 580,
-    "notTranslated": 7,
+    "notTranslated": 8,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
-    "removed": [
-      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
-    ]
+    "removed": []
   },
   "fr": {
     "translated": 505,
     "notTranslated": 74,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
     "removed": [
-      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Non-instanced item (displaying collections roll)"
     ]
   },
   "it": {
     "translated": 552,
-    "notTranslated": 35,
+    "notTranslated": 36,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
-    "removed": [
-      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
-    ]
+    "removed": []
   },
   "ja": {
-    "translated": 304,
-    "notTranslated": 266,
+    "translated": 374,
+    "notTranslated": 196,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
     "removed": [
-      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Non-instanced item (displaying collections roll)"
     ]
   },
   "ko": {
     "translated": 298,
     "notTranslated": 277,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
     "removed": [
-      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Non-instanced item (displaying collections roll)"
     ]
   },
   "pl": {
     "translated": 0,
     "notTranslated": 557,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
     "removed": [
-      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Non-instanced item (displaying collections roll)"
     ]
   },
   "pt-br": {
     "translated": 580,
-    "notTranslated": 7,
+    "notTranslated": 8,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
-    "removed": [
-      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
-    ]
+    "removed": []
   },
   "ru": {
     "translated": 0,
     "notTranslated": 557,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
     "removed": [
-      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Non-instanced item (displaying collections roll)"
     ]
   },
   "zh-chs": {
     "translated": 469,
-    "notTranslated": 118,
+    "notTranslated": 119,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
-    "removed": [
-      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
-    ]
+    "removed": []
   },
   "zh-cht": {
     "translated": 469,
-    "notTranslated": 118,
+    "notTranslated": 119,
     "added": [
-      "A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical Hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A mostly typical Hive ogre, _Nur Abath_ is protected by an invulnerability shield that draws its power from nearby minions. Clear them out to disable his shield and proceed to destroy him.",
-      "A typical Hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient Taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
+      "Vanguard Strikes are unavailable for this character."
     ],
-    "removed": [
-      "A hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an immunity shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.",
-      "A mostly typical hive ogre, _Damkath's_ vulnerability is a pulsating cow-sized cyst on his upper-back.",
-      "A typical hive knight, _Bok Litur_ is well-defended and well-armed. A challenging foe.",
-      "As an Ogre, _Nur Abath_ uses a dreadfully damaging stream of Void light from its eye. His defence is based on a personal shield that gets its power from nearby minions. Clear them out to destroy him.",
-      "The Drifter's gambit goes deeper than once thought. Annihilate ancient taken hoards within The Drifter's mysterious haul and gain The Nine's favour."
-    ]
+    "removed": []
   }
 }
