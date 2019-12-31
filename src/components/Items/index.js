@@ -27,8 +27,7 @@ class Items extends React.Component {
     }
 
     items.forEach((item, i) => {
-      const definitionItem = item && item.itemHash && manifest.DestinyInventoryItemDefinition[item.itemHash];
-      const definitionBucket = item && item.bucketHash && manifest.DestinyInventoryBucketDefinition[item.bucketHash];
+      const definitionItem = item?.itemHash && manifest.DestinyInventoryItemDefinition[item.itemHash];
 
       if (!definitionItem) {
         console.log(`Items: Couldn't find item definition for:`, item);
@@ -43,8 +42,6 @@ class Items extends React.Component {
       const bucketsToExcludeFromInstanceProgressDisplay = [
         4274335291 // Emblems
       ];
-
-      const bucketName = definitionBucket && definitionBucket.displayProperties && definitionBucket.displayProperties.name && definitionBucket.displayProperties.name.replace(' ', '-').toLowerCase();
 
       const vendorItemStatus = item.unavailable === undefined && item.saleStatus && enums.enumerateVendorItemStatus(item.saleStatus);
 
@@ -65,7 +62,7 @@ class Items extends React.Component {
                 'no-border': (definitionItem.uiItemDisplayStyle === 'ui_display_style_engram' && item.bucketHash !== 3284755031) || (definitionItem.itemCategoryHashes && definitionItem.itemCategoryHashes.includes(268598612)) || (definitionItem.itemCategoryHashes && definitionItem.itemCategoryHashes.includes(18)) || noBorder,
                 unavailable: (vendorItemStatus && !vendorItemStatus.success) || item.unavailable
               },
-              bucketName
+              `item-type-${definitionItem.itemType || 0}`
             )}
             data-hash={item.itemHash}
             data-instanceid={item.itemInstanceId}

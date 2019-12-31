@@ -908,5 +908,10 @@
     "date": "2019-12-31T04:01:42.244Z",
     "version": "2.13.20",
     "content": "- added activity modifiers to _This Week_ view's nightfalls module"
+  },
+  {
+    "date": "2019-12-31T12:07:22.981Z",
+    "version": "2.13.21",
+    "content": "- added spider's material exchange module to _Now_ view\n- some other good stuff\n- "
   }
 ]

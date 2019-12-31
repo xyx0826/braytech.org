@@ -15,6 +15,7 @@ import Ranks from '../../../components/UserModules/Ranks';
 import SeasonPass from '../../../components/UserModules/SeasonPass';
 import SeasonalArtifact from '../../../components/UserModules/SeasonalArtifact';
 import Vendor from '../../../components/UserModules/Vendor';
+import VendorSpiderMaterials from '../../../components/UserModules/VendorSpiderMaterials';
 import AuthUpsell from '../../../components/UserModules/AuthUpsell';
 import Transitory from '../../../components/UserModules/Transitory';
 import CharacterEquipment from '../../../components/UserModules/CharacterEquipment';
@@ -58,6 +59,9 @@ class Now extends React.Component {
     },
     Vendor: {
       reference: Vendor
+    },
+    VendorSpiderMaterials: {
+      reference: VendorSpiderMaterials
     },
     CharacterEquipment: {
       reference: CharacterEquipment

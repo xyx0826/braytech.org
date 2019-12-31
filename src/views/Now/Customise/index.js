@@ -97,8 +97,11 @@ class Customise extends React.Component {
     const sourceList = this.getList(source.droppableId);
     const destinationList = this.getList(destination.droppableId);
 
-    // prevents modules being added or moved to groups with "full" modules i.e. SeasonPass or "double" modules
-    if (destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length || moduleRules.double.filter(f => f === m.component).length).length).length) {
+    console.log(sourceList, destinationList)
+    
+
+    // prevents modules being added or moved to columns with "full" modules i.e. SeasonPass or "double" modules
+    if (!(sourceList.group.id === destinationList.group.id && sourceList.col.id === destinationList.col.id) && destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length || moduleRules.double.filter(f => f === m.component).length).length).length) {
       console.log('User attempted to add/move module to group with full/double module');
       return;
     };
@@ -376,6 +379,10 @@ class Customise extends React.Component {
           }
         }
       ]
+    },
+    VendorSpiderMaterials: {
+      name: this.props.t('Spider: Material Exchange'),
+      description: this.props.t("Monitor Spider's materials closely")
     },
     SeasonalArtifact: {
       name: this.props.t('Seasonal progression'),

@@ -72,7 +72,7 @@
   padding-bottom: 0;
 }
 
-.list.inventory-items li.subclass .icon .image {
+.list.inventory-items li.item-type-16 .icon .image {
   transform: rotate(-45deg) scale(1.4);
 }
 

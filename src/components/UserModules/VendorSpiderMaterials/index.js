@@ -3,17 +3,16 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { groupBy } from 'lodash';
-import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
 import * as bungie from '../../../utils/bungie';
-import Items from '../../../components/Items';
-import Spinner from '../../../components/UI/Spinner';
-import { NoAuth, DiffProfile } from '../../../components/BungieAuth';
+import Items from '../../Items';
+import Spinner from '../../UI/Spinner';
+import { NoAuth, DiffProfile } from '../../BungieAuth';
 
 import './styles.css';
 
-class Vendor extends React.Component {
+class VendorSpiderMaterials extends React.Component {
   constructor(props) {
     super(props);
 
@@ -24,7 +23,7 @@ class Vendor extends React.Component {
   }
 
   componentDidMount() {
-    const { vendorHash = 672118013 } = this.props;
+    const { vendorHash = 863940356 } = this.props;
 
     this.getVendor(vendorHash);
   }
@@ -54,7 +53,7 @@ class Vendor extends React.Component {
   };
 
   render() {
-    const { t, member, auth, vendorHash = 672118013 } = this.props;
+    const { t, member, auth, vendorHash = 863940356 } = this.props;
 
     if (!auth) {
       return <NoAuth inline />;
@@ -98,15 +97,42 @@ class Vendor extends React.Component {
         </div>
         <h3>{definitionVendor.displayProperties.name}</h3>
         {definitionVendor.displayCategories.map((category, c) => {
-          if (itemsGrouped[category.index]) {
-            return (
-              <React.Fragment key={c}>
-                <h4>{category.displayProperties.name}</h4>
-                <ul className='list inventory-items'>
-                  <Items items={itemsGrouped[category.index]} />
-                </ul>
-              </React.Fragment>
-            );
+          if (itemsGrouped[category.index] && category.identifier === 'category_materials_exchange') {
+              return (
+                <React.Fragment key={c}>
+                  <h4>{category.displayProperties.name}</h4>
+                  <ul className='list special'>
+                    {itemsGrouped[category.index].map((item, i) => (
+                      <li key={i}>
+                        <ul>
+                          <li>
+                            <ul className='list inventory-items'>
+                              <Items items={[item]} />
+                            </ul>
+                          </li>
+                          <li>{manifest.DestinyInventoryItemDefinition[item.itemHash]?.displayProperties?.name}</li>
+                          <li>
+                            <ul>
+                              {item.costs.map((cost, t) => (
+                                <li key={t}>
+                                  <ul>
+                                    <li>{cost.quantity}</li>
+                                    <li>
+                                      <ul className='list inventory-items'>
+                                        <Items items={[cost]} hideQuantity />
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                </React.Fragment>
+              );
           } else {
             return null;
           }
@@ -131,4 +157,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(Vendor);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(VendorSpiderMaterials);
