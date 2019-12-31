@@ -903,5 +903,10 @@
     "date": "2019-12-29T14:37:51.170Z",
     "version": "2.13.18",
     "content": "- added new handwritten copy to _This Week_ view modules to better explain the related activity and objectives"
+  },
+  {
+    "date": "2019-12-31T04:01:42.244Z",
+    "version": "2.13.20",
+    "content": "- added activity modifiers to _This Week_ view's nightfalls module"
   }
 ]

@@ -3,9 +3,9 @@ import React from 'react';
 import manifest from '../../../utils/manifest';
 
 const Default = (props) => {
-  const { itemHash, table } = props;
+  const { itemHash, type } = props;
 
-  const definition = manifest[table][itemHash];
+  const definition = type === 'braytech' ? manifest.BraytechDefinition[itemHash] : type === 'stat' ? manifest.DestinyStatDefinition[itemHash] || manifest.DestinyHistoricalStatsDefinition[itemHash] : type === 'modifier' ? manifest.DestinyActivityModifierDefinition[itemHash] : false;
 
   // description
   const description = definition.displayProperties && definition.displayProperties.description !== '' && definition.displayProperties.description;
