@@ -7,7 +7,7 @@ import ObservedImage from '../../ObservedImage';
 import ProgressBar from '../../UI/ProgressBar';
 
 const Default = props => {
-  const { itemHash, instanceId, itemComponents, quantity, state, rarity, type, primaryStat, stats, sockets, masterwork, masterworkInfo } = props;
+  const { itemHash, itemInstanceId, itemComponents, quantity } = props;
 
   const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
 

@@ -37,7 +37,8 @@ class Item extends React.Component {
       quantity: parseInt(this.props.quantity || 1, 10),
       state: parseInt(this.props.state || 0, 10),
       rarity: null,
-      type: null
+      type: null,
+      style: this.props.style
     };
 
     const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
@@ -155,13 +156,13 @@ class Item extends React.Component {
     return (
       <>
         <div className='acrylic' />
-        <div className={cx('frame', item.type, item.rarity, { 'masterworked': masterworked })}>
+        <div className={cx('frame', item.style, item.type, item.rarity, { 'masterworked': masterworked })}>
           <div className='header'>
             {masterworked ? <ObservedImage className={cx('image', 'bg')} src={item.rarity === 'exotic' ? `/static/images/extracts/flair/01A3-00001DDC.PNG` : `/static/images/extracts/flair/01A3-00001DDE.PNG`} /> : null}
             <div className='name'>{definitionItem.displayProperties && definitionItem.displayProperties.name}</div>
             <div>
               {definitionItem.itemTypeDisplayName && definitionItem.itemTypeDisplayName !== '' ? <div className='kind'>{definitionItem.itemTypeDisplayName}</div> : null}
-              {item.rarity ? <div className='rarity'>{definitionItem.inventory.tierTypeName}</div> : null}
+              {item.rarity && item.style !== 'ui' ? <div className='rarity'>{definitionItem.inventory.tierTypeName}</div> : null}
             </div>
           </div>
           {importantText ? <div className='important'>{importantText}</div> : null}
