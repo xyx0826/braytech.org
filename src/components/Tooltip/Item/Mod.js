@@ -53,7 +53,7 @@ const Mod = props => {
             .filter(c => c)}
         </div>
       ) : null}
-      {perks && perks.length > 0 && sourceString && <div className='line' />}
+      {perks && perks.length > 0 && description && <div className='line' />}
       {description ? (
         <div className='description'>
           <pre>{description}</pre>

@@ -48,6 +48,9 @@
 #now .group .column {
   display: grid;
   row-gap: 2rem;
+}
+
+#now .group:not(.head) .column {
   align-content: start;
 }
 

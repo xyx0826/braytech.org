@@ -31,7 +31,7 @@ class EscalationProtocol extends React.Component {
       2: {
         boss: {
           name: t('Kathok, Roar of Xol'),
-          description: t('A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his sheid by attacking it with the swords of fallen _Severing Knights_.')
+          description: t('A Hive knight, _Kathok_ will continuously bombard players with his boomer. He is protected by shriekers, minions, and an invulnerability shield. Diminish his shield by attacking it with the swords of fallen _Severing Knights_.')
         },
         triumphs: [],
         items: [
