@@ -410,8 +410,6 @@ export const stats = item => {
   // We only use the raw "investment" stats to calculate all item stats.
   let investmentStats = buildInvestmentStats(item, definitionItem.stats.statGroupHash, statDisplays) || [];
 
-  console.log(investmentStats)
-
   // Include the contributions from perks and mods
   if (item.sockets && item.sockets.sockets && item.sockets.sockets.length) {
     investmentStats = enhanceStatsWithPlugs(

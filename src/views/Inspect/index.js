@@ -70,7 +70,8 @@ class Inspect extends React.Component {
       itemHash: this.props.match.params.hash,
       itemInstanceId: false,
       itemComponents: false,
-      showHiddenStats: true
+      showHiddenStats: true,
+      showDefaultSockets: true
     };
 
     const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
@@ -79,32 +80,34 @@ class Inspect extends React.Component {
     item.sockets = sockets(item);
 
     // adjust sockets according to user selection
-    item.sockets.sockets = item.sockets.sockets.map((socket, s) => {
-      const selectedPlugHash = Number(query.sockets?.split('/')[socket.socketIndex]);
-
-      // if user has selected a plug
-      if (selectedPlugHash > 0) {
-        const selectedPlug = socket.plugOptions.find(o => selectedPlugHash === o.plugItem.hash);
-
-        // reconfigure plugOptions for this socket, according to user-selected plugs
-        socket.plugOptions = socket.plugOptions.map(o => {
-          o.isActive = false;
-
-          if (selectedPlug && selectedPlug.plugItem.hash === o.plugItem.hash) {
-            o.isActive = true;
-          }
-
-          return o;
-        });
-
-        // set active plug as primary plug
-        socket.plug = (selectedPlugHash && socket.plugOptions.find(o => selectedPlugHash === o.plugItem.hash)) || socket.plug;
-
+    if (item.sockets.sockets) {
+      item.sockets.sockets = item.sockets.sockets.map((socket, s) => {
+        const selectedPlugHash = Number(query.sockets?.split('/')[socket.socketIndex]);
+  
+        // if user has selected a plug
+        if (selectedPlugHash > 0) {
+          const selectedPlug = socket.plugOptions.find(o => selectedPlugHash === o.plugItem.hash);
+  
+          // reconfigure plugOptions for this socket, according to user-selected plugs
+          socket.plugOptions = socket.plugOptions.map(o => {
+            o.isActive = false;
+  
+            if (selectedPlug && selectedPlug.plugItem.hash === o.plugItem.hash) {
+              o.isActive = true;
+            }
+  
+            return o;
+          });
+  
+          // set active plug as primary plug
+          socket.plug = (selectedPlugHash && socket.plugOptions.find(o => selectedPlugHash === o.plugItem.hash)) || socket.plug;
+  
+          return socket;
+        }
+  
         return socket;
-      }
-
-      return socket;
-    });
+      });
+    }
 
     // stats and masterwork as per usual
     item.stats = stats(item);
@@ -157,13 +160,13 @@ class Inspect extends React.Component {
     return (
       <>
         <div className='view' id='inspect'>
-          {/* {three.enabled ? (
+          {three.enabled ? (
             <Scene itemHash={definitionItem.hash} ornamentHash={this.state.ornamentHash} {...three} />
           ) : definitionItem.screenshot && definitionItem.screenshot !== '' ? (
             <div className='screenshot'>
               <ObservedImage src={`https://www.bungie.net${definitionItem.screenshot}`} />
             </div>
-          ) : null} */}
+          ) : null}
           {definitionItem.secondaryIcon && definitionItem.secondaryIcon !== '/img/misc/missing_icon_d2.png' && definitionItem.secondaryIcon !== '' ? (
             <div className='foundry'>
               <ObservedImage src={`https://www.bungie.net${definitionItem.secondaryIcon}`} />
@@ -251,27 +254,55 @@ class Inspect extends React.Component {
                         {c.sockets
                           .filter(s => !s.isTracker)
                           .map((s, i) => {
-                            return (
-                              <div className={cx('socket', { intrinsic: s.isIntrinsic, columned: s.plugOptions.length > 9 })} key={i}>
-                                {s.plugOptions.map((p, i) => {
-                                  const selectedSockets = query.sockets?.split('/');
-                                  const socketsString = item.sockets.sockets.map(socket => (selectedSockets && Number(selectedSockets[socket.socketIndex])) || '');
+                            const expanded = false; // TODO lol
 
-                                  socketsString[s.socketIndex] = p.plugItem.hash;
-
-                                  const socketLink = `/inspect/${item.itemHash}?sockets=${socketsString.join('/')}`;
-
-                                  return (
-                                    <div key={i} className={cx('plug', 'tooltip', { active: p.isActive })} data-hash={p.plugItem.hash} data-style='ui' onClick={this.handler_plugClick(s.socketIndex, p.plugItem.hash)}>
-                                      <div className='icon'>
-                                        <ObservedImage src={`https://www.bungie.net${p.plugItem.displayProperties.icon}`} />
+                            // if mods and socket expanded by user OR if mods and a single plug option OR if not mods i.e. perks lol
+                            if ((c.category.categoryStyle === 2 && expanded) || (c.category.categoryStyle === 2 && s.plugOptions.length < 2) || c.category.categoryStyle !== 2) {
+                              return (
+                                <div className={cx('socket', { intrinsic: s.isIntrinsic, columned: c.category.categoryStyle !== 2 && s.plugOptions.length > 9 })} key={i}>
+                                  {s.plugOptions.map((p, i) => {
+                                    const selectedSockets = query.sockets?.split('/');
+                                    const socketsString = item.sockets.sockets.map(socket => (selectedSockets && Number(selectedSockets[socket.socketIndex])) || '');
+  
+                                    socketsString[s.socketIndex] = p.plugItem.hash;
+  
+                                    const socketLink = `/inspect/${item.itemHash}?sockets=${socketsString.join('/')}`;
+  
+                                    return (
+                                      <div key={i} className={cx('plug', 'tooltip', { active: p.isActive })} data-hash={p.plugItem.hash} data-style='ui' onClick={this.handler_plugClick(s.socketIndex, p.plugItem.hash)}>
+                                        <div className='icon'>
+                                          <ObservedImage src={`https://www.bungie.net${p.plugItem.displayProperties.icon}`} />
+                                        </div>
+                                        <Link to={socketLink} />
                                       </div>
-                                      <Link to={socketLink} />
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            );
+                                    );
+                                  })}
+                                </div>
+                              );
+                            } else {
+                              return (
+                                <div className={cx('socket', { intrinsic: s.isIntrinsic, columned: c.category.categoryStyle !== 2 && s.plugOptions.length > 9 })} key={i}>
+                                  {s.plugOptions.filter(o => o.plugItem?.hash === s.plug.plugItem?.hash).map((p, i) => {
+                                    const selectedSockets = query.sockets?.split('/');
+                                    const socketsString = item.sockets.sockets.map(socket => (selectedSockets && Number(selectedSockets[socket.socketIndex])) || '');
+  
+                                    socketsString[s.socketIndex] = p.plugItem.hash;
+  
+                                    const socketLink = `/inspect/${item.itemHash}?sockets=${socketsString.join('/')}`;
+  
+                                    return (
+                                      <div key={i} className={cx('plug', 'tooltip', { active: p.isActive })} data-hash={p.plugItem.hash} data-style='ui' onClick={this.handler_plugClick(s.socketIndex, p.plugItem.hash)}>
+                                        <div className='icon'>
+                                          <ObservedImage src={`https://www.bungie.net${p.plugItem.displayProperties.icon}`} />
+                                        </div>
+                                        <Link to={socketLink} />
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              );
+                            }
+                            
                           })}
                       </div>
                     </div>
