@@ -58,7 +58,7 @@ export const sockets = item => {
   let sockets = null;
   let missingSockets = false;
 
-  const socketData = (item.itemInstanceId && item.itemComponents.sockets) || undefined;
+  const socketData = (item.itemInstanceId && item.itemComponents?.sockets) || undefined;
   const reusablePlugData = (item.itemInstanceId && item.itemComponents.reusablePlugs?.plugs) || undefined;
   const plugObjectivesData = (item.itemInstanceId && item.itemComponents.plugObjectives?.objectivesPerPlug) || undefined;
 
