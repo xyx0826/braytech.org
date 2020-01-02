@@ -365,58 +365,67 @@ export function membershipTypeToString(str, short = false) {
   return string;
 }
 
-export function damageTypeToString(type) {
+export function damageTypeToAsset(type) {
   let string;
+  let char;
 
   switch (type) {
     case 3373582085:
-      string = 'Kinetic';
+      string = 'kinetic';
+      char = '';
       break;
     case 1847026933:
-      string = 'Solar';
+      string = 'solar';
+      char = '';
       break;
     case 2303181850:
-      string = 'Arc';
+      string = 'arc';
+      char = '';
       break;
     case 3454344768:
-      string = 'Void';
-      break;
-    default:
-      string = 'idk';
-  }
-
-  return string;
-}
-
-export function energyTypeToAsset(type) {
-  let string;
-  let icon;
-
-  switch (type) {
-    case 591714140:
-      string = 'solar';
-      icon = '';
-      break;
-    case 728351493:
-      string = 'arc';
-      icon = '';
-      break;
-    case 4069572561:
       string = 'void';
-      icon = '';
-      break;
-    case 1198124803:
-      string = 'any';
-      icon = '';
+      char = '';
       break;
     default:
       string = '';
-      icon = '';
+      char = '';
   }
 
   return {
     string,
-    icon
+    char
+  };
+}
+
+export function energyTypeToAsset(type) {
+  let string;
+  let char;
+
+  switch (type) {
+    case 591714140:
+      string = 'solar';
+      char = '';
+      break;
+    case 728351493:
+      string = 'arc';
+      char = '';
+      break;
+    case 4069572561:
+      string = 'void';
+      char = '';
+      break;
+    case 1198124803:
+      string = 'any';
+      char = '';
+      break;
+    default:
+      string = '';
+      char = '';
+  }
+
+  return {
+    string,
+    char
   };
 }
 
@@ -750,24 +759,28 @@ export function getSubclassPathInfo(itemComponents, itemData) {
   return path;
 }
 
-export function ammoTypeToString(type) {
+export function ammoTypeToAsset(type) {
   let string;
+  let icon;
 
   switch (type) {
     case 1:
-      string = 'Primary';
+      string = manifest.DestinyPresentationNodeDefinition[1731162900]?.displayProperties?.name;
       break;
     case 2:
-      string = 'Special';
+      string = manifest.DestinyPresentationNodeDefinition[638914517]?.displayProperties?.name;
       break;
     case 3:
-      string = 'Heavy';
+      string = manifest.DestinyPresentationNodeDefinition[3686962409]?.displayProperties?.name;
       break;
     default:
-      string = 'idk';
+      string = '';
   }
 
-  return string;
+  return {
+    string,
+    icon
+  };
 }
 
 // matches first bracketed thing in the string, or certain private unicode characters

@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
 import * as enums from '../../../utils/destinyEnums';
-import { damageTypeToString, ammoTypeToString, breakerTypeToIcon, energyTypeToAsset, energyStatToType } from '../../../utils/destinyUtils';
+import { damageTypeToAsset, ammoTypeToAsset, breakerTypeToIcon, energyTypeToAsset, energyStatToType } from '../../../utils/destinyUtils';
 import { getSocketsWithStyle, getModdedStatValue, getSumOfArmorStats } from '../../../utils/destinyItems/utils';
 import { statsMs } from '../../../utils/destinyItems/stats';
 import ObservedImage from '../../ObservedImage';
@@ -47,14 +47,14 @@ const Equipment = props => {
       blocks.push(
         <>
           <div className='damage weapon'>
-            <div className={cx('power', damageTypeToString(damageTypeHash).toLowerCase())}>
+            <div className={cx('power', damageTypeToAsset(damageTypeHash)?.string)}>
               {definitionItem.breakerType > 0 && <div className='breaker-type'>{breakerTypeToIcon(definitionItem.breakerTypeHash)}</div>}
-              <div className={cx('icon', damageTypeToString(damageTypeHash).toLowerCase())} />
+              <div className={cx('icon', damageTypeToAsset(damageTypeHash)?.string)} />
               <div className='text'>{primaryStat.value}</div>
             </div>
             <div className='slot'>
-              <div className={cx('icon', ammoTypeToString(definitionItem.equippingBlock.ammoType).toLowerCase())} />
-              <div className='text'>{ammoTypeToString(definitionItem.equippingBlock.ammoType)}</div>
+              <div className={cx('icon', `ammo-type-${definitionItem.equippingBlock.ammoType}`)} />
+              <div className='text'>{ammoTypeToAsset(definitionItem.equippingBlock.ammoType).string}</div>
             </div>
           </div>
         </>

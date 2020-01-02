@@ -164,7 +164,40 @@
 
 
 #inspect .row.values {
-  grid-template-columns: 256px 768px;
+  grid-template-columns: 120px minmax(400px, auto);
+}
+
+#inspect .row.values .primary .stat {
+  display: grid;
+  grid-template-columns: min-content auto;
+  column-gap: 10px;
+  align-items: center;
+  line-height: 1;
+}
+
+#inspect .row.values .primary .stat .icon svg {
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+}
+
+#inspect .row.values .primary .stat .icon.solar svg {
+  fill: #ef641f;
+}
+
+#inspect .row.values .primary .stat .icon.arc svg {
+  fill: #79bbe7;
+}
+
+#inspect .row.values .primary .stat .icon.void svg {
+  fill: #a371c2;
+}
+
+#inspect .row.values .primary .stat .text {
+  font-size: 62px;
+  font-weight: 500;
+  line-height: 48px;
+  margin: -6px 0 0;
 }
 
 #inspect .row.values .stats {

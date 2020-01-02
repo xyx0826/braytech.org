@@ -131,7 +131,7 @@ class Item extends React.Component {
     } else if (item.primaryStat && member && member.data) {
       let character = member.data.profile.characters.data.find(c => c.characterId === member.characterId);
 
-      item.primaryStat.value = Math.floor((733 / 750) * character.light);
+      item.primaryStat.value = Math.floor((942 / 973) * character.light);
     }
 
     let importantText = false;

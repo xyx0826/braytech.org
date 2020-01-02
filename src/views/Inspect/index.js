@@ -11,6 +11,9 @@ import * as enums from '../../utils/destinyEnums';
 import * as utils from '../../utils/destinyUtils';
 import ObservedImage from '../../components/ObservedImage';
 import { DestinyKey } from '../../components/UI/Button';
+import { ReactComponent as Void } from '../../media/miscellaneous/svg/void.svg';
+import { ReactComponent as Arc } from '../../media/miscellaneous/svg/arc.svg';
+import { ReactComponent as Solar } from '../../media/miscellaneous/svg/solar.svg';
 
 import { sockets } from '../../utils/destinyItems/sockets';
 import { stats, statsMs } from '../../utils/destinyItems/stats';
@@ -20,6 +23,24 @@ import { getSocketsWithStyle, getModdedStatValue, getSumOfArmorStats } from '../
 import Scene from '../../components/Three/Inspect/Scene';
 
 import './styles.css';
+
+
+import './styles.css';
+
+const damageTypeMap = {
+  3454344768: {
+    className: 'void',
+    svg: Void
+  },
+  2303181850:{
+    className: 'arc',
+    svg: Arc
+  },
+  1847026933:{
+    className: 'solar',
+    svg: Solar
+  }
+};
 
 class Inspect extends React.Component {
   state = {};
@@ -89,7 +110,26 @@ class Inspect extends React.Component {
     item.stats = stats(item);
     item.masterwork = masterwork(item);
 
+    item.primaryStat = (definitionItem.itemType === 2 || definitionItem.itemType === 3) && definitionItem.stats && !definitionItem.stats.disablePrimaryStatDisplay && definitionItem.stats.primaryBaseStatHash && {
+      hash: definitionItem.stats.primaryBaseStatHash,
+      displayProperties: manifest.DestinyStatDefinition[definitionItem.stats.primaryBaseStatHash].displayProperties,
+      value: 950
+    };
+
+    if (item.primaryStat && item.itemComponents && item.itemComponents.instance?.primaryStat) {
+      item.primaryStat.value = item.itemComponents.instance.primaryStat.value;
+    } else if (item.primaryStat && member && member.data) {
+      let character = member.data.profile.characters.data.find(c => c.characterId === member.characterId);
+
+      item.primaryStat.value = Math.floor((942 / 973) * character.light);
+    }
+
     console.log(item);
+
+    // weapon damage type
+    const damageTypeHash = definitionItem.itemType === enums.DestinyItemType.Weapon && (item.itemComponents?.instance ? item.itemComponents.instance.damageTypeHash : definitionItem.defaultDamageTypeHash);
+
+    const DamageTypeSVG = damageTypeMap[damageTypeHash]?.svg;
 
     const preparedSockets = item.sockets?.socketCategories?.reduce((a, v) => {
       v.sockets.forEach(s => {
@@ -117,13 +157,13 @@ class Inspect extends React.Component {
     return (
       <>
         <div className='view' id='inspect'>
-          {three.enabled ? (
+          {/* {three.enabled ? (
             <Scene itemHash={definitionItem.hash} ornamentHash={this.state.ornamentHash} {...three} />
           ) : definitionItem.screenshot && definitionItem.screenshot !== '' ? (
             <div className='screenshot'>
               <ObservedImage src={`https://www.bungie.net${definitionItem.screenshot}`} />
             </div>
-          ) : null}
+          ) : null} */}
           {definitionItem.secondaryIcon && definitionItem.secondaryIcon !== '/img/misc/missing_icon_d2.png' && definitionItem.secondaryIcon !== '' ? (
             <div className='foundry'>
               <ObservedImage src={`https://www.bungie.net${definitionItem.secondaryIcon}`} />
@@ -141,7 +181,14 @@ class Inspect extends React.Component {
             </div>
             {displayStats ? (
               <div className='row values'>
-                <div className='primary'>primary stat lol</div>
+                {item.primaryStat ? <div className='primary'>
+                  <div className='stat'>
+                    {damageTypeMap[damageTypeHash] ? <div className={cx('icon', utils.damageTypeToAsset(damageTypeHash)?.string)}>
+                      <DamageTypeSVG />
+                    </div> : null}
+                    <div className='text'>{item.primaryStat.value}</div>
+                  </div>
+                </div> : null}
                 <div className='stats'>
                   {item.stats.map(s => {
                     // map through stats
