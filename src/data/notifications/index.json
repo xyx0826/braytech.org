@@ -168,5 +168,16 @@
       "description": "You've just 5 more days to recover the lost pages of lore book _Last Days on Kraken Mare_.\n\nIt's recovered by completing _Vex Offensive_ bounties.",
       "prompt": true
     }
+  },
+  {
+    "id": "snq3vwqswxs42b81beaut8",
+    "date": "2020-01-02T05:07:14.554Z",
+    "expiry": 1209600000,
+    "showOnce": true,
+    "displayProperties": {
+      "name": "Record & Collectible Commonality",
+      "description": "sup.\n\ni've reset the list of membership IDs i use to collect stats with. stats are now based purely on users of braytech.\n\nlaters",
+      "prompt": true
+    }
   }
 ]

@@ -302,7 +302,7 @@ class Index extends React.Component {
               <div className='text'>
                 <div className='number'>{this.logs[this.state.log].version}</div>
                 <div className='time'>
-                  <Moment fromNow>{this.logs[this.state.log].date}</Moment>
+                  <Moment fromNow withTitle>{this.logs[this.state.log].date}</Moment>
                 </div>
               </div>
               <div className='buttons'>

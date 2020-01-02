@@ -912,6 +912,11 @@
   {
     "date": "2019-12-31T12:07:22.981Z",
     "version": "2.13.21",
-    "content": "- added spider's material exchange module to _Now_ view\n- some other good stuff\n- "
+    "content": "- added spider's material exchange module to _Now_ view\n- some other good stuff"
+  },
+  {
+    "date": "2020-01-02T04:58:36.431Z",
+    "version": "2.13.25",
+    "content": "- flashpoint module improvements\n- changes to commonality stats\n- further work on _Inspect_ view"
   }
 ]
