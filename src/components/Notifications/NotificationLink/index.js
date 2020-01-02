@@ -141,7 +141,7 @@ class NotificationLink extends React.Component {
                 <div className='sticky-nav-inner'>
                   <div />
                   <ul>
-                    {!state.javascript?.message === 'maintenance' ? (
+                    {!state.javascript?.message === 'maintenance' || !state.actions || !state.actions.length ? (
                       <li>
                         <Button action={this.deactivateOverlay}>
                           <DestinyKey type='dismiss' /> {t('Dismiss')}
