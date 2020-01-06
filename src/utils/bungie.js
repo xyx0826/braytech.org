@@ -101,7 +101,7 @@ async function apiRequest(path, options = {}) {
           expiry: 86400000,
           displayProperties: {
             name: 'Bungie',
-            description: `${response.ErrorCode} ${response.ErrorStatus} ${response.Message}`,
+            description: response.ErrorCode ? `${response.ErrorCode} ${response.ErrorStatus}: ${response.Message}` : `${response.error}: ${response.error_description}`,
             timeout: 4
           }
         }
@@ -109,7 +109,11 @@ async function apiRequest(path, options = {}) {
     }
 
     if (path === '/Platform/App/OAuth/Token/') {
-      console.log('oauth error')
+      console.log(`There was an OAuth token error so I'm going to go ahead and reset your tokens for you.`);
+
+      store.dispatch({
+        type: 'RESET_AUTH'
+      });
     }
 
     return response;
