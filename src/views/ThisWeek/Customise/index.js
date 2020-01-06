@@ -439,7 +439,7 @@ class Customise extends React.Component {
       description: manifest.DestinyActivityDefinition[1893059148]?.displayProperties.description
     },
     DreamingCityCurseCycle: {
-      name: `${manifest.DestinyPresentationNodeDefinition[2516503814]?.displayProperties.name}: ${this.props.t("Savathûn's Curse")}`,
+      name: `${manifest.DestinyPresentationNodeDefinition[2516503814]?.displayProperties.name}: ${this.props.t("Savathûn's Curse Cycle")}`,
       description: manifest.DestinyActivityDefinition[1893059148]?.displayProperties.description
     },
     DreamingCityShatteredThrone: {
