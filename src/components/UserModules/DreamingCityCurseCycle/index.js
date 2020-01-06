@@ -26,7 +26,7 @@ class DreamingCityCurseCycle extends React.Component {
     return (
       <div className='user-module dreaming-city-curse-cycle'>
         <div className='sub-header'>
-          <div>{t("Savathûn's Curse Cycle")}</div>
+          <div>{t("Savathûn's Curse")}</div>
         </div>
         <h3>{rotation[cycleInfo.week.curse].strength}</h3>
         <div className='text'>

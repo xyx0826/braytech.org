@@ -710,7 +710,7 @@ class Legend extends React.Component {
                           <div className='loadout'>
                             <ul>
                               {[...loadout, {}].slice(0, 4).map((item, i) => {
-                                if (item.itemHash) {
+                                if (item?.itemHash) {
                                   return (
                                     <li key={i}>
                                       <div className='icon'>

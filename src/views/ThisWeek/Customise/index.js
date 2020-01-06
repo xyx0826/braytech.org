@@ -143,6 +143,7 @@ class Customise extends React.Component {
     // prevents modules being added or moved to columns with "full" modules i.e. SeasonPass or "double" modules
     if (!(sourceList.group.id === destinationList.group.id && sourceList.col.id === destinationList.col.id) && destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length || moduleRules.double.filter(f => f === m.component).length).length).length) {
       console.log('User attempted to add/move module to group with full/double module');
+      
       return;
     };
 
@@ -439,7 +440,7 @@ class Customise extends React.Component {
       description: manifest.DestinyActivityDefinition[1893059148]?.displayProperties.description
     },
     DreamingCityCurseCycle: {
-      name: `${manifest.DestinyPresentationNodeDefinition[2516503814]?.displayProperties.name}: ${this.props.t("Savathûn's Curse Cycle")}`,
+      name: `${manifest.DestinyPresentationNodeDefinition[2516503814]?.displayProperties.name}: ${this.props.t("Savathûn's Curse")}`,
       description: manifest.DestinyActivityDefinition[1893059148]?.displayProperties.description
     },
     DreamingCityShatteredThrone: {
@@ -622,7 +623,7 @@ class ModulesSelector extends React.Component {
         <div className='modules-selector expanded'>
           <Button text={t('Cancel')} onClick={this.handler_compress} />
           <div className='list'>
-            {Object.keys(modules).map(key => {
+            {Object.keys(modules).filter(key => !headOverride?.cols.filter(c => c.mods.filter(m => m.component === key).length).length).map(key => {
               const { name, description, used, limit, instances } = modules[key];
 
               const unavailable = groupType === 'head' && !moduleRules.head.includes(key);
