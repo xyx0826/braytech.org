@@ -20,6 +20,8 @@ import DreamingCityShatteredThrone from '../../../components/UserModules/Dreamin
 import Menagerie from '../../../components/UserModules/Menagerie';
 import EscalationProtocol from '../../../components/UserModules/EscalationProtocol';
 import Reckoning from '../../../components/UserModules/Reckoning';
+import Luna from '../../../components/UserModules/Luna';
+import NightmareHunts from '../../../components/UserModules/NightmareHunts';
 
 import { moduleRules, headOverride } from '../Customise';
 
@@ -71,6 +73,12 @@ class ThisWeek extends React.Component {
     },
     Reckoning: {
       c: Reckoning
+    },
+    Luna: {
+      c: Luna
+    },
+    NightmareHunts: {
+      c: NightmareHunts
     }
   };
 
@@ -208,11 +216,23 @@ class ThisWeek extends React.Component {
                             {col.mods
                               .map((mod, m) => {
                                 if (mod.condition === undefined || mod.condition) {
-                                  const Component = this.components[mod.component].c;
+                                  const Component = this.components[mod.component]?.c;
                                   const settings = (mod.settings || []).reduce(function(map, obj) {
                                     map[obj.id] = obj.value;
                                     return map;
                                   }, {});
+
+                                  if (!Component) {
+                                    return (
+                                      <div key={m} className={cx('module', ...(mod.className || []))}>
+                                        <div className='info'>
+                                          <p>
+                                            An error occurred while attempting to render module <code>{mod.component}</code>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    );
+                                  }
 
                                   return (
                                     <div key={m} className={cx('module', ...(mod.className || []))}>

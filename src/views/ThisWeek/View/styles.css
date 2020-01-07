@@ -123,7 +123,7 @@
 
 #this-week .module .list.modifiers li .text .description {
   white-space: pre-line;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 #this-week .module .list.modifiers.condensed {

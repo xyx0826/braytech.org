@@ -458,6 +458,14 @@ class Customise extends React.Component {
     Reckoning: {
       name: manifest.DestinyPlaceDefinition[4148998934]?.displayProperties.name,
       description: manifest.DestinyPlaceDefinition[4148998934]?.displayProperties.description
+    },
+    Luna: {
+      name: manifest.DestinyObjectiveDefinition[1296970487]?.displayProperties.name,
+      description: manifest.DestinyInventoryItemDefinition[2178015352]?.displayProperties.description
+    },
+    NightmareHunts: {
+      name: this.props.t('Nightmare Hunts'),
+      description: this.props.t(`Hunt down this week's available nightmares for... satisfaction.`)
     }
   };
 
@@ -512,6 +520,20 @@ class Customise extends React.Component {
                           {(provided, snapshot) => (
                             <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} className='column-inner'>
                               {col.mods.map((mod, i) => {
+                                if (!this.modules[mod.component]) {
+                                  return (
+                                    <div key={mod.id} className={cx('module', 'button', { disabled: group.id === 'head' })}>
+                                      <div className='text'>
+                                        <div className='name'>Error</div>
+                                        <div className='description'>An error occurred while attempting to render module <code>{mod.component}</code></div>
+                                      </div>
+                                      <Button className='remove' disabled={group.id === 'head'} onClick={this.handler_removeMod(col.id, mod.id)}>
+                                        <i className='segoe-uniE1061' />
+                                      </Button>
+                                    </div>
+                                  );
+                                }
+
                                 const { name, description } = this.modules[mod.component];
 
                                 const settings =

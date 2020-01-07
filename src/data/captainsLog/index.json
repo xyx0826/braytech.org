@@ -928,5 +928,10 @@
     "date": "2020-01-07T00:18:18.379Z",
     "version": "2.13.29",
     "content": "- bug fix roll up"
+  },
+  {
+    "date": "2020-01-07T15:55:29.997Z",
+    "version": "2.13.30",
+    "content": "- Tooltips improvements\n- general design micro improvements\n- added new modules, _Luna's Recall_ and _Nightmare Hunts_, to _This Week_ view!"
   }
 ]

@@ -152,6 +152,17 @@ const userFlair = [
         classnames: 'patron one-hundo'
       }
     ]
+  },
+  {
+    user: '34611686018472687920',
+    trophies: [
+      {
+        hash: 'patron-vip',
+        primary: true,
+        icon: 'destiny-clovis_bray_device',
+        classnames: 'patron one-hundo'
+      }
+    ]
   }
 ];
 

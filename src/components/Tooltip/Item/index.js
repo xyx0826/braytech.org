@@ -151,7 +151,7 @@ class Item extends React.Component {
 
     const masterworked = enums.enumerateItemState(item.state).masterworked || (!item.itemInstanceId && (definitionItem.itemType === enums.DestinyItemType.Armor ? item.masterwork?.stats?.filter(s => s.value > 9).length : item.masterwork?.stats?.filter(s => s.value >= 9).length));
 
-    console.log(item)
+    // console.log(item)
 
     return (
       <>

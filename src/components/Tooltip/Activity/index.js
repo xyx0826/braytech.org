@@ -382,13 +382,13 @@ class Activity extends React.Component {
                 </div>
               ) : null}
               {definitionActivity.timeToComplete ? (
-                <div className='time-to-complete'>
-                  {t('Time to complete')}: {t('{{number}} minutes', { number: definitionActivity.timeToComplete || 0 })}
+                <div className='activity-length'>
+                  {t('Approximate length')}: {t('{{number}} minutes', { number: definitionActivity.timeToComplete || 0 })}
                 </div>
               ) : null}
               {activityTypeDisplay.activityLightLevel ? (
                 <div className='recommended-light'>
-                  {t('Recommended Power')}: <span>{activityTypeDisplay.activityLightLevel}</span>
+                  {t('Recommended light')}: <span>{activityTypeDisplay.activityLightLevel}</span>
                 </div>
               ) : null}
               {checklistItem && checklistItem.completed ? <div className='completed'>{t('Completed')}</div> : null}

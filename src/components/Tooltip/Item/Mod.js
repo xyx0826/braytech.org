@@ -28,7 +28,9 @@ const Mod = props => {
     <>
       {energyCost ? (
         <div className='energy'>
-          <div className={cx('value', energyType.string)}><div className='icon'>{energyType.icon}</div> {energyCost.energyCost}</div>
+          <div className={cx('value', energyType.string)}>
+            <div className='icon'>{energyType.icon}</div> {energyCost.energyCost}
+          </div>
           <div className='text'>{i18n.t('Energy cost')}</div>
         </div>
       ) : null}
@@ -53,13 +55,13 @@ const Mod = props => {
             .filter(c => c)}
         </div>
       ) : null}
-      {perks && perks.length > 0 && description && <div className='line' />}
+      {perks && perks.length > 0 && description ? <div className='line' /> : null}
       {description ? (
         <div className='description'>
           <pre>{description}</pre>
         </div>
       ) : null}
-      {description && sourceString && <div className='line' />}
+      {(description && sourceString) || (perks && perks.length && sourceString) ? <div className='line' /> : null}
       {sourceString ? (
         <div className='source'>
           <p>{sourceString}</p>

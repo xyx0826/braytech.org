@@ -127,7 +127,7 @@
 #tooltip .frame.map .availability {
   padding: 0 16px;
   font-size: 14px;
-  color: rgba(255, 255, 255, 1);
+  color: #e5d163;
 }
 
 #tooltip .frame.map .availability ~ .recommended-light {

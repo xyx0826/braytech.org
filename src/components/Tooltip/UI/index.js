@@ -8,9 +8,10 @@ import manifest from '../../../utils/manifest';
 import ObservedImage from '../../ObservedImage';
 
 import Default from './Default';
+import Braytech from './Braytech';
 
 const woolworths = {
-  
+  braytech: Braytech
 }
 
 class UI extends React.Component {
@@ -53,36 +54,6 @@ class UI extends React.Component {
         </>
       );
     }
-
-    if (!definition) {
-      return null;
-    }
-
-    if (definition.redacted) {
-      return (
-        <>
-          <div className='acrylic' />
-          <div className={cx('frame', 'common')}>
-            <div className='header'>
-              <div className='name'>{t('Classified')}</div>
-              <div>
-                <div className='kind'>{t('Insufficient clearance')}</div>
-              </div>
-            </div>
-            <div className='black'>
-              <div className='description'>
-                <pre>{t('Keep it clean.')}</pre>
-              </div>
-            </div>
-          </div>
-        </>
-      );
-    }
-
-    // let note = false;
-    // if (!item.itemComponents && this.props.uninstanced) {
-    //   note = t('Non-instanced item (displaying collections roll)');
-    // }
 
     const Meat = item.type && woolworths[item.type];
 
