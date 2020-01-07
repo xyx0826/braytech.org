@@ -1,18 +1,18 @@
-.raid-challenge {
+.user-module.raid .challenge {
   display: grid;
   grid-template-columns: 48px auto;
   gap: 1rem;
   align-items: flex-start;
 }
 
-.raid-challenge .name {
+.user-module.raid .challenge .name {
   margin: 0 0 3px;
 }
 
-.raid-challenge .description {
+.user-module.raid .challenge .description {
   
 }
 
-.raid-challenge .description p {
-  color: rgba(255, 255, 255, 0.6);
+.user-module.raid .challenge .description p {
+  color: rgba(255, 255, 255, 0.5);
 }
