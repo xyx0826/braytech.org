@@ -43,7 +43,7 @@ class Footer extends React.Component {
               </a>
             </li>
             <li>
-              <a href='https://discordapp.com/invite/Y68xDsG' target='_blank' rel='noopener noreferrer'>
+              <a href='https://discordapp.com/invite/8jESWWX' target='_blank' rel='noopener noreferrer'>
                 Discord
               </a>
             </li>

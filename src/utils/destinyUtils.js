@@ -126,7 +126,7 @@ export const calculateResets = (progressionHash, characterId, characterProgressi
 };
 
 export function progressionSeasonRank(member) {
-  if (!member) {
+  if (!member?.data || !member.data.profile?.characterProgressions?.data) {
     console.warn('No member data provided');
     
     return false;
@@ -135,10 +135,13 @@ export function progressionSeasonRank(member) {
   const definitionSeason = manifest.DestinySeasonDefinition[manifest.settings.destiny2CoreSettings.currentSeasonHash];
   const definitionSeasonPass = manifest.DestinySeasonPassDefinition[definitionSeason.seasonPassHash];
 
-  let progression = {...member.data.profile.characterProgressions.data[member.characterId].progressions[definitionSeasonPass.rewardProgressionHash]};
+  const progressionHash = member.data.profile.characterProgressions.data[member.characterId]?.progressions[definitionSeasonPass.rewardProgressionHash]?.level === member.data.profile.characterProgressions.data[member.characterId]?.progressions[definitionSeasonPass.rewardProgressionHash]?.levelCap ? definitionSeasonPass.prestigeProgressionHash : definitionSeasonPass.rewardProgressionHash;
 
-  if (progression.level === progression.levelCap) {
-    progression = { ...member.data.profile.characterProgressions.data[member.characterId].progressions[definitionSeasonPass.prestigeProgressionHash] };
+  const progression = {
+    ...member.data.profile.characterProgressions.data[member.characterId].progressions[progressionHash]
+  };
+
+  if (progressionHash === definitionSeasonPass.prestigeProgressionHash) {
     progression.level += 100;
   }
   

@@ -918,5 +918,15 @@
     "date": "2020-01-02T04:58:36.431Z",
     "version": "2.13.25",
     "content": "- flashpoint module improvements\n- changes to commonality stats\n- further work on _Inspect_ view"
+  },
+  {
+    "date": "2020-01-06T06:28:49.351Z",
+    "version": "2.13.28",
+    "content": "- further OAuth error handling improvements"
+  },
+  {
+    "date": "2020-01-07T00:18:18.379Z",
+    "version": "2.13.29",
+    "content": "- bug fix roll up"
   }
 ]
