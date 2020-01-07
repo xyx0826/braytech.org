@@ -1,123 +1,216 @@
 {
   "de": {
     "translated": 458,
-    "notTranslated": 127,
+    "notTranslated": 135,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
     "removed": []
   },
   "debug": {
-    "translated": 570,
+    "translated": 578,
     "notTranslated": 0,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
     "removed": []
   },
   "en": {
-    "translated": 595,
+    "translated": 603,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "es-mx": {
     "translated": 0,
-    "notTranslated": 557,
+    "notTranslated": 563,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
     "removed": [
-      "Non-instanced item (displaying collections roll)"
+      "Recommended Power",
+      "Time to complete"
     ]
   },
   "es": {
-    "translated": 580,
-    "notTranslated": 8,
+    "translated": 587,
+    "notTranslated": 9,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
     "removed": []
   },
   "fr": {
     "translated": 505,
-    "notTranslated": 74,
+    "notTranslated": 81,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
     "removed": [
-      "Non-instanced item (displaying collections roll)"
+      "Time to complete"
     ]
   },
   "it": {
-    "translated": 552,
-    "notTranslated": 36,
+    "translated": 588,
+    "notTranslated": 8,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
     "removed": []
   },
   "ja": {
-    "translated": 374,
-    "notTranslated": 196,
+    "translated": 521,
+    "notTranslated": 57,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
-    "removed": [
-      "Non-instanced item (displaying collections roll)"
-    ]
+    "removed": []
   },
   "ko": {
     "translated": 298,
-    "notTranslated": 277,
+    "notTranslated": 283,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
     "removed": [
-      "Non-instanced item (displaying collections roll)"
+      "Recommended Power",
+      "Time to complete"
     ]
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 557,
+    "notTranslated": 563,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
     "removed": [
-      "Non-instanced item (displaying collections roll)"
+      "Recommended Power",
+      "Time to complete"
     ]
   },
   "pt-br": {
     "translated": 580,
-    "notTranslated": 8,
+    "notTranslated": 16,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
     "removed": []
   },
   "ru": {
-    "translated": 0,
-    "notTranslated": 557,
+    "translated": 142,
+    "notTranslated": 421,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
     "removed": [
-      "Non-instanced item (displaying collections roll)"
+      "Recommended Power",
+      "Time to complete"
     ]
   },
   "zh-chs": {
-    "translated": 469,
-    "notTranslated": 119,
+    "translated": 495,
+    "notTranslated": 101,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
     "removed": []
   },
   "zh-cht": {
     "translated": 469,
-    "notTranslated": 119,
+    "notTranslated": 127,
     "added": [
-      "Vanguard Strikes are unavailable for this character."
+      "Approximate length",
+      "At current, {{number}} players are indexed by VOLUSPA.",
+      "Mission",
+      "Monitor Spider's materials closely",
+      "Nightmare Hunts",
+      "Recommended light",
+      "Spider: Material Exchange",
+      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
     ],
     "removed": []
   }
