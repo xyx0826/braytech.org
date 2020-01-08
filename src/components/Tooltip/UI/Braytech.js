@@ -22,7 +22,7 @@ const Braytech = (props) => {
       {itemHash === 'commonality' ? <div className='line' /> : null}
       {itemHash === 'commonality' ? (
         <div className='description'>
-          <p>{t('At current, {{number}} players are indexed by VOLUSPA.', { number: manifest.statistics.general.tracking.toLocaleString() })}</p>
+          <p>{t('At current, {{number}} players are indexed by VOLUSPA.', { number: manifest.statistics.general.scraped.toLocaleString() })}</p>
         </div>
       ) : null}
     </>
