@@ -25,6 +25,26 @@
   column-gap: 2rem;
 }
 
+#speed-runs .cols-5 .data {
+  grid-template-columns: minmax(200px, 1.38fr) repeat(5, 1fr);
+}
+
+#speed-runs .cols-4 .data {
+  grid-template-columns: minmax(200px, 1.38fr) repeat(4, 1fr);
+}
+
+#speed-runs .cols-3 .data {
+  grid-template-columns: minmax(200px, 1.38fr) repeat(3, 1fr);
+}
+
+#speed-runs .cols-2 .data {
+  grid-template-columns: minmax(200px, 1.38fr) repeat(2, 1fr);
+}
+
+#speed-runs .cols-1 .data {
+  grid-template-columns: 40% auto;
+}
+
 #speed-runs .data .row {
   font-size: 16px;
 }
@@ -44,6 +64,12 @@
 
 #speed-runs .data .row:last-child::after {
   content: none;
+}
+
+#speed-runs .data .column.nightfalls .row .text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #speed-runs .data .column.player {
@@ -112,9 +138,12 @@
 
 
 @media screen and (max-width: 600px) {
-  #speed-runs {
+  #speed-runs > .module.head {
+    padding: calc(3rem + 40px) 2rem 2rem;
+  }
+
+  #speed-runs > .padder {
     padding: 2rem;
-    gap: 2rem;
   }
 
 }
