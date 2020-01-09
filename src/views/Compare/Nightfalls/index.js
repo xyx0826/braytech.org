@@ -30,7 +30,7 @@ class CompareNightfalls extends React.Component {
         ]
       }));
     }
-  }
+  };
 
   handler_removePlayer = membershipId => e => {
     if (this.mounted) {
@@ -39,7 +39,7 @@ class CompareNightfalls extends React.Component {
         members: p.members.filter(m => m.membershipId !== membershipId)
       }));
     }
-  }
+  };
 
   componentDidMount() {
     this.mounted = true;
@@ -54,50 +54,61 @@ class CompareNightfalls extends React.Component {
   render() {
     const { t, location } = this.props;
     const query = queryString.parse(location.search);
-    const members = query.members?.split('|').map(m => {
-      const pizza = m.split(':');
+    const members =
+      query.members?.split('|').map(m => {
+        const pizza = m.split(':');
 
-      return {
-        membershipType: pizza[0],
-        membershipId: pizza[1]
-      }
-    }) || [];
+        return {
+          membershipType: pizza[0],
+          membershipId: pizza[1]
+        };
+      }) || [];
 
     return (
       <div className='view' id='speed-runs'>
-        <div className='data'>
-          <div className='column nightfalls'>
-            <ul className='list member'>
-              <li />
-            </ul>
-            <ul className='list'>
-              {nightfallDisplayHashes.map(key => (
-                <li key={key} className='row'>
-                  {manifest.DestinyActivityDefinition[key].selectionScreenDisplayProperties.name}
-                </li>
-              ))}
-            </ul>
-            <ul className='list sums'>
-              <li className='row'>
-                <div className='text'>
-                  <div className='name'>{t('Total duration')}</div>
-                  {/* <div className='description'>
+        <div className='module head'>
+          <div className='page-header'>
+            <div className='sub-name'>{t('Compare')}</div>
+            <div className='name'>{t('Nightfalls')}</div>
+          </div>
+        </div>
+        <div className='padder'>
+          <div className='data'>
+            <div className='column nightfalls'>
+              <ul className='list member'>
+                <li />
+              </ul>
+              <ul className='list'>
+                {nightfallDisplayHashes.map(key => (
+                  <li key={key} className='row'>
+                    {manifest.DestinyActivityDefinition[key].selectionScreenDisplayProperties.name}
+                  </li>
+                ))}
+              </ul>
+              <ul className='list sums'>
+                <li className='row'>
+                  <div className='text'>
+                    <div className='name'>{t('Total duration')}</div>
+                    {/* <div className='description'>
                     <p>{t('Sum activity duration where all current scored nightfall activities are included.')}</p>
                   </div> */}
-                </div>
-              </li>
-              <li className='row'>
-                <div className='text'>
-                  <div className='name'>{t('After the Nightfall duration')}</div>
-                  {/* <div className='description'>
+                  </div>
+                </li>
+                <li className='row'>
+                  <div className='text'>
+                    <div className='name'>{t('After the Nightfall duration')}</div>
+                    {/* <div className='description'>
                     <p>{t('Sum activity duration where nightfalls available to most players between Forsaken and Shadowkeep are included.')}</p>
                   </div> */}
-                </div>
-              </li>
-            </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            {members.map(m => (
+              <PlayerHistory key={m.membershipId} {...m} order={nightfallDisplayHashes} action={this.handler_removePlayer} query={members} />
+            ))}
+            {members.length < 5 ? <AddPlayer action={this.handler_addPlayer} query={members} /> : null}
           </div>
-          {members.map(m => <PlayerHistory key={m.membershipId} {...m} order={nightfallDisplayHashes} action={this.handler_removePlayer} query={members} />)}
-          {members.length < 5 ? <AddPlayer action={this.handler_addPlayer} query={members} /> : null}
         </div>
       </div>
     );

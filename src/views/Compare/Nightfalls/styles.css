@@ -1,7 +1,22 @@
 #speed-runs {
-  padding: 3rem;
+  padding: 0;
   display: grid;
-  gap: 3rem;
+  margin: -40px auto 0;
+  width: 100%;
+}
+
+#speed-runs > .module.head {
+  padding: calc(4rem + 40px) 3rem 3rem;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+#speed-runs > .module.head .page-header {
+  margin-bottom: 0rem;
+}
+
+#speed-runs > .padder {
+  width: 100%;
+  padding: 3rem;
 }
 
 #speed-runs .data {
@@ -59,10 +74,14 @@
 }
 
 #speed-runs .data .list.member {
-  margin: 0 0 1rem;
+  margin: 0 0 2rem;
   display: grid;
   grid-template-columns: auto 38px;
   column-gap: 3px;
+}
+
+#speed-runs .data .list.member li {
+  margin: 0;
 }
 
 #speed-runs .data .list.member .remove {
@@ -85,6 +104,10 @@
   font-size: 14px;
   margin: 4px 0 0;
   color: rgba(255, 255, 255, 0.5);
+}
+
+#speed-runs .data .column.add-player .profile-search {
+  margin: 3rem 0 0;
 }
 
 

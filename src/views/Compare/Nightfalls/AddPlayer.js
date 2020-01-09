@@ -56,13 +56,16 @@ class AddPlayer extends React.Component {
 
     if (showSearch) {
       return (
-        <div className='add-player'>
+        <div className='column add-player'>
+          <ul className='list'>
+            <li />
+          </ul>
           <ProfileSearch resultsListItems={this.resultsListItems} />
         </div>
       );
     } else {
       return (
-        <div className='add-player'>
+        <div className='column add-player'>
           <Button text='Add player' action={this.handler_showSearch} />
         </div>
       );
