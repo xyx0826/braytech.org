@@ -2,10 +2,11 @@ import React from 'react';
 import { debounce } from 'lodash';
 import { withTranslation } from 'react-i18next';
 
-import * as destinyEnums from '../../utils/destinyEnums';
 import * as ls from '../../utils/localStorage';
 import * as bungie from '../../utils/bungie';
 import Spinner from '../../components/UI/Spinner';
+
+import './styles.css';
 
 class ProfileSearch extends React.Component {
   constructor(props) {
@@ -40,9 +41,11 @@ class ProfileSearch extends React.Component {
   // keypress - only when they stop typing.
   searchForPlayers = debounce(async () => {
     const displayName = this.state.search;
+
     if (!displayName) return;
 
     this.setState({ searching: true });
+
     try {
       const isSteamID64 = displayName.match(/\b\d{17}\b/);
       const response = isSteamID64 ? await bungie.GetMembershipFromHardLinkedCredential({ params: { crType: 'SteamId', credential: displayName } }) : await bungie.SearchDestinyPlayer('-1', displayName);
@@ -82,20 +85,10 @@ class ProfileSearch extends React.Component {
       // If we get an error here it's usually because somebody is being cheeky
       // (eg entering invalid search data), so log it only.
       console.warn(`Error while searching for ${displayName}: ${e}`);
+      
       if (this.mounted) this.setState({ results: false, searching: false });
     }
   }, 500);
-
-  profileList(profiles) {
-    return profiles.map((p, i) => (
-      <li key={i} className='linked' onClick={() => this.props.onProfileClick(p.membershipType, p.membershipId, p.displayName)}>
-        <div className='icon'>
-          <span className={`destiny-platform_${destinyEnums.PLATFORMS[p.membershipType]}`} />
-        </div>
-        <div className='displayName'>{p.displayName}</div>
-      </li>
-    ));
-  }
 
   resultsElement() {
     const { results, searching } = this.state;
@@ -105,7 +98,7 @@ class ProfileSearch extends React.Component {
     }
 
     if (results && results.length > 0) {
-      return this.profileList(results);
+      return this.props.resultsListItems(results);
     } else if (results) {
       return <li className='no-profiles'>{this.props.t('No profiles found')}</li>;
     }
@@ -120,7 +113,7 @@ class ProfileSearch extends React.Component {
     const history = ls.get('history.profiles') || [];
 
     return (
-      <>
+      <div className='profile-search'>
         <div className='sub-header'>
           <div>{t('Search for player')}</div>
         </div>
@@ -138,11 +131,11 @@ class ProfileSearch extends React.Component {
               <div>{t('Previous searches')}</div>
             </div>
             <div className='results'>
-              <ul className='list'>{this.profileList(history)}</ul>
+              <ul className='list'>{this.props.resultsListItems(history)}</ul>
             </div>
           </>
         )}
-      </>
+      </div>
     );
   }
 }

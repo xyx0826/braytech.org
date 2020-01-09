@@ -54,6 +54,7 @@ import Maps from './views/Maps';
 import Legend from './views/Legend';
 import ClanBannerBuilder from './views/ClanBannerBuilder';
 import PGCR from './views/PGCR';
+import CompareNightfalls from './views/Compare/Nightfalls';
 
 import Test from './views/Test';
 import TestThree from './views/TestThree';
@@ -291,6 +292,7 @@ class App extends React.Component {
                           <Route path='/pgcr/:instanceId?' exact render={route => <PGCR {...route} />} />
                           <Route path='/inspect/:hash?' exact component={Inspect} />
                           <Route path='/read/:kind?/:hash?' exact component={Read} />
+                          <Route path='/compare/nightfalls' exact component={CompareNightfalls} />
                           <Route path='/maps/:map?/:highlight?' render={route => <Maps {...route} />} />
                           <Route path='/legend' exact render={route => <Legend {...route} />} />
                           <Route path='/settings' exact render={route => <Settings {...route} availableLanguages={this.availableLanguages} />} />

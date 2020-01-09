@@ -55,69 +55,13 @@
   margin: unset;
 }
 
-#character-select .search {
-  position: relative;
+#character-select .profile-search {
+  margin: 3rem 0 0;
 }
 
-#character-select .form {
-  margin: 0 0 1rem;
-}
-
-#character-select .form .field input {
-  transition: color 0.25s, background-color 0.25s, box-shadow 0.25s;
-}
-
-#character-select .form .field:hover input {
-  z-index: 2;
-}
-
-#character-select .results {
-  margin: 1rem 0 0;
-}
-
-#character-select .results .list li {
-  padding: 0 1rem 0 0;
-  cursor: pointer;
-}
-
-#character-select.loading .list li .icon,
-#character-select.loading .list li .displayName {
+#character-select.loading .profile-search .list li .icon,
+#character-select.loading .profile-search .list li .displayName {
   transition: opacity 0.25ms;
-}
-
-#character-select .results .list li.linked:hover {
-  z-index: 3;
-}
-
-#character-select .results .list li.linked span {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  margin: 0 1rem 0 0;
-  font-size: 18px;
-  color: #fff;
-}
-
-#character-select .results .list li.linked span.destiny-platform_xbox {
-  background-color: #4CAF50;
-}
-
-#character-select .results .list li.linked span.destiny-platform_playstation {
-  background-color: #3F51B5;
-}
-
-#character-select .results .list li.linked span.destiny-platform_steam {
-  background-color: #165b83;
-}
-
-#character-select .results .list li.linked span.destiny-platform_battlenet {
-  background-color: #009ae4;
-}
-
-#character-select .results .list li.linked span.destiny-platform_stadia {
-  background-color: #da2b48;
 }
 
 #character-select .profile {

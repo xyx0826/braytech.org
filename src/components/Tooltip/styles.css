@@ -859,6 +859,10 @@
   margin: 0 0 10px;
 }
 
+#tooltip .super .ability .text .description {
+  padding: 0;
+}
+
 #tooltip .super .ability .text .description p {
   font-style: italic;
   font-size: 14px;

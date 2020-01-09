@@ -383,107 +383,158 @@ export const associationsCollectionsBadges = [
 ];
 
 export const nightfalls = {
-  272852450: {
-    triumphs: [1039797865, 3013611925],
-    items: [],
-    collectibles: [2466440635, 1766893928],
-    ordealHashes: []
-  },
-  522318687: {
-    triumphs: [165166474, 1871570556],
-    items: [],
-    collectibles: [1534387877, 1766893929],
-    ordealHashes: [3883876600, 3883876605, 3883876606, 3883876607]
-  },
-  629542775: {
-    triumphs: [],
-    items: [],
-    collectibles: [],
-    ordealHashes: []
-  },
-  936308438: {
-    triumphs: [2692332187, 1398454187],
-    items: [],
-    collectibles: [2448009818, 3490589931],
-    ordealHashes: [2533203704, 2533203706, 2533203707, 2533203709]
-  },
-  1034003646: {
-    triumphs: [599303591, 3399168111],
-    items: [],
-    collectibles: [1186314105, 465974149],
-    ordealHashes: [3200108049, 3200108052, 3200108054, 3200108055]
-  },
-  1282886582: {
-    triumphs: [1526865549, 2140068897],
-    items: [],
-    collectibles: [3036030067, 3490589927],
-    ordealHashes: []
-  },
-  1391780798: {
-    triumphs: [3042714868, 4156350130],
-    items: [],
-    collectibles: [],
-    ordealHashes: []
-  },
-  3034843176: {
-    triumphs: [3951275509, 3641166665],
-    items: [],
-    collectibles: [1099984904, 1410290331],
-    ordealHashes: []
-  },
-  3108813009: {
-    triumphs: [2836924866, 1469598452],
-    items: [],
-    collectibles: [1279318101, 2263264048],
-    ordealHashes: []
-  },
   3145298904: {
+    // Nightfall: The Arms Dealer
+    sort: 1,
     triumphs: [3340846443, 4267516859],
     items: [],
     collectibles: [3036030066, 3490589921],
-    ordealHashes: [1358381368, 1358381370, 1358381371, 1358381373]
+    ordealHashes: [1358381368, 1358381370, 1358381371, 1358381373],
+    2618436059: true
   },
-  3280234344: {
-    triumphs: [2099501667, 1442950315],
+  1391780798: {
+    // Nightfall: Broodhold
+    sort: 2,
+    triumphs: [3042714868, 4156350130],
     items: [],
-    collectibles: [1333654061, 3490589926],
-    ordealHashes: [3849697856, 3849697858, 3849697859, 3849697861]
+    collectibles: [],
+    ordealHashes: [],
+    2618436059: false
   },
-  3289589202: {
-    triumphs: [1060780635, 1142177491],
+  3034843176: {
+    // Nightfall: The Corrupted
+    sort: 3,
+    triumphs: [3951275509, 3641166665],
     items: [],
-    collectibles: [1152758802, 3490589930],
-    ordealHashes: [3265488360, 3265488362, 3265488363, 3265488365]
+    collectibles: [1099984904, 1410290331],
+    ordealHashes: [],
+    2618436059: true
   },
-  3372160277: {
-    triumphs: [1329556468, 413743786],
+  1282886582: {
+    // Nightfall: Exodus Crash
+    sort: 4,
+    triumphs: [1526865549, 2140068897],
     items: [],
-    collectibles: [1602518767, 3896331530],
-    ordealHashes: []
+    collectibles: [3036030067, 3490589927],
+    ordealHashes: [],
+    2618436059: true
   },
-  3701132453: {
-    triumphs: [3450793480, 3847579126],
-    items: [],
-    collectibles: [1074861258, 3314387486],
-    ordealHashes: []
-  },
-  3718330161: {
-    triumphs: [2282894388, 3636866482],
-    items: [],
-    collectibles: [1279318110, 3490589924],
-    ordealHashes: [2660931442, 2660931444, 2660931445, 2660931447]
-  },
-  3856436847: {
+  629542775: {
+    // Nightfall: The Festering Core
+    sort: 5,
     triumphs: [],
     items: [],
     collectibles: [],
-    ordealHashes: [887176537, 887176540, 887176542, 887176543]
+    ordealHashes: [],
+    2618436059: false
+  },
+  936308438: {
+    // Nightfall: A Garden World
+    sort: 6,
+    triumphs: [2692332187, 1398454187],
+    items: [],
+    collectibles: [2448009818, 3490589931],
+    ordealHashes: [2533203704, 2533203706, 2533203707, 2533203709],
+    2618436059: true
+  },
+  3701132453: {
+    // Nightfall: The Hollowed Lair
+    sort: 7,
+    triumphs: [3450793480, 3847579126],
+    items: [],
+    collectibles: [1074861258, 3314387486],
+    ordealHashes: [],
+    2618436059: true
+  },
+  1034003646: {
+    // Nightfall: The Insight Terminus
+    sort: 8,
+    triumphs: [599303591, 3399168111],
+    items: [],
+    collectibles: [1186314105, 465974149],
+    ordealHashes: [3200108049, 3200108052, 3200108054, 3200108055],
+    2618436059: true
   },
   4259769141: {
+    // Nightfall: The Inverted Spire
+    sort: 9,
     triumphs: [3973165904, 1498229894],
     items: [],
     collectibles: [1718922261, 3490589925],
-    ordealHashes: [1801803624, 1801803625, 1801803627, 1801803630]
+    ordealHashes: [1801803624, 1801803625, 1801803627, 1801803630],
+    2618436059: true
+  },
+  3372160277: {
+    // Nightfall: Lake of Shadows
+    sort: 10,
+    triumphs: [1329556468, 413743786],
+    items: [],
+    collectibles: [1602518767, 3896331530],
+    ordealHashes: [],
+    2618436059: true
+  },
+  3289589202: {
+    // Nightfall: The Pyramidion
+    sort: 11,
+    triumphs: [1060780635, 1142177491],
+    items: [],
+    collectibles: [1152758802, 3490589930],
+    ordealHashes: [3265488360, 3265488362, 3265488363, 3265488365],
+    2618436059: true
+  },
+  3280234344: {
+    // Nightfall: Savathûn's Song
+    sort: 12,
+    triumphs: [2099501667, 1442950315],
+    items: [],
+    collectibles: [1333654061, 3490589926],
+    ordealHashes: [3849697856, 3849697858, 3849697859, 3849697861],
+    2618436059: true
+  },
+  3856436847: {
+    // Nightfall: The Scarlet Keep
+    sort: 13,
+    triumphs: [],
+    items: [],
+    collectibles: [],
+    ordealHashes: [887176537, 887176540, 887176542, 887176543],
+    2618436059: false
+  },
+  522318687: {
+    // Nightfall: Strange Terrain
+    sort: 14,
+    triumphs: [165166474, 1871570556],
+    items: [],
+    collectibles: [1534387877, 1766893929],
+    ordealHashes: [3883876600, 3883876605, 3883876606, 3883876607],
+    2618436059: true
+  },
+  3718330161: {
+    // Nightfall: Tree of Probabilities
+    sort: 15,
+    triumphs: [2282894388, 3636866482],
+    items: [],
+    collectibles: [1279318110, 3490589924],
+    ordealHashes: [2660931442, 2660931444, 2660931445, 2660931447],
+    2618436059: true
+  },
+  3108813009: {
+    // Nightfall: Warden of Nothing
+    sort: 16,
+    triumphs: [2836924866, 1469598452],
+    items: [],
+    collectibles: [1279318101, 2263264048],
+    ordealHashes: [],
+    2618436059: true
+  },
+  272852450: {
+    // Nightfall: Will of the Thousands
+    sort: 17,
+    triumphs: [1039797865, 3013611925],
+    items: [],
+    collectibles: [2466440635, 1766893928],
+    ordealHashes: [],
+    2618436059: true
   }
 };
 

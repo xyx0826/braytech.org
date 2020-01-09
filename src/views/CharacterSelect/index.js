@@ -6,11 +6,12 @@ import cx from 'classnames';
 
 import store from '../../store';
 import * as ls from '../../utils/localStorage';
+import * as enums from '../../utils/destinyEnums';
 import Spinner from '../../components/UI/Spinner';
 import { BungieAuthMini } from '../../components/BungieAuth';
+import ProfileSearch from '../../components/ProfileSearch';
 import { ReactComponent as Logo } from '../../components/BraytechDevice.svg';
 
-import ProfileSearch from './ProfileSearch';
 import ProfileError from './ProfileError';
 import Profile from './Profile';
 
@@ -27,7 +28,7 @@ class CharacterSelect extends React.Component {
     ls.set('setting.profile', { membershipType, membershipId, characterId });
   };
 
-  profileClick = async (membershipType, membershipId, displayName) => {
+  handler_profileClick = (membershipType, membershipId, displayName) => async e => {
     window.scrollTo(0, 0);
 
     store.dispatch({ type: 'MEMBER_LOAD_MEMBERSHIP', payload: { membershipType, membershipId } });
@@ -36,6 +37,15 @@ class CharacterSelect extends React.Component {
       ls.update('history.profiles', { membershipType, membershipId, displayName }, true, 9);
     }
   };
+
+  resultsListItems = profiles => profiles.map((p, i) => (
+    <li key={i} className='linked' onClick={this.handler_profileClick(p.membershipType, p.membershipId, p.displayName)}>
+      <div className='icon'>
+        <span className={`destiny-platform_${enums.PLATFORMS[p.membershipType]}`} />
+      </div>
+      <div className='displayName'>{p.displayName}</div>
+    </li>
+  ));
 
   render() {
     const { t, member, viewport, location } = this.props;
@@ -82,7 +92,7 @@ class CharacterSelect extends React.Component {
               <div>{t('Bungie.net profile')}</div>
             </div>
             <BungieAuthMini />
-            <ProfileSearch onProfileClick={this.profileClick} />
+            <ProfileSearch resultsListItems={this.resultsListItems} />
           </div>
           {!reverseUI && profileCharacterSelect && !error ? (
             <div className='module profile'>

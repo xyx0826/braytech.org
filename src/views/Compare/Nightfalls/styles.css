@@ -1,0 +1,97 @@
+#speed-runs {
+  padding: 3rem;
+  display: grid;
+  gap: 3rem;
+}
+
+#speed-runs .data {
+  display: grid;
+  grid-template-columns: minmax(200px, 1.38fr) repeat(5, 1fr);
+  column-gap: 2rem;
+}
+
+#speed-runs .data .row {
+  font-size: 16px;
+}
+
+#speed-runs .data .row::after {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  top: unset;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: opacity 0.25s;
+  transform: none;
+}
+
+#speed-runs .data .row:last-child::after {
+  content: none;
+}
+
+#speed-runs .data .column.player {
+  position: relative;
+}
+
+#speed-runs .data .column.player .spinner-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+#speed-runs .data .column.player .row {
+  font-size: 14px;
+}
+
+#speed-runs .data .column.player.loading .row::after {
+  opacity: 0;
+}
+
+#speed-runs .data .column.player .row.na {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+#speed-runs .data .list.member {
+  margin: 0 0 1rem;
+  display: grid;
+  grid-template-columns: auto 38px;
+  column-gap: 3px;
+}
+
+#speed-runs .data .list.member .remove {
+  position: relative;
+  padding: 0;
+  display: grid;
+  justify-content: center;
+}
+
+#speed-runs .data .list.sums {
+  margin: 1rem 0 0;
+}
+
+#speed-runs .data .list.sums .row {
+  height: unset;
+  min-height: 38px;
+}
+
+#speed-runs .data .list.sums .row .text .description {
+  font-size: 14px;
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+
+@media screen and (max-width: 600px) {
+  #speed-runs {
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+}
