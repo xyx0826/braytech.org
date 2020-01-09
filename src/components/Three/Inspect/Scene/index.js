@@ -202,9 +202,9 @@ class Scene extends Component {
 
   import = async (reference_id, debug, gender) => {
     const data = await voluspa.gearAsset(reference_id).then(response => {
-      if (response.ErrorCode === 1) {
+      if (response && response.ErrorCode === 1) {
         return response.Response;
-      } else if (response.ErrorCode === 1623) {
+      } else if (response && response.ErrorCode === 1623) {
         return { error: false };
       } else {
         return { error: true };

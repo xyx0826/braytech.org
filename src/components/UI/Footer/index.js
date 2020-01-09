@@ -20,7 +20,7 @@ class Footer extends React.Component {
           <div>
             <div>© 2020 <a href='https://thomchap.com.au' target='_blank' rel='noopener noreferrer'>Tom Chapman</a></div>
             <div>{t('Version')} <span>{packageJSON.version}</span></div>
-            <div>{t('VOLUSPA last indexed')} <Moment fromNow>{manifest.statistics.general.status.lastScraped}</Moment></div>
+            {manifest.statistics.general ? <div>{t('VOLUSPA last indexed')} <Moment fromNow>{manifest.statistics.general.status.lastScraped}</Moment></div> : null}
           </div>
           <ul>
             {!minimal ? (

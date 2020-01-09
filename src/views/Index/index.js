@@ -3,21 +3,15 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
-import moment from 'moment';
 import Moment from 'react-moment';
 
 import manifest from '../../utils/manifest';
-import Button from '../../components/UI/Button';
-import captainsLog from '../../data/captainsLog';
-import { ReactComponent as Logo } from '../../components/BraytechDevice.svg';
-import { ReactComponent as Patreon } from '../../components/PatreonDevice.svg';
-
-import Records from '../../components/Records';
-import Collectibles from '../../components/Collectibles';
-import Items from '../../components/Items';
-import Spinner from '../../components/UI/Spinner';
 import MemberLink from '../../components/MemberLink';
 import userFlair from '../../data/userFlair';
+import Button from '../../components/UI/Button';
+import { ReactComponent as Logo } from '../../components/BraytechDevice.svg';
+import { ReactComponent as Patreon } from '../../components/PatreonDevice.svg';
+import captainsLog from '../../data/captainsLog';
 
 import './styles.css';
 
@@ -25,11 +19,7 @@ class Index extends React.Component {
   constructor() {
     super();
     this.state = {
-      log: 0,
-      manifest: {
-        loading: true,
-        data: false
-      }
+      log: 0
     };
 
     this.logs = captainsLog.slice().reverse();
@@ -38,43 +28,13 @@ class Index extends React.Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    this.mounted = true;
 
-    if (this.mounted) this.init();
+    this.mounted = true;
   }
 
   componentWillUnmount() {
     this.mounted = false;
   }
-
-  componentDidUpdate(p, s) {
-    if (!s.manifest.data && this.state.manifest.data) {
-      this.props.rebindTooltips();
-    }
-  }
-
-  init = async () => {
-    if (!this.state.manifest.data) {
-      let diff = await fetch('https://voluspa.braytech.org/manifest');
-      if (this.mounted) diff = await diff.json();
-
-      if (diff && diff.ErrorCode === 200 && this.mounted) {
-        this.setState({
-          manifest: {
-            loading: false,
-            data: diff.Response
-          }
-        });
-      } else if (this.mounted) {
-        this.setState({
-          manifest: {
-            loading: false,
-            data: false
-          }
-        });
-      }
-    }
-  };
 
   shuffle(array) {
     var currentIndex = array.length,
@@ -115,90 +75,7 @@ class Index extends React.Component {
   };
 
   render() {
-    const { t, viewport } = this.props;
-
-    let elDiff = null;
-    if (this.state.manifest.data && this.state.manifest.data.diff) {
-      let state = this.state.manifest.data.state;
-      let diff = this.state.manifest.data.diff;
-
-      let diffCollectibles = diff.DestinyCollectibleDefinition && Object.keys(diff.DestinyCollectibleDefinition).length ? Object.keys(diff.DestinyCollectibleDefinition) : [];
-      let diffRecords = diff.DestinyRecordDefinition && Object.keys(diff.DestinyRecordDefinition).length ? Object.keys(diff.DestinyRecordDefinition) : [];
-      let diffItems =
-        diff.DestinyInventoryItemDefinition && Object.keys(diff.DestinyInventoryItemDefinition).length
-          ? Object.keys(diff.DestinyInventoryItemDefinition)
-              .filter(i => {
-                let definitionItem = manifest.DestinyInventoryItemDefinition[i];
-
-                if (!definitionItem) return false;
-
-                if (definitionItem && definitionItem.collectibleHash && diffCollectibles.indexOf(definitionItem.collectibleHash.toString()) === -1) return i;
-              })
-              .filter(i => i)
-          : [];
-
-      let keysOther = ['DestinyEnemyRaceDefinition', 'DestinyPlaceDefinition', 'DestinyActivityDefinition', 'DestinyActivityTypeDefinition', 'DestinyClassDefinition', 'DestinyGenderDefinition', 'DestinyRaceDefinition', 'DestinySandboxPerkDefinition', 'DestinyStatGroupDefinition', 'DestinyFactionDefinition', 'DestinyDamageTypeDefinition', 'DestinyActivityModeDefinition', 'DestinyStatDefinition', 'DestinyPresentationNodeDefinition', 'DestinyDestinationDefinition', 'DestinyLocationDefinition', 'DestinyLoreDefinition', 'DestinyObjectiveDefinition', 'DestinyProgressionDefinition', 'DestinyVendorDefinition', 'DestinyMilestoneDefinition', 'DestinyChecklistDefinition'];
-
-      let diffRemaining = Object.keys(diff)
-        .filter(key => keysOther.includes(key))
-        .reduce((obj, key) => {
-          obj[key] = diff[key];
-          return obj;
-        }, {});
-
-      elDiff = (
-        <>
-          {diffCollectibles.length ? (
-            <>
-              <h4>{t('Collectibles')}</h4>
-              <ul className='list collection-items'>
-                <Collectibles selfLinkFrom='/' hashes={diffCollectibles.slice(0, 6)} forceDisplay />
-              </ul>
-              {diffCollectibles.length > 6 ? <div className='overflow'>{t('And {{diff}} more which are not displayed for the sake of brevity', { diff: diffCollectibles.length - 6 })}</div> : null}
-            </>
-          ) : null}
-          {diffItems.length ? (
-            <>
-              <h4>{t('Items')}</h4>
-              <ul className='list inventory-items as-panels'>
-                <Items asPanels items={diffItems.slice(0, 6).map(i => ({ itemHash: i }))} />
-              </ul>
-              {diffItems.length > 6 ? <div className='overflow'>{t('And {{diff}} more which are not displayed for the sake of brevity', { diff: diffItems.length - 6 })}</div> : null}
-            </>
-          ) : null}
-          {diffRecords.length ? (
-            <>
-              <h4>{t('Records')}</h4>
-              <ul className='list record-items'>
-                <Records selfLinkFrom='/' hashes={diffRecords.slice(0, 3)} forceDisplay />
-              </ul>
-              {diffRecords.length > 3 ? <div className='overflow'>{t('And {{diff}} more which are not displayed for the sake of brevity', { diff: diffRecords.length - 3 })}</div> : null}
-            </>
-          ) : null}
-          {diffRemaining && Object.keys(diffRemaining).length ? (
-            <>
-              <h4>{t('Other')}</h4>
-              <ul className='other'>
-                {Object.keys(diffRemaining).map((table, i) => {
-                  return (
-                    <li key={i}>
-                      <div className='entries'>{Object.keys(diffRemaining[table]).length}</div>
-                      <div className='table'>{table}</div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </>
-          ) : null}
-          <div className='meta'>
-            {t('Comparison between {{versionNew}} and {{versionOld}}', {
-              versionNew: `${state.new.version} (${moment(state.new.fetched).format('DD MMMM')})`,
-              versionOld: `${state.old.version} (${moment(state.old.fetched).format('DD MMMM')})`
-            })}
-          </div>
-        </>
-      );
-    }
+    const { t } = this.props;
 
     return (
       <div className='view' id='index'>
@@ -240,12 +117,6 @@ class Index extends React.Component {
                 <p>Braytech is a stringent exercise in mimicking—and to a small degree, reimagining—Destiny's UI for web and mobile. This has been my first React project, the first time I've heavily used the command line, the first time I've had to use NPM... And it's been super fun and rewarding, most of the time!</p>
               </div>
             </div>
-            {this.state.manifest.loading || this.state.manifest.data ? (
-              <div className='module manifest-diff'>
-                <h3>{t('Manifest changes')}</h3>
-                {this.state.manifest.data && elDiff ? elDiff : <Spinner />}
-              </div>
-            ) : null}
           </div>
         </div>
         <div className='row patreon'>
@@ -318,24 +189,6 @@ class Index extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {
-    viewport: state.viewport
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    rebindTooltips: value => {
-      dispatch({ type: 'REBIND_TOOLTIPS', payload: new Date().getTime() });
-    }
-  };
-}
-
 export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
   withTranslation()
 )(Index);
