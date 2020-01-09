@@ -65,6 +65,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 20px;
 }
 
 .progress-bar .bar .text .fraction {
