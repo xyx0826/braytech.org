@@ -1,216 +1,241 @@
 {
   "de": {
     "translated": 458,
-    "notTranslated": 135,
+    "notTranslated": 144,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
     "removed": []
   },
   "debug": {
-    "translated": 578,
+    "translated": 587,
     "notTranslated": 0,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
     "removed": []
   },
   "en": {
-    "translated": 603,
+    "translated": 612,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "es-mx": {
     "translated": 0,
-    "notTranslated": 563,
+    "notTranslated": 567,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
     "removed": [
-      "Recommended Power",
-      "Time to complete"
+      "And {{diff}} more which are not displayed for the sake of brevity",
+      "Comparison between {{versionNew}} and {{versionOld}}",
+      "Manifest changes",
+      "Other",
+      "Records"
     ]
   },
   "es": {
     "translated": 587,
-    "notTranslated": 9,
+    "notTranslated": 18,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
     "removed": []
   },
   "fr": {
-    "translated": 505,
-    "notTranslated": 81,
+    "translated": 530,
+    "notTranslated": 65,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
-    "removed": [
-      "Time to complete"
-    ]
+    "removed": []
   },
   "it": {
-    "translated": 588,
-    "notTranslated": 8,
+    "translated": 596,
+    "notTranslated": 9,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
     "removed": []
   },
   "ja": {
-    "translated": 521,
-    "notTranslated": 57,
+    "translated": 522,
+    "notTranslated": 64,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
-    "removed": []
+    "removed": [
+      "And {{diff}} more which are not displayed for the sake of brevity"
+    ]
   },
   "ko": {
     "translated": 298,
-    "notTranslated": 283,
+    "notTranslated": 287,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
     "removed": [
-      "Recommended Power",
-      "Time to complete"
+      "And {{diff}} more which are not displayed for the sake of brevity",
+      "Comparison between {{versionNew}} and {{versionOld}}",
+      "Manifest changes",
+      "Other",
+      "Records"
     ]
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 563,
+    "notTranslated": 567,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
     "removed": [
-      "Recommended Power",
-      "Time to complete"
+      "And {{diff}} more which are not displayed for the sake of brevity",
+      "Comparison between {{versionNew}} and {{versionOld}}",
+      "Manifest changes",
+      "Other",
+      "Records"
     ]
   },
   "pt-br": {
     "translated": 580,
-    "notTranslated": 16,
+    "notTranslated": 25,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
     "removed": []
   },
   "ru": {
     "translated": 142,
-    "notTranslated": 421,
+    "notTranslated": 425,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
     "removed": [
-      "Recommended Power",
-      "Time to complete"
+      "And {{diff}} more which are not displayed for the sake of brevity",
+      "Comparison between {{versionNew}} and {{versionOld}}",
+      "Manifest changes",
+      "Other",
+      "Records"
     ]
   },
   "zh-chs": {
     "translated": 495,
-    "notTranslated": 101,
+    "notTranslated": 110,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
     "removed": []
   },
   "zh-cht": {
     "translated": 469,
-    "notTranslated": 127,
+    "notTranslated": 136,
     "added": [
-      "Approximate length",
-      "At current, {{number}} players are indexed by VOLUSPA.",
-      "Mission",
-      "Monitor Spider's materials closely",
-      "Nightmare Hunts",
-      "Recommended light",
-      "Spider: Material Exchange",
-      "Your most feared, devastating, tormenting nightmares reincarnate―be immovable in your resolve, Guardian."
+      "Compare",
+      "Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.",
+      "Compare Nightfalls",
+      "Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.",
+      "Compare Nightmare Hunts",
+      "duration",
+      "Find your fastest completions for Nightfalls and Nightmare Hunts",
+      "Nightfalls",
+      "Total duration"
     ],
     "removed": []
   }
