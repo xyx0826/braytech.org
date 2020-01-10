@@ -276,7 +276,7 @@ class App extends React.Component {
                   <Route
                     render={() => (
                       <>
-                        <Route render={route => <Header route={route} {...this.state} {...this.props} />} />
+                        <Route render={route => <Header {...route} {...this.state} {...this.props} />} />
                         <Switch>
                           <RedirectRoute path='/clan' />
                           <RedirectRoute path='/character' exact />
@@ -313,7 +313,7 @@ class App extends React.Component {
               {/* Don't run the refresh service if we're currently selecting
                 a character, as the refresh will cause the member to
                 continually reload itself */}
-              <Route path='/character-select' children={({ match, ...rest }) => !match && <RefreshService {...this.props} />} />
+              <Route path='/character-select' children={route => !route.match && <RefreshService {...route} />} />
 
               <Footer />
             </div>

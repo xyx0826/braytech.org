@@ -85,7 +85,7 @@ class Compare extends React.Component {
       let mode = '46';
       let activityDisplayHashes = orderBy(Object.keys(enums.nightfalls), [key => enums.nightfalls[key].sort], ['asc']);
       if (object === 'nightmare-hunts') {
-        name = t('Nightmare hunts');
+        name = t('Nightmare Hunts');
         mode = '79';
         activityDisplayHashes = enums.nightmareHunts.map(a => orderBy(a.activities, [hash => manifest.DestinyActivityDefinition[hash].activityLightLevel], ['desc'])?.[0]);
       }
@@ -172,7 +172,7 @@ class Compare extends React.Component {
               </Link>
             </div>
             <div className='module'>
-              <h3>{t('Nightmare hunts')}</h3>
+              <h3>{t('Nightmare Hunts')}</h3>
               <ReactMarkdown className='text' source={t('Compare Nightmare Hunt activity durations between players for bragging rights and to track progress towards their respective time trial triumph records.')} />
               <Link className='button' to={member.membershipId ? `/compare/nightmare-hunts?members=${member.membershipType}:${member.membershipId}` : `/compare/nightmare-hunts`}>
                 <div className='text'>{t('Compare Nightmare Hunts')}</div>

@@ -4,12 +4,7 @@ import i18n from 'i18next';
 import manifest from './manifest';
 import * as enums from './destinyEnums';
 
-// TODO: we can just use itemCategoryHashes for this now?
-export const isOrnament = item => item.inventory && item.inventory.stackUniqueLabel && item.plug && item.plug.plugCategoryIdentifier && item.plug.plugCategoryIdentifier.includes('skins');
-
-export function hasCategoryHash(item, categoryHash) {
-  return item.itemCategoryHashes && item.itemCategoryHashes.includes(categoryHash);
-}
+export const isProfileRoute = location => location.pathname.match(/\/(?:[1|2|3|4|5])\/(?:[0-9]+)\/(?:[0-9]+)/);
 
 export function totalValor() {
   return Object.keys(manifest.DestinyProgressionDefinition[2626549951].steps).reduce((sum, key) => {

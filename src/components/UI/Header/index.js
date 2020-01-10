@@ -88,9 +88,9 @@ class Header extends React.Component {
   };
 
   render() {
-    const { t, route, viewport, member } = this.props;
+    const { t, location, viewport, member } = this.props;
 
-    const isProfileRoute = route.location.pathname.match(/\/(?:[1|2|3|4|5])\/(?:[0-9]+)\/(?:[0-9]+)/);
+    const isProfileRoute = utils.isProfileRoute(location);
 
     const views = [
       {
@@ -270,7 +270,7 @@ class Header extends React.Component {
                   <Link
                     to={{
                       pathname: '/character-select',
-                      state: { from: this.props.route.location }
+                      state: { from: this.props.location }
                     }}
                   />
                 </li>
