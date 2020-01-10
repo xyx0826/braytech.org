@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { compose } from 'redux';
 
-import * as enums from '../../../utils/destinyEnums';
-import ProfileSearch from '../../../components/ProfileSearch';
-import Button from '../../../components/UI/Button';
+import * as enums from '../../utils/destinyEnums';
+import ProfileSearch from '../../components/ProfileSearch';
+import Button from '../../components/UI/Button';
 
 class AddPlayer extends React.Component {
   state = {
@@ -37,7 +38,8 @@ class AddPlayer extends React.Component {
   }
 
   resultsListItems = profiles => profiles.map((p, i) => {
-    const { query } = this.props;
+    const { query, match } = this.props;
+    const object = match.params?.object;
     const queryString = [...query.filter(m => m.membershipId !== p.membershipId), { membershipType: p.membershipType, membershipId: p.membershipId }].map(m => `${m.membershipType}:${m.membershipId}`).join('|');
     
     return (
@@ -46,7 +48,7 @@ class AddPlayer extends React.Component {
           <span className={`destiny-platform_${enums.PLATFORMS[p.membershipType]}`} />
         </div>
         <div className='displayName'>{p.displayName}</div>
-        <Link to={queryString ? `/compare/nightfalls?members=${queryString}` : `/compare/nightfalls`} />
+        <Link to={queryString ? `/compare/${object}?members=${queryString}` : `/compare/${object}`} />
       </li>
     );
   });
@@ -74,4 +76,4 @@ class AddPlayer extends React.Component {
   }
 }
 
-export default withTranslation()(AddPlayer);
+export default compose(withTranslation(), withRouter)(AddPlayer);

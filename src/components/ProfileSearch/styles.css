@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.profile-search .sub-header {
+  margin-bottom: 20px;
+}
+
 .profile-search .sub-header ~ .sub-header {
   margin: 3rem 0 1rem;
 }

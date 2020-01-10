@@ -191,6 +191,14 @@ class Header extends React.Component {
         group: 0
       },
       {
+        name: t('Compare'),
+        desc: t('Find your fastest completions for Nightfalls and Nightmare Hunts'),
+        slug: '/compare',
+        exact: false,
+        profile: false,
+        group: 1
+      },
+      {
         name: t('Legend'),
         desc: t('Generate an infographic that details your Destiny legend'),
         slug: '/legend',

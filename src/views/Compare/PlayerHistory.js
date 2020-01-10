@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { orderBy } from 'lodash';
 import cx from 'classnames';
 
-import * as bungie from '../../../utils/bungie';
-import * as enums from '../../../utils/destinyEnums';
-import MemberLink from '../../../components/MemberLink';
-import Spinner from '../../../components/UI/Spinner';
+import * as bungie from '../../utils/bungie';
+import * as enums from '../../utils/destinyEnums';
+import MemberLink from '../../components/MemberLink';
+import Spinner from '../../components/UI/Spinner';
 
 import './styles.css';
 
@@ -21,7 +21,7 @@ class PlayerHistory extends React.Component {
     history: []
   };
 
-  fetchActivityHistory = async (membershipType, membershipId) => {
+  fetchActivityHistory = async (membershipType, membershipId, mode) => {
     if (this.mounted) {
       this.setState(p => ({
         ...p,
@@ -54,7 +54,7 @@ class PlayerHistory extends React.Component {
                 membershipId: membershipId,
                 characterId: c,
                 count: 250,
-                mode: 46,
+                mode,
                 page
               }
             });
@@ -91,7 +91,7 @@ class PlayerHistory extends React.Component {
   componentDidMount() {
     this.mounted = true;
 
-    this.fetchActivityHistory(this.props.membershipType, this.props.membershipId);
+    this.fetchActivityHistory(this.props.membershipType, this.props.membershipId, this.props.mode);
 
     //this.refreshData();
     //this.startInterval();
@@ -122,7 +122,8 @@ class PlayerHistory extends React.Component {
   // }
 
   render() {
-    const { t, member, order, membershipType, membershipId, query } = this.props;
+    const { order, membershipType, membershipId, query, match } = this.props;
+    const object = match.params?.object;
     const { loading, history } = this.state;
 
     const calculated = order.reduce((obj, hash) => {
@@ -145,7 +146,7 @@ class PlayerHistory extends React.Component {
           fastest: activityDurationSecondsOrdered[0]?.activities[0]
         },
         sum: (obj.sum || 0) + (activityDurationSecondsOrdered[0]?.activities[0]?.values?.activityDurationSeconds?.basic?.value || 0),
-        2618436059: enums.nightfalls[hash][2618436059] ? (obj[2618436059] || 0) + (activityDurationSecondsOrdered[0]?.activities[0]?.values?.activityDurationSeconds?.basic?.value || 0) : obj[2618436059]
+        2618436059: object === 'nightfalls' && enums.nightfalls[hash][2618436059] ? (obj[2618436059] || 0) + (activityDurationSecondsOrdered[0]?.activities[0]?.values?.activityDurationSeconds?.basic?.value || 0) : obj[2618436059]
       };
 
       return obj;
@@ -168,7 +169,7 @@ class PlayerHistory extends React.Component {
             <MemberLink type={membershipType} id={membershipId} />
           </li>
           <li>
-            <Link className='button remove' to={queryString ? `/compare/nightfalls?members=${queryString}` : `/compare/nightfalls`}>
+            <Link className='button remove' to={queryString ? `/compare/${object}?members=${queryString}` : `/compare/${object}`}>
               <i className='segoe-uniE8BB' />
             </Link>
           </li>
@@ -192,15 +193,17 @@ class PlayerHistory extends React.Component {
               '—'
             )}
           </li>
-          <li className={cx('row', { na: calculated[2618436059] === 0 })}>
-            {calculated[2618436059] > 0 ? (
-              <>
-                {Math.floor(calculated[2618436059] / 60)}m {calculated[2618436059] - Math.floor(calculated[2618436059] / 60) * 60}s
-              </>
-            ) : (
-              '—'
-            )}
-          </li>
+          {calculated[2618436059] ? (
+            <li className={cx('row', { na: calculated[2618436059] === 0 })}>
+              {calculated[2618436059] > 0 ? (
+                <>
+                  {Math.floor(calculated[2618436059] / 60)}m {calculated[2618436059] - Math.floor(calculated[2618436059] / 60) * 60}s
+                </>
+              ) : (
+                '—'
+              )}
+            </li>
+          ) : null}
         </ul>
       </div>
     );
@@ -213,4 +216,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default compose(connect(mapStateToProps), withTranslation())(PlayerHistory);
+export default compose(connect(mapStateToProps), withTranslation(), withRouter)(PlayerHistory);
