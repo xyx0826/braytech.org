@@ -101,7 +101,7 @@ class Vendor extends React.Component {
           if (itemsGrouped[category.index]) {
             return (
               <React.Fragment key={c}>
-                <h4>{category.displayProperties.name}</h4>
+                <h4>{category.identifier}</h4>
                 <ul className='list inventory-items'>
                   <Items items={itemsGrouped[category.index]} />
                 </ul>
