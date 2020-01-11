@@ -542,6 +542,41 @@ export const ordealHashes = Object.values(nightfalls).reduce((a, h) => {
   return [...a, ...h.ordealHashes];
 }, []);
 
+export const nightmareHunts = [
+  {
+    storyHash: 1060539534, // Despair
+    activities: [2450170730, 2450170731, 2450170732, 2450170733]
+  },
+  {
+    storyHash: 2279262916, // Rage
+    activities: [4098556690, 4098556691, 4098556692, 4098556693]
+  },
+  {
+    storyHash: 2508299477, // Servitude
+    activities: [1188363426, 1188363427, 1188363428, 1188363429]
+  },
+  {
+    storyHash: 2622431190, // Fear
+    activities: [1342492674, 1342492675, 1342492676, 1342492677]
+  },
+  {
+    storyHash: 2918838311, // Anguish
+    activities: [571058904, 571058905, 571058910, 571058911]
+  },
+  {
+    storyHash: 3459379696, // Isolation
+    activities: [3205253944, 3205253945, 3205253950, 3205253951]
+  },
+  {
+    storyHash: 3655015216, // Pride
+    activities: [1907493624, 1907493625, 1907493630, 1907493631]
+  },
+  {
+    storyHash: 4003594394, // Insanity
+    activities: [2639701096, 2639701097, 2639701102, 2639701103]
+  }
+];
+
 export const seasonalMods = {
   1387688628: {
     // Dark Glimmer

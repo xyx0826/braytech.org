@@ -54,7 +54,7 @@ import Maps from './views/Maps';
 import Legend from './views/Legend';
 import ClanBannerBuilder from './views/ClanBannerBuilder';
 import PGCR from './views/PGCR';
-import CompareNightfalls from './views/Compare/Nightfalls';
+import Compare from './views/Compare';
 
 import Test from './views/Test';
 import TestThree from './views/TestThree';
@@ -276,7 +276,7 @@ class App extends React.Component {
                   <Route
                     render={() => (
                       <>
-                        <Route render={route => <Header route={route} {...this.state} {...this.props} />} />
+                        <Route render={route => <Header {...route} {...this.state} {...this.props} />} />
                         <Switch>
                           <RedirectRoute path='/clan' />
                           <RedirectRoute path='/character' exact />
@@ -292,7 +292,7 @@ class App extends React.Component {
                           <Route path='/pgcr/:instanceId?' exact render={route => <PGCR {...route} />} />
                           <Route path='/inspect/:hash?' exact component={Inspect} />
                           <Route path='/read/:kind?/:hash?' exact component={Read} />
-                          <Route path='/compare/nightfalls' exact component={CompareNightfalls} />
+                          <Route path='/compare/:object?' exact component={Compare} />
                           <Route path='/maps/:map?/:highlight?' render={route => <Maps {...route} />} />
                           <Route path='/legend' exact render={route => <Legend {...route} />} />
                           <Route path='/settings' exact render={route => <Settings {...route} availableLanguages={this.availableLanguages} />} />
@@ -313,7 +313,7 @@ class App extends React.Component {
               {/* Don't run the refresh service if we're currently selecting
                 a character, as the refresh will cause the member to
                 continually reload itself */}
-              <Route path='/character-select' children={({ match, ...rest }) => !match && <RefreshService {...this.props} />} />
+              <Route path='/character-select' children={route => !route.match && <RefreshService {...route} />} />
 
               <Footer />
             </div>

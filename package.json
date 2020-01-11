@@ -4,7 +4,7 @@
   "bugs": {
     "url": "https://github.com/justrealmilk/braytech.org/issues"
   },
-  "version": "2.13.38",
+  "version": "2.14.2",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
@@ -38,7 +38,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "analyze": "node scripts/analyzeBundle.js",
-    "translations": "node scripts/extractTranslations2.js --stats",
+    "translations": "node scripts/extractTranslations2.js --stats --delete-unused",
     "map-nodes": "node --experimental-modules scripts/prepareNodesData.mjs",
     "checklists": "node --experimental-modules scripts/checklists/prepare.mjs",
     "story-missions": "node --experimental-modules scripts/prepareStoryMissionData.mjs",

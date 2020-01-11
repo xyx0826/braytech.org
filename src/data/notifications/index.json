@@ -179,5 +179,17 @@
       "description": "sup.\n\ni've reset the list of membership IDs i use to collect stats with. stats are now based purely on users of braytech.\n\nlaters",
       "prompt": true
     }
+  },
+  {
+    "id": "ikaq5vqkil6ekc02j7afw",
+    "date": "2020-01-10T09:02:33.573Z",
+    "expiry": 604800000,
+    "showOnce": true,
+    "displayProperties": {
+      "name": "Compare",
+      "image": "/static/images/notifications/CompareNightfalls.jpg",
+      "description": "Need to compare activity durations for Nightfalls or Nightmare Hunts? Look no further.\n\nHit up the extended menu to get to 'em.",
+      "prompt": true
+    }
   }
 ]

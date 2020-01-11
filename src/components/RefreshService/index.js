@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import getMember from '../../utils/getMember';
 import store from '../../store';
+import * as utils from '../../utils/destinyUtils';
+import getMember from '../../utils/getMember';
 import Spinner from '../UI/Spinner';
 
 import './styles.css';
@@ -49,9 +50,10 @@ class RefreshService extends React.Component {
   }
 
   render() {
+    const { location } = this.props;
     const { loading } = this.state;
 
-    if (loading) {
+    if (loading && utils.isProfileRoute(location)) {
       return (
         <div id='refresh-service'>
           <Spinner mini />
