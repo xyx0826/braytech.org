@@ -24,7 +24,7 @@ const ChecklistItem = props => {
         }
       />
       <div className='location'>{location}</div>
-      <Link className='button' to={`/maps/${destinationHash}/${mapHash}`}><i className='segoe-uniE0AB' /></Link>
+      {destinationHash && <Link className='button' to={`/maps/${destinationHash}/${mapHash}`}><i className='segoe-uniE0AB' /></Link>}
     </li>
   );
 };

@@ -4,7 +4,7 @@
   "bugs": {
     "url": "https://github.com/justrealmilk/braytech.org/issues"
   },
-  "version": "2.14.3",
+  "version": "2.14.4",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
@@ -67,9 +67,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.7",
-    "@babel/core": "^7.7.7",
-    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@babel/cli": "^7.8.0",
+    "@babel/core": "^7.8.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.0",
     "chalk": "^3.0.0",
     "find-in-files": "^0.5.0",
     "fs-extra": "^8.1.0",

@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
 import * as enums from '../../../utils/destinyEnums';
-import { damageTypeToAsset, ammoTypeToAsset, breakerTypeToIcon, energyTypeToAsset, energyStatToType } from '../../../utils/destinyUtils';
+import { damageTypeToAsset, ammoTypeToAsset, breakerTypeToIcon, energyTypeToAsset, energyStatToType, stringToIcons } from '../../../utils/destinyUtils';
 import { getSocketsWithStyle, getModdedStatValue, getSumOfArmorStats } from '../../../utils/destinyItems/utils';
 import { statsMs } from '../../../utils/destinyItems/stats';
 import ObservedImage from '../../ObservedImage';
@@ -202,7 +202,7 @@ const Equipment = props => {
                                   <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${p.plugItem.displayProperties.icon ? p.plugItem.displayProperties.icon : `/img/misc/missing_icon_d2.png`}`} />
                                   <div className='text'>
                                     <div className='name'>{p.plugItem.displayProperties.name}</div>
-                                    <div className='description'>{s.isIntrinsic ? p.plugItem.displayProperties.description : p.plugItem.itemTypeDisplayName}</div>
+                                    <div className='description'>{stringToIcons(s.isIntrinsic ? p.plugItem.displayProperties.description : p.plugItem.itemTypeDisplayName)}</div>
                                   </div>
                                 </div>
                               );
