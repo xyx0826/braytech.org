@@ -294,7 +294,7 @@ class App extends React.Component {
                           <Route path='/inspect/:hash?' exact component={Inspect} />
                           <Route path='/read/:kind?/:hash?' exact component={Read} />
                           <Route path='/compare/:object?' exact component={Compare} />
-                          <Route path='/database' exact component={Database} />
+                          <Route path='/database/:view?' exact component={Database} />
                           <Route path='/maps/:map?/:highlight?' render={route => <Maps {...route} />} />
                           <Route path='/legend' exact render={route => <Legend {...route} />} />
                           <Route path='/settings' exact render={route => <Settings {...route} availableLanguages={this.availableLanguages} />} />

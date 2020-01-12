@@ -127,7 +127,7 @@ class Compare extends React.Component {
                     {object === 'nightfalls' ? (
                       <li className='row'>
                         <div className='text tooltip' data-hash='1987790789' data-table='DestinyInventoryItemDefinition'>
-                          {manifest.DestinyCollectibleDefinition[2618436059].displayProperties.name} {t('duration')}
+                          {t('{{object}} duration', { object: manifest.DestinyCollectibleDefinition[2618436059].displayProperties.name })}
                         </div>
                       </li>
                     ) : null}

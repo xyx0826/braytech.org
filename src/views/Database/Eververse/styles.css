@@ -1,0 +1,100 @@
+#database.eververse .buff {
+  grid-template-columns: 60px 1fr 2fr;
+}
+
+#database.eververse .module.inventory {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+#database.eververse .module.inventory .sub-header {
+  margin-bottom: 20px;
+}
+
+#database.eververse .module .text p:first-child {
+  font-size: 16px;
+}
+
+#database.eververse .module .list.inventory-items {
+  grid-template-columns: repeat(auto-fill, 48px);
+}
+
+#database.eververse .module .list.weeks {
+  display: grid;
+  gap: 3rem;
+}
+
+#database.eververse .module .list.weeks li {
+  height: unset;
+  display: grid;
+  align-items: start;
+  margin: 0;
+}
+
+#database.eververse .module .list.weeks > li {
+  display: grid;
+  row-gap: 1rem;
+}
+
+#database.eververse .module .list.weeks > li:not(:last-child)::after {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  top: unset;
+  bottom: -1.5rem;
+  height: 1px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: none;
+}
+
+#database.eververse .module .list.weeks > li > ul {
+  display: grid;
+  grid-template-columns: 300px auto;
+}
+
+#database.eververse .module .list.weeks > li > ul:not(:first-child) .category {
+  display: grid;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
+
+
+@media screen and (max-width: 1280px) {
+
+  #database.eververse .buff {
+    grid-template-columns: 60px 1fr;
+  }
+
+  #database .module.views {
+    grid-row: 1/3;
+  }
+
+}
+
+@media screen and (max-width: 1023px) {
+
+  #database.eververse .module .list.weeks > li > ul {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+
+  #database.eververse .module .list.weeks {
+    gap: 2rem;
+  }
+
+  #database.eververse .module .list.weeks > li:not(:last-child)::after {
+    bottom: -1rem;
+  }
+
+}
