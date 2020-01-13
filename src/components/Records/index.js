@@ -155,6 +155,8 @@ class Records extends React.Component {
     recordsRequested.forEach((hash, i) => {
       const definitionRecord = manifest.DestinyRecordDefinition[hash];
 
+      if (!definitionRecord) return;
+
       const recordScope = definitionRecord.scope || 0;
       const recordData = recordScope === 1 ? characterRecords && characterRecords[characterId].records[definitionRecord.hash] : profileRecords && profileRecords[definitionRecord.hash];
 

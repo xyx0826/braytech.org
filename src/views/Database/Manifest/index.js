@@ -4,16 +4,38 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { orderBy } from 'lodash';
-import ReactMarkdown from 'react-markdown';
 import queryString from 'query-string';
 import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
 import * as enums from '../../../utils/destinyEnums';
-import { DestinyKey } from '../../../components/UI/Button';
-import Items from '../../../components/Items';
+import Search from '../../../components/Search';
 
 import './styles.css';
+
+function getResultName(table, hash) {
+  if (table === 'lol') {
+    return manifest[table][hash].displayProperties?.name;
+  }
+  
+  return manifest[table][hash].displayProperties?.name;
+}
+
+function resultsRenderFunction(results) {
+  return (
+    <ul className='list result-items'>
+      {results.map(({ table, hash }, i) => (
+        <li key={i}>
+          <ul>
+            <li className='col hash'>{hash}</li>
+            <li className='col table'>{table}</li>
+            <li className='col name'>{getResultName(table, hash)}</li>
+          </ul>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 class Manifest extends React.Component {
   state = {};
@@ -42,7 +64,10 @@ class Manifest extends React.Component {
             <div className='name'>{t('Manifest')}</div>
           </div>
         </div>
-        <div className='buff'>{this.props.nav}</div>
+        <div className='buff'>
+          {this.props.nav}
+          <Search initialValue='mida' database resultsRenderFunction={resultsRenderFunction} />
+        </div>
       </>
     );
   }

@@ -93,16 +93,4 @@
     grid-template-columns: 40px 1fr;
   }
 
-  #database.eververse .module .list.weeks {
-    gap: 3rem;
-  }
-
-  #database.eververse .module .list.weeks > li:not(:last-child)::after {
-    bottom: -1rem;
-  }
-
-  #database.eververse .module .list.weeks > li:not(:last-child)::after {
-    bottom: -1.5rem;
-  }
-
 }

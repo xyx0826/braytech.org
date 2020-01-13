@@ -173,7 +173,7 @@ class Root extends React.Component {
           <div className='sub-header'>
             <div>{t('Search')}</div>
           </div>
-          <Search scope='records' />
+          <Search table='DestinyRecordDefinition' />
           <div className='sub-header'>
             <div>{t('Triumphs')}</div>
             <div>

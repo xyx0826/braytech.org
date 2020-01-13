@@ -12,13 +12,89 @@ import Collectibles from '../Collectibles';
 
 import './styles.css';
 
+const manifestTables = [
+  'DestinyAchievementDefinition',
+  'DestinyActivityDefinition',
+  'DestinyActivityGraphDefinition',
+  'DestinyActivityInteractableDefinition',
+  'DestinyActivityModeDefinition',
+  'DestinyActivityModifierDefinition',
+  'DestinyActivityTypeDefinition',
+  'DestinyArtDyeChannelDefinition',
+  'DestinyArtDyeReferenceDefinition',
+  'DestinyArtifactDefinition',
+  'DestinyBondDefinition',
+  'DestinyBreakerTypeDefinition',
+  'DestinyCharacterCustomizationCategoryDefinition',
+  'DestinyCharacterCustomizationOptionDefinition',
+  'DestinyChecklistDefinition',
+  'DestinyClassDefinition',
+  'DestinyCollectibleDefinition',
+  'DestinyDamageTypeDefinition',
+  'DestinyDestinationDefinition',
+  'DestinyEnemyRaceDefinition',
+  'DestinyEnergyTypeDefinition',
+  'DestinyEntitlementOfferDefinition',
+  'DestinyEquipmentSlotDefinition',
+  'DestinyFactionDefinition',
+  'DestinyGenderDefinition',
+  'DestinyHistoricalStatsDefinition',
+  'DestinyInventoryBucketDefinition',
+  'DestinyInventoryItemDefinition',
+  'DestinyInventoryItemLiteDefinition',
+  'DestinyItemCategoryDefinition',
+  'DestinyItemTierTypeDefinition',
+  'DestinyLocationDefinition',
+  'DestinyLoreDefinition',
+  'DestinyMaterialRequirementSetDefinition',
+  'DestinyMedalTierDefinition',
+  'DestinyMilestoneDefinition',
+  'DestinyNodeStepSummaryDefinition',
+  'DestinyObjectiveDefinition',
+  'DestinyPlaceDefinition',
+  'DestinyPlatformBucketMappingDefinition',
+  'DestinyPlugSetDefinition',
+  'DestinyPresentationNodeDefinition',
+  'DestinyProgressionDefinition',
+  'DestinyProgressionLevelRequirementDefinition',
+  'DestinyProgressionMappingDefinition',
+  'DestinyRaceDefinition',
+  'DestinyRecordDefinition',
+  'DestinyReportReasonCategoryDefinition',
+  'DestinyRewardAdjusterPointerDefinition',
+  'DestinyRewardAdjusterProgressionMapDefinition',
+  'DestinyRewardItemListDefinition',
+  'DestinyRewardMappingDefinition',
+  'DestinyRewardSheetDefinition',
+  'DestinyRewardSourceDefinition',
+  'DestinySackRewardItemListDefinition',
+  'DestinySandboxPatternDefinition',
+  'DestinySandboxPerkDefinition',
+  'DestinySeasonDefinition',
+  'DestinySeasonPassDefinition',
+  'DestinySocketCategoryDefinition',
+  'DestinySocketTypeDefinition',
+  'DestinyStatDefinition',
+  'DestinyStatGroupDefinition',
+  'DestinyTalentGridDefinition',
+  'DestinyUnlockCountMappingDefinition',
+  'DestinyUnlockDefinition',
+  'DestinyUnlockEventDefinition',
+  'DestinyUnlockExpressionMappingDefinition',
+  'DestinyUnlockValueDefinition',
+  'DestinyVendorDefinition',
+  'DestinyVendorGroupDefinition',
+  'BraytechDefinition',
+  'DestinyClanBannerDefinition'
+];
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       results: [],
-      search: ''
+      search: this.props.initialValue || ''
     };
 
     this.index = [];
@@ -31,17 +107,42 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
-    const { collectibles, scope } = this.props;
+    const { collectibles, table, database } = this.props;
+    
+    const tables = table ? [table] : manifestTables;
 
-    if (scope === 'records') {
-      this.index.push(...Object.entries(manifest.DestinyRecordDefinition).filter(([hash, definition]) => !definition.redacted && collectibles.hideDudRecords ? !dudRecords.includes(definition.hash) : true))
-    } else if (scope === 'collectibles') {
-      this.index.push(...Object.entries(manifest.DestinyCollectibleDefinition).filter(([hash, definition]) => !definition.redacted))
+    tables.forEach(table => {
+
+      const entries = Object.keys(manifest[table]).reduce((index, key) => {
+        if (!database && manifest[table][key].redacted) {
+          return index;
+        }
+  
+        if (!database && collectibles.hideDudRecords && dudRecords.includes(manifest.DestinyRecordDefinition[key].hash)) {
+          return index;
+        }
+  
+        return [
+          ...index,
+          {
+            table: table,
+            hash: manifest[table][key].hash
+          }
+        ];
+      }, []);
+
+      this.index.push(...entries);
+
+    });    
+
+    if (this.props.initialValue) {
+      this.performSearch();
     }
   }
 
   onSearchChange = e => {
     this.setState({ search: e.target.value });
+
     this.performSearch();
   };
 
@@ -54,7 +155,7 @@ class Search extends React.Component {
     if (!term || term.length < 3) {
       this.setState({ results: [] });
       return;
-    };
+    }
 
     console.log(term);
 
@@ -64,79 +165,126 @@ class Search extends React.Component {
     let filters = term.match(/(type|name|description):/);
     filters = filters && filters.length ? filters[1] : false;
 
-    let results = this.index.filter(([hash, definition])=> {
+    const tableMatch = manifestTables.find(table => table.toLowerCase() === term);
 
-      const definitionItem = definition.itemHash ? manifest.DestinyInventoryItemDefinition[definition.itemHash] : false;
+    if (tableMatch) {
+      const results = Object.keys(manifest[tableMatch]).map(key => ({
+        table: tableMatch,
+        hash: manifest[tableMatch][key].hash
+      }));
 
-      let name = definition.displayProperties && definition.displayProperties.name;
-      let description = definition.displayProperties && definition.displayProperties.description;
-      let type = definitionItem && definitionItem.itemTypeAndTierDisplayName;
+      console.log(results)
 
-      // normalise name, description, and type, removing funny versions of 'e'
-      name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-      description = description.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-      type = type ? definitionItem.itemTypeAndTierDisplayName.normalize('NFD').replace(/[\u0300-\u036f]/g, "") : false;
+      this.setState({ results });
 
-      let regex = RegExp(term, 'gi');
+      return;
+    }
 
-      if (filters && filters === 'name') {
-        regex = RegExp(term.replace('name:', '').trim(), 'gi');
-        
-        if (regex.test(name)) {
-          return true;
-        } else {
-          return false;
-        }
-      } else if (filters && filters === 'description') {
-        regex = RegExp(term.replace('description:', '').trim(), 'gi');
+    let regex = RegExp(term, 'gi');
 
-        if (regex.test(description)) {
-          return true;
-        } else {
-          return false;
-        }
-      } else if (type && filters && filters === 'type') {
-        regex = RegExp(term.replace('type:', '').trim(), 'gi');
+    const results = this.index.filter(entry => {
+      const definition = manifest[entry.table][entry.hash];
 
-        if (regex.test(type)) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        let concatenated = `${name} ${description}`;
-
-        if (regex.test(concatenated)) {
-          return true;
-        } else {
-          return false;
-        }
+      if (!definition) {
+        return false;
       }
 
+      if (!this.props.database) {
+        const definitionItem = manifest.DestinyInventoryItemDefinition[definition?.itemHash] || false;
 
+        let name = definition?.displayProperties?.name;
+        let description = definition?.displayProperties?.description;
+        let type = definitionItem?.itemTypeAndTierDisplayName;
+
+        // normalise name, description, and type, removing funny versions of 'e'
+        name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        description = description.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        type = type ? definitionItem.itemTypeAndTierDisplayName.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : false;
+
+        if (filters && filters === 'name') {
+          regex = RegExp(term.replace('name:', '').trim(), 'gi');
+
+          if (regex.test(name)) {
+            return true;
+          } else {
+            return false;
+          }
+        } else if (filters && filters === 'description') {
+          regex = RegExp(term.replace('description:', '').trim(), 'gi');
+
+          if (regex.test(description)) {
+            return true;
+          } else {
+            return false;
+          }
+        } else if (type && filters && filters === 'type') {
+          regex = RegExp(term.replace('type:', '').trim(), 'gi');
+
+          if (regex.test(type)) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          let concatenated = `${name} ${description}`;
+
+          if (regex.test(concatenated)) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      } else {
+        const root = Object.keys(definition).filter(key => {
+          if (regex.test(definition[key])) {
+            return key;
+          }
+
+          return false;
+        });
+
+        const displayProperties = definition.displayProperties && Object.keys(definition.displayProperties).filter(key => {
+          if (regex.test(definition.displayProperties[key])) {
+            return key;
+          }
+
+          return false;
+        });
+
+        if (root.length || displayProperties?.length) {
+          return true;
+        }
+
+        return false;
+      }
     });
 
+    console.log(results)
+
     this.setState({ results });
-    
   }, 500);
 
   render() {
-    const { t, scope } = this.props;
+    const { t, table, database, resultsRenderFunction } = this.props;
     const { results, search } = this.state;
 
     let display;
-    if (scope === 'records') {
+    if (!database && table === 'DestinyRecordDefinition') {
       display = (
         <ul className='list record-items'>
-          <Records selfLinkFrom='/triumphs' hashes={results.map(r => r[0])} ordered />
+          <Records selfLinkFrom='/triumphs' hashes={results.map(e => e.hash)} ordered />
         </ul>
-      )
-    } else if (scope === 'collectibles') {
+      );
+    } else if (!database && table === 'DestinyCollectibleDefinition') {
       display = (
         <ul className='list collection-items'>
-          <Collectibles selfLinkFrom='/collections' hashes={results.map(r => r[0])} ordered />
+          <Collectibles selfLinkFrom='/collections' hashes={results.map(e => e.hash)} ordered />
         </ul>
-      )
+      );
+    } else if (resultsRenderFunction) {
+      display = resultsRenderFunction(results);
+    } else {
+      display = results.join(', ');
     }
 
     return (
@@ -168,10 +316,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(Search);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(Search);
