@@ -8,7 +8,7 @@ import queryString from 'query-string';
 import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
-import * as enums from '../../../utils/destinyEnums';
+import * as utils from '../../../utils/destinyUtils';
 import Search from '../../../components/Search';
 
 import './styles.css';
@@ -21,6 +21,14 @@ function getResultName(table, hash) {
   return manifest[table][hash].displayProperties?.name;
 }
 
+function getClassName(table, hash) {
+  if (manifest[table][hash].classType) {
+    return utils.classTypeToString(manifest[table][hash].classType)
+  }
+
+  return '';
+}
+
 function resultsRenderFunction(results) {
   return (
     <ul className='list result-items'>
@@ -30,6 +38,7 @@ function resultsRenderFunction(results) {
             <li className='col hash'>{hash}</li>
             <li className='col table'>{table}</li>
             <li className='col name'>{getResultName(table, hash)}</li>
+            <li className='col classType'>{getClassName(table, hash)}</li>
           </ul>
         </li>
       ))}

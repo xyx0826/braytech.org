@@ -23,7 +23,7 @@
 .list.result-items > li > ul {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 120px minmax(210px, 230px) minmax(200px, 260px);
+  grid-template-columns: 120px minmax(200px, 230px) minmax(200px, 230px) 120px;
   align-items: center;
 }
 

@@ -283,48 +283,33 @@ export const gameVersion = (versionsOwned, versionHash) => {
 }
 
 export function classHashToString(hash, gender) {
-  let classDef = manifest.DestinyClassDefinition[hash];
-  if (!classDef) return 'uh oh';
-  if (classDef.genderedClassNames) {
-    return classDef.genderedClassNames[gender === 1 ? 'Female' : 'Male'];
+  const definitionClass = manifest.DestinyClassDefinition[hash];
+
+  if (!definitionClass) return '';
+
+  if (definitionClass.genderedClassNames) {
+    return definitionClass.genderedClassNames[gender === 1 ? 'Female' : 'Male'];
   }
-  return classDef.displayProperties.name;
+
+  return definitionClass.displayProperties.name;
+}
+
+export function classTypeToString(type, gender) {
+  const classHash = Object.keys(manifest.DestinyClassDefinition).find(key => manifest.DestinyClassDefinition[key].classType === type);
+
+  return classHashToString(classHash, gender);
 }
 
 export function raceHashToString(hash, gender, nonGendered = false) {
-  let raceDef = manifest.DestinyRaceDefinition[hash];
-  if (!raceDef) return 'uh oh';
-  if (raceDef.genderedRaceNames && !nonGendered) {
-    return raceDef.genderedRaceNames[gender === 1 ? 'Female' : 'Male'];
-  }
-  return raceDef.displayProperties.name;
-}
+  const definitionRace = manifest.DestinyRaceDefinition[hash];
 
-export function getDefName(hash, defType = 'DestinyInventoryItemDefinition') {
-  try {
-    return manifest[defType][hash].displayProperties.name;
-  } catch (e) {}
-  return 'uh oh';
-}
+  if (!definitionRace) return '';
 
-export function classTypeToString(str) {
-  let string;
-
-  switch (str) {
-    case 0:
-      string = 'Titan';
-      break;
-    case 1:
-      string = 'Hunter';
-      break;
-    case 2:
-      string = 'Warlock';
-      break;
-    default:
-      string = 'uh oh';
+  if (definitionRace.genderedRaceNames && !nonGendered) {
+    return definitionRace.genderedRaceNames[gender === 1 ? 'Female' : 'Male'];
   }
 
-  return string;
+  return definitionRace.displayProperties.name;
 }
 
 export function membershipTypeToString(str, short = false) {
