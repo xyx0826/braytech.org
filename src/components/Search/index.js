@@ -118,7 +118,7 @@ class Search extends React.Component {
           return index;
         }
   
-        if (!database && collectibles.hideDudRecords && dudRecords.includes(manifest.DestinyRecordDefinition[key].hash)) {
+        if (!database && table === 'DestinyRecordDefinition' && collectibles.hideDudRecords && dudRecords.includes(manifest.DestinyRecordDefinition[key]?.hash)) {
           return index;
         }
   
