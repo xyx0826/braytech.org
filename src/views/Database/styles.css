@@ -95,7 +95,7 @@
     gap: 2rem;
   }
 
-  #clan .module.views .list {
+  #database .module.views .list {
     top: 2rem;
     grid-template-columns: 1fr;
     width: 40px;

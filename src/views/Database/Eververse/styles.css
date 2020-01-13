@@ -72,7 +72,7 @@
     grid-template-columns: 60px 1fr;
   }
 
-  #database .module.views {
+  #database.eververse .module.views {
     grid-row: 1/3;
   }
 
@@ -89,12 +89,20 @@
 
 @media screen and (max-width: 600px) {
 
+  #database.eververse .buff {
+    grid-template-columns: 40px 1fr;
+  }
+
   #database.eververse .module .list.weeks {
-    gap: 2rem;
+    gap: 3rem;
   }
 
   #database.eververse .module .list.weeks > li:not(:last-child)::after {
     bottom: -1rem;
+  }
+
+  #database.eververse .module .list.weeks > li:not(:last-child)::after {
+    bottom: -1.5rem;
   }
 
 }
