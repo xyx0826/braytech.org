@@ -20,6 +20,7 @@ import AuthUpsell from '../../../components/UserModules/AuthUpsell';
 import Transitory from '../../../components/UserModules/Transitory';
 import CharacterEquipment from '../../../components/UserModules/CharacterEquipment';
 import SeasonCountdown from '../../../components/UserModules/SeasonCountdown';
+import AltarsOfSorrow from '../../../components/UserModules/AltarsOfSorrow';
 
 import { moduleRules } from '../Customise';
 
@@ -71,11 +72,37 @@ class Now extends React.Component {
     },
     Transitory: {
       reference: Transitory
+    },
+    AltarsOfSorrow: {
+      reference: AltarsOfSorrow
     }
   };
 
   render() {
     const { t, auth, layout } = this.props;
+
+    const resetTime = '17:00:00Z';
+
+    const cycleInfo = {
+      epoch: {
+        // start of cycle in UTC
+        altars: new Date(`2020-01-01T${resetTime}`).getTime()
+      },
+      cycle: {
+        // how many week cycle
+        altars: 3
+      },
+      elapsed: {}, // elapsed time since cycle started
+      week: {} // current week in cycle
+    };
+
+    const time = new Date().getTime();
+    const msPerWk = 86400000; // actually a day lol
+
+    for (var cycle in cycleInfo.cycle) {
+      cycleInfo.elapsed[cycle] = time - cycleInfo.epoch[cycle];
+      cycleInfo.week[cycle] = Math.floor((cycleInfo.elapsed[cycle] / msPerWk) % cycleInfo.cycle[cycle]) + 1;
+    }
 
     const userHead = {
       ...layout.groups.find(g => g.id === 'head'),
@@ -151,19 +178,37 @@ class Now extends React.Component {
                       if ((col.condition === undefined || col.condition) && col.mods.length) {
                         return (
                           <div key={c} className={cx('column', ...(col.className || []))}>
-                            {col.mods.map((mod, m) => {
-                              const Component = this.components[mod.component].reference;
-                              const settings = (mod.settings || []).reduce(function(map, obj) {
-                                map[obj.id] = obj.value;
-                                return map;
-                              }, {});
+                            {col.mods
+                              .map((mod, m) => {
+                                if (mod.condition === undefined || mod.condition) {
+                                  const Component = this.components[mod.component]?.reference;
+                                  const settings = (mod.settings || []).reduce(function(map, obj) {
+                                    map[obj.id] = obj.value;
+                                    return map;
+                                  }, {});
 
-                              return (
-                                <div key={m} className={cx('module', ...(mod.className || []))}>
-                                  <Component {...settings} />
-                                </div>
-                              );
-                            })}
+                                  if (!Component) {
+                                    return (
+                                      <div key={m} className={cx('module', ...(mod.className || []))}>
+                                        <div className='info'>
+                                          <p>
+                                            {t('An error occurred while attempting to render module: {{moduleName}}', { moduleName: mod.component })}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    );
+                                  }
+
+                                  return (
+                                    <div key={m} className={cx('module', ...(mod.className || []))}>
+                                      <Component cycleInfo={cycleInfo} {...settings} />
+                                    </div>
+                                  );
+                                } else {
+                                  return false;
+                                }
+                              })
+                              .map(m => m)}
                           </div>
                         );
                       } else {

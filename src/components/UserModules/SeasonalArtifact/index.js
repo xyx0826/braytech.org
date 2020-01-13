@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
+import moment from 'moment';
 
 import manifest from '../../../utils/manifest';
 import { seasonalMods } from '../../../utils/destinyEnums';
@@ -13,8 +14,52 @@ import ProgressBar from '../../UI/ProgressBar';
 import './styles.css';
 
 class SeasonalArtifact extends React.Component {
+  state = {
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  };
+
+  calculateTime = () => {
+    const profile = this.props.member.data.profile.profile.data;
+    const definitionSeason = manifest.DestinySeasonDefinition[profile.currentSeasonHash];
+
+    const then = moment(definitionSeason.endDate);
+    const now = moment();
+
+    const distance = moment(then - now).unix() * 1000;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    if (this.mounted) this.setState({ days, hours, minutes, seconds });
+  };
+
+  componentDidMount() {
+    this.mounted = true;
+
+    if (this.mounted) {
+      this.calculateTime();
+
+      this.interval = setInterval(this.calculateTime, 1000);
+    }
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  }
+
   render() {
+    const { days, hours, minutes, seconds } = this.state;
     const { t, member } = this.props;
+    const profile = member.data.profile.profile.data;
     const profileProgression = member.data.profile.profileProgression.data;
     const characterEquipment = member.data.profile.characterEquipment.data[member.characterId].items;
     const characterProgressions = member.data.profile.characterProgressions.data[member.characterId];
@@ -38,7 +83,7 @@ class SeasonalArtifact extends React.Component {
     const characterArtifact = characterProgressions.seasonalArtifact;
 
     const definitionArtifact = profileArtifact.artifactHash && manifest.DestinyArtifactDefinition[profileArtifact.artifactHash];
-    // const definitionVendor = profileArtifact.artifactHash && manifest.DestinyVendorDefinition[profileArtifact.artifactHash];  
+    // const definitionVendor = profileArtifact.artifactHash && manifest.DestinyVendorDefinition[profileArtifact.artifactHash];
 
     // let string = ''
     //     definitionArtifact.tiers.forEach(tier => {
@@ -64,9 +109,7 @@ class SeasonalArtifact extends React.Component {
             <div className='sub-header'>
               <div>{t('Seasonal progression')}</div>
             </div>
-            <div className='artifact'>
-              
-            </div>
+            <div className='artifact'></div>
           </div>
         </div>
       );
@@ -146,6 +189,10 @@ class SeasonalArtifact extends React.Component {
             </div>
           </div>
           <div className='progression'>
+            <h4>{t('Season')}</h4>
+            <p>
+              <em>{t('{{seasonName}} has {{timeRemaining}} remaining.', { seasonName: manifest.DestinySeasonDefinition[profile.currentSeasonHash]?.displayProperties?.name, timeRemaining: days > 0 ? `${days} ${days === 1 ? t('day') : t('days')} ${hours} ${hours === 1 ? t('hour') : t('hours')}` : hours > 0 ? `${hours} ${hours === 1 ? t('hour') : t('hours')} ${minutes} ${minutes === 1 ? t('minute') : t('minutes')}` : `${minutes} ${minutes === 1 ? t('minute') : t('minutes')} ${seconds} ${seconds === 1 ? t('second') : t('seconds')}` })}</em>
+            </p>
             <h4>{t('Progression')}</h4>
             <p>
               <em>{t('Earning XP grants Power bonuses and unlocks powerful mods that can be slotted into weapons and armor.')}</em>

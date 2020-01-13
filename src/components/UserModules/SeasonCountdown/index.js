@@ -5,8 +5,6 @@ import { withTranslation } from 'react-i18next';
 import moment from 'moment';
 
 import manifest from '../../../utils/manifest';
-import Items from '../../Items';
-import ProgressBar from '../../UI/ProgressBar';
 
 import './styles.css';
 
@@ -38,9 +36,11 @@ class SeasonCountdown extends React.Component {
   componentDidMount() {
     this.mounted = true;
 
-    this.calculateTime();
-
-    if (this.mounted) this.interval = setInterval(this.calculateTime, 1000);
+    if (this.mounted) {
+      this.calculateTime();
+      
+      this.interval = setInterval(this.calculateTime, 1000)
+    };
   }
 
   componentWillUnmount() {

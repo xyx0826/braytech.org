@@ -524,8 +524,8 @@ class Customise extends React.Component {
                                   return (
                                     <div key={mod.id} className={cx('module', 'button', { disabled: group.id === 'head' })}>
                                       <div className='text'>
-                                        <div className='name'>Error</div>
-                                        <div className='description'>An error occurred while attempting to render module <code>{mod.component}</code></div>
+                                        <div className='name'>{t('Error')}</div>
+                                        <div className='description'>{t('An error occurred while attempting to render module: {{moduleName}}', { moduleName: mod.component })}</div>
                                       </div>
                                       <Button className='remove' disabled={group.id === 'head'} onClick={this.handler_removeMod(col.id, mod.id)}>
                                         <i className='segoe-uniE1061' />

@@ -36,55 +36,54 @@ class ThisWeek extends React.Component {
 
   components = {
     Flashpoint: {
-      c: Flashpoint
+      reference: Flashpoint
     },
     Events: {
-      c: Events
+      reference: Events
     },
     CrucibleRotators: {
-      c: CrucibleRotators
+      reference: CrucibleRotators
     },
     WeeklyVanguardSinge: {
-      c: WeeklyVanguardSinge
+      reference: WeeklyVanguardSinge
     },
     Nightfalls: {
-      c: Nightfalls
+      reference: Nightfalls
     },
     Raid: {
-      c: Raid
+      reference: Raid
     },
     DreamingCityAscendantChallenge: {
-      c: DreamingCityAscendantChallenge
+      reference: DreamingCityAscendantChallenge
     },
     DreamingCityCurse: {
-      c: DreamingCityCurse
+      reference: DreamingCityCurse
     },
     DreamingCityCurseCycle: {
-      c: DreamingCityCurseCycle
+      reference: DreamingCityCurseCycle
     },
     DreamingCityShatteredThrone: {
-      c: DreamingCityShatteredThrone
+      reference: DreamingCityShatteredThrone
     },
     Menagerie: {
-      c: Menagerie
+      reference: Menagerie
     },
     EscalationProtocol: {
-      c: EscalationProtocol
+      reference: EscalationProtocol
     },
     Reckoning: {
-      c: Reckoning
+      reference: Reckoning
     },
     Luna: {
-      c: Luna
+      reference: Luna
     },
     NightmareHunts: {
-      c: NightmareHunts
+      reference: NightmareHunts
     }
   };
 
   render() {
-    const { t, member, layout } = this.props;
-    const characterActivities = member.data.profile.characterActivities.data;
+    const { t, layout } = this.props;
 
     const resetTime = '17:00:00Z';
 
@@ -191,7 +190,7 @@ class ThisWeek extends React.Component {
                 return (
                   <div key={g} className={cx('group', ...(group.className || []))}>
                     {group.components.map((c, i) => {
-                      const Component = this.components[c].c;
+                      const Component = this.components[c].reference;
 
                       return <Component key={i} />;
                     })}
@@ -216,7 +215,7 @@ class ThisWeek extends React.Component {
                             {col.mods
                               .map((mod, m) => {
                                 if (mod.condition === undefined || mod.condition) {
-                                  const Component = this.components[mod.component]?.c;
+                                  const Component = this.components[mod.component]?.reference;
                                   const settings = (mod.settings || []).reduce(function(map, obj) {
                                     map[obj.id] = obj.value;
                                     return map;
@@ -227,7 +226,7 @@ class ThisWeek extends React.Component {
                                       <div key={m} className={cx('module', ...(mod.className || []))}>
                                         <div className='info'>
                                           <p>
-                                            An error occurred while attempting to render module <code>{mod.component}</code>
+                                            {t('An error occurred while attempting to render module: {{moduleName}}', { moduleName: mod.component })}
                                           </p>
                                         </div>
                                       </div>
