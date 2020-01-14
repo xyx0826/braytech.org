@@ -36,6 +36,8 @@ class Item extends React.Component {
       itemComponents: null,
       quantity: parseInt(this.props.quantity || 1, 10),
       state: parseInt(this.props.state || 0, 10),
+      vendorHash: this.props.vendorhash,
+      vendorItemIndex: this.props.vendoritemindex,
       rarity: null,
       type: null,
       style: this.props.style

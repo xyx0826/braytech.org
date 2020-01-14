@@ -729,6 +729,39 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#tooltip .frame .vendor-costs {
+  padding: 14px 16px;
+}
+
+#tooltip .frame .vendor-costs ul {
+  display: grid;
+  row-gap: 10px;
+}
+
+#tooltip .frame .vendor-costs ul li ul {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+#tooltip .frame .vendor-costs ul li ul li {
+  height: 20px;
+  display: grid;
+  align-items: center;
+}
+
+#tooltip .frame .vendor-costs ul li ul li:first-child {
+  grid-template-columns: 20px auto;
+  column-gap: 6px;
+}
+
+#tooltip .frame .vendor-costs ul li ul li .icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
 #tooltip .header::before {
   content: attr(data-debugtip);
   position: absolute;

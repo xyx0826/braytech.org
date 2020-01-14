@@ -4,10 +4,10 @@ import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
 import { energyTypeToAsset, stringToIcons } from '../../../utils/destinyUtils';
-// import ObservedImage from '../../ObservedImage';
+import ObservedImage from '../../ObservedImage';
 
 const Mod = props => {
-  const { itemHash } = props;
+  const { itemHash, vendorHash, vendorItemIndex } = props;
 
   const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
 
@@ -24,51 +24,90 @@ const Mod = props => {
   const energyCost = definitionItem.plug.energyCost;
   const energyType = energyCost && energyTypeToAsset(energyCost.energyTypeHash);
 
-  return (
-    <>
-      {energyCost ? (
-        <div className='energy'>
-          <div className={cx('value', energyType.string)}>
-            <div className='icon'>{energyType.icon}</div> {energyCost.energyCost}
-          </div>
-          <div className='text'>{i18n.t('Energy cost')}</div>
-        </div>
-      ) : null}
-      {perks && perks.length ? (
-        <div className={cx('sockets perks', { one: perks.length === 0 })}>
-          {perks
-            .map(p => {
-              const definitionPerk = manifest.DestinySandboxPerkDefinition[p.perkHash];
+  // vendor costs
+  const vendorCosts = vendorHash && vendorItemIndex && manifest.DestinyVendorDefinition[vendorHash]?.itemList[vendorItemIndex]?.currencies;
 
-              return (
-                <div key={p.perkHash} className='socket'>
-                  <div className={cx('plug', { one: true, enabled: true, 'no-icon': true })}>
-                    {/* <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionPerk.displayProperties?.icon || `/img/misc/missing_icon_d2.png`}`} /> */}
-                    <div className='text'>
-                      {/* <div className='name'>{definitionPerk.displayProperties && definitionPerk.displayProperties.name}</div> */}
-                      <div className='description'>{stringToIcons(definitionPerk.displayProperties?.description)}</div>
-                    </div>
+  const blocks = [];
+
+  if (energyCost) {
+    blocks.push(
+      <div className='energy'>
+        <div className={cx('value', energyType.string)}>
+          <div className='icon'>{energyType.icon}</div> {energyCost.energyCost}
+        </div>
+        <div className='text'>{i18n.t('Energy cost')}</div>
+      </div>
+    );
+  }
+
+  if (perks && perks.length) {
+    blocks.push(
+      <div className={cx('sockets perks', { one: perks.length === 0 })}>
+        {perks
+          .map(p => {
+            const definitionPerk = manifest.DestinySandboxPerkDefinition[p.perkHash];
+
+            return (
+              <div key={p.perkHash} className='socket'>
+                <div className={cx('plug', { one: true, enabled: true, 'no-icon': true })}>
+                  {/* <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionPerk.displayProperties?.icon || `/img/misc/missing_icon_d2.png`}`} /> */}
+                  <div className='text'>
+                    {/* <div className='name'>{definitionPerk.displayProperties && definitionPerk.displayProperties.name}</div> */}
+                    <div className='description'>{stringToIcons(definitionPerk.displayProperties?.description)}</div>
                   </div>
                 </div>
-              );
-            })
-            .filter(c => c)}
-        </div>
-      ) : null}
-      {perks && perks.length > 0 && description ? <div className='line' /> : null}
-      {description ? (
-        <div className='description'>
-          <pre>{description}</pre>
-        </div>
-      ) : null}
-      {(description && sourceString) || (perks && perks.length && sourceString) ? <div className='line' /> : null}
-      {sourceString ? (
-        <div className='source'>
-          <p>{sourceString}</p>
-        </div>
-      ) : null}
-    </>
-  );
+              </div>
+            );
+          })
+          .filter(c => c)}
+      </div>
+    );
+  }
+
+  if (perks && perks.length > 0 && description) blocks.push(<div className='line' />);
+
+  if (description) {
+    blocks.push(
+      <div className='description'>
+        <pre>{description}</pre>
+      </div>
+    );
+  }
+
+  if ((description && sourceString) || (perks && perks.length && sourceString)) blocks.push(<div className='line' />);
+
+  if (sourceString) {
+    blocks.push(
+      <div className='description'>
+        <p>{sourceString}</p>
+      </div>
+    );
+  }
+
+  if ((sourceString && vendorCosts?.length) || (description && vendorCosts?.length)) blocks.push(<div className='line' />);
+
+  // vendor costs
+  if (vendorCosts?.length) {
+    blocks.push(
+      <div className='vendor-costs'>
+        <ul>
+          {vendorCosts.map((cost, c) => (
+            <li key={c}>
+              <ul>
+                <li>
+                  <ObservedImage className='image icon' src={`https://www.bungie.net${manifest.DestinyInventoryItemDefinition[cost.itemHash]?.displayProperties.icon}`} />
+                  <div className='text'>{manifest.DestinyInventoryItemDefinition[cost.itemHash]?.displayProperties.name}</div>
+                </li>
+                <li>{cost.quantity.toLocaleString()}</li>
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
+  return blocks.map((b, i) => <React.Fragment key={i}>{b}</React.Fragment>);
 };
 
 export default Mod;

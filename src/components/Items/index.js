@@ -68,7 +68,7 @@ class Items extends React.Component {
             data-instanceid={item.itemInstanceId}
             data-state={item.state}
             data-vendorhash={item.vendorHash}
-            data-vendorindex={item.vendorItemIndex}
+            data-vendoritemindex={item.vendorItemIndex}
             data-vendorstatus={item.saleStatus}
             data-quantity={item.quantity && item.quantity > 1 ? item.quantity : null}
             onClick={e => {

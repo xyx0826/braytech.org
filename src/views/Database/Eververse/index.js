@@ -23,6 +23,9 @@ function project(itemList, weekTotalCeiling) {
   let classSet = 0;
 
   itemList.forEach((i, k) => {
+    // set for use later i.e. tooltips
+    i.vendorHash = '3361454721';
+
     week.push(i);
     weekTotal++;
 
@@ -72,7 +75,7 @@ class Database extends React.Component {
   }
 
   render() {
-    const { t, viewport, member } = this.props;
+    const { t } = this.props;
 
     const definitionVendor = manifest.DestinyVendorDefinition[3361454721];
     // console.log(definitionVendor);
@@ -139,13 +142,6 @@ class Database extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {
-    member: state.member,
-    viewport: state.viewport
-  };
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     rebindTooltips: value => {
@@ -154,4 +150,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(Database);
+export default compose(connect(null, mapDispatchToProps), withTranslation())(Database);

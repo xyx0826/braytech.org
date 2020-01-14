@@ -116,7 +116,7 @@ class VendorSpiderMaterials extends React.Component {
                               {item.costs.map((cost, t) => (
                                 <li key={t}>
                                   <ul>
-                                    <li>{cost.quantity}</li>
+                                    <li>{cost.quantity.toLocaleString()}</li>
                                     <li>
                                       <ul className='list inventory-items'>
                                         <Items items={[cost]} hideQuantity />

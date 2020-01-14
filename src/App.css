@@ -529,6 +529,10 @@ button.square.active {
   right: 0;
 }
 
+.sub-header ~ h3 {
+  margin-top: -10px;
+}
+
 #error {
   padding: 9rem 3rem 0;
   flex-flow: row wrap;

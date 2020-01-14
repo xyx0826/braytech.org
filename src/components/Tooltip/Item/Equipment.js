@@ -10,7 +10,7 @@ import { statsMs } from '../../../utils/destinyItems/stats';
 import ObservedImage from '../../ObservedImage';
 
 const Equipment = props => {
-  const { itemHash, itemComponents, primaryStat, stats, sockets, masterwork } = props;
+  const { itemHash, itemComponents, primaryStat, stats, sockets, masterwork, vendorHash, vendorItemIndex } = props;
 
   const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
 
@@ -19,6 +19,9 @@ const Equipment = props => {
 
   // source string
   const sourceString = definitionItem.collectibleHash ? manifest.DestinyCollectibleDefinition[definitionItem.collectibleHash] && manifest.DestinyCollectibleDefinition[definitionItem.collectibleHash].sourceString : false;
+
+  // vendor costs
+  const vendorCosts = vendorHash && vendorItemIndex && manifest.DestinyVendorDefinition[vendorHash]?.itemList[vendorItemIndex]?.currencies;
 
   // weapon damage type
   let damageTypeHash = definitionItem.itemType === enums.DestinyItemType.Weapon && definitionItem.damageTypeHashes[0];
@@ -231,6 +234,29 @@ const Equipment = props => {
     blocks.push(
       <div className='source'>
         <p>{sourceString}</p>
+      </div>
+    );
+  }
+
+  if ((sourceString && vendorCosts?.length) || vendorCosts?.length) blocks.push(<div className='line' />);
+
+  // vendor costs
+  if (vendorCosts?.length) {
+    blocks.push(
+      <div className='vendor-costs'>
+        <ul>
+          {vendorCosts.map((cost, c) => (
+            <li key={c}>
+              <ul>
+                <li>
+                  <ObservedImage className='image icon' src={`https://www.bungie.net${manifest.DestinyInventoryItemDefinition[cost.itemHash]?.displayProperties.icon}`} />
+                  <div className='text'>{manifest.DestinyInventoryItemDefinition[cost.itemHash]?.displayProperties.name}</div>
+                </li>
+                <li>{cost.quantity.toLocaleString()}</li>
+              </ul>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }

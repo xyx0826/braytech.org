@@ -7,7 +7,7 @@ import ObservedImage from '../../ObservedImage';
 import ProgressBar from '../../UI/ProgressBar';
 
 const Default = props => {
-  const { itemHash, itemInstanceId, itemComponents, quantity } = props;
+  const { itemHash, itemInstanceId, itemComponents, quantity, vendorHash, vendorItemIndex } = props;
 
   const definitionItem = manifest.DestinyInventoryItemDefinition[itemHash];
 
@@ -63,44 +63,105 @@ const Default = props => {
       }
     });
 
-  return (
-    <>
-      {flair ? (
-        <div className='flair'>
-          <p>{flair}</p>
-        </div>
-      ) : null}
-      {flair && description && <div className='line' />}
-      {description ? (
-        <div className='description'>
-          <pre>{description}</pre>
-        </div>
-      ) : null}
-      {objectives.length ? <div className='objectives'>{objectives}</div> : null}
-      {rewards.length ? (
-        <div className='rewards'>
-          <div>{i18n.t('Rewards')}</div>
-          <ul>{rewards}</ul>
-        </div>
-      ) : null}
-      {itemComponents?.objectives?.length && itemComponents.objectives.filter(o => !o.complete).length > 0 && expirationDate ? (
-        <div className='expiry'>
-          {timestampExpiry > timestamp ? (
-            <>
-              {i18n.t('Expires')} <Moment fromNow>{expirationDate}</Moment>.
-            </>
-          ) : (
-            <>{i18n.t('Expired')}.</>
-          )}
-        </div>
-      ) : null}
-      {quantity && definitionItem.inventory && definitionItem.inventory.maxStackSize > 1 && quantity === definitionItem.inventory.maxStackSize ? (
-        <div className='quantity'>
-          {i18n.t('Quantity')}: <span>{quantity}</span> <span className='max'>({i18n.t('max')})</span>
-        </div>
-      ) : null}
-    </>
-  );
+  // vendor costs
+  const vendorCosts = vendorHash && vendorItemIndex && manifest.DestinyVendorDefinition[vendorHash]?.itemList[vendorItemIndex]?.currencies;
+
+  const blocks = [];
+
+  // flair
+  if (flair) {
+    blocks.push(
+      <div className='flair'>
+        <p>{flair}</p>
+      </div>
+    );
+  }
+
+  if (flair && description) blocks.push(<div className='line' />);
+
+  // description
+  if (description) {
+    blocks.push(
+      <div className='description'>
+        <pre>{description}</pre>
+      </div>
+    );
+  }
+
+  // objectives?
+  if (objectives.length) {
+    blocks.push(<div className='objectives'>{objectives}</div>);
+  }
+
+  // objectives?
+  if (rewards.length) {
+    blocks.push(
+      <div className='rewards'>
+        <div>{i18n.t('Rewards')}</div>
+        <ul>{rewards}</ul>
+      </div>
+    );
+  }
+
+  // instance expiry
+  if (itemComponents?.objectives?.length && itemComponents.objectives.filter(o => !o.complete).length > 0 && expirationDate) {
+    blocks.push(
+      <div className='expiry'>
+        {timestampExpiry > timestamp ? (
+          <>
+            {i18n.t('Expires')} <Moment fromNow>{expirationDate}</Moment>.
+          </>
+        ) : (
+          <>{i18n.t('Expired')}.</>
+        )}
+      </div>
+    );
+  }
+
+  // quantity
+  if (quantity && definitionItem.inventory && definitionItem.inventory.maxStackSize > 1 && quantity === definitionItem.inventory.maxStackSize) {
+    blocks.push(
+      <div className='quantity'>
+        {i18n.t('Quantity')}: <span>{quantity}</span> <span className='max'>({i18n.t('max')})</span>
+      </div>
+    );
+  }
+
+  if (sourceString) blocks.push(<div className='line' />);
+
+  // sourceString
+  if (sourceString) {
+    blocks.push(
+      <div className='source'>
+        <p>{sourceString}</p>
+      </div>
+    );
+  }
+
+  if ((sourceString && vendorCosts?.length) || vendorCosts?.length) blocks.push(<div className='line' />);
+
+  // vendor costs
+  if (vendorCosts?.length) {
+    blocks.push(
+      <div className='vendor-costs'>
+        <ul>
+          {vendorCosts.map((cost, c) => (
+            <li key={c}>
+              <ul>
+                <li>
+                  <ObservedImage className='image icon' src={`https://www.bungie.net${manifest.DestinyInventoryItemDefinition[cost.itemHash]?.displayProperties.icon}`} />
+                  <div className='text'>{manifest.DestinyInventoryItemDefinition[cost.itemHash]?.displayProperties.name}</div>
+                </li>
+                <li>{cost.quantity.toLocaleString()}</li>
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
+  return blocks.map((b, i) => <React.Fragment key={i}>{b}</React.Fragment>);
 };
 
 export default Default;
