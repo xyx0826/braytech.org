@@ -3,10 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Babel based translation extracter Mk.2
 const babelParser = require("@babel/parser");
 const babelTraverse = require("@babel/traverse");
-const util = require("util");
+const types_1 = require("@babel/types");
 const fs = require("fs");
-const path = require("path");
 const glob = require("glob");
+const path = require("path");
+const util = require("util");
 const { resolve, relative } = path;
 const { parse } = babelParser;
 const { promisify } = util;
@@ -105,9 +106,8 @@ const FilesLogic = {
         const result = [];
         Object.keys(translatedStrings).forEach(rawKey => {
             const key = unplaceholdify(rawKey);
-            
-            if (!ARG_DELETEUNUSED && rawKey === key) return;
-
+            if (!ARG_DELETEUNUSED && rawKey === key)
+                return;
             if (!sourceStrings.has(key)) {
                 delete translatedStrings[rawKey];
                 result.push(key);
@@ -125,9 +125,9 @@ const FilesLogic = {
 };
 const NodesLogic = {
     isTFunction(node) {
-        const { callee, arguments: args } = node;
-        if (!(callee && args))
+        if (!types_1.isCallExpression(node))
             return false;
+        const { callee, arguments: args } = node;
         switch (callee.type) {
             case 'Identifier': {
                 if (callee.name === 't')
@@ -137,12 +137,10 @@ const NodesLogic = {
             case 'MemberExpression': {
                 if (callee.property) {
                     const storage = new Set();
-                    try
-                    {
+                    try {
                         NodesLogic.diveNode(callee.property, storage);
                     }
-                    catch (e)
-                    {
+                    catch (e) {
                         console.log(e);
                         console.error('MemberExpression Parse Failed: ' + e.message);
                     }
@@ -154,6 +152,8 @@ const NodesLogic = {
         return false;
     },
     getArgumentText(node) {
+        if (!types_1.isCallExpression(node))
+            return false;
         const { arguments: args = [] } = node;
         if (args.length !== 1) {
             //throw new Error(`Argument count was not 1. Found: ${args.length}`);
@@ -181,13 +181,34 @@ const NodesLogic = {
                 }
                 throw new Error('Identifier missing name');
             }
-            case 'StringLiteral':
-            case 'Literal': {
+            case 'NumericLiteral':
+            case 'StringLiteral': {
+                // case 'Literal' is now gone here.
                 if (node.value) {
-                    storage.add(node.value);
+                    storage.add(`${node.value}`);
                     break;
                 }
                 throw new Error('Literal missing value');
+            }
+            case 'TemplateLiteral': {
+                // parse `something` pt.1
+                if (node.quasis) {
+                    node.quasis.forEach(qNode => NodesLogic.diveNode(qNode, storage));
+                    break;
+                }
+                throw new Error('TemplateLiteral missing quasis');
+            }
+            case 'TemplateElement': {
+                // parse `something` pt.2
+                if (node.value) {
+                    storage.add(node.value.raw);
+                    break;
+                }
+                throw new Error('TemplateElement missing value');
+            }
+            case 'MemberExpression': {
+                // something[foo] expression.. nothing to dive in here I guess
+                break;
             }
             default:
                 console.log(node);
@@ -204,15 +225,16 @@ const NodesLogic = {
 (async () => {
     try {
         const sourcefiles = await FilesLogic.getJSFileList();
+        const throttleOutput = false;
         let sourceStrings = new Set();
         let lastT = 0;
         let count = 0;
         for (let file of sourcefiles) {
             count++;
-            // if (Date.now() - lastT > 200 || count === sourcefiles.length) {
-            //    lastT = Date.now();
+            if (!throttleOutput || Date.now() - lastT > 200 || count === sourcefiles.length) {
+                lastT = Date.now();
                 console.log(` Processing [${count}/${sourcefiles.length}]`, relative(resolve(__dirname, '..'), file));
-            //}
+            }
             await FilesLogic.scrapeStrings(file, sourceStrings);
         }
         // if you want to see current status activate following line:
