@@ -38,6 +38,10 @@ class Credits extends React.Component {
     {
       name: 'João Paulo Marquesini',
       description: 'The very handsome developer of the Little Light app laid the foundations for a multilingual Braytech.'
+    },
+    {
+      name: 'Ben',
+      description: 'One of my clan colleagues, Ben has seemingly-effortlessly re-illustrated complex pieces of art from the game such as triumph seals.'
     }
   ];
 

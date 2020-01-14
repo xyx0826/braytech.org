@@ -9,6 +9,7 @@ import { ProfileNavLink } from '../../ProfileLink';
 import { ReactComponent as CrucibleIconDefault } from '../../../media/crucible/svg/default.svg';
 import { ReactComponent as CrucibleIconControl } from '../../../media/crucible/svg/control.svg';
 import { ReactComponent as CrucibleIconElimination } from '../../../media/crucible/svg/elimination.svg';
+import { ReactComponent as CrucibleIconSurvival } from '../../../media/crucible/svg/survival.svg';
 import { ReactComponent as CrucibleIconRumble } from '../../../media/crucible/svg/rumble.svg';
 import { ReactComponent as CrucibleIconMayhem } from '../../../media/crucible/svg/mayhem.svg';
 import { ReactComponent as CrucibleIconDoubles } from '../../../media/crucible/svg/doubles.svg';
@@ -57,6 +58,10 @@ class Mode extends React.Component {
       },
       {
         modes: [37],
+        icon: <CrucibleIconSurvival />
+      },
+      {
+        modes: [80],
         icon: <CrucibleIconElimination />
       },
       {
