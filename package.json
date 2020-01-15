@@ -4,7 +4,7 @@
   "bugs": {
     "url": "https://github.com/justrealmilk/braytech.org/issues"
   },
-  "version": "2.14.11",
+  "version": "2.14.12",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
@@ -22,7 +22,7 @@
     "react-beautiful-dnd": "^12.2.0",
     "react-dom": "^16.12.0",
     "react-ga": "^2.7.0",
-    "react-i18next": "^11.2.7",
+    "react-i18next": "^11.3.0",
     "react-leaflet": "^2.6.1",
     "react-markdown": "^4.3.1",
     "react-moment": "^0.9.7",
@@ -67,15 +67,15 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.0",
-    "@babel/core": "^7.8.0",
-    "@babel/plugin-proposal-optional-chaining": "^7.8.0",
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "chalk": "^3.0.0",
     "find-in-files": "^0.5.0",
     "fs-extra": "^8.1.0",
     "lodash": "^4.17.15",
     "node-fetch": "^2.6.0",
-    "progress-bar-webpack-plugin": "^1.12.1",
+    "progress-bar-webpack-plugin": "^2.1.0",
     "webpack-bundle-analyzer": "^3.6.0"
   }
 }
