@@ -251,12 +251,12 @@ class Node extends React.Component {
             </div>
             {node.availability && node.availability.type === 'cycle' ? (
               <div className='availability'>
-                {t('Available')}: {t('every {{integer}} weeks', { integer: node.availability.cycleLength })}
+                {t('Available')}: {t('every {{numberWeeks}} weeks', { numberWeeks: node.availability.cycleLength })}
               </div>
             ) : null}
             {node.activityLightLevel ? (
                 <div className='recommended-light'>
-                  {t('Recommended Power')}: <span>{node.activityLightLevel}</span>
+                  {t('Recommended light')}: <span>{node.activityLightLevel}</span>
                 </div>
               ) : null}
             {completed ? <div className='completed'>{t('Completed')}</div> : null}

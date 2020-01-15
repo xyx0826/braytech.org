@@ -1,297 +1,177 @@
 {
   "de": {
     "translated": 423,
-    "notTranslated": 156,
+    "notTranslated": 162,
     "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
-    "removed": [
-      "duration"
-    ]
+    "removed": []
   },
   "debug": {
-    "translated": 579,
+    "translated": 585,
     "notTranslated": 0,
     "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
-    "removed": [
-      "duration"
-    ]
+    "removed": []
   },
   "en": {
-    "translated": 579,
+    "translated": 585,
     "notTranslated": 0,
     "added": [],
-    "removed": [
-      "duration"
-    ]
+    "removed": []
   },
   "es-mx": {
     "translated": 0,
-    "notTranslated": 579,
+    "notTranslated": 585,
     "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
-    "removed": [
-      "duration"
-    ]
+    "removed": []
   },
   "es": {
     "translated": 566,
-    "notTranslated": 13,
+    "notTranslated": 19,
     "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
-    "removed": [
-      "duration"
-    ]
+    "removed": []
   },
   "fr": {
-    "translated": 502,
-    "notTranslated": 77,
-    "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
-    ],
-    "removed": [
-      "duration"
-    ]
-  },
-  "it": {
-    "translated": 566,
-    "notTranslated": 13,
-    "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
-    ],
-    "removed": [
-      "duration"
-    ]
-  },
-  "ja": {
-    "translated": 503,
+    "translated": 509,
     "notTranslated": 76,
     "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
-    "removed": [
-      "duration"
-    ]
+    "removed": []
+  },
+  "it": {
+    "translated": 579,
+    "notTranslated": 6,
+    "added": [
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ],
+    "removed": []
+  },
+  "ja": {
+    "translated": 528,
+    "notTranslated": 57,
+    "added": [
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ],
+    "removed": []
   },
   "ko": {
     "translated": 280,
-    "notTranslated": 299,
+    "notTranslated": 305,
     "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
-    "removed": [
-      "duration"
-    ]
+    "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 579,
+    "notTranslated": 585,
     "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
-    "removed": [
-      "duration"
-    ]
+    "removed": []
   },
   "pt-br": {
     "translated": 542,
-    "notTranslated": 37,
+    "notTranslated": 43,
     "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
-    "removed": [
-      "duration"
-    ]
+    "removed": []
   },
   "ru": {
-    "translated": 378,
-    "notTranslated": 202,
+    "translated": 496,
+    "notTranslated": 89,
     "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Defeat this Nightmare to progress record _{{recordName}}_.",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
-    "removed": [
-      "duration"
-    ]
+    "removed": []
   },
   "zh-chs": {
     "translated": 457,
-    "notTranslated": 122,
+    "notTranslated": 128,
     "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
-    "removed": [
-      "duration"
-    ]
+    "removed": []
   },
   "zh-cht": {
     "translated": 431,
-    "notTranslated": 148,
+    "notTranslated": 154,
     "added": [
-      "An error occurred while attempting to render module: {{moduleName}}",
-      "Bright dust items",
-      "Database",
-      "Featured bright dust items",
-      "Featured silver items",
-      "Manifest",
-      "Nightmare of Phogoth",
-      "Nightmare of Taniks, the Scarred",
-      "Nightmare of Zydron, Gate Lord",
-      "Season",
-      "Week {{weekNumber}}",
-      "{{object}} duration",
-      "{{seasonName}} has {{timeRemaining}} remaining."
+      "Available",
+      "Book",
+      "every {{numberWeeks}} weeks",
+      "Hunt down this week's available nightmares for... satisfaction.",
+      "Record",
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
-    "removed": [
-      "duration"
-    ]
+    "removed": []
   }
 }
