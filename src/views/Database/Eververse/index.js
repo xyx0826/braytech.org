@@ -60,9 +60,7 @@ function project(itemList, weekTotalCeiling) {
   return weeks;
 }
 
-class Database extends React.Component {
-  state = {};
-
+class Eververse extends React.Component {
   componentDidMount() {
     this.mounted = true;
 
@@ -150,4 +148,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(connect(null, mapDispatchToProps), withTranslation())(Database);
+export default compose(connect(null, mapDispatchToProps), withTranslation())(Eververse);

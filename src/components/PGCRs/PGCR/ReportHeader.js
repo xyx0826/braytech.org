@@ -9,24 +9,24 @@ import Moment from 'react-moment';
 import manifest from '../../../utils/manifest';
 import ObservedImage from '../../ObservedImage';
 
-import { ReactComponent as CrucibleIconDefault } from '../../../media/crucible/svg/default.svg';
-import { ReactComponent as CrucibleIconControl } from '../../../media/crucible/svg/control.svg';
-import { ReactComponent as CrucibleIconElimination } from '../../../media/crucible/svg/elimination.svg';
-import { ReactComponent as CrucibleIconRumble } from '../../../media/crucible/svg/rumble.svg';
-import { ReactComponent as CrucibleIconMayhem } from '../../../media/crucible/svg/mayhem.svg';
-import { ReactComponent as CrucibleIconDoubles } from '../../../media/crucible/svg/doubles.svg';
-import { ReactComponent as CrucibleIconBreakthrough } from '../../../media/crucible/svg/breakthrough.svg';
-import { ReactComponent as CrucibleIconClash } from '../../../media/crucible/svg/clash.svg';
-import { ReactComponent as CrucibleIconShowdown } from '../../../media/crucible/svg/showdown.svg';
-import { ReactComponent as CrucibleIconTeamScorched } from '../../../media/crucible/svg/team-scorched.svg';
-import { ReactComponent as CrucibleIconCountdown } from '../../../media/crucible/svg/countdown.svg';
-import { ReactComponent as CrucibleIconSupremacy } from '../../../media/crucible/svg/supremacy.svg';
-import { ReactComponent as CrucibleIconLockdown } from '../../../media/crucible/svg/lockdown.svg';
-import { ReactComponent as CrucibleIconMomentumControl } from '../../../media/crucible/svg/momentum-control.svg';
-import { ReactComponent as CrucibleIconIronBanner } from '../../../media/crucible/svg/iron-banner.svg';
+import { ReactComponent as CrucibleIconDefault } from '../../../svg/crucible/default.svg';
+import { ReactComponent as CrucibleIconControl } from '../../../svg/crucible/control.svg';
+import { ReactComponent as CrucibleIconElimination } from '../../../svg/crucible/elimination.svg';
+import { ReactComponent as CrucibleIconRumble } from '../../../svg/crucible/rumble.svg';
+import { ReactComponent as CrucibleIconMayhem } from '../../../svg/crucible/mayhem.svg';
+import { ReactComponent as CrucibleIconDoubles } from '../../../svg/crucible/doubles.svg';
+import { ReactComponent as CrucibleIconBreakthrough } from '../../../svg/crucible/breakthrough.svg';
+import { ReactComponent as CrucibleIconClash } from '../../../svg/crucible/clash.svg';
+import { ReactComponent as CrucibleIconShowdown } from '../../../svg/crucible/showdown.svg';
+import { ReactComponent as CrucibleIconTeamScorched } from '../../../svg/crucible/team-scorched.svg';
+import { ReactComponent as CrucibleIconCountdown } from '../../../svg/crucible/countdown.svg';
+import { ReactComponent as CrucibleIconSupremacy } from '../../../svg/crucible/supremacy.svg';
+import { ReactComponent as CrucibleIconLockdown } from '../../../svg/crucible/lockdown.svg';
+import { ReactComponent as CrucibleIconMomentumControl } from '../../../svg/crucible/momentum-control.svg';
+import { ReactComponent as CrucibleIconIronBanner } from '../../../svg/crucible/iron-banner.svg';
 
-import { ReactComponent as CrucibleIconStandingVictory } from '../../../media/crucible/svg/standing-victory.svg';
-import { ReactComponent as CrucibleIconStandingDefeat } from '../../../media/crucible/svg/standing-defeat.svg';
+import { ReactComponent as CrucibleIconStandingVictory } from '../../../svg/crucible/standing-victory.svg';
+import { ReactComponent as CrucibleIconStandingDefeat } from '../../../svg/crucible/standing-defeat.svg';
 
 class ReportHeader extends React.Component {
   constructor(props) {

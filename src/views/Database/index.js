@@ -9,6 +9,7 @@ import './styles.css';
 
 import Manifest from './Manifest';
 import Eververse from './Eververse';
+import LastWish from './LastWish';
 
 class Database extends React.Component {
   componentDidMount() {
@@ -17,7 +18,7 @@ class Database extends React.Component {
 
   render() {
     const { t, viewport, match } = this.props;
-    const view = match.params?.view || 'manifest';
+    const view = match.params?.view || 'last-wish';
 
     const views = {
       manifest: {
@@ -27,6 +28,10 @@ class Database extends React.Component {
       eververse: {
         name: 'eververse',
         component: Eververse
+      },
+      'last-wish': {
+        name: 'last-wish',
+        component: LastWish
       }
     };
 
@@ -36,8 +41,12 @@ class Database extends React.Component {
       <div className='module views'>
         <ul className='list'>
           <li className='linked'>
-            <div className='icon manifest' />
+            <div className='icon' />
             <NavLink to='/database' exact />
+          </li>
+          <li className='linked'>
+            <div className='icon manifest' />
+            <NavLink to='/database/manifest' exact />
           </li>
           <li className='linked'>
             <div className='icon eververse' />

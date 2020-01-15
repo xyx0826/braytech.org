@@ -11,9 +11,9 @@ import * as enums from '../../utils/destinyEnums';
 import * as utils from '../../utils/destinyUtils';
 import ObservedImage from '../../components/ObservedImage';
 import { DestinyKey } from '../../components/UI/Button';
-import { ReactComponent as Void } from '../../media/miscellaneous/svg/void.svg';
-import { ReactComponent as Arc } from '../../media/miscellaneous/svg/arc.svg';
-import { ReactComponent as Solar } from '../../media/miscellaneous/svg/solar.svg';
+import { ReactComponent as Void } from '../../svg/miscellaneous/void.svg';
+import { ReactComponent as Arc } from '../../svg/miscellaneous/arc.svg';
+import { ReactComponent as Solar } from '../../svg/miscellaneous/solar.svg';
 
 import { sockets } from '../../utils/destinyItems/sockets';
 import { stats, statsMs } from '../../utils/destinyItems/stats';

@@ -7,12 +7,12 @@ import manifest from '../../../utils/manifest';
 
 import './styles.css';
 
-import { ReactComponent as ArcadianValley } from '../../../media/destinations/svg/arcadian-valley-2_monochrome.svg';
-import { ReactComponent as NewPacificArcology } from '../../../media/destinations/svg/new-pacific-arcology-2_monochrome.svg';
-import { ReactComponent as EuropeanDeadZone } from '../../../media/destinations/svg/european-dead-zone-1_monochrome.svg';
-import { ReactComponent as TheTangledShore } from '../../../media/destinations/svg/the-tangled-shore-1_monochrome.svg';
-import { ReactComponent as HellasBasin } from '../../../media/destinations/svg/hellas-basin-1_monochrome.svg';
-import { ReactComponent as FieldsOfGlass } from '../../../media/destinations/svg/fields-of-glass-1_monochrome.svg';
+import { ReactComponent as ArcadianValley } from '../../../svg/destinations/arcadian-valley-2_monochrome.svg';
+import { ReactComponent as NewPacificArcology } from '../../../svg/destinations/new-pacific-arcology-2_monochrome.svg';
+import { ReactComponent as EuropeanDeadZone } from '../../../svg/destinations/european-dead-zone-1_monochrome.svg';
+import { ReactComponent as TheTangledShore } from '../../../svg/destinations/the-tangled-shore-1_monochrome.svg';
+import { ReactComponent as HellasBasin } from '../../../svg/destinations/hellas-basin-1_monochrome.svg';
+import { ReactComponent as FieldsOfGlass } from '../../../svg/destinations/fields-of-glass-1_monochrome.svg';
 
 const iconMap = {
   126924919: ArcadianValley,
