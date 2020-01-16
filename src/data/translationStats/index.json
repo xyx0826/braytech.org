@@ -1,177 +1,244 @@
 {
   "de": {
     "translated": 423,
-    "notTranslated": 162,
+    "notTranslated": 170,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "debug": {
-    "translated": 585,
+    "translated": 593,
     "notTranslated": 0,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "en": {
-    "translated": 585,
+    "translated": 593,
     "notTranslated": 0,
     "added": [],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "es-mx": {
     "translated": 0,
-    "notTranslated": 585,
+    "notTranslated": 593,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "es": {
-    "translated": 566,
-    "notTranslated": 19,
+    "translated": 584,
+    "notTranslated": 9,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "fr": {
-    "translated": 509,
-    "notTranslated": 76,
+    "translated": 525,
+    "notTranslated": 68,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "it": {
-    "translated": 579,
-    "notTranslated": 6,
+    "translated": 584,
+    "notTranslated": 9,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "ja": {
     "translated": 528,
-    "notTranslated": 57,
+    "notTranslated": 65,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "ko": {
     "translated": 280,
-    "notTranslated": 305,
+    "notTranslated": 313,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 585,
+    "notTranslated": 593,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "pt-br": {
     "translated": 542,
-    "notTranslated": 43,
+    "notTranslated": 51,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "ru": {
     "translated": 496,
-    "notTranslated": 89,
+    "notTranslated": 97,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "zh-chs": {
     "translated": 457,
-    "notTranslated": 128,
+    "notTranslated": 136,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   },
   "zh-cht": {
     "translated": 431,
-    "notTranslated": 154,
+    "notTranslated": 162,
     "added": [
-      "Available",
-      "Book",
-      "every {{numberWeeks}} weeks",
-      "Hunt down this week's available nightmares for... satisfaction.",
-      "Record",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "Cooperative",
+      "Equip Dreambane armor mods to enhance your light within this activity.",
+      "Free for all",
+      "Level advantages disabled",
+      "Matchmaking",
+      "Player versus player",
+      "players",
+      "Single player",
+      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
     ],
-    "removed": []
+    "removed": [
+      "Views and tools useful for interacting with Destiny data including the API manifest"
+    ]
   }
 }
