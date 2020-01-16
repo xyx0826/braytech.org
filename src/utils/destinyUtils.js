@@ -899,17 +899,23 @@ export function lastPlayerActivity(member) {
 
     const lastActivity = member.profile.characterActivities.data[character.characterId];
 
-    const definitionActivity = manifest.DestinyActivityDefinition[lastActivity.currentActivityHash];
-    const definitionActivityMode = definitionActivity ? (definitionActivity.placeHash === 2961497387 ? false : manifest.DestinyActivityModeDefinition[lastActivity.currentActivityModeHash]) : false;
-    const definitionPlace = definitionActivity ? definitionActivity.placeHash ? manifest.DestinyPlaceDefinition[definitionActivity.placeHash] : false : false;
+    // small adjustment to Garden of Salvation
+    // https://github.com/Bungie-net/api/issues/1184
+    if (lastActivity.currentActivityModeHash === 2166136261) {
+      lastActivity.currentActivityModeHash = 2043403989;
+    }
+
+    const definitionActivity = lastActivity.currentActivityHash && manifest.DestinyActivityDefinition[lastActivity.currentActivityHash];
+    const definitionActivityMode =  lastActivity.currentActivityModeHash && manifest.DestinyActivityModeDefinition[lastActivity.currentActivityModeHash];
+    const definitionPlace = definitionActivity.placeHash && manifest.DestinyPlaceDefinition[definitionActivity.placeHash];
     const definitionPlaceOrbit = manifest.DestinyPlaceDefinition[2961497387];
-    const definitionActivityPlaylist = manifest.DestinyActivityDefinition[lastActivity.currentPlaylistActivityHash];
+    const definitionActivityPlaylist = lastActivity.currentPlaylistActivityHash && manifest.DestinyActivityDefinition[lastActivity.currentPlaylistActivityHash];
     
     let lastActivityString = false;
     if (definitionActivity && !definitionActivity.redacted) {
       if (definitionActivity.activityTypeHash === 400075666) { // Menagerie
 
-        lastActivityString = `${definitionActivity.selectionScreenDisplayProperties && definitionActivity.selectionScreenDisplayProperties.name ? definitionActivity.selectionScreenDisplayProperties.name : definitionActivity.displayProperties && definitionActivity.displayProperties.name}`;
+        lastActivityString = `${definitionActivity.selectionScreenDisplayProperties?.name ? definitionActivity.selectionScreenDisplayProperties.name : definitionActivity.displayProperties && definitionActivity.displayProperties.name}`;
 
       } else if (lastActivity.currentActivityModeHash === 547513715 && enums.ordealHashes.includes(lastActivity.currentActivityHash)) { // Nightfall ordeals
 
@@ -917,7 +923,7 @@ export function lastPlayerActivity(member) {
 
       } else if (lastActivity.currentActivityModeHash === 547513715) { // Scored Nightfall Strikes
 
-        lastActivityString = definitionActivity.selectionScreenDisplayProperties && definitionActivity.selectionScreenDisplayProperties.name ? `${definitionActivityMode.displayProperties.name}: ${definitionActivity.selectionScreenDisplayProperties.name}` : `${definitionActivityMode.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
+        lastActivityString = definitionActivity.selectionScreenDisplayProperties?.name ? `${definitionActivityMode.displayProperties.name}: ${definitionActivity.selectionScreenDisplayProperties.name}` : `${definitionActivityMode.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
 
       } else if (lastActivity.currentActivityModeHash === 2319502047) { // The Sundial
 
@@ -939,7 +945,7 @@ export function lastPlayerActivity(member) {
 
         lastActivityString = `${definitionActivityPlaylist.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
 
-      } else if (definitionActivityMode) { // Default
+      } else if (definitionActivityMode && definitionActivity?.placeHash !== 2961497387) { // Default
 
         lastActivityString = `${definitionActivityMode.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
 
