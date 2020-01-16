@@ -461,6 +461,8 @@ class Activity extends React.Component {
         };
       }
 
+      const matchmakingProperties = definitionActivityPlaylist?.matchmaking || definitionActivity?.matchmaking;
+
       const checklistEntry = lookup({ key: 'activityHash', value: hash });
 
       const checklist = checklistEntry.checklistId && checklists[checklistEntry.checklistId]({ requested: [checklistEntry.checklistHash] });
@@ -506,12 +508,12 @@ class Activity extends React.Component {
                   <pre>{activityTypeDisplay.description}</pre>
                 </div>
               ) : null}
-              {definitionActivityPlaylist?.matchmaking ? (
+              {matchmakingProperties ? (
                 <div className='matchmaking'>
                   <ul>
-                    {definitionActivityPlaylist.matchmaking.maxParty > definitionActivityPlaylist.matchmaking.minParty ? (
+                    {matchmakingProperties.maxParty > matchmakingProperties.minParty ? (
                       <li>
-                        {t('Fireteam')}: {definitionActivityPlaylist.matchmaking.minParty}-{definitionActivityPlaylist.matchmaking.maxParty} {t('players')}
+                        {t('Fireteam')}: {matchmakingProperties.minParty}-{matchmakingProperties.maxParty} {t('players')}
                       </li>
                     ) : (
                       <>
@@ -519,7 +521,7 @@ class Activity extends React.Component {
                         <li>{t('Single player')}</li>
                       </>
                     )}
-                    {definitionActivityPlaylist.matchmaking.isMatchmade ? <li>{t('Matchmaking')}</li> : null}
+                    {matchmakingProperties.isMatchmade ? <li>{t('Matchmaking')}</li> : null}
                     {activityTypeDisplay.isCrucible ? (
                       <>
                         <li>{t('Player versus player')}</li>
