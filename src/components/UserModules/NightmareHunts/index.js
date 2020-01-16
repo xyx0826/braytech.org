@@ -42,24 +42,29 @@ class NightmareHunts extends React.Component {
           </p>
         </div>
         <h4>{t('Available activities')}</h4>
-        <ul className='list activities'>
-          {activeHunts.map((a, i) => {
+        {activeHunts.length ? (
+          <>
+            <ul className='list activities'>
+              {activeHunts.map((a, i) => {
+                const masterHash = orderBy(a.activities, [hash => manifest.DestinyActivityDefinition[hash].activityLightLevel], ['desc'])?.[0];
 
-            const masterHash = orderBy(a.activities, [hash => manifest.DestinyActivityDefinition[hash].activityLightLevel], ['desc'])?.[0];
+                const definitionActivity = manifest.DestinyActivityDefinition[masterHash];
 
-            const definitionActivity = manifest.DestinyActivityDefinition[masterHash];
-            
-            return (
-              <li key={i} className='linked tooltip' data-table='DestinyActivityDefinition' data-hash={definitionActivity.hash} data-mode='175275639'>
-                <div className='name'>{manifest.DestinyActivityDefinition[a.storyHash]?.displayProperties.name.replace('Nightmare Hunt: ', '')}</div>
-              </li>
-            )
-          })}
-        </ul>
-        <h4>{t('Triumphs')}</h4>
-        <ul className='list record-items'>
-          <Records selfLinkFrom='/this-week' hashes={activeHunts.map((a, i) => a.triumphs).flat()} ordered />
-        </ul>
+                return (
+                  <li key={i} className='linked tooltip' data-table='DestinyActivityDefinition' data-hash={definitionActivity.hash} data-mode='175275639'>
+                    <div className='name'>{manifest.DestinyActivityDefinition[a.storyHash]?.displayProperties.name.replace('Nightmare Hunt: ', '')}</div>
+                  </li>
+                );
+              })}
+            </ul>
+            <h4>{t('Triumphs')}</h4>
+            <ul className='list record-items'>
+              <Records selfLinkFrom='/this-week' hashes={activeHunts.map((a, i) => a.triumphs).flat()} ordered />
+            </ul>
+          </>
+        ) : (
+          <div className='info'>{t("There aren't any activities available to you. Perhaps you don't meet the requirements...")}</div>
+        )}
       </div>
     );
   }

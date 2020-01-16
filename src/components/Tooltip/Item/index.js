@@ -167,7 +167,7 @@ class Item extends React.Component {
               {item.rarity && item.style !== 'ui' ? <div className='rarity'>{definitionItem.inventory.tierTypeName}</div> : null}
             </div>
           </div>
-          {importantText ? <div className='important'>{importantText}</div> : null}
+          {importantText ? <div className='highlight major'>{importantText}</div> : null}
           <div className='black'>
             {this.props.viewport.width <= 600 && item.screenshot && !(definitionItem && definitionItem.inventory && hideScreenshotBuckets.includes(definitionItem.inventory.bucketTypeHash)) ? (
               <div className='screenshot'>

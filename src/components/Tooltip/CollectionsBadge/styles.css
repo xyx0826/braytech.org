@@ -5,7 +5,7 @@
 
 #tooltip .frame.collections-badge .state > .text {
   margin: 0 0 1rem;
-  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: var(--fontText);
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 2px;

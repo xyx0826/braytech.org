@@ -250,12 +250,12 @@ class Node extends React.Component {
               {node.displayProperties.description ? <ReactMarkdown className='text' source={node.displayProperties.description} /> : null}
             </div>
             {node.availability && node.availability.type === 'cycle' ? (
-              <div className='availability'>
+              <div className='highlight'>
                 {t('Available')}: {t('every {{numberWeeks}} weeks', { numberWeeks: node.availability.cycleLength })}
               </div>
             ) : null}
             {node.activityLightLevel ? (
-                <div className='recommended-light'>
+                <div className='highlight'>
                   {t('Recommended light')}: <span>{node.activityLightLevel}</span>
                 </div>
               ) : null}

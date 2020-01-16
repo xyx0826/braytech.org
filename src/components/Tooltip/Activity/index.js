@@ -157,15 +157,16 @@ class Activity extends React.Component {
       if (modeFiltered === 'crucible') {
         activityTypeDisplay = {
           ...activityTypeDisplay,
-          name: definitionActivityPlaylist && definitionActivityPlaylist.displayProperties ? definitionActivityPlaylist.displayProperties.name : t('Unknown'),
-          mode: definitionActivityMode && definitionActivityMode.displayProperties && definitionActivityMode.displayProperties.name,
-          description: definitionActivityPlaylist && definitionActivityPlaylist.displayProperties ? definitionActivityPlaylist.displayProperties.description : t('Unknown'),
+          name: definitionActivityPlaylist?.displayProperties?.name || t('Unknown'),
+          mode: manifest.DestinyActivityModeDefinition[1164760504].displayProperties.name,
+          description: definitionActivityPlaylist?.displayProperties?.description || t('Unknown'),
           destination: {
             name: definitionActivity.displayProperties.name,
             place: definitionActivity.displayProperties.description
           },
           className: 'crucible',
           activityLightLevel: false,
+          isCrucible: true,
           icon: <span className='destiny-crucible' />
         };
 
@@ -294,12 +295,12 @@ class Activity extends React.Component {
       }
 
       if (modeFiltered === 'nightmare-hunt') {
-        console.log(definitionActivity);
         activityTypeDisplay = {
           ...activityTypeDisplay,
           name: definitionActivity.displayProperties.name,
           mode: manifest.DestinyActivityTypeDefinition[definitionActivity.activityTypeHash].displayProperties.name,
           description: definitionActivity.displayProperties.description,
+          suggestion: t('Equip Dreambane armor mods to enhance your light within this activity.'),
           className: 'nightmare-hunt',
           icon: <span className='destiny-shadowkeep' />
         };
@@ -323,6 +324,7 @@ class Activity extends React.Component {
         activityTypeDisplay = {
           ...activityTypeDisplay,
           name: definitionActivityPlaylist.displayProperties.name,
+          description: definitionActivityPlaylist.displayProperties.description,
           mode: manifest.DestinyActivityTypeDefinition[263019149].displayProperties.name,
           className: 'seasonal-arena',
           icon: (
@@ -341,7 +343,7 @@ class Activity extends React.Component {
       const checklist = checklistEntry.checklistId && checklists[checklistEntry.checklistId]({ requested: [checklistEntry.checklistHash] });
       const checklistItem = checklist && checklist.items && checklist.items.length && checklist.items[0];
 
-      const eligibilityRequirements = member.data && member.data.profile && definitionActivity.eligibilityRequirements && utils.gameVersion(member.data.profile.profile.data.versionsOwned, definitionActivity.eligibilityRequirements.gameVersion);
+      const eligibilityRequirements = member.data?.profile && definitionActivity.eligibilityRequirements && utils.gameVersion(member.data.profile.profile.data.versionsOwned, definitionActivity.eligibilityRequirements.gameVersion);
 
       if (checklist) console.log('// do something with me plz', checklist)
 
@@ -381,13 +383,29 @@ class Activity extends React.Component {
                   <pre>{activityTypeDisplay.description}</pre>
                 </div>
               ) : null}
+              {definitionActivity.matchmaking ? (
+                <div className='matchmaking'>
+                  <ul>
+                    <li>{t('Fireteam')}: {definitionActivity.matchmaking.minParty}-{definitionActivity.matchmaking.maxParty} {t('players')}</li>
+                    {definitionActivity.matchmaking.isMatchmade ? (
+                      <li>{t('Matchmaking')}</li>
+                    ) : null}
+                    <li>{activityTypeDisplay.isCrucible ? t('Player versus player') : t('Cooperative')}</li>
+                  </ul>
+                </div>
+              ) : null}
+              {activityTypeDisplay.suggestion ? (
+                <div className='highlight'>
+                  {activityTypeDisplay.suggestion}
+                </div>
+              ) : null}
               {definitionActivity.timeToComplete ? (
-                <div className='activity-length'>
+                <div className='highlight'>
                   {t('Approximate length')}: {t('{{number}} minutes', { number: definitionActivity.timeToComplete || 0 })}
                 </div>
               ) : null}
               {activityTypeDisplay.activityLightLevel ? (
-                <div className='recommended-light'>
+                <div className='highlight'>
                   {t('Recommended light')}: <span>{activityTypeDisplay.activityLightLevel}</span>
                 </div>
               ) : null}

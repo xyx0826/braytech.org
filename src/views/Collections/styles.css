@@ -350,7 +350,7 @@
 
 #collections .node.badge .children .until h4.completed {
   color: rgb(206, 174, 51);
-  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: var(--fontText);
 }
 
 #collections .node.badge .children .progress {

@@ -132,7 +132,7 @@
 }
 
 #inspect .row.header .text .name {
-  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: var(--fontText);
   font-size: 72px;
   text-transform: uppercase;
   font-weight: 500;
@@ -142,7 +142,7 @@
 }
 
 #inspect .row.header .text .type {
-  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: var(--fontText);
   font-size: 28px;
   text-transform: uppercase;
   line-height: 22px;
