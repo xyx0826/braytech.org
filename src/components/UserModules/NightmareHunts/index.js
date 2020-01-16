@@ -6,6 +6,7 @@ import { orderBy } from 'lodash';
 
 import manifest from '../../../utils/manifest';
 import * as enums from '../../../utils/destinyEnums';
+import Records from '../../Records';
 
 import './styles.css';
 
@@ -44,7 +45,7 @@ class NightmareHunts extends React.Component {
         <ul className='list activities'>
           {activeHunts.map((a, i) => {
 
-            const masterHash = orderBy(a.activities, [hash => manifest.DestinyActivityDefinition[hash].activityLightLevel], ['asc'])?.[0];
+            const masterHash = orderBy(a.activities, [hash => manifest.DestinyActivityDefinition[hash].activityLightLevel], ['desc'])?.[0];
 
             const definitionActivity = manifest.DestinyActivityDefinition[masterHash];
             
@@ -54,6 +55,10 @@ class NightmareHunts extends React.Component {
               </li>
             )
           })}
+        </ul>
+        <h4>{t('Triumphs')}</h4>
+        <ul className='list record-items'>
+          <Records selfLinkFrom='/this-week' hashes={activeHunts.map((a, i) => a.triumphs).flat()} ordered />
         </ul>
       </div>
     );
