@@ -163,11 +163,11 @@ class Mode extends React.Component {
                 </div>
                 <div className='stat'>
                   <div className='name'>{manifest.DestinyHistoricalStatsDefinition['kills'].statName}</div>
-                  <div className='value'>{stats.kills.basic.value.toLocaleString('en-us')}</div>
+                  <div className='value'>{stats.kills.basic.value.toLocaleString()}</div>
                 </div>
                 <div className='stat'>
                   <div className='name'>{manifest.DestinyHistoricalStatsDefinition['deaths'].statName}</div>
-                  <div className='value'>{stats.deaths.basic.value.toLocaleString('en-us')}</div>
+                  <div className='value'>{stats.deaths.basic.value.toLocaleString()}</div>
                 </div>
               </div>
               <div className='stat kdr'>

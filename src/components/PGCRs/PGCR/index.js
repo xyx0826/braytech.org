@@ -92,9 +92,9 @@ class ReportItem extends React.Component {
     const characterRecords = response.Response.characterRecords.data;
     const profileRecords = response.Response.profileRecords.data.records;
 
-    const gloryPoints = characterProgressions[characterId].progressions[2000925172].currentProgress.toLocaleString('en-us');
-    const valorPoints = characterProgressions[characterId].progressions[2626549951].currentProgress.toLocaleString('en-us');
-    const infamyPoints = characterProgressions[characterId].progressions[2772425241].currentProgress.toLocaleString('en-us');
+    const gloryPoints = characterProgressions[characterId].progressions[2000925172].currentProgress.toLocaleString();
+    const valorPoints = characterProgressions[characterId].progressions[2626549951].currentProgress.toLocaleString();
+    const infamyPoints = characterProgressions[characterId].progressions[2772425241].currentProgress.toLocaleString();
 
     const infamySeasons = [{ recordHash: 3901785488, objectiveHash: 4210654397 }].map(season => {
 
@@ -141,8 +141,8 @@ class ReportItem extends React.Component {
       return season;
     });
 
-    const valorResets = valorSeasons.reduce((a, v) => a + v.resets, 0).toLocaleString('en-us');
-    const infamyResets = infamySeasons.reduce((a, v) => a + v.resets, 0).toLocaleString('en-us');
+    const valorResets = valorSeasons.reduce((a, v) => a + v.resets, 0).toLocaleString();
+    const infamyResets = infamySeasons.reduce((a, v) => a + v.resets, 0).toLocaleString();
     
     return {
       points: {
@@ -824,7 +824,7 @@ class ReportItem extends React.Component {
                     {g.fields.map((s, i) => {
                       let value;
                       if (s.extended) {
-                        value = s.round ? Number.parseFloat(entry.extended.values[s.key].basic[s.type]).toFixed(2) : entry.extended.values[s.key].basic[s.type].toLocaleString('en-us');
+                        value = s.round ? Number.parseFloat(entry.extended.values[s.key].basic[s.type]).toFixed(2) : entry.extended.values[s.key].basic[s.type].toLocaleString();
                       } else if (s.async) {
                         const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
                         value = cache && cache[s.key] ? cache[s.key] : '–';
@@ -876,7 +876,7 @@ class ReportItem extends React.Component {
                           return null;
                         }
                       } else {
-                        value = s.round ? Number.parseFloat(entry.values[s.key].basic[s.type]).toFixed(2) : entry.values[s.key].basic[s.type].toLocaleString('en-us');
+                        value = s.round ? Number.parseFloat(entry.values[s.key].basic[s.type]).toFixed(2) : entry.values[s.key].basic[s.type].toLocaleString();
                       }
 
                       return (

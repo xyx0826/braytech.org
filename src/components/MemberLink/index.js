@@ -289,11 +289,11 @@ class MemberLink extends React.Component {
                         </div>
                         <div>
                           <div className='name'>{t('Triumph score')}</div>
-                          <div className='value'>{this.state.all.data.profileRecords.data.score.toLocaleString('en-us')}</div>
+                          <div className='value'>{this.state.all.data.profileRecords.data.score.toLocaleString()}</div>
                         </div>
                         <div>
                           <div className='name'>{t('Collection total')}</div>
-                          <div className='value'>{utils.collectionTotal(this.state.all.data).toLocaleString('en-us')}</div>
+                          <div className='value'>{utils.collectionTotal(this.state.all.data).toLocaleString()}</div>
                         </div>
                       </div>
                     </div>

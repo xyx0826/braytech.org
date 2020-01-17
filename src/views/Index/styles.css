@@ -80,6 +80,12 @@
 
 
 
+#index .row.about > .wrapper {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+
 #index .patreon-cta {
   background-color: #F96854;
   display: none;
@@ -116,47 +122,33 @@
 
 
 
-#index .row.about > .wrapper {
-  grid-template-columns: 1fr 1fr 1fr;
-}
 
-#index .row.about .module.manifest-diff .list.collection-items,
-#index .row.about .module.manifest-diff .list.inventory-items {
-  grid-template-columns: 1fr 1fr;
-}
 
-#index .row.about .module.manifest-diff .list.record-items {
-  grid-template-columns: 1fr;
-}
-
-#index .row.about .module.manifest-diff ul.other li {
+#index .row .module.stats ul {
+  margin: 2rem 0 0;
   display: grid;
-  grid-template-columns: 48px auto;
-  margin: 0 0 6px;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 3rem;
+}
+
+#index .row .module.stats ul li .value {
+  font-size: 48px;
+  line-height: 36px;
+}
+
+#index .row .module.stats ul li .name {
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#index .row .module.stats ul li .description {
+  margin: 18px 0 0;
   font-size: 14px;
-}
-
-#index .row.about .module.manifest-diff ul.other li:last-child {
-  margin: 0;
-}
-
-#index .row.about .module.manifest-diff ul.other li .entries {
-  color: rgba(255, 255, 255, 1);
-}
-
-#index .row.about .module.manifest-diff .overflow {
-  margin: 10px 0 0;
-  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 0.5px;
   color: rgba(255, 255, 255, 0.4);
+  max-width: 320px;
 }
-
-#index .row.about .module.manifest-diff .meta {
-  margin: 1rem 0 0;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.4);
-}
-
-
 
 
 
@@ -192,34 +184,6 @@
 
 #index .row.patreon .device svg circle {
   fill: #ffffff;
-}
-
-
-
-
-#index .row.patreon .module.stats ul {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 3rem;
-}
-
-#index .row.patreon .module.stats ul li .value {
-  font-size: 48px;
-  line-height: 36px;
-}
-
-#index .row.patreon .module.stats ul li .name {
-  margin: 14px 0 0;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-#index .row.patreon .module.stats ul li .description {
-  margin: 18px 0 0;
-  font-size: 14px;
-  font-style: italic;
-  letter-spacing: 0.5px;
-  color: rgba(255, 255, 255, 0.4);
-  max-width: 320px;
 }
 
 #index .row.patreon .module.tags {
@@ -368,7 +332,7 @@
   }
 
   #index .row.patreon .module.tags,
-  #index .row.patreon .module.stats ul {
+  #index .row .module.stats ul {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -403,12 +367,8 @@
     margin: 0;
   }
 
-  #index .row.about .module.manifest-diff .list.collection-items {
-    grid-template-columns: 1fr;
-  }
-
   #index .row.patreon .module.tags,
-  #index .row.patreon .module.stats ul {
+  #index .row .module.stats ul {
     grid-template-columns: 1fr;
   }
 

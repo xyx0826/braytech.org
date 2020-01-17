@@ -177,16 +177,16 @@ class Roster extends React.Component {
                       </div>
                     )}
                   </li>
-                  <li className='col triumphScore'>{triumphScore.toLocaleString('en-us')}</li>
-                  <li className='col progression glory'>{gloryPoints.toLocaleString('en-us')}</li>
+                  <li className='col triumphScore'>{triumphScore.toLocaleString()}</li>
+                  <li className='col progression glory'>{gloryPoints.toLocaleString()}</li>
                   <li className='col progression valor'>
-                    {valorPoints.toLocaleString('en-us')} {valorResets ? <div className='resets'>({valorResets})</div> : null}
+                    {valorPoints.toLocaleString()} {valorResets ? <div className='resets'>({valorResets})</div> : null}
                   </li>
                   <li className='col progression infamy'>
-                    {infamyPoints.toLocaleString('en-us')} {infamyResets ? <div className='resets'>({infamyResets})</div> : null}
+                    {infamyPoints.toLocaleString()} {infamyResets ? <div className='resets'>({infamyResets})</div> : null}
                   </li>
                   <li className='col weeklyXp'>
-                    <span>{weeklyXp.toLocaleString('en-us')}</span> / {(characterIds.length * 5000).toLocaleString('en-us')}
+                    <span>{weeklyXp.toLocaleString()}</span> / {(characterIds.length * 5000).toLocaleString()}
                   </li>
                 </>
               ) : (

@@ -255,7 +255,7 @@ class ReportHeaderLarge extends React.Component {
       ) : null}
       {scoreTotal && standing < 0 ? (
         <>
-          <div className='score'>{scoreTotal.toLocaleString('en-us')}</div>
+          <div className='score'>{scoreTotal.toLocaleString()}</div>
         </>
       ) : null}
     </div>

@@ -98,6 +98,10 @@
   color: #e5d163;
 }
 
+#tooltip .frame .highlight ~ .highlight {
+  padding-top: 8px;
+}
+
 #tooltip .frame .highlight:last-child {
   padding-bottom: 14px;
 }

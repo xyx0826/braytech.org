@@ -102,7 +102,7 @@ class Index extends React.Component {
         </div>
         <div className='row about'>
           <div className='wrapper'>
-            <div className='module text'>
+            <div className='module'>
               <h3>{t('What is Braytech')}</h3>
               <div className='description'>
                 <p>Braytech is a Destiny fan site with many features. The exhaustive list includes but is not limited to; a clan roster with admin mode, collections and triumphs as per the game itself with some extra bells and whistles, a curated “this week” view detailing end-games chases and their conditions, exhaustive checklists with links to maps, post game carnage reports with details on activities and their participants, a pursuits view for bounties and quests which are supplemented with extra curated data, and a bunch of other stuff too.</p>
@@ -110,13 +110,37 @@ class Index extends React.Component {
                 <p>The name, Braytech, is that which Clovis Bray, one of several of the franchise's fictional entities, designates their consumer products line; weapons, armour, etc. As such, I thought it fitting as a name for what I endeavour to be one of Destiny’s best third party resources.</p>
               </div>
             </div>
-            <div className='module text'>
+            <div className='module'>
               <h3>{t('Who builds it')}</h3>
               <div className='description'>
                 <p>An Australian web developer does. Hi, my name's Tom, and I'm addicted to Destiny. Okay, so not addicted—I've had time to build this web site. Truthfully, I'm an avid Destiny enthusiast who needs both an outlet for letting off steam and for developing my web skills further for use in my professional activities.</p>
                 <p>Braytech is a stringent exercise in mimicking—and to a small degree, reimagining—Destiny's UI for web and mobile. This has been my first React project, the first time I've heavily used the command line, the first time I've had to use NPM... And it's been super fun and rewarding, most of the time!</p>
               </div>
             </div>
+            {manifest.statistics.general ? (
+              <div className='module stats'>
+                <h3>{t('VOLUSPA statistics')}</h3>
+                <div className='description'>
+                  <p>The name, Braytech, is that which Clovis Bray, one of several of the franchise's fictional entities, designates their consumer products line; weapons, armour, etc. As such, I thought it fitting as a name for what I endeavour to be one of Destiny’s best third party resources.</p>
+                </div>
+                <ul>
+                  <li>
+                    <div className='value'>{manifest.statistics.general.tracking.toLocaleString()}</div>
+                    <div className='name'>Tracked players</div>
+                    <div className='description'>
+                      <p>Number of players VOLUSPA is tracking through their activities and accomplishments</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div className='value'>{manifest.statistics.general.playedSeason.toLocaleString()}</div>
+                    <div className='name'>Played season</div>
+                    <div className='description'>
+                      <p>Number of tracked players who've played this season</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            ) : null}
           </div>
         </div>
         <div className='row patreon'>
@@ -124,7 +148,7 @@ class Index extends React.Component {
             <div className='device'>
               <Patreon />
             </div>
-            <div className='module text'>
+            <div className='module'>
               <h3>{t('How you can help')}</h3>
               <div className='description'>
                 <p>Building these beautiful interfaces and fencing with Bungie's APIs takes effort and time. I can only devote so much of it to hobby ventures, which also cost money to keep online. I have a firm stance against ads on web sites as we know them. As such, I prefer to support these projects out of my own pocket and depend on the generosity of my community.</p>
@@ -144,26 +168,6 @@ class Index extends React.Component {
                 return <MemberLink key={k} type={t} id={i} hideFlair />;
               })}
             </div>
-            {manifest.statistics.general ? (
-              <div className='module stats'>
-                <ul>
-                  <li>
-                    <div className='value'>{manifest.statistics.general.tracking.toLocaleString('en-us')}</div>
-                    <div className='name'>Tracked players</div>
-                    <div className='description'>
-                      <p>Number of players VOLUSPA is tracking through their activities and accomplishments</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div className='value'>{manifest.statistics.general.playedSeason.toLocaleString('en-us')}</div>
-                    <div className='name'>Played season</div>
-                    <div className='description'>
-                      <p>Number of tracked players who've played this season</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            ) : null}
           </div>
         </div>
         <div className='row changes'>
