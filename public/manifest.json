@@ -69,5 +69,5 @@
   ],
   "start_url": "/now?utm_source=pwa",
   "display": "standalone",
-  "background_color": "#181818"
+  "background_color": "#282828"
 }
