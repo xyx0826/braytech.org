@@ -191,5 +191,25 @@
       "description": "Need to compare activity durations for Nightfalls or Nightmare Hunts? Look no further.\n\nHit up the extended menu to get to 'em.",
       "prompt": true
     }
+  },
+  {
+    "id": "twzniyu3z6gibiv4iaomt",
+    "date": "2020-01-17T05:49:53.778Z",
+    "expiry": 604800000,
+    "showOnce": true,
+    "displayProperties": {
+      "name": "Sustainability",
+      "description": "_Hello human! Just a brief thought on my commitment to building Braytech and how it helps support my daily life._\n\nAs an Australian, times are tough (you may have heard). My father is self-employed and supports my mother and I... But Christmas time, especially this one, is always challenging. I owe my past few weeks livelihood to my patrons as they paid two months rent.\n\nIt sucks but it's the harsh reality of life. A close friend of mine is pressuring me to place ads throughout the app but it's always been a corner stone for what I want to be better than.\n\n## What I want from you\n\nIf you use Braytech regularly and you're not a patron but you can afford it, please consider it. Put it this way: not only will you have increased influence over what I build, but you'll also be helping to keep Braytech ad free.\n\nThank you",
+      "prompt": true
+    },
+    "actions": [
+      {
+        "type": "external",
+        "target": "https://www.patreon.com/braytech",
+        "text": "View Patreon",
+        "key": "accept",
+        "dismiss": true
+      }
+    ]
   }
 ]

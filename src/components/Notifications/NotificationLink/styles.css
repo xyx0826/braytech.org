@@ -107,6 +107,11 @@ html.backdropfilter #notification-overlay .background .acrylic {
   margin: 0 0 6px;
 }
 
+#notification-overlay .wrapper-inner .text .description h2 {
+  font-size: 18px;
+  margin: 20px 0 8px;
+}
+
 #notification-overlay .wrapper-inner.has-image > div:first-child {
   justify-content: unset;
 }

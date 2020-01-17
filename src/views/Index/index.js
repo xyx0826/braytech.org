@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
@@ -9,9 +10,18 @@ import manifest from '../../utils/manifest';
 import MemberLink from '../../components/MemberLink';
 import userFlair from '../../data/userFlair';
 import Button from '../../components/UI/Button';
-import { ReactComponent as Logo } from '../../components/BraytechDevice.svg';
+
 import { ReactComponent as Patreon } from '../../components/PatreonDevice.svg';
 import captainsLog from '../../data/captainsLog';
+
+import { ReactComponent as highlightClan } from './highlight_clan.svg';
+import { ReactComponent as highlightCollections } from './highlight_collections.svg';
+import { ReactComponent as highlightTriumphs } from './highlight_triumphs.svg';
+import { ReactComponent as highlightChecklists } from './highlight_checklists.svg';
+import { ReactComponent as highlightMaps } from './highlight_maps.svg';
+import { ReactComponent as highlightThisWeek } from './highlight_this-week.svg';
+import { ReactComponent as highlightQuests } from './highlight_quests.svg';
+import { ReactComponent as highlightReports } from './highlight_reports.svg';
 
 import './styles.css';
 
@@ -56,7 +66,7 @@ class Index extends React.Component {
     return array;
   }
 
-  logPrevious = e => {
+  handler_onClickPrevious = e => {
     if (this.state.log + 1 === this.logs.length) {
       return;
     }
@@ -65,7 +75,7 @@ class Index extends React.Component {
     }));
   };
 
-  logNext = e => {
+  handler_onClickNext = e => {
     if (this.state.log === 0) {
       return;
     }
@@ -77,14 +87,84 @@ class Index extends React.Component {
   render() {
     const { t } = this.props;
 
+    const highlights = [
+      {
+        name: t('Clan'),
+        desc: t('About your clan, its roster, summative historical stats for all members, and admin mode'),
+        slug: '/clan',
+        icon: highlightClan
+      },
+      {
+        name: t('Collections'),
+        desc: t('Items your Guardian has acquired over their lifetime'),
+        slug: '/collections',
+        icon: highlightCollections
+      },
+      {
+        name: t('Triumphs'),
+        desc: t('Records your Guardian has achieved through their trials'),
+        slug: '/triumphs',
+        icon: highlightTriumphs
+      },
+      {
+        name: t('Checklists'),
+        desc: t('Ghost scans and item checklists spanning the Sol system'),
+        slug: '/checklists',
+        icon: highlightChecklists
+      },
+      {
+        name: t('Maps'),
+        desc: t('Interactive maps charting checklists and other notable destinations'),
+        slug: '/maps',
+        icon: highlightMaps
+      },
+      {
+        name: t('This Week'),
+        desc: t('Noteworthy records and collectibles which are available at a weekly cadence'),
+        slug: '/this-week',
+        icon: highlightThisWeek
+      },
+      {
+        name: t('Quests'),
+        desc: t('Track your pursuits, including quests and bounties'),
+        slug: '/quests',
+        icon: highlightQuests
+      },
+      {
+        name: t('Reports'),
+        desc: t('Explore and filter your Post Game Carnage Reports in detail'),
+        slug: '/reports',
+        icon: highlightReports
+      }
+    ];
+
     return (
       <div className='view' id='index'>
-        <div className='row flash'>
+        <div className='row header'>
           <div className='wrapper'>
-            <div className='device'>
-              <Logo />
+            <div className='large-text'>
+              <div className='name'>Braytech</div>
+              <div className='description'>
+                {t("Welcome. This is Braytech—a fan-built companion app for Bungie's Destiny. Unleash your potential and make Shaxx proud.")}
+              </div>
+              <Link className='button' to='/now'>
+                <div className='text'>{t('Select your character')}</div>
+                <i className='segoe-uniE0AB' />
+              </Link>
             </div>
-            <div className='big-name'>BRAYTECH</div>
+            <div className='highlights'>
+              {highlights.map((h, i) => (
+                <div key={i} className='highlight'>
+                  <div className='icon'>
+                    <h.icon />
+                  </div>
+                  <div className='text'>
+                    <div className='name'>{h.name}</div>
+                    <div className='description'>{h.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className='row patreon-cta'>
@@ -120,22 +200,20 @@ class Index extends React.Component {
             {manifest.statistics.general ? (
               <div className='module stats'>
                 <h3>{t('VOLUSPA statistics')}</h3>
-                <div className='description'>
-                  <p>The name, Braytech, is that which Clovis Bray, one of several of the franchise's fictional entities, designates their consumer products line; weapons, armour, etc. As such, I thought it fitting as a name for what I endeavour to be one of Destiny’s best third party resources.</p>
-                </div>
+                <ReactMarkdown className='description' source={`For the most part, Braytech is a front-end application. Although, beneath lies VOLUSPA, named after of one of _Rasputin's_ subminds. VOLUSPA records user profiles' unique identifiers and regularly collates statistics based upon them. These stats are displayed throughout the app in the form of record and collectible _commonality_—the term I've given the stat that denotes how common an article is amongst players.`} />
                 <ul>
                   <li>
                     <div className='value'>{manifest.statistics.general.tracking.toLocaleString()}</div>
-                    <div className='name'>Tracked players</div>
+                    <div className='name'>{t('Tracked players')}</div>
                     <div className='description'>
-                      <p>Number of players VOLUSPA is tracking through their activities and accomplishments</p>
+                      <p>{t('Number of players VOLUSPA is tracking through their activities and accomplishments')}</p>
                     </div>
                   </li>
                   <li>
                     <div className='value'>{manifest.statistics.general.playedSeason.toLocaleString()}</div>
-                    <div className='name'>Played season</div>
+                    <div className='name'>{t('Played season')}</div>
                     <div className='description'>
-                      <p>Number of tracked players who've played this season</p>
+                      <p>{t("Number of tracked players who've played this season")}</p>
                     </div>
                   </li>
                 </ul>
@@ -177,12 +255,14 @@ class Index extends React.Component {
               <div className='text'>
                 <div className='number'>{this.logs[this.state.log].version}</div>
                 <div className='time'>
-                  <Moment fromNow withTitle>{this.logs[this.state.log].date}</Moment>
+                  <Moment fromNow withTitle>
+                    {this.logs[this.state.log].date}
+                  </Moment>
                 </div>
               </div>
               <div className='buttons'>
-                <Button text={t('Older')} action={this.logPrevious} disabled={this.state.log + 1 === this.logs.length ? true : false} />
-                <Button text={t('Newer')} action={this.logNext} disabled={this.state.log === 0 ? true : false} />
+                <Button text={t('Older')} action={this.handler_onClickPrevious} disabled={this.state.log + 1 === this.logs.length ? true : false} />
+                <Button text={t('Newer')} action={this.handler_onClickNext} disabled={this.state.log === 0 ? true : false} />
               </div>
             </div>
             <ReactMarkdown className='log-content' source={this.logs[this.state.log].content} />
@@ -193,6 +273,4 @@ class Index extends React.Component {
   }
 }
 
-export default compose(
-  withTranslation()
-)(Index);
+export default compose(withTranslation())(Index);

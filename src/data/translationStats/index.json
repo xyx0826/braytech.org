@@ -1,244 +1,86 @@
 {
   "de": {
     "translated": 423,
-    "notTranslated": 170,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "notTranslated": 177,
+    "added": [],
+    "removed": []
   },
   "debug": {
-    "translated": 593,
-    "notTranslated": 0,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
-  },
-  "en": {
-    "translated": 593,
+    "translated": 600,
     "notTranslated": 0,
     "added": [],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
+  },
+  "en": {
+    "translated": 600,
+    "notTranslated": 0,
+    "added": [],
+    "removed": []
   },
   "es-mx": {
     "translated": 0,
-    "notTranslated": 593,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "notTranslated": 600,
+    "added": [],
+    "removed": []
   },
   "es": {
     "translated": 584,
-    "notTranslated": 9,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "notTranslated": 16,
+    "added": [],
+    "removed": []
   },
   "fr": {
     "translated": 525,
-    "notTranslated": 68,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "notTranslated": 75,
+    "added": [],
+    "removed": []
   },
   "it": {
     "translated": 584,
-    "notTranslated": 9,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "notTranslated": 16,
+    "added": [],
+    "removed": []
   },
   "ja": {
     "translated": 528,
-    "notTranslated": 65,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "notTranslated": 72,
+    "added": [],
+    "removed": []
   },
   "ko": {
     "translated": 280,
-    "notTranslated": 313,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "notTranslated": 320,
+    "added": [],
+    "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 593,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "notTranslated": 600,
+    "added": [],
+    "removed": []
   },
   "pt-br": {
     "translated": 542,
-    "notTranslated": 51,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "notTranslated": 58,
+    "added": [],
+    "removed": []
   },
   "ru": {
     "translated": 496,
-    "notTranslated": 97,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "notTranslated": 104,
+    "added": [],
+    "removed": []
   },
   "zh-chs": {
     "translated": 457,
-    "notTranslated": 136,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "notTranslated": 143,
+    "added": [],
+    "removed": []
   },
   "zh-cht": {
     "translated": 431,
-    "notTranslated": 162,
-    "added": [
-      "Cooperative",
-      "Equip Dreambane armor mods to enhance your light within this activity.",
-      "Free for all",
-      "Level advantages disabled",
-      "Matchmaking",
-      "Player versus player",
-      "players",
-      "Single player",
-      "There aren't any activities available to you. Perhaps you don't meet the requirements..."
-    ],
-    "removed": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "notTranslated": 169,
+    "added": [],
+    "removed": []
   }
 }

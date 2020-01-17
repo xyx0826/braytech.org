@@ -95,10 +95,10 @@ class NotificationLink extends React.Component {
     if (this.active && this.active.length ? this.active[0] : false) {
       const state = this.active[0];
 
-      let isError, image;
+      let isError, image, actions = state.actions || [];
       if (state && state.error && state.javascript && state.javascript.message === 'maintenance') {
         image = '/static/images/extracts/ui/01A3-00001EE8.PNG';
-        state.actions = [
+        actions = [
           {
             type: 'external',
             target: 'https://twitter.com/BungieHelp',
@@ -115,6 +115,14 @@ class NotificationLink extends React.Component {
       } else {
         image = '/static/images/extracts/ui/010A-00000554.PNG';
       }
+
+      actions = [
+        ...actions,
+        {
+          type: 'dismiss',
+          dismiss: true
+        }
+      ];
 
       if (state.displayProperties && state.displayProperties.prompt) {
         return (
@@ -141,16 +149,7 @@ class NotificationLink extends React.Component {
                 <div className='sticky-nav-inner'>
                   <div />
                   <ul>
-                    {!state.javascript?.message === 'maintenance' || !state.actions || !state.actions.length ? (
-                      <li>
-                        <Button action={this.deactivateOverlay}>
-                          <DestinyKey type='dismiss' /> {t('Dismiss')}
-                        </Button>
-                      </li>
-                    ) : null}
-                    {state.actions &&
-                      state.actions.length &&
-                      state.actions.map((action, i) => {
+                    {actions.map((action, i) => {
                         if (action.type === 'external') {
                           return (
                             <li key={i}>
@@ -160,7 +159,13 @@ class NotificationLink extends React.Component {
                             </li>
                           );
                         } else {
-                          return null;
+                          return (
+                            <li key={i}>
+                              <Button action={this.deactivateOverlay}>
+                                <DestinyKey type='dismiss' /> {t('Dismiss')}
+                              </Button>
+                            </li>
+                          );
                         }
                       })}
                   </ul>
