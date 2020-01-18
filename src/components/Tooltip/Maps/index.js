@@ -255,7 +255,7 @@ class Node extends React.Component {
               </div>
             ) : null}
             {node.activityLightLevel ? (
-                <div className='highlight'>
+                <div className='highlight recommended-light'>
                   {t('Recommended light')}: <span>{node.activityLightLevel}</span>
                 </div>
               ) : null}

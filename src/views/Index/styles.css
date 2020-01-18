@@ -115,6 +115,7 @@
 
 #index .row.header .highlights .highlight .text .description {
   color: rgba(255, 255, 255, 0.5);
+  line-height: 1.4;
 }
 
 #index .row.about > .wrapper {
@@ -189,11 +190,7 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-#index .row.patreon .module.text .description {
-  margin: 0 0 1rem;
-}
-
-#index .row.patreon .button {
+#index .row.patreon .module .description ~ .button {
   margin: 2rem 0 0;
 }
 
@@ -404,6 +401,7 @@
   }
 
   #index .row.header .highlights .highlight {
+    grid-template-columns: 32px auto;
     gap: 1rem;
   }
 
@@ -412,7 +410,7 @@
     grid-template-columns: 1fr;
   }
 
-  #index .row.patreon .button {
+  #index .row.patreon .module .description ~ .button {
     margin: 1rem 0 0;
   }
 

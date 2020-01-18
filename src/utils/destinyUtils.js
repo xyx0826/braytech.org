@@ -945,8 +945,12 @@ export function lastPlayerActivity(member) {
 
         lastActivityString = `${definitionActivityPlaylist.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
 
-      } else if (definitionActivityMode && definitionActivity?.placeHash !== 2961497387) { // Default
+      } else if (definitionActivity?.activityTypeHash === 332181804) { // Nightmare Hunts
+        
+        lastActivityString = definitionActivity.displayProperties.name;
 
+      } else if (definitionActivityMode && definitionActivity?.placeHash !== 2961497387) { // Default
+        
         lastActivityString = `${definitionActivityMode.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
 
       } else if (definitionActivity.placeHash === 2961497387) { // Orbit
@@ -971,7 +975,8 @@ export function lastPlayerActivity(member) {
       lastPlayed: lastActivity ? lastActivity.dateActivityStarted : member.profile.profile.data.dateLastPlayed,
       lastActivity,
       lastActivityString,
-      lastMode
+      lastMode,
+      matchmakingProperties: definitionActivityPlaylist?.matchmaking || definitionActivity?.matchmaking
     };
 
   })
