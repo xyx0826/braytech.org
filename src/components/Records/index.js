@@ -428,7 +428,7 @@ class Records extends React.Component {
                   <div className='meta'>
                     {manifest.statistics.triumphs && manifest.statistics.triumphs[definitionRecord.hash] ? (
                       <div className='commonality tooltip' data-hash='commonality' data-type='braytech'>
-                        {manifest.statistics.triumphs[definitionRecord.hash]}%
+                        {manifest.statistics.triumphs[definitionRecord.hash].toLocaleString()}%
                       </div>
                     ) : null}
                     {recordState.intervals.length && recordState.intervals.filter(i => i.complete).length !== recordState.intervals.length ? (
