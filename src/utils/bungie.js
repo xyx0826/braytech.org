@@ -101,7 +101,7 @@ async function apiRequest(path, options = {}) {
           expiry: 86400000,
           displayProperties: {
             name: 'Bungie',
-            description: response.ErrorCode ? `${response.ErrorCode} ${response.ErrorStatus}: ${response.Message}` : `${response.error}: ${response.error_description}`,
+            description: response.ErrorCode ? `${response.ErrorCode} ${response.ErrorStatus}\n\n${response.Message}` : `${response.error}\n\n${response.error_description}`,
             timeout: 4
           }
         }

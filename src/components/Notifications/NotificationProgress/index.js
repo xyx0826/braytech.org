@@ -149,6 +149,8 @@ class NotificationProgress extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
+
     if (this.state.progress.type === 'record') {
       let definitionRecord = manifest.DestinyRecordDefinition[this.state.progress.hash];
 
@@ -168,7 +170,7 @@ class NotificationProgress extends React.Component {
               <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionRecord.displayProperties.icon}`} noConstraints />
               <div className='description'>{description}</div>
             </div>
-            {this.state.progress.number > 1 ? <div className='more'>And {this.state.progress.number - 1} more</div> : null}
+            {this.state.progress.number > 1 ? <div className='more'>{t('And {{number}} more', { number: this.state.progress.number - 1 })}</div> : null}
           </div>
           {link ? <ProfileLink to={link} /> : null}
         </div>

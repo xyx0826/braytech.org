@@ -159,7 +159,7 @@ class Mode extends React.Component {
               <div className='minor-stats'>
                 <div className='stat'>
                   <div className='name'>{manifest.DestinyHistoricalStatsDefinition['efficiency'].statName}</div>
-                  <div className='value'>{Number.parseFloat(stats.efficiency.basic.value).toFixed(2)}</div>
+                  <div className='value'>{Number.parseFloat(stats.efficiency.basic.value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                 </div>
                 <div className='stat'>
                   <div className='name'>{manifest.DestinyHistoricalStatsDefinition['kills'].statName}</div>
@@ -172,7 +172,7 @@ class Mode extends React.Component {
               </div>
               <div className='stat kdr'>
                 <div className='name'>K/D</div>
-                <div className='value'>{Number.parseFloat(stats.killsDeathsRatio.basic.value).toFixed(2)}</div>
+                <div className='value'>{Number.parseFloat(stats.killsDeathsRatio.basic.value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
               </div>
             </>
           ) : <div className='no-stats'><div>{t('No stats available')}</div></div>}

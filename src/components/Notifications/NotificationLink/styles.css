@@ -236,7 +236,7 @@ html.backdropfilter .wrapper.light-mode #notification-overlay .sticky-nav {
   left: 0;
   width: 100%;
   height: 6px;
-  background-color: rgb(220, 81, 59);
+  background-color: rgb(117, 117, 117);
 }
 
 #notification-bar .background .acrylic {
@@ -248,14 +248,41 @@ html.backdropfilter .wrapper.light-mode #notification-overlay .sticky-nav {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-html.backdropfilter #notification-bar .background .border-top {
-  background-color: rgb(220, 81, 59);
-  backdrop-filter: blur(7px) brightness(1.2) saturate(1.2);
-}
-
 html.backdropfilter #notification-bar .background .acrylic {
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(7px) brightness(1.2) saturate(1.2);
+}
+
+#notification-bar .background .border-top .inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(220, 81, 59);
+  animation: animation-bar-error 4s linear 0s 1 forwards;
+}
+
+@keyframes animation-bar-error {
+  0%, 60% {
+    width: 100%;
+    opacity: 1;
+    box-shadow: 0 0 60px 10px rgb(220, 81, 59);
+  }
+  90% {
+    opacity: 0.4;
+  }
+  94% {
+    opacity: 0.2;
+  }
+  98% {
+    opacity: 0.1;
+  }
+  100% {
+    width: 0%;
+    opacity: 0;
+    box-shadow: 0 0 60px 10px rgba(220, 80, 59, 0);
+  }
 }
 
 #notification-bar .wrapper-inner {
@@ -266,12 +293,8 @@ html.backdropfilter #notification-bar .background .acrylic {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-gap: 0;
-  padding: 6px 0 1rem;
+  padding: 0 0 1rem;
   font-size: 14px;
-}
-
-#notification-bar .wrapper-inner > div {
-
 }
 
 #notification-bar .wrapper-inner > div:first-child {
@@ -281,7 +304,7 @@ html.backdropfilter #notification-bar .background .acrylic {
 
 #notification-bar .wrapper-inner div .icon {
   position: relative;
-  margin: 0.75rem 1rem;
+  margin: 18px 1rem;
   display: grid;
   justify-content: center;
   align-content: center;
@@ -303,11 +326,12 @@ html.backdropfilter #notification-bar .background .acrylic {
 }
 
 #notification-bar .wrapper-inner .text {
-  padding: 1rem 0;
+  padding: 24px 0 16px;
   display: grid;
   grid-template-columns: min-content 1fr;
   grid-gap: 1rem;
   font-size: 18px;
+  user-select: none;
 }
 
 #notification-bar .wrapper-inner .text .name {
@@ -316,14 +340,22 @@ html.backdropfilter #notification-bar .background .acrylic {
 }
 
 #notification-bar .wrapper-inner .text .description {
+  position: relative;
   color: rgba(255, 255, 255, 0.6);
-  padding: 0 1rem 0 0;
   max-width: calc(600px + 4rem);
 }
 
 #notification-bar .wrapper-inner .text .name p,
 #notification-bar .wrapper-inner .text .description p {
   line-height: 1.4;
+}
+
+#notification-bar .wrapper-inner .more {
+  position: absolute;
+  top: 24px;
+  right: 3rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 18px;
 }
 
 #notification-bar .wrapper-inner .text .description ul {
@@ -343,12 +375,12 @@ html.backdropfilter #notification-bar .background .acrylic {
 @media screen and (max-width: 600px) {
   #notification-bar {
     display: block;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
   }
 
   #notification-bar .wrapper-inner {
     grid-template-columns: min-content auto;
-    padding: 6px 0 1rem;
+    padding: 0 2rem 1rem 0;
   }
 
   #notification-overlay .wrapper-inner:not(.has-image) > div:first-child {
@@ -356,7 +388,7 @@ html.backdropfilter #notification-bar .background .acrylic {
   }
 
   #notification-bar .wrapper-inner div .icon {
-    margin: 0.75rem 2rem 0 2rem;
+    margin: 18px 2rem 0 2rem;
   }
 
   #notification-bar .wrapper-inner .text {
@@ -365,10 +397,15 @@ html.backdropfilter #notification-bar .background .acrylic {
   }
 
   #notification-bar .wrapper-inner .text .name {
-    font-size: 14px;
+    font-size: 16px;
   }
   
   #notification-bar .wrapper-inner .text .description {
     font-size: 14px;
+  }
+
+  #notification-bar .wrapper-inner .more {
+    right: 2rem;
+    font-size: 16px;
   }
 }

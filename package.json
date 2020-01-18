@@ -4,7 +4,7 @@
   "bugs": {
     "url": "https://github.com/justrealmilk/braytech.org/issues"
   },
-  "version": "2.14.26",
+  "version": "2.14.27",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
@@ -17,12 +17,12 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
-    "query-string": "^6.9.0",
+    "query-string": "^6.10.1",
     "react": "^16.12.0",
     "react-beautiful-dnd": "^12.2.0",
     "react-dom": "^16.12.0",
     "react-ga": "^2.7.0",
-    "react-i18next": "^11.3.0",
+    "react-i18next": "^11.3.1",
     "react-leaflet": "^2.6.1",
     "react-markdown": "^4.3.1",
     "react-moment": "^0.9.7",
