@@ -512,16 +512,21 @@ html.backdropfilter #member-overlay .background .acrylic {
   color: rgba(255, 255, 255, 0.6);
 }
 
-#member-overlay .wrapper-inner .fireteam-status {
+#member-overlay .wrapper-inner .fireteam .status {
   margin: 0 0 14px;
 }
 
-#member-overlay .wrapper-inner .fireteam-status div:not(:last-child) {
+#member-overlay .wrapper-inner .fireteam .status div:not(:last-child) {
   margin: 0 0 6px;
 }
 
-#member-overlay .wrapper-inner .fireteam-status .player-count {
+#member-overlay .wrapper-inner .fireteam .status .player-count {
   color: rgba(255, 255, 255, 0.6);
+}
+
+#member-overlay .wrapper-inner .fireteam .info {
+  padding: 2rem 0;
+  text-align: center;
 }
 
 #member-overlay .wrapper-inner .list.fireteam-members .placeholder {

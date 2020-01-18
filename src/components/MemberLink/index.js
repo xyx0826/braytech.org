@@ -93,60 +93,60 @@ class MemberLink extends React.Component {
   };
 
   getMinimalProfileData = async () => {
-    if (this.mounted) {
-      try {
-        const member = {
-          membershipType: this.state.member.membershipType || (await this.getMembershipType(this.state.member.membershipId)),
-          membershipId: this.state.member.membershipId,
-          displayName: this.state.member.displayName
-        };
+    try {
+      const member = {
+        membershipType: this.state.member.membershipType || (await this.getMembershipType(this.state.member.membershipId)),
+        membershipId: this.state.member.membershipId,
+        displayName: this.state.member.displayName
+      };
 
-        const responseProfile = await bungie.GetProfile({
-          params: {
-            membershipType: member.membershipType,
-            membershipId: member.membershipId,
-            components: member.displayName ? '200' : '100,200'
-          }
-        });
-
-        if (responseProfile?.ErrorCode === 1) {
-          const profile = responseUtils.profileScrubber(responseProfile.Response, 'activity');
-
-          if (!profile.characters.data || profile.characters.data.length === 0) {
-            this.setState(p => ({
-              ...p,
-              all: {
-                ...p.all,
-                error: true
-              }
-            }));
-          } else {
-            this.setState(p => ({
-              ...p,
-              member,
-              basic: {
-                ...p.basic,
-                data: profile,
-                loading: false,
-                error: false
-              }
-            }));
-          }
-        } else {
-          throw Error;
+      const responseProfile = await bungie.GetProfile({
+        params: {
+          membershipType: member.membershipType,
+          membershipId: member.membershipId,
+          components: member.displayName ? '200' : '100,200'
         }
-      } catch (e) {}
+      });
+
+      if (this.mounted && responseProfile?.ErrorCode === 1) {
+        const profile = responseUtils.profileScrubber(responseProfile.Response, 'activity');
+
+        if (!profile.characters.data || profile.characters.data.length === 0) {
+          this.setState(p => ({
+            ...p,
+            all: {
+              ...p.all,
+              error: true
+            }
+          }));
+        } else {
+          this.setState(p => ({
+            ...p,
+            member,
+            basic: {
+              ...p.basic,
+              data: profile,
+              loading: false,
+              error: false
+            }
+          }));
+        }
+      } else {
+        throw Error;
+      }
+    } catch (e) {
+
     }
   };
 
   getFullProfileData = async () => {
-    if (this.mounted) {
-      try {
-        const member = {
-          membershipType: this.state.overrideMember.membershipType || this.state.member.membershipType,
-          membershipId: this.state.overrideMember.membershipId || this.state.member.membershipId
-        };
+    try {
+      const member = {
+        membershipType: this.state.overrideMember.membershipType || this.state.member.membershipType,
+        membershipId: this.state.overrideMember.membershipId || this.state.member.membershipId
+      };
 
+      if (this.mounted) {
         this.setState({
           all: {
             loading: true,
@@ -154,58 +154,58 @@ class MemberLink extends React.Component {
             error: false
           }
         });
+      }
 
-        const requests = [
-          bungie.GetProfile({
-            params: {
-              membershipType: member.membershipType,
-              membershipId: member.membershipId,
-              components: '100,200,202,204,205,800,900,1000'
-            }
-          }),
-          bungie.GetGroupsForMember({
-            params: {
-              membershipType: member.membershipType,
-              membershipId: member.membershipId
-            }
-          })
-        ];
-
-        const [responseProfile, responseGroup] = await Promise.all(requests);
-
-        if (responseProfile && responseProfile.ErrorCode === 1) {
-          const profile = responseUtils.profileScrubber(responseProfile.Response, 'activity');
-          const group = responseGroup?.ErrorCode === 1 && responseGroup.Response?.results?.length && responseGroup.Response.results[0].group;
-
-          if (!profile.profileRecords.data || (profile.profileRecords.data && Object.entries(profile.profileRecords.data.records).length === 0)) {
-            this.setState(p => ({
-              all: {
-                ...p.all,
-                loading: false,
-                error: true
-              }
-            }));
-
-            return;
+      const requests = [
+        bungie.GetProfile({
+          params: {
+            membershipType: member.membershipType,
+            membershipId: member.membershipId,
+            components: '100,200,202,204,205,800,900,1000'
           }
+        }),
+        bungie.GetGroupsForMember({
+          params: {
+            membershipType: member.membershipType,
+            membershipId: member.membershipId
+          }
+        })
+      ];
 
+      const [responseProfile, responseGroup] = await Promise.all(requests);
+
+      if (this.mounted && responseProfile && responseProfile.ErrorCode === 1) {
+        const profile = responseUtils.profileScrubber(responseProfile.Response, 'activity');
+        const group = responseGroup?.ErrorCode === 1 && responseGroup.Response?.results?.length && responseGroup.Response.results[0].group;
+
+        if (!profile.profileRecords.data || (profile.profileRecords.data && Object.entries(profile.profileRecords.data.records).length === 0)) {
           this.setState(p => ({
             all: {
               ...p.all,
-              error: false,
-              data: {
-                ...profile,
-                group
-              },
-              loading: false
+              loading: false,
+              error: true
             }
           }));
-        } else {
-          throw Error;
+
+          return;
         }
-      } catch (e) {
-        console.log(e);
+
+        this.setState(p => ({
+          all: {
+            ...p.all,
+            error: false,
+            data: {
+              ...profile,
+              group
+            },
+            loading: false
+          }
+        }));
+      } else {
+        throw Error;
       }
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -305,7 +305,7 @@ class MemberLink extends React.Component {
       const profileTransitoryData = this.state.all.data.profileTransitoryData.data;
       const fireteamMembers = (profileTransitoryData?.partyMembers.length && [...profileTransitoryData.partyMembers, ...fireteamPadding(lastActivity.matchmakingProperties?.maxParty, profileTransitoryData.joinability.openSlots, profileTransitoryData.partyMembers.length)]) || [];
 
-      console.log(profileTransitoryData);
+      // console.log(profileTransitoryData);
 
       return (
         <>
@@ -352,13 +352,13 @@ class MemberLink extends React.Component {
                       </div>
                       <Characters member={{ data: { profile: this.state.all.data }, membershipId, membershipType, characterId: lastCharacterPlayed }} characterClick={this.handler_onCharacterClick} mini />
                     </div>
-                    <div className='module'>
+                    <div className='module fireteam'>
                       <div className='sub-header'>
                         <div>{t('Fireteam')}</div>
                       </div>
                       {fireteamMembers.length ? (
                         <>
-                          <div className='fireteam-status'>
+                          <div className='status'>
                             <div className='open-slots'>
                               {t('Fireteam members')}: {profileTransitoryData.partyMembers.length} / {lastActivity.matchmakingProperties?.maxParty}
                             </div>
