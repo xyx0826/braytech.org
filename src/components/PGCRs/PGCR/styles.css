@@ -111,6 +111,10 @@
   margin: -15% 0 0 -15%;
 }
 
+.list.reports li > .head .standing .icon svg {
+  pointer-events: none;
+}
+
 .list.reports li > .head .standing .icon.crucible .victory .square {
   transform-origin: center center;
   animation: rotate-linear 32s infinite linear;
@@ -607,6 +611,12 @@
   .list.reports li > .head .score.teams .value {
     width: 12vh;
     font-size: 3vh;
+  }
+
+  .list.reports li > .head .standing .icon {
+    width: 50%;
+    height: 50%;
+    margin: -27% 0 0 -25%;
   }
 
   .list.reports li .entries .team-head,

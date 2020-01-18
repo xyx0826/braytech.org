@@ -493,7 +493,7 @@ class ReportItem extends React.Component {
             },
             {
               key: 'weapons',
-              name: 'Weapons used'
+              name: t('Weapons used')
             }
           ]
         },
@@ -636,7 +636,7 @@ class ReportItem extends React.Component {
             },
             {
               key: 'weapons',
-              name: 'Weapons used'
+              name: t('Weapons used')
             }
           ]
         },
@@ -791,14 +791,14 @@ class ReportItem extends React.Component {
                 let value;
 
                 if (s.extended) {
-                  value = s.round ? Number.parseFloat(entry.extended.values[s.key].basic[s.type]).toFixed(2) : entry.extended.values[s.key].basic[s.type];
+                  value = s.round ? Number.parseFloat(entry.extended.values[s.key].basic[s.type]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : entry.extended.values[s.key].basic[s.type];
                 } else if (s.async) {
                   const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
                   value = cache && cache[s.key] ? cache[s.key] : '–';
                 } else if (s.root) {
-                  value = s.round ? Number.parseFloat(entry[s.key].basic[s.type]).toFixed(2) : entry[s.key].basic[s.type];
+                  value = s.round ? Number.parseFloat(entry[s.key].basic[s.type]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : entry[s.key].basic[s.type];
                 } else {
-                  value = s.round ? Number.parseFloat(entry.values[s.key].basic[s.type]).toFixed(2) : entry.values[s.key].basic[s.type];
+                  value = s.round ? Number.parseFloat(entry.values[s.key].basic[s.type]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : entry.values[s.key].basic[s.type];
                 }
 
                 return (
@@ -823,8 +823,9 @@ class ReportItem extends React.Component {
                     ) : null}
                     {g.fields.map((s, i) => {
                       let value;
+
                       if (s.extended) {
-                        value = s.round ? Number.parseFloat(entry.extended.values[s.key].basic[s.type]).toFixed(2) : entry.extended.values[s.key].basic[s.type].toLocaleString();
+                        value = s.round ? Number.parseFloat(entry.extended.values[s.key].basic[s.type]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : entry.extended.values[s.key].basic[s.type].toLocaleString();
                       } else if (s.async) {
                         const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
                         value = cache && cache[s.key] ? cache[s.key] : '–';
@@ -876,7 +877,7 @@ class ReportItem extends React.Component {
                           return null;
                         }
                       } else {
-                        value = s.round ? Number.parseFloat(entry.values[s.key].basic[s.type]).toFixed(2) : entry.values[s.key].basic[s.type].toLocaleString();
+                        value = s.round ? Number.parseFloat(entry.values[s.key].basic[s.type]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : entry.values[s.key].basic[s.type].toLocaleString();
                       }
 
                       return (
@@ -907,8 +908,8 @@ class ReportItem extends React.Component {
 
               return (
                 <ul key={team.teamId} className='team'>
-                  <li className={cx('team-head', (team.teamId === 17 ? t('Alpha') : t('Bravo')).toLowerCase())}>
-                    <div className='team name'>{team.teamId === 17 ? t('Alpha') : t('Bravo')} team</div>
+                  <li className={cx('team-head', team.teamId === 17 ? 'alpha' : 'bravo')}>
+                    <div className='team name'>{team.teamId === 17 ? t('Alpha team') : t('Bravo team')}</div>
                     {displayStats.header.map((s, i) => {
                       return (
                         <div key={i} className={cx(s.key, { hideInline: s.hideInline })}>
