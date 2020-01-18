@@ -35,11 +35,11 @@ class Profile extends React.Component {
               <div className='name'>{t('Time played across characters')}</div>
             </div>
             <div>
-              <div className='value'>{member.data.profile.profileRecords.data.score.toLocaleString('en-us')}</div>
+              <div className='value'>{member.data.profile.profileRecords.data.score.toLocaleString()}</div>
               <div className='name'>{t('Triumph score')}</div>
             </div>
             <div>
-              <div className='value'>{utils.collectionTotal(member.data.profile).toLocaleString('en-us')}</div>
+              <div className='value'>{utils.collectionTotal(member.data.profile).toLocaleString()}</div>
               <div className='name'>{t('Collection total')}</div>
             </div>
           </div>

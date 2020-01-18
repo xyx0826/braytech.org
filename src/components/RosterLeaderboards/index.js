@@ -338,7 +338,7 @@ class RosterLeaderboards extends React.Component {
     } else if (stat && stat.type === 'distance') {
       return Math.floor(value) + 'm';
     } else if (stat && stat.type === 'integer') {
-      return parseInt(value, 10).toLocaleString('en-us');
+      return parseInt(value, 10).toLocaleString();
     } else {
       return displayValue;
     }
