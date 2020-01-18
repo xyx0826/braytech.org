@@ -84,7 +84,7 @@ class Collectibles extends React.Component {
                 </div>
                 <div className='text'>
                   <div className='name'>{definitionItem.displayProperties.name}</div>
-                  <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[definitionCollectible.hash] ? manifest.statistics.collections[definitionCollectible.hash].toLocaleString() : parseFloat(0.00).toLocaleString()}%</div>
+                  <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[definitionCollectible.hash] ? manifest.statistics.collections[definitionCollectible.hash].toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : parseFloat(0.00).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</div>
                 </div>
               </li>
               <li

@@ -101,11 +101,7 @@ class Credits extends React.Component {
             <div>{t('Patreon supporters')}</div>
           </div>
           <div className='tags'>
-            {this.supporters.map((m, k) => {
-              let t = m.user.slice(0, 1);
-              let i = m.user.slice(1);
-              return <MemberLink key={k} type={t} id={i} hideFlair />;
-            })}
+            {this.supporters.map((m, k) => <MemberLink key={k} id={m.user} hideFlair />)}
           </div>
         </div>
       </div>

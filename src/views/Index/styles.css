@@ -82,6 +82,28 @@
   padding: 0;
 }
 
+#index .row.header .large-text .button i {
+  animation: cta-sparkle 1.5s both infinite;
+}
+
+@keyframes cta-sparkle {
+  0% {
+    transform: translateX(-24px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(0px);
+  }
+}
+
 #index .row.header .highlights {
   display: grid;
   grid-template-columns: 1fr 1fr;

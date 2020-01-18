@@ -113,7 +113,7 @@ class App extends React.Component {
       });
     } else {
       moment.defineLocale('relative-sml', {
-        parentLocale: 'en',
+        parentLocale: momentLocale,
         relativeTime: {
           future: 'in %s',
           past: '%s ago',

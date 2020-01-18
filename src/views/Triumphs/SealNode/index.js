@@ -47,7 +47,7 @@ class SealNode extends React.Component {
 
     const isComplete = progress === total ? true : false;
 
-     const title = !definitionCompletionRecord.redacted && definitionCompletionRecord.titleInfo && definitionCompletionRecord.titleInfo.titlesByGenderHash[character.genderHash];
+    const title = !definitionCompletionRecord.redacted && definitionCompletionRecord.titleInfo && definitionCompletionRecord.titleInfo.titlesByGenderHash[character.genderHash];
 
     const sealCommonality = manifest.statistics.seals && manifest.statistics.seals[definitionSeal.hash];
 
@@ -89,7 +89,7 @@ class SealNode extends React.Component {
           {sealCommonality ? (
             <div className='commonality'>
               <h4>{t('Seal commonality')}</h4>
-              <div className='value'>{sealCommonality}%</div>
+              <div className='value'>{sealCommonality.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</div>
               <div className='description'>
                 {t("The seal's rarity represented as a percentage of players who are indexed by VOLUSPA.")}
               </div>
