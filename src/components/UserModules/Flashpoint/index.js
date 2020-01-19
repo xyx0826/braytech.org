@@ -13,32 +13,36 @@ import { ReactComponent as EuropeanDeadZone } from '../../../svg/destinations/eu
 import { ReactComponent as TheTangledShore } from '../../../svg/destinations/the-tangled-shore-1_monochrome.svg';
 import { ReactComponent as HellasBasin } from '../../../svg/destinations/hellas-basin-1_monochrome.svg';
 import { ReactComponent as FieldsOfGlass } from '../../../svg/destinations/fields-of-glass-1_monochrome.svg';
+import { ReactComponent as EchoMesa } from '../../../svg/destinations/echo-mesa-1_monochrome.svg';
 
 const iconMap = {
-  126924919: ArcadianValley,
+  126924919: ArcadianValley,      // destinationHash: icon
   2388758973: NewPacificArcology,
   1199524104: EuropeanDeadZone,
   359854275: TheTangledShore,
   308080871: HellasBasin,
-  1993421442: FieldsOfGlass
+  1993421442: FieldsOfGlass,
+  2218917881: EchoMesa
 };
 
 const vendorMap = {
-  126924919: 1576276905,
+  126924919: 1576276905,          // destinationHash: vendorHash
   2388758973: 1062861569,
   1199524104: 396892126,
   359854275: 863940356,
   308080871: 1735426333,
-  1993421442: 2398407866
+  1993421442: 2398407866,
+  2218917881: 3982706173
 };
 
 const vendorBubbleMap = {
-  1576276905: 1576276905,
+  1576276905: 1576276905,         // vendorHash: bubbleHash
   1062861569: 1291433366,
   396892126: 3091570009,
   863940356: 1608679832,
   1735426333: 1461622515,
-  2398407866: 2822410613
+  2398407866: 2822410613,
+  3982706173: 577912749
 };
 
 class Flashpoint extends React.Component {
