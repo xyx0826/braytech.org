@@ -2,17 +2,13 @@
   "de": {
     "translated": 419,
     "notTranslated": 186,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "added": [],
     "removed": []
   },
   "debug": {
     "translated": 605,
     "notTranslated": 0,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "added": [],
     "removed": []
   },
   "en": {
@@ -22,91 +18,69 @@
     "removed": []
   },
   "es-mx": {
-    "translated": 595,
-    "notTranslated": 10,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "translated": 594,
+    "notTranslated": 11,
+    "added": [],
     "removed": []
   },
   "es": {
-    "translated": 595,
-    "notTranslated": 10,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "translated": 594,
+    "notTranslated": 11,
+    "added": [],
     "removed": []
   },
   "fr": {
-    "translated": 535,
-    "notTranslated": 70,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "translated": 534,
+    "notTranslated": 71,
+    "added": [],
     "removed": []
   },
   "it": {
-    "translated": 579,
-    "notTranslated": 26,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "translated": 578,
+    "notTranslated": 27,
+    "added": [],
     "removed": []
   },
   "ja": {
-    "translated": 523,
-    "notTranslated": 82,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "translated": 522,
+    "notTranslated": 83,
+    "added": [],
     "removed": []
   },
   "ko": {
     "translated": 278,
     "notTranslated": 327,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "added": [],
     "removed": []
   },
   "pl": {
     "translated": 0,
     "notTranslated": 605,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "added": [],
     "removed": []
   },
   "pt-br": {
-    "translated": 537,
-    "notTranslated": 68,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "translated": 536,
+    "notTranslated": 69,
+    "added": [],
     "removed": []
   },
   "ru": {
-    "translated": 491,
-    "notTranslated": 114,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "translated": 490,
+    "notTranslated": 115,
+    "added": [],
     "removed": []
   },
   "zh-chs": {
-    "translated": 453,
-    "notTranslated": 152,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "translated": 452,
+    "notTranslated": 153,
+    "added": [],
     "removed": []
   },
   "zh-cht": {
-    "translated": 427,
-    "notTranslated": 178,
-    "added": [
-      "Forsaken campaign"
-    ],
+    "translated": 426,
+    "notTranslated": 179,
+    "added": [],
     "removed": []
   }
 }

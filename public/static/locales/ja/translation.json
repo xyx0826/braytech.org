@@ -307,7 +307,7 @@
   "Loading member": "メンバーをロード中",
   "Loading previous member": "前のメンバーをロード中",
   "Local data": "ローカルデータ",
-  "Located inside activity: {{activityName}}": "{{activityName}}にある",
+  "#####Located inside activity": "🌐",
   "Located inside lost sector": "失われたセクターの中にある",
   "Located inside strike": "ストライク中にある",
   "#####Log node details": "🌐",

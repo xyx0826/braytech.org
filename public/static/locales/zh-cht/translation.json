@@ -307,7 +307,7 @@
   "Loading member": "加載成員中",
   "Loading previous member": "加載以前成員中",
   "#####Local data": "🌐",
-  "Located inside activity: {{activityName}}": "正在進行活動: {{activityName}}",
+  "#####Located inside activity": "🌐",
   "Located inside lost sector": "位於遺失區域中",
   "Located inside strike": "位於打擊中",
   "Log node details": "記錄節點詳細日誌",

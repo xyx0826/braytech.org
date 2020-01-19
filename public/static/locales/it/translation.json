@@ -307,7 +307,7 @@
   "Loading member": "Caricando membro",
   "Loading previous member": "Caricando membro precedente",
   "Local data": "Dati locali",
-  "Located inside activity: {{activityName}}": "Trovato nella seguente attività: {{activityName}}",
+  "#####Located inside activity": "🌐",
   "Located inside lost sector": "Situato in un settore perduto",
   "Located inside strike": "Situato in un assalto",
   "Log node details": "Stampa dettagli dei nodi",

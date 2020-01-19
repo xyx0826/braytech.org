@@ -307,7 +307,7 @@
   "Loading member": "Загрузка участника",
   "Loading previous member": "Загрузка прошлого участника",
   "Local data": "Локальные данные",
-  "Located inside activity: {{activityName}}": "Доступен во время задания: {{activityName}}",
+  "#####Located inside activity": "🌐",
   "Located inside lost sector": "Расположен в затерянном секторе",
   "Located inside strike": "Доступен во время налета",
   "#####Log node details": "🌐",

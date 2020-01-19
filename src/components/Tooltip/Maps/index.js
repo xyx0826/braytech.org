@@ -28,16 +28,16 @@ class Checklist extends React.Component {
     const checklist = checklistEntry.checklistId && checklists[checklistEntry.checklistId]({ requested: { key: 'checklistHash', array: [checklistEntry.checklistHash] } });
     const checklistItem = checklist && checklist.items && checklist.items.length && checklist.items[0];
 
-    // console.log(checklist)
-
     const extras = nodes && nodes.find(d => d.checklistHash === checklistItem.checklistHash);
     const screenshot = extras && extras.screenshot;
     const description = extras && extras.description;
 
+    const locatedActivityName = checklistItem.activityHash && manifest.DestinyActivityDefinition[checklistItem.activityHash] && manifest.DestinyActivityDefinition[checklistItem.activityHash].displayProperties && manifest.DestinyActivityDefinition[checklistItem.activityHash].displayProperties.name;
+
     const locatedStrings = {
       'lost-sector': t('Located inside lost sector'),
-      'strike': t('Located inside strike'),
-      'activity': t('Located inside activity: {{activityName}}', { activityName: checklistItem.activityHash && manifest.DestinyActivityDefinition[checklistItem.activityHash] && manifest.DestinyActivityDefinition[checklistItem.activityHash].displayProperties && manifest.DestinyActivityDefinition[checklistItem.activityHash].displayProperties.name })
+      'strike': `${t('Located inside strike')}${locatedActivityName ? `: ${locatedActivityName}`: ``}`,
+      'activity': `${t('Located inside activity')}${locatedActivityName ? `: ${locatedActivityName}`: ``}`
     }
 
     if (checklistEntry.checklistId === '4178338182') {
@@ -115,10 +115,12 @@ class Record extends React.Component {
     const screenshot = extras && extras.screenshot;
     const description = extras && extras.description;
 
+    const locatedActivityName = checklistItem.activityHash && manifest.DestinyActivityDefinition[checklistItem.activityHash] && manifest.DestinyActivityDefinition[checklistItem.activityHash].displayProperties && manifest.DestinyActivityDefinition[checklistItem.activityHash].displayProperties.name;
+
     const locatedStrings = {
       'lost-sector': t('Located inside lost sector'),
-      'strike': t('Located inside strike'),
-      'activity': t('Located inside activity: {{activityName}}', { activityName: checklistItem.activityHash && manifest.DestinyActivityDefinition[checklistItem.activityHash] && manifest.DestinyActivityDefinition[checklistItem.activityHash].displayProperties && manifest.DestinyActivityDefinition[checklistItem.activityHash].displayProperties.name })
+      'strike': `${t('Located inside strike')}${locatedActivityName ? `: ${locatedActivityName}`: ``}`,
+      'activity': `${t('Located inside activity')}${locatedActivityName ? `: ${locatedActivityName}`: ``}`
     }
     
     return (
@@ -202,10 +204,12 @@ class Node extends React.Component {
 
     const locationString = [bubbleName, destinationName, placeName].filter(s => s).join(', ');
 
+    const locatedActivityName = node.location.within && node.location.within.activityHash && manifest.DestinyActivityDefinition[node.location.within.activityHash] && manifest.DestinyActivityDefinition[node.location.within.activityHash].displayProperties && manifest.DestinyActivityDefinition[node.location.within.activityHash].displayProperties.name
+
     const locatedStrings = {
       'lost-sector': t('Located inside lost sector'),
-      'strike': t('Located inside strike'),
-      'activity': t('Located inside activity: {{activityName}}', { activityName: node.location.within && node.location.within.activityHash && manifest.DestinyActivityDefinition[node.location.within.activityHash] && manifest.DestinyActivityDefinition[node.location.within.activityHash].displayProperties && manifest.DestinyActivityDefinition[node.location.within.activityHash].displayProperties.name })
+      'strike': `${t('Located inside strike')}${locatedActivityName ? `: ${locatedActivityName}`: ``}`,
+      'activity': `${t('Located inside activity')}${locatedActivityName ? `: ${locatedActivityName}`: ``}`
     }
     
     let icon = null;

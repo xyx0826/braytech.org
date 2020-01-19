@@ -263,7 +263,7 @@ html.backdropfilter #member-overlay .background .acrylic {
   max-width: 1280px;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.8fr 1fr 1fr;
+  grid-template-columns: 0.8fr 1fr minmax(200px, 270px);
   grid-gap: 3rem;
   font-size: 14px;
 }

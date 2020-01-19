@@ -307,7 +307,7 @@
   "Loading member": "加载成员中",
   "Loading previous member": "加载以前成员中",
   "Local data": "本地数据",
-  "Located inside activity: {{activityName}}": "正在进行活动: {{activityName}}",
+  "#####Located inside activity": "🌐",
   "Located inside lost sector": "位于遗失区域中",
   "Located inside strike": "位于打击中",
   "Log node details": "记录节点详细日志",
