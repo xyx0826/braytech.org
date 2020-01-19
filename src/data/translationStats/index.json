@@ -1,300 +1,112 @@
 {
   "de": {
     "translated": 419,
-    "notTranslated": 185,
+    "notTranslated": 186,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "debug": {
-    "translated": 604,
+    "translated": 605,
     "notTranslated": 0,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "en": {
-    "translated": 604,
+    "translated": 605,
     "notTranslated": 0,
     "added": [],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "es-mx": {
     "translated": 595,
-    "notTranslated": 9,
+    "notTranslated": 10,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "es": {
     "translated": 595,
-    "notTranslated": 9,
+    "notTranslated": 10,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "fr": {
     "translated": 535,
-    "notTranslated": 69,
+    "notTranslated": 70,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "it": {
     "translated": 579,
-    "notTranslated": 25,
+    "notTranslated": 26,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "ja": {
     "translated": 523,
-    "notTranslated": 81,
+    "notTranslated": 82,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "ko": {
     "translated": 278,
-    "notTranslated": 326,
+    "notTranslated": 327,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 604,
+    "notTranslated": 605,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "pt-br": {
     "translated": 537,
-    "notTranslated": 67,
+    "notTranslated": 68,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "ru": {
     "translated": 491,
-    "notTranslated": 113,
+    "notTranslated": 114,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "zh-chs": {
     "translated": 453,
-    "notTranslated": 151,
+    "notTranslated": 152,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   },
   "zh-cht": {
     "translated": 427,
-    "notTranslated": 177,
+    "notTranslated": 178,
     "added": [
-      "Alpha team",
-      "And {{number}} more",
-      "Bravo team",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "Fireteam members",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._",
-      "Offline",
-      "Player count",
-      "Weapons used"
+      "Forsaken campaign"
     ],
-    "removed": [
-      "Alpha",
-      "Bravo",
-      "Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).",
-      "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.",
-      "You appear to be offline!"
-    ]
+    "removed": []
   }
 }

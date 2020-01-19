@@ -1673,7 +1673,10 @@
         "name": "The Boil",
         "number": 3
       },
-      "extended": {}
+      "extended": {
+        "located": "activity"
+      },
+      "activityHash": 851841785
     },
     {
       "destinationHash": 359854275,

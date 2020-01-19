@@ -313,6 +313,10 @@
   max-width: 600px;
 }
 
+#index .row.changes .buttons .button:not(:last-child) {
+  margin: 0 0 3px;
+}
+
 @media screen and (max-width: 1400px) {
   #index .row.header > .wrapper {
     grid-template-columns: 1fr 2fr;
