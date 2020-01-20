@@ -260,22 +260,27 @@ async function run() {
       if (![2, 3].includes(i.itemType)) {
         return;
       }
-console.log(r)
-      if (armors[r.result]) {
-        t0 = armors[r.result];
+
+      const testArmorSets = Object.keys(armors2).find(key => r.result.indexOf(key) > -1);
+
+      if (testArmorSets) {
         if (/Random/i.test(r.result)) {
+          t0 = armors2[testArmorSets];
           t6 = true;
+        } else {
+          t0 = armors2[testArmorSets][r.result.replace(testArmorSets, '').trim()];
         }
-        t7 = findNode(armors[r.result][0]);
+        
+        // t7 = findNode(armors2[r.result][0]);
         t8 = 2;
       } else if (weapons[r.result]) {
         t0 = weapons[r.result];
         t6 = true;
-        t7 = findNode(weapons[r.result][0]);
+        // t7 = findNode(weapons[r.result][0]);
         t8 = 3;
       } else if (i1 === i2) {
         t0 = [i.hash];
-        t7 = findNode(i.hash);
+        // t7 = findNode(i.hash);
         t8 = i.itemType;
       }
 
@@ -283,7 +288,7 @@ console.log(r)
         t4 = masterworks[r.masterwork];
       }
 
-      if (armors[r.result] && armorTypes[r.armorType]) {
+      if (armors2[r.result] && armorTypes[r.armorType]) {
         t5 = armorTypes[r.armorType];
       }
     });
@@ -374,7 +379,7 @@ console.log(r)
     }
 
     if (t7) {
-      ttt.parentPresentationNodeHash = t7;
+      // ttt.parentPresentationNodeHash = t7;
     }
 
     output.push(ttt);
