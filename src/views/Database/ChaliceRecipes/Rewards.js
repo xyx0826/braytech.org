@@ -44,7 +44,7 @@ class Collectibles extends React.Component {
         if (c.masterwork) {
           itemState = 4;
         }
-
+console.log(definitionItem)
         let definitionCollectible = manifest.DestinyCollectibleDefinition[definitionItem.collectibleHash];
 
         let state = 0;
