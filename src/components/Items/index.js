@@ -16,8 +16,16 @@ import ProgressBar from '../../components/UI/ProgressBar';
 import './styles.css';
 
 class Items extends React.Component {
+  handler = item => e => {
+    const { handler } = this.props;
+
+    if (handler) {
+      handler(item);
+    }
+  }
+
   render() {
-    const { member, items, order, noBorder, hideQuantity, asPanels, showHash, inspect, action } = this.props;
+    const { member, items, order, noBorder, hideQuantity, asPanels, showHash, inspect } = this.props;
 
     let output = [];
 
@@ -71,11 +79,7 @@ class Items extends React.Component {
             data-vendoritemindex={item.vendorItemIndex}
             data-vendorstatus={item.saleStatus}
             data-quantity={item.quantity && item.quantity > 1 ? item.quantity : null}
-            onClick={e => {
-              if (action) {
-                action(e, item);
-              }
-            }}
+            onClick={this.handler(item)}
           >
             <div className='icon'>
               <ObservedImage className='image' src={definitionItem.displayProperties.localIcon ? `${definitionItem.displayProperties.icon}` : `https://www.bungie.net${definitionItem.displayProperties.icon}`} />

@@ -94,7 +94,7 @@ class ChaliceRecipes extends React.Component {
 
     this.combos = combos.slice();
     this.combosAvailable = this.combos.filter(c => {
-      if (c.combo[0].length === 1 && (c.combo[1].length === 1 && ['braytech_purple_rune', 'braytech_red_rune', 'braytech_green_rune', 'braytech_blue_rune'].includes(c.combo[1][0])) && c.combo[2].length === 0) {
+      if (c.combo[0].length === 1 && c.combo[1].length === 1 && ['braytech_purple_rune', 'braytech_red_rune', 'braytech_green_rune', 'braytech_blue_rune'].includes(c.combo[1][0]) && c.combo[2].length === 0) {
         return true;
       } else {
         return false;
@@ -141,35 +141,22 @@ class ChaliceRecipes extends React.Component {
     });
   };
 
-  hanlder_rewardItemClick = (e, item) => {
+  handler_rewardItemClick = item => {
     console.log(item);
 
-    if (!item) {
+    if (!item || !item.combo) {
       return;
     }
 
-    if (item.slot) {
-      this.setState((prevState, props) => {
-        let change = { ...prevState };
-        if (item.itemHash) {
-          change.slots[item.slot] = item.itemHash === 'braytech_remove_rune' ? false : item.itemHash;
-        }
-        change.slotsPanelOpen = false;
-        return change;
-      });
-    } else if (item.combo) {
-      this.setState((prevState, props) => {
-        let change = {
-          slots: {
-            slot1: item.combo[0].length ? item.combo[0][0] : false,
-            slot2: item.combo[1].length ? item.combo[1][0] : false,
-            slot3: item.combo[2].length ? item.combo[2][0] : false
-          },
-          slotsPanelOpen: false
-        };
-        return { ...prevState, ...change };
-      });
-    }
+    this.setState(p => ({
+      ...p,
+      slots: {
+        slot1: item.combo[0]?.[0] || false,
+        slot2: item.combo[1]?.[0] || false,
+        slot3: item.combo[2]?.[0] || false
+      },
+      slotsPanelOpen: false
+    }));
 
     window.scrollTo({
       top: this.scrollToChalice.current.offsetTop + this.scrollToChalice.current.offsetHeight / 2 - window.innerHeight / 2
@@ -177,7 +164,6 @@ class ChaliceRecipes extends React.Component {
   };
 
   handler_runeItemClick = item => e => {
-    console.log(item)
     this.setState(p => ({
       ...p,
       slots: {
@@ -211,26 +197,20 @@ class ChaliceRecipes extends React.Component {
   };
 
   checkForCombo = () => {
-    let matches = this.combos;
-    let slot1 = this.state.slots.slot1;
-    let slot2 = this.state.slots.slot2;
-    let slot3 = this.state.slots.slot3;
+    const { slot1, slot2, slot3 } = this.state.slots;
 
-    matches = matches.filter(m => {
-      // let combo1 = this.breakUpRuneAbbreviations(m.combo[0]);
-      let combo1 = m.combo[0];
-      let combo2 = this.breakUpRuneAbbreviations(m.combo[1]);
-      // let combo2 = m.combo[1];
-      let combo3 = this.breakUpRuneAbbreviations(m.combo[2]);
-      // let combo3 = m.combo[2];
+    const matches = this.combos.filter(m => {
+      const combo1 = m.combo[0];
+      const combo2 = this.breakUpRuneAbbreviations(m.combo[1]);
+      const combo3 = this.breakUpRuneAbbreviations(m.combo[2]);
 
       // console.log(combo1, combo2, combo3)
 
-      if (combo1.length && combo1.includes(slot1) && (combo2.length && combo2.includes(slot2)) && (combo3.length && combo3.includes(slot3))) {
+      if (combo1.length && combo1.includes(slot1) && combo2.length && combo2.includes(slot2) && combo3.length && combo3.includes(slot3)) {
         return true;
-      } else if (!slot3 && !combo3.length && (combo1.length && combo1.includes(slot1)) && (combo2.length && combo2.includes(slot2))) {
+      } else if (!slot3 && !combo3.length && combo1.length && combo1.includes(slot1) && combo2.length && combo2.includes(slot2)) {
         return true;
-      } else if (!slot2 && !combo2.length && (!slot3 && !combo3.length) && (combo1.length && combo1.includes(slot1))) {
+      } else if (!slot2 && !combo2.length && !slot3 && !combo3.length && combo1.length && combo1.includes(slot1)) {
         return true;
       } else {
         return false;
@@ -240,17 +220,16 @@ class ChaliceRecipes extends React.Component {
     console.log(matches);
     matches.forEach(m => {
       if (m.items.length) {
-        let definitionItem = manifest.DestinyInventoryItemDefinition[m.items[0]];
+        const definitionItem = manifest.DestinyInventoryItemDefinition[m.items[0]];
         console.log(definitionItem.displayProperties.name);
       } else {
         console.log(':(');
       }
     });
 
-    this.setState((prevState, props) => {
-      prevState.matches = matches;
-      return prevState;
-    });
+    this.setState(p => ({
+      matches
+    }));
 
     this.props.rebindTooltips();
   };
@@ -315,7 +294,9 @@ class ChaliceRecipes extends React.Component {
 
   render() {
     const { t, viewport } = this.props;
-console.log(this.state.matches)
+
+    console.log(this.combosAvailable);
+
     return (
       <>
         <div className='module head'>
@@ -454,9 +435,12 @@ console.log(this.state.matches)
                   <div>Selected runes</div>
                 </div>
                 <ul className='list inventory-items'>
-                  <Items items={this.state.matches.reduce((a, v) => {
-                      return [...a, ...v.items.map(hash => ({ itemHash: hash }))]
-                    }, [])} />
+                  <Items
+                    items={this.state.matches.reduce((a, v) => {
+                      return [...a, ...v.items.map(hash => ({ combo: v.combo, itemHash: hash }))];
+                    }, [])}
+                    handler={this.handler_rewardItemClick}
+                  />
                 </ul>
               </>
             ) : null}
@@ -464,18 +448,28 @@ console.log(this.state.matches)
               <div>Weapons</div>
             </div>
             <ul className='list inventory-items'>
-              <Items items={this.combosAvailable.filter(c => c.itemType === 3).reduce((a, v) => {
-                return [...a, ...v.items.map(hash => ({ itemHash: hash }))]
-              }, [])} />
-            </ul>  
+              <Items
+                items={this.combosAvailable
+                  .filter(c => c.itemType === 3)
+                  .reduce((a, v) => {
+                    return [...a, ...v.items.map(hash => ({ combo: v.combo, itemHash: hash }))];
+                  }, [])}
+                handler={this.handler_rewardItemClick}
+              />
+            </ul>
             <div className='sub-header'>
               <div>Armor</div>
             </div>
             <ul className='list inventory-items'>
-              <Items items={this.combosAvailable.filter(c => c.itemType !== 3).reduce((a, v) => {
-                return [...a, ...v.items.map(hash => ({ itemHash: hash }))]
-              }, [])} />
-            </ul>              
+              <Items
+                items={this.combosAvailable
+                  .filter(c => c.itemType !== 3)
+                  .reduce((a, v) => {
+                    return [...a, ...v.items.map(hash => ({ combo: v.combo, itemHash: hash }))];
+                  }, [])}
+                handler={this.handler_rewardItemClick}
+              />
+            </ul>
           </div>
         </div>
         <div className='sticky-nav'>
@@ -540,10 +534,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  withTranslation()
-)(ChaliceRecipes);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(ChaliceRecipes);
