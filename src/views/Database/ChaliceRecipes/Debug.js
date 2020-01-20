@@ -25,6 +25,86 @@ class ChaliceRecipesDebug extends React.Component {
   }
 
   render() {
+    const sets = [
+      {
+        name: 'Reverie Dawn',
+        nodes: [
+          3952745160, // titan
+          3476818388, // hunter
+          4139791841, // warlock
+        ]
+      },
+      {
+        name: 'Opulent',
+        nodes: [
+          3760158863, // titan
+      327169819, // hunter
+      2551808106, // warlock
+        ]
+      },
+      {
+        name: 'Exodus Down',
+        nodes: [
+          3952745158, // titan
+      3476818394, // hunter
+      4139791855, // warlock
+        ]
+      },
+      {
+        name: 'Tangled Web',
+        nodes: [
+          3110922166, // titan
+      3986530602, // hunter
+      2983784769 // warlock
+        ]
+      }
+    ]
+
+    const armors = sets.map(set => {
+      set.nodes = set.nodes.map(node => {
+        const def = manifest.DestinyPresentationNodeDefinition[node];
+
+        return {
+          nodeHash: node,
+          classType: manifest.DestinyInventoryItemDefinition[manifest.DestinyCollectibleDefinition[def.children.collectibles[0].collectibleHash].itemHash].classType,
+          collectibles: def.children.collectibles.map(c => c.collectibleHash)
+        }
+      });
+      return set;
+    })
+
+    console.log(armors)
+
+    const obj = {}
+    
+    armors.forEach(set => {
+      // manifest.DestinyCollectibleDefinition[c.collectibleHash].itemHash
+
+      set.nodes.forEach(node => {
+
+        node.collectibles.forEach(hash => {
+
+          const defItem = manifest.DestinyInventoryItemDefinition[manifest.DestinyCollectibleDefinition[hash].itemHash];
+  
+          const armor2matches = Object.values(manifest.DestinyInventoryItemDefinition).filter(d => d.displayProperties?.name === defItem.displayProperties?.name && d.sockets?.socketCategories?.find(c => c.socketCategoryHash === 760375309));
+  
+          const item = armor2matches[0];
+
+          obj[set.name] = obj[set.name] || {};
+
+          let type = item.itemSubType === 30 ? 'Class Item' : item.itemTypeDisplayName;
+  
+          obj[set.name][type] = [...obj[set.name][type] || [], item.hash];
+  
+        })
+
+      })
+
+    })
+
+    
+    console.log(obj)
+
     return (
       <>
         <div className='module head'>
