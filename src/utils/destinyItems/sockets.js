@@ -59,8 +59,8 @@ export const sockets = item => {
   let missingSockets = false;
 
   const socketData = (item.itemInstanceId && item.itemComponents?.sockets) || undefined;
-  const reusablePlugData = (item.itemInstanceId && item.itemComponents.reusablePlugs?.plugs) || undefined;
-  const plugObjectivesData = (item.itemInstanceId && item.itemComponents.plugObjectives?.objectivesPerPlug) || undefined;
+  const reusablePlugData = (item.itemInstanceId && item.itemComponents?.reusablePlugs?.plugs) || undefined;
+  const plugObjectivesData = (item.itemInstanceId && item.itemComponents?.plugObjectives?.objectivesPerPlug) || undefined;
 
   if (socketData) {
     sockets = buildInstancedSockets(item, socketData, reusablePlugData, plugObjectivesData);
@@ -68,7 +68,7 @@ export const sockets = item => {
 
   // If we didn't have live data (for example, when viewing vendor items or collections),
   // get sockets from the item definition.
-  if (!sockets && definitionItem.sockets) {
+  if (!sockets && definitionItem?.sockets) {
     // If this really *should* have live sockets, but didn't...
     if (item.itemInstanceId && socketData && !socketData[item.itemInstanceId]) {
       missingSockets = true;

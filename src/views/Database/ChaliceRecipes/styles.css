@@ -83,11 +83,11 @@
 
 #chalice-recipes .frame .flair.active .image.leviathan,
 #chalice-recipes .frame .flair.active .image.ring-outer {
-  animation: rotate-logo-feature 90s linear infinite;
+  animation: rotate-logo-feature 60s linear infinite;
 }
 
 #chalice-recipes .frame .flair.active .image.ring-inner {
-  animation: rotate-logo-feature 90s linear infinite reverse;
+  animation: rotate-logo-feature 60s linear infinite reverse;
 }
 
 #chalice-recipes .frame .flair.active .image.ring-inner {
@@ -167,7 +167,7 @@ html.backdropfilter #chalice-recipes .frame .ui .slots [class^="slot"] .slot-inn
   left: -26px;
   width: 124px;
   height: 124px;
-  animation: rotate-logo-feature 90s linear infinite;
+  animation: rotate-logo-feature 60s linear infinite;
   opacity: 0.5;
 }
 
@@ -258,11 +258,11 @@ html.backdropfilter #chalice-recipes .frame .ui .slots [class^="slot"] .slot-inn
 
 html.backdropfilter #chalice-recipes .overlay {
   background-color: rgba(0, 0, 0, 0);
-  backdrop-filter: blur(7px) brightness(0.9) saturate(1.2);
+  backdrop-filter: blur(7px) saturate(1.2);
 }
 
 html.backdropfilter .wrapper.dark-mode #chalice-recipes .overlay {
-  backdrop-filter: blur(7px) brightness(0.7) saturate(1.2);
+  backdrop-filter: blur(7px) saturate(1.2);
 }
 
 #chalice-recipes .overlay .list.chalice-items li.active {
@@ -630,4 +630,16 @@ html.backdropfilter #chalice-recipes .overlay .list.chalice-items li.active::bef
   #chalice-recipes .list.chalice-items {
     
   }
+}
+
+
+#database.chalice-of-opulence .debug .inventory-items {
+  grid-template-columns: repeat(auto-fill, 64px);
+}
+
+#database.chalice-of-opulence .debug .combo {
+  margin: 0 0 2rem;
+  display: grid;
+  grid-template-columns: calc(64px * 3 + 3px * 2) auto;
+  column-gap: 2rem;
 }

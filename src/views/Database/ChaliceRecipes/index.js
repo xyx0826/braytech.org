@@ -5,14 +5,13 @@ import { withTranslation } from 'react-i18next';
 import { flattenDepth, groupBy, orderBy } from 'lodash';
 import cx from 'classnames';
 
-import manifest from '../../utils/manifest';
-import ObservedImage from '../../components/ObservedImage';
-import { Button, DestinyKey } from '../../components/UI/Button';
+import manifest from '../../../utils/manifest';
+import ObservedImage from '../../../components/ObservedImage';
+import { Button, DestinyKey } from '../../../components/UI/Button';
 
-import Items from './Items';
 import Rewards from './Rewards';
 
-import combos from '../../data/chaliceData';
+import combos from '../../../data/chaliceData';
 
 import './styles.css';
 
@@ -22,9 +21,9 @@ class ChaliceRecipes extends React.Component {
 
     this.state = {
       slots: {
-        slot1: parseInt(this.props.match.params.rune1, 10) || false,
-        slot2: parseInt(this.props.match.params.rune2, 10) || false,
-        slot3: parseInt(this.props.match.params.rune3, 10) || false
+        slot1: false,
+        slot2: false,
+        slot3: false
       },
       slotsPanelOpen: false,
       matches: [],
@@ -34,10 +33,10 @@ class ChaliceRecipes extends React.Component {
     this.scrollToChalice = React.createRef();
 
     this.chalice = manifest.DestinyInventoryItemDefinition[1115550924];
+    const chaliceSocketEntriesIndexes = this.chalice.sockets.socketCategories.find(c => c.socketCategoryHash === 3483578942).socketIndexes;
     this.chalice.slots = Object.entries(this.chalice.sockets.socketEntries)
       .map(([key, value]) => {
-        let indexes = this.chalice.sockets.socketCategories.find(c => c.socketCategoryHash === 3483578942).socketIndexes;
-        if (indexes.includes(parseInt(key, 10))) {
+        if (chaliceSocketEntriesIndexes.includes(parseInt(key, 10))) {
           return value;
         } else {
           return false;
@@ -46,10 +45,11 @@ class ChaliceRecipes extends React.Component {
       .filter(f => f);
 
     this.runes = {
-      slot1: ['braytech_remove_rune', ...this.chalice.slots[0].reusablePlugItems.map(p => p.plugItemHash)],
-      slot2: ['braytech_remove_rune', ...this.chalice.slots[1].reusablePlugItems.map(p => p.plugItemHash)],
-      slot3: ['braytech_remove_rune', ...this.chalice.slots[2].reusablePlugItems.map(p => p.plugItemHash)]
+      slot1: ['braytech_remove_rune', ...manifest.DestinyPlugSetDefinition[this.chalice.slots[0].reusablePlugSetHash].reusablePlugItems.map(p => p.plugItemHash)],
+      slot2: ['braytech_remove_rune', ...manifest.DestinyPlugSetDefinition[this.chalice.slots[1].reusablePlugSetHash].reusablePlugItems.map(p => p.plugItemHash)],
+      slot3: ['braytech_remove_rune', ...manifest.DestinyPlugSetDefinition[this.chalice.slots[2].reusablePlugSetHash].reusablePlugItems.map(p => p.plugItemHash)]
     };
+
     this.runes.purple = [...this.runes.slot1, ...this.runes.slot2, ...this.runes.slot3].filter(r => {
       let definitionPlug = manifest.DestinyInventoryItemDefinition[r];
       let identities = ['penumbra.runes.legendary.rune0', 'penumbra.runes.legendary.rune1', 'penumbra.runes.legendary.rune2'];
@@ -101,17 +101,17 @@ class ChaliceRecipes extends React.Component {
     });
   }
 
-  toggleSlotsPanelHandler = slot => {
+  handler_toggleSlotsPanel = slot => e => {
     if (this.state.slotsPanelOpen === slot) {
-      this.setState((prevState, props) => {
-        prevState.slotsPanelOpen = false;
-        return prevState;
-      });
+      this.setState(p => ({
+        ...p,
+        slotsPanelOpen: false
+      }));
     } else {
-      this.setState((prevState, props) => {
-        prevState.slotsPanelOpen = slot;
-        return prevState;
-      });
+      this.setState(p => ({
+        ...p,
+        slotsPanelOpen: slot
+      }));
     }
 
     this.props.rebindTooltips();
@@ -140,7 +140,7 @@ class ChaliceRecipes extends React.Component {
     });
   };
 
-  itemClickHandler = (e, item) => {
+  hanlder_rewardItemClick = (e, item) => {
     console.log(item);
 
     if (!item) {
@@ -169,6 +169,22 @@ class ChaliceRecipes extends React.Component {
         return { ...prevState, ...change };
       });
     }
+
+    window.scrollTo({
+      top: this.scrollToChalice.current.offsetTop + this.scrollToChalice.current.offsetHeight / 2 - window.innerHeight / 2
+    });
+  };
+
+  handler_runeItemClick = item => e => {
+    console.log(item)
+    this.setState(p => ({
+      ...p,
+      slots: {
+        ...p.slots,
+        [item.slot]: item.hash === 'braytech_remove_rune' ? false : item.hash
+      },
+      slotsPanelOpen: false
+    }));
 
     window.scrollTo({
       top: this.scrollToChalice.current.offsetTop + this.scrollToChalice.current.offsetHeight / 2 - window.innerHeight / 2
@@ -243,51 +259,51 @@ class ChaliceRecipes extends React.Component {
 
     this.checkForCombo();
 
-    this.combos.forEach((c, i) => {
-      if (!c.items.length) {
-        return null;
-      }
+    // this.combos.forEach((c, i) => {
+    //   if (!c.items.length) {
+    //     return null;
+    //   }
 
-      c.items.forEach(hash => {
-        let definitionItem = manifest.DestinyInventoryItemDefinition[hash];
+    //   c.items.forEach(hash => {
+    //     let definitionItem = manifest.DestinyInventoryItemDefinition[hash];
 
-        if (!definitionItem) {
-          return;
-        }
+    //     if (!definitionItem) {
+    //       return;
+    //     }
 
-        let itemInstanceId = `${hash}_${c.masterwork || ''}${c.intrinsic || ''}`;
-        let existing = this.props.tooltips.itemComponents[itemInstanceId];
+    //     let itemInstanceId = `${hash}_${c.masterwork || ''}${c.intrinsic || ''}`;
+    //     let existing = this.props.tooltips.itemComponents[itemInstanceId];
 
-        if (existing) {
-          // console.log(`found an instance for ${itemInstanceId}`);
-        } else {
-          // console.log(`couldn't find an instance for ${itemInstanceId}`);
+    //     if (existing) {
+    //       // console.log(`found an instance for ${itemInstanceId}`);
+    //     } else {
+    //       // console.log(`couldn't find an instance for ${itemInstanceId}`);
 
-          let plugs = [];
+    //       let plugs = [];
 
-          plugs.push({
-            plugCategoryIdentifier: !c.masterwork ? 'v400.plugs.weapons.masterworks.stat.handling' : c.masterwork,
-            disable: !c.masterwork ? true : false,
-            uiPlugLabel: 'masterwork'
-          });
+    //       plugs.push({
+    //         plugCategoryIdentifier: !c.masterwork ? 'v400.plugs.weapons.masterworks.stat.handling' : c.masterwork,
+    //         disable: !c.masterwork ? true : false,
+    //         uiPlugLabel: 'masterwork'
+    //       });
 
-          if (c.intrinsic) {
-            plugs.push({
-              plugCategoryIdentifier: 'intrinsics',
-              hash: c.intrinsic
-            });
-          }
+    //       if (c.intrinsic) {
+    //         plugs.push({
+    //           plugCategoryIdentifier: 'intrinsics',
+    //           hash: c.intrinsic
+    //         });
+    //       }
 
-          this.props.pushInstance({
-            [itemInstanceId]: {
-              custom: true,
-              state: c.masterwork ? 4 : 0,
-              plugs
-            }
-          });
-        }
-      });
-    });
+    //       this.props.pushInstance({
+    //         [itemInstanceId]: {
+    //           custom: true,
+    //           state: c.masterwork ? 4 : 0,
+    //           plugs
+    //         }
+    //       });
+    //     }
+    //   });
+    // });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -321,7 +337,7 @@ class ChaliceRecipes extends React.Component {
           <div className='padder'>
             <div className='module'>
               <div className='frame' ref={this.scrollToChalice}>
-                <div className={cx('flair', { active: this.state.matches.length > 0 })}>
+                <div className={cx('flair', { active: Object.values(this.state.slots).filter(s => s).length > 2 })}>
                   <ObservedImage className='image padding corner' src='/static/images/extracts/ui/01E3-00000700.png' />
                   <ObservedImage className='image padding corner active' src='/static/images/extracts/ui/01E3-00000700-A.png' />
                   <ObservedImage className='image leviathan' src='/static/images/extracts/ui/01E3-00000702.png' />
@@ -336,25 +352,26 @@ class ChaliceRecipes extends React.Component {
                 <div className='ui'>
                   <div className='slots'>
                     {Object.entries(this.state.slots).map(([key, value]) => {
-                      let activePlug;
-                      let definitionActivePlug = manifest.DestinyInventoryItemDefinition[this.state.slots[key] ? this.state.slots[key] : 'braytech_no_rune'];
+                      const hash = this.state.slots[key] || 'braytech_no_rune';
+                      const definitionActivePlug = manifest.DestinyInventoryItemDefinition[hash] || manifest.BraytechDefinition[hash];
+
                       if (!definitionActivePlug) {
                         console.log(this.state.slots[key]);
+
+                        return null;
                       }
 
-                      activePlug = (
+                      const activePlug = (
                         <li
                           className={cx({
                             tooltip: viewport.width > 1024 ? true : false,
                             linked: true
                           })}
-                          data-hash={this.state.slots[key] ? this.state.slots[key] : 'braytech_no_rune'}
-                          onClick={e => {
-                            this.toggleSlotsPanelHandler(key);
-                          }}
+                          data-hash={hash}
+                          onClick={this.handler_toggleSlotsPanel(key)}
                         >
                           <div className='icon'>
-                            <ObservedImage className='image' src={definitionActivePlug.displayProperties.localIcon ? `${definitionActivePlug.displayProperties.icon}` : `https://www.bungie.net${definitionActivePlug.displayProperties.icon}`} />
+                            <ObservedImage src={definitionActivePlug.displayProperties.localIcon ? `${definitionActivePlug.displayProperties.icon}` : `https://www.bungie.net${definitionActivePlug.displayProperties.icon}`} />
                           </div>
                         </li>
                       );
@@ -380,16 +397,45 @@ class ChaliceRecipes extends React.Component {
                             {this.state.slotsPanelOpen === key ? (
                               <div className='overlay'>
                                 <ul className='list chalice-items'>
-                                  <Items
-                                    items={this.runes[key].map(s => {
-                                      return {
-                                        itemHash: s,
-                                        slot: key,
-                                        active: this.state.slots[key] === s
-                                      };
-                                    })}
-                                    action={this.itemClickHandler}
-                                  />
+                                  {this.runes[key].map((hash, i) => {
+                                    const definitionPlug = manifest.DestinyInventoryItemDefinition[hash] || manifest.BraytechDefinition[hash];
+
+                                    if (!definitionPlug) {
+                                      console.log(`Items: Couldn't find item definition for ${hash}`);
+
+                                      return null;
+                                    }
+
+                                   return (
+                                      <ul className='list' key={i}>
+                                        <li
+                                          className={cx({
+                                            tooltip: !this.props.disableTooltip,
+                                            linked: true,
+                                            active: this.state.slots[key] === hash
+                                          })}
+                                          data-hash={hash}
+                                          onClick={this.handler_runeItemClick({ slot: key, hash })}
+                                        >
+                                          <div className='icon'>
+                                            <ObservedImage className='image' src={definitionPlug.displayProperties.localIcon ? `${definitionPlug.displayProperties.icon}` : `https://www.bungie.net${definitionPlug.displayProperties.icon}`} />
+                                          </div>
+                                          <div className='text'>
+                                            <div className='name'>{definitionPlug.displayProperties.name}</div>
+                                          </div>
+                                        </li>
+                                        <li
+                                          className={cx('apply', {
+                                            linked: true,
+                                            active: this.state.slots[key] === hash
+                                          })}
+                                          onClick={this.handler_runeItemClick({ slot: key, hash })}
+                                        >
+                                          <i className='segoe-uniE176' />
+                                        </li>
+                                      </ul>
+                                    );
+                                  })}
                                 </ul>
                               </div>
                             ) : null}
@@ -408,7 +454,7 @@ class ChaliceRecipes extends React.Component {
                     <div>Selected runes</div>
                   </div>
                   <ul className='list reward-items'>
-                    <Rewards items={this.state.matches} onClick={this.itemClickHandler} matches armorClassType={this.state.armorClassType} />
+                    <Rewards items={this.state.matches} onClick={this.hanlder_rewardItemClick} matches armorClassType={this.state.armorClassType} />
                   </ul>
                 </>
               ) : null}
@@ -424,7 +470,7 @@ class ChaliceRecipes extends React.Component {
                           <div>{definitionPresentationNode ? definitionPresentationNode.displayProperties.name : 'uh oh'}</div>
                         </div>
                         <ul className='list reward-items'>
-                          <Rewards items={value} onClick={this.itemClickHandler} armorClassType={this.state.armorClassType} />
+                          <Rewards items={value} onClick={this.hanlder_rewardItemClick} armorClassType={this.state.armorClassType} />
                         </ul>
                       </React.Fragment>
                     )
@@ -444,7 +490,7 @@ class ChaliceRecipes extends React.Component {
                 {viewport.width <= 1024 && this.state.slotsPanelOpen ? (
                   <Button
                     action={e => {
-                      this.toggleSlotsPanelHandler(this.state.slotsPanelOpen);
+                      this.handler_toggleSlotsPanel(this.state.slotsPanelOpen);
                     }}
                   >
                     <DestinyKey type='dismiss' /> {t('Dismiss')}

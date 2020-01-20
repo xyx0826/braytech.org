@@ -5,9 +5,9 @@ import { withTranslation } from 'react-i18next';
 import { orderBy } from 'lodash';
 import cx from 'classnames';
 
-import manifest from '../../utils/manifest';
-import ObservedImage from '../../components/ObservedImage';
-import * as enums from '../../utils/destinyEnums';
+import manifest from '../../../utils/manifest';
+import ObservedImage from '../../../components/ObservedImage';
+import * as enums from '../../../utils/destinyEnums';
 
 class Collectibles extends React.Component {
   render() {

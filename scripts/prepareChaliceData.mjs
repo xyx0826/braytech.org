@@ -1,5 +1,4 @@
-const fs = require('fs');
-const process = require('process');
+import fs from 'fs';
 
 const outputPath = 'src/data/chaliceData/index.json';
 

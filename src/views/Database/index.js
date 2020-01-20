@@ -10,6 +10,8 @@ import './styles.css';
 import Manifest from './Manifest';
 import Eververse from './Eververse';
 import LastWish from './LastWish';
+import ChaliceRecipes from './ChaliceRecipes';
+import ChaliceRecipesDebug from './ChaliceRecipes/Debug';
 
 class Database extends React.Component {
   componentDidMount() {
@@ -32,6 +34,14 @@ class Database extends React.Component {
       'last-wish': {
         name: 'last-wish',
         component: LastWish
+      },
+      'chalice-of-opulence': {
+        name: 'chalice-of-opulence',
+        component: ChaliceRecipes
+      },
+      'chalice-of-opulence-debug': {
+        name: 'chalice-of-opulence',
+        component: ChaliceRecipesDebug
       }
     };
 
