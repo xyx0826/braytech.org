@@ -20,7 +20,7 @@ export const profileScrubber = (profile, sortBy = false) => {
   }
 
   // adjust adventures checklist state https://github.com/Bungie-net/api/issues/786
-  if (profile.characterProgressions && profile.characterProgressions.data) {
+  if (profile.characterProgressions?.data) {
     let completed = false;
 
     // Signal Light
@@ -34,6 +34,7 @@ export const profileScrubber = (profile, sortBy = false) => {
         character.checklists[4178338182][844419501] = true;
       }
     });
+    
     completed = false;
     //Not Even the Darkness
     Object.values(profile.characterProgressions.data).forEach(character => {

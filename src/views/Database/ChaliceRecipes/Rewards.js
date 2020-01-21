@@ -5,9 +5,9 @@ import { withTranslation } from 'react-i18next';
 import { orderBy } from 'lodash';
 import cx from 'classnames';
 
-import manifest from '../../utils/manifest';
-import ObservedImage from '../../components/ObservedImage';
-import * as enums from '../../utils/destinyEnums';
+import manifest from '../../../utils/manifest';
+import ObservedImage from '../../../components/ObservedImage';
+import * as enums from '../../../utils/destinyEnums';
 
 class Collectibles extends React.Component {
   render() {
@@ -44,7 +44,7 @@ class Collectibles extends React.Component {
         if (c.masterwork) {
           itemState = 4;
         }
-
+console.log(definitionItem)
         let definitionCollectible = manifest.DestinyCollectibleDefinition[definitionItem.collectibleHash];
 
         let state = 0;
@@ -84,7 +84,7 @@ class Collectibles extends React.Component {
                 </div>
                 <div className='text'>
                   <div className='name'>{definitionItem.displayProperties.name}</div>
-                  <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[definitionCollectible.hash] ? manifest.statistics.collections[definitionCollectible.hash] : `0.00`}%</div>
+                  <div className='commonality'>{manifest.statistics.collections && manifest.statistics.collections[definitionCollectible.hash] ? manifest.statistics.collections[definitionCollectible.hash].toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : parseFloat(0.00).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</div>
                 </div>
               </li>
               <li

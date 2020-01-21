@@ -235,10 +235,10 @@ class Activity extends React.Component {
       // console.log(activityTypeDisplay, definitionActivity, mode, definitionActivityPlaylist)
 
       if (definitionActivity.placeHash === 2961497387) {
-        console.log(lastorbiteddestination);
         activityTypeDisplay = {
           ...activityTypeDisplay,
           name: manifest.DestinyPlaceDefinition[2961497387].displayProperties.name,
+          mode: undefined,
           destination: false,
           description: t('In orbit, planning something terribly heroic.'),
           activityLightLevel: false
@@ -540,7 +540,7 @@ class Activity extends React.Component {
                 </div>
               ) : null}
               {activityTypeDisplay.activityLightLevel ? (
-                <div className='highlight'>
+                <div className='highlight recommended-light'>
                   {t('Recommended light')}: <span>{activityTypeDisplay.activityLightLevel}</span>
                 </div>
               ) : null}

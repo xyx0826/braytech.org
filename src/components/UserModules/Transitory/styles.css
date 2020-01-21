@@ -1,4 +1,4 @@
-.user-module.fireteam .list.fireteam-members .member-link {
+.user-module.fireteam > .list.fireteam-members > li > .member-link {
   max-width: unset;
 }
 

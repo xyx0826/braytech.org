@@ -81,10 +81,6 @@ const presentationNodes = [
   4285512244, // lunasLost
 ];
 
-const strikeBubbles = [
-  3395411000  // EX-077 Command (Exodus Crash)
-];
-
 async function run() {
   const manifest = await Manifest.getManifest();
 
@@ -123,20 +119,21 @@ async function run() {
 
     // check to see if location is inside lost sector. look up item's bubble hash inside self's lost sector's checklist... unless this is a lost sector item
     const withinLostSector = bubble && bubble.hash && data[3142056444].find(l => l.bubbleHash === bubble.hash) && id !== 3142056444;
-    const withinStrike = bubble && bubble.hash && strikeBubbles.find(hash => hash === bubble.hash);
 
     let located = undefined;
     if (withinLostSector) {
       located = 'lost-sector';
-    } else if (withinStrike) {
+    } else if (mapping && mapping.activityHash && manifest.DestinyActivityDefinition[mapping.activityHash].activityModeTypes.includes(18)) {
       located = 'strike';
+    } else if (mapping && mapping.activityHash) {
+      located = 'activity';
     }
     
     const changes = {
       destinationHash,
       bubbleHash,
       bubbleName: backupBubbleName,
-      activityHash: item.activityHash,
+      activityHash: mapping.activityHash || item.activityHash,
       checklistHash: item.hash,
       itemHash: item && item.itemHash,
       recordHash: mapping.recordHash,
@@ -215,12 +212,11 @@ async function run() {
         
         // check to see if location is inside lost sector. look up item's bubble hash inside self's lost sector's checklist... unless this is a lost sector item
         const withinLostSector = bubble && bubble.hash && data[3142056444].find(l => l.bubbleHash === bubble.hash) && hash !== 3142056444;
-        const withinStrike = bubble && bubble.hash && strikeBubbles.find(hash => hash === bubble.hash);
 
         let located = undefined;
         if (withinLostSector) {
           located = 'lost-sector';
-        } else if (withinStrike) {
+        } else if (mapping && mapping.activityHash && manifest.DestinyActivityDefinition[mapping.activityHash].activityModeTypes.includes(18)) {
           located = 'strike';
         } else if (mapping && mapping.activityHash) {
           located = 'activity';

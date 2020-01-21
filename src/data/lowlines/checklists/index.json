@@ -1673,7 +1673,10 @@
         "name": "The Boil",
         "number": 3
       },
-      "extended": {}
+      "extended": {
+        "located": "activity"
+      },
+      "activityHash": 851841785
     },
     {
       "destinationHash": 359854275,
@@ -5317,7 +5320,10 @@
         "name": "Pyramidion",
         "number": 33
       },
-      "extended": {}
+      "extended": {
+        "located": "strike"
+      },
+      "activityHash": 4261351281
     },
     {
       "destinationHash": 2218917881,
@@ -5338,7 +5344,10 @@
         "name": "Pyramidion",
         "number": 34
       },
-      "extended": {}
+      "extended": {
+        "located": "strike"
+      },
+      "activityHash": 4261351281
     },
     {
       "destinationHash": 2218917881,
@@ -5359,7 +5368,10 @@
         "name": "Pyramidion",
         "number": 35
       },
-      "extended": {}
+      "extended": {
+        "located": "strike"
+      },
+      "activityHash": 4261351281
     },
     {
       "destinationHash": 1199524104,
@@ -7398,7 +7410,8 @@
       },
       "extended": {
         "located": "strike"
-      }
+      },
+      "activityHash": 2971335647
     },
     {
       "destinationHash": 126924919,
@@ -7419,7 +7432,10 @@
         "name": "Prodromus Down",
         "number": 136
       },
-      "extended": {}
+      "extended": {
+        "located": "strike"
+      },
+      "activityHash": 2971335647
     },
     {
       "destinationHash": 126924919,
@@ -7440,7 +7456,10 @@
         "name": "Prodromus Down",
         "number": 137
       },
-      "extended": {}
+      "extended": {
+        "located": "strike"
+      },
+      "activityHash": 2971335647
     },
     {
       "destinationHash": 333456177,

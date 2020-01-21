@@ -17,7 +17,7 @@ class Flair extends React.Component {
   render() {
     const { type, id } = this.props;
     
-    let flair = userFlair.find(f => f.user === type + id);
+    const flair = userFlair.find(f => f.user === id);
 
     return (
       <div className='stamps'>

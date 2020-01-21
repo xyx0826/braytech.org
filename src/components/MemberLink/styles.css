@@ -263,7 +263,7 @@ html.backdropfilter #member-overlay .background .acrylic {
   max-width: 1280px;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.8fr 1fr 1fr;
+  grid-template-columns: 0.8fr 1fr minmax(200px, 270px);
   grid-gap: 3rem;
   font-size: 14px;
 }
@@ -510,6 +510,31 @@ html.backdropfilter #member-overlay .background .acrylic {
 #member-overlay .wrapper-inner .characters .char .state .time-before,
 #member-overlay .wrapper-inner .characters .char .state time {
   color: rgba(255, 255, 255, 0.6);
+}
+
+#member-overlay .wrapper-inner .fireteam .status {
+  margin: 0 0 14px;
+}
+
+#member-overlay .wrapper-inner .fireteam .status div:not(:last-child) {
+  margin: 0 0 6px;
+}
+
+#member-overlay .wrapper-inner .fireteam .status .player-count {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#member-overlay .wrapper-inner .fireteam .info {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+#member-overlay .wrapper-inner .list.fireteam-members .placeholder {
+  position: relative;
+  width: 100%;
+  max-width: 270px;
+  height: 38px;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 #member-overlay.error .background .border-top,

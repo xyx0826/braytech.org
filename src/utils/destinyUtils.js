@@ -121,7 +121,7 @@ export const calculateResets = (progressionHash, characterId, characterProgressi
 };
 
 export function progressionSeasonRank(member) {
-  if (!member?.data || !member.data.profile?.characterProgressions?.data) {
+  if (!member?.data || !member.data.profile?.characterProgressions?.data || !member.data.profile?.characters?.data) {
     console.warn('No member data provided');
     
     return false;
@@ -130,10 +130,12 @@ export function progressionSeasonRank(member) {
   const definitionSeason = manifest.DestinySeasonDefinition[manifest.settings.destiny2CoreSettings.currentSeasonHash];
   const definitionSeasonPass = manifest.DestinySeasonPassDefinition[definitionSeason.seasonPassHash];
 
-  const progressionHash = member.data.profile.characterProgressions.data[member.characterId]?.progressions[definitionSeasonPass.rewardProgressionHash]?.level === member.data.profile.characterProgressions.data[member.characterId]?.progressions[definitionSeasonPass.rewardProgressionHash]?.levelCap ? definitionSeasonPass.prestigeProgressionHash : definitionSeasonPass.rewardProgressionHash;
+  const characterId = member.characterId || member.data.profile.characters.data[0].characterId;
+
+  const progressionHash = member.data.profile.characterProgressions.data[characterId]?.progressions[definitionSeasonPass.rewardProgressionHash]?.level === member.data.profile.characterProgressions.data[characterId]?.progressions[definitionSeasonPass.rewardProgressionHash]?.levelCap ? definitionSeasonPass.prestigeProgressionHash : definitionSeasonPass.rewardProgressionHash;
 
   const progression = {
-    ...member.data.profile.characterProgressions.data[member.characterId].progressions[progressionHash]
+    ...member.data.profile.characterProgressions.data[characterId].progressions[progressionHash]
   };
 
   if (progressionHash === definitionSeasonPass.prestigeProgressionHash) {
@@ -945,8 +947,12 @@ export function lastPlayerActivity(member) {
 
         lastActivityString = `${definitionActivityPlaylist.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
 
-      } else if (definitionActivityMode && definitionActivity?.placeHash !== 2961497387) { // Default
+      } else if (definitionActivity?.activityTypeHash === 332181804) { // Nightmare Hunts
+        
+        lastActivityString = definitionActivity.displayProperties.name;
 
+      } else if (definitionActivityMode && definitionActivity?.placeHash !== 2961497387) { // Default
+        
         lastActivityString = `${definitionActivityMode.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
 
       } else if (definitionActivity.placeHash === 2961497387) { // Orbit
@@ -971,7 +977,8 @@ export function lastPlayerActivity(member) {
       lastPlayed: lastActivity ? lastActivity.dateActivityStarted : member.profile.profile.data.dateLastPlayed,
       lastActivity,
       lastActivityString,
-      lastMode
+      lastMode,
+      matchmakingProperties: definitionActivityPlaylist?.matchmaking || definitionActivity?.matchmaking
     };
 
   })

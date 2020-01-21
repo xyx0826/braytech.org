@@ -21,7 +21,7 @@ class FAQ extends React.Component {
         k: 'braytech',
         q: t('Describing the anatomy of collectibles and records'),
         a: [
-          <Markdown className='markdown' source={t("Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, VOLUSPA collects data from 1.2 million Destiny players and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nThat said, it's a fair sample size and ever so slightly weighted towards more commited players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).")} />,
+          <Markdown className='markdown' source={t("Commonly asked, \"What is the funny percentage to the right of collectibles and records?\"\n\nIt's a percentage of players who've either discovered or redeemed the item. Every few days, _VOLUSPA_ collects data from users of _Braytech_ and takes note of who's got what.\n\nIt's been a hot topic as to whether it's accurate or useful and the truth is that all statistics are useless and dumb _unless_ you've included every single piece of data possible.\n\nIt's fair to assume that these stats are bias towards casual players (percentages may appear higher rather than lower due to the skill and attention of the users that are monitored).")} />,
           <Diagram1 />
         ]
       },
@@ -29,7 +29,7 @@ class FAQ extends React.Component {
         k: 'braytech-beta',
         q: t("Braytech Beta won't update to the newest version"),
         a: [
-          <Markdown className='markdown' source={t('From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.')} />
+          <Markdown className='markdown' source={t("From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._")} />
         ]
       },
       {

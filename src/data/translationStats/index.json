@@ -1,85 +1,85 @@
 {
   "de": {
-    "translated": 423,
-    "notTranslated": 177,
+    "translated": 419,
+    "notTranslated": 186,
     "added": [],
     "removed": []
   },
   "debug": {
-    "translated": 600,
+    "translated": 605,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "en": {
-    "translated": 600,
+    "translated": 605,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "es-mx": {
-    "translated": 0,
-    "notTranslated": 600,
+    "translated": 594,
+    "notTranslated": 11,
     "added": [],
     "removed": []
   },
   "es": {
-    "translated": 584,
-    "notTranslated": 16,
+    "translated": 594,
+    "notTranslated": 11,
     "added": [],
     "removed": []
   },
   "fr": {
-    "translated": 525,
-    "notTranslated": 75,
+    "translated": 534,
+    "notTranslated": 71,
     "added": [],
     "removed": []
   },
   "it": {
-    "translated": 584,
-    "notTranslated": 16,
+    "translated": 578,
+    "notTranslated": 27,
     "added": [],
     "removed": []
   },
   "ja": {
-    "translated": 528,
-    "notTranslated": 72,
+    "translated": 522,
+    "notTranslated": 83,
     "added": [],
     "removed": []
   },
   "ko": {
-    "translated": 280,
-    "notTranslated": 320,
+    "translated": 278,
+    "notTranslated": 327,
     "added": [],
     "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 600,
+    "notTranslated": 605,
     "added": [],
     "removed": []
   },
   "pt-br": {
-    "translated": 542,
-    "notTranslated": 58,
+    "translated": 536,
+    "notTranslated": 69,
     "added": [],
     "removed": []
   },
   "ru": {
-    "translated": 496,
-    "notTranslated": 104,
+    "translated": 490,
+    "notTranslated": 115,
     "added": [],
     "removed": []
   },
   "zh-chs": {
-    "translated": 457,
-    "notTranslated": 143,
+    "translated": 452,
+    "notTranslated": 153,
     "added": [],
     "removed": []
   },
   "zh-cht": {
-    "translated": 431,
-    "notTranslated": 169,
+    "translated": 426,
+    "notTranslated": 179,
     "added": [],
     "removed": []
   }
