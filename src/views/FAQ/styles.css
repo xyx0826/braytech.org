@@ -5,16 +5,16 @@
   width: 100%;
 }
 
-#faq > .module.head {
+#faq .module.head {
   padding: calc(4rem + 40px) 3rem 3rem;
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-#faq > .module.head .page-header {
+#faq .module.head .page-header {
   margin-bottom: 0rem;
 }
 
-#faq > .padder {
+#faq .buff {
   width: 100%;
   padding: 3rem;
   display: grid;
@@ -23,8 +23,12 @@
 }
 
 #faq .module.overview ul li {
-  line-height: 1.2;
+  line-height: 1.4;
   font-size: 14px;
+}
+
+#faq .module.overview ul li:not(:last-child) {
+  margin: 0 0 10px;
 }
 
 #faq .module h4 {
@@ -89,17 +93,17 @@
 }
 
 @media screen and (max-width: 1024px) {
-  #faq > .padder {
+  #faq .buff {
     grid-template-columns: 1fr;
   }
 }
 
 @media screen and (max-width: 600px) {
-  #faq > .module.head {
+  #faq .module.head {
     padding: calc(3rem + 40px) 2rem 2rem;
   }
 
-  #faq > .padder {
+  #faq .buff {
     grid-gap: 2rem;
     padding: 2rem;
   }

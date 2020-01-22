@@ -1,112 +1,179 @@
 {
   "de": {
-    "translated": 419,
-    "notTranslated": 190,
+    "translated": 418,
+    "notTranslated": 194,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "debug": {
-    "translated": 609,
+    "translated": 612,
     "notTranslated": 0,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "en": {
-    "translated": 609,
+    "translated": 612,
     "notTranslated": 0,
     "added": [],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "es-mx": {
-    "translated": 594,
-    "notTranslated": 15,
+    "translated": 593,
+    "notTranslated": 19,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "es": {
-    "translated": 594,
-    "notTranslated": 15,
+    "translated": 593,
+    "notTranslated": 19,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "fr": {
     "translated": 545,
-    "notTranslated": 64,
+    "notTranslated": 67,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "it": {
-    "translated": 578,
-    "notTranslated": 31,
+    "translated": 577,
+    "notTranslated": 35,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "ja": {
-    "translated": 554,
-    "notTranslated": 55,
+    "translated": 553,
+    "notTranslated": 59,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "ko": {
     "translated": 278,
-    "notTranslated": 331,
+    "notTranslated": 334,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 609,
+    "notTranslated": 612,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "pt-br": {
-    "translated": 536,
-    "notTranslated": 73,
+    "translated": 535,
+    "notTranslated": 77,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "ru": {
-    "translated": 530,
-    "notTranslated": 79,
+    "translated": 529,
+    "notTranslated": 83,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "zh-chs": {
-    "translated": 452,
-    "notTranslated": 157,
+    "translated": 451,
+    "notTranslated": 161,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   },
   "zh-cht": {
-    "translated": 426,
-    "notTranslated": 183,
+    "translated": 425,
+    "notTranslated": 187,
     "added": [
-      "Views and tools useful for interacting with Destiny data including the API manifest"
+      "For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.",
+      "Modifiers aren't available right now.",
+      "Something seems wrong with my Valor rank resets",
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the HistoricalStats API endpoint while others source their data from PGCRs. It's hard to determine which holds the most accurate truth.\n\nTo display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers and significant compute power. This said, they're accurate enough for some friendly competititon."
     ],
-    "removed": []
+    "removed": [
+      "There are multiple sources for stats in Destiny. Clan Historical Stats is based on the less intensive HistoricalStats API endpoint.\n\nThe most accurate source for statistics is PGCRs. To display stats in the manner seen on Clan Historical Stats would require downloading terabytes of data from Bungie servers. This said, it's accurate enough for some friendly competititon."
+    ]
   }
 }
