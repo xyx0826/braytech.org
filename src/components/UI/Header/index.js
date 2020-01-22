@@ -206,14 +206,14 @@ class Header extends React.Component {
         profile: false,
         group: 1
       },
-      // {
-      //   name: t('Database'),
-      //   desc: t('Views and tools useful for interacting with Destiny data including the API manifest'),
-      //   slug: '/database',
-      //   exact: false,
-      //   profile: false,
-      //   group: 1
-      // },
+      {
+        name: t('Database'),
+        desc: t('Views and tools useful for interacting with Destiny data including the API manifest'),
+        slug: '/database',
+        exact: false,
+        profile: false,
+        group: 1
+      },
       {
         group: 1,
         type: 'separator'

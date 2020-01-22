@@ -1,137 +1,111 @@
 {
   "de": {
     "translated": 419,
-    "notTranslated": 189,
+    "notTranslated": 190,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   },
   "debug": {
-    "translated": 608,
+    "translated": 609,
     "notTranslated": 0,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   },
   "en": {
-    "translated": 608,
+    "translated": 609,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "es-mx": {
     "translated": 594,
-    "notTranslated": 14,
+    "notTranslated": 15,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   },
   "es": {
     "translated": 594,
-    "notTranslated": 14,
+    "notTranslated": 15,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   },
   "fr": {
     "translated": 545,
-    "notTranslated": 63,
+    "notTranslated": 64,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   },
   "it": {
     "translated": 578,
-    "notTranslated": 30,
+    "notTranslated": 31,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   },
   "ja": {
     "translated": 554,
-    "notTranslated": 54,
+    "notTranslated": 55,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   },
   "ko": {
     "translated": 278,
-    "notTranslated": 330,
+    "notTranslated": 331,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 608,
+    "notTranslated": 609,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   },
   "pt-br": {
     "translated": 536,
-    "notTranslated": 72,
+    "notTranslated": 73,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   },
   "ru": {
     "translated": 530,
-    "notTranslated": 78,
+    "notTranslated": 79,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   },
   "zh-chs": {
     "translated": 452,
-    "notTranslated": 156,
+    "notTranslated": 157,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   },
   "zh-cht": {
     "translated": 426,
-    "notTranslated": 182,
+    "notTranslated": 183,
     "added": [
-      "Selected runes",
-      "Socket runes or select item to auto-fill",
-      "Weapons"
+      "Views and tools useful for interacting with Destiny data including the API manifest"
     ],
     "removed": []
   }
