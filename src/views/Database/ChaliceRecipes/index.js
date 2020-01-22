@@ -208,56 +208,10 @@ class ChaliceRecipes extends React.Component {
     window.scrollTo(0, 0);
 
     this.checkForCombo();
-
-    // ChaliceCombos.forEach((c, i) => {
-    //   if (!c.items.length) {
-    //     return null;
-    //   }
-
-    //   c.items.forEach(hash => {
-    //     let definitionItem = manifest.DestinyInventoryItemDefinition[hash];
-
-    //     if (!definitionItem) {
-    //       return;
-    //     }
-
-    //     let itemInstanceId = `${hash}_${c.masterwork || ''}${c.intrinsic || ''}`;
-    //     let existing = this.props.tooltips.itemComponents[itemInstanceId];
-
-    //     if (existing) {
-    //       // console.log(`found an instance for ${itemInstanceId}`);
-    //     } else {
-    //       // console.log(`couldn't find an instance for ${itemInstanceId}`);
-
-    //       let plugs = [];
-
-    //       plugs.push({
-    //         plugCategoryIdentifier: !c.masterwork ? 'v400.plugs.weapons.masterworks.stat.handling' : c.masterwork,
-    //         disable: !c.masterwork ? true : false,
-    //         uiPlugLabel: 'masterwork'
-    //       });
-
-    //       if (c.intrinsic) {
-    //         plugs.push({
-    //           plugCategoryIdentifier: 'intrinsics',
-    //           hash: c.intrinsic
-    //         });
-    //       }
-
-    //       this.props.pushInstance({
-    //         [itemInstanceId]: {
-    //           custom: true,
-    //           state: c.masterwork ? 4 : 0,
-    //           plugs
-    //         }
-    //       });
-    //     }
-    //   });
-    // });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.slots.slot1 !== this.state.slots.slot1 || prevState.slots.slot2 !== this.state.slots.slot2 || prevState.slots.slot3 !== this.state.slots.slot3 || prevState.slotsPanelOpen !== this.state.slotsPanelOpen) {
+  componentDidUpdate(p, s) {
+    if (s.slots.slot1 !== this.state.slots.slot1 || s.slots.slot2 !== this.state.slots.slot2 || s.slots.slot3 !== this.state.slots.slot3 || s.slotsPanelOpen !== this.state.slotsPanelOpen) {
       this.checkForCombo();
     }
   }
