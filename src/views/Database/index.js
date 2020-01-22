@@ -33,9 +33,21 @@ export function NavLinks(props) {
 
 class Database extends React.Component {
   render() {
-    return <div className='view' id='database'>
+    const { t } = this.props;
 
-    </div>;
+    return (
+      <div className='view' id='database'>
+        <div className='module head'>
+          <div className='page-header'>
+            <div className='name'>{t('Database')}</div>
+          </div>
+        </div>
+        <div className='buff'>
+          <NavLinks />
+          <div className='module'></div>
+        </div>
+      </div>
+    );
   }
 }
 

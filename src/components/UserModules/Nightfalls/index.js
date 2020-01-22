@@ -26,11 +26,10 @@ class Nightfalls extends React.Component {
 
       return false;
     });
-    
-    const weeklyNightfallStrikesOrdealHash = Object.keys(enums.nightfalls)
-      .find(k => enums.nightfalls[k].ordealHashes.find(o => weeklyNightfallStrikeActivities.find(w => w.activityHash === o)));
-    const weeklyNightfallStrikesOrdealVersions = orderBy((weeklyNightfallStrikeActivities.filter(a => enums.nightfalls[weeklyNightfallStrikesOrdealHash].ordealHashes.includes(a.activityHash)) || []), [a => a.recommendedLight], ['asc']);
-    
+
+    const weeklyNightfallStrikesOrdealHash = Object.keys(enums.nightfalls).find(k => enums.nightfalls[k].ordealHashes.find(o => weeklyNightfallStrikeActivities.find(w => w.activityHash === o)));
+    const weeklyNightfallStrikesOrdealVersions = orderBy(weeklyNightfallStrikeActivities.filter(a => enums.nightfalls[weeklyNightfallStrikesOrdealHash].ordealHashes.includes(a.activityHash)) || [], [a => a.recommendedLight], ['asc']);
+
     const weeklyNightfallStrikesScored = weeklyNightfallStrikeActivities.filter(w => !Object.keys(enums.nightfalls).find(k => enums.nightfalls[k].ordealHashes.find(o => o === w.activityHash)));
 
     const stringNightfall = manifest.DestinyPresentationNodeDefinition[4213993861]?.displayProperties?.name;
@@ -39,7 +38,7 @@ class Nightfalls extends React.Component {
     return [{ activityHash: weeklyNightfallStrikesOrdealHash, ordeal: true }].concat(weeklyNightfallStrikesScored).map((activity, a) => {
       const nightfall = manifest.DestinyActivityDefinition[activity.activityHash];
 
-      const modifierHashes = (weeklyNightfallStrikeActivities.find(a => a.activityHash === activity.activityHash) && weeklyNightfallStrikeActivities.find(a => a.activityHash === activity.activityHash).modifierHashes) || [];
+      const modifierHashes = (activity.ordeal ? weeklyNightfallStrikesOrdealVersions.find(a => a.recommendedLight === 980)?.modifierHashes : weeklyNightfallStrikeActivities.find(a => a.activityHash === activity.activityHash)?.modifierHashes) || [];
 
       return (
         <div key={nightfall.hash} className='column'>
@@ -49,19 +48,23 @@ class Nightfalls extends React.Component {
             </div>
             <h3>{nightfall.selectionScreenDisplayProperties.name}</h3>
             <h4>{t('Active modifiers')}</h4>
-            <ul className='list modifiers condensed'>
-              {(activity.ordeal ? weeklyNightfallStrikesOrdealVersions.find(a => a.recommendedLight === 980)?.modifierHashes : modifierHashes).map((hash, h) => {
-                const definitionModifier = manifest.DestinyActivityModifierDefinition[hash];
+            {modifierHashes.length ? (
+              <ul className='list modifiers condensed'>
+                {modifierHashes.map((hash, h) => {
+                  const definitionModifier = manifest.DestinyActivityModifierDefinition[hash];
 
-                return (
-                  <li key={h} className='tooltip' data-hash={hash} data-type='modifier'>
-                    <div className='icon'>
-                      <ObservedImage className='image' src={`https://www.bungie.net${definitionModifier.displayProperties.icon}`} />
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+                  return (
+                    <li key={h} className='tooltip' data-hash={hash} data-type='modifier'>
+                      <div className='icon'>
+                        <ObservedImage className='image' src={`https://www.bungie.net${definitionModifier.displayProperties.icon}`} />
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <div className='info'>{t("Modifiers aren't available right now.")}</div>
+            )}
             <h4>{t('Collectibles')}</h4>
             {enums.nightfalls[nightfall.hash]?.collectibles.length ? (
               <>

@@ -485,7 +485,7 @@ class Activity extends React.Component {
                 </div>
               </div>
             </div>
-            {eligibilityRequirements && !eligibilityRequirements.eligible ? <div className='important'>{eligibilityRequirements.unlock.text}</div> : null}
+            {eligibilityRequirements && !eligibilityRequirements.eligible ? <div className='highlight major'>{eligibilityRequirements.unlock.text}</div> : null}
             <div className='black'>
               {activityTypeDisplay.pgcrImage && activityTypeDisplay.pgcrImage !== '/img/theme/destiny/bgs/pgcrs/placeholder.jpg' ? (
                 <div className='screenshot'>

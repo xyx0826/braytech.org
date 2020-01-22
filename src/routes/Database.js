@@ -1,15 +1,15 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import Header from './components/UI/Header';
-import PostmasterCapacity from './components/Notifications/PostmasterCapacity';
+import Header from '../components/UI/Header';
+import PostmasterCapacity from '../components/Notifications/PostmasterCapacity';
 
-import Database from './views/Database';
-import Eververse from './views/Database/Eververse';
-import Manifest from './views/Database/Manifest';
-import LastWish from './views/Database/LastWish';
-import ChaliceRecipes from './views/Database/ChaliceRecipes';
-import ChaliceRecipesDebug from './views/Database/ChaliceRecipes/Debug';
+import Database from '../views/Database';
+import Eververse from '../views/Database/Eververse';
+import Manifest from '../views/Database/Manifest';
+import LastWish from '../views/Database/LastWish';
+import ChaliceRecipes from '../views/Database/ChaliceRecipes';
+import ChaliceRecipesDebug from '../views/Database/ChaliceRecipes/Debug';
 
 class DatabaseRoutes extends React.Component {
   render() {

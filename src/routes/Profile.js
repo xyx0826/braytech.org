@@ -2,22 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import store from './store';
+import store from '../store';
 
-import Clan from './views/Clan';
-import Character from './views/Character';
-import PGCRs from './views/PGCRs';
-import Collections from './views/Collections';
-import Triumphs from './views/Triumphs';
-import Checklists from './views/Checklists';
-import ThisWeek from './views/ThisWeek';
-import Now from './views/Now';
-import Quests from './views/Quests';
-import BountyTracker from './views/BountyTracker';
+import Clan from '../views/Clan';
+import Character from '../views/Character';
+import PGCRs from '../views/PGCRs';
+import Collections from '../views/Collections';
+import Triumphs from '../views/Triumphs';
+import Checklists from '../views/Checklists';
+import ThisWeek from '../views/ThisWeek';
+import Now from '../views/Now';
+import Quests from '../views/Quests';
+import BountyTracker from '../views/BountyTracker';
 
-import Header from './components/UI/Header';
-import Spinner from './components/UI/Spinner';
-import PostmasterCapacity from './components/Notifications/PostmasterCapacity';
+import Header from '../components/UI/Header';
+import Spinner from '../components/UI/Spinner';
+import PostmasterCapacity from '../components/Notifications/PostmasterCapacity';
 
 class ProfileRoutes extends React.Component {
   componentDidMount() {

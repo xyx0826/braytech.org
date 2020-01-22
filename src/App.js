@@ -38,8 +38,8 @@ import NotificationProgress from './components/Notifications/NotificationProgres
 import ServiceWorkerUpdate from './components/Notifications/ServiceWorkerUpdate';
 import RefreshService from './components/RefreshService';
 
-import ProfileRoutes from './ProfileRoutes';
-import DatabaseRoutes from './DatabaseRoutes';
+import ProfileRoutes from './routes/Profile';
+import DatabaseRoutes from './routes/Database';
 
 import Loading from './views/Loading';
 import Index from './views/Index';
