@@ -1,59 +1,9 @@
-#database.chalice-of-opulence {
-  display: grid;
-  padding: 0;
-  margin: -40px auto 0;
-  width: 100%;
-  overflow: hidden;
-}
-
-#database.chalice-of-opulence .module.head {
-  padding: calc(4rem + 40px) 3rem 3rem;
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-#database.chalice-of-opulence > .padder {
-  width: 100%;
-  padding: 3rem;
-  display: grid;
-  grid-template-columns: minmax(auto, 680px) minmax(200px, auto);
-  grid-gap: 3rem;
+#database.chalice-of-opulence .buff {
+  grid-template-columns: 60px minmax(auto, 680px) minmax(200px, auto);
 }
 
 #database.chalice-of-opulence .module .sub-header ~ .sub-header {
   margin: 3rem 0 1rem;
-}
-
-#database.chalice-of-opulence .module.head .text {
-  max-width: 680px;
-}
-
-#database.chalice-of-opulence .module.head .text p:first-child {
-  font-size: 16px;
-}
-
-#database.chalice-of-opulence .module.head .text ul {
-  list-style-type: disc;
-  padding: 0 0 0 2rem;
-  margin: 0 0 1rem;
-}
-
-#database.chalice-of-opulence .module.head .text ul:last-child {
-  margin: 0;
-}
-
-#database.chalice-of-opulence .module.head .text ul li {
-  font-size: 14px;
-  line-height: 1.6;
-  margin: 0 0 6px;
-}
-
-#database.chalice-of-opulence .module.head .text .image {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  margin: 0 4px 0 0;
-  vertical-align: -7px;
 }
 
 #database.chalice-of-opulence .frame {
@@ -292,12 +242,12 @@ html.backdropfilter #database.chalice-of-opulence .overlay .list.chalice-items l
 
 
 @media screen and (max-width: 1024px) {
-  #database.chalice-of-opulence > .padder {
-    grid-template-columns: 1fr;
+  #database.chalice-of-opulence .buff {
+    grid-template-columns: 60px 1fr;
   }
 
-  #database.chalice-of-opulence .module.head {
-    padding: calc(3rem + 40px) 2rem 2rem;
+  #database.chalice-of-opulence .module.views {
+    grid-row: 1/3;
   }
 
   #database.chalice-of-opulence .overlay {
@@ -325,9 +275,8 @@ html.backdropfilter #database.chalice-of-opulence .overlay .list.chalice-items l
 }
 
 @media screen and (max-width: 600px) {
-  #database.chalice-of-opulence > .padder {
-    padding: 2rem;
-    grid-gap: 2rem;
+  #database.chalice-of-opulence .buff {
+    grid-template-columns: 40px 1fr;
   }
 
   #database.chalice-of-opulence .overlay {
@@ -364,16 +313,57 @@ html.backdropfilter #database.chalice-of-opulence .overlay .list.chalice-items l
 
 
 
+#database.chalice-of-opulence .module.items {
+  display: grid;
+  row-gap: 2rem;
+  column-gap: 3rem;
+  grid-template-columns: auto max-content;
+}
 
+#database.chalice-of-opulence .module.items .results .info {
+  
+}
 
-
+#database.chalice-of-opulence .shortcuts {
+  display: grid;
+  row-gap: 2rem;
+  column-gap: 3rem;
+  grid-template-columns: minmax(auto, calc(4 * 64px + 3 * 3px)) minmax(auto, calc(5 * 64px + 4 * 3px));
+}
 
 #database.chalice-of-opulence .inventory-items {
   grid-template-columns: repeat(auto-fill, 64px);
 }
 
+#database.chalice-of-opulence .weapons .inventory-items {
+  grid-template-columns: repeat(4, 64px);
+}
 
 
+@media screen and (max-width: 1800px) {
+  #database.chalice-of-opulence .module.items {
+    grid-template-columns: calc(4 * 64px + 3 * 3px) auto;
+  }
+
+  #database.chalice-of-opulence .shortcuts {
+    grid-template-columns: 1fr;
+  }
+
+  #database.chalice-of-opulence .inventory-items,
+  #database.chalice-of-opulence .weapons .inventory-items {
+    grid-template-columns: repeat(auto-fill, 64px);
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  #database.chalice-of-opulence .module.items {
+    grid-template-columns: auto;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+
+}
 
 
 

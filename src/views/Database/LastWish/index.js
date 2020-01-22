@@ -13,6 +13,8 @@ import * as enums from '../../../utils/destinyEnums';
 import { DestinyKey } from '../../../components/UI/Button';
 import Items from '../../../components/Items';
 
+import { NavLinks } from '../';
+
 import './styles.css';
 
 class LastWish extends React.Component {
@@ -33,7 +35,7 @@ class LastWish extends React.Component {
     const { t } = this.props;
 
     return (
-      <>
+      <div className='view last-wish' id='database'>
         <div className='module head'>
           <div className='page-header'>
             <div className='sub-name'>{t('Database')}</div>
@@ -41,7 +43,7 @@ class LastWish extends React.Component {
           </div>
         </div>
         <div className='buff'>
-          {this.props.nav}
+          <NavLinks />
           <div className='module'>
             <div className='text'>
               <p></p>
@@ -51,7 +53,7 @@ class LastWish extends React.Component {
           
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

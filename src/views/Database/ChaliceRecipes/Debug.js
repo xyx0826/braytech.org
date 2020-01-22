@@ -6,13 +6,12 @@ import { withTranslation } from 'react-i18next';
 import manifest from '../../../utils/manifest';
 import Items from '../../../components/Items';
 
-import combos from '../../../data/chaliceData';
+import { NavLinks } from '../';
+import ChaliceCombos from '../../../data/chaliceData';
 
 import './styles.css';
 
 class ChaliceRecipesDebug extends React.Component {
-  chalice = manifest.DestinyInventoryItemDefinition[1115550924];
-
   componentDidMount() {
     this.mounted = true;
 
@@ -25,98 +24,100 @@ class ChaliceRecipesDebug extends React.Component {
   }
 
   render() {
-    const sets = [
-      {
-        name: 'Reverie Dawn',
-        nodes: [
-          3952745160, // titan
-          3476818388, // hunter
-          4139791841, // warlock
-        ]
-      },
-      {
-        name: 'Opulent',
-        nodes: [
-          3760158863, // titan
-      327169819, // hunter
-      2551808106, // warlock
-        ]
-      },
-      {
-        name: 'Exodus Down',
-        nodes: [
-          3952745158, // titan
-      3476818394, // hunter
-      4139791855, // warlock
-        ]
-      },
-      {
-        name: 'Tangled Web',
-        nodes: [
-          3110922166, // titan
-      3986530602, // hunter
-      2983784769 // warlock
-        ]
-      }
-    ]
-
-    const armors = sets.map(set => {
-      set.nodes = set.nodes.map(node => {
-        const def = manifest.DestinyPresentationNodeDefinition[node];
-
-        return {
-          nodeHash: node,
-          classType: manifest.DestinyInventoryItemDefinition[manifest.DestinyCollectibleDefinition[def.children.collectibles[0].collectibleHash].itemHash].classType,
-          collectibles: def.children.collectibles.map(c => c.collectibleHash)
-        }
-      });
-      return set;
-    })
-
-    console.log(armors)
-
-    const obj = {}
+    const { t } = this.props;
     
-    armors.forEach(set => {
-      // manifest.DestinyCollectibleDefinition[c.collectibleHash].itemHash
+    // const sets = [
+    //   {
+    //     name: 'Reverie Dawn',
+    //     nodes: [
+    //       3952745160, // titan
+    //       3476818388, // hunter
+    //       4139791841, // warlock
+    //     ]
+    //   },
+    //   {
+    //     name: 'Opulent',
+    //     nodes: [
+    //       3760158863, // titan
+    //   327169819, // hunter
+    //   2551808106, // warlock
+    //     ]
+    //   },
+    //   {
+    //     name: 'Exodus Down',
+    //     nodes: [
+    //       3952745158, // titan
+    //   3476818394, // hunter
+    //   4139791855, // warlock
+    //     ]
+    //   },
+    //   {
+    //     name: 'Tangled Web',
+    //     nodes: [
+    //       3110922166, // titan
+    //   3986530602, // hunter
+    //   2983784769 // warlock
+    //     ]
+    //   }
+    // ]
 
-      set.nodes.forEach(node => {
+    // const armors = sets.map(set => {
+    //   set.nodes = set.nodes.map(node => {
+    //     const def = manifest.DestinyPresentationNodeDefinition[node];
 
-        node.collectibles.forEach(hash => {
+    //     return {
+    //       nodeHash: node,
+    //       classType: manifest.DestinyInventoryItemDefinition[manifest.DestinyCollectibleDefinition[def.children.collectibles[0].collectibleHash].itemHash].classType,
+    //       collectibles: def.children.collectibles.map(c => c.collectibleHash)
+    //     }
+    //   });
+    //   return set;
+    // })
 
-          const defItem = manifest.DestinyInventoryItemDefinition[manifest.DestinyCollectibleDefinition[hash].itemHash];
+    // console.log(armors)
+
+    // const obj = {}
+    
+    // armors.forEach(set => {
+    //   // manifest.DestinyCollectibleDefinition[c.collectibleHash].itemHash
+
+    //   set.nodes.forEach(node => {
+
+    //     node.collectibles.forEach(hash => {
+
+    //       const defItem = manifest.DestinyInventoryItemDefinition[manifest.DestinyCollectibleDefinition[hash].itemHash];
   
-          const armor2matches = Object.values(manifest.DestinyInventoryItemDefinition).filter(d => d.displayProperties?.name === defItem.displayProperties?.name && d.sockets?.socketCategories?.find(c => c.socketCategoryHash === 760375309));
+    //       const armor2matches = Object.values(manifest.DestinyInventoryItemDefinition).filter(d => d.displayProperties?.name === defItem.displayProperties?.name && d.sockets?.socketCategories?.find(c => c.socketCategoryHash === 760375309));
   
-          const item = armor2matches[0];
+    //       const item = armor2matches[0];
 
-          obj[set.name] = obj[set.name] || {};
+    //       obj[set.name] = obj[set.name] || {};
 
-          let type = item.itemSubType === 30 ? 'Class Item' : item.itemTypeDisplayName;
+    //       let type = item.itemSubType === 30 ? 'Class Item' : item.itemTypeDisplayName;
   
-          obj[set.name][type] = [...obj[set.name][type] || [], item.hash];
+    //       obj[set.name][type] = [...obj[set.name][type] || [], item.hash];
   
-        })
+    //     })
 
-      })
+    //   })
 
-    })
+    // })
 
     
-    console.log(obj)
+    // console.log(obj)
 
     return (
-      <>
-        <div className='module head'>
-          <div className='page-header'>
-          <div className='sub-name'>{this.chalice.itemTypeDisplayName}</div>
-              <div className='name'>{this.chalice.displayProperties.name}</div>
+        <div className='view chalice-of-opulence debug' id='database'>
+          <div className='module head'>
+            <div className='page-header'>
+              <div className='sub-name'>{t('Database')}</div>
+              <div className='name'>{manifest.DestinyInventoryItemDefinition[1115550924].displayProperties.name}</div>
+            </div>
           </div>
-        </div>
-        <div className='buff'>
+          <div className='buff'>
           {this.props.nav}
           <div className='debug module'>
-            {combos.map((c, i) => (
+            {ChaliceCombos.map((c, i) => (
               <div key={i} className='combo'>
                 <div>
                   <ul className='list inventory-items'>
@@ -132,7 +133,7 @@ class ChaliceRecipesDebug extends React.Component {
             ))}
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

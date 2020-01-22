@@ -2,19 +2,78 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
-import { flattenDepth, groupBy, orderBy } from 'lodash';
+import { flattenDepth, groupBy } from 'lodash';
 import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
+import * as enums from '../../../utils/destinyEnums';
 import ObservedImage from '../../../components/ObservedImage';
 import { Button, DestinyKey } from '../../../components/UI/Button';
 import Items from '../../../components/Items';
 
-// import Rewards from './Rewards';
-
-import combos from '../../../data/chaliceData';
+import { NavLinks } from '../';
+import ChaliceCombos from '../../../data/chaliceData';
 
 import './styles.css';
+
+function breakUpRuneAbbreviations(combo) {
+  let runes = combo.slice();
+
+  runes.forEach((e, i) => {
+    if (e === 'braytech_purple_rune') {
+      runes[i] = [e, ...enums.chaliceRunes.purple.slice()];
+    } else if (e === 'braytech_red_rune') {
+      runes[i] = [e, ...enums.chaliceRunes.red.slice()];
+    } else if (e === 'braytech_green_rune') {
+      runes[i] = [e, ...enums.chaliceRunes.green.slice()];
+    } else if (e === 'braytech_blue_rune') {
+      runes[i] = [e, ...enums.chaliceRunes.blue.slice()];
+    }
+  });
+
+  return flattenDepth(runes, 1);
+}
+
+function initialClassType(member) {
+  if (member.data?.profile?.characters?.data?.length) {
+    const character = member.data.profile.characters.data.find(c => c.characterId === member.characterId);
+
+    return character.classType || 0;
+  }
+
+  return 0;
+}
+
+const RefinedChaliceCombos = ChaliceCombos.filter(c => {
+  if (c.combo[0].length === 1 && c.combo[1].length === 1 && ['braytech_purple_rune', 'braytech_red_rune', 'braytech_green_rune', 'braytech_blue_rune'].includes(c.combo[1][0]) && c.combo[2].length === 0) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+const armorSetNameMap = {
+  'Tangled Web': {
+    0: 3110922166,
+    1: 3986530602,
+    2: 2983784769
+  },
+  'Exodus Down': {
+    0: 3952745158,
+    1: 3476818394,
+    2: 4139791855
+  },
+  Opulent: {
+    0: 3760158863,
+    1: 327169819,
+    2: 2551808106
+  },
+  'Reverie Dawn': {
+    0: 3952745160,
+    1: 3476818388,
+    2: 4139791841
+  }
+};
 
 class ChaliceRecipes extends React.Component {
   constructor(props) {
@@ -28,78 +87,10 @@ class ChaliceRecipes extends React.Component {
       },
       slotsPanelOpen: false,
       matches: [],
-      armorClassType: -1
+      armorClassType: initialClassType(this.props.member)
     };
 
-    this.scrollToChalice = React.createRef();
-
-    this.chalice = manifest.DestinyInventoryItemDefinition[1115550924];
-    const chaliceSocketEntriesIndexes = this.chalice.sockets.socketCategories.find(c => c.socketCategoryHash === 3483578942).socketIndexes;
-    this.chalice.slots = Object.entries(this.chalice.sockets.socketEntries)
-      .map(([key, value]) => {
-        if (chaliceSocketEntriesIndexes.includes(parseInt(key, 10))) {
-          return value;
-        } else {
-          return false;
-        }
-      })
-      .filter(f => f);
-
-    this.runes = {
-      slot1: ['braytech_remove_rune', ...manifest.DestinyPlugSetDefinition[this.chalice.slots[0].reusablePlugSetHash].reusablePlugItems.map(p => p.plugItemHash)],
-      slot2: ['braytech_remove_rune', ...manifest.DestinyPlugSetDefinition[this.chalice.slots[1].reusablePlugSetHash].reusablePlugItems.map(p => p.plugItemHash)],
-      slot3: ['braytech_remove_rune', ...manifest.DestinyPlugSetDefinition[this.chalice.slots[2].reusablePlugSetHash].reusablePlugItems.map(p => p.plugItemHash)]
-    };
-
-    this.runes.purple = [...this.runes.slot1, ...this.runes.slot2, ...this.runes.slot3].filter(r => {
-      let definitionPlug = manifest.DestinyInventoryItemDefinition[r];
-      let identities = ['penumbra.runes.legendary.rune0', 'penumbra.runes.legendary.rune1', 'penumbra.runes.legendary.rune2'];
-
-      if (definitionPlug && identities.includes(definitionPlug.plug.plugCategoryIdentifier)) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    this.runes.red = [...this.runes.slot1, ...this.runes.slot2, ...this.runes.slot3].filter(r => {
-      let definitionPlug = manifest.DestinyInventoryItemDefinition[r];
-      let identities = ['penumbra.runes.legendary.rune3', 'penumbra.runes.legendary.rune4', 'penumbra.runes.legendary.rune5'];
-
-      if (definitionPlug && identities.includes(definitionPlug.plug.plugCategoryIdentifier)) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    this.runes.green = [...this.runes.slot1, ...this.runes.slot2, ...this.runes.slot3].filter(r => {
-      let definitionPlug = manifest.DestinyInventoryItemDefinition[r];
-      let identities = ['penumbra.runes.legendary.rune6', 'penumbra.runes.legendary.rune7', 'penumbra.runes.legendary.rune8'];
-
-      if (definitionPlug && identities.includes(definitionPlug.plug.plugCategoryIdentifier)) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    this.runes.blue = [...this.runes.slot1, ...this.runes.slot2, ...this.runes.slot3].filter(r => {
-      let definitionPlug = manifest.DestinyInventoryItemDefinition[r];
-      let identities = ['penumbra.runes.legendary.rune9', 'penumbra.runes.legendary.rune10', 'penumbra.runes.legendary.rune11'];
-
-      if (definitionPlug && identities.includes(definitionPlug.plug.plugCategoryIdentifier)) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-
-    this.combos = combos.slice();
-    this.combosAvailable = this.combos.filter(c => {
-      if (c.combo[0].length === 1 && c.combo[1].length === 1 && ['braytech_purple_rune', 'braytech_red_rune', 'braytech_green_rune', 'braytech_blue_rune'].includes(c.combo[1][0]) && c.combo[2].length === 0) {
-        return true;
-      } else {
-        return false;
-      }
-    });
+    this.ref_chaliceUI = React.createRef();
   }
 
   handler_toggleSlotsPanel = slot => e => {
@@ -118,16 +109,13 @@ class ChaliceRecipes extends React.Component {
     this.props.rebindTooltips();
   };
 
-  armorClassTypeHandler = e => {
-    this.setState((prevState, props) => {
-      let change = {
-        armorClassType: prevState.armorClassType < 2 ? prevState.armorClassType + 1 : -1
-      };
-      return { ...prevState, ...change };
-    });
+  handler_filterClassType = e => {
+    this.setState(p => ({
+      armorClassType: p.armorClassType < 2 ? p.armorClassType + 1 : 0
+    }));
   };
 
-  resetHandler = e => {
+  hanlder_resetState = e => {
     this.setState((prevState, props) => {
       let change = {
         slots: {
@@ -159,7 +147,7 @@ class ChaliceRecipes extends React.Component {
     }));
 
     window.scrollTo({
-      top: this.scrollToChalice.current.offsetTop + this.scrollToChalice.current.offsetHeight / 2 - window.innerHeight / 2
+      top: this.ref_chaliceUI.current.offsetTop + this.ref_chaliceUI.current.offsetHeight / 2 - window.innerHeight / 2
     });
   };
 
@@ -174,35 +162,17 @@ class ChaliceRecipes extends React.Component {
     }));
 
     window.scrollTo({
-      top: this.scrollToChalice.current.offsetTop + this.scrollToChalice.current.offsetHeight / 2 - window.innerHeight / 2
+      top: this.ref_chaliceUI.current.offsetTop + this.ref_chaliceUI.current.offsetHeight / 2 - window.innerHeight / 2
     });
-  };
-
-  breakUpRuneAbbreviations = combo => {
-    let runes = combo.slice();
-
-    runes.forEach((e, i) => {
-      if (e === 'braytech_purple_rune') {
-        runes[i] = [e, ...this.runes.purple.slice()];
-      } else if (e === 'braytech_red_rune') {
-        runes[i] = [e, ...this.runes.red.slice()];
-      } else if (e === 'braytech_green_rune') {
-        runes[i] = [e, ...this.runes.green.slice()];
-      } else if (e === 'braytech_blue_rune') {
-        runes[i] = [e, ...this.runes.blue.slice()];
-      }
-    });
-
-    return flattenDepth(runes, 1);
   };
 
   checkForCombo = () => {
     const { slot1, slot2, slot3 } = this.state.slots;
 
-    const matches = this.combos.filter(m => {
+    const matches = ChaliceCombos.filter(m => {
       const combo1 = m.combo[0];
-      const combo2 = this.breakUpRuneAbbreviations(m.combo[1]);
-      const combo3 = this.breakUpRuneAbbreviations(m.combo[2]);
+      const combo2 = breakUpRuneAbbreviations(m.combo[1]);
+      const combo3 = breakUpRuneAbbreviations(m.combo[2]);
 
       // console.log(combo1, combo2, combo3)
 
@@ -239,7 +209,7 @@ class ChaliceRecipes extends React.Component {
 
     this.checkForCombo();
 
-    // this.combos.forEach((c, i) => {
+    // ChaliceCombos.forEach((c, i) => {
     //   if (!c.items.length) {
     //     return null;
     //   }
@@ -295,181 +265,192 @@ class ChaliceRecipes extends React.Component {
   render() {
     const { t, viewport } = this.props;
 
-    console.log(this.combosAvailable);
-
     return (
       <>
-        <div className='module head'>
-          <div className='page-header'>
-            <div className='sub-name'>{this.chalice.itemTypeDisplayName}</div>
-            <div className='name'>{this.chalice.displayProperties.name}</div>
+        <div className='view chalice-of-opulence' id='database'>
+          <div className='module head'>
+            <div className='page-header'>
+              <div className='sub-name'>{t('Database')}</div>
+              <div className='name'>{manifest.DestinyInventoryItemDefinition[1115550924].displayProperties.name}</div>
+            </div>
           </div>
-          <div className='text'>
-            <p>{this.chalice.displayProperties.description}</p>
-            <p>
-              This <em>Chalice of Opulence</em> recipe tool is experimental. I've never attempted anything like this before, especially with the added complexity and challenges that come with simulating item tooltips.
-            </p>
-            <ul>
-              <li>Clicking an item will auto-fill the Chalice's slots</li>
-              <li>The effects of the Masterwork slot are simulated. Items may or may not drop fully masterworked—this is for representation purposes only</li>
-            </ul>
-          </div>
-        </div>
-        <div className='padder'>
-          <div className='module'>
-            <div className='frame' ref={this.scrollToChalice}>
-              <div className={cx('flair', { active: Object.values(this.state.slots).filter(s => s).length > 2 })}>
-                <ObservedImage className='image padding corner' src='/static/images/extracts/ui/01E3-00000700.png' />
-                <ObservedImage className='image padding corner active' src='/static/images/extracts/ui/01E3-00000700-A.png' />
-                <ObservedImage className='image leviathan' src='/static/images/extracts/ui/01E3-00000702.png' />
-                <ObservedImage className='image leviathan active' src='/static/images/extracts/ui/01E3-00000702-A.png' />
-                <ObservedImage className='image ring-outer' src='/static/images/extracts/ui/01E3-00000777.png' />
-                <ObservedImage className='image ring-outer active' src='/static/images/extracts/ui/01E3-00000777-A.png' />
-                <ObservedImage className='image ring-inner' src='/static/images/extracts/ui/01E3-00000709.png' />
-                <ObservedImage className='image ring-inner active' src='/static/images/extracts/ui/01E3-00000709-A.png' />
-                <ObservedImage className='image chalice' src='/static/images/extracts/ui/01A3-00006414.png' />
-                <ObservedImage className='image chalice active' src='/static/images/extracts/ui/01A3-00006414-A.png' />
-              </div>
-              <div className='ui'>
-                <div className='slots'>
-                  {Object.entries(this.state.slots).map(([key, value]) => {
-                    const hash = this.state.slots[key] || 'braytech_no_rune';
-                    const definitionActivePlug = manifest.DestinyInventoryItemDefinition[hash] || manifest.BraytechDefinition[hash];
+          <div className='buff'>
+            <NavLinks />
+            <div className='module'>
+              <div className='frame' ref={this.ref_chaliceUI}>
+                <div className={cx('flair', { active: Object.values(this.state.slots).filter(s => s).length > 2 })}>
+                  <ObservedImage className='image padding corner' src='/static/images/extracts/ui/01E3-00000700.png' />
+                  <ObservedImage className='image padding corner active' src='/static/images/extracts/ui/01E3-00000700-A.png' />
+                  <ObservedImage className='image leviathan' src='/static/images/extracts/ui/01E3-00000702.png' />
+                  <ObservedImage className='image leviathan active' src='/static/images/extracts/ui/01E3-00000702-A.png' />
+                  <ObservedImage className='image ring-outer' src='/static/images/extracts/ui/01E3-00000777.png' />
+                  <ObservedImage className='image ring-outer active' src='/static/images/extracts/ui/01E3-00000777-A.png' />
+                  <ObservedImage className='image ring-inner' src='/static/images/extracts/ui/01E3-00000709.png' />
+                  <ObservedImage className='image ring-inner active' src='/static/images/extracts/ui/01E3-00000709-A.png' />
+                  <ObservedImage className='image chalice' src='/static/images/extracts/ui/01A3-00006414.png' />
+                  <ObservedImage className='image chalice active' src='/static/images/extracts/ui/01A3-00006414-A.png' />
+                </div>
+                <div className='ui'>
+                  <div className='slots'>
+                    {Object.entries(this.state.slots).map(([key, value]) => {
+                      const hash = this.state.slots[key] || 'braytech_no_rune';
+                      const definitionActivePlug = manifest.DestinyInventoryItemDefinition[hash] || manifest.BraytechDefinition[hash];
 
-                    if (!definitionActivePlug) {
-                      console.log(this.state.slots[key]);
+                      if (!definitionActivePlug) {
+                        console.log(this.state.slots[key]);
 
-                      return null;
-                    }
+                        return null;
+                      }
 
-                    const activePlug = (
-                      <li
-                        className={cx({
-                          tooltip: viewport.width > 1024 ? true : false,
-                          linked: true
-                        })}
-                        data-hash={hash}
-                        onClick={this.handler_toggleSlotsPanel(key)}
-                      >
-                        <div className='icon'>
-                          <ObservedImage src={definitionActivePlug.displayProperties.localIcon ? `${definitionActivePlug.displayProperties.icon}` : `https://www.bungie.net${definitionActivePlug.displayProperties.icon}`} />
-                        </div>
-                      </li>
-                    );
-
-                    let nextPlug;
-                    if (this.state.slots.slot1 === false && key === 'slot1') {
-                      nextPlug = true;
-                    } else if (this.state.slots.slot2 === false && this.state.slots.slot1 && key === 'slot2') {
-                      nextPlug = true;
-                    } else if (this.state.slots.slot3 === false && this.state.slots.slot1 && this.state.slots.slot2 && key === 'slot3') {
-                      nextPlug = true;
-                    } else {
-                      nextPlug = false;
-                    }
-
-                    return (
-                      <div key={key} className={cx(key, { slotZ: this.state.slotsPanelOpen === key })}>
-                        <div className='slot-inner'>
-                          <div className='active-plug'>
-                            {nextPlug ? <ObservedImage className='image next-plug' src='/static/images/extracts/ui/01A3-00004579.png' /> : null}
-                            <ul className='list chalice-items'>{activePlug}</ul>
+                      const activePlug = (
+                        <li
+                          className={cx({
+                            tooltip: viewport.width > 1024 ? true : false,
+                            linked: true
+                          })}
+                          data-hash={hash}
+                          onClick={this.handler_toggleSlotsPanel(key)}
+                        >
+                          <div className='icon'>
+                            <ObservedImage src={definitionActivePlug.displayProperties.localIcon ? `${definitionActivePlug.displayProperties.icon}` : `https://www.bungie.net${definitionActivePlug.displayProperties.icon}`} />
                           </div>
-                          {this.state.slotsPanelOpen === key ? (
-                            <div className='overlay'>
-                              <ul className='list chalice-items'>
-                                {this.runes[key].map((hash, i) => {
-                                  const definitionPlug = manifest.DestinyInventoryItemDefinition[hash] || manifest.BraytechDefinition[hash];
+                        </li>
+                      );
 
-                                  if (!definitionPlug) {
-                                    console.log(`Items: Couldn't find item definition for ${hash}`);
+                      let nextPlug;
+                      if (this.state.slots.slot1 === false && key === 'slot1') {
+                        nextPlug = true;
+                      } else if (this.state.slots.slot2 === false && this.state.slots.slot1 && key === 'slot2') {
+                        nextPlug = true;
+                      } else if (this.state.slots.slot3 === false && this.state.slots.slot1 && this.state.slots.slot2 && key === 'slot3') {
+                        nextPlug = true;
+                      } else {
+                        nextPlug = false;
+                      }
 
-                                    return null;
-                                  }
-
-                                  return (
-                                    <ul className='list' key={i}>
-                                      <li
-                                        className={cx({
-                                          tooltip: !this.props.disableTooltip,
-                                          linked: true,
-                                          active: this.state.slots[key] === hash
-                                        })}
-                                        data-hash={hash}
-                                        onClick={this.handler_runeItemClick({ slot: key, hash })}
-                                      >
-                                        <div className='icon'>
-                                          <ObservedImage className='image' src={definitionPlug.displayProperties.localIcon ? `${definitionPlug.displayProperties.icon}` : `https://www.bungie.net${definitionPlug.displayProperties.icon}`} />
-                                        </div>
-                                        <div className='text'>
-                                          <div className='name'>{definitionPlug.displayProperties.name}</div>
-                                        </div>
-                                      </li>
-                                      <li
-                                        className={cx('apply', {
-                                          linked: true,
-                                          active: this.state.slots[key] === hash
-                                        })}
-                                        onClick={this.handler_runeItemClick({ slot: key, hash })}
-                                      >
-                                        <i className='segoe-uniE176' />
-                                      </li>
-                                    </ul>
-                                  );
-                                })}
-                              </ul>
+                      return (
+                        <div key={key} className={cx(key, { slotZ: this.state.slotsPanelOpen === key })}>
+                          <div className='slot-inner'>
+                            <div className='active-plug'>
+                              {nextPlug ? <ObservedImage className='image next-plug' src='/static/images/extracts/ui/01A3-00004579.png' /> : null}
+                              <ul className='list chalice-items'>{activePlug}</ul>
                             </div>
-                          ) : null}
+                            {this.state.slotsPanelOpen === key ? (
+                              <div className='overlay'>
+                                <ul className='list chalice-items'>
+                                  {enums.chaliceRunes[key].map((hash, i) => {
+                                    const definitionPlug = manifest.DestinyInventoryItemDefinition[hash] || manifest.BraytechDefinition[hash];
+
+                                    if (!definitionPlug) {
+                                      console.log(`Items: Couldn't find item definition for ${hash}`);
+
+                                      return null;
+                                    }
+
+                                    return (
+                                      <ul className='list' key={i}>
+                                        <li
+                                          className={cx({
+                                            tooltip: !this.props.disableTooltip,
+                                            linked: true,
+                                            active: this.state.slots[key] === hash
+                                          })}
+                                          data-hash={hash}
+                                          onClick={this.handler_runeItemClick({ slot: key, hash })}
+                                        >
+                                          <div className='icon'>
+                                            <ObservedImage className='image' src={definitionPlug.displayProperties.localIcon ? `${definitionPlug.displayProperties.icon}` : `https://www.bungie.net${definitionPlug.displayProperties.icon}`} />
+                                          </div>
+                                          <div className='text'>
+                                            <div className='name'>{definitionPlug.displayProperties.name}</div>
+                                          </div>
+                                        </li>
+                                        <li
+                                          className={cx('apply', {
+                                            linked: true,
+                                            active: this.state.slots[key] === hash
+                                          })}
+                                          onClick={this.handler_runeItemClick({ slot: key, hash })}
+                                        >
+                                          <i className='segoe-uniE176' />
+                                        </li>
+                                      </ul>
+                                    );
+                                  })}
+                                </ul>
+                              </div>
+                            ) : null}
+                          </div>
                         </div>
-                      </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className='module items'>
+              <div className='results'>
+                <div className='sub-header'>
+                  <div>{t('Selected runes')}</div>
+                </div>
+                {this.state.matches.length > 0 ? (
+                  <ul className='list inventory-items'>
+                    <Items
+                      items={this.state.matches.reduce((a, v) => {
+                        return [...a, ...v.items.filter(hash => (this.state.armorClassType > -1 && manifest.DestinyInventoryItemDefinition[hash].classType < 3 && manifest.DestinyInventoryItemDefinition[hash].classType === this.state.armorClassType) || manifest.DestinyInventoryItemDefinition[hash].classType > 2 || this.state.armorClassType < 0).map(hash => ({ combo: v.combo, itemHash: hash }))];
+                      }, [])}
+                      handler={this.handler_rewardItemClick}
+                    />
+                  </ul>
+                ) : (
+                  <div className='info'>{t('Socket runes or select item to auto-fill')}</div>
+                )}
+              </div>
+              <div className='shortcuts'>
+                <div className='weapons'>
+                  <div className='sub-header'>
+                    <div>{t('Weapons')}</div>
+                  </div>
+                  <ul className='list inventory-items'>
+                    <Items
+                      items={RefinedChaliceCombos.filter(c => c.itemType === 3).reduce((a, v) => {
+                        return [...a, ...v.items.map(hash => ({ combo: v.combo, itemHash: hash }))];
+                      }, [])}
+                      handler={this.handler_rewardItemClick}
+                    />
+                  </ul>
+                </div>
+                <div className='armor'>
+                  {Object.entries(
+                    groupBy(
+                      RefinedChaliceCombos.filter(c => c.itemType !== 3),
+                      c => c.armorSetName
+                    )
+                  ).map(([setName, combos], i) => {
+                    return (
+                      <React.Fragment key={i}>
+                        <div className='sub-header'>
+                          <div>{manifest.DestinyPresentationNodeDefinition[armorSetNameMap[setName][this.state.armorClassType]].displayProperties.name}</div>
+                        </div>
+                        <ul className='list inventory-items'>
+                          <Items
+                            items={combos
+                              .map(c => ({
+                                ...c,
+                                items: c.items.filter(hash => (this.state.armorClassType > -1 && manifest.DestinyInventoryItemDefinition[hash].classType < 3 && manifest.DestinyInventoryItemDefinition[hash].classType === this.state.armorClassType) || manifest.DestinyInventoryItemDefinition[hash].classType > 2 || this.state.armorClassType < 0)
+                              }))
+                              .reduce((a, v) => {
+                                return [...a, ...v.items.map(hash => ({ combo: v.combo, itemHash: hash }))];
+                              }, [])}
+                            handler={this.handler_rewardItemClick}
+                          />
+                        </ul>
+                      </React.Fragment>
                     );
                   })}
                 </div>
               </div>
             </div>
-          </div>
-          <div className='module'>
-            {this.state.matches.length > 0 ? (
-              <>
-                <div className='sub-header'>
-                  <div>Selected runes</div>
-                </div>
-                <ul className='list inventory-items'>
-                  <Items
-                    items={this.state.matches.reduce((a, v) => {
-                      return [...a, ...v.items.map(hash => ({ combo: v.combo, itemHash: hash }))];
-                    }, [])}
-                    handler={this.handler_rewardItemClick}
-                  />
-                </ul>
-              </>
-            ) : null}
-            <div className='sub-header'>
-              <div>Weapons</div>
-            </div>
-            <ul className='list inventory-items'>
-              <Items
-                items={this.combosAvailable
-                  .filter(c => c.itemType === 3)
-                  .reduce((a, v) => {
-                    return [...a, ...v.items.map(hash => ({ combo: v.combo, itemHash: hash }))];
-                  }, [])}
-                handler={this.handler_rewardItemClick}
-              />
-            </ul>
-            <div className='sub-header'>
-              <div>Armor</div>
-            </div>
-            <ul className='list inventory-items'>
-              <Items
-                items={this.combosAvailable
-                  .filter(c => c.itemType !== 3)
-                  .reduce((a, v) => {
-                    return [...a, ...v.items.map(hash => ({ combo: v.combo, itemHash: hash }))];
-                  }, [])}
-                handler={this.handler_rewardItemClick}
-              />
-            </ul>
           </div>
         </div>
         <div className='sticky-nav'>
@@ -487,7 +468,7 @@ class ChaliceRecipes extends React.Component {
                   </Button>
                 ) : (
                   <>
-                    <Button action={this.armorClassTypeHandler}>
+                    <Button action={this.handler_filterClassType}>
                       {this.state.armorClassType === -1 ? (
                         <>
                           <i className='segoe-uniE16E' />
@@ -500,7 +481,7 @@ class ChaliceRecipes extends React.Component {
                         </>
                       )}
                     </Button>
-                    <Button action={this.resetHandler}>
+                    <Button action={this.hanlder_resetState}>
                       <i className='segoe-uniE777' />
                       {t('Reset')}
                     </Button>

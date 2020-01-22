@@ -11,6 +11,8 @@ import manifest from '../../../utils/manifest';
 import * as utils from '../../../utils/destinyUtils';
 import Search from '../../../components/Search';
 
+import { NavLinks } from '../';
+
 import './styles.css';
 
 function getResultName(table, hash) {
@@ -66,7 +68,7 @@ class Manifest extends React.Component {
     const query = queryString.parse(location.search);
 
     return (
-      <>
+      <div className='view manifest' id='database'>
         <div className='module head'>
           <div className='page-header'>
             <div className='sub-name'>{t('Database')}</div>
@@ -74,10 +76,10 @@ class Manifest extends React.Component {
           </div>
         </div>
         <div className='buff'>
-          {this.props.nav}
+          <NavLinks />
           <Search initialValue='mida' database resultsRenderFunction={resultsRenderFunction} />
         </div>
-      </>
+      </div>
     );
   }
 }

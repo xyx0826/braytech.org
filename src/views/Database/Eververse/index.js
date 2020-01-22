@@ -13,6 +13,8 @@ import * as enums from '../../../utils/destinyEnums';
 import { DestinyKey } from '../../../components/UI/Button';
 import Items from '../../../components/Items';
 
+import { NavLinks } from '../';
+
 import './styles.css';
 
 function project(itemList, weekTotalCeiling) {
@@ -84,7 +86,7 @@ class Eververse extends React.Component {
     const weeks_brightDustConsumables = project(definitionVendor.itemList.filter(i => i.displayCategoryIndex === 10).slice(3), 4);
 
     return (
-      <>
+      <div className='view eververse' id='database'>
         <div className='module head'>
           <div className='page-header'>
             <div className='sub-name'>{t('Database')}</div>
@@ -92,7 +94,7 @@ class Eververse extends React.Component {
           </div>
         </div>
         <div className='buff'>
-          {this.props.nav}
+          <NavLinks />
           <div className='module'>
             <div className='text'>
               <p>This view details each of the current season's weekly Eververse store stock.</p>
@@ -135,7 +137,7 @@ class Eververse extends React.Component {
             </ul>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

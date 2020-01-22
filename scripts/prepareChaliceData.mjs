@@ -252,6 +252,7 @@ async function run() {
     let t6 = false;
     let t7 = false;
     let t8 = false;
+    let t10 = false;
 
     Object.values(manifest.DestinyInventoryItemDefinition).forEach(i => {
       let i1 = r.result.toLowerCase();
@@ -270,6 +271,8 @@ async function run() {
         } else {
           t0 = armors2[testArmorSets][r.result.replace(testArmorSets, '').trim()];
         }
+
+        t10 = testArmorSets;
         
         // t7 = findNode(armors2[r.result][0]);
         t8 = 2;
@@ -380,6 +383,10 @@ async function run() {
 
     if (t7) {
       // ttt.parentPresentationNodeHash = t7;
+    }
+
+    if (t10) {
+      ttt.armorSetName = t10;
     }
 
     output.push(ttt);

@@ -39,6 +39,7 @@ import ServiceWorkerUpdate from './components/Notifications/ServiceWorkerUpdate'
 import RefreshService from './components/RefreshService';
 
 import ProfileRoutes from './ProfileRoutes';
+import DatabaseRoutes from './DatabaseRoutes';
 
 import Loading from './views/Loading';
 import Index from './views/Index';
@@ -55,7 +56,6 @@ import Legend from './views/Legend';
 import ClanBannerBuilder from './views/ClanBannerBuilder';
 import PGCR from './views/PGCR';
 import Compare from './views/Compare';
-import Database from './views/Database';
 
 import Test from './views/Test';
 import TestThree from './views/TestThree';
@@ -274,6 +274,7 @@ class App extends React.Component {
               <div className='main'>
                 <Switch>
                   <Route path='/:membershipType([1|2|3|4|5])/:membershipId([0-9]+)/:characterId([0-9]+)?' render={route => <ProfileRoutes {...route} />} />
+                  <Route path='/database' component={DatabaseRoutes} />
                   <Route
                     render={() => (
                       <>
@@ -294,7 +295,6 @@ class App extends React.Component {
                           <Route path='/inspect/:hash?' exact component={Inspect} />
                           <Route path='/read/:kind?/:hash?' exact component={Read} />
                           <Route path='/compare/:object?' exact component={Compare} />
-                          <Route path='/database/:view?' exact component={Database} />
                           <Route path='/maps/:map?/:highlight?' render={route => <Maps {...route} />} />
                           <Route path='/legend' exact render={route => <Legend {...route} />} />
                           <Route path='/settings' exact render={route => <Settings {...route} availableLanguages={this.availableLanguages} />} />
