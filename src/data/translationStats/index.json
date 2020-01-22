@@ -1,86 +1,138 @@
 {
   "de": {
     "translated": 419,
-    "notTranslated": 186,
-    "added": [],
+    "notTranslated": 189,
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   },
   "debug": {
-    "translated": 605,
+    "translated": 608,
     "notTranslated": 0,
-    "added": [],
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   },
   "en": {
-    "translated": 605,
+    "translated": 608,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "es-mx": {
     "translated": 594,
-    "notTranslated": 11,
-    "added": [],
+    "notTranslated": 14,
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   },
   "es": {
     "translated": 594,
-    "notTranslated": 11,
-    "added": [],
+    "notTranslated": 14,
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   },
   "fr": {
-    "translated": 534,
-    "notTranslated": 71,
-    "added": [],
+    "translated": 545,
+    "notTranslated": 63,
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   },
   "it": {
     "translated": 578,
-    "notTranslated": 27,
-    "added": [],
+    "notTranslated": 30,
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   },
   "ja": {
-    "translated": 522,
-    "notTranslated": 83,
-    "added": [],
+    "translated": 554,
+    "notTranslated": 54,
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   },
   "ko": {
     "translated": 278,
-    "notTranslated": 327,
-    "added": [],
+    "notTranslated": 330,
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 605,
-    "added": [],
+    "notTranslated": 608,
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   },
   "pt-br": {
     "translated": 536,
-    "notTranslated": 69,
-    "added": [],
+    "notTranslated": 72,
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   },
   "ru": {
-    "translated": 490,
-    "notTranslated": 115,
-    "added": [],
+    "translated": 530,
+    "notTranslated": 78,
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   },
   "zh-chs": {
     "translated": 452,
-    "notTranslated": 153,
-    "added": [],
+    "notTranslated": 156,
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   },
   "zh-cht": {
     "translated": 426,
-    "notTranslated": 179,
-    "added": [],
+    "notTranslated": 182,
+    "added": [
+      "Selected runes",
+      "Socket runes or select item to auto-fill",
+      "Weapons"
+    ],
     "removed": []
   }
 }
