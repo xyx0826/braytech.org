@@ -210,7 +210,7 @@
   "Forget me": "Dimenticami",
   "Forsaken campaign": "Campagna de I Rinnegati",
   "Founded": "Fondato",
-  "Free for all": "🌐",
+  "Free for all": "Tutti contro tutti",
   "Frequently Asked Questions": "Domande Frequenti",
   "From _Settings_ you can try a variety of things. Start with _Update service worker_. Wait a small time and you should be prompted to restart to update.\n\nIf this fails, you can try _Reload_. If all is lost, _Dump service worker_.\n\n_For the technically inclined, the unpredictable behaviour of service workers—especially on iOS—is why I haven't redeployed one to production after what happened last time._": "Dalle _Impostazioni_ puoi provare una varietà di cose. Inizia con _Aggiorna il service worker_. Aspetta un attimo e ti verrà chiesto di riavviare per aggiornare.\n\nSe ciò fallisce, prova _Ricarica_. Come ultima cosa ma speranza _Scarta il service worker_.\n\n_Per I più tecnici, il comportamento imprevedibile dei service worker—specialmente su iOS—è il motivo per il quale non ne ho distribuito un'alto dopo quel che è successo l'ultima volta._",
   "Gahlran encounter: each Guardian may only shoot one of _the real_ Gahlran's hands once during only one of his hand raises.": "Incontro di Gahlran: ogni Guardiano può sparare solo a una _vera_ mano di Gahlran solo una volta per fase di danno.",
@@ -609,6 +609,6 @@
   "{{number}} mins": "{{number}} min",
   "{{number}} minutes": "{{number}} minuti",
   "{{object}} duration": "Tempo totale per {{object}}",
-  "{{seasonName}} has {{timeRemaining}} remaining.": "La {{season Name}} finirà tra {{timeRemaining}}",
+  "{{seasonName}} has {{timeRemaining}} remaining.": "La {{seasonName}} finirà tra {{timeRemaining}}",
   "{{vendorName}} is waiting for you at {{destinationName}}.": "{{vendorName}} ti sta aspettando alla sua destinazione: {{destinationName}}"
 }
