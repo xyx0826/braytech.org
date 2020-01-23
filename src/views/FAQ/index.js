@@ -40,7 +40,7 @@ class FAQ extends React.Component {
         k: 'api',
         i: 2,
         q: t('Something seems wrong with my Valor rank resets'),
-        a: [<Markdown key='0' className='markdown' source={t("For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align iwith your expectations, there's a likely chance that this is a reflection of the API, not Braytech.")} />]
+        a: [<Markdown key='0' className='markdown' source={t("For Valor rank resets, Braytech only counts resets made in Season 4 (Forsaken release) and later. This aligns the stat with other metrics such as Infamy.\n\nAdditionally, for the most part, triumph records disregard earlier seasons as well. This is a choice I made for Braytech.\n\nIf for some reason your stats don't align with your expectations, there's a likely chance that this is a reflection of the API, not Braytech.")} />]
       },
       {
         k: 'api',

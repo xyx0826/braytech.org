@@ -953,5 +953,10 @@
     "date": "2020-01-19T02:26:21.209Z",
     "version": "2.14.30",
     "content": "- various improvements\n\n- improved notification bar\n- refreshed landing view\n- translation improvements\n- _MemberLink_ improvements"
+  },
+  {
+    "date": "2020-01-23T09:29:14.794Z",
+    "version": "2.14.39",
+    "content": "- improvements, various\n- resurrected chalice tool"
   }
 ]
