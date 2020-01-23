@@ -98,7 +98,7 @@ class Eververse extends React.Component {
           <div className='module'>
             <div className='text'>
               <p>This view details each of the current season's weekly Eververse store stock.</p>
-              <p>Its data comes directly from the API manifest's definition of <em>Tess Everis</em> and is displayed by merely itterating over it.</p>
+              <p>Its data comes directly from the API manifest's definition of <em>Tess Everis</em> and is displayed by merely iterating over it.</p>
             </div>
           </div>
           <div className='module'>
