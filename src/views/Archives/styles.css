@@ -84,29 +84,30 @@
 
 #archives .content {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 2fr 3fr;
   gap: 3rem;
 }
 
 #archives .watermark {
   position: absolute;
   bottom: 0;
-  right: 5rem;
-  width: 100%;
+  right: 5vw;
   height: 100%;
   display: grid;
-  justify-content: right;
-  pointer-events: none;
+  align-items: center;
+  justify-items: center;
 }
 
 #archives .watermark svg {
-  width: auto;
-  height: 100%;
+  height: auto;
+  width: 30vw;
   opacity: 0.1;
+  pointer-events: none;
 }
 
 #archives .module .text { 
   font-size: 16px;
+  max-width: 600px;
 }
 
 #archives .module .text p:not(:first-child) {
@@ -120,14 +121,37 @@
 
 
 
-
-#archives.index .highlights .text {
-  max-width: 500px;
+#archives.index .content {
+  grid-template-columns: 1fr;
 }
 
-#archives.index .highlights .button ~ h3 {
-  margin-top: 2rem;
+#archives.index .highlights .name {
+  font-size: 16px;
 }
+
+#archives.index .highlights .description .text p {
+  font-size: 14px;
+}
+
+#archives.index .highlights .list.table > li > ul > li:last-child {
+  justify-content: unset;
+}
+
+#archives.index .highlights .button {
+  display: grid;
+  justify-content: space-between;
+  grid-auto-flow: column;
+  padding: 0 1rem;
+}
+
+#archives.index .highlights .button .text {
+  padding: 0;
+}
+
+
+
+
+
 
 
 
@@ -148,10 +172,11 @@
   }
 
   #archives .watermark {
-    bottom: -50%;
-    right: 2rem;
-    width: 100%;
-    height: 100%;
+    right: -1rem;
+  }
+
+  #archives .watermark svg {
+    width: 50vh;
   }
 }
 
@@ -181,14 +206,7 @@
     gap: 2rem;
   }
 
-  #archives .watermark {
-    bottom: -50%;
-    right: 1rem;
-    width: 75%;
-    height: 100%;
-  }
-  
   #archives .watermark svg {
-    max-width: 100%;
+    width: 30vh;
   }
 }

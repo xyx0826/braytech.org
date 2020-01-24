@@ -182,7 +182,7 @@ p:last-child {
   z-index: 4;
 }
 
-.list li > a {
+.list li > a:not(.button) {
   position: absolute;
   top: 0;
   left: 0;
