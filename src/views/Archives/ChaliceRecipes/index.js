@@ -260,7 +260,7 @@ class ChaliceRecipes extends React.Component {
                         const activePlug = (
                           <li
                             className={cx({
-                              tooltip: viewport.width > 1024 ? true : false,
+                              tooltip: viewport.width >= 1024,
                               linked: true
                             })}
                             data-hash={hash}
@@ -306,7 +306,7 @@ class ChaliceRecipes extends React.Component {
                                         <ul className='list' key={i}>
                                           <li
                                             className={cx({
-                                              tooltip: !this.props.disableTooltip,
+                                              tooltip: true,
                                               linked: true,
                                               active: this.state.slots[key] === hash
                                             })}
@@ -344,68 +344,70 @@ class ChaliceRecipes extends React.Component {
                 </div>
               </div>
               <div className='module items'>
-              <div className='results'>
-                <div className='sub-header'>
-                  <div>{t('Selected runes')}</div>
-                </div>
-                {this.state.matches.length > 0 ? (
-                  <ul className='list inventory-items'>
-                    <Items
-                      items={this.state.matches.reduce((a, v) => {
-                        return [...a, ...v.items.filter(hash => (this.state.armorClassType > -1 && manifest.DestinyInventoryItemDefinition[hash].classType < 3 && manifest.DestinyInventoryItemDefinition[hash].classType === this.state.armorClassType) || manifest.DestinyInventoryItemDefinition[hash].classType > 2 || this.state.armorClassType < 0).map(hash => ({ combo: v.combo, itemHash: hash }))];
-                      }, [])}
-                      handler={this.handler_rewardItemClick}
-                    />
-                  </ul>
-                ) : (
-                  <div className='info'>{t('Socket runes or select item to auto-fill')}</div>
-                )}
-              </div>
-              <div className='shortcuts'>
-                <div className='weapons'>
+                <div className='results'>
                   <div className='sub-header'>
-                    <div>{t('Weapons')}</div>
+                    <div>{t('Selected runes')}</div>
                   </div>
-                  <ul className='list inventory-items'>
-                    <Items
-                      items={RefinedChaliceCombos.filter(c => c.itemType === 3).reduce((a, v) => {
-                        return [...a, ...v.items.map(hash => ({ combo: v.combo, itemHash: hash }))];
-                      }, [])}
-                      handler={this.handler_rewardItemClick}
-                    />
-                  </ul>
+                  {this.state.matches.length > 0 ? (
+                    <ul className='list inventory-items'>
+                      <Items
+                        items={this.state.matches.reduce((a, v) => {
+                          return [...a, ...v.items.filter(hash => (this.state.armorClassType > -1 && manifest.DestinyInventoryItemDefinition[hash].classType < 3 && manifest.DestinyInventoryItemDefinition[hash].classType === this.state.armorClassType) || manifest.DestinyInventoryItemDefinition[hash].classType > 2 || this.state.armorClassType < 0).map(hash => ({ combo: v.combo, itemHash: hash }))];
+                        }, [])}
+                        handler={this.handler_rewardItemClick}
+                      />
+                    </ul>
+                  ) : (
+                    <div className='info'>{t('Socket runes or select item to auto-fill')}</div>
+                  )}
                 </div>
-                <div className='armor'>
-                  {Object.entries(
-                    groupBy(
-                      RefinedChaliceCombos.filter(c => c.itemType !== 3),
-                      c => c.armorSetName
-                    )
-                  ).map(([setName, combos], i) => {
-                    return (
-                      <React.Fragment key={i}>
-                        <div className='sub-header'>
-                          <div>{manifest.DestinyPresentationNodeDefinition[armorSetNameMap[setName][this.state.armorClassType]].displayProperties.name}</div>
-                        </div>
-                        <ul className='list inventory-items'>
-                          <Items
-                            items={combos
-                              .map(c => ({
-                                ...c,
-                                items: c.items.filter(hash => (this.state.armorClassType > -1 && manifest.DestinyInventoryItemDefinition[hash].classType < 3 && manifest.DestinyInventoryItemDefinition[hash].classType === this.state.armorClassType) || manifest.DestinyInventoryItemDefinition[hash].classType > 2 || this.state.armorClassType < 0)
-                              }))
-                              .reduce((a, v) => {
-                                return [...a, ...v.items.map(hash => ({ combo: v.combo, itemHash: hash }))];
-                              }, [])}
-                            handler={this.handler_rewardItemClick}
-                          />
-                        </ul>
-                      </React.Fragment>
-                    );
-                  })}
+                <div className='shortcuts'>
+                  <div className='weapons'>
+                    <div className='sub-header'>
+                      <div>{t('Weapons')}</div>
+                    </div>
+                    <ul className='list inventory-items'>
+                      <Items
+                        items={RefinedChaliceCombos.filter(c => c.itemType === 3).reduce((a, v) => {
+                          return [...a, ...v.items.map(hash => ({ combo: v.combo, itemHash: hash }))];
+                        }, [])}
+                        handler={this.handler_rewardItemClick}
+                        disableTooltip={viewport.width <= 1024}
+                      />
+                    </ul>
+                  </div>
+                  <div className='armor'>
+                    {Object.entries(
+                      groupBy(
+                        RefinedChaliceCombos.filter(c => c.itemType !== 3),
+                        c => c.armorSetName
+                      )
+                    ).map(([setName, combos], i) => {
+                      return (
+                        <React.Fragment key={i}>
+                          <div className='sub-header'>
+                            <div>{manifest.DestinyPresentationNodeDefinition[armorSetNameMap[setName][this.state.armorClassType]].displayProperties.name}</div>
+                          </div>
+                          <ul className='list inventory-items'>
+                            <Items
+                              items={combos
+                                .map(c => ({
+                                  ...c,
+                                  items: c.items.filter(hash => (this.state.armorClassType > -1 && manifest.DestinyInventoryItemDefinition[hash].classType < 3 && manifest.DestinyInventoryItemDefinition[hash].classType === this.state.armorClassType) || manifest.DestinyInventoryItemDefinition[hash].classType > 2 || this.state.armorClassType < 0)
+                                }))
+                                .reduce((a, v) => {
+                                  return [...a, ...v.items.map(hash => ({ combo: v.combo, itemHash: hash }))];
+                                }, [])}
+                              handler={this.handler_rewardItemClick}
+                              disableTooltip={viewport.width <= 1024}
+                            />
+                          </ul>
+                        </React.Fragment>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
           </div>
         </div>
@@ -415,11 +417,7 @@ class ChaliceRecipes extends React.Component {
             <ul>
               <li>
                 {viewport.width <= 1024 && this.state.slotsPanelOpen ? (
-                  <Button
-                    action={e => {
-                      this.handler_toggleSlotsPanel(this.state.slotsPanelOpen);
-                    }}
-                  >
+                  <Button action={this.handler_toggleSlotsPanel(this.state.slotsPanelOpen)}>
                     <DestinyKey type='dismiss' /> {t('Dismiss')}
                   </Button>
                 ) : (

@@ -124,6 +124,7 @@
 #index .row.header .highlights .highlight .icon svg {
   width: 100%;
   height: auto;
+  fill: #ffffff;
 }
 
 #index .row.header .highlights .highlight .text {
