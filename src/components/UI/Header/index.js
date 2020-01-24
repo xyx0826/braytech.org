@@ -208,7 +208,7 @@ class Header extends React.Component {
       },
       {
         name: t('Archives'),
-        desc: t('Interactive tools, manuals, legends, and other content preserved by the archive.'),
+        desc: t('Interactive tools, manuals, legends, and other content preserved'),
         slug: '/archives',
         exact: false,
         profile: false,
