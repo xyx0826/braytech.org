@@ -39,7 +39,7 @@ import ServiceWorkerUpdate from './components/Notifications/ServiceWorkerUpdate'
 import RefreshService from './components/RefreshService';
 
 import ProfileRoutes from './routes/Profile';
-import DatabaseRoutes from './routes/Database';
+import ArchivesRoutes from './routes/Archives';
 
 import Loading from './views/Loading';
 import Index from './views/Index';
@@ -274,7 +274,7 @@ class App extends React.Component {
               <div className='main'>
                 <Switch>
                   <Route path='/:membershipType([1|2|3|4|5])/:membershipId([0-9]+)/:characterId([0-9]+)?' render={route => <ProfileRoutes {...route} />} />
-                  <Route path='/database' component={DatabaseRoutes} />
+                  <Route path='/archives' component={ArchivesRoutes} />
                   <Route
                     render={() => (
                       <>

@@ -207,9 +207,9 @@ class Header extends React.Component {
         group: 1
       },
       {
-        name: t('Database'),
-        desc: t('Views and tools useful for interacting with Destiny data including the API manifest'),
-        slug: '/database',
+        name: t('Archives'),
+        desc: t('Interactive tools, manuals, legends, and other content preserved by the archive.'),
+        slug: '/archives',
         exact: false,
         profile: false,
         group: 1

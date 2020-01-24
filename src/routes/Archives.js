@@ -4,14 +4,14 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Header from '../components/UI/Header';
 import PostmasterCapacity from '../components/Notifications/PostmasterCapacity';
 
-import Database from '../views/Database';
-import Eververse from '../views/Database/Eververse';
-import Manifest from '../views/Database/Manifest';
-import LastWish from '../views/Database/LastWish';
-import ChaliceRecipes from '../views/Database/ChaliceRecipes';
-import ChaliceRecipesDebug from '../views/Database/ChaliceRecipes/Debug';
+import Archives from '../views/Archives';
+import Eververse from '../views/Archives/Eververse';
+import Manifest from '../views/Archives/Manifest';
+import LastWish from '../views/Archives/LastWish';
+import ChaliceRecipes from '../views/Archives/ChaliceRecipes';
+import ChaliceRecipesDebug from '../views/Archives/ChaliceRecipes/Debug';
 
-class DatabaseRoutes extends React.Component {
+class ArchivesRoutes extends React.Component {
   render() {
     const { match } = this.props;
 
@@ -25,11 +25,11 @@ class DatabaseRoutes extends React.Component {
           <Route path={`${match.url}/last-wish`} component={LastWish} />
           <Route path={`${match.url}/chalice-of-opulence/debug`} exact component={ChaliceRecipesDebug} />
           <Route path={`${match.url}/chalice-of-opulence/:rune1?/:rune2?/:rune3?`} component={ChaliceRecipes} />
-          <Route path={`${match.url}`} component={Database} />
+          <Route path={`${match.url}`} component={Archives} />
         </Switch>
       </>
     );
   }
 }
 
-export default DatabaseRoutes;
+export default ArchivesRoutes;

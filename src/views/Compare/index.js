@@ -99,7 +99,7 @@ class Compare extends React.Component {
                 <div className='name'>{name}</div>
               </div>
             </div>
-            <div className={cx('padder', 'cols-' + itemsPerPage)}>
+            <div className={cx('buff', 'cols-' + itemsPerPage)}>
               <div className='data'>
                 <div className='column activities'>
                   <ul className='list member'>
@@ -163,7 +163,7 @@ class Compare extends React.Component {
               <div className='name'>{t('Compare')}</div>
             </div>
           </div>
-          <div className='padder'>
+          <div className='buff'>
             <div className='module'>
               <h3>{t('Nightfalls')}</h3>
               <ReactMarkdown className='text' source={t('Compare Nightfall strike activity durations between players for bragging rights and to track progress towards the _{{emblemName}}_ emblem.', { emblemName: manifest.DestinyCollectibleDefinition[2618436059].displayProperties.name })} />

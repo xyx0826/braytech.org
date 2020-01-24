@@ -14,14 +14,14 @@ import Button from '../../components/UI/Button';
 import { ReactComponent as Patreon } from '../../components/PatreonDevice.svg';
 import captainsLog from '../../data/captainsLog';
 
-import { ReactComponent as highlightClan } from './highlight_clan.svg';
-import { ReactComponent as highlightCollections } from './highlight_collections.svg';
-import { ReactComponent as highlightTriumphs } from './highlight_triumphs.svg';
-import { ReactComponent as highlightChecklists } from './highlight_checklists.svg';
-import { ReactComponent as highlightMaps } from './highlight_maps.svg';
-import { ReactComponent as highlightThisWeek } from './highlight_this-week.svg';
-import { ReactComponent as highlightQuests } from './highlight_quests.svg';
-import { ReactComponent as highlightReports } from './highlight_reports.svg';
+import { ReactComponent as highlightClan } from '../../svg/miscellaneous/highlight-clan.svg';
+import { ReactComponent as highlightCollections } from '../../svg/miscellaneous/highlight-collections.svg';
+import { ReactComponent as highlightTriumphs } from '../../svg/miscellaneous/highlight-triumphs.svg';
+import { ReactComponent as highlightChecklists } from '../../svg/miscellaneous/highlight-checklists.svg';
+import { ReactComponent as highlightMaps } from '../../svg/miscellaneous/highlight-maps.svg';
+import { ReactComponent as highlightThisWeek } from '../../svg/miscellaneous/highlight-this-week.svg';
+import { ReactComponent as highlightQuests } from '../../svg/miscellaneous/highlight-quests.svg';
+import { ReactComponent as highlightReports } from '../../svg/miscellaneous/highlight-reports.svg';
 
 import './styles.css';
 

@@ -107,30 +107,32 @@ class ChaliceRecipesDebug extends React.Component {
     // console.log(obj)
 
     return (
-        <div className='view chalice-of-opulence debug' id='database'>
+        <div className='view chalice-of-opulence debug' id='archives'>
           <div className='module head'>
             <div className='page-header'>
-              <div className='sub-name'>{t('Database')}</div>
+              <div className='sub-name'>{t('Archives')}</div>
               <div className='name'>{manifest.DestinyInventoryItemDefinition[1115550924].displayProperties.name}</div>
             </div>
           </div>
           <div className='buff'>
           {this.props.nav}
-          <div className='debug module'>
-            {ChaliceCombos.map((c, i) => (
-              <div key={i} className='combo'>
-                <div>
-                  <ul className='list inventory-items'>
-                    <Items items={c.combo.flat().map(i => ({ itemHash: i }))} />
-                  </ul>
+          <div className='content'>
+            <div className='debug module'>
+              {ChaliceCombos.map((c, i) => (
+                <div key={i} className='combo'>
+                  <div>
+                    <ul className='list inventory-items'>
+                      <Items items={c.combo.flat().map(i => ({ itemHash: i }))} />
+                    </ul>
+                  </div>
+                  <div>
+                    <ul className='list inventory-items'>
+                      <Items items={c.items.map(i => ({ itemHash: i }))} />
+                    </ul>
+                  </div>
                 </div>
-                <div>
-                  <ul className='list inventory-items'>
-                    <Items items={c.items.map(i => ({ itemHash: i }))} />
-                  </ul>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -68,16 +68,18 @@ class Manifest extends React.Component {
     const query = queryString.parse(location.search);
 
     return (
-      <div className='view manifest' id='database'>
+      <div className='view manifest' id='archives'>
         <div className='module head'>
           <div className='page-header'>
-            <div className='sub-name'>{t('Database')}</div>
+            <div className='sub-name'>{t('Archives')}</div>
             <div className='name'>{t('Manifest')}</div>
           </div>
         </div>
         <div className='buff'>
           <NavLinks />
-          <Search initialValue='mida' database resultsRenderFunction={resultsRenderFunction} />
+          <div className='content'>
+            <Search initialValue='mida' database resultsRenderFunction={resultsRenderFunction} />
+          </div>
         </div>
       </div>
     );

@@ -35,22 +35,24 @@ class LastWish extends React.Component {
     const { t } = this.props;
 
     return (
-      <div className='view last-wish' id='database'>
+      <div className='view last-wish' id='archives'>
         <div className='module head'>
           <div className='page-header'>
-            <div className='sub-name'>{t('Database')}</div>
+            <div className='sub-name'>{t('Archives')}</div>
             <div className='name'>{manifest.DestinyRecordDefinition[751035753].displayProperties.name}</div>
           </div>
         </div>
         <div className='buff'>
           <NavLinks />
-          <div className='module'>
-            <div className='text'>
-              <p></p>
+          <div className='content'>
+            <div className='module'>
+              <div className='text'>
+                <p></p>
+              </div>
             </div>
-          </div>
-          <div className='module'>
-          
+            <div className='module'>
+            
+            </div>
           </div>
         </div>
       </div>

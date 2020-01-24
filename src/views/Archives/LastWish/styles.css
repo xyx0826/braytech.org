@@ -1,43 +1,43 @@
-#database.eververse .buff {
-  grid-template-columns: 60px 1fr 2fr;
+#archives.last-wish .content {
+  grid-template-columns: 1fr 2fr;
 }
 
-#database.eververse .module.inventory {
+#archives.last-wish .module.inventory {
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
 }
 
-#database.eververse .module.inventory .sub-header {
+#archives.last-wish .module.inventory .sub-header {
   margin-bottom: 20px;
 }
 
-#database.eververse .module .text p:first-child {
+#archives.last-wish .module .text p:first-child {
   font-size: 16px;
 }
 
-#database.eververse .module .list.inventory-items {
+#archives.last-wish .module .list.inventory-items {
   grid-template-columns: repeat(auto-fill, 48px);
 }
 
-#database.eververse .module .list.weeks {
+#archives.last-wish .module .list.weeks {
   display: grid;
   gap: 3rem;
 }
 
-#database.eververse .module .list.weeks li {
+#archives.last-wish .module .list.weeks li {
   height: unset;
   display: grid;
   align-items: start;
   margin: 0;
 }
 
-#database.eververse .module .list.weeks > li {
+#archives.last-wish .module .list.weeks > li {
   display: grid;
   row-gap: 1rem;
 }
 
-#database.eververse .module .list.weeks > li:not(:last-child)::after {
+#archives.last-wish .module .list.weeks > li:not(:last-child)::after {
   content: ' ';
   position: absolute;
   left: 0;
@@ -49,12 +49,12 @@
   transform: none;
 }
 
-#database.eververse .module .list.weeks > li > ul {
+#archives.last-wish .module .list.weeks > li > ul {
   display: grid;
   grid-template-columns: 300px auto;
 }
 
-#database.eververse .module .list.weeks > li > ul:not(:first-child) .category {
+#archives.last-wish .module .list.weeks > li > ul:not(:first-child) .category {
   display: grid;
   align-items: center;
   text-transform: uppercase;
@@ -68,19 +68,15 @@
 
 @media screen and (max-width: 1280px) {
 
-  #database.eververse .buff {
-    grid-template-columns: 60px 1fr;
-  }
-
-  #database.eververse .module.views {
-    grid-row: 1/3;
+  #archives.last-wish .content {
+    grid-template-columns: 1fr;
   }
 
 }
 
 @media screen and (max-width: 1023px) {
 
-  #database.eververse .module .list.weeks > li > ul {
+  #archives.last-wish .module .list.weeks > li > ul {
     grid-template-columns: 1fr;
     row-gap: 10px;
   }
@@ -89,8 +85,6 @@
 
 @media screen and (max-width: 600px) {
 
-  #database.eververse .buff {
-    grid-template-columns: 40px 1fr;
-  }
+  
 
 }

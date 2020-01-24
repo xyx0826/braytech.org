@@ -5,16 +5,16 @@
   width: 100%;
 }
 
-#compare > .module.head {
+#compare .module.head {
   padding: calc(4rem + 40px) 3rem 3rem;
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-#compare > .module.head .page-header {
+#compare .module.head .page-header {
   margin-bottom: 0rem;
 }
 
-#compare > .padder {
+#compare .buff {
   width: 100%;
   padding: 3rem;
   display: grid;
@@ -23,8 +23,8 @@
   row-gap: 3rem;
 }
 
-#compare.nightfalls .padder,
-#compare.nightmare-hunts .padder {
+#compare.nightfalls .buff,
+#compare.nightmare-hunts .buff {
   grid-template-columns: 1fr;
 }
 
@@ -156,17 +156,17 @@
 
 
 @media screen and (max-width: 1024px) {
-  #compare > .padder {
+  #compare .buff {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 600px) {
-  #compare > .module.head {
+  #compare .module.head {
     padding: calc(3rem + 40px) 2rem 2rem;
   }
 
-  #compare > .padder {
+  #compare .buff {
     padding: 2rem;
     grid-template-columns: 1fr;
     column-gap: 2rem;

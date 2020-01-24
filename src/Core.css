@@ -96,6 +96,10 @@ a {
   opacity: 0.6;
 }
 
+.relative {
+  position: relative;
+}
+
 strong {
   font-weight: 500;
 }

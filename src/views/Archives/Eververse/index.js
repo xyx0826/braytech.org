@@ -86,22 +86,22 @@ class Eververse extends React.Component {
     const weeks_brightDustConsumables = project(definitionVendor.itemList.filter(i => i.displayCategoryIndex === 10).slice(3), 4);
 
     return (
-      <div className='view eververse' id='database'>
+      <div className='view eververse' id='archives'>
         <div className='module head'>
           <div className='page-header'>
-            <div className='sub-name'>{t('Database')}</div>
-            <div className='name'>{manifest.DestinyFactionDefinition[1393733616].displayProperties.name}</div>
+            <div className='sub-name'>{t('Archives')}</div>
+            <div className='name'>{t('Eververse season overview')}</div>
           </div>
         </div>
         <div className='buff'>
           <NavLinks />
-          <div className='module'>
-            <div className='text'>
-              <p>This view details each of the current season's weekly Eververse store stock.</p>
-              <p>Its data comes directly from the API manifest's definition of <em>Tess Everis</em> and is displayed by merely iterating over it.</p>
+          <div className='content'>
+            <div className='module'>
+              <div className='text'>
+                <ReactMarkdown className='text' source={t("This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.")} />
+              </div>
             </div>
-          </div>
-          <div className='module'>
+            <div className='module'>
             <ul className='list weeks'>
               {weeks_brightDustItems.map((w, n) => (
                 <li key={n}>
@@ -135,6 +135,7 @@ class Eververse extends React.Component {
                 </li>
               ))}
             </ul>
+          </div>
           </div>
         </div>
       </div>
