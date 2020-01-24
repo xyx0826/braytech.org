@@ -353,8 +353,11 @@ html.backdropfilter #archives.chalice-of-opulence .overlay .list.chalice-items l
   }
 }
 
-@media screen and (max-width: 1024px) {
-
+@media screen and (max-width: 600px) {
+  #archives.chalice-of-opulence .inventory-items,
+  #archives.chalice-of-opulence .weapons .inventory-items {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 

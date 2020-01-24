@@ -1,206 +1,164 @@
 {
   "de": {
     "translated": 418,
-    "notTranslated": 197,
+    "notTranslated": 202,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "debug": {
-    "translated": 615,
+    "translated": 620,
     "notTranslated": 0,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "en": {
-    "translated": 615,
+    "translated": 620,
     "notTranslated": 0,
     "added": [],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "es-mx": {
     "translated": 592,
-    "notTranslated": 23,
+    "notTranslated": 28,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "es": {
     "translated": 592,
-    "notTranslated": 23,
+    "notTranslated": 28,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "fr": {
     "translated": 544,
-    "notTranslated": 71,
+    "notTranslated": 76,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "it": {
     "translated": 610,
-    "notTranslated": 5,
+    "notTranslated": 10,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "ja": {
     "translated": 552,
-    "notTranslated": 63,
+    "notTranslated": 68,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "ko": {
     "translated": 278,
-    "notTranslated": 337,
+    "notTranslated": 342,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 615,
+    "notTranslated": 620,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "pt-br": {
     "translated": 535,
-    "notTranslated": 80,
+    "notTranslated": 85,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "ru": {
     "translated": 559,
-    "notTranslated": 56,
+    "notTranslated": 61,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "zh-chs": {
     "translated": 451,
-    "notTranslated": 164,
+    "notTranslated": 169,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   },
   "zh-cht": {
     "translated": 425,
-    "notTranslated": 190,
+    "notTranslated": 195,
     "added": [
-      "Archives",
-      "Eververse season overview",
-      "Interactive tools, manuals, legends, and other content preserved",
-      "Interactive tools, manuals, legends, and other content preserved by _The Archives_.\n\n_The Archives_ are where various, previously thought lost, repositories now reside. These repositories are containers to useful data and tools which originally coalesced during the height of humanity, commonly referred to as [_The Golden Age_](https://www.ishtar-collective.net/cards/the-golden-age).\n\nSometimes, not everything I build (or attempt to build for that matter) finds a home in the limelight of _Braytech's_ primary navigation, but still retains so much user value that it deserves a place to live. This is their space.\n\nPlease note, not everything here is guaranteed to work well, or at all. Some contents may even cause low-power devices to lock up under specific use coniditions i.e. the _Manifest_ tool.",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
+      "A tool that enables users to rapidly discover required combinations for specific rewards from _The Managerie_.",
+      "Deployed",
+      "Description",
+      "Launch",
+      "Manifest tool"
     ],
-    "removed": [
-      "Database",
-      "Views and tools useful for interacting with Destiny data including the API manifest"
-    ]
+    "removed": []
   }
 }
