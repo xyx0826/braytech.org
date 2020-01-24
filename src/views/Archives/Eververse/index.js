@@ -1,16 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
-import { orderBy } from 'lodash';
 import ReactMarkdown from 'react-markdown';
-import queryString from 'query-string';
-import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
-import * as enums from '../../../utils/destinyEnums';
-import { DestinyKey } from '../../../components/UI/Button';
 import Items from '../../../components/Items';
 
 import { NavLinks } from '../';
@@ -31,7 +25,7 @@ function project(itemList, weekTotalCeiling) {
     week.push(i);
     weekTotal++;
 
-    const nextIsClassItem = (itemList[k] && manifest.DestinyInventoryItemDefinition[itemList[k].itemHash]?.classType > -1 && manifest.DestinyInventoryItemDefinition[itemList[k].itemHash]?.classType < 3) || (itemList[k] && ['Titan', 'Hunter', 'Warlock'].filter(test => manifest.DestinyInventoryItemDefinition[itemList[k].itemHash].itemTypeDisplayName.indexOf(test) > -1).length);
+    const nextIsClassItem = (itemList[k] && manifest.DestinyInventoryItemDefinition[itemList[k].itemHash]?.classType > -1 && manifest.DestinyInventoryItemDefinition[itemList[k].itemHash]?.classType < 3) || (itemList[k] && ['titan', 'hunter', 'warlock'].filter(test => manifest.DestinyInventoryItemDefinition[itemList[k].itemHash].plug?.plugCategoryIdentifier?.indexOf(test) > -1).length);
 
     console.log(`classSet: ${classSet}`);
     if (nextIsClassItem) {
@@ -112,7 +106,7 @@ class Eververse extends React.Component {
                     <li className='category'>{t('Featured silver items')}</li>
                     <li>
                       <ul className='list inventory-items'>
-                        <Items items={weeks_featuredSilverItems[n].filter(i => i.itemHash !== 827183327)} />
+                        <Items items={weeks_featuredSilverItems[n]?.filter(i => i.itemHash !== 827183327)} />
                       </ul>
                     </li>
                   </ul>
@@ -128,7 +122,7 @@ class Eververse extends React.Component {
                     <li className='category'>{t('Bright dust items')}</li>
                     <li>
                       <ul className='list inventory-items'>
-                        <Items items={[...w, ...weeks_brightDustConsumables[n]]} />
+                        {weeks_brightDustConsumables[n] && <Items items={[...w, ...weeks_brightDustConsumables[n]]} />}
                       </ul>
                     </li>
                   </ul>
