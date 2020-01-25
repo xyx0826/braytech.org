@@ -327,22 +327,38 @@ class MemberLink extends React.Component {
                       </div>
                       <div className='basics'>
                         <div>
-                          <div className='name'>{t('Season rank')}</div>
-                          <div className='value'>{utils.progressionSeasonRank({ characterId: lastCharacterPlayed, data: { profile: this.state.all.data } }).level}</div>
-                        </div>
-                        <div>
-                          <div className='name'>{t('Time played across characters')}</div>
-                          <div className='value'>
-                            {timePlayed} {timePlayed === 1 ? t('day played') : t('days played')}
+                          <div>
+                            <div className='name'>{t('Season rank')}</div>
+                            <div className='value'>{utils.progressionSeasonRank({ characterId: lastCharacterPlayed, data: { profile: this.state.all.data } }).level}</div>
+                          </div>
+                          <div>
+                            <div className='name'>{t('Time played across characters')}</div>
+                            <div className='value'>
+                              {timePlayed} {timePlayed === 1 ? t('day played') : t('days played')}
+                            </div>
+                          </div>
+                          <div>
+                            <div className='name'>{t('Triumph score')}</div>
+                            <div className='value'>{this.state.all.data.profileRecords.data.score.toLocaleString()}</div>
+                          </div>
+                          <div>
+                            <div className='name'>{t('Collection total')}</div>
+                            <div className='value'>{utils.collectionTotal(this.state.all.data).toLocaleString()}</div>
                           </div>
                         </div>
                         <div>
-                          <div className='name'>{t('Triumph score')}</div>
-                          <div className='value'>{this.state.all.data.profileRecords.data.score.toLocaleString()}</div>
-                        </div>
-                        <div>
-                          <div className='name'>{t('Collection total')}</div>
-                          <div className='value'>{utils.collectionTotal(this.state.all.data).toLocaleString()}</div>
+                          <div>
+                            <div className='name'>{t('Valor points')}</div>
+                            <div className='value'>{this.state.all.data.characterProgressions?.data[lastCharacterPlayed]?.progressions[2626549951]?.currentProgress.toLocaleString()}</div>
+                          </div>
+                          <div>
+                            <div className='name'>{t('Glory points')}</div>
+                            <div className='value'>{this.state.all.data.characterProgressions?.data[lastCharacterPlayed]?.progressions[2000925172]?.currentProgress.toLocaleString()}</div>
+                          </div>
+                          <div>
+                            <div className='name'>{t('Infamy points')}</div>
+                            <div className='value'>{this.state.all.data.characterProgressions?.data[lastCharacterPlayed]?.progressions[2772425241]?.currentProgress.toLocaleString()}</div>
+                          </div>
                         </div>
                       </div>
                     </div>

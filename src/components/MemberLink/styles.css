@@ -263,7 +263,7 @@ html.backdropfilter #member-overlay .background .acrylic {
   max-width: 1280px;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.8fr 1fr minmax(200px, 270px);
+  grid-template-columns: 1fr 1fr minmax(200px, 270px);
   grid-gap: 3rem;
   font-size: 14px;
 }
@@ -350,26 +350,28 @@ html.backdropfilter #member-overlay .background .acrylic {
 
 #member-overlay .wrapper-inner .basics {
   display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
 }
 
 #member-overlay .wrapper-inner .basics > div {
-  position: relative;
+  display: grid;
+  gap: 1rem;
 }
 
-#member-overlay .wrapper-inner .basics > div:last-child {
+#member-overlay .wrapper-inner .basics div div:last-child {
   margin: 0;
 }
 
-#member-overlay .wrapper-inner .basics div .name {
+#member-overlay .wrapper-inner .basics div div .name {
   margin: 0 0 7px;
   font-size: 14px;
   line-height: 16px;
   color: rgba(255, 255, 255, 0.6);
 }
 
-#member-overlay .wrapper-inner .basics div .value {
+#member-overlay .wrapper-inner .basics div div .value {
   font-size: 18px;
   line-height: 1;
 }
@@ -634,6 +636,10 @@ html.backdropfilter .wrapper.light-mode #member-overlay .sticky-nav {
   
   #member-overlay .wrapper-inner .names .groupName {
     font-size: 16px;
+  }
+
+  #member-overlay .wrapper-inner .list.fireteam-members .placeholder {
+    max-width: 100%;
   }
 
   #member-overlay.error .wrapper-inner {
