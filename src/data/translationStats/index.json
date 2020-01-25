@@ -1,167 +1,112 @@
 {
   "de": {
     "translated": 418,
-    "notTranslated": 202,
+    "notTranslated": 203,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "debug": {
-    "translated": 620,
+    "translated": 621,
     "notTranslated": 0,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "en": {
-    "translated": 620,
+    "translated": 621,
     "notTranslated": 0,
     "added": [],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "es-mx": {
     "translated": 592,
-    "notTranslated": 28,
+    "notTranslated": 29,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "es": {
-    "translated": 592,
-    "notTranslated": 28,
+    "translated": 620,
+    "notTranslated": 1,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "fr": {
     "translated": 544,
-    "notTranslated": 76,
+    "notTranslated": 77,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "it": {
     "translated": 610,
-    "notTranslated": 10,
+    "notTranslated": 11,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "ja": {
     "translated": 552,
-    "notTranslated": 68,
+    "notTranslated": 69,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "ko": {
     "translated": 278,
-    "notTranslated": 342,
+    "notTranslated": 343,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 620,
+    "notTranslated": 621,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "pt-br": {
     "translated": 535,
-    "notTranslated": 85,
+    "notTranslated": 86,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "ru": {
-    "translated": 559,
-    "notTranslated": 61,
+    "translated": 571,
+    "notTranslated": 50,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "zh-chs": {
     "translated": 451,
-    "notTranslated": 169,
+    "notTranslated": 170,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   },
   "zh-cht": {
     "translated": 425,
-    "notTranslated": 195,
+    "notTranslated": 196,
     "added": [
-      "Details each of the current season's weekly Eververse store stock to allow the viewer assistance in maximising their Silver efficieny.\n\nThis data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it.",
-      "Eververse Season Overview"
+      "Valor points"
     ],
-    "removed": [
-      "Eververse season overview",
-      "This view details each of the current season's weekly Eververse store stock.\n\nIts data comes directly from the API manifest's definition of _Tess Everis_ and is displayed by merely iterating over it."
-    ]
+    "removed": []
   }
 }
