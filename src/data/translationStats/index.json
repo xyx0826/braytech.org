@@ -1,111 +1,121 @@
 {
   "de": {
     "translated": 418,
-    "notTranslated": 203,
+    "notTranslated": 205,
     "added": [
-      "Valor points"
+      "Level advantages enabled",
+      "Open in tab"
     ],
     "removed": []
   },
   "debug": {
-    "translated": 621,
+    "translated": 623,
     "notTranslated": 0,
     "added": [
-      "Valor points"
+      "Level advantages enabled",
+      "Open in tab"
     ],
     "removed": []
   },
   "en": {
-    "translated": 621,
+    "translated": 623,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "es-mx": {
     "translated": 592,
-    "notTranslated": 29,
+    "notTranslated": 31,
     "added": [
-      "Valor points"
+      "Level advantages enabled",
+      "Open in tab"
     ],
     "removed": []
   },
   "es": {
     "translated": 620,
-    "notTranslated": 1,
+    "notTranslated": 3,
     "added": [
-      "Valor points"
+      "Level advantages enabled",
+      "Open in tab"
     ],
     "removed": []
   },
   "fr": {
     "translated": 544,
-    "notTranslated": 77,
+    "notTranslated": 79,
     "added": [
-      "Valor points"
+      "Level advantages enabled",
+      "Open in tab"
     ],
     "removed": []
   },
   "it": {
     "translated": 610,
-    "notTranslated": 11,
+    "notTranslated": 13,
     "added": [
-      "Valor points"
+      "Level advantages enabled",
+      "Open in tab"
     ],
     "removed": []
   },
   "ja": {
     "translated": 552,
-    "notTranslated": 69,
+    "notTranslated": 71,
     "added": [
-      "Valor points"
+      "Level advantages enabled",
+      "Open in tab"
     ],
     "removed": []
   },
   "ko": {
-    "translated": 278,
-    "notTranslated": 343,
-    "added": [
-      "Valor points"
-    ],
+    "translated": 623,
+    "notTranslated": 0,
+    "added": [],
     "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 621,
+    "notTranslated": 623,
     "added": [
-      "Valor points"
+      "Level advantages enabled",
+      "Open in tab"
     ],
     "removed": []
   },
   "pt-br": {
     "translated": 535,
-    "notTranslated": 86,
+    "notTranslated": 88,
     "added": [
-      "Valor points"
+      "Level advantages enabled",
+      "Open in tab"
     ],
     "removed": []
   },
   "ru": {
     "translated": 571,
-    "notTranslated": 50,
+    "notTranslated": 52,
     "added": [
-      "Valor points"
+      "Level advantages enabled",
+      "Open in tab"
     ],
     "removed": []
   },
   "zh-chs": {
     "translated": 451,
-    "notTranslated": 170,
+    "notTranslated": 172,
     "added": [
-      "Valor points"
+      "Level advantages enabled",
+      "Open in tab"
     ],
     "removed": []
   },
   "zh-cht": {
     "translated": 425,
-    "notTranslated": 196,
+    "notTranslated": 198,
     "added": [
-      "Valor points"
+      "Level advantages enabled",
+      "Open in tab"
     ],
     "removed": []
   }
