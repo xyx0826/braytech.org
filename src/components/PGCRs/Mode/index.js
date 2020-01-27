@@ -1,7 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
+import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
 import { ProfileNavLink } from '../../ProfileLink';
@@ -35,15 +37,10 @@ import { ReactComponent as RaidIcon } from '../../../svg/raid/raid.svg';
 import './styles.css';
 
 class Mode extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   render() {
-    const { t, stats, isActive = false, root = '/multiplayer/crucible', defaultMode = 5 } = this.props;
-
+    const { t, match, location, stats, root = '/multiplayer/crucible', defaultMode = 5 } = this.props;
+    const modeParam = parseInt(match.params.mode, 10);
+   
     const definitionActivityMode = Object.values(manifest.DestinyActivityModeDefinition).find(d => d.modeType === stats.mode);
 
     const modeName = definitionActivityMode && definitionActivityMode.displayProperties.name;
@@ -107,6 +104,14 @@ class Mode extends React.Component {
         modes: [38],
         icon: <CrucibleIconCountdown />
       },
+      {
+        modes: [25],
+        icon: <CrucibleIconMayhem />
+      },
+      {
+        modes: [61, 62],
+        icon: <CrucibleIconTeamScorched />
+      },
 
       // Gambit
       {
@@ -128,7 +133,7 @@ class Mode extends React.Component {
         icon: <RaidIcon />
       },
 
-      // Vanfuard
+      // Vanguard
       {
         modes: [18],
         icon: <VanguardIconStrikes />
@@ -146,9 +151,17 @@ class Mode extends React.Component {
     ];
 
     const modeExtra = modeExtras.find(m => m.modes.includes(stats.mode));
+
+    const isActive = (match, location) => {
+      if (modeParam === stats.mode) {
+        return true;
+      } else {
+        return false;
+      }
+    };
     
     return (
-      <li className='linked'>
+      <li className={cx('linked', { active: isActive(match, location) })}>
         <div className='icon'>
           {modeExtra && modeExtra.icon}
         </div>
@@ -194,5 +207,6 @@ function mapStateToProps(state, ownProps) {
 
 export default compose(
   connect(mapStateToProps),
-  withTranslation()
+  withTranslation(),
+  withRouter
 )(Mode);

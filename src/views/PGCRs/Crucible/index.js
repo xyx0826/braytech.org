@@ -66,6 +66,9 @@ class Crucible extends React.Component {
       },
       countdown: {
         mode: 38
+      },
+      allMayhem: {
+        mode: 25
       }
     }
   };
@@ -165,8 +168,7 @@ class Crucible extends React.Component {
 
   render() {
     const { t } = this.props;
-
-    const offset = parseInt(this.props.offset);
+    const offset = parseInt(this.props.offset, 10);
 
     return (
       <div className={cx('view', 'crucible')} id='multiplayer'>
@@ -183,47 +185,13 @@ class Crucible extends React.Component {
             <ParentModeLinks />
           </div>
           <div className='module-l2'>
-            {/* <div className='sub-header'>
-              <div>{t('Summative modes')}</div>
-            </div>
-            <div className='content'>
-              {Object.values(this.crucible.all.allPvP).length > 1 ? (
-                <ul className='list modes'>
-                  {Object.values(this.crucible.all).map(m => {
-                    let paramsMode = this.props.mode ? parseInt(this.props.mode) : 5;
-                    let isActive = (match, location) => {
-                      if (paramsMode === m.mode) {
-                        return true;
-                      } else {
-                        return false;
-                      }
-                    };
-
-                    return <Mode key={m.mode} stats={m} isActive={isActive} root='/reports/crucible' />;
-                  })}
-                </ul>
-              ) : (
-                <Spinner mini />
-              )}
-            </div> */}
             <div className='sub-header'>
               <div>{t('Core modes')}</div>
             </div>
             <div className='content'>
               {Object.values(this.crucible.all.allPvP).length > 1 ? (
                 <ul className='list modes'>
-                  {Object.values(this.crucible.core).map(m => {
-                    let paramsMode = this.props.mode ? parseInt(this.props.mode) : 5;
-                    let isActive = (match, location) => {
-                      if (paramsMode === m.mode) {
-                        return true;
-                      } else {
-                        return false;
-                      }
-                    };
-
-                    return <Mode key={m.mode} stats={m} isActive={isActive} root='/reports/crucible' />;
-                  })}
+                  {Object.values(this.crucible.core).map(m => <Mode key={m.mode} stats={m} root='/reports/crucible' />)}
                 </ul>
               ) : (
                 <Spinner mini />
@@ -235,18 +203,7 @@ class Crucible extends React.Component {
             <div className='content'>
               {Object.values(this.crucible.all.allPvP).length > 1 ? (
                 <ul className='list modes'>
-                  {Object.values(this.crucible.rotator).map(m => {
-                    let paramsMode = this.props.mode ? parseInt(this.props.mode) : 5;
-                    let isActive = (match, location) => {
-                      if (paramsMode === m.mode) {
-                        return true;
-                      } else {
-                        return false;
-                      }
-                    };
-
-                    return <Mode key={m.mode} stats={m} isActive={isActive} root='/reports/crucible' />;
-                  })}
+                  {Object.values(this.crucible.rotator).map(m => <Mode key={m.mode} stats={m} root='/reports/crucible' />)}
                 </ul>
               ) : (
                 <Spinner mini />
@@ -259,7 +216,7 @@ class Crucible extends React.Component {
             <div>{t('Recent matches')}</div>
           </div>
           <div className='content'>
-            <Matches mode={this.props.mode ? parseInt(this.props.mode) : 5} limit='20' offset={offset} root='/reports/crucible' />
+            <Matches mode={this.props.mode ? parseInt(this.props.mode) : 5} limit='40' offset={offset} root='/reports/crucible' />
           </div>
         </div>
       </div>

@@ -27,7 +27,7 @@ class ReportItem extends React.Component {
     };
   }
 
-  expandHandler = () => {
+  handler_expand = e => {
     this.setState(p => ({
       ...p,
       expandedReport: true
@@ -36,7 +36,7 @@ class ReportItem extends React.Component {
     this.updatePlayerCache();
   };
 
-  contractHandler = () => {
+  handler_contract = e => {
     this.setState(p => ({
       ...p,
       expandedReport: false,
@@ -157,7 +157,7 @@ class ReportItem extends React.Component {
     };
   };
 
-  togglePlayerHandler = characterId => {
+  handler_togglePlayer = characterId => e => {
     const { expandedPlayers } = this.state;
 
     if (expandedPlayers.includes(characterId)) {
@@ -782,7 +782,7 @@ class ReportItem extends React.Component {
         teamId: report.teams && report.teams.length ? entry.values.team.basic.value : null,
         fireteamId: entry.values.fireteamId ? entry.values.fireteamId.basic.value : null,
         element: (
-          <li key={entry.characterId} className={cx('linked', { isExpandedPlayer })} onClick={() => this.togglePlayerHandler(entry.characterId)}>
+          <li key={entry.characterId} className={cx('linked', { isExpandedPlayer })} onClick={this.handler_togglePlayer(entry.characterId)}>
             <div className={cx('inline', { dnf: dnf })}>
               <div className='member'>
                 <MemberLink type={entry.player.destinyUserInfo.membershipType} id={entry.player.destinyUserInfo.membershipId} displayName={entry.player.destinyUserInfo.displayName} characterId={entry.characterId} />
@@ -960,7 +960,13 @@ class ReportItem extends React.Component {
               <div />
               <ul>
                 <li>
-                  <Button action={() => this.contractHandler(report.activityDetails.instanceId)}>
+                  <a className='button' href={`/pgcr/${report.activityDetails.instanceId}`} target='_blank'>
+                    <DestinyKey type='more' />
+                    {t('Open in tab')}
+                  </a>
+                </li>
+                <li>
+                  <Button action={this.handler_contract}>
                     <DestinyKey type='dismiss' />
                     {t('Close')}
                   </Button>
@@ -973,7 +979,7 @@ class ReportItem extends React.Component {
     );
 
     return (
-      <li key={report.activityDetails.instanceId} className={cx('linked', { isExpanded: expandedReport, standing: standing > -1, victory: standing === 0 })} onClick={() => (!expandedReport ? this.expandHandler(report.activityDetails.instanceId) : false)}>
+      <li key={report.activityDetails.instanceId} className={cx('linked', { isExpanded: expandedReport, standing: standing > -1, victory: standing === 0 })} onClick={!expandedReport ? this.handler_expand : undefined}>
       {!expandedReport ? <ReportHeader characterIds={characterIds} {...report} /> : detail}
       </li>
     );

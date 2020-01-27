@@ -8,16 +8,10 @@ import Matches from '../../../components/PGCRs/Matches';
 import ParentModeLinks from '../ParentModeLinks';
 
 class All extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   render() {
     const { t } = this.props;
 
-    const offset = parseInt(this.props.offset);
+    const offset = parseInt(this.props.offset, 10);
 
     return (
       <div className={cx('view', 'root')} id='multiplayer'>
@@ -38,7 +32,7 @@ class All extends React.Component {
             <div className='sub-header'>
               <div>{t('Recent activities')}</div>
             </div>
-            <Matches mode={false} limit='20' offset={offset} root='/reports/all' />
+            <Matches mode={false} limit='40' offset={offset} root='/reports/all' />
           </div>
         </div>
       </div>
