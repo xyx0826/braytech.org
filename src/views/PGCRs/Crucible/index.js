@@ -5,7 +5,6 @@ import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
 
 import * as bungie from '../../../utils/bungie';
-import manifest from '../../../utils/manifest';
 import Spinner from '../../../components/UI/Spinner';
 import Mode from '../../../components/PGCRs/Mode';
 import Matches from '../../../components/PGCRs/Matches';
@@ -27,14 +26,17 @@ class Crucible extends React.Component {
       }
     },
     core: {
+      rumble: {
+        mode: 48
+      },
       controlQuickplay: {
         mode: 73
       },
+      elimination: {
+        mode: 80
+      },
       survival: {
         mode: 37
-      },
-      rumble: {
-        mode: 48
       }
     },
     rotator: {
@@ -87,8 +89,9 @@ class Crucible extends React.Component {
     for (const mode in stats_allPvP) {
       if (stats_allPvP.hasOwnProperty(mode)) {
         if (!stats_allPvP[mode].allTime) {
-          return;
+          continue;
         }
+
         Object.entries(stats_allPvP[mode].allTime).forEach(([key, value]) => {
           this.crucible.all[mode][key] = value;
         });
@@ -98,8 +101,9 @@ class Crucible extends React.Component {
     for (const mode in stats_core) {
       if (stats_core.hasOwnProperty(mode)) {
         if (!stats_core[mode].allTime) {
-          return;
+          continue;
         }
+
         Object.entries(stats_core[mode].allTime).forEach(([key, value]) => {
           this.crucible.core[mode][key] = value;
         });
@@ -109,8 +113,9 @@ class Crucible extends React.Component {
     for (const mode in stats_rotator) {
       if (stats_rotator.hasOwnProperty(mode)) {
         if (!stats_rotator[mode].allTime) {
-          return;
+          continue;
         }
+
         Object.entries(stats_rotator[mode].allTime).forEach(([key, value]) => {
           this.crucible.rotator[mode][key] = value;
         });

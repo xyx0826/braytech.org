@@ -95,11 +95,13 @@ const unredeemed = member => {
     }
 
     if (definitionRecord.presentationInfo && definitionRecord.presentationInfo.parentPresentationNodeHashes && definitionRecord.presentationInfo.parentPresentationNodeHashes.length && !enumerateRecordState(record.state).invisible && !enumerateRecordState(record.state).objectiveNotCompleted && !enumerateRecordState(record.state).recordRedeemed) {
-      // check to see if belongs to transitory expired seal
+      
+      // temporary fix for https://github.com/Bungie-net/api/issues/1167
+      // check to see if belongs to transitory expired seal || is undying seal child
       const definitionParent = definitionRecord.presentationInfo.parentPresentationNodeHashes.length && manifest.DestinyPresentationNodeDefinition[definitionRecord.presentationInfo.parentPresentationNodeHashes[0]];
       const parentCompletionRecordData = definitionParent && definitionParent.completionRecordHash && definitionParent.scope === 1 ? characterRecords[member.characterId].records[definitionParent.completionRecordHash] : profileRecords[definitionParent.completionRecordHash];
 
-      if (parentCompletionRecordData && enumerateRecordState(parentCompletionRecordData.state).rewardUnavailable && enumerateRecordState(parentCompletionRecordData.state).objectiveNotCompleted) {
+      if ((definitionParent.hash === 3303651244) || (parentCompletionRecordData && enumerateRecordState(parentCompletionRecordData.state).rewardUnavailable && enumerateRecordState(parentCompletionRecordData.state).objectiveNotCompleted) || (parentCompletionRecordData && enumerateRecordState(parentCompletionRecordData).invisible)) {
         return;
       } else {
         hashes.push(key);
@@ -152,6 +154,8 @@ class Records extends React.Component {
     let recordsOutput = [];
     recordsRequested.forEach((hash, i) => {
       const definitionRecord = manifest.DestinyRecordDefinition[hash];
+
+      if (!definitionRecord) return;
 
       const recordScope = definitionRecord.scope || 0;
       const recordData = recordScope === 1 ? characterRecords && characterRecords[characterId].records[definitionRecord.hash] : profileRecords && profileRecords[definitionRecord.hash];
@@ -423,17 +427,17 @@ class Records extends React.Component {
                   <div className='name'>{definitionRecord.displayProperties.name}</div>
                   <div className='meta'>
                     {manifest.statistics.triumphs && manifest.statistics.triumphs[definitionRecord.hash] ? (
-                      <div className='commonality tooltip' data-hash='commonality' data-table='BraytechDefinition'>
-                        {manifest.statistics.triumphs[definitionRecord.hash]}%
+                      <div className='commonality tooltip' data-hash='commonality' data-type='braytech'>
+                        {manifest.statistics.triumphs[definitionRecord.hash].toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                       </div>
                     ) : null}
                     {recordState.intervals.length && recordState.intervals.filter(i => i.complete).length !== recordState.intervals.length ? (
-                      <div className='intervals tooltip' data-hash='record_intervals' data-table='BraytechDefinition'>
+                      <div className='intervals tooltip' data-hash='record_intervals' data-type='braytech'>
                         {t('{{a}} of {{b}}', { a: recordState.intervals.filter(i => i.complete).length, b: recordState.intervals.length })}
                       </div>
                     ) : null}
                     {recordState.score.value !== 0 ? (
-                      <div className='score tooltip' data-hash='score' data-table='BraytechDefinition'>
+                      <div className='score tooltip' data-hash='score' data-type='braytech'>
                         {recordState.intervals.length && recordState.score.progress !== recordState.score.value ? `${recordState.score.next}/${recordState.score.value}` : recordState.score.value}
                       </div>
                     ) : null}

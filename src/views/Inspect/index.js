@@ -4,75 +4,158 @@ import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { withRouter, Link } from 'react-router-dom';
 import cx from 'classnames';
+import queryString from 'query-string';
 
 import manifest from '../../utils/manifest';
 import * as enums from '../../utils/destinyEnums';
 import * as utils from '../../utils/destinyUtils';
 import ObservedImage from '../../components/ObservedImage';
 import { DestinyKey } from '../../components/UI/Button';
+import { ReactComponent as Void } from '../../svg/miscellaneous/void.svg';
+import { ReactComponent as Arc } from '../../svg/miscellaneous/arc.svg';
+import { ReactComponent as Solar } from '../../svg/miscellaneous/solar.svg';
 
 import { sockets } from '../../utils/destinyItems/sockets';
 import { stats, statsMs } from '../../utils/destinyItems/stats';
 import { masterwork } from '../../utils/destinyItems/masterwork';
+import { getSocketsWithStyle, getModdedStatValue, getSumOfArmorStats } from '../../utils/destinyItems/utils';
 
 import Scene from '../../components/Three/Inspect/Scene';
 
 import './styles.css';
 
+
+import './styles.css';
+
+const damageTypeMap = {
+  3454344768: {
+    className: 'void',
+    svg: Void
+  },
+  2303181850:{
+    className: 'arc',
+    svg: Arc
+  },
+  1847026933:{
+    className: 'solar',
+    svg: Solar
+  }
+};
+
 class Inspect extends React.Component {
-  state = {
-    ornamentHash: false
-  };
+  state = {};
 
   componentDidMount() {
     window.scrollTo(0, 0);
+
+    this.props.rebindTooltips();
   }
 
-  handler_setOrnamentHash = hash => e => {
-    this.setState({
-      ornamentHash: hash
-    });
+  handler_plugClick = (socketIndex, plugHash) => e => {
+    // this.setState(p => ({
+    //   sockets: {
+    //     ...p.sockets,
+    //     [socketIndex]: plugHash
+    //   }
+    // }));
+    // console.log(socketIndex, plugHash)
   };
 
   render() {
-    const { t, member, three } = this.props;
-
-    const returnPath = this.props.location.state && this.props.location.state.from ? this.props.location.state.from : '/collections';
+    const { t, member, three, location } = this.props;
+    const returnPath = location.state?.from || '/collections';
+    const query = queryString.parse(location.search);
 
     const item = {
       itemHash: this.props.match.params.hash,
       itemInstanceId: false,
-      itemComponents: false
+      itemComponents: false,
+      showHiddenStats: true,
+      showDefaultSockets: true
     };
 
     const definitionItem = manifest.DestinyInventoryItemDefinition[item.itemHash];
 
+    // process sockets
     item.sockets = sockets(item);
+
+    // adjust sockets according to user selection
+    if (item.sockets.sockets) {
+      item.sockets.sockets = item.sockets.sockets.map((socket, s) => {
+        const selectedPlugHash = Number(query.sockets?.split('/')[socket.socketIndex]);
+  
+        // if user has selected a plug
+        if (selectedPlugHash > 0) {
+          const selectedPlug = socket.plugOptions.find(o => selectedPlugHash === o.plugItem.hash);
+  
+          // reconfigure plugOptions for this socket, according to user-selected plugs
+          socket.plugOptions = socket.plugOptions.map(o => {
+            o.isActive = false;
+  
+            if (selectedPlug && selectedPlug.plugItem.hash === o.plugItem.hash) {
+              o.isActive = true;
+            }
+  
+            return o;
+          });
+  
+          // set active plug as primary plug
+          socket.plug = (selectedPlugHash && socket.plugOptions.find(o => selectedPlugHash === o.plugItem.hash)) || socket.plug;
+  
+          return socket;
+        }
+  
+        return socket;
+      });
+    }
+
+    // stats and masterwork as per usual
     item.stats = stats(item);
     item.masterwork = masterwork(item);
 
+    item.primaryStat = (definitionItem.itemType === 2 || definitionItem.itemType === 3) && definitionItem.stats && !definitionItem.stats.disablePrimaryStatDisplay && definitionItem.stats.primaryBaseStatHash && {
+      hash: definitionItem.stats.primaryBaseStatHash,
+      displayProperties: manifest.DestinyStatDefinition[definitionItem.stats.primaryBaseStatHash].displayProperties,
+      value: 950
+    };
+
+    if (item.primaryStat && item.itemComponents && item.itemComponents.instance?.primaryStat) {
+      item.primaryStat.value = item.itemComponents.instance.primaryStat.value;
+    } else if (item.primaryStat && member && member.data) {
+      let character = member.data.profile.characters.data.find(c => c.characterId === member.characterId);
+
+      item.primaryStat.value = Math.floor((942 / 973) * character.light);
+    }
+
     console.log(item);
 
-    const preparedSockets =
-      item.sockets &&
-      item.sockets.sockets &&
-      item.sockets.socketCategories.reduce((a, v) => {
-        v.sockets.forEach(s => {
-          if (s.plugOptions.filter(p => p.isOrnament).length) {
-            s.plugOptions.splice(0, 0, s.plug);
-          }
-        });
+    // weapon damage type
+    const damageTypeHash = definitionItem.itemType === enums.DestinyItemType.Weapon && (item.itemComponents?.instance ? item.itemComponents.instance.damageTypeHash : definitionItem.defaultDamageTypeHash);
 
-        const modCategory = a.find(c => c.category.categoryStyle === 2);
+    const DamageTypeSVG = damageTypeMap[damageTypeHash]?.svg;
 
-        if (modCategory) {
-          modCategory.sockets.push(...v.sockets);
-
-          return a;
-        } else {
-          return [...a, v];
+    const preparedSockets = item.sockets?.socketCategories?.reduce((a, v) => {
+      v.sockets.forEach(s => {
+        if (s.plugOptions.filter(p => p.isOrnament).length) {
+          s.plugOptions.splice(0, 0, s.plug);
         }
-      }, []);
+      });
+
+      const modCategory = a.find(c => c.category.categoryStyle === 2);
+
+      if (modCategory) {
+        modCategory.sockets.push(...v.sockets);
+
+        return a;
+      } else {
+        return [...a, v];
+      }
+    }, []);
+
+    const displayStats = (item.stats && item.stats.length && !item.stats.find(s => s.statHash === -1000)) || (item.stats && item.stats.length && item.stats.find(s => s.statHash === -1000 && s.value !== 0));
+    const displaySockets = item.sockets && item.sockets.socketCategories && item.sockets.sockets.filter(s => (s.isPerk || s.isIntrinsic || s.isMod || s.isOrnament) && !s.isTracker && !s.isShader && s.plug?.plugItem).length;
+
+    const armor2MasterworkSockets = item.sockets && item.sockets.socketCategories && getSocketsWithStyle(item.sockets, enums.DestinySocketCategoryStyle.EnergyMeter);
 
     return (
       <>
@@ -89,45 +172,145 @@ class Inspect extends React.Component {
               <ObservedImage src={`https://www.bungie.net${definitionItem.secondaryIcon}`} />
             </div>
           ) : null}
-          <div className='row header'>
-            <div className={cx('rarity', utils.itemRarityToString(definitionItem.inventory.tierType))} />
-            <div className='icon'>{definitionItem.displayProperties.icon ? <ObservedImage src={`https://www.bungie.net${definitionItem.displayProperties.icon}`} /> : null}</div>
-            <div className='text'>
-              <div className='name'>{definitionItem.displayProperties.name}</div>
-              <div className='type'>{definitionItem.itemTypeDisplayName}</div>
+          <div className={cx('item-rarity', utils.itemRarityToString(definitionItem.inventory.tierType))} />
+          <div className='wrap'>
+            <div className='row header'>
+              <div className='icon'>{definitionItem.displayProperties.icon ? <ObservedImage src={`https://www.bungie.net${definitionItem.displayProperties.icon}`} /> : null}</div>
+              <div className='text'>
+                <div className='name'>{definitionItem.displayProperties.name}</div>
+                <div className='type'>{definitionItem.itemTypeDisplayName}</div>
+              </div>
+              <div className='flair'>{definitionItem.displayProperties.description}</div>
             </div>
-            <div className='flair'>{definitionItem.displayProperties.description}</div>
-          </div>
-          {item.sockets && item.sockets.sockets ? (
-            <div className='sockets'>
-              {preparedSockets.map((c, i) => {
-                return (
-                  <div className={cx('row', 'category', { mods: c.category.categoryStyle === 2 })} key={i}>
-                    <div className='category-name'>{c.category.displayProperties.name}</div>
-                    <div className='category-sockets'>
-                      {c.sockets
-                        .filter(s => !s.isTracker)
-                        .map((s, i) => {
-                          return (
-                            <div className={cx('socket', { intrinsic: s.isIntrinsic, columned: s.plugOptions.length > 10 })} key={i}>
-                              {s.plugOptions.map((p, i) => {
-                                return (
-                                  <div className={cx('plug', 'tooltip', { active: p.isActive })} data-hash={p.plugItem.hash} key={i} onClick={this.handler_setOrnamentHash(p.plugItem.hash)}>
-                                    <div className='icon'>
-                                      <ObservedImage src={`https://www.bungie.net${p.plugItem.displayProperties.icon}`} />
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          );
-                        })}
-                    </div>
+            {displayStats ? (
+              <div className='row values'>
+                {item.primaryStat ? <div className='primary'>
+                  <div className='stat'>
+                    {damageTypeMap[damageTypeHash] ? <div className={cx('icon', utils.damageTypeToAsset(damageTypeHash)?.string)}>
+                      <DamageTypeSVG />
+                    </div> : null}
+                    <div className='text'>{item.primaryStat.value}</div>
                   </div>
-                );
-              })}
-            </div>
-          ) : null}
+                </div> : null}
+                <div className='stats'>
+                  {item.stats.map(s => {
+                    // map through stats
+
+                    const armor2MasterworkValue = armor2MasterworkSockets && getSumOfArmorStats(armor2MasterworkSockets, [s.statHash]);
+
+                    const moddedValue = item.sockets && item.sockets.sockets && getModdedStatValue(item.sockets, s);
+                    const masterworkValue = (item.masterwork && item.masterwork.stats?.find(m => m.hash === s.statHash) && item.masterwork.stats?.find(m => m.hash === s.statHash).value) || armor2MasterworkValue || 0;
+
+                    let baseBar = s.value;
+
+                    if (moddedValue) {
+                      baseBar -= moddedValue;
+                    }
+
+                    if (masterworkValue) {
+                      baseBar -= masterworkValue;
+                    }
+
+                    const segments = [[baseBar]];
+
+                    if (moddedValue) {
+                      segments.push([moddedValue, 'modded']);
+                    }
+
+                    if (masterworkValue) {
+                      segments.push([masterworkValue, 'masterwork']);
+                    }
+
+                    return (
+                      <div key={s.statHash} className='stat'>
+                        <div className='name'>{s.statHash === -1000 ? t('Total') : s.displayProperties.name}</div>
+                        <div className={cx('value', { bar: s.bar })}>
+                          {s.bar ? (
+                            <>
+                              {segments.map(([value, className], i) => (
+                                <div key={i} className={cx('bar', className)} data-value={value} style={{ width: `${Math.min(100, Math.floor(100 * (value / s.maximumValue)))}%` }} />
+                              ))}
+                              <div className='int'>{s.value}</div>
+                            </>
+                          ) : (
+                            <div className={cx('text', { masterwork: masterworkValue !== 0 })}>
+                              {s.value} {statsMs.includes(s.statHash) && 'ms'}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : null}
+            {displaySockets ? (
+              <div className='sockets'>
+                {preparedSockets.map((c, i) => {
+                  return (
+                    <div className={cx('row', 'category', { mods: c.category.categoryStyle === 2 })} key={i}>
+                      <div className='category-name'>{c.category.displayProperties.name}</div>
+                      <div className='category-sockets'>
+                        {c.sockets
+                          .filter(s => !s.isTracker)
+                          .map((s, i) => {
+                            const expanded = false; // TODO lol
+
+                            // if mods and socket expanded by user OR if mods and a single plug option OR if not mods i.e. perks lol
+                            if ((c.category.categoryStyle === 2 && expanded) || (c.category.categoryStyle === 2 && s.plugOptions.length < 2) || c.category.categoryStyle !== 2) {
+                              return (
+                                <div className={cx('socket', { intrinsic: s.isIntrinsic, columned: c.category.categoryStyle !== 2 && s.plugOptions.length > 9 })} key={i}>
+                                  {s.plugOptions.map((p, i) => {
+                                    const selectedSockets = query.sockets?.split('/');
+                                    const socketsString = item.sockets.sockets.map(socket => (selectedSockets && Number(selectedSockets[socket.socketIndex])) || '');
+  
+                                    socketsString[s.socketIndex] = p.plugItem.hash;
+  
+                                    const socketLink = `/inspect/${item.itemHash}?sockets=${socketsString.join('/')}`;
+  
+                                    return (
+                                      <div key={i} className={cx('plug', 'tooltip', { active: p.isActive })} data-hash={p.plugItem.hash} data-style='ui' onClick={this.handler_plugClick(s.socketIndex, p.plugItem.hash)}>
+                                        <div className='icon'>
+                                          <ObservedImage src={`https://www.bungie.net${p.plugItem.displayProperties.icon}`} />
+                                        </div>
+                                        <Link to={socketLink} />
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              );
+                            } else {
+                              return (
+                                <div className={cx('socket', { intrinsic: s.isIntrinsic, columned: c.category.categoryStyle !== 2 && s.plugOptions.length > 9 })} key={i}>
+                                  {s.plugOptions.filter(o => o.plugItem?.hash === s.plug.plugItem?.hash).map((p, i) => {
+                                    const selectedSockets = query.sockets?.split('/');
+                                    const socketsString = item.sockets.sockets.map(socket => (selectedSockets && Number(selectedSockets[socket.socketIndex])) || '');
+  
+                                    socketsString[s.socketIndex] = p.plugItem.hash;
+  
+                                    const socketLink = `/inspect/${item.itemHash}?sockets=${socketsString.join('/')}`;
+  
+                                    return (
+                                      <div key={i} className={cx('plug', 'tooltip', { active: p.isActive })} data-hash={p.plugItem.hash} data-style='ui' onClick={this.handler_plugClick(s.socketIndex, p.plugItem.hash)}>
+                                        <div className='icon'>
+                                          <ObservedImage src={`https://www.bungie.net${p.plugItem.displayProperties.icon}`} />
+                                        </div>
+                                        <Link to={socketLink} />
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              );
+                            }
+                            
+                          })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : null}
+          </div>
         </div>
         <div className='sticky-nav'>
           <div className='wrapper'>
@@ -154,4 +337,12 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default compose(connect(mapStateToProps), withTranslation(), withRouter)(Inspect);
+function mapDispatchToProps(dispatch) {
+  return {
+    rebindTooltips: value => {
+      dispatch({ type: 'REBIND_TOOLTIPS', payload: new Date().getTime() });
+    }
+  };
+}
+
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation(), withRouter)(Inspect);

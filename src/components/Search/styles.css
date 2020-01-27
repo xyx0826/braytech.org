@@ -1,9 +1,9 @@
 .index-search {
-  margin: 20px 0 calc(1rem + 24px);
+  margin: 0 0 calc(1rem + 24px);
 }
 
 .index-search.has-results {
-  margin: 20px 0 calc(2rem + 24px);
+  margin: 0 0 calc(2rem + 24px);
 }
 
 .index-search .list.record-items {
@@ -19,3 +19,7 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+
+

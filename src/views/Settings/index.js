@@ -171,7 +171,7 @@ class Settings extends React.Component {
           <Checkbox linked checked={this.state.language.selected === code}>
             <div className='text'>
               <div className='name'>{langInfo.name || langInfo.code}</div>
-              <div className='coverage tooltip' data-hash='coverage' data-table='BraytechDefinition'>
+              <div className='coverage tooltip' data-hash='coverage' data-type='braytech'>
                 {translationStats[langInfo.code] && Math.floor(((translationStats['en'].translated - translationStats[langInfo.code].notTranslated) / translationStats['en'].translated) * 100)}%
               </div>
             </div>

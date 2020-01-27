@@ -97,8 +97,11 @@ class Customise extends React.Component {
     const sourceList = this.getList(source.droppableId);
     const destinationList = this.getList(destination.droppableId);
 
-    // prevents modules being added or moved to groups with "full" modules i.e. SeasonPass or "double" modules
-    if (destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length || moduleRules.double.filter(f => f === m.component).length).length).length) {
+    console.log(sourceList, destinationList)
+    
+
+    // prevents modules being added or moved to columns with "full" modules i.e. SeasonPass or "double" modules
+    if (!(sourceList.group.id === destinationList.group.id && sourceList.col.id === destinationList.col.id) && destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length || moduleRules.double.filter(f => f === m.component).length).length).length) {
       console.log('User attempted to add/move module to group with full/double module');
       return;
     };
@@ -358,6 +361,10 @@ class Customise extends React.Component {
       name: this.props.t('Black Armory Forges'),
       description: this.props.t('Forges are currently running in low-power mode and will only be available during maintenance periods.')
     },
+    AltarsOfSorrow: {
+      name: manifest.DestinyInventoryItemDefinition[2531049971]?.displayProperties.name,
+      description: manifest.DestinyInventoryItemDefinition[2531049971]?.displayProperties.description
+    },
     Ranks: {
       name: this.props.t('Ranks'),
       description: this.props.t('Competive multiplayer progression information')
@@ -376,6 +383,10 @@ class Customise extends React.Component {
           }
         }
       ]
+    },
+    VendorSpiderMaterials: {
+      name: this.props.t('Spider: Material Exchange'),
+      description: this.props.t("Monitor Spider's materials closely")
     },
     SeasonalArtifact: {
       name: this.props.t('Seasonal progression'),
@@ -448,6 +459,20 @@ class Customise extends React.Component {
                           {(provided, snapshot) => (
                             <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} className='column-inner'>
                               {col.mods.map((mod, i) => {
+                                if (!this.modules[mod.component]) {
+                                  return (
+                                    <div key={mod.id} className={cx('module', 'button', { disabled: group.id === 'head' })}>
+                                      <div className='text'>
+                                        <div className='name'>{t('Error')}</div>
+                                        <div className='description'>{t('An error occurred while attempting to render module: {{moduleName}}', { moduleName: mod.component })}</div>
+                                      </div>
+                                      <Button className='remove' disabled={group.id === 'head'} onClick={this.handler_removeMod(col.id, mod.id)}>
+                                        <i className='segoe-uniE1061' />
+                                      </Button>
+                                    </div>
+                                  );
+                                }
+
                                 const { name, description } = this.modules[mod.component];
 
                                 const settings =

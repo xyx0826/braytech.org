@@ -61,10 +61,11 @@
 }
 
 .progress-bar .bar .text .description {
-  padding: 0 0 0 8px;
+  padding: 0 0 0 8px !important;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 20px;
 }
 
 .progress-bar .bar .text .fraction {

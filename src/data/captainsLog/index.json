@@ -888,5 +888,80 @@
     "date": "2019-12-23T07:06:59.645Z",
     "version": "2.13.0",
     "content": "- added new _Bounty Tracker_ view\n- slightly improved clamn roster perf\n- added some beautiful icons to the flashpoint module for _Now_ and _This Week_ views\n- fixed a glaring PGCR UI bug\n- general improvements every where\n- unified sub header styles"
+  },
+  {
+    "date": "2019-12-27T13:29:55.037Z",
+    "version": "2.13.15",
+    "content": "- updates rollup"
+  },
+  {
+    "date": "2019-12-29T04:51:27.877Z",
+    "version": "2.13.17",
+    "content": "- added a CSV data export feature to _Clan Admin_ view"
+  },
+  {
+    "date": "2019-12-29T14:37:51.170Z",
+    "version": "2.13.18",
+    "content": "- added new handwritten copy to _This Week_ view modules to better explain the related activity and objectives"
+  },
+  {
+    "date": "2019-12-31T04:01:42.244Z",
+    "version": "2.13.20",
+    "content": "- added activity modifiers to _This Week_ view's nightfalls module"
+  },
+  {
+    "date": "2019-12-31T12:07:22.981Z",
+    "version": "2.13.21",
+    "content": "- added spider's material exchange module to _Now_ view\n- some other good stuff"
+  },
+  {
+    "date": "2020-01-02T04:58:36.431Z",
+    "version": "2.13.25",
+    "content": "- flashpoint module improvements\n- changes to commonality stats\n- further work on _Inspect_ view"
+  },
+  {
+    "date": "2020-01-06T06:28:49.351Z",
+    "version": "2.13.28",
+    "content": "- further OAuth error handling improvements"
+  },
+  {
+    "date": "2020-01-07T00:18:18.379Z",
+    "version": "2.13.29",
+    "content": "- bug fix roll up"
+  },
+  {
+    "date": "2020-01-07T15:55:29.997Z",
+    "version": "2.13.30",
+    "content": "- Tooltips improvements\n- general design micro improvements\n- added new modules, _Luna's Recall_ and _Nightmare Hunts_, to _This Week_ view!"
+  },
+  {
+    "date": "2020-01-10T09:02:33.573Z",
+    "version": "2.14.0",
+    "content": "- _Compare_ view release"
+  },
+  {
+    "date": "2020-01-13T05:51:16.520Z",
+    "version": "2.14.5",
+    "content": "- translations\n- added a module and updated others"
+  },
+  {
+    "date": "2020-01-17T05:49:53.778Z",
+    "version": "2.14.22",
+    "content": "- various improvements"
+  },
+  {
+    "date": "2020-01-19T02:26:21.209Z",
+    "version": "2.14.30",
+    "content": "- various improvements\n\n- improved notification bar\n- refreshed landing view\n- translation improvements\n- _MemberLink_ improvements"
+  },
+  {
+    "date": "2020-01-23T09:29:14.794Z",
+    "version": "2.14.39",
+    "content": "- improvements, various\n- resurrected chalice tool"
+  },
+  {
+    "date": "2020-01-24T11:40:22.131Z",
+    "version": "2.14.45",
+    "content": "- fleshed out _Archives_ view"
   }
 ]

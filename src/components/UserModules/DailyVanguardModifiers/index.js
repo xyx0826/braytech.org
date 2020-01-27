@@ -82,7 +82,18 @@ class DailyVanguardModifiers extends React.Component {
         </div>
       );
     } else {
-      return null;
+      return (
+        <div className='user-module daily-vanguard-modifiers'>
+          <div className='sub-header'>
+            <div>{t('Vanguard Ops')}</div>
+          </div>
+          <div className='text'>
+            <p>
+              <em>{t('Vanguard Strikes are unavailable for this character.')}</em>
+            </p>
+          </div>
+        </div>
+      );
     }
   }
 }
@@ -93,7 +104,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default compose(
-  connect(mapStateToProps),
-  withTranslation()
-)(DailyVanguardModifiers);
+export default compose(connect(mapStateToProps), withTranslation())(DailyVanguardModifiers);

@@ -24,7 +24,7 @@ const ChecklistItem = props => {
         }
       />
       <div className='location'>{location}</div>
-      <Link className='button' to={`/maps/${destinationHash}/${mapHash}`}><i className='segoe-uniE0AB' /></Link>
+      {destinationHash && <Link className='button' to={`/maps/${destinationHash}/${mapHash}`}><i className='segoe-uniE0AB' /></Link>}
     </li>
   );
 };
@@ -56,7 +56,7 @@ const Checklist = props => {
         <div className='module-header'>
           <div className='sub-name'>{checklistItemName_plural}</div>
           {checklistCharacterBound ? (
-            <div className='tooltip' data-hash='character_bound' data-table='BraytechDefinition'>
+            <div className='tooltip' data-hash='character_bound' data-type='braytech'>
               <i className='segoe-uniE902' />
             </div>
           ) : null}

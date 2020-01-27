@@ -445,7 +445,7 @@ export const checklists = {
         const definitionDestination = manifest.DestinyDestinationDefinition[i.destinationHash];
 
         if (!definitionDestination) {
-          return <em>Forsaken Campaign</em>;
+          return <em>{i18n.t('Forsaken campaign')}</em>;
         }
 
         const definitionBubble = definitionDestination.bubbles.find(b => b.hash === i.bubbleHash);

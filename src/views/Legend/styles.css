@@ -142,7 +142,7 @@
 
 #legend .sub {
   font-size: 14px;
-  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: var(--fontText);
   /* text-transform: uppercase; */
   color: var(--text-primary-40);
 }

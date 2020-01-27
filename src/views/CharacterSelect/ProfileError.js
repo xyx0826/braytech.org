@@ -17,9 +17,9 @@ class ProfileError extends React.Component {
             <div>{t('Bungie error')}</div>
           </div>
           <p>
-            {error.ErrorCode}: {error.ErrorStatus}
+            {error.ErrorCode} {error.ErrorStatus}
           </p>
-          <p>{error.Message}</p>
+          <p><em>{error.Message}</em></p>
         </div>
       );
     }

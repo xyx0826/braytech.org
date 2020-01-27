@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 
-import { ReactComponent as EventsTheDawning } from '../../../media/events/svg/the-dawning.svg';
+import { ReactComponent as EventsTheDawning } from '../../../svg/events/the-dawning.svg';
 
 import './styles.css';
 

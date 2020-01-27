@@ -88,9 +88,9 @@ class Header extends React.Component {
   };
 
   render() {
-    const { t, route, viewport, member } = this.props;
+    const { t, location, viewport, member } = this.props;
 
-    const isProfileRoute = route.location.pathname.match(/\/(?:[1|2|3|4|5])\/(?:[0-9]+)\/(?:[0-9]+)/);
+    const isProfileRoute = utils.isProfileRoute(location);
 
     const views = [
       {
@@ -191,9 +191,25 @@ class Header extends React.Component {
         group: 0
       },
       {
+        name: t('Compare'),
+        desc: t('Find your fastest completions for Nightfalls and Nightmare Hunts'),
+        slug: '/compare',
+        exact: false,
+        profile: false,
+        group: 1
+      },
+      {
         name: t('Legend'),
         desc: t('Generate an infographic that details your Destiny legend'),
         slug: '/legend',
+        exact: false,
+        profile: false,
+        group: 1
+      },
+      {
+        name: t('Archives'),
+        desc: t('Interactive tools, manuals, legends, and other content preserved'),
+        slug: '/archives',
         exact: false,
         profile: false,
         group: 1
@@ -262,7 +278,7 @@ class Header extends React.Component {
                   <Link
                     to={{
                       pathname: '/character-select',
-                      state: { from: this.props.route.location }
+                      state: { from: this.props.location }
                     }}
                   />
                 </li>

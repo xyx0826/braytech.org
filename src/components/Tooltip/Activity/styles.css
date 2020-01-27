@@ -192,16 +192,30 @@
 }
 
 #tooltip .frame.activity .description pre {
-  padding: 0;
   font-style: normal;
   font-size: 14px;
   letter-spacing: unset;
 }
 
-#tooltip .frame.activity .time-to-complete {
-  padding: 12px 16px 0;
+#tooltip .frame.activity .matchmaking {
+  padding: 12px 16px 4px;
+}
+
+#tooltip .frame.activity .matchmaking:last-child {
+  padding-bottom: 16px;
+}
+
+#tooltip .frame.activity .matchmaking ul {
+  display: grid;
+  row-gap: 4px;
+}
+
+#tooltip .frame.activity .matchmaking ul li {
+  list-style-type: disc;
+  margin: 0 0 0 2rem;
+  line-height: 1.4;
   font-size: 14px;
-  color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 #tooltip .frame.activity .completed {

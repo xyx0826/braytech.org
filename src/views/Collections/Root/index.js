@@ -163,7 +163,7 @@ class Root extends React.Component {
           <div className='sub-header'>
             <div>{t('Search')}</div>
           </div>
-          <Search scope='collectibles' />
+          <Search table='DestinyCollectibleDefinition' />
           {profileCollectibles.recentCollectibleHashes ? (
             <>
               <div className='sub-header'>

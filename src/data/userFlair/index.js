@@ -1,6 +1,6 @@
 const userFlair = [
   {
-    user: '34611686018467516892',
+    user: '4611686018467516892',
     trophies: [
       {
         hash: 'patron-vip',
@@ -11,7 +11,7 @@ const userFlair = [
     ]
   },
   {
-    user: '14611686018449662397',
+    user: '4611686018449662397',
     trophies: [
       {
         hash: 'warmind',
@@ -22,7 +22,7 @@ const userFlair = [
     ]
   },
   {
-    user: '24611686018455756917',
+    user: '4611686018455756917',
     trophies: [
       {
         hash: 'patron',
@@ -33,7 +33,7 @@ const userFlair = [
     ]
   },
   {
-    user: '14611686018439502229',
+    user: '4611686018439502229',
     trophies: [
       {
         hash: 'patron',
@@ -44,7 +44,7 @@ const userFlair = [
     ]
   },
   {
-    user: '14611686018436742706',
+    user: '4611686018436742706',
     trophies: [
       {
         hash: 'patron',
@@ -55,7 +55,7 @@ const userFlair = [
     ]
   },
   {
-    user: '34611686018467367772',
+    user: '4611686018467367772',
     trophies: [
       {
         hash: 'patron',
@@ -66,7 +66,7 @@ const userFlair = [
     ]
   },
   {
-    user: '14611686018469277478',
+    user: '4611686018469277478',
     trophies: [
       {
         hash: 'patron',
@@ -77,7 +77,7 @@ const userFlair = [
     ]
   },
   {
-    user: '34611686018467293140',
+    user: '4611686018467293140',
     trophies: [
       {
         hash: 'patron',
@@ -88,7 +88,7 @@ const userFlair = [
     ]
   },
   {
-    user: '34611686018468077675',
+    user: '4611686018468077675',
     trophies: [
       {
         hash: 'patron',
@@ -99,7 +99,7 @@ const userFlair = [
     ]
   },
   {
-    user: '34611686018468058152',
+    user: '4611686018468058152',
     trophies: [
       {
         hash: 'patron',
@@ -110,7 +110,7 @@ const userFlair = [
     ]
   },
   {
-    user: '34611686018467184682',
+    user: '4611686018467184682',
     trophies: [
       {
         hash: 'patron',
@@ -121,7 +121,7 @@ const userFlair = [
     ]
   },
   // {      naughty boy had naughty name
-  //   user: '34611686018467230848',
+  //   user: '4611686018467230848',
   //   trophies: [
   //     {
   //       hash: 'patron',
@@ -132,7 +132,7 @@ const userFlair = [
   //   ]
   // },
   {
-    user: '34611686018470486255',
+    user: '4611686018470486255',
     trophies: [
       {
         hash: 'patron-vip',
@@ -143,7 +143,29 @@ const userFlair = [
     ]
   },
   {
-    user: '34611686018485794212',
+    user: '4611686018485794212',
+    trophies: [
+      {
+        hash: 'patron-vip',
+        primary: true,
+        icon: 'destiny-clovis_bray_device',
+        classnames: 'patron one-hundo'
+      }
+    ]
+  },
+  {
+    user: '4611686018472687920',
+    trophies: [
+      {
+        hash: 'patron-vip',
+        primary: true,
+        icon: 'destiny-clovis_bray_device',
+        classnames: 'patron one-hundo'
+      }
+    ]
+  },
+  {
+    user: '4611686018485909270',
     trophies: [
       {
         hash: 'patron-vip',

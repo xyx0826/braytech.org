@@ -32,7 +32,7 @@ export const armorStats = [
 ];
 
 /**
- * Which stats to display, and in which order.
+ * Which stats to display
  */
 export const statWhiteList = [
   3614673599, // Blast Radius
@@ -58,12 +58,12 @@ export const statWhiteList = [
 /**
  * Which hidden stats to display, and in which order.
  */
-export const statAdvWhiteList = [
-  1345609583, // Aim Assistance
-  3555269338, // Zoom
-  2715839340, // Recoil Direction  
-  1931675084, // Inventory Size
-];
+// export const statAdvWhiteList = [
+//   1345609583, // Aim Assistance
+//   3555269338, // Zoom
+//   2715839340, // Recoil Direction  
+//   1931675084, // Inventory Size
+// ];
 
 /** Stats that should be forced to display without a bar (just a number). */
 const statsNoBar = [
@@ -88,6 +88,30 @@ const hiddenStatsWhitelist = [
   2715839340 // Recoil Direction
 ];
 
+const statListOrder = [
+  3614673599, // Blast Radius
+  2523465841, // Velocity
+  2837207746, // Swing Speed (sword)
+  4043523819, // Impact
+  1240592695, // Range
+  2762071195, // Efficiency (sword)
+  209426660, // Defense (sword)
+  1591432999, // Accuracy
+  943549884, // Handling
+  155624089, // Stability
+  4188031367, // Reload Speed
+  1345609583, // Aim Assistance
+  3555269338, // Zoom
+  4284893193, // Rounds Per Minute
+  2961396640, // Charge Time
+  447667954, // Draw Time
+  3871231066, // Magazine
+  925767036, // Ammo Capacity
+  2715839340, // Recoil Direction
+  ...armorStats,
+  -1000 // Total
+];
+
 function shouldShowStat(item, statHash, statDisplays) {
   // Bows have a charge time stat that nobody asked for
   if (
@@ -99,13 +123,11 @@ function shouldShowStat(item, statHash, statDisplays) {
   }
 
   // Swords shouldn't show any hidden stats
-  const includeHiddenStats = !(
-    item.itemCategoryHashes && item.itemCategoryHashes.includes(54)
-  );
+  const includeHiddenStats = item.showHiddenStats && !(item.itemCategoryHashes && item.itemCategoryHashes.includes(54));
 
   return (
     // Must be on the whitelist
-    statWhiteList.includes(statHash) &&
+    statWhiteList.includes(statHash) ||
     // Must be on the list of interpolated stats, or included in the hardcoded hidden stats list
     (statDisplays[statHash] || (includeHiddenStats && hiddenStatsWhitelist.includes(statHash)))
   );
@@ -137,7 +159,7 @@ function buildStat(itemStat, statGroup, statDisplays) {
     investmentValue: itemStat.value || 0,
     statHash,
     displayProperties: definitionStat.displayProperties,
-    sort: statWhiteList.indexOf(statHash),
+    sort: statListOrder.indexOf(statHash),
     value,
     base: value,
     maximumValue,
@@ -163,7 +185,7 @@ function buildInvestmentStats(item, statGroupHash, statDisplays) {
   const itemStats = definitionItem.investmentStats || [];
 
   return compact(
-    Object.values(itemStats).map((itemStat) => {
+    Object.values(itemStats).map(itemStat => {
 
       const statHash = itemStat.statTypeHash;
 
@@ -314,7 +336,7 @@ function buildLiveStats(item, statsData, statGroup, statDisplays) {
         investmentValue: itemStat.value || 0,
         statHash,
         displayProperties: statDef.displayProperties,
-        sort: statWhiteList.indexOf(statHash),
+        sort: statListOrder.indexOf(statHash),
         value: itemStat.value,
         base: itemStat.value,
         maximumValue,
@@ -457,7 +479,7 @@ function totalStat(stats = []) {
       name: 'Total'
     },
     statHash: -1000,
-    sort: statWhiteList.indexOf(-1000),
+    sort: statListOrder.indexOf(-1000),
     value: total,
     base: baseTotal,
     maximumValue: 100,

@@ -202,7 +202,7 @@ class Raid extends React.Component {
 
     const leviathanStyle = key => {
       return (
-        <>
+        <div className='user-module raid'>
           <div className='sub-header'>
             <div>{t('Raid')}</div>
           </div>
@@ -257,19 +257,19 @@ class Raid extends React.Component {
               </ul>
             </>
           ) : null}
-        </>
+        </div>
       );
     };
 
     const bountyStyle = key => {
       return (
-        <>
+        <div className='user-module raid'>
           <div className='sub-header'>
             <div>{t('Raid')}</div>
           </div>
           <h3>{data[key].name}</h3>
           <h4>{t('Challenge')}</h4>
-          <div className='raid-challenge'>
+          <div className='challenge'>
             <ul className='list inventory-items'>
               <Items
                 items={data[key].challenge.map(c => {
@@ -292,7 +292,7 @@ class Raid extends React.Component {
           <ul className='list record-items'>
             <Records selfLinkFrom='/this-week' hashes={data[key].challenges[data[key].challenge[0]].triumphs.concat(data[key].triumphs)} ordered />
           </ul>
-        </>
+        </div>
       );
     };
 

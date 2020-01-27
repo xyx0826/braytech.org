@@ -58,9 +58,9 @@ export const sockets = item => {
   let sockets = null;
   let missingSockets = false;
 
-  const socketData = (item.itemInstanceId && item.itemComponents.sockets) || undefined;
-  const reusablePlugData = (item.itemInstanceId && item.itemComponents.reusablePlugs?.plugs) || undefined;
-  const plugObjectivesData = (item.itemInstanceId && item.itemComponents.plugObjectives?.objectivesPerPlug) || undefined;
+  const socketData = (item.itemInstanceId && item.itemComponents?.sockets) || undefined;
+  const reusablePlugData = (item.itemInstanceId && item.itemComponents?.reusablePlugs?.plugs) || undefined;
+  const plugObjectivesData = (item.itemInstanceId && item.itemComponents?.plugObjectives?.objectivesPerPlug) || undefined;
 
   if (socketData) {
     sockets = buildInstancedSockets(item, socketData, reusablePlugData, plugObjectivesData);
@@ -68,7 +68,7 @@ export const sockets = item => {
 
   // If we didn't have live data (for example, when viewing vendor items or collections),
   // get sockets from the item definition.
-  if (!sockets && definitionItem.sockets) {
+  if (!sockets && definitionItem?.sockets) {
     // If this really *should* have live sockets, but didn't...
     if (item.itemInstanceId && socketData && !socketData[item.itemInstanceId]) {
       missingSockets = true;
@@ -282,12 +282,12 @@ function buildDefinedSocket(item, socketDef, index) {
     plugOptions.push(buildDefinedPlug(socketDef, { plugItemHash: plugItem.hash }));
   }
 
-  const isIntrinsic = plugItem && plugItem.itemCategoryHashes && plugItem.itemCategoryHashes.includes(2237038328);
-  const isMod = Boolean(plugItem && plugItem.itemCategoryHashes && plugItem.itemCategoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0);
-  const isShader = Boolean(plugItem && plugItem.inventory && plugItem.inventory.bucketTypeHash === enums.DestinyInventoryBucket.Shaders);
-  const isOrnament = Boolean(plugItem && plugItem.itemSubType === enums.DestinyItemSubType.Ornament && !EXCLUDED_PLUGS.has(plugItem.hash));
-  const isTracker = Boolean(plugItem && plugItem.plug && plugItem.plug.plugCategoryIdentifier && plugItem.plug.plugCategoryIdentifier.includes('trackers'));
-
+  const isIntrinsic = Boolean(plugOptions && plugOptions.find(o => o.isIntrinsic));
+  const isMod = Boolean(plugOptions && plugOptions.find(o => o.isMod));
+  const isShader = Boolean(plugOptions && plugOptions.find(o => o.isShader));
+  const isOrnament = Boolean(plugOptions && plugOptions.find(o => o.isOrnament));
+  const isTracker = Boolean(plugOptions && plugOptions.find(o => o.isTracker));
+  
   return {
     socketIndex: index,
     plug: plugItem && {
@@ -345,6 +345,7 @@ function buildDefinedPlug(socketDef, plug) {
   }
 
   const isActive = Boolean(socketDef.singleInitialItemHash && socketDef.singleInitialItemHash === plugHash);
+  const isIntrinsic = Boolean(definitionPlugItem.itemCategoryHashes && definitionPlugItem.itemCategoryHashes.includes(2237038328));
   const isMod = Boolean(definitionPlugItem.itemCategoryHashes && definitionPlugItem.itemCategoryHashes.filter(hash => modItemCategoryHashes.includes(hash)).length > 0);
   const isShader = Boolean(definitionPlugItem.inventory && definitionPlugItem.inventory.bucketTypeHash === enums.DestinyInventoryBucket.Shaders);
   const isOrnament = Boolean(definitionPlugItem.itemSubType === enums.DestinyItemSubType.Ornament && !EXCLUDED_PLUGS.has(definitionPlugItem.hash));
@@ -354,6 +355,7 @@ function buildDefinedPlug(socketDef, plug) {
     plugItem: definitionPlugItem,
     isEnabled: true,
     isActive,
+    isIntrinsic,
     isMod,
     isShader,
     isOrnament,

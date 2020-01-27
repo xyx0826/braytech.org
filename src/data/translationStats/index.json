@@ -1,265 +1,112 @@
 {
   "de": {
-    "translated": 458,
-    "notTranslated": 119,
+    "translated": 418,
+    "notTranslated": 203,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "debug": {
-    "translated": 557,
+    "translated": 621,
     "notTranslated": 0,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
     "removed": []
   },
   "en": {
-    "translated": 582,
+    "translated": 621,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "es-mx": {
-    "translated": 0,
-    "notTranslated": 550,
+    "translated": 592,
+    "notTranslated": 29,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Featured activities",
-      "Full strength",
-      "Playlists",
-      "These activities are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Weak",
-      "Week"
-    ]
+    "removed": []
   },
   "es": {
-    "translated": 552,
-    "notTranslated": 28,
+    "translated": 620,
+    "notTranslated": 1,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "fr": {
-    "translated": 505,
-    "notTranslated": 67,
+    "translated": 544,
+    "notTranslated": 77,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "These activities are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "it": {
-    "translated": 552,
-    "notTranslated": 28,
+    "translated": 610,
+    "notTranslated": 11,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "ja": {
-    "translated": 272,
-    "notTranslated": 291,
+    "translated": 552,
+    "notTranslated": 69,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Featured activities",
-      "These activities are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Weak"
-    ]
+    "removed": []
   },
   "ko": {
-    "translated": 298,
-    "notTranslated": 270,
+    "translated": 278,
+    "notTranslated": 343,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Featured activities",
-      "Playlists",
-      "These activities are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 550,
+    "notTranslated": 621,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Featured activities",
-      "Full strength",
-      "Playlists",
-      "These activities are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Weak",
-      "Week"
-    ]
+    "removed": []
   },
   "pt-br": {
-    "translated": 531,
-    "notTranslated": 49,
+    "translated": 535,
+    "notTranslated": 86,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "ru": {
-    "translated": 0,
-    "notTranslated": 550,
+    "translated": 571,
+    "notTranslated": 50,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Featured activities",
-      "Full strength",
-      "Playlists",
-      "These activities are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents.",
-      "Weak",
-      "Week"
-    ]
+    "removed": []
   },
   "zh-chs": {
-    "translated": 469,
-    "notTranslated": 111,
+    "translated": 451,
+    "notTranslated": 170,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   },
   "zh-cht": {
-    "translated": 469,
-    "notTranslated": 111,
+    "translated": 425,
+    "notTranslated": 196,
     "added": [
-      "Event",
-      "Greater",
-      "Lesser",
-      "Savathûn's Curse: implemented with Riven's dying breath and reset with every death of Dûl Incaru.",
-      "Stage",
-      "The Dreaming City is in stage {{week}} of its ongoing curse.",
-      "The elemental burn shared by most activities this week.",
-      "The elemental burn shared by most activities this week. These activities include {{activities}}.",
-      "Vanguard singe"
+      "Valor points"
     ],
-    "removed": [
-      "Activities that are featured this week. Exploit them for their pinnacle rewards and total joy in the demise of your opponents."
-    ]
+    "removed": []
   }
 }

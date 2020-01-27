@@ -2,7 +2,7 @@
   position: relative;
   padding: 0 3rem;
   background-color: #000000;
-  z-index: 500;
+  z-index: 19;
 }
 
 #service-worker-update .wrapper {
@@ -19,7 +19,7 @@
 #service-worker-update .wrapper > .text {
   display: grid;
   align-content: center;  
-  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: var(--fontText);
   font-size: 13px;
 }
 

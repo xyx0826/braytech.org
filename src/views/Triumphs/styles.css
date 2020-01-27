@@ -148,7 +148,7 @@
 
 #triumphs .node.seal .children h4.completed {
   color: rgb(206, 174, 51);
-  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: var(--fontText);
 }
 
 #triumphs .node.seal .children .progress {
@@ -235,11 +235,13 @@
 
 
 
-#triumphs > .almost-complete {
+#triumphs > .almost-complete,
+#triumphs > .dud-debug {
   width: 100%;
 }
 
-#triumphs > .almost-complete .list.record-items {
+#triumphs > .almost-complete .list.record-items,
+#triumphs > .dud-debug .list.record-items {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: 20px 0 0;
 }
@@ -247,7 +249,7 @@
 
 
 #triumphs.root .list.notification-unredeemed {
-  margin: 0 0 2rem;
+  margin: 0 0 calc(2rem + 24px);
   grid-template-columns: 1fr;
 }
 
@@ -259,7 +261,7 @@
   padding: 0 1rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: var(--fontText);
 }
 
 #triumphs.root .list.notification-unredeemed li .text {
@@ -268,7 +270,8 @@
 
 
 @media screen and (max-width: 1600px) {
-  #triumphs > .almost-complete .list.record-items {
+  #triumphs > .almost-complete .list.record-items,
+  #triumphs > .dud-debug .list.record-items {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
@@ -278,13 +281,15 @@
     grid-template-columns: 1fr;
   }
   
-  #triumphs > .almost-complete .list.record-items {
+  #triumphs > .almost-complete .list.record-items,
+  #triumphs > .dud-debug .list.record-items {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 600px) {
-  #triumphs > .almost-complete .list.record-items {
+  #triumphs > .almost-complete .list.record-items,
+  #triumphs > .dud-debug .list.record-items {
     grid-template-columns: 1fr;
   }
 }

@@ -93,8 +93,8 @@ export const headOverride = {
       id: 'head-col-1',
       mods: [
         {
-          id: 'CrucibleRotators-0',
-          component: 'CrucibleRotators'
+          id: 'WeeklyVanguardSinge-0',
+          component: 'WeeklyVanguardSinge'
         }
       ]
     },
@@ -102,8 +102,8 @@ export const headOverride = {
       id: 'head-col-2',
       mods: [
         {
-          id: 'WeeklyVanguardSinge-0',
-          component: 'WeeklyVanguardSinge'
+          id: 'DreamingCityCurseCycle-0',
+          component: 'DreamingCityCurseCycle'
         }
       ]
     },
@@ -111,8 +111,8 @@ export const headOverride = {
       id: 'head-col-3',
       mods: [
         {
-          id: 'DreamingCityCurseCycle-0',
-          component: 'DreamingCityCurseCycle'
+          id: 'CrucibleRotators-0',
+          component: 'CrucibleRotators'
         }
       ]
     }
@@ -140,9 +140,10 @@ class Customise extends React.Component {
     const sourceList = this.getList(source.droppableId);
     const destinationList = this.getList(destination.droppableId);
 
-    // prevents modules being added or moved to groups with "full" modules i.e. SeasonPass or "double" modules
-    if (destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length || moduleRules.double.filter(f => f === m.component).length).length).length) {
+    // prevents modules being added or moved to columns with "full" modules i.e. SeasonPass or "double" modules
+    if (!(sourceList.group.id === destinationList.group.id && sourceList.col.id === destinationList.col.id) && destinationList.group.cols.filter(c => c.mods.filter(m => moduleRules.full.filter(f => f === m.component).length || moduleRules.double.filter(f => f === m.component).length).length).length) {
       console.log('User attempted to add/move module to group with full/double module');
+      
       return;
     };
 
@@ -457,6 +458,14 @@ class Customise extends React.Component {
     Reckoning: {
       name: manifest.DestinyPlaceDefinition[4148998934]?.displayProperties.name,
       description: manifest.DestinyPlaceDefinition[4148998934]?.displayProperties.description
+    },
+    Luna: {
+      name: manifest.DestinyObjectiveDefinition[1296970487]?.displayProperties.name,
+      description: manifest.DestinyInventoryItemDefinition[2178015352]?.displayProperties.description
+    },
+    NightmareHunts: {
+      name: this.props.t('Nightmare Hunts'),
+      description: this.props.t(`Hunt down this week's available nightmares for... satisfaction.`)
     }
   };
 
@@ -511,6 +520,20 @@ class Customise extends React.Component {
                           {(provided, snapshot) => (
                             <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} className='column-inner'>
                               {col.mods.map((mod, i) => {
+                                if (!this.modules[mod.component]) {
+                                  return (
+                                    <div key={mod.id} className={cx('module', 'button', { disabled: group.id === 'head' })}>
+                                      <div className='text'>
+                                        <div className='name'>{t('Error')}</div>
+                                        <div className='description'>{t('An error occurred while attempting to render module: {{moduleName}}', { moduleName: mod.component })}</div>
+                                      </div>
+                                      <Button className='remove' disabled={group.id === 'head'} onClick={this.handler_removeMod(col.id, mod.id)}>
+                                        <i className='segoe-uniE1061' />
+                                      </Button>
+                                    </div>
+                                  );
+                                }
+
                                 const { name, description } = this.modules[mod.component];
 
                                 const settings =
@@ -622,7 +645,7 @@ class ModulesSelector extends React.Component {
         <div className='modules-selector expanded'>
           <Button text={t('Cancel')} onClick={this.handler_compress} />
           <div className='list'>
-            {Object.keys(modules).map(key => {
+            {Object.keys(modules).filter(key => !headOverride?.cols.filter(c => c.mods.filter(m => m.component === key).length).length).map(key => {
               const { name, description, used, limit, instances } = modules[key];
 
               const unavailable = groupType === 'head' && !moduleRules.head.includes(key);

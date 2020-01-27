@@ -38,7 +38,8 @@ import NotificationProgress from './components/Notifications/NotificationProgres
 import ServiceWorkerUpdate from './components/Notifications/ServiceWorkerUpdate';
 import RefreshService from './components/RefreshService';
 
-import ProfileRoutes from './ProfileRoutes';
+import ProfileRoutes from './routes/Profile';
+import ArchivesRoutes from './routes/Archives';
 
 import Loading from './views/Loading';
 import Index from './views/Index';
@@ -54,6 +55,7 @@ import Maps from './views/Maps';
 import Legend from './views/Legend';
 import ClanBannerBuilder from './views/ClanBannerBuilder';
 import PGCR from './views/PGCR';
+import Compare from './views/Compare';
 
 import Test from './views/Test';
 import TestThree from './views/TestThree';
@@ -111,7 +113,7 @@ class App extends React.Component {
       });
     } else {
       moment.defineLocale('relative-sml', {
-        parentLocale: 'en',
+        parentLocale: momentLocale,
         relativeTime: {
           future: 'in %s',
           past: '%s ago',
@@ -267,20 +269,16 @@ class App extends React.Component {
               <NotificationLink />
               <NotificationProgress />
 
-              {/* Don't run the refresh service if we're currently selecting
-                a character, as the refresh will cause the member to
-                continually reload itself */}
-              <Route path='/character-select' children={({ match, ...rest }) => !match && <RefreshService {...this.props} />} />
-
               <Tooltip {...route} onRef={ref => (this.TooltipComponent = ref)} />
               <Route component={GoogleAnalytics.GoogleAnalytics} />
               <div className='main'>
                 <Switch>
                   <Route path='/:membershipType([1|2|3|4|5])/:membershipId([0-9]+)/:characterId([0-9]+)?' render={route => <ProfileRoutes {...route} />} />
+                  <Route path='/archives' component={ArchivesRoutes} />
                   <Route
                     render={() => (
                       <>
-                        <Route render={route => <Header route={route} {...this.state} {...this.props} />} />
+                        <Route render={route => <Header {...route} {...this.state} {...this.props} />} />
                         <Switch>
                           <RedirectRoute path='/clan' />
                           <RedirectRoute path='/character' exact />
@@ -296,6 +294,7 @@ class App extends React.Component {
                           <Route path='/pgcr/:instanceId?' exact render={route => <PGCR {...route} />} />
                           <Route path='/inspect/:hash?' exact component={Inspect} />
                           <Route path='/read/:kind?/:hash?' exact component={Read} />
+                          <Route path='/compare/:object?' exact component={Compare} />
                           <Route path='/maps/:map?/:highlight?' render={route => <Maps {...route} />} />
                           <Route path='/legend' exact render={route => <Legend {...route} />} />
                           <Route path='/settings' exact render={route => <Settings {...route} availableLanguages={this.availableLanguages} />} />
@@ -312,6 +311,12 @@ class App extends React.Component {
                   />
                 </Switch>
               </div>
+
+              {/* Don't run the refresh service if we're currently selecting
+                a character, as the refresh will cause the member to
+                continually reload itself */}
+              <Route path='/character-select' children={route => !route.match && <RefreshService {...route} />} />
+
               <Footer />
             </div>
           )}

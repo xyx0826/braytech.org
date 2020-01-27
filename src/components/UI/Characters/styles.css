@@ -59,7 +59,7 @@
   top: 13px;
   font-size: 38px;
   font-weight: 500;
-  font-family: 'Neue Haas Grotesk Text', 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: var(--fontText);
   line-height: 34px;
   color: #e5d163;
   text-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);

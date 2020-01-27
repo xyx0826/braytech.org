@@ -140,7 +140,7 @@ class Mode extends React.Component {
           {mini ? (
             <div>
               <div className='name'>{t('Points')}</div>
-              <div className='value'>{characterProgressions[characterId].progressions[hash].currentProgress.toLocaleString('en-us')}</div>
+              <div className='value'>{characterProgressions[characterId].progressions[hash].currentProgress.toLocaleString()}</div>
             </div>
           ) : null}
           {!mini ? (
@@ -152,7 +152,7 @@ class Mode extends React.Component {
           {hash !== 2000925172 ? (
             <>
               <div>
-                <div className='tooltip' data-hash='total_resets' data-table='BraytechDefinition'>
+                <div className='tooltip' data-hash='total_resets' data-type='braytech'>
                   <div className='name'>{t('Total resets')}</div>
                   <div className='value'>{this.data[hash].totalResetCount}</div>
                 </div>

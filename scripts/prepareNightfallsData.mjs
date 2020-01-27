@@ -15,7 +15,8 @@ async function run() {
       collectibles: [
         3036030066, // Tilt Fuse
         3490589921 // The Arms Dealer (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     3108813009: {
       // Warden of Nothing
@@ -27,7 +28,8 @@ async function run() {
       collectibles: [
         1279318101, // Warden's Law
         2263264048 // Warden of Nothing (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     3034843176: {
       // The Corrupted
@@ -39,7 +41,8 @@ async function run() {
       collectibles: [
         1099984904, // Horror's Least
         1410290331 // The Corrupted (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     3280234344: {
       // Savathûn's Song
@@ -51,7 +54,8 @@ async function run() {
       collectibles: [
         1333654061, // Duty Bounds
         3490589926 // Savathûn's Song (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     3289589202: {
       // The Pyramidion
@@ -63,7 +67,8 @@ async function run() {
       collectibles: [
         1152758802, // Silicon Neuroma
         3490589930 // The Pyramidion (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     3718330161: {
       // Tree of Probabilities
@@ -75,7 +80,8 @@ async function run() {
       collectibles: [
         1279318110, // D.F.A.
         3490589924 // Tree of Probabilities (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     3372160277: {
       // Lake of Shadows
@@ -87,7 +93,8 @@ async function run() {
       collectibles: [
         1602518767, // The Militia's Birthright
         3896331530 // Lake of Shadows (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     1391780798: {
       // Broodhold
@@ -110,7 +117,8 @@ async function run() {
       collectibles: [
         1074861258, // Mindbender's Ambition
         3314387486 // The Hollowed Lair (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     272852450: {
       // Will of the Thousands
@@ -122,7 +130,8 @@ async function run() {
       collectibles: [
         2466440635, // Worm God Incarnation
         1766893928 // Will of the Thousands (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     4259769141: {
       // The Inverted Spire
@@ -134,7 +143,8 @@ async function run() {
       collectibles: [
         1718922261, // Trichromatica
         3490589925 //The Inverted SPire (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     522318687: {
       // Strange Terrain
@@ -146,7 +156,8 @@ async function run() {
       collectibles: [
         1534387877, // BrayTech Osprey
         1766893929 // Strange Terrain (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     1282886582: {
       // Exodus Crash
@@ -158,7 +169,8 @@ async function run() {
       collectibles: [
         3036030067, // Impact Velocity
         3490589927 // Exodus Crash (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     936308438: {
       // A Garden World
@@ -170,7 +182,8 @@ async function run() {
       collectibles: [
         2448009818, //Universal Wavefunction
         3490589931 // A Garden World (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     1034003646: {
       // The Insight Terminus
@@ -182,7 +195,8 @@ async function run() {
       collectibles: [
         1186314105, // The Long Goodbye
         465974149 // Insight Terminus (Emblem)
-      ]
+      ],
+      2618436059: true
     },
     629542775: {
       // The Festering Core
@@ -232,6 +246,27 @@ async function run() {
   console.log(JSON.stringify(obj));
 
   console.log(' ');
+
+  console.log('________________');
+
+  console.log(`{
+      
+${_.orderBy(Object.keys(nightfalls), [n => manifest.DestinyActivityDefinition[n].displayProperties.name.replace('The ','').replace('A ','')], ['asc']).map((n,i) => {
+
+  let hash = Object.values(manifest.DestinyActivityDefinition).filter(d => d.activityModeTypes && d.activityModeTypes.includes(46) && !d.guidedGame && d.modifiers && d.modifiers.length > 2 && d.displayProperties && d.displayProperties.name && d.displayProperties.name.includes(manifest.DestinyActivityDefinition[n].displayProperties.name.replace('Nightfall: ', ''))).map(d => d.hash).join('');
+
+  return (` ${hash}: {     // ${manifest.DestinyActivityDefinition[n].displayProperties.name}
+    sort: ${i + 1},
+    triumphs: [${nightfalls[n].triumphs.map(hash => hash).join(', ')}],
+    items: [${nightfalls[n].items.map(hash => hash).join(', ')}],
+    collectibles: [${nightfalls[n].collectibles.map(hash => hash).join(', ')}],
+    ordealHashes: [${ordeals.filter(o => o.displayProperties.description === manifest.DestinyActivityDefinition[hash].displayProperties.name.replace('Nightfall: ', '')).map(h => h.hash).join(', ')}],
+    2618436059: ${Boolean(nightfalls[n][2618436059])}
+  }`);
+
+  }).join(',\n')}
+
+}`);
 
 }
 

@@ -4,12 +4,7 @@ import i18n from 'i18next';
 import manifest from './manifest';
 import * as enums from './destinyEnums';
 
-// TODO: we can just use itemCategoryHashes for this now?
-export const isOrnament = item => item.inventory && item.inventory.stackUniqueLabel && item.plug && item.plug.plugCategoryIdentifier && item.plug.plugCategoryIdentifier.includes('skins');
-
-export function hasCategoryHash(item, categoryHash) {
-  return item.itemCategoryHashes && item.itemCategoryHashes.includes(categoryHash);
-}
+export const isProfileRoute = location => location.pathname.match(/\/(?:[1|2|3|4|5])\/(?:[0-9]+)\/(?:[0-9]+)/);
 
 export function totalValor() {
   return Object.keys(manifest.DestinyProgressionDefinition[2626549951].steps).reduce((sum, key) => {
@@ -65,8 +60,68 @@ export function collectionTotal(data) {
   return collectionTotal;
 }
 
+export const calculateResets = (progressionHash, characterId, characterProgressions, characterRecords, profileRecords) => {
+  const infamySeasons = [{ recordHash: 3901785488, objectiveHash: 4210654397 }].map(season => {
+    const definitionRecord = manifest.DestinyRecordDefinition[season.recordHash];
+
+    const recordScope = definitionRecord.scope || 0;
+    const recordData = recordScope === 1 ? characterRecords && characterRecords[characterId].records[definitionRecord.hash] : profileRecords && profileRecords[definitionRecord.hash];
+
+    season.resets = (recordData && recordData.objectives && recordData.objectives.find(o => o.objectiveHash === season.objectiveHash) && recordData.objectives.find(o => o.objectiveHash === season.objectiveHash).progress) || 0;
+
+    return season;
+  });
+
+  const valorSeasons = [
+    {
+      recordHash: 1341325320,
+      objectiveHash: 1089010148
+    },
+    {
+      recordHash: 2462707519,
+      objectiveHash: 2048068317
+    },
+    {
+      recordHash: 3666883430,
+      objectiveHash: 3211089622
+    },
+    {
+      recordHash: 2110987253,
+      objectiveHash: 1898743615
+    },
+    {
+      recordHash: 510151900,
+      objectiveHash: 2011701344
+    }
+  ].map(season => {
+    const definitionRecord = manifest.DestinyRecordDefinition[season.recordHash];
+
+    const recordScope = definitionRecord.scope || 0;
+    const recordData = recordScope === 1 ? characterRecords && characterRecords[characterId].records[definitionRecord.hash] : profileRecords && profileRecords[definitionRecord.hash];
+
+    season.resets = (recordData && recordData.objectives && recordData.objectives.find(o => o.objectiveHash === season.objectiveHash) && recordData.objectives.find(o => o.objectiveHash === season.objectiveHash).progress) || 0;
+
+    return season;
+  });
+
+  return {
+    current: characterProgressions[characterId].progressions[progressionHash] && Number.isInteger(characterProgressions[characterId].progressions[progressionHash].currentResetCount) ? characterProgressions[characterId].progressions[progressionHash].currentResetCount : '?',
+    // total:
+    //   characterProgressions[characterId].progressions[progressionHash] && characterProgressions[characterId].progressions[progressionHash].seasonResets
+    //     ? characterProgressions[characterId].progressions[progressionHash].seasonResets.reduce((acc, curr) => {
+    //         if (curr.season > 3) {
+    //           return acc + curr.resets;
+    //         } else {
+    //           return acc;
+    //         }
+    //       }, 0)
+    //     : '?'
+    total: (progressionHash === 3882308435 ? valorSeasons : infamySeasons).reduce((a, v) => a + v.resets, 0)
+  };
+};
+
 export function progressionSeasonRank(member) {
-  if (!member) {
+  if (!member?.data || !member.data.profile?.characterProgressions?.data || !member.data.profile?.characters?.data) {
     console.warn('No member data provided');
     
     return false;
@@ -75,10 +130,15 @@ export function progressionSeasonRank(member) {
   const definitionSeason = manifest.DestinySeasonDefinition[manifest.settings.destiny2CoreSettings.currentSeasonHash];
   const definitionSeasonPass = manifest.DestinySeasonPassDefinition[definitionSeason.seasonPassHash];
 
-  let progression = {...member.data.profile.characterProgressions.data[member.characterId].progressions[definitionSeasonPass.rewardProgressionHash]};
+  const characterId = member.characterId || member.data.profile.characters.data[0].characterId;
 
-  if (progression.level === progression.levelCap) {
-    progression = { ...member.data.profile.characterProgressions.data[member.characterId].progressions[definitionSeasonPass.prestigeProgressionHash] };
+  const progressionHash = member.data.profile.characterProgressions.data[characterId]?.progressions[definitionSeasonPass.rewardProgressionHash]?.level === member.data.profile.characterProgressions.data[characterId]?.progressions[definitionSeasonPass.rewardProgressionHash]?.levelCap ? definitionSeasonPass.prestigeProgressionHash : definitionSeasonPass.rewardProgressionHash;
+
+  const progression = {
+    ...member.data.profile.characterProgressions.data[characterId].progressions[progressionHash]
+  };
+
+  if (progressionHash === definitionSeasonPass.prestigeProgressionHash) {
     progression.level += 100;
   }
   
@@ -225,48 +285,33 @@ export const gameVersion = (versionsOwned, versionHash) => {
 }
 
 export function classHashToString(hash, gender) {
-  let classDef = manifest.DestinyClassDefinition[hash];
-  if (!classDef) return 'uh oh';
-  if (classDef.genderedClassNames) {
-    return classDef.genderedClassNames[gender === 1 ? 'Female' : 'Male'];
+  const definitionClass = manifest.DestinyClassDefinition[hash];
+
+  if (!definitionClass) return '';
+
+  if (definitionClass.genderedClassNames) {
+    return definitionClass.genderedClassNames[gender === 1 ? 'Female' : 'Male'];
   }
-  return classDef.displayProperties.name;
+
+  return definitionClass.displayProperties.name;
+}
+
+export function classTypeToString(type, gender) {
+  const classHash = Object.keys(manifest.DestinyClassDefinition).find(key => manifest.DestinyClassDefinition[key].classType === type);
+
+  return classHashToString(classHash, gender);
 }
 
 export function raceHashToString(hash, gender, nonGendered = false) {
-  let raceDef = manifest.DestinyRaceDefinition[hash];
-  if (!raceDef) return 'uh oh';
-  if (raceDef.genderedRaceNames && !nonGendered) {
-    return raceDef.genderedRaceNames[gender === 1 ? 'Female' : 'Male'];
-  }
-  return raceDef.displayProperties.name;
-}
+  const definitionRace = manifest.DestinyRaceDefinition[hash];
 
-export function getDefName(hash, defType = 'DestinyInventoryItemDefinition') {
-  try {
-    return manifest[defType][hash].displayProperties.name;
-  } catch (e) {}
-  return 'uh oh';
-}
+  if (!definitionRace) return '';
 
-export function classTypeToString(str) {
-  let string;
-
-  switch (str) {
-    case 0:
-      string = 'Titan';
-      break;
-    case 1:
-      string = 'Hunter';
-      break;
-    case 2:
-      string = 'Warlock';
-      break;
-    default:
-      string = 'uh oh';
+  if (definitionRace.genderedRaceNames && !nonGendered) {
+    return definitionRace.genderedRaceNames[gender === 1 ? 'Female' : 'Male'];
   }
 
-  return string;
+  return definitionRace.displayProperties.name;
 }
 
 export function membershipTypeToString(str, short = false) {
@@ -305,58 +350,67 @@ export function membershipTypeToString(str, short = false) {
   return string;
 }
 
-export function damageTypeToString(type) {
+export function damageTypeToAsset(type) {
   let string;
+  let char;
 
   switch (type) {
     case 3373582085:
-      string = 'Kinetic';
+      string = 'kinetic';
+      char = '';
       break;
     case 1847026933:
-      string = 'Solar';
+      string = 'solar';
+      char = '';
       break;
     case 2303181850:
-      string = 'Arc';
+      string = 'arc';
+      char = '';
       break;
     case 3454344768:
-      string = 'Void';
-      break;
-    default:
-      string = 'idk';
-  }
-
-  return string;
-}
-
-export function energyTypeToAsset(type) {
-  let string;
-  let icon;
-
-  switch (type) {
-    case 591714140:
-      string = 'solar';
-      icon = '';
-      break;
-    case 728351493:
-      string = 'arc';
-      icon = '';
-      break;
-    case 4069572561:
       string = 'void';
-      icon = '';
-      break;
-    case 1198124803:
-      string = 'any';
-      icon = '';
+      char = '';
       break;
     default:
       string = '';
-      icon = '';
+      char = '';
   }
 
   return {
     string,
-    icon
+    char
+  };
+}
+
+export function energyTypeToAsset(type) {
+  let string;
+  let char;
+
+  switch (type) {
+    case 591714140:
+      string = 'solar';
+      char = '';
+      break;
+    case 728351493:
+      string = 'arc';
+      char = '';
+      break;
+    case 4069572561:
+      string = 'void';
+      char = '';
+      break;
+    case 1198124803:
+      string = 'any';
+      char = '';
+      break;
+    default:
+      string = '';
+      char = '';
+  }
+
+  return {
+    string,
+    char
   };
 }
 
@@ -690,24 +744,28 @@ export function getSubclassPathInfo(itemComponents, itemData) {
   return path;
 }
 
-export function ammoTypeToString(type) {
+export function ammoTypeToAsset(type) {
   let string;
+  let icon;
 
   switch (type) {
     case 1:
-      string = 'Primary';
+      string = manifest.DestinyPresentationNodeDefinition[1731162900]?.displayProperties?.name;
       break;
     case 2:
-      string = 'Special';
+      string = manifest.DestinyPresentationNodeDefinition[638914517]?.displayProperties?.name;
       break;
     case 3:
-      string = 'Heavy';
+      string = manifest.DestinyPresentationNodeDefinition[3686962409]?.displayProperties?.name;
       break;
     default:
-      string = 'idk';
+      string = '';
   }
 
-  return string;
+  return {
+    string,
+    icon
+  };
 }
 
 // matches first bracketed thing in the string, or certain private unicode characters
@@ -843,17 +901,23 @@ export function lastPlayerActivity(member) {
 
     const lastActivity = member.profile.characterActivities.data[character.characterId];
 
-    const definitionActivity = manifest.DestinyActivityDefinition[lastActivity.currentActivityHash];
-    const definitionActivityMode = definitionActivity ? (definitionActivity.placeHash === 2961497387 ? false : manifest.DestinyActivityModeDefinition[lastActivity.currentActivityModeHash]) : false;
-    const definitionPlace = definitionActivity ? definitionActivity.placeHash ? manifest.DestinyPlaceDefinition[definitionActivity.placeHash] : false : false;
+    // small adjustment to Garden of Salvation
+    // https://github.com/Bungie-net/api/issues/1184
+    if (lastActivity.currentActivityModeHash === 2166136261) {
+      lastActivity.currentActivityModeHash = 2043403989;
+    }
+
+    const definitionActivity = lastActivity.currentActivityHash && manifest.DestinyActivityDefinition[lastActivity.currentActivityHash];
+    const definitionActivityMode =  lastActivity.currentActivityModeHash && manifest.DestinyActivityModeDefinition[lastActivity.currentActivityModeHash];
+    const definitionPlace = definitionActivity.placeHash && manifest.DestinyPlaceDefinition[definitionActivity.placeHash];
     const definitionPlaceOrbit = manifest.DestinyPlaceDefinition[2961497387];
-    const definitionActivityPlaylist = manifest.DestinyActivityDefinition[lastActivity.currentPlaylistActivityHash];
+    const definitionActivityPlaylist = lastActivity.currentPlaylistActivityHash && manifest.DestinyActivityDefinition[lastActivity.currentPlaylistActivityHash];
     
     let lastActivityString = false;
     if (definitionActivity && !definitionActivity.redacted) {
       if (definitionActivity.activityTypeHash === 400075666) { // Menagerie
 
-        lastActivityString = `${definitionActivity.selectionScreenDisplayProperties && definitionActivity.selectionScreenDisplayProperties.name ? definitionActivity.selectionScreenDisplayProperties.name : definitionActivity.displayProperties && definitionActivity.displayProperties.name}`;
+        lastActivityString = `${definitionActivity.selectionScreenDisplayProperties?.name ? definitionActivity.selectionScreenDisplayProperties.name : definitionActivity.displayProperties && definitionActivity.displayProperties.name}`;
 
       } else if (lastActivity.currentActivityModeHash === 547513715 && enums.ordealHashes.includes(lastActivity.currentActivityHash)) { // Nightfall ordeals
 
@@ -861,7 +925,7 @@ export function lastPlayerActivity(member) {
 
       } else if (lastActivity.currentActivityModeHash === 547513715) { // Scored Nightfall Strikes
 
-        lastActivityString = definitionActivity.selectionScreenDisplayProperties && definitionActivity.selectionScreenDisplayProperties.name ? `${definitionActivityMode.displayProperties.name}: ${definitionActivity.selectionScreenDisplayProperties.name}` : `${definitionActivityMode.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
+        lastActivityString = definitionActivity.selectionScreenDisplayProperties?.name ? `${definitionActivityMode.displayProperties.name}: ${definitionActivity.selectionScreenDisplayProperties.name}` : `${definitionActivityMode.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
 
       } else if (lastActivity.currentActivityModeHash === 2319502047) { // The Sundial
 
@@ -883,8 +947,12 @@ export function lastPlayerActivity(member) {
 
         lastActivityString = `${definitionActivityPlaylist.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
 
-      } else if (definitionActivityMode) { // Default
+      } else if (definitionActivity?.activityTypeHash === 332181804) { // Nightmare Hunts
+        
+        lastActivityString = definitionActivity.displayProperties.name;
 
+      } else if (definitionActivityMode && definitionActivity?.placeHash !== 2961497387) { // Default
+        
         lastActivityString = `${definitionActivityMode.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
 
       } else if (definitionActivity.placeHash === 2961497387) { // Orbit
@@ -909,7 +977,8 @@ export function lastPlayerActivity(member) {
       lastPlayed: lastActivity ? lastActivity.dateActivityStarted : member.profile.profile.data.dateLastPlayed,
       lastActivity,
       lastActivityString,
-      lastMode
+      lastMode,
+      matchmakingProperties: definitionActivityPlaylist?.matchmaking || definitionActivity?.matchmaking
     };
 
   })

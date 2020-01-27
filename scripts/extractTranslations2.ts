@@ -1,10 +1,11 @@
 // Babel based translation extracter Mk.2
 import * as babelParser from '@babel/parser';
 import * as babelTraverse from '@babel/traverse';
-import * as util from 'util';
+import { CallExpression, isCallExpression, Node } from '@babel/types';
 import * as fs from 'fs';
-import * as path from 'path';
 import * as glob from 'glob';
+import * as path from 'path';
+import * as util from 'util';
 
 const { resolve, relative } = path;
 const { parse } = babelParser;
@@ -14,21 +15,7 @@ const { default: traverse } = babelTraverse;
 type SourceStrings = Set<string>;
 type TranslatedStrings = Record<string, string>;
 type StatsResult = Record<string, { translated: number; notTranslated: number; added?: string[]; removed?: string[] }>;
-type ASTPath = { node: ASTNode };
-type ASTNode = {
-  type: string;
-  name?: string;
-  value?: string;
-  callee?: ASTNode;
-  arguments?: ASTNode[];
-  property?: ASTNode;
-  consequent?: ASTNode;
-  alternate?: ASTNode;
-  loc: {
-    start: { line: number; column: number };
-    end: { line: number; column: number };
-  };
-};
+type ASTPath = babelTraverse.NodePath;
 
 const regUnplaceholdify = /^#####/;
 const placeholdify = (key: string) => `#####${key}`;
@@ -71,7 +58,7 @@ const FilesLogic = {
       const code = (await FilesLogic.read(filename)).toString('utf8');
       const ast = parse(code, {
         sourceType: 'module',
-        plugins: ['jsx', 'classProperties']
+        plugins: ['jsx', 'classProperties', 'optionalChaining']
       });
 
       traverse(ast, {
@@ -107,7 +94,7 @@ const FilesLogic = {
     entries.forEach(([key, value]) => (translatedStrings[key] = value));
   },
 
-  addStrings(translatedStrings: TranslatedStrings, sourceStrings: SourceStrings, isSourceLocale: boolean): string[] {
+  addStrings(translatedStrings: TranslatedStrings, sourceStrings: SourceStrings, isSourceLocale: boolean, debugLocale: boolean): string[] {
     const result: string[] = [];
     sourceStrings.forEach(key => {
       if (!translatedStrings[key]) {
@@ -115,7 +102,7 @@ const FilesLogic = {
           translatedStrings[key] = key;
           return;
         }
-        const placeholderKey = placeholdify(key);
+        const placeholderKey = debugLocale ? key : placeholdify(key);
         if (!translatedStrings[placeholderKey]) {
           translatedStrings[placeholderKey] = MISSING_TRANSLATION;
           result.push(key);
@@ -150,9 +137,9 @@ const FilesLogic = {
 };
 
 const NodesLogic = {
-  isTFunction(node: ASTNode) {
+  isTFunction(node: Node) {
+    if (!isCallExpression(node)) return false;
     const { callee, arguments: args } = node;
-    if (!(callee && args)) return false;
     switch (callee.type) {
       case 'Identifier': {
         if (callee.name === 't') return true;
@@ -161,14 +148,11 @@ const NodesLogic = {
       case 'MemberExpression': {
         if (callee.property) {
           const storage: SourceStrings = new Set();
-          try
-          {
-              NodesLogic.diveNode(callee.property, storage);
-          }
-          catch (e)
-          {
-              console.log(e);
-              console.error('MemberExpression Parse Failed: ' + e.message);
+          try {
+            NodesLogic.diveNode(callee.property, storage);
+          } catch (e) {
+            console.log(e);
+            console.error('MemberExpression Parse Failed: ' + e.message);
           }
           if (storage.has('t')) return true;
         }
@@ -177,7 +161,8 @@ const NodesLogic = {
     return false;
   },
 
-  getArgumentText(node: ASTNode): SourceStrings | false {
+  getArgumentText(node: Node): SourceStrings | false {
+    if (!isCallExpression(node)) return false;
     const { arguments: args = [] } = node;
     if (args.length !== 1) {
       //throw new Error(`Argument count was not 1. Found: ${args.length}`);
@@ -187,7 +172,7 @@ const NodesLogic = {
     NodesLogic.diveNode(arg, storage);
     return storage;
   },
-  diveNode(node: ASTNode, storage: SourceStrings) {
+  diveNode(node: Node, storage: SourceStrings) {
     //complex argument scrapper
     switch (node.type) {
       case 'ConditionalExpression': {
@@ -205,13 +190,34 @@ const NodesLogic = {
         }
         throw new Error('Identifier missing name');
       }
-      case 'StringLiteral':
-      case 'Literal': {
+      case 'NumericLiteral':
+      case 'StringLiteral': {
+        // case 'Literal' is now gone here.
         if (node.value) {
-          storage.add(node.value);
+          storage.add(`${node.value}`);
           break;
         }
         throw new Error('Literal missing value');
+      }
+      case 'TemplateLiteral': {
+        // parse `something` pt.1
+        if (node.quasis) {
+          node.quasis.forEach(qNode => NodesLogic.diveNode(qNode, storage));
+          break;
+        }
+        throw new Error('TemplateLiteral missing quasis');
+      }
+      case 'TemplateElement': {
+        // parse `something` pt.2
+        if (node.value) {
+          storage.add(node.value.raw);
+          break;
+        }
+        throw new Error('TemplateElement missing value');
+      }
+      case 'MemberExpression': {
+        // something[foo] expression.. nothing to dive in here I guess
+        break;
       }
 
       default:
@@ -220,7 +226,7 @@ const NodesLogic = {
     }
   },
 
-  serializeDbgLocInfo(node: ASTNode) {
+  serializeDbgLocInfo(node: Node) {
     const { loc } = node;
     if (!loc) return '@(unknown position)';
     return `@line ${loc.start.line}:${loc.start.column}`;
@@ -230,12 +236,13 @@ const NodesLogic = {
 (async () => {
   try {
     const sourcefiles = await FilesLogic.getJSFileList();
+    const throttleOutput = false;
     let sourceStrings: SourceStrings = new Set();
     let lastT = 0;
     let count = 0;
     for (let file of sourcefiles) {
       count++;
-      if (Date.now() - lastT > 200 || count === sourcefiles.length) {
+      if (!throttleOutput || Date.now() - lastT > 200 || count === sourcefiles.length) {
         lastT = Date.now();
         console.log(` Processing [${count}/${sourcefiles.length}]`, relative(resolve(__dirname, '..'), file));
       }
@@ -257,7 +264,7 @@ const NodesLogic = {
       console.log(`Merging [${count}/${jsonFiles.length}] ${locale}`);
       const translatedStrings = await FilesLogic.readJson(jsonFile);
       if (!translatedStrings) throw new Error(`Failed to parse ${jsonFile}.`);
-      const addResult = await FilesLogic.addStrings(translatedStrings, sourceStrings, locale === SOURCE_LOCALE);
+      const addResult = await FilesLogic.addStrings(translatedStrings, sourceStrings, locale === SOURCE_LOCALE, locale === 'debug');
       const deprecateResult = await FilesLogic.deprecateStrings(translatedStrings, sourceStrings);
       if (!ARG_SKIP_SORT) FilesLogic.sortTranslatedStrings(translatedStrings);
 

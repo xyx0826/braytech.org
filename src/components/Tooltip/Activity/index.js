@@ -49,7 +49,129 @@ class Activity extends React.Component {
       );
     } else {
       const activityType = (hash, activityTypeHash, activityModeHashes = []) => {
-        if ([53954174, 78673128, 96442917, 122988657, 185515551, 319240296, 320680002, 340004423, 359488722, 449926115, 539897061, 622895925, 625165976, 632790902, 723733266, 785871069, 789332628, 801458995, 808931822, 856342832, 919252154, 963938931, 993905880, 999972877, 1018040791, 1018385878, 1063969232, 1107208644, 1159314159, 1225970098, 1228327586, 1254990192, 1265390366, 1275562432, 1279862229, 1289867188, 1294490226, 1302437673, 1333621919, 1416597166, 1418217191, 1466550401, 1491022087, 1503376677, 1570598249, 1643069750, 1651979106, 1657356109, 1671235700, 1682036469, 1725302079, 1740310101, 1773400654, 1783922093, 1800749202, 1811228210, 1823921651, 1824067376, 1829866365, 1874578888, 1956541147, 1969800443, 1971154629, 1981289329, 1987624188, 2067233851, 2069143995, 2174556965, 2219006909, 2231840083, 2245202378, 2250935166, 2258680077, 2302677459, 2307090074, 2310677039, 2340776707, 2517540332, 2574607799, 2665134323, 2675435236, 2737739053, 2752743635, 2831644165, 2949941834, 2966841322, 3002511278, 3015346707, 3033151437, 3042112297, 3069330044, 3140524926, 3148431353, 3211568383, 3248193378, 3255524827, 3277510674, 3283790633, 3289681664, 3304835347, 3370527053, 3384410381, 3485876484, 3500791146, 3601218952, 3644215993, 3645117987, 3664729722, 3664915501, 3691789482, 3700722865, 3752039537, 3780356141, 3836086286, 3872525353, 3909841711, 3920569453, 4094398454, 4238309598].includes(hash)) {
+        if (
+          [
+            53954174,
+            78673128,
+            96442917,
+            122988657,
+            185515551,
+            319240296,
+            320680002,
+            340004423,
+            359488722,
+            449926115,
+            539897061,
+            622895925,
+            625165976,
+            632790902,
+            723733266,
+            785871069,
+            789332628,
+            801458995,
+            808931822,
+            856342832,
+            919252154,
+            963938931,
+            993905880,
+            999972877,
+            1018040791,
+            1018385878,
+            1063969232,
+            1107208644,
+            1159314159,
+            1225970098,
+            1228327586,
+            1254990192,
+            1265390366,
+            1275562432,
+            1279862229,
+            1289867188,
+            1294490226,
+            1302437673,
+            1333621919,
+            1416597166,
+            1418217191,
+            1466550401,
+            1491022087,
+            1503376677,
+            1570598249,
+            1643069750,
+            1651979106,
+            1657356109,
+            1671235700,
+            1682036469,
+            1725302079,
+            1740310101,
+            1773400654,
+            1783922093,
+            1800749202,
+            1811228210,
+            1823921651,
+            1824067376,
+            1829866365,
+            1874578888,
+            1956541147,
+            1969800443,
+            1971154629,
+            1981289329,
+            1987624188,
+            2067233851,
+            2069143995,
+            2174556965,
+            2219006909,
+            2231840083,
+            2245202378,
+            2250935166,
+            2258680077,
+            2302677459,
+            2307090074,
+            2310677039,
+            2340776707,
+            2517540332,
+            2574607799,
+            2665134323,
+            2675435236,
+            2737739053,
+            2752743635,
+            2831644165,
+            2949941834,
+            2966841322,
+            3002511278,
+            3015346707,
+            3033151437,
+            3042112297,
+            3069330044,
+            3140524926,
+            3148431353,
+            3211568383,
+            3248193378,
+            3255524827,
+            3277510674,
+            3283790633,
+            3289681664,
+            3304835347,
+            3370527053,
+            3384410381,
+            3485876484,
+            3500791146,
+            3601218952,
+            3644215993,
+            3645117987,
+            3664729722,
+            3664915501,
+            3691789482,
+            3700722865,
+            3752039537,
+            3780356141,
+            3836086286,
+            3872525353,
+            3909841711,
+            3920569453,
+            4094398454,
+            4238309598
+          ].includes(hash)
+        ) {
           return 'adventure';
         } else if (enums.ordealHashes.includes(hash)) {
           return 'nightfall-ordeal';
@@ -113,10 +235,10 @@ class Activity extends React.Component {
       // console.log(activityTypeDisplay, definitionActivity, mode, definitionActivityPlaylist)
 
       if (definitionActivity.placeHash === 2961497387) {
-        console.log(lastorbiteddestination)
         activityTypeDisplay = {
           ...activityTypeDisplay,
           name: manifest.DestinyPlaceDefinition[2961497387].displayProperties.name,
+          mode: undefined,
           destination: false,
           description: t('In orbit, planning something terribly heroic.'),
           activityLightLevel: false
@@ -157,15 +279,16 @@ class Activity extends React.Component {
       if (modeFiltered === 'crucible') {
         activityTypeDisplay = {
           ...activityTypeDisplay,
-          name: definitionActivityPlaylist && definitionActivityPlaylist.displayProperties ? definitionActivityPlaylist.displayProperties.name : t('Unknown'),
-          mode: definitionActivityMode && definitionActivityMode.displayProperties && definitionActivityMode.displayProperties.name,
-          description: definitionActivityPlaylist && definitionActivityPlaylist.displayProperties ? definitionActivityPlaylist.displayProperties.description : t('Unknown'),
+          name: definitionActivityPlaylist?.displayProperties?.name || t('Unknown'),
+          mode: manifest.DestinyActivityModeDefinition[1164760504].displayProperties.name,
+          description: definitionActivityPlaylist?.displayProperties?.description || t('Unknown'),
           destination: {
             name: definitionActivity.displayProperties.name,
             place: definitionActivity.displayProperties.description
           },
           className: 'crucible',
           activityLightLevel: false,
+          isCrucible: true,
           icon: <span className='destiny-crucible' />
         };
 
@@ -228,7 +351,8 @@ class Activity extends React.Component {
       if (modeFiltered === 'reckoning') {
         activityTypeDisplay = {
           ...activityTypeDisplay,
-          mode: definitionActivity.originalDisplayProperties && definitionActivity.originalDisplayProperties.name,
+          mode: definitionActivity.originalDisplayProperties?.name,
+          description: definitionActivityPlaylist?.displayProperties?.description || t('Unknown'),
           className: 'reckoning',
           icon: <span className='destiny-reckoning' />
         };
@@ -294,12 +418,12 @@ class Activity extends React.Component {
       }
 
       if (modeFiltered === 'nightmare-hunt') {
-        console.log(definitionActivity);
         activityTypeDisplay = {
           ...activityTypeDisplay,
           name: definitionActivity.displayProperties.name,
           mode: manifest.DestinyActivityTypeDefinition[definitionActivity.activityTypeHash].displayProperties.name,
           description: definitionActivity.displayProperties.description,
+          suggestion: t('Equip Dreambane armor mods to enhance your light within this activity.'),
           className: 'nightmare-hunt',
           icon: <span className='destiny-shadowkeep' />
         };
@@ -323,6 +447,7 @@ class Activity extends React.Component {
         activityTypeDisplay = {
           ...activityTypeDisplay,
           name: definitionActivityPlaylist.displayProperties.name,
+          description: definitionActivityPlaylist.displayProperties.description,
           mode: manifest.DestinyActivityTypeDefinition[263019149].displayProperties.name,
           className: 'seasonal-arena',
           icon: (
@@ -336,14 +461,16 @@ class Activity extends React.Component {
         };
       }
 
+      const matchmakingProperties = definitionActivityPlaylist?.matchmaking || definitionActivity?.matchmaking;
+
       const checklistEntry = lookup({ key: 'activityHash', value: hash });
 
       const checklist = checklistEntry.checklistId && checklists[checklistEntry.checklistId]({ requested: [checklistEntry.checklistHash] });
       const checklistItem = checklist && checklist.items && checklist.items.length && checklist.items[0];
 
-      const eligibilityRequirements = member.data && member.data.profile && definitionActivity.eligibilityRequirements && utils.gameVersion(member.data.profile.profile.data.versionsOwned, definitionActivity.eligibilityRequirements.gameVersion);
+      const eligibilityRequirements = member.data?.profile && definitionActivity.eligibilityRequirements && utils.gameVersion(member.data.profile.profile.data.versionsOwned, definitionActivity.eligibilityRequirements.gameVersion);
 
-      if (checklist) console.log('// do something with me plz', checklist)
+      if (checklist) console.log('// do something with me plz', checklist);
 
       return (
         <>
@@ -358,7 +485,7 @@ class Activity extends React.Component {
                 </div>
               </div>
             </div>
-            {eligibilityRequirements && !eligibilityRequirements.eligible ? <div className='important'>{eligibilityRequirements.unlock.text}</div> : null}
+            {eligibilityRequirements && !eligibilityRequirements.eligible ? <div className='highlight major'>{eligibilityRequirements.unlock.text}</div> : null}
             <div className='black'>
               {activityTypeDisplay.pgcrImage && activityTypeDisplay.pgcrImage !== '/img/theme/destiny/bgs/pgcrs/placeholder.jpg' ? (
                 <div className='screenshot'>
@@ -381,14 +508,40 @@ class Activity extends React.Component {
                   <pre>{activityTypeDisplay.description}</pre>
                 </div>
               ) : null}
+              {matchmakingProperties ? (
+                <div className='matchmaking'>
+                  <ul>
+                    {matchmakingProperties.maxParty > matchmakingProperties.minParty ? (
+                      <li>
+                        {t('Fireteam')}: {matchmakingProperties.minParty}-{matchmakingProperties.maxParty} {t('players')}
+                      </li>
+                    ) : (
+                      <>
+                        <li>{t('Free for all')}</li>
+                        <li>{t('Single player')}</li>
+                      </>
+                    )}
+                    {matchmakingProperties.isMatchmade ? <li>{t('Matchmaking')}</li> : null}
+                    {activityTypeDisplay.isCrucible ? (
+                      <>
+                        <li>{t('Player versus player')}</li>
+                        <li>{t('Level advantages disabled')}</li>
+                      </>
+                    ) : (
+                      <li>{t('Cooperative')}</li>
+                    )}
+                  </ul>
+                </div>
+              ) : null}
+              {activityTypeDisplay.suggestion ? <div className='highlight'>{activityTypeDisplay.suggestion}</div> : null}
               {definitionActivity.timeToComplete ? (
-                <div className='time-to-complete'>
-                  {t('Time to complete')}: {t('{{number}} minutes', { number: definitionActivity.timeToComplete || 0 })}
+                <div className='highlight'>
+                  {t('Approximate length')}: {t('{{number}} minutes', { number: definitionActivity.timeToComplete || 0 })}
                 </div>
               ) : null}
               {activityTypeDisplay.activityLightLevel ? (
-                <div className='recommended-light'>
-                  {t('Recommended Power')}: <span>{activityTypeDisplay.activityLightLevel}</span>
+                <div className='highlight recommended-light'>
+                  {t('Recommended light')}: <span>{activityTypeDisplay.activityLightLevel}</span>
                 </div>
               ) : null}
               {checklistItem && checklistItem.completed ? <div className='completed'>{t('Completed')}</div> : null}
@@ -408,7 +561,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default compose(
-  connect(mapStateToProps),
-  withTranslation()
-)(Activity);
+export default compose(connect(mapStateToProps), withTranslation())(Activity);

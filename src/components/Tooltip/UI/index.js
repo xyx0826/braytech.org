@@ -5,31 +5,30 @@ import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
-import * as enums from '../../../utils/destinyEnums';
 import ObservedImage from '../../ObservedImage';
 
 import Default from './Default';
+import Braytech from './Braytech';
 
 const woolworths = {
-  
+  braytech: Braytech
 }
 
 class UI extends React.Component {
   render() {
-    const { t, member, tooltips } = this.props;
+    const { t, member } = this.props;
 
     const item = {
       itemHash: this.props.hash,
       itemInstanceId: this.props.instanceid,
       itemComponents: null,
-      table: this.props.table,
       quantity: parseInt(this.props.quantity || 1, 10),
       state: parseInt(this.props.state || 0, 10),
       rarity: 'common',
-      type: 'ui'
+      type: this.props.type
     };
 
-    const definition = manifest[item.table][item.itemHash];
+    const definition = item.type === 'braytech' ? manifest.BraytechDefinition[item.itemHash] : item.type === 'stat' ? manifest.DestinyStatDefinition[item.itemHash] || manifest.DestinyHistoricalStatsDefinition[item.itemHash] : item.type === 'modifier' ? manifest.DestinyActivityModifierDefinition[item.itemHash] : false;
 
     if (!definition) {
       return null;
@@ -56,26 +55,16 @@ class UI extends React.Component {
       );
     }
 
-    let note = false;
-    if (!item.itemComponents && this.props.uninstanced) {
-      note = t('Non-instanced item (displaying collections roll)');
-    }
-
     const Meat = item.type && woolworths[item.type];
 
     return (
       <>
         <div className='acrylic' />
-        <div className={cx('frame', item.type, item.rarity, { 'masterworked': item.masterwork || (item.masterworkInfo && item.masterworkInfo.tier === 10) })}>
+        <div className={cx('frame', 'ui', item.rarity)}>
           <div className='header'>
-            {item.masterwork || (item.masterworkInfo && item.masterworkInfo.tier === 10) ? <ObservedImage className={cx('image', 'bg')} src={item.rarity === 'exotic' ? `/static/images/extracts/flair/01A3-00001DDC.PNG` : `/static/images/extracts/flair/01A3-00001DDE.PNG`} /> : null}
-            <div className='name'>{definition.displayProperties && definition.displayProperties.name}</div>
-            <div>
-              {definition.itemTypeDisplayName && definition.itemTypeDisplayName !== '' ? <div className='kind'>{definition.itemTypeDisplayName}</div> : null}
-              {item.rarity && definition.inventory && definition.inventory.tierTypeName ? <div className='rarity'>{definition.inventory.tierTypeName}</div> : null}
-            </div>
+            <div className='name'>{definition.displayProperties?.name || definition.statName}</div>
+            <div></div>
           </div>
-          {note ? <div className='note'>{note}</div> : null}
           <div className='black'>
             {this.props.viewport.width <= 600 && definition.screenshot ? (
               <div className='screenshot'>

@@ -52,8 +52,13 @@ table {
   color: #fff;
 }
 
+:root {
+  --fontDisplay: 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  --fontText: 'Neue Haas Grotesk Text', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+}
+
 body {
-  font-family: 'Neue Haas Grotesk Display', 'Destiny Symbols', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'NotoColorEmoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+  font-family: var(--fontDisplay);
   font-weight: 400;
   font-size: 14px;
   letter-spacing: 0.2px;
@@ -75,15 +80,25 @@ a {
   cursor: pointer;
 }
 
-/* a::before {
+.hyperlink::before {
   content: " ";
   position: absolute;
-  bottom: -4px;
+  bottom: -2px;
   left: 0;
   width: 100%;
-  height: 1px;
-  background-color: rgba(0, 0, 0, 0.5);
-} */
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+  opacity: 0.2;
+}
+
+.hyperlink:hover::before {
+  background-color: rgb(255, 255, 255);
+  opacity: 0.6;
+}
+
+.relative {
+  position: relative;
+}
 
 strong {
   font-weight: 500;

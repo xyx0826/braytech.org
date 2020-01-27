@@ -182,7 +182,7 @@ p:last-child {
   z-index: 4;
 }
 
-.list li > a {
+.list li > a:not(.button) {
   position: absolute;
   top: 0;
   left: 0;
@@ -500,7 +500,7 @@ button.square.active {
 
 .sub-header {
   position: relative;
-  margin: 24px 0 10px;
+  margin: 24px 0 20px;
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;
@@ -527,6 +527,10 @@ button.square.active {
 .sub-header div .spinner {
   position: absolute;
   right: 0;
+}
+
+.sub-header ~ h3 {
+  margin-top: -10px;
 }
 
 #error {

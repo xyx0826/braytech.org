@@ -18,42 +18,42 @@ class Footer extends React.Component {
       <div id='footer'>
         <div className='wrapper'>
           <div>
-            <div>© 2019 <a href='https://thomchap.com.au' target='_blank' rel='noopener noreferrer'>Tom Chapman</a></div>
+            <div>© 2020 <a className='hyperlink' href='https://thomchap.com.au' target='_blank' rel='noopener noreferrer'>Tom Chapman</a></div>
             <div>{t('Version')} <span>{packageJSON.version}</span></div>
-            <div>{t('VOLUSPA last indexed')} <Moment fromNow>{manifest.statistics.general.status.lastScraped}</Moment></div>
+            {manifest.statistics.general ? <div>{t('VOLUSPA last indexed')} <Moment fromNow>{manifest.statistics.general.status.lastScraped}</Moment></div> : null}
           </div>
           <ul>
             {!minimal ? (
               <>
                 <li>
-                  <Link to='/faq' onClick={linkOnClick}>
+                  <Link className='hyperlink' to='/faq' onClick={linkOnClick}>
                     {t('FAQ')}
                   </Link>
                 </li>
                 <li>
-                  <Link to='/credits' onClick={linkOnClick}>
+                  <Link className='hyperlink' to='/credits' onClick={linkOnClick}>
                     {t('Credits')}
                   </Link>
                 </li>
               </>
             ) : null}
             <li>
-              <a href='https://twitter.com/justrealmilk' target='_blank' rel='noopener noreferrer'>
+              <a className='hyperlink' href='https://twitter.com/justrealmilk' target='_blank' rel='noopener noreferrer'>
                 Twitter
               </a>
             </li>
             <li>
-              <a href='https://discordapp.com/invite/Y68xDsG' target='_blank' rel='noopener noreferrer'>
+              <a className='hyperlink' href='https://discordapp.com/invite/8jESWWX' target='_blank' rel='noopener noreferrer'>
                 Discord
               </a>
             </li>
             <li>
-              <a href='https://paypal.me/braytechltd' target='_blank' rel='noopener noreferrer'>
+              <a className='hyperlink' href='https://paypal.me/braytechltd' target='_blank' rel='noopener noreferrer'>
                 PayPal <PayPal />
               </a>
             </li>
             <li>
-              <a href='https://www.patreon.com/braytech' target='_blank' rel='noopener noreferrer'>
+              <a className='hyperlink' href='https://www.patreon.com/braytech' target='_blank' rel='noopener noreferrer'>
                 Patreon <Patreon />
               </a>
             </li>

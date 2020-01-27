@@ -16,8 +16,16 @@ import ProgressBar from '../../components/UI/ProgressBar';
 import './styles.css';
 
 class Items extends React.Component {
+  handler = item => e => {
+    const { handler } = this.props;
+
+    if (handler) {
+      handler(item);
+    }
+  }
+
   render() {
-    const { member, items, order, asTab, noBorder, hideQuantity, showHash, inspect, action } = this.props;
+    const { member, items, order, noBorder, hideQuantity, asPanels, showHash, inspect } = this.props;
 
     let output = [];
 
@@ -27,8 +35,7 @@ class Items extends React.Component {
     }
 
     items.forEach((item, i) => {
-      const definitionItem = item && item.itemHash && manifest.DestinyInventoryItemDefinition[item.itemHash];
-      const definitionBucket = item && item.bucketHash && manifest.DestinyInventoryBucketDefinition[item.bucketHash];
+      const definitionItem = item?.itemHash && (manifest.DestinyInventoryItemDefinition[item.itemHash] || manifest.BraytechDefinition[item.itemHash]);
 
       if (!definitionItem) {
         console.log(`Items: Couldn't find item definition for:`, item);
@@ -43,8 +50,6 @@ class Items extends React.Component {
       const bucketsToExcludeFromInstanceProgressDisplay = [
         4274335291 // Emblems
       ];
-
-      const bucketName = definitionBucket && definitionBucket.displayProperties && definitionBucket.displayProperties.name && definitionBucket.displayProperties.name.replace(' ', '-').toLowerCase();
 
       const vendorItemStatus = item.unavailable === undefined && item.saleStatus && enums.enumerateVendorItemStatus(item.saleStatus);
 
@@ -65,25 +70,21 @@ class Items extends React.Component {
                 'no-border': (definitionItem.uiItemDisplayStyle === 'ui_display_style_engram' && item.bucketHash !== 3284755031) || (definitionItem.itemCategoryHashes && definitionItem.itemCategoryHashes.includes(268598612)) || (definitionItem.itemCategoryHashes && definitionItem.itemCategoryHashes.includes(18)) || noBorder,
                 unavailable: (vendorItemStatus && !vendorItemStatus.success) || item.unavailable
               },
-              bucketName
+              `item-type-${definitionItem.itemType || 0}`
             )}
             data-hash={item.itemHash}
             data-instanceid={item.itemInstanceId}
             data-state={item.state}
             data-vendorhash={item.vendorHash}
-            data-vendorindex={item.vendorItemIndex}
+            data-vendoritemindex={item.vendorItemIndex}
             data-vendorstatus={item.saleStatus}
             data-quantity={item.quantity && item.quantity > 1 ? item.quantity : null}
-            onClick={e => {
-              if (action) {
-                action(e, item);
-              }
-            }}
+            onClick={this.handler(item)}
           >
             <div className='icon'>
               <ObservedImage className='image' src={definitionItem.displayProperties.localIcon ? `${definitionItem.displayProperties.icon}` : `https://www.bungie.net${definitionItem.displayProperties.icon}`} />
             </div>
-            {asTab ? (
+            {asPanels ? (
               <div className='text'>
                 <div className='name'>{definitionItem.displayProperties.name}</div>
                 {showHash ? <div className='hash'>{definitionItem.hash}</div> : null}

@@ -50,6 +50,10 @@
   row-gap: 2rem;
 }
 
+#now .group:not(.head) .column {
+  align-content: start;
+}
+
 #now .group .module .module-header {
   margin: 24px 0 20px;
 }
@@ -93,6 +97,10 @@
   line-height: 1;
   font-weight: 500;
 }
+
+
+
+
 
 
 

@@ -12,11 +12,8 @@ import { Button, DestinyKey } from '../../UI/Button';
 import './styles.css';
 
 class NotificationLink extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-    this.mounted = false;
+  componentDidMount() {
+    this.mounted = true;
   }
 
   componentWillUnmount() {
@@ -60,10 +57,6 @@ class NotificationLink extends React.Component {
     }
   };
 
-  componentDidMount() {
-    this.mounted = true;
-  }
-
   componentDidUpdate(prevProps) {
     if (this.active && this.active.length) {
       const state = this.active[0];
@@ -80,25 +73,29 @@ class NotificationLink extends React.Component {
 
     const timeNow = new Date().getTime();
 
-    this.active =
-      this.props.notifications && this.props.notifications.objects.length
-        ? this.props.notifications.objects.filter(o => {
-            let objDate = new Date(o.date).getTime();
-            if (objDate + o.expiry > timeNow) {
-              return true;
-            } else {
-              return false;
-            }
-          })
-        : false;
+    this.active = this.props.notifications?.objects.length
+      ? this.props.notifications.objects.filter(o => {
+          const objDate = new Date(o.date).getTime();
 
-    if (this.active && this.active.length ? this.active[0] : false) {
+          if (objDate + o.expiry > timeNow) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      : [];
+
+    const remainingInline = this.active.filter(a => !a.displayProperties.prompt).length - 1;
+
+    if (this.active.length ? this.active[0] : false) {
       const state = this.active[0];
 
-      let isError, image;
+      let isError,
+        image,
+        actions = state.actions || [];
       if (state && state.error && state.javascript && state.javascript.message === 'maintenance') {
         image = '/static/images/extracts/ui/01A3-00001EE8.PNG';
-        state.actions = [
+        actions = [
           {
             type: 'external',
             target: 'https://twitter.com/BungieHelp',
@@ -115,6 +112,14 @@ class NotificationLink extends React.Component {
       } else {
         image = '/static/images/extracts/ui/010A-00000554.PNG';
       }
+
+      actions = [
+        ...actions,
+        {
+          type: 'dismiss',
+          dismiss: true
+        }
+      ];
 
       if (state.displayProperties && state.displayProperties.prompt) {
         return (
@@ -141,28 +146,25 @@ class NotificationLink extends React.Component {
                 <div className='sticky-nav-inner'>
                   <div />
                   <ul>
-                    {!state.javascript?.message === 'maintenance' ? (
-                      <li>
-                        <Button action={this.deactivateOverlay}>
-                          <DestinyKey type='dismiss' /> {t('Dismiss')}
-                        </Button>
-                      </li>
-                    ) : null}
-                    {state.actions &&
-                      state.actions.length &&
-                      state.actions.map((action, i) => {
-                        if (action.type === 'external') {
-                          return (
-                            <li key={i}>
-                              <a className='button' href={action.target} onClick={action.dismiss ? this.deactivateOverlay : null} target='_blank' rel='noreferrer noopener'>
-                                <DestinyKey type={action.key || 'dismiss'} /> {action.text}
-                              </a>
-                            </li>
-                          );
-                        } else {
-                          return null;
-                        }
-                      })}
+                    {actions.map((action, i) => {
+                      if (action.type === 'external') {
+                        return (
+                          <li key={i}>
+                            <a className='button' href={action.target} onClick={action.dismiss ? this.deactivateOverlay : null} target='_blank' rel='noreferrer noopener'>
+                              <DestinyKey type={action.key || 'dismiss'} /> {action.text}
+                            </a>
+                          </li>
+                        );
+                      } else {
+                        return (
+                          <li key={i}>
+                            <Button action={this.deactivateOverlay}>
+                              <DestinyKey type='dismiss' /> {t('Dismiss')}
+                            </Button>
+                          </li>
+                        );
+                      }
+                    })}
                   </ul>
                 </div>
               </div>
@@ -171,10 +173,12 @@ class NotificationLink extends React.Component {
         );
       } else {
         return (
-          <div id='notification-bar' className={cx({ error: isError })} onClick={this.deactivateOverlay}>
+          <div key={state.id} id='notification-bar' className={cx({ error: isError })} onClick={this.deactivateOverlay}>
             <div className='wrapper-outer'>
               <div className='background'>
-                <div className='border-top' />
+                <div className='border-top'>
+                  <div className='inner' />
+                </div>
                 <div className='acrylic' />
               </div>
               <div className='wrapper-inner'>
@@ -188,8 +192,13 @@ class NotificationLink extends React.Component {
                     <div className='name'>
                       <p>{state.displayProperties && state.displayProperties.name ? state.displayProperties.name : t('Unknown')}</p>
                     </div>
-                    <div className='description'>{state.displayProperties && state.displayProperties.description ? <ReactMarkdown source={state.displayProperties.description} /> : t('Unknown')}</div>
+                    <div className='description'>{state.displayProperties?.description ? <ReactMarkdown source={state.displayProperties.description} /> : <p>{t('Unknown')}</p>}</div>
                   </div>
+                  {remainingInline > 0 ? (
+                    <div className='more'>
+                      <p>{t('And {{number}} more', { number: remainingInline })}</p>
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </div>

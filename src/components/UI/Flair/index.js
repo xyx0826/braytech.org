@@ -17,17 +17,17 @@ class Flair extends React.Component {
   render() {
     const { type, id } = this.props;
     
-    let flair = userFlair.find(f => f.user === type + id);
+    const flair = userFlair.find(f => f.user === id);
 
     return (
       <div className='stamps'>
-        <div className='tooltip' data-hash={`platform_${enums.PLATFORMS[type]}`} data-table='BraytechDefinition'>
+        <div className='tooltip' data-hash={`platform_${enums.PLATFORMS[type]}`} data-type='braytech'>
           <i className={`destiny-platform_${enums.PLATFORMS[type]}`} />
         </div>
         {flair
           ? flair.trophies.map((s, i) => {
               return (
-                <div key={i} className='tooltip' data-hash={s.hash} data-table='BraytechDefinition'>
+                <div key={i} className='tooltip' data-hash={s.hash} data-type='braytech'>
                   <i className={cx(s.icon, s.classnames)} />
                 </div>
               );

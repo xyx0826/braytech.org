@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 
-import { ReactComponent as CurseCycle } from '../../../media/miscellaneous/svg/curse-cycle.svg';
+import { ReactComponent as CurseCycle } from '../../../svg/miscellaneous/curse-cycle.svg';
 
 import './styles.css';
 

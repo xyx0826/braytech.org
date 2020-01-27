@@ -103,7 +103,7 @@ class Transitory extends React.Component {
             })}
           </ul>
         ) : data && partyMembers.length < 1 ? (
-          <div className='info'>{t('You appear to be offline!')}</div>
+          <div className='info'>{t('Offline')}</div>
         ) : (
           <Spinner />
         )}
