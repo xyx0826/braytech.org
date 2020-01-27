@@ -466,7 +466,7 @@ class Activity extends React.Component {
       const checklistEntry = lookup({ key: 'activityHash', value: hash });
 
       const checklist = checklistEntry.checklistId && checklists[checklistEntry.checklistId]({ requested: [checklistEntry.checklistHash] });
-      const checklistItem = checklist && checklist.items && checklist.items.length && checklist.items[0];
+      const checklistItem = checklist && checklist.items && checklist.items.length && checklist.items[0] && 1 === 2;
 
       const eligibilityRequirements = member.data?.profile && definitionActivity.eligibilityRequirements && utils.gameVersion(member.data.profile.profile.data.versionsOwned, definitionActivity.eligibilityRequirements.gameVersion);
 
@@ -508,7 +508,7 @@ class Activity extends React.Component {
                   <pre>{activityTypeDisplay.description}</pre>
                 </div>
               ) : null}
-              {matchmakingProperties ? (
+              {matchmakingProperties && definitionActivity.placeHash !== 2961497387 ? (
                 <div className='matchmaking'>
                   <ul>
                     {matchmakingProperties.maxParty > matchmakingProperties.minParty ? (
@@ -525,7 +525,7 @@ class Activity extends React.Component {
                     {activityTypeDisplay.isCrucible ? (
                       <>
                         <li>{t('Player versus player')}</li>
-                        <li>{t('Level advantages disabled')}</li>
+                        {definitionActivityPlaylist.hash === 3753505781 ? <li>{t('Level advantages enabled')}</li> : <li>{t('Level advantages disabled')}</li>}
                       </>
                     ) : (
                       <li>{t('Cooperative')}</li>

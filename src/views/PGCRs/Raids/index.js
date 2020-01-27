@@ -116,18 +116,7 @@ class Raids extends React.Component {
             <div className='content'>
               {Object.values(this.raids.all.raid).length > 1 ? (
                 <ul className='list modes'>
-                  {Object.values(this.raids.all).map(m => {
-                    let paramsMode = this.props.mode ? parseInt(this.props.mode) : 4;
-                    let isActive = (match, location) => {
-                      if (paramsMode === m.mode) {
-                        return true;
-                      } else {
-                        return false;
-                      }
-                    };
-
-                    return <Mode key={m.mode} stats={m} isActive={isActive} root='/reports/raids' defaultMode='4' />;
-                  })}
+                  {Object.values(this.raids.all).map(m => <Mode key={m.mode} stats={m} root='/reports/raids' defaultMode='4' />)}
                 </ul>
               ) : (
                 <Spinner mini />
@@ -140,7 +129,7 @@ class Raids extends React.Component {
             <div className='sub-header'>
               <div>{t('Recent raids')}</div>
             </div>
-            <Matches mode={this.props.mode ? parseInt(this.props.mode) : 4} limit='20' offset={offset} root='/reports/raids' />
+            <Matches mode={this.props.mode ? parseInt(this.props.mode) : 4} limit='40' offset={offset} root='/reports/raids' />
           </div>
         </div>
       </div>

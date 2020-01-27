@@ -121,18 +121,7 @@ class Strikes extends React.Component {
             <div className='content'>
               {Object.values(this.strikes.all.allStrikes).length > 1 ? (
                 <ul className='list modes'>
-                  {Object.values(this.strikes.all).map(m => {
-                    let paramsMode = this.props.mode ? parseInt(this.props.mode) : 18;
-                    let isActive = (match, location) => {
-                      if (paramsMode === m.mode) {
-                        return true;
-                      } else {
-                        return false;
-                      }
-                    };
-
-                    return <Mode key={m.mode} stats={m} isActive={isActive} root='/reports/strikes' defaultMode='18' />;
-                  })}
+                  {Object.values(this.strikes.all).map(m => <Mode key={m.mode} stats={m} root='/reports/strikes' defaultMode='18' />)}
                 </ul>
               ) : (
                 <Spinner mini />
@@ -145,7 +134,7 @@ class Strikes extends React.Component {
             <div className='sub-header'>
               <div>{t('Recent strikes')}</div>
             </div>
-            <Matches mode={mode} limit='20' offset={offset} root='/reports/strikes' />
+            <Matches mode={mode} limit='40' offset={offset} root='/reports/strikes' />
           </div>
         </div>
       </div>

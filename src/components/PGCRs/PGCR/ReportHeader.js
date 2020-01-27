@@ -94,6 +94,14 @@ class ReportHeader extends React.Component {
       {
         modes: [5],
         icon: <CrucibleIconDefault />
+      },
+      {
+        modes: [25],
+        icon: <CrucibleIconMayhem />
+      },
+      {
+        modes: [61, 62],
+        icon: <CrucibleIconTeamScorched />
       }
     ];
 

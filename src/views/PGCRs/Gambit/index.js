@@ -123,18 +123,7 @@ class Gambit extends React.Component {
             <div className='content'>
               {Object.values(this.gambit.all.pvecomp_gambit).length > 1 ? (
                 <ul className='list modes'>
-                  {Object.values(this.gambit.all).map(m => {
-                    let paramsMode = this.props.mode ? parseInt(this.props.mode) : 75;
-                    let isActive = (match, location) => {
-                      if (paramsMode === m.mode) {
-                        return true;
-                      } else {
-                        return false;
-                      }
-                    };
-
-                    return <Mode key={m.mode} stats={m} isActive={isActive} root='/reports/gambit' defaultMode='75' />;
-                  })}
+                  {Object.values(this.gambit.all).map(m => <Mode key={m.mode} stats={m} root='/reports/gambit' defaultMode='75' />)}
                 </ul>
               ) : (
                 <Spinner mini />
@@ -147,7 +136,7 @@ class Gambit extends React.Component {
             <div className='sub-header'>
               <div>{t('Recent matches')}</div>
             </div>
-            <Matches mode={this.props.mode ? parseInt(this.props.mode) : 75} limit='20' offset={offset} root='/reports/gambit' />
+            <Matches mode={this.props.mode ? parseInt(this.props.mode) : 75} limit='40' offset={offset} root='/reports/gambit' />
           </div>
         </div>
       </div>
