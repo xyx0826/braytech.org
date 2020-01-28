@@ -577,9 +577,7 @@
     text-align: right;
     min-width: unset;
   }
-}
-
-@media screen and (max-width: 767px) {
+  
   .list.reports li > .head {
     width: 100%;
     height: 38vh;
@@ -619,15 +617,15 @@
   }
 
   .list.reports li > .head .standing .icon {
-    width: 50%;
-    height: 50%;
-    margin: -27% 0 0 -25%;
+    width: 36%;
+    height: 36%;
+    margin: -18% 0 0 -18%;
   }
 
   .list.reports li .entries .team-head,
   .list.reports li .entries .list li .inline,
   .list.reports li .entries .list li .expanded {
-    grid-template-columns: minmax(120px, 270px) 30px 30px 30px 40px;
+    grid-template-columns: minmax(120px, 270px) 1fr 1fr 1fr 1.25fr;
     font-size: 12px;
   }
 

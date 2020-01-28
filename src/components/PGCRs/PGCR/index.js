@@ -962,7 +962,7 @@ class ReportItem extends React.Component {
                 <li>
                   <a className='button' href={`/pgcr/${report.activityDetails.instanceId}`} target='_blank'>
                     <DestinyKey type='more' />
-                    {t('Open in tab')}
+                    {t('New tab')}
                   </a>
                 </li>
                 <li>

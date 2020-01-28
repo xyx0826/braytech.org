@@ -3,120 +3,138 @@
     "translated": 418,
     "notTranslated": 205,
     "added": [
-      "Level advantages enabled",
-      "Open in tab"
+      "New tab"
     ],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   },
   "debug": {
     "translated": 623,
     "notTranslated": 0,
     "added": [
-      "Level advantages enabled",
-      "Open in tab"
+      "New tab"
     ],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   },
   "en": {
     "translated": 623,
     "notTranslated": 0,
     "added": [],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   },
   "es-mx": {
     "translated": 592,
     "notTranslated": 31,
     "added": [
-      "Level advantages enabled",
-      "Open in tab"
+      "New tab"
     ],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   },
   "es": {
     "translated": 620,
     "notTranslated": 3,
     "added": [
-      "Level advantages enabled",
-      "Open in tab"
+      "New tab"
     ],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   },
   "fr": {
     "translated": 544,
     "notTranslated": 79,
     "added": [
-      "Level advantages enabled",
-      "Open in tab"
+      "New tab"
     ],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   },
   "it": {
     "translated": 610,
     "notTranslated": 13,
     "added": [
-      "Level advantages enabled",
-      "Open in tab"
+      "New tab"
     ],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   },
   "ja": {
-    "translated": 552,
-    "notTranslated": 71,
+    "translated": 568,
+    "notTranslated": 55,
     "added": [
-      "Level advantages enabled",
-      "Open in tab"
+      "New tab"
     ],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   },
   "ko": {
-    "translated": 623,
-    "notTranslated": 0,
-    "added": [],
-    "removed": []
+    "translated": 622,
+    "notTranslated": 1,
+    "added": [
+      "New tab"
+    ],
+    "removed": [
+      "Open in tab"
+    ]
   },
   "pl": {
     "translated": 0,
     "notTranslated": 623,
     "added": [
-      "Level advantages enabled",
-      "Open in tab"
+      "New tab"
     ],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   },
   "pt-br": {
     "translated": 535,
     "notTranslated": 88,
     "added": [
-      "Level advantages enabled",
-      "Open in tab"
+      "New tab"
     ],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   },
   "ru": {
     "translated": 571,
     "notTranslated": 52,
     "added": [
-      "Level advantages enabled",
-      "Open in tab"
+      "New tab"
     ],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   },
   "zh-chs": {
     "translated": 451,
     "notTranslated": 172,
     "added": [
-      "Level advantages enabled",
-      "Open in tab"
+      "New tab"
     ],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   },
   "zh-cht": {
     "translated": 425,
     "notTranslated": 198,
     "added": [
-      "Level advantages enabled",
-      "Open in tab"
+      "New tab"
     ],
-    "removed": []
+    "removed": [
+      "Open in tab"
+    ]
   }
 }

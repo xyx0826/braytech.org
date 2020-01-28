@@ -4,14 +4,14 @@
   "bugs": {
     "url": "https://github.com/justrealmilk/braytech.org/issues"
   },
-  "version": "2.14.50",
+  "version": "2.14.51",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
     "dexie": "^2.0.4",
     "entities": "^2.0.0",
     "html2canvas": "^1.0.0-rc.5",
-    "i18next": "^19.0.3",
+    "i18next": "^19.1.0",
     "i18next-xhr-backend": "^3.2.2",
     "leaflet": "^1.6.0",
     "lodash": "^4.17.15",
