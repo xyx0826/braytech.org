@@ -267,7 +267,7 @@ export function EntryHeader(props) {
     ));
   } else {
     return headers[variety].map((column, i) => (
-      <div key={i} className={cx('stat', { hideInline: column.hideInline, extended: column.extended }, column.key)}>
+      <div key={i} className={cx(column.key, { hideInline: column.hideInline, extended: column.extended })}>
         {column.expanded ? <div className='name'>{column.name}</div> : null}
         <div className='value'>{formatValue(column, entry, playerCache)}</div>
       </div>

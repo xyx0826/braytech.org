@@ -630,7 +630,7 @@
 
   .list.reports li .entries .team-head,
   .list.reports li .entries .list li .inline {
-    grid-template-columns: minmax(120px, 270px) 1fr 1fr 1fr 1.25fr;
+    grid-template-columns: minmax(120px, auto) 30px 30px 30px 40px;
     font-size: 12px;
   }
 
@@ -669,12 +669,14 @@
     width: 100%;
     margin: 0;
     padding: 2rem 0 2rem calc(38px + 16px);
-    row-gap: 2rem;
+    padding: 1rem;
+    row-gap: 1rem;
   }
 
   .list.reports li .entries .list .detail .group,
   .list.reports li .entries .list .detail .group.common {
     padding: 0 3rem 0 0;
+    padding: 0;
   }
 
 }
