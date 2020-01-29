@@ -138,7 +138,8 @@ export function EntryHeader(props) {
         key: 'score',
         name: manifest.DestinyHistoricalStatsDefinition['score']?.statName,
         abbr: 'S',
-        type: 'value'
+        type: 'value',
+        hideInline: true
       }
     ]
   };

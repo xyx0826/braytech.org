@@ -721,9 +721,16 @@
   }
 
   .list.reports li .entries .list .detail .group,
-  .list.reports li .entries .list .detail .group.common {
+  .list.reports li .entries .list .detail .group.common,
+  .list.reports li .entries .list .detail .group:first-child,
+  .list.reports li .entries .list .detail .group:nth-child(5) {
     padding: 0 3rem 0 0;
     padding: 0;
+  }
+  
+  .list.reports li .entries .list .detail .group ul li ul li {
+    font-size: 12px;
+    line-height: 1.2;
   }
 
   .list.reports li .entries .list .detail .group.kills ul li ul {
