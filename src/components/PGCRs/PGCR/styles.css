@@ -331,6 +331,10 @@
   align-items: start;
 }
 
+.list.reports li .entries li .detail.single {
+  grid-template-columns: auto;
+}
+
 .list.reports li .entries .team-head {
   grid-template-columns: repeat(8, 1fr);
   padding: 0 0 0 10px;
@@ -383,11 +387,11 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-.list.reports li .entries .team-head div:not(.team) .full {
+.list.reports li .entries .full {
   
 }
 
-.list.reports li .entries .team-head div:not(.team) .abbr {
+.list.reports li .entries .abbr {
   display: none;
 }
 
@@ -451,7 +455,7 @@
   background-color: transparent;
 }
 
-.list.reports li .entries .list .detail {
+.list.reports li .entries .list .expanded > ul > li:last-child {
   height: unset;
   display: grid;
   padding: 2rem 0 0;
@@ -480,6 +484,10 @@
   margin: 0;
 }
 
+.list.reports li .entries .list .detail .group ul .divider {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 .list.reports li .entries .list .detail .group ul li ul {
   display: grid;
   grid-auto-flow: column;
@@ -492,7 +500,23 @@
   font-size: 14px;
 }
 
-.list.reports li .entries .list .detail .group ul li ul li:first-child {
+.list.reports li .entries .list .detail .group ul li ul .na {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.list.reports li .entries .list .detail .group .pairs li:first-child {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.list.reports li .entries .list .detail .group ul .header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+
+.list.reports li .entries .list .detail .group ul .header ul li {
+  /* text-transform: uppercase;
+  font-size: 12px; */
   color: rgba(255, 255, 255, 0.6);
 }
 
@@ -503,16 +527,28 @@
 .list.reports li .entries .list .detail .group.kills ul li ul,
 .list.reports li .entries .list .detail .group.medals ul li ul {
   display: grid;
-  grid-template-columns: 38px 2fr repeat(3, minmax(30px, 0.8fr));
+  grid-template-columns: 2fr repeat(3, minmax(30px, 0.8fr));
   column-gap: 10px;
 }
 
 .list.reports li .entries .list .detail .group.medals ul li ul {
-  grid-template-columns: 38px 2fr repeat(1, minmax(30px, 0.8fr));
+  grid-template-columns: auto repeat(1, minmax(20px, 30px));
 }
 
-.list.reports li .entries .list .detail .group.kills ul li ul li:nth-child(n+3),
-.list.reports li .entries .list .detail .group.medals ul li ul li:nth-child(n+3) {
+.list.reports li .entries .list .detail .double {
+  display: grid;
+  grid-template-columns: 38px auto;
+  column-gap: 10px;
+}
+
+.list.reports li .entries .list .detail .double div {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list.reports li .entries .list .detail .group.kills ul li ul li:nth-child(n+2),
+.list.reports li .entries .list .detail .group.medals ul li ul li:nth-child(n+2) {
   text-align: right;
 }
 
@@ -555,8 +591,9 @@
 
 
 @media screen and (max-width: 1024px) {
-  .list.reports li .entries .list .detail .group.kills {
-    grid-column: unset;
+  .list.reports li .entries .list .detail .group.kills,
+  .list.reports li .entries .list .detail .group.medals {
+    grid-column: 2/5;
   }
 }
 
@@ -655,15 +692,20 @@
     padding: 0 1rem 0 0;
   }
 
-  .list.reports li .entries .team-head div:not(.team) .full {
+  .list.reports li .entries .full {
     display: none;
   }
   
-  .list.reports li .entries .team-head div:not(.team) .abbr {
+  .list.reports li .entries .abbr {
     display: unset;
   }
 
+  .list.reports li .entries .list .expanded > ul > li:last-child {
+    padding: 0;
+  }
+
   .list.reports li .entries .list .detail {
+    display: grid;
     grid-template-columns: 1fr;
     align-items: start;
     width: 100%;
@@ -673,10 +715,23 @@
     row-gap: 1rem;
   }
 
+  .list.reports li .entries .list .detail .group.kills,
+  .list.reports li .entries .list .detail .group.medals {
+    grid-column: unset;
+  }
+
   .list.reports li .entries .list .detail .group,
   .list.reports li .entries .list .detail .group.common {
     padding: 0 3rem 0 0;
     padding: 0;
+  }
+
+  .list.reports li .entries .list .detail .group.kills ul li ul {
+    grid-template-columns: 2fr repeat(3, 40px);
+  }
+
+  .list.reports li .entries .list .detail .group.medals ul li ul {
+    grid-template-columns: 2fr 40px;
   }
 
 }

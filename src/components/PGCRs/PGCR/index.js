@@ -236,7 +236,7 @@ class ReportItem extends React.Component {
                 </div>
                 <EntryHeader activityDetails={report.activityDetails} entry={entry} playerCache={playerCache} />
               </li>
-              {isExpandedPlayer ? <li className='detail'>
+              {isExpandedPlayer ? <li>
                 <EntryDetail activityDetails={report.activityDetails} entry={entry} playerCache={playerCache} />
               </li> : null}
             </ul>

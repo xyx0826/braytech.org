@@ -14,179 +14,35 @@ const modes = [
   //   name: 'gambit',
   //   modes: [63, 75]
   // },
-  // {
-  //   name: 'scoredNightfalls',
-  //   modes: [46]
-  // }
+  {
+    name: 'strikes',
+    modes: [
+      46, // scoredNightfalls
+      79 // nightmare hunts
+    ]
+  }
 ];
 
 const medalExclusions = ['allMedalsEarned', 'medalUnknown', 'precisionKills', 'weaponKillsAbility', 'weaponKillsGrenade', 'weaponKillsMelee', 'weaponKillsSuper', 'primevalHealing', 'primevalDamage', 'primevalKills', 'motesPickedUp', 'motesLost', 'motesDeposited', 'motesDenied', 'bankOverage', 'supremacyAllyKillEnemyTagsCaptured', 'supremacyAllyTagsRecovered', 'supremacyCrestsRecovered', 'supremacyCrestsSecured', 'supremacyOwnKillEnemyTagsCaptured', 'supremacyOwnTagsRecovered'];
 
-function RowCrucible(props) {
-  const { t, i18n } = useTranslation();
-  console.log(props);
-  const header = [
-    {
-      key: 'opponentsDefeated',
-      name: t('Kills + assists'),
-      abbr: 'KA',
-      type: 'value'
-    },
-    {
-      key: 'kills',
-      name: t('Kills'),
-      abbr: 'K',
-      type: 'value'
-    },
-    {
-      key: 'deaths',
-      name: t('Deaths'),
-      abbr: 'D',
-      type: 'value'
-    },
-    {
-      key: 'killsDeathsRatio',
-      name: t('K/D'),
-      abbr: 'KD',
-      type: 'value',
-      round: true
-    },
-    {
-      key: 'gloryPoints',
-      name: t('Glory points'),
-      abbr: 'G',
-      type: 'value',
-      async: true,
-      hideInline: true
-    }
-  ];
-
-  const expanded = [
-    {
-      key: 'common',
-      name: t('Common'),
-      fields: [
-        {
-          key: 'gloryPoints',
-          name: t('Glory points'),
-          type: 'value',
-          async: true
-        },
-        {
-          key: 'valorResets',
-          name: t('Valor resets'),
-          type: 'value',
-          async: true
-        },
-        {
-          key: 'weapons',
-          name: t('Weapons used')
-        }
-      ]
-    },
-    {
-      name: t('Basic'),
-      key: 'basic',
-      fields: [
-        {
-          key: 'kills',
-          name: t('Kills'),
-          type: 'value'
-        },
-        {
-          key: 'assists',
-          name: t('Assists'),
-          type: 'value'
-        },
-        {
-          key: 'deaths',
-          name: t('Deaths'),
-          abbr: 'D',
-          type: 'value'
-        },
-        {
-          key: 'killsDeathsRatio',
-          name: t('K/D'),
-          type: 'value',
-          round: true
-        },
-        {
-          key: 'allMedalsEarned',
-          name: t('Medals earned'),
-          type: 'value',
-          extended: true
-        }
-      ]
-    },
-    {
-      key: 'extra',
-      name: t('Extra'),
-      fields: [
-        {
-          key: 'precisionKills',
-          name: t('Precision kills'),
-          type: 'value',
-          extended: true
-        },
-        {
-          key: 'weaponKillsSuper',
-          name: t('Super kills'),
-          type: 'value',
-          extended: true
-        },
-        {
-          key: 'weaponKillsGrenade',
-          name: t('Grenade kills'),
-          type: 'value',
-          extended: true
-        },
-        {
-          key: 'weaponKillsMelee',
-          name: t('Melee kills'),
-          type: 'value',
-          extended: true
-        },
-        {
-          key: 'weaponKillsAbility',
-          name: t('Ability kills'),
-          type: 'value',
-          extended: true
-        }
-      ]
-    },
-    {
-      key: 'medals',
-      name: t('Medals'),
-      fields: [
-        {
-          key: 'medals'
-        }
-      ]
-    }
-  ];
-
-  return null;
-}
-
 function formatValue(column, entry, playerCache = []) {
-  let value;
-
   if (column.extended) {
-    value = column.round ? Number.parseFloat(entry.extended.values[column.key].basic[column.type]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : entry.extended.values[column.key].basic[column.type];
+    // from the extended stats value
+    return column.round ? Number.parseFloat(entry.extended.values[column.key].basic[column.type]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : entry.extended.values[column.key].basic[column.type].toLocaleString();
   } else if (column.async) {
+    // async profile data
     const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
-    value = cache && cache[column.key] ? cache[column.key] : '–';
+    return cache && cache[column.key] ? cache[column.key] : '–';
   } else if (column.root) {
-    value = column.round ? Number.parseFloat(entry[column.key].basic[column.type]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : entry[column.key].basic[column.type];
+    // entry object root
+    return column.round ? Number.parseFloat(entry[column.key].basic[column.type]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : entry[column.key].basic[column.type].toLocaleString();
   } else {
-    value = column.round ? Number.parseFloat(entry.values[column.key].basic[column.type]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : entry.values[column.key].basic[column.type];
+    return column.round ? Number.parseFloat(entry.values[column.key].basic[column.type]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : entry.values[column.key].basic[column.type].toLocaleString();
   }
-
-  return value;
 }
 
 export function EntryHeader(props) {
-  const { playerCache, activityDetails, entry } = props;
+  const { playerCache, activityDetails, entry, team } = props;
   const { t, i18n } = useTranslation();
 
   const headers = {
@@ -251,14 +107,45 @@ export function EntryHeader(props) {
         async: true,
         hideInline: true
       }
+    ],
+    strikes: [
+      {
+        key: 'opponentsDefeated',
+        name: t('Kills + assists'),
+        abbr: 'KA',
+        type: 'value'
+      },
+      {
+        key: 'kills',
+        name: t('Kills'),
+        abbr: 'K',
+        type: 'value'
+      },
+      {
+        key: 'deaths',
+        name: t('Deaths'),
+        abbr: 'D',
+        type: 'value'
+      },
+      {
+        key: 'killsDeathsRatio',
+        name: t('K/D'),
+        abbr: 'KD',
+        type: 'value',
+        round: true
+      },
+      {
+        key: 'score',
+        name: manifest.DestinyHistoricalStatsDefinition['score']?.statName,
+        abbr: 'S',
+        type: 'value'
+      }
     ]
   };
 
-  const variety = modes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name || 'default';
+  const variety = (modes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name && headers[modes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name] && modes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name) || 'default';
 
-  if (!variety || !headers[variety]) return null;
-
-  if (props.team) {
+  if (team) {
     return headers[variety].map((column, i) => (
       <div key={i} className={cx(column.key, { hideInline: column.hideInline })}>
         <div className='full'>{column.name}</div>
@@ -282,7 +169,8 @@ export function EntryDetail(props) {
 
   const rows = {
     crucible: CrucibleDetail
-  }
+    // strikes: StrikesDetail
+  };
 
   if (!variety || !rows[variety]) return <DefaultDetail {...props} />;
 
@@ -295,22 +183,40 @@ export function DefaultDetail(props) {
   const { playerCache, activityDetails, entry } = props;
   const { t, i18n } = useTranslation();
 
-  const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
+  if (!entry.extended?.weapons?.length && formatValue({ key: 'weaponKillsMelee', type: 'value', extended: true }, entry) === '0' && formatValue({ key: 'weaponKillsGrenade', type: 'value', extended: true }, entry) === '0' && formatValue({ key: 'weaponKillsSuper', type: 'value', extended: true }, entry) === '0') {
+    return (
+      <div className='detail single'>
+        <div className='group'>
+          <div className='info'>{t('No stats were recorded')}</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <>
-      <div className='group common'>
-        <ul>
-          <li>
-            <ul>
-              <li></li>
-              <li></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+    <div className='detail single'>
       <div className='group kills'>
         <ul>
+          <li className='header'>
+            <ul>
+              <li>
+                <div className='full'>{t('Weapon')}</div>
+                <div className='abbr'>{t('Weapon')}</div>
+              </li>
+              <li>
+                <div className='full'>{t('Kills')}</div>
+                <div className='abbr'>K</div>
+              </li>
+              <li>
+                <div className='full'>{t('Precision')}</div>
+                <div className='abbr'>P</div>
+              </li>
+              <li>
+                <div className='full'>{t('Accuracy')}</div>
+                <div className='abbr'>A</div>
+              </li>
+            </ul>
+          </li>
           {entry.extended?.weapons?.length
             ? entry.extended.weapons.map((weapon, w) => {
                 const definitionItem = manifest.DestinyInventoryItemDefinition[weapon.referenceId];
@@ -318,14 +224,14 @@ export function DefaultDetail(props) {
                 return (
                   <li key={w}>
                     <ul>
-                      <li>
+                      <li className='double'>
                         <ul className='list inventory-items'>
                           <li className={cx('item', 'tooltip')} data-hash={definitionItem.hash} data-uninstanced='yes'>
                             <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionItem.displayProperties.icon}`} />
                           </li>
                         </ul>
+                        <div>{definitionItem.displayProperties.name}</div>
                       </li>
-                      <li>{definitionItem.displayProperties.name}</li>
                       <li>{weapon.values?.uniqueWeaponKills?.basic?.value.toLocaleString() || '0'}</li>
                       <li>{weapon.values?.uniqueWeaponPrecisionKills?.basic?.value.toLocaleString() || '0'}</li>
                       <li>{(weapon.values?.uniqueWeaponKillsPrecisionKills?.basic?.value * 100).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + '%' || '0%'}</li>
@@ -334,36 +240,43 @@ export function DefaultDetail(props) {
                 );
               })
             : null}
+          {entry.extended?.weapons?.length ? <li className='divider' /> : null}
           <li>
             <ul>
-              <li></li>
-              <li>{t('Melee kills')}</li>
+              <li className='double'>
+                <div></div>
+                <div>{t('Melee kills')}</div>
+              </li>
               <li>{formatValue({ key: 'weaponKillsMelee', type: 'value', extended: true }, entry)}</li>
-              <li>–</li>
-              <li>–</li>
+              <li className='na'>–</li>
+              <li className='na'>–</li>
             </ul>
           </li>
           <li>
             <ul>
-              <li></li>
-              <li>{t('Grenade kills')}</li>
+              <li className='double'>
+                <div></div>
+                <div>{t('Grenade kills')}</div>
+              </li>
               <li>{formatValue({ key: 'weaponKillsGrenade', type: 'value', extended: true }, entry)}</li>
-              <li>–</li>
-              <li>–</li>
+              <li className='na'>–</li>
+              <li className='na'>–</li>
             </ul>
           </li>
           <li>
             <ul>
-              <li>??</li>
-              <li>{t('Super kills')}</li>
+              <li className='double'>
+                <div></div>
+                <div>{t('Super kills')}</div>
+              </li>
               <li>{formatValue({ key: 'weaponKillsSuper', type: 'value', extended: true }, entry)}</li>
-              <li>–</li>
-              <li>–</li>
+              <li className='na'>–</li>
+              <li className='na'>–</li>
             </ul>
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -374,25 +287,50 @@ export function CrucibleDetail(props) {
   const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
 
   return (
-    <>
+    <div className='detail'>
       <div className='group common'>
-        <ul>
+        <ul className='pairs'>
+          <li className='header'>
+            <ul>
+              <li>{t('Player')}</li>
+            </ul>
+          </li>
           <li>
             <ul>
               <li>{t('Glory points')}</li>
-              <li>{cache?.['gloryPoints'] || '–'}</li>
+              <li className={cx({ na: !cache?.['gloryPoints'] })}>{cache?.['gloryPoints'] || '–'}</li>
             </ul>
           </li>
           <li>
             <ul>
               <li>{t('Valor resets')}</li>
-              <li>{cache?.['valorResets'] || '–'}</li>
+              <li className={cx({ na: !cache?.['valorResets'] })}>{cache?.['valorResets'] || '–'}</li>
             </ul>
           </li>
         </ul>
       </div>
       <div className='group kills'>
         <ul>
+          <li className='header'>
+            <ul>
+              <li>
+                <div className='full'>{t('Weapon')}</div>
+                <div className='abbr'>{t('Weapon')}</div>
+              </li>
+              <li>
+                <div className='full'>{t('Kills')}</div>
+                <div className='abbr'>K</div>
+              </li>
+              <li>
+                <div className='full'>{t('Precision')}</div>
+                <div className='abbr'>P</div>
+              </li>
+              <li>
+                <div className='full'>{t('Accuracy')}</div>
+                <div className='abbr'>A</div>
+              </li>
+            </ul>
+          </li>
           {entry.extended?.weapons?.length
             ? entry.extended.weapons.map((weapon, w) => {
                 const definitionItem = manifest.DestinyInventoryItemDefinition[weapon.referenceId];
@@ -400,14 +338,14 @@ export function CrucibleDetail(props) {
                 return (
                   <li key={w}>
                     <ul>
-                      <li>
+                      <li className='double'>
                         <ul className='list inventory-items'>
                           <li className={cx('item', 'tooltip')} data-hash={definitionItem.hash} data-uninstanced='yes'>
                             <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionItem.displayProperties.icon}`} />
                           </li>
                         </ul>
+                        <div>{definitionItem.displayProperties.name}</div>
                       </li>
-                      <li>{definitionItem.displayProperties.name}</li>
                       <li>{weapon.values?.uniqueWeaponKills?.basic?.value.toLocaleString() || '0'}</li>
                       <li>{weapon.values?.uniqueWeaponPrecisionKills?.basic?.value.toLocaleString() || '0'}</li>
                       <li>{(weapon.values?.uniqueWeaponKillsPrecisionKills?.basic?.value * 100).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + '%' || '0%'}</li>
@@ -416,37 +354,49 @@ export function CrucibleDetail(props) {
                 );
               })
             : null}
+          {entry.extended?.weapons?.length ? <li className='divider' /> : null}
           <li>
             <ul>
-              <li></li>
-              <li>{t('Melee kills')}</li>
+              <li className='double'>
+                <div></div>
+                <div>{t('Melee kills')}</div>
+              </li>
               <li>{formatValue({ key: 'weaponKillsMelee', type: 'value', extended: true }, entry)}</li>
-              <li>–</li>
-              <li>–</li>
+              <li className='na'>–</li>
+              <li className='na'>–</li>
             </ul>
           </li>
           <li>
             <ul>
-              <li></li>
-              <li>{t('Grenade kills')}</li>
+              <li className='double'>
+                <div></div>
+                <div>{t('Grenade kills')}</div>
+              </li>
               <li>{formatValue({ key: 'weaponKillsGrenade', type: 'value', extended: true }, entry)}</li>
-              <li>–</li>
-              <li>–</li>
+              <li className='na'>–</li>
+              <li className='na'>–</li>
             </ul>
           </li>
           <li>
             <ul>
-              <li>??</li>
-              <li>{t('Super kills')}</li>
+              <li className='double'>
+                <div></div>
+                <div>{t('Super kills')}</div>
+              </li>
               <li>{formatValue({ key: 'weaponKillsSuper', type: 'value', extended: true }, entry)}</li>
-              <li>–</li>
-              <li>–</li>
+              <li className='na'>–</li>
+              <li className='na'>–</li>
             </ul>
           </li>
         </ul>
       </div>
       <div className='group medals'>
         <ul>
+          <li className='header'>
+            <ul>
+              <li>{t('Medals')}</li>
+            </ul>
+          </li>
           {Object.keys(entry.extended.values)
             .filter(key => !medalExclusions.includes(key))
             .sort((a, b) => (entry.extended.values[b].basic?.value || 0) - (entry.extended.values[a].basic?.value || 0))
@@ -460,14 +410,14 @@ export function CrucibleDetail(props) {
               return (
                 <li key={k}>
                   <ul>
-                    <li>
+                    <li className='double'>
                       <ul className='list inventory-items'>
                         <li key={k} className='item tooltip' data-hash={key} data-type='stat'>
                           <ObservedImage className={cx('image', 'icon')} src={`${!definitionMedal.localIcon ? 'https://www.bungie.net' : ''}${icon}`} />
                         </li>
                       </ul>
+                      <div>{definitionMedal.statName || t('Unknown')}</div>
                     </li>
-                    <li>{definitionMedal.statName || t('Unknown')}</li>
                     <li>{count}</li>
                   </ul>
                 </li>
@@ -475,6 +425,82 @@ export function CrucibleDetail(props) {
             })}
         </ul>
       </div>
-    </>
+    </div>
+  );
+}
+
+export function StrikesDetail(props) {
+  const { playerCache, activityDetails, entry } = props;
+  const { t, i18n } = useTranslation();
+
+  const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
+
+  return (
+    <div className='detail'>
+      <div className='group common'>
+        <ul>
+          <li>
+            <ul>
+              <li>{manifest.DestinyHistoricalStatsDefinition['score'].statName}</li>
+              <li>{formatValue({ key: 'score', type: 'value' }, entry)}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div className='group kills'>
+        <ul>
+          {entry.extended?.weapons?.length
+            ? entry.extended.weapons.map((weapon, w) => {
+                const definitionItem = manifest.DestinyInventoryItemDefinition[weapon.referenceId];
+
+                return (
+                  <li key={w}>
+                    <ul>
+                      <li>
+                        <ul className='list inventory-items'>
+                          <li className={cx('item', 'tooltip')} data-hash={definitionItem.hash} data-uninstanced='yes'>
+                            <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionItem.displayProperties.icon}`} />
+                          </li>
+                        </ul>
+                      </li>
+                      <li>{definitionItem.displayProperties.name}</li>
+                      <li>{weapon.values?.uniqueWeaponKills?.basic?.value.toLocaleString() || '0'}</li>
+                      <li>{weapon.values?.uniqueWeaponPrecisionKills?.basic?.value.toLocaleString() || '0'}</li>
+                      <li>{(weapon.values?.uniqueWeaponKillsPrecisionKills?.basic?.value * 100).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + '%' || '0%'}</li>
+                    </ul>
+                  </li>
+                );
+              })
+            : null}
+          <li>
+            <ul>
+              <li></li>
+              <li>{t('Melee kills')}</li>
+              <li>{formatValue({ key: 'weaponKillsMelee', type: 'value', extended: true }, entry)}</li>
+              <li className='na'>–</li>
+              <li className='na'>–</li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li></li>
+              <li>{t('Grenade kills')}</li>
+              <li>{formatValue({ key: 'weaponKillsGrenade', type: 'value', extended: true }, entry)}</li>
+              <li className='na'>–</li>
+              <li className='na'>–</li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li></li>
+              <li>{t('Super kills')}</li>
+              <li>{formatValue({ key: 'weaponKillsSuper', type: 'value', extended: true }, entry)}</li>
+              <li className='na'>–</li>
+              <li className='na'>–</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 }
