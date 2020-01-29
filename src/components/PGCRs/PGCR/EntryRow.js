@@ -333,9 +333,10 @@ export function CrucibleRow(props) {
         </ul>
       </div>
       <div className='group medals'>
-        <ul className='list medals'>
+        <ul>
           {Object.keys(entry.extended.values)
             .filter(key => !medalExclusions.includes(key))
+            .sort((a, b) => (entry.extended.values[b].basic?.value || 0) - (entry.extended.values[a].basic?.value || 0))
             .map((key, k) => {
               const medal = entry.extended.values[key];
               const definitionMedal = manifest.DestinyHistoricalStatsDefinition[key];
@@ -344,9 +345,18 @@ export function CrucibleRow(props) {
               const icon = definitionMedal && definitionMedal.iconImage && definitionMedal.iconImage !== '' ? definitionMedal.iconImage : manifest.settings.destiny2CoreSettings.undiscoveredCollectibleImage;
 
               return (
-                <li key={k} className='item tooltip' data-hash={key} data-type='stat'>
-                  <ObservedImage className={cx('image', 'icon')} src={`${!definitionMedal.localIcon ? 'https://www.bungie.net' : ''}${icon}`} />
-                  <div className='value'>{count}</div>
+                <li>
+                  <ul>
+                    <li>
+                      <ul className='list inventory-items'>
+                        <li key={k} className='item tooltip' data-hash={key} data-type='stat'>
+                          <ObservedImage className={cx('image', 'icon')} src={`${!definitionMedal.localIcon ? 'https://www.bungie.net' : ''}${icon}`} />
+                        </li>
+                      </ul>
+                    </li>
+                    <li>{definitionMedal.statName || t('Unknown')}</li>
+                    <li>{count}</li>
+                  </ul>
                 </li>
               );
             })}

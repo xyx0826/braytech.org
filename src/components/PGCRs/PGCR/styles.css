@@ -461,7 +461,7 @@
 }
 
 .list.reports li .entries .list .isExpandedPlayer .expanded .group {
-  padding: 0 0 2rem;
+  padding: 0 3rem 2rem 0;
 }
 
 .list.reports li .entries .list .isExpandedPlayer .expanded .group:first-child,
@@ -499,80 +499,41 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.common {
-  padding-right: 3rem;
+.list.reports li .entries .list .isExpandedPlayer .expanded .group.kills {
+  grid-column: span 2;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.kills ul li ul {
+.list.reports li .entries .list .isExpandedPlayer .expanded .group.kills ul li ul,
+.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul {
   display: grid;
   grid-template-columns: 38px 2fr repeat(3, minmax(30px, 0.8fr));
   column-gap: 10px;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.kills ul li ul li:nth-child(n+3) {
+.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul {
+  grid-template-columns: 38px 2fr repeat(1, minmax(30px, 0.8fr));
+}
+
+.list.reports li .entries .list .isExpandedPlayer .expanded .group.kills ul li ul li:nth-child(n+3),
+.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul li:nth-child(n+3) {
   text-align: right;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .stat {
-  margin: 0 0 12px;
+.list.reports li .entries .list .isExpandedPlayer .expanded .group ul li ul li .list.inventory-items {
+  grid-template-columns: auto;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .stat .name {
-  display: block;
-  margin: 0 0 7px;
-  padding: 0 2rem 0 0;
-  font-size: 14px;
-  line-height: 16px;
-  color: rgba(255, 255, 255, 0.6);
-  /* margin: 7px 0 0;
-  font-size: 12px;
-  line-height: 1;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6); */
-}
-
-.list.reports li .entries .list .isExpandedPlayer .expanded .stat .value {
-  font-size: 18px;
-  line-height: 1;
-}
-
-
-
-
-.list.reports li .entries .list .isExpandedPlayer .expanded .list.medals {
-  display: grid;
-  grid-gap: 3px;
-  grid-template-columns: repeat(auto-fill, 48px);
-}
-
-.list.reports li .entries .list .isExpandedPlayer .expanded .list.medals li {
-  height: 48px;
-  position: relative;
-}
-
-.list.reports li .entries .list .isExpandedPlayer .expanded .list.medals li .value {
-  content: attr(data-kills);
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 2px 4px;
-  background-color: #d6d6d6;
-  color: #000;
-  font-size: 11px;
-}
-
-.list.reports li .entries .list .isExpandedPlayer .expanded .list.medals li .icon {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.list.reports li .entries .list .isExpandedPlayer .expanded .list.medals li,
-.list.reports li .entries .list .isExpandedPlayer .expanded .list.medals li .icon {
+.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul li .list.inventory-items li,
+.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul li .list.inventory-items li .icon {
   background-color: transparent;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .list.medals li::before {
+.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul li .list.inventory-items li .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul li .list.inventory-items li::before {
   box-shadow: none;
 }
 
@@ -596,7 +557,11 @@
 
 
 
-
+@media screen and (max-width: 1024px) {
+  .list.reports li .entries .list .isExpandedPlayer .expanded .group.kills {
+    grid-column: unset;
+  }
+}
 
 
 
