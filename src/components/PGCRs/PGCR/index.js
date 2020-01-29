@@ -12,7 +12,7 @@ import MemberLink from '../../MemberLink';
 
 // import ReportPlayer from '../ReportPlayer';
 import { ReportHeader, ReportHeaderLarge } from './ReportHeader';
-import { EntryHeader, EntryRow } from './EntryRow';
+import { EntryHeader, EntryDetail } from './EntryRow';
 
 import './styles.css';
 
@@ -208,7 +208,7 @@ class ReportItem extends React.Component {
     
 
    
-    // if (expandedReport) console.log(this.props);
+    if (expandedReport) console.log(this.props);
 
     const entry = characterIds && report.entries.find(entry => characterIds.includes(entry.characterId));
     const standing = entry && entry.values.standing && entry.values.standing.basic.value !== undefined ? entry.values.standing.basic.value : -1;
@@ -223,19 +223,23 @@ class ReportItem extends React.Component {
     const entries = report.entries.map(entry => {
       const dnf = entry.values.completed.basic.value === 0 ? true : false;
       const isExpandedPlayer = expandedPlayers.includes(entry.characterId);
-      console.log(entry)
+
       return {
         teamId: report.teams && report.teams.length ? entry.values.team.basic.value : null,
         fireteamId: entry.values.fireteamId ? entry.values.fireteamId.basic.value : null,
         element: (
-          <li key={entry.characterId} className={cx('linked', { isExpandedPlayer })} onClick={this.handler_togglePlayer(entry.characterId)}>
-            <div className={cx('inline', { dnf: dnf })}>
-              <div className='member'>
-                <MemberLink type={entry.player.destinyUserInfo.membershipType} id={entry.player.destinyUserInfo.membershipId} displayName={entry.player.destinyUserInfo.displayName} characterId={entry.characterId} />
-              </div>
-              <EntryHeader activityDetails={report.activityDetails} entry={entry} playerCache={playerCache} />
-            </div>
-            <EntryRow activityDetails={report.activityDetails} entry={entry} playerCache={playerCache} />
+          <li key={entry.characterId} className={cx({ expanded: isExpandedPlayer })}>
+            <ul>
+              <li className={cx('linked', 'inline', { dnf: dnf })} onClick={this.handler_togglePlayer(entry.characterId)}>
+                <div className='member'>
+                  <MemberLink type={entry.player.destinyUserInfo.membershipType} id={entry.player.destinyUserInfo.membershipId} displayName={entry.player.destinyUserInfo.displayName} characterId={entry.characterId} />
+                </div>
+                <EntryHeader activityDetails={report.activityDetails} entry={entry} playerCache={playerCache} />
+              </li>
+              {isExpandedPlayer ? <li className='detail'>
+                <EntryDetail activityDetails={report.activityDetails} entry={entry} playerCache={playerCache} />
+              </li> : null}
+            </ul>
           </li>
         )
       };

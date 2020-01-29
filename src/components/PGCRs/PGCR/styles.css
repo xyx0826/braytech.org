@@ -318,7 +318,7 @@
 
 .list.reports li .entries .team-head,
 .list.reports li .entries li .inline,
-.list.reports li .entries li .expanded {
+.list.reports li .entries li .detail {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -326,7 +326,7 @@
   font-size: 14px;
 }
 
-.list.reports li .entries li .expanded {
+.list.reports li .entries li .detail {
   grid-template-columns: repeat(4, 1fr);
   align-items: start;
 }
@@ -434,106 +434,103 @@
   opacity: 0;
 }
 
-.list.reports li .entries .list .expanded {
-  display: none;
-}
-
-.list.reports li .entries .list .isExpandedPlayer .inline {
+.list.reports li .entries .list .expanded .inline {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-.list.reports li .entries .list .isExpandedPlayer {
+.list.reports li .entries .list .expanded {
   height: unset;
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.list.reports li .entries .list .isExpandedPlayer:hover {
+/* .list.reports li .entries .list .expanded:hover {
   background-color: rgba(255, 255, 255, 0.2);
-}
+} */
 
-.list.reports li .entries .list .isExpandedPlayer:hover::before {
+.list.reports li .entries .list .expanded:hover::before {
   background-color: transparent;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded {
+.list.reports li .entries .list .detail {
+  height: unset;
   display: grid;
   padding: 2rem 0 0;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group {
+.list.reports li .entries .list .detail .group {
   padding: 0 3rem 2rem 0;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group:first-child,
-.list.reports li .entries .list .isExpandedPlayer .expanded .group:nth-child(5) {
+.list.reports li .entries .list .detail .group:first-child,
+.list.reports li .entries .list .detail .group:nth-child(5) {
   padding-left: calc(38px + 16px);
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group:nth-child(5) {
+.list.reports li .entries .list .detail .group:nth-child(5) {
   grid-column: 1/3;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group > ul {
+.list.reports li .entries .list .detail .group > ul {
   display: grid;
   row-gap: 10px;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group ul li {
+.list.reports li .entries .list .detail .group ul li {
   height: unset;
   margin: 0;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group ul li ul {
+.list.reports li .entries .list .detail .group ul li ul {
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group ul li ul li {
+.list.reports li .entries .list .detail .group ul li ul li {
   height: unset;
   line-height: 1.4;
   font-size: 14px;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group ul li ul li:first-child {
+.list.reports li .entries .list .detail .group ul li ul li:first-child {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.kills {
+.list.reports li .entries .list .detail .group.kills {
   grid-column: span 2;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.kills ul li ul,
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul {
+.list.reports li .entries .list .detail .group.kills ul li ul,
+.list.reports li .entries .list .detail .group.medals ul li ul {
   display: grid;
   grid-template-columns: 38px 2fr repeat(3, minmax(30px, 0.8fr));
   column-gap: 10px;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul {
+.list.reports li .entries .list .detail .group.medals ul li ul {
   grid-template-columns: 38px 2fr repeat(1, minmax(30px, 0.8fr));
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.kills ul li ul li:nth-child(n+3),
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul li:nth-child(n+3) {
+.list.reports li .entries .list .detail .group.kills ul li ul li:nth-child(n+3),
+.list.reports li .entries .list .detail .group.medals ul li ul li:nth-child(n+3) {
   text-align: right;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group ul li ul li .list.inventory-items {
+.list.reports li .entries .list .detail .group ul li ul li .list.inventory-items {
   grid-template-columns: auto;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul li .list.inventory-items li,
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul li .list.inventory-items li .icon {
+.list.reports li .entries .list .detail .group.medals ul li ul li .list.inventory-items li,
+.list.reports li .entries .list .detail .group.medals ul li ul li .list.inventory-items li .icon {
   background-color: transparent;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul li .list.inventory-items li .icon {
+.list.reports li .entries .list .detail .group.medals ul li ul li .list.inventory-items li .icon {
   width: 24px;
   height: 24px;
 }
 
-.list.reports li .entries .list .isExpandedPlayer .expanded .group.medals ul li ul li .list.inventory-items li::before {
+.list.reports li .entries .list .detail .group.medals ul li ul li .list.inventory-items li::before {
   box-shadow: none;
 }
 
@@ -558,7 +555,7 @@
 
 
 @media screen and (max-width: 1024px) {
-  .list.reports li .entries .list .isExpandedPlayer .expanded .group.kills {
+  .list.reports li .entries .list .detail .group.kills {
     grid-column: unset;
   }
 }
@@ -632,8 +629,7 @@
   }
 
   .list.reports li .entries .team-head,
-  .list.reports li .entries .list li .inline,
-  .list.reports li .entries .list li .expanded {
+  .list.reports li .entries .list li .inline {
     grid-template-columns: minmax(120px, 270px) 1fr 1fr 1fr 1.25fr;
     font-size: 12px;
   }
@@ -667,7 +663,7 @@
     display: unset;
   }
 
-  .list.reports li .entries .list .isExpandedPlayer .expanded {
+  .list.reports li .entries .list .detail {
     grid-template-columns: 1fr;
     align-items: start;
     width: 100%;
@@ -676,8 +672,8 @@
     row-gap: 2rem;
   }
 
-  .list.reports li .entries .list .isExpandedPlayer .expanded .group,
-  .list.reports li .entries .list .isExpandedPlayer .expanded .group.common {
+  .list.reports li .entries .list .detail .group,
+  .list.reports li .entries .list .detail .group.common {
     padding: 0 3rem 0 0;
   }
 

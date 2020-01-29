@@ -8,16 +8,16 @@ import ObservedImage from '../../ObservedImage';
 const modes = [
   {
     name: 'crucible',
-    modes: [69, 70, 71, 72, 74, 73, 81, 50, 43, 44, 48, 60, 65, 59, 31, 37, 38, 37]
+    modes: [69, 70, 71, 72, 74, 73, 81, 50, 43, 44, 48, 60, 65, 59, 31, 37, 38, 37, 25, 51, 52, 53, 54, 55, 56, 57]
   },
-  {
-    name: 'gambit',
-    modes: [63, 75]
-  },
-  {
-    name: 'scoredNightfalls',
-    modes: [46]
-  }
+  // {
+  //   name: 'gambit',
+  //   modes: [63, 75]
+  // },
+  // {
+  //   name: 'scoredNightfalls',
+  //   modes: [46]
+  // }
 ];
 
 const medalExclusions = ['allMedalsEarned', 'medalUnknown', 'precisionKills', 'weaponKillsAbility', 'weaponKillsGrenade', 'weaponKillsMelee', 'weaponKillsSuper', 'primevalHealing', 'primevalDamage', 'primevalKills', 'motesPickedUp', 'motesLost', 'motesDeposited', 'motesDenied', 'bankOverage', 'supremacyAllyKillEnemyTagsCaptured', 'supremacyAllyTagsRecovered', 'supremacyCrestsRecovered', 'supremacyCrestsSecured', 'supremacyOwnKillEnemyTagsCaptured', 'supremacyOwnTagsRecovered'];
@@ -190,6 +190,33 @@ export function EntryHeader(props) {
   const { t, i18n } = useTranslation();
 
   const headers = {
+    default: [
+      {
+        key: 'opponentsDefeated',
+        name: t('Kills + assists'),
+        abbr: 'KA',
+        type: 'value'
+      },
+      {
+        key: 'kills',
+        name: t('Kills'),
+        abbr: 'K',
+        type: 'value'
+      },
+      {
+        key: 'deaths',
+        name: t('Deaths'),
+        abbr: 'D',
+        type: 'value'
+      },
+      {
+        key: 'killsDeathsRatio',
+        name: t('K/D'),
+        abbr: 'KD',
+        type: 'value',
+        round: true
+      }
+    ],
     crucible: [
       {
         key: 'opponentsDefeated',
@@ -227,7 +254,7 @@ export function EntryHeader(props) {
     ]
   };
 
-  const variety = modes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name;
+  const variety = modes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name || 'default';
 
   if (!variety || !headers[variety]) return null;
 
@@ -248,20 +275,106 @@ export function EntryHeader(props) {
   }
 }
 
-export function EntryRow(props) {
+export function EntryDetail(props) {
   const mode = props.activityDetails.mode;
 
-  return <CrucibleRow {...props} />;
+  const variety = modes.find(m => m.modes.indexOf(mode) > -1)?.name;
+
+  const rows = {
+    crucible: CrucibleDetail
+  }
+
+  if (!variety || !rows[variety]) return <DefaultDetail {...props} />;
+
+  const DetailTemplate = rows[variety];
+
+  return <DetailTemplate {...props} />;
 }
 
-export function CrucibleRow(props) {
+export function DefaultDetail(props) {
   const { playerCache, activityDetails, entry } = props;
   const { t, i18n } = useTranslation();
 
   const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
 
   return (
-    <div className='expanded'>
+    <>
+      <div className='group common'>
+        <ul>
+          <li>
+            <ul>
+              <li></li>
+              <li></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div className='group kills'>
+        <ul>
+          {entry.extended?.weapons?.length
+            ? entry.extended.weapons.map((weapon, w) => {
+                const definitionItem = manifest.DestinyInventoryItemDefinition[weapon.referenceId];
+
+                return (
+                  <li key={w}>
+                    <ul>
+                      <li>
+                        <ul className='list inventory-items'>
+                          <li className={cx('item', 'tooltip')} data-hash={definitionItem.hash} data-uninstanced='yes'>
+                            <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionItem.displayProperties.icon}`} />
+                          </li>
+                        </ul>
+                      </li>
+                      <li>{definitionItem.displayProperties.name}</li>
+                      <li>{weapon.values?.uniqueWeaponKills?.basic?.value.toLocaleString() || '0'}</li>
+                      <li>{weapon.values?.uniqueWeaponPrecisionKills?.basic?.value.toLocaleString() || '0'}</li>
+                      <li>{(weapon.values?.uniqueWeaponKillsPrecisionKills?.basic?.value * 100).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + '%' || '0%'}</li>
+                    </ul>
+                  </li>
+                );
+              })
+            : null}
+          <li>
+            <ul>
+              <li></li>
+              <li>{t('Melee kills')}</li>
+              <li>{formatValue({ key: 'weaponKillsMelee', type: 'value', extended: true }, entry)}</li>
+              <li>–</li>
+              <li>–</li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li></li>
+              <li>{t('Grenade kills')}</li>
+              <li>{formatValue({ key: 'weaponKillsGrenade', type: 'value', extended: true }, entry)}</li>
+              <li>–</li>
+              <li>–</li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li>??</li>
+              <li>{t('Super kills')}</li>
+              <li>{formatValue({ key: 'weaponKillsSuper', type: 'value', extended: true }, entry)}</li>
+              <li>–</li>
+              <li>–</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </>
+  );
+}
+
+export function CrucibleDetail(props) {
+  const { playerCache, activityDetails, entry } = props;
+  const { t, i18n } = useTranslation();
+
+  const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
+
+  return (
+    <>
       <div className='group common'>
         <ul>
           <li>
@@ -345,7 +458,7 @@ export function CrucibleRow(props) {
               const icon = definitionMedal && definitionMedal.iconImage && definitionMedal.iconImage !== '' ? definitionMedal.iconImage : manifest.settings.destiny2CoreSettings.undiscoveredCollectibleImage;
 
               return (
-                <li>
+                <li key={k}>
                   <ul>
                     <li>
                       <ul className='list inventory-items'>
@@ -362,6 +475,6 @@ export function CrucibleRow(props) {
             })}
         </ul>
       </div>
-    </div>
+    </>
   );
 }
