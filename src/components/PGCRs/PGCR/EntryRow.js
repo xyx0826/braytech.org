@@ -2,6 +2,9 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import cx from 'classnames';
 
+import manifest from '../../../utils/manifest';
+import ObservedImage from '../../ObservedImage';
+
 const modes = [
   {
     name: 'crucible',
@@ -17,11 +20,11 @@ const modes = [
   }
 ];
 
-const medalExclusions = ['medalUnknown', 'precisionKills', 'weaponKillsAbility', 'weaponKillsGrenade', 'weaponKillsMelee', 'weaponKillsSuper', 'primevalHealing', 'primevalDamage', 'primevalKills', 'motesPickedUp', 'motesLost', 'motesDeposited', 'motesDenied', 'bankOverage', 'supremacyAllyKillEnemyTagsCaptured', 'supremacyAllyTagsRecovered', 'supremacyCrestsRecovered', 'supremacyCrestsSecured', 'supremacyOwnKillEnemyTagsCaptured', 'supremacyOwnTagsRecovered'];
+const medalExclusions = ['allMedalsEarned', 'medalUnknown', 'precisionKills', 'weaponKillsAbility', 'weaponKillsGrenade', 'weaponKillsMelee', 'weaponKillsSuper', 'primevalHealing', 'primevalDamage', 'primevalKills', 'motesPickedUp', 'motesLost', 'motesDeposited', 'motesDenied', 'bankOverage', 'supremacyAllyKillEnemyTagsCaptured', 'supremacyAllyTagsRecovered', 'supremacyCrestsRecovered', 'supremacyCrestsSecured', 'supremacyOwnKillEnemyTagsCaptured', 'supremacyOwnTagsRecovered'];
 
 function RowCrucible(props) {
   const { t, i18n } = useTranslation();
-console.log(props)
+  console.log(props);
   const header = [
     {
       key: 'opponentsDefeated',
@@ -57,8 +60,6 @@ console.log(props)
       hideInline: true
     }
   ];
-
-  
 
   const expanded = [
     {
@@ -162,11 +163,9 @@ console.log(props)
         }
       ]
     }
-  ]
+  ];
 
-  return (
-    null
-  );
+  return null;
 }
 
 function formatValue(column, entry, playerCache = []) {
@@ -226,7 +225,7 @@ export function EntryHeader(props) {
         hideInline: true
       }
     ]
-  }
+  };
 
   const variety = modes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name;
 
@@ -252,18 +251,18 @@ export function EntryHeader(props) {
 export function EntryRow(props) {
   const mode = props.activityDetails.mode;
 
-  return <CrucibleRow {...props} />
+  return <CrucibleRow {...props} />;
 }
 
 export function CrucibleRow(props) {
   const { playerCache, activityDetails, entry } = props;
   const { t, i18n } = useTranslation();
 
-  const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId)
+  const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
 
   return (
     <div className='expanded'>
-      <div className='group'>
+      <div className='group common'>
         <ul>
           <li>
             <ul>
@@ -279,6 +278,80 @@ export function CrucibleRow(props) {
           </li>
         </ul>
       </div>
+      <div className='group kills'>
+        <ul>
+          {entry.extended?.weapons?.length
+            ? entry.extended.weapons.map((weapon, w) => {
+                const definitionItem = manifest.DestinyInventoryItemDefinition[weapon.referenceId];
+
+                return (
+                  <li key={w}>
+                    <ul>
+                      <li>
+                        <ul className='list inventory-items'>
+                          <li className={cx('item', 'tooltip')} data-hash={definitionItem.hash} data-uninstanced='yes'>
+                            <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionItem.displayProperties.icon}`} />
+                          </li>
+                        </ul>
+                      </li>
+                      <li>{definitionItem.displayProperties.name}</li>
+                      <li>{weapon.values?.uniqueWeaponKills?.basic?.value.toLocaleString() || '0'}</li>
+                      <li>{weapon.values?.uniqueWeaponPrecisionKills?.basic?.value.toLocaleString() || '0'}</li>
+                      <li>{(weapon.values?.uniqueWeaponKillsPrecisionKills?.basic?.value * 100).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + '%' || '0%'}</li>
+                    </ul>
+                  </li>
+                );
+              })
+            : null}
+          <li>
+            <ul>
+              <li></li>
+              <li>{t('Melee kills')}</li>
+              <li>{formatValue({ key: 'weaponKillsMelee', type: 'value', extended: true }, entry)}</li>
+              <li>–</li>
+              <li>–</li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li></li>
+              <li>{t('Grenade kills')}</li>
+              <li>{formatValue({ key: 'weaponKillsGrenade', type: 'value', extended: true }, entry)}</li>
+              <li>–</li>
+              <li>–</li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li>??</li>
+              <li>{t('Super kills')}</li>
+              <li>{formatValue({ key: 'weaponKillsSuper', type: 'value', extended: true }, entry)}</li>
+              <li>–</li>
+              <li>–</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div className='group medals'>
+        <ul className='list medals'>
+          {Object.keys(entry.extended.values)
+            .filter(key => !medalExclusions.includes(key))
+            .map((key, k) => {
+              const medal = entry.extended.values[key];
+              const definitionMedal = manifest.DestinyHistoricalStatsDefinition[key];
+
+              const count = medal.basic?.value || '0';
+              const icon = definitionMedal && definitionMedal.iconImage && definitionMedal.iconImage !== '' ? definitionMedal.iconImage : manifest.settings.destiny2CoreSettings.undiscoveredCollectibleImage;
+
+              return (
+                <li key={k} className='item tooltip' data-hash={key} data-type='stat'>
+                  <ObservedImage className={cx('image', 'icon')} src={`${!definitionMedal.localIcon ? 'https://www.bungie.net' : ''}${icon}`} />
+                  <div className='value'>{count}</div>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
     </div>
-  )
+  );
 }

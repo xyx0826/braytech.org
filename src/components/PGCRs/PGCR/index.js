@@ -7,7 +7,6 @@ import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
 import * as bungie from '../../../utils/bungie';
-import ObservedImage from '../../ObservedImage';
 import { Button, DestinyKey } from '../../UI/Button';
 import MemberLink from '../../MemberLink';
 
@@ -224,7 +223,7 @@ class ReportItem extends React.Component {
     const entries = report.entries.map(entry => {
       const dnf = entry.values.completed.basic.value === 0 ? true : false;
       const isExpandedPlayer = expandedPlayers.includes(entry.characterId);
-
+      console.log(entry)
       return {
         teamId: report.teams && report.teams.length ? entry.values.team.basic.value : null,
         fireteamId: entry.values.fireteamId ? entry.values.fireteamId.basic.value : null,
