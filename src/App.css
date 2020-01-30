@@ -714,12 +714,16 @@ html.backdropfilter .wrapper.dark-mode .sticky-nav {
   }
 }
 
-.profile-route-loading {
+.view.profile-route-loading {
+  display: grid;
+  min-height: calc(100vh - 82px);
   padding: 3rem;
+  justify-content: center;
+  align-content: center;
 }
 
 @media screen and (max-width: 600px) {
-  .profile-route-loading {
+  .view.profile-route-loading {
     padding: 2rem;
   }
 }

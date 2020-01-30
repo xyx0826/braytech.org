@@ -43,7 +43,7 @@ class ProfileRoutes extends React.Component {
       return (
         <>
           <Route path='/' render={route => <Header route={route} {...this.state} {...this.props} />} />
-          <div className='profile-route-loading'>
+          <div className='view profile-route-loading'>
             <Spinner />
           </div>
         </>

@@ -963,5 +963,10 @@
     "date": "2020-01-24T11:40:22.131Z",
     "version": "2.14.45",
     "content": "- fleshed out _Archives_ view"
+  },
+  {
+    "date": "2020-01-30T05:54:07.495Z",
+    "version": "2.15.0",
+    "content": "- the culmination of many day's efforts - I've vastly improved Braytech's _Reports_ view.\n- other changes too"
   }
 ]

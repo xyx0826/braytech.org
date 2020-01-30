@@ -5,7 +5,11 @@
 }
 
 #pgcr.loading {
+  min-height: calc(100vh - 82px);
   padding: 3rem;
+  padding-top: calc(3rem + 40px);
+  justify-content: center;
+  align-content: center;
 }
 
 #pgcr .list.reports > li {
@@ -54,6 +58,7 @@
 
   #pgcr.loading {
     padding: 2rem;
+    padding-top: calc(2rem + 40px);
   }
 
   #pgcr .list.reports li > .head .detail {

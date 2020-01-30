@@ -39,12 +39,9 @@ import './styles.css';
 class Mode extends React.Component {
   render() {
     const { t, match, location, stats, root = '/multiplayer/crucible', defaultMode = 5 } = this.props;
-    const modeParam = parseInt(match.params.mode, 10);
+    const modeParam = parseInt(match.params.mode || defaultMode, 10);
    
     const definitionActivityMode = Object.values(manifest.DestinyActivityModeDefinition).find(d => d.modeType === stats.mode);
-
-    const modeName = definitionActivityMode && definitionActivityMode.displayProperties.name;
-    const modeImage = definitionActivityMode && `https://www.bungie.net${definitionActivityMode.displayProperties.icon}`;
 
     const modeExtras = [
       // Crucible
@@ -151,7 +148,6 @@ class Mode extends React.Component {
     ];
 
     const modeExtra = modeExtras.find(m => m.modes.includes(stats.mode));
-
     const isActive = (match, location) => {
       if (modeParam === stats.mode) {
         return true;
@@ -166,7 +162,7 @@ class Mode extends React.Component {
           {modeExtra && modeExtra.icon}
         </div>
         <div className='text'>
-          <div className='name'>{(modeExtra && modeExtra.name) || modeName}</div>
+          <div className='name'>{(modeExtra && modeExtra.name) || definitionActivityMode?.displayProperties?.name}</div>
           {stats.killsDeathsRatio ? (
             <>
               <div className='minor-stats'>

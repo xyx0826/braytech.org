@@ -328,6 +328,7 @@
 
 .list.reports li .entries li .detail {
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: max-content;
   align-items: start;
 }
 
