@@ -728,7 +728,8 @@
     padding: 0;
   }
   
-  .list.reports li .entries .list .detail .group ul li ul li {
+  .list.reports li .entries .list .detail .group ul li ul li,
+  .list.reports li .entries .list .detail .group .info {
     font-size: 12px;
     line-height: 1.2;
   }

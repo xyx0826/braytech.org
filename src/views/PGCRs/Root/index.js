@@ -19,7 +19,8 @@ class All extends React.Component {
           <div className='module-l2'>
             <div className='content head'>
               <div className='page-header'>
-                <div className='name'>{t('Post Game Carnage Reports')}</div>
+                <div className='sub-name'>{t('Post Game Carnage Reports')}</div>
+                <div className='name'>{t('Explore')}</div>
               </div>
             </div>
           </div>

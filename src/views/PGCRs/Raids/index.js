@@ -96,7 +96,7 @@ class Raids extends React.Component {
   render() {
     const { t } = this.props;
 
-    const offset = parseInt(this.props.offset);
+    const offset = parseInt(this.props.offset, 10);
 
     return (
       <div className={cx('view', 'gambit')} id='multiplayer'>

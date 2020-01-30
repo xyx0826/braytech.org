@@ -168,6 +168,7 @@ class Crucible extends React.Component {
 
   render() {
     const { t } = this.props;
+    
     const offset = parseInt(this.props.offset, 10);
 
     return (

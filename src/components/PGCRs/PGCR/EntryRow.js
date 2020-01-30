@@ -10,10 +10,10 @@ const modes = [
     name: 'crucible',
     modes: [69, 70, 71, 72, 74, 73, 81, 50, 43, 44, 48, 60, 65, 59, 31, 37, 38, 37, 25, 51, 52, 53, 54, 55, 56, 57]
   },
-  // {
-  //   name: 'gambit',
-  //   modes: [63, 75]
-  // },
+  {
+    name: 'gambit',
+    modes: [63, 75]
+  },
   {
     name: 'strikes',
     modes: [
@@ -141,6 +141,41 @@ export function EntryHeader(props) {
         type: 'value',
         hideInline: true
       }
+    ],
+    gambit: [
+      {
+        key: 'motesDeposited',
+        name: manifest.DestinyHistoricalStatsDefinition['motesDeposited']?.statName,
+        abbr: 'MD',
+        type: 'value',
+        extended: true,
+        hideInline: true
+      },
+      {
+        key: 'opponentsDefeated',
+        name: t('Kills + assists'),
+        abbr: 'KA',
+        type: 'value'
+      },
+      {
+        key: 'kills',
+        name: t('Kills'),
+        abbr: 'K',
+        type: 'value'
+      },
+      {
+        key: 'deaths',
+        name: t('Deaths'),
+        abbr: 'D',
+        type: 'value'
+      },
+      {
+        key: 'killsDeathsRatio',
+        name: t('K/D'),
+        abbr: 'KD',
+        type: 'value',
+        round: true
+      }
     ]
   };
 
@@ -169,8 +204,8 @@ export function EntryDetail(props) {
   const variety = modes.find(m => m.modes.indexOf(mode) > -1)?.name;
 
   const rows = {
-    crucible: CrucibleDetail
-    // strikes: StrikesDetail
+    crucible: CrucibleDetail,
+    gambit: GambitDetail
   };
 
   if (!variety || !rows[variety]) return <DefaultDetail {...props} />;
@@ -184,7 +219,13 @@ export function DefaultDetail(props) {
   const { playerCache, activityDetails, entry } = props;
   const { t, i18n } = useTranslation();
 
-  if (!entry.extended?.weapons?.length && formatValue({ key: 'weaponKillsMelee', type: 'value', extended: true }, entry) === '0' && formatValue({ key: 'weaponKillsGrenade', type: 'value', extended: true }, entry) === '0' && formatValue({ key: 'weaponKillsSuper', type: 'value', extended: true }, entry) === '0') {
+  const [killsMelee, killsGrenade, killsSuper] = [
+    { key: 'weaponKillsMelee', type: 'value', extended: true },
+    { key: 'weaponKillsGrenade', type: 'value', extended: true },
+    { key: 'weaponKillsSuper', type: 'value', extended: true }
+  ].map(column => formatValue(column, entry));
+
+  if (!entry.extended?.weapons?.length && killsMelee === '0' && killsGrenade === '0' && killsSuper === '0') {
     return (
       <div className='detail single'>
         <div className='group'>
@@ -248,7 +289,7 @@ export function DefaultDetail(props) {
                 <div></div>
                 <div>{t('Melee kills')}</div>
               </li>
-              <li>{formatValue({ key: 'weaponKillsMelee', type: 'value', extended: true }, entry)}</li>
+              <li>{killsMelee}</li>
               <li className='na'>–</li>
               <li className='na'>–</li>
             </ul>
@@ -259,7 +300,7 @@ export function DefaultDetail(props) {
                 <div></div>
                 <div>{t('Grenade kills')}</div>
               </li>
-              <li>{formatValue({ key: 'weaponKillsGrenade', type: 'value', extended: true }, entry)}</li>
+              <li>{killsGrenade}</li>
               <li className='na'>–</li>
               <li className='na'>–</li>
             </ul>
@@ -270,7 +311,7 @@ export function DefaultDetail(props) {
                 <div></div>
                 <div>{t('Super kills')}</div>
               </li>
-              <li>{formatValue({ key: 'weaponKillsSuper', type: 'value', extended: true }, entry)}</li>
+              <li>{killsSuper}</li>
               <li className='na'>–</li>
               <li className='na'>–</li>
             </ul>
@@ -430,26 +471,61 @@ export function CrucibleDetail(props) {
   );
 }
 
-export function StrikesDetail(props) {
+export function GambitDetail(props) {
   const { playerCache, activityDetails, entry } = props;
   const { t, i18n } = useTranslation();
 
   const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
 
+  const medals = Object.keys(entry.extended.values)
+    .filter(key => !medalExclusions.includes(key))
+    .filter(key => key.indexOf('medal') > -1);
+
   return (
     <div className='detail'>
       <div className='group common'>
-        <ul>
+        <ul className='pairs'>
+          <li className='header'>
+            <ul>
+              <li>{t('Player')}</li>
+            </ul>
+          </li>
           <li>
             <ul>
-              <li>{manifest.DestinyHistoricalStatsDefinition['score'].statName}</li>
-              <li>{formatValue({ key: 'score', type: 'value' }, entry)}</li>
+              <li>{t('Glory points')}</li>
+              <li className={cx({ na: !cache?.['gloryPoints'] })}>{cache?.['gloryPoints'] || '–'}</li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li>{t('Valor resets')}</li>
+              <li className={cx({ na: !cache?.['valorResets'] })}>{cache?.['valorResets'] || '–'}</li>
             </ul>
           </li>
         </ul>
       </div>
       <div className='group kills'>
         <ul>
+          <li className='header'>
+            <ul>
+              <li>
+                <div className='full'>{t('Weapon')}</div>
+                <div className='abbr'>{t('Weapon')}</div>
+              </li>
+              <li>
+                <div className='full'>{t('Kills')}</div>
+                <div className='abbr'>K</div>
+              </li>
+              <li>
+                <div className='full'>{t('Precision')}</div>
+                <div className='abbr'>P</div>
+              </li>
+              <li>
+                <div className='full'>{t('Accuracy')}</div>
+                <div className='abbr'>A</div>
+              </li>
+            </ul>
+          </li>
           {entry.extended?.weapons?.length
             ? entry.extended.weapons.map((weapon, w) => {
                 const definitionItem = manifest.DestinyInventoryItemDefinition[weapon.referenceId];
@@ -457,14 +533,14 @@ export function StrikesDetail(props) {
                 return (
                   <li key={w}>
                     <ul>
-                      <li>
+                      <li className='double'>
                         <ul className='list inventory-items'>
                           <li className={cx('item', 'tooltip')} data-hash={definitionItem.hash} data-uninstanced='yes'>
                             <ObservedImage className={cx('image', 'icon')} src={`https://www.bungie.net${definitionItem.displayProperties.icon}`} />
                           </li>
                         </ul>
+                        <div>{definitionItem.displayProperties.name}</div>
                       </li>
-                      <li>{definitionItem.displayProperties.name}</li>
                       <li>{weapon.values?.uniqueWeaponKills?.basic?.value.toLocaleString() || '0'}</li>
                       <li>{weapon.values?.uniqueWeaponPrecisionKills?.basic?.value.toLocaleString() || '0'}</li>
                       <li>{(weapon.values?.uniqueWeaponKillsPrecisionKills?.basic?.value * 100).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + '%' || '0%'}</li>
@@ -473,10 +549,13 @@ export function StrikesDetail(props) {
                 );
               })
             : null}
+          {entry.extended?.weapons?.length ? <li className='divider' /> : null}
           <li>
             <ul>
-              <li></li>
-              <li>{t('Melee kills')}</li>
+              <li className='double'>
+                <div></div>
+                <div>{t('Melee kills')}</div>
+              </li>
               <li>{formatValue({ key: 'weaponKillsMelee', type: 'value', extended: true }, entry)}</li>
               <li className='na'>–</li>
               <li className='na'>–</li>
@@ -484,8 +563,10 @@ export function StrikesDetail(props) {
           </li>
           <li>
             <ul>
-              <li></li>
-              <li>{t('Grenade kills')}</li>
+              <li className='double'>
+                <div></div>
+                <div>{t('Grenade kills')}</div>
+              </li>
               <li>{formatValue({ key: 'weaponKillsGrenade', type: 'value', extended: true }, entry)}</li>
               <li className='na'>–</li>
               <li className='na'>–</li>
@@ -493,13 +574,55 @@ export function StrikesDetail(props) {
           </li>
           <li>
             <ul>
-              <li></li>
-              <li>{t('Super kills')}</li>
+              <li className='double'>
+                <div></div>
+                <div>{t('Super kills')}</div>
+              </li>
               <li>{formatValue({ key: 'weaponKillsSuper', type: 'value', extended: true }, entry)}</li>
               <li className='na'>–</li>
               <li className='na'>–</li>
             </ul>
           </li>
+        </ul>
+      </div>
+      <div className='group medals'>
+        <ul>
+          <li className='header'>
+            <ul>
+              <li>{t('Medals')}</li>
+            </ul>
+          </li>
+          {medals.length ? (
+            medals
+              .sort((a, b) => (entry.extended.values[b].basic?.value || 0) - (entry.extended.values[a].basic?.value || 0))
+              .map((key, k) => {
+                const medal = entry.extended.values[key];
+                const definitionMedal = manifest.DestinyHistoricalStatsDefinition[key];
+
+                const count = medal.basic?.value || '0';
+                const icon = definitionMedal && definitionMedal.iconImage && definitionMedal.iconImage !== '' ? definitionMedal.iconImage : manifest.settings.destiny2CoreSettings.undiscoveredCollectibleImage;
+
+                return (
+                  <li key={k}>
+                    <ul>
+                      <li className='double'>
+                        <ul className='list inventory-items'>
+                          <li key={k} className='item tooltip' data-hash={key} data-type='stat'>
+                            <ObservedImage className={cx('image', 'icon')} src={`${!definitionMedal.localIcon ? 'https://www.bungie.net' : ''}${icon}`} />
+                          </li>
+                        </ul>
+                        <div>{definitionMedal.statName || t('Unknown')}</div>
+                      </li>
+                      <li>{count}</li>
+                    </ul>
+                  </li>
+                );
+              })
+          ) : (
+            <li>
+              <div className='info'>{t('No medals awarded')}</div>
+            </li>
+          )}
         </ul>
       </div>
     </div>

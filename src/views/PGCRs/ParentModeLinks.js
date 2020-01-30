@@ -1,20 +1,9 @@
 import React from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
 
 import { removeMemberIds } from '../../utils/paths';
 import { ProfileNavLink } from '../../components/ProfileLink';
 
 class ParentModeLinks extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      
-    };
-  }
-
   render() {
     return (
       <div className='content views'>
@@ -38,12 +27,12 @@ class ParentModeLinks extends React.Component {
             <ProfileNavLink to='/reports/gambit' />
           </li>
           <li className='linked'>
-            <div className='icon destiny-raid' />
-            <ProfileNavLink to='/reports/raids' />
-          </li>
-          <li className='linked'>
             <div className='icon destiny-strike' />
             <ProfileNavLink to='/reports/strikes' />
+          </li>
+          <li className='linked'>
+            <div className='icon destiny-raid' />
+            <ProfileNavLink to='/reports/raids' />
           </li>
         </ul>
       </div>
@@ -51,7 +40,4 @@ class ParentModeLinks extends React.Component {
   }
 }
 
-export default compose(
-  connect(),
-  withTranslation()
-)(ParentModeLinks);
+export default ParentModeLinks;

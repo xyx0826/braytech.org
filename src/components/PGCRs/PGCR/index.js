@@ -68,7 +68,7 @@ class ReportItem extends React.Component {
     }
   };
 
-  getProgression = async (membershipType, membershipId, characterId) => {
+  getProgression = async (membershipType, membershipId) => {
     let response = await bungie.GetProfile({
       params: {
         membershipType,
@@ -87,6 +87,9 @@ class ReportItem extends React.Component {
         }
       };
     }
+
+    // in case the PGCR refers to a character that has since been deleted, as is the case with "5364501167"
+    const characterId = Object.keys(response.Response.characterProgressions.data)[0];
 
     const characterProgressions = response.Response.characterProgressions.data;
     const characterRecords = response.Response.characterRecords.data;
@@ -247,7 +250,7 @@ class ReportItem extends React.Component {
 
 
 
-    const detail = (
+    const body = (
       <>
         <ReportHeaderLarge characterIds={characterIds} {...report} />
         <div className='entries'>
@@ -315,7 +318,7 @@ class ReportItem extends React.Component {
 
     return (
       <li key={report.activityDetails.instanceId} className={cx('linked', { isExpanded: expandedReport, standing: standing > -1, victory: standing === 0 })} onClick={!expandedReport ? this.handler_expand : undefined}>
-      {!expandedReport ? <ReportHeader characterIds={characterIds} {...report} /> : detail}
+      {!expandedReport ? <ReportHeader characterIds={characterIds} {...report} /> : body}
       </li>
     );
     

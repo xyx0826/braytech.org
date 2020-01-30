@@ -5,6 +5,7 @@ import braytech_ES from '../data/manifest/es/braytech/';
 import braytech_IT from '../data/manifest/it/braytech/';
 import DestinyClanBannerDefinition from '../data/manifest/en/DestinyClanBannerDefinition/';
 import DestinyActivityDefinition from '../data/manifest/en/DestinyActivityDefinition/';
+import DestinyHistoricalStatsDefinition from '../data/manifest/en/DestinyHistoricalStatsDefinition/';
 
 import DestinyInventoryItemDefinition_EN from '../data/manifest/en/DestinyInventoryItemDefinition/';
 import DestinyPresentationNodeDefinition_EN from '../data/manifest/en/DestinyPresentationNodeDefinition/';
@@ -17,6 +18,7 @@ const customs = {
     braytech: braytech_EN,
     DestinyClanBannerDefinition,
     DestinyActivityDefinition,
+    DestinyHistoricalStatsDefinition,
     DestinyPresentationNodeDefinition: DestinyPresentationNodeDefinition_EN,
     DestinyInventoryItemDefinition: DestinyInventoryItemDefinition_EN
   },
@@ -73,6 +75,7 @@ const manifest = {
     // Object.assign(newManifest.DestinyActivityDefinition, customs.en.DestinyActivityDefinition);
 
     customsMerge(newManifest.DestinyActivityDefinition, customs.en.DestinyActivityDefinition);
+    customsMerge(newManifest.DestinyHistoricalStatsDefinition, customs.en.DestinyHistoricalStatsDefinition);
     customsMerge(newManifest.DestinyInventoryItemDefinition, customs[lang].DestinyInventoryItemDefinition);
 
     Object.assign(newManifest.DestinyPresentationNodeDefinition, customs.en.DestinyPresentationNodeDefinition);
