@@ -1,140 +1,385 @@
 {
   "de": {
-    "translated": 418,
-    "notTranslated": 205,
+    "translated": 407,
+    "notTranslated": 212,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "debug": {
-    "translated": 623,
+    "translated": 619,
     "notTranslated": 0,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "en": {
-    "translated": 623,
+    "translated": 619,
     "notTranslated": 0,
     "added": [],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "es-mx": {
-    "translated": 592,
-    "notTranslated": 31,
+    "translated": 581,
+    "notTranslated": 38,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "es": {
-    "translated": 620,
-    "notTranslated": 3,
+    "translated": 608,
+    "notTranslated": 11,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "fr": {
-    "translated": 544,
-    "notTranslated": 79,
+    "translated": 532,
+    "notTranslated": 87,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "it": {
-    "translated": 610,
-    "notTranslated": 13,
+    "translated": 598,
+    "notTranslated": 21,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "ja": {
-    "translated": 568,
-    "notTranslated": 55,
+    "translated": 559,
+    "notTranslated": 60,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "ko": {
-    "translated": 622,
-    "notTranslated": 1,
+    "translated": 610,
+    "notTranslated": 9,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 623,
+    "notTranslated": 619,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "pt-br": {
-    "translated": 535,
-    "notTranslated": 88,
+    "translated": 524,
+    "notTranslated": 95,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "ru": {
-    "translated": 571,
-    "notTranslated": 52,
+    "translated": 559,
+    "notTranslated": 60,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "zh-chs": {
-    "translated": 451,
-    "notTranslated": 172,
+    "translated": 440,
+    "notTranslated": 179,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   },
   "zh-cht": {
-    "translated": 425,
-    "notTranslated": 198,
+    "translated": 414,
+    "notTranslated": 205,
     "added": [
-      "New tab"
+      "Accuracy",
+      "Character class",
+      "Explore",
+      "No medals awarded",
+      "No stats were recorded",
+      "Player",
+      "Precision",
+      "Weapon"
     ],
     "removed": [
-      "Open in tab"
+      "Ability kills",
+      "Assists",
+      "Basic",
+      "Common",
+      "Extra",
+      "Invasion",
+      "Medals earned",
+      "Mobs",
+      "Motes",
+      "Precision kills",
+      "Score",
+      "Weapons used"
     ]
   }
 }

@@ -162,21 +162,21 @@ export function EntryHeader(props) {
       },
       {
         key: 'motesLost',
-        name: t('Motes Lost'),
+        name: t('Motes lost'),
         abbr: 'ML',
         type: 'value',
         extended: true
       },
       {
         key: 'invasionKills',
-        name: t('Invasion Kills'),
+        name: t('Invasion kills'),
         abbr: 'IK',
         type: 'value',
         extended: true
       },
       {
         key: 'blockerKills',
-        name: t('Blocker Kills'),
+        name: t('Blocker kills'),
         type: 'value',
         extended: true,
         hideInline: true
