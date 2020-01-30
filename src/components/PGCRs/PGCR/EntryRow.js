@@ -589,7 +589,7 @@ export function GambitDetail(props) {
   ];
 
   return (
-    <div className='detail'>
+    <div className='detail gambit'>
       <div className='group common'>
         <ul className='pairs'>
           <li className='header'>
