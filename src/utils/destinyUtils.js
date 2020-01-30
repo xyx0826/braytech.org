@@ -289,8 +289,12 @@ export function classHashToString(hash, gender) {
 
   if (!definitionClass) return '';
 
-  if (definitionClass.genderedClassNames) {
-    return definitionClass.genderedClassNames[gender === 1 ? 'Female' : 'Male'];
+  if (definitionClass.genderedClassNames && gender) {
+    if (gender > -1 && gender < 2) {
+      return definitionClass.genderedClassNames[gender === 1 ? 'Female' : 'Male'];
+    } else {
+      return definitionClass.genderedClassNamesByGenderHash[gender];
+    }
   }
 
   return definitionClass.displayProperties.name;

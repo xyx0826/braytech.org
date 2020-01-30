@@ -479,6 +479,10 @@
   row-gap: 10px;
 }
 
+.list.reports li .entries .list .detail .group > ul ~ ul {
+  margin: 2rem 0 0;
+}
+
 .list.reports li .entries .list .detail .group ul li {
   height: unset;
   margin: 0;
@@ -520,7 +524,7 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-.list.reports li .entries .list .detail .group.kills {
+.list.reports li .entries .list .detail.crucible .group.kills {
   grid-column: span 2;
 }
 

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
+import * as utils from '../../../utils/destinyUtils';
 import ObservedImage from '../../ObservedImage';
 
 const modes = [
@@ -12,13 +13,16 @@ const modes = [
   },
   {
     name: 'gambit',
-    modes: [63, 75]
+    modes: [
+      63, // Gambit
+      75  // Gambit Prime
+    ]
   },
   {
     name: 'strikes',
     modes: [
       46, // scoredNightfalls
-      79 // nightmare hunts
+      79  // nightmare hunts
     ]
   }
 ];
@@ -144,37 +148,38 @@ export function EntryHeader(props) {
     ],
     gambit: [
       {
-        key: 'motesDeposited',
-        name: manifest.DestinyHistoricalStatsDefinition['motesDeposited']?.statName,
-        abbr: 'MD',
-        type: 'value',
-        extended: true,
-        hideInline: true
-      },
-      {
         key: 'opponentsDefeated',
         name: t('Kills + assists'),
         abbr: 'KA',
         type: 'value'
       },
       {
-        key: 'kills',
-        name: t('Kills'),
-        abbr: 'K',
-        type: 'value'
-      },
-      {
-        key: 'deaths',
-        name: t('Deaths'),
-        abbr: 'D',
-        type: 'value'
-      },
-      {
-        key: 'killsDeathsRatio',
-        name: t('K/D'),
-        abbr: 'KD',
+        key: 'motesDeposited',
+        name: t('Motes deposited'),
+        abbr: 'MD',
         type: 'value',
-        round: true
+        extended: true
+      },
+      {
+        key: 'motesLost',
+        name: t('Motes Lost'),
+        abbr: 'ML',
+        type: 'value',
+        extended: true
+      },
+      {
+        key: 'invasionKills',
+        name: t('Invasion Kills'),
+        abbr: 'IK',
+        type: 'value',
+        extended: true
+      },
+      {
+        key: 'blockerKills',
+        name: t('Blocker Kills'),
+        type: 'value',
+        extended: true,
+        hideInline: true
       }
     ]
   };
@@ -329,12 +334,18 @@ export function CrucibleDetail(props) {
   const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
 
   return (
-    <div className='detail'>
+    <div className='detail crucible'>
       <div className='group common'>
         <ul className='pairs'>
           <li className='header'>
             <ul>
               <li>{t('Player')}</li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li>{t('Character class')}</li>
+              <li>{utils.classHashToString(entry.player.classHash, entry.player.genderHash)}</li>
             </ul>
           </li>
           <li>
@@ -481,6 +492,102 @@ export function GambitDetail(props) {
     .filter(key => !medalExclusions.includes(key))
     .filter(key => key.indexOf('medal') > -1);
 
+  const activitySpecific = [
+    // Motes
+    {
+      key: 'motesDeposited',
+      name: t('Motes deposited'),
+      type: 'value',
+      extended: true
+    },
+    {
+      key: 'motesLost',
+      name: t('Motes lost'),
+      type: 'value',
+      extended: true
+    },
+    {
+      key: 'motesDenied',
+      name: t('Motes denied'),
+      type: 'value',
+      extended: true
+    },
+    {
+      divider: true
+    },
+    // PVP
+    {
+      key: 'invasions',
+      name: t('Invasions'),
+      type: 'value',
+      extended: true
+    },
+    {
+      key: 'invasionKills',
+      name: t('Invasion kills'),
+      type: 'value',
+      extended: true
+    },
+    {
+      key: 'invasionDeaths',
+      name: t('Invasion deaths'),
+      type: 'value',
+      extended: true
+    },
+    {
+      key: 'invaderKills',
+      name: t('Invader kills'),
+      type: 'value',
+      extended: true
+    },
+    {
+      key: 'invaderDeaths',
+      name: t('Invader deaths'),
+      type: 'value',
+      extended: true
+    },
+    {
+      divider: true
+    },
+    // Mobs
+    {
+      key: 'mobKills',
+      name: t('Mob kills'),
+      type: 'value',
+      extended: true
+    },
+    {
+      key: 'highValueKills',
+      name: t('High value targets'),
+      type: 'value',
+      extended: true
+    },
+    {
+      key: 'blockerKills',
+      name: t('Blocker kills'),
+      type: 'value',
+      extended: true
+    },
+    {
+      key: 'smallBlockersSent',
+      name: t('Small blockers sent'),
+      type: 'value',
+      extended: true
+    },
+    {
+      key: 'mediumBlockersSent',
+      name: t('Medium blockers sent'),
+      type: 'value',
+      extended: true
+    },
+    {
+      key: 'largeBlockersSent',
+      name: t('Large blockers sent'),
+      type: 'value',
+      extended: true
+    }
+  ];
+
   return (
     <div className='detail'>
       <div className='group common'>
@@ -492,16 +599,43 @@ export function GambitDetail(props) {
           </li>
           <li>
             <ul>
-              <li>{t('Glory points')}</li>
-              <li className={cx({ na: !cache?.['gloryPoints'] })}>{cache?.['gloryPoints'] || '–'}</li>
+              <li>{t('Character class')}</li>
+              <li>{utils.classHashToString(entry.player.classHash, entry.player.genderHash)}</li>
             </ul>
           </li>
           <li>
             <ul>
-              <li>{t('Valor resets')}</li>
-              <li className={cx({ na: !cache?.['valorResets'] })}>{cache?.['valorResets'] || '–'}</li>
+              <li>{t('Infamy points')}</li>
+              <li className={cx({ na: !cache?.['infamyPoints'] })}>{cache?.['infamyPoints'] || '–'}</li>
             </ul>
           </li>
+          <li>
+            <ul>
+              <li>{t('Infamy resets')}</li>
+              <li className={cx({ na: !cache?.['infamyResets'] })}>{cache?.['infamyResets'] || '–'}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div className='group activity'>
+        <ul className='pairs'>
+          <li className='header'>
+            <ul>
+              <li>{t('Activity')}</li>
+            </ul>
+          </li>
+          {activitySpecific.map((column, c) =>
+            column.divider ? (
+              <li className='divider' />
+            ) : (
+              <li key={c}>
+                <ul>
+                  <li>{column.name}</li>
+                  <li>{formatValue(column, entry)}</li>
+                </ul>
+              </li>
+            )
+          )}
         </ul>
       </div>
       <div className='group kills'>
