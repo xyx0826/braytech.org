@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" class="victory">
+  <title>standing-victory</title>
   <g class="Layer_2" data-name="Layer 2">
     <g class="Layer_1-2" data-name="Layer 1">
       <g>
@@ -28,31 +29,21 @@
             <polyline points="248.694 347.707 185.882 271.711 185.882 245.201 248.694 321.196 248.694 347.707"/>
             <polygon points="314.11 245.201 251.298 321.196 251.298 347.707 314.11 271.711 314.11 245.201"/>
           </g>
-          <g class="chevron chevron4 ani" data-name="chevron chevron4 ani">
-            <polyline points="248.694 347.707 185.882 271.711 185.882 245.201 248.694 321.196 248.694 347.707" style="fill: #fff"/>
-            <polygon points="314.11 245.201 251.298 321.196 251.298 347.707 314.11 271.711 314.11 245.201" style="fill: #fff"/>
-          </g>
           <g class="chevron chevron3" data-name="chevron chevron3">
             <polygon points="314.11 218.69 251.298 294.685 251.298 321.196 314.11 245.201 314.11 218.69" style="fill: #8e1e1d"/>
             <polygon points="185.882 245.201 248.694 321.196 248.694 294.685 185.882 218.69 185.882 245.201" style="fill: #8e1e1d"/>
-          </g>
-          <g class="chevron chevron3 ani" data-name="chevron chevron3 ani">
-            <polygon points="314.11 218.69 251.298 294.685 251.298 321.196 314.11 245.201 314.11 218.69" style="fill: #fff"/>
-            <polygon points="185.882 245.201 248.694 321.196 248.694 294.685 185.882 218.69 185.882 245.201" style="fill: #fff"/>
           </g>
           <g class="chevron chevron2" data-name="chevron chevron2">
             <polygon points="314.11 192.18 251.298 268.175 251.298 294.685 314.11 218.69 314.11 192.18" style="fill: #d30f08"/>
             <polygon points="185.882 218.69 248.694 294.685 248.694 268.175 185.882 192.18 185.882 218.69" style="fill: #d30f08"/>
           </g>
-          <g class="chevron chevron2 ani" data-name="chevron chevron2 ani">
-            <polygon points="314.11 192.18 251.298 268.175 251.298 294.685 314.11 218.69 314.11 192.18" style="fill: #fff"/>
-            <polygon points="185.882 218.69 248.694 294.685 248.694 268.175 185.882 192.18 185.882 218.69" style="fill: #fff"/>
-          </g>
           <g class="chevron chevron1" data-name="chevron chevron1">
             <polygon points="314.11 155.485 251.298 231.48 251.298 268.583 314.11 192.587 314.11 155.485" style="fill: #fff"/>
             <polygon points="185.882 192.587 248.694 268.583 248.694 231.48 185.882 155.485 185.882 192.587" style="fill: #fff"/>
           </g>
-          <polygon points="283.47 146.303 249.996 186.802 216.522 146.303 185.882 146.303 185.882 146.334 249.996 223.905 314.11 146.334 314.11 146.303 283.47 146.303" style="fill: #fff"/>
+          <g class="chevron chevron0" data-name="chevron chevron0">
+            <polygon points="283.47 146.303 249.996 186.802 216.522 146.303 185.882 146.303 185.882 146.334 249.996 223.905 314.11 146.334 314.11 146.303 283.47 146.303" style="fill: #fff"/>
+          </g>
         </g>
       </g>
     </g>

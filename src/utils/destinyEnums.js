@@ -984,3 +984,24 @@ export const chaliceRunes = {
     3444855283
   ]
 };
+
+export const simplifiedAcivityModes = [
+  {
+    name: 'crucible',
+    modes: [69, 70, 71, 72, 74, 73, 81, 50, 43, 44, 48, 60, 65, 59, 31, 37, 38, 37, 25, 51, 52, 53, 54, 55, 56, 57, 80]
+  },
+  {
+    name: 'gambit',
+    modes: [
+      63, // Gambit
+      75  // Gambit Prime
+    ]
+  },
+  {
+    name: 'strikes',
+    modes: [
+      46, // scoredNightfalls
+      79  // nightmare hunts
+    ]
+  }
+];

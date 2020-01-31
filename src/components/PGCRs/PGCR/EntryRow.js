@@ -4,28 +4,8 @@ import cx from 'classnames';
 
 import manifest from '../../../utils/manifest';
 import * as utils from '../../../utils/destinyUtils';
+import * as enums from '../../../utils/destinyEnums';
 import ObservedImage from '../../ObservedImage';
-
-const modes = [
-  {
-    name: 'crucible',
-    modes: [69, 70, 71, 72, 74, 73, 81, 50, 43, 44, 48, 60, 65, 59, 31, 37, 38, 37, 25, 51, 52, 53, 54, 55, 56, 57, 80]
-  },
-  {
-    name: 'gambit',
-    modes: [
-      63, // Gambit
-      75  // Gambit Prime
-    ]
-  },
-  {
-    name: 'strikes',
-    modes: [
-      46, // scoredNightfalls
-      79  // nightmare hunts
-    ]
-  }
-];
 
 const medalExclusions = ['allMedalsEarned', 'medalUnknown', 'precisionKills', 'weaponKillsAbility', 'weaponKillsGrenade', 'weaponKillsMelee', 'weaponKillsSuper', 'primevalHealing', 'primevalDamage', 'primevalKills', 'motesPickedUp', 'motesLost', 'motesDeposited', 'motesDenied', 'bankOverage', 'supremacyAllyKillEnemyTagsCaptured', 'supremacyAllyTagsRecovered', 'supremacyCrestsRecovered', 'supremacyCrestsSecured', 'supremacyOwnKillEnemyTagsCaptured', 'supremacyOwnTagsRecovered'];
 
@@ -184,7 +164,7 @@ export function EntryHeader(props) {
     ]
   };
 
-  const variety = (modes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name && headers[modes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name] && modes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name) || 'default';
+  const variety = (enums.simplifiedAcivityModes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name && headers[enums.simplifiedAcivityModes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name] && enums.simplifiedAcivityModes.find(m => m.modes.indexOf(activityDetails.mode) > -1)?.name) || 'default';
 
   if (team) {
     return headers[variety].map((column, i) => (
@@ -206,7 +186,7 @@ export function EntryHeader(props) {
 export function EntryDetail(props) {
   const mode = props.activityDetails.mode;
 
-  const variety = modes.find(m => m.modes.indexOf(mode) > -1)?.name;
+  const variety = enums.simplifiedAcivityModes.find(m => m.modes.indexOf(mode) > -1)?.name;
 
   const rows = {
     crucible: CrucibleDetail,

@@ -9,7 +9,8 @@
   height: 38px;
   position: relative;
   padding: 0 1rem;
-  grid-template-columns: max-content max-content auto;
+  grid-template-columns: minmax(max-content, 240px) max-content auto;
+  column-gap: 10px;
   align-items: center;
   font-size: 14px;
 }
@@ -66,7 +67,12 @@
 
 .list.reports li > .head .image.bg {
   background-size: cover;
-  filter: brightness(0.5);
+  filter: brightness(0.9);
+}
+
+.list.reports li > .head.crucible .image.bg,
+.list.reports li > .head.gambit .image.bg {
+  filter: brightness(0.7);
 }
 
 .list.reports li > .head .detail {
@@ -84,7 +90,7 @@
   text-align: right;
 }
 
-.list.reports li > .head .detail .mode,
+.list.reports li > .head .detail .map,
 .list.reports li > .head .detail .ago {
   margin: 5px 0 0;
   font-size: 14px;
@@ -115,64 +121,76 @@
   pointer-events: none;
 }
 
-.list.reports li > .head .standing .icon.crucible .victory .square {
+.list.reports li > .head.crucible .standing .icon .victory .square {
   transform-origin: center center;
   animation: rotate-linear 32s infinite linear;
 }
 
-.list.reports li > .head .standing .icon.crucible .victory .square2 {
+.list.reports li > .head.crucible .standing .icon .victory .square2 {
   animation: rotate-linear 16s infinite linear;
 }
 
-.list.reports li > .head .standing .icon.crucible .victory .chevron.ani {
+.list.reports li > .head.crucible .standing .icon .victory .chevron {
   transform-origin: center center;
-  opacity: 0;
-  animation: standing-crucible-chevron-highlight 7s infinite 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation: standing-crucible-chevron-scale-small 4s infinite 0s cubic-bezier(0.46, 0.03, 0.52, 0.96);
 }
 
-.list.reports li > .head .standing .icon.crucible .victory .chevron.chevron2.ani {
-  animation: standing-crucible-chevron-highlight 7s infinite 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+.list.reports li > .head.crucible .standing .icon .victory .chevron.chevron1 {
+  animation: standing-crucible-chevron-scale-small 4s infinite 0.1s cubic-bezier(0.46, 0.03, 0.52, 0.96);
 }
 
-.list.reports li > .head .standing .icon.crucible .victory .chevron.chevron3.ani {
-  animation: standing-crucible-chevron-highlight 7s infinite 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+.list.reports li > .head.crucible .standing .icon .victory .chevron.chevron2 {
+  animation: standing-crucible-chevron-scale 4s infinite 0.2s cubic-bezier(0.46, 0.03, 0.52, 0.96);
 }
 
-.list.reports li > .head .standing .icon.crucible .victory .chevron.chevron4.ani {
-  animation: standing-crucible-chevron-highlight 7s infinite 0s cubic-bezier(0.165, 0.84, 0.44, 1);
+.list.reports li > .head.crucible .standing .icon .victory .chevron.chevron3 {
+  animation: standing-crucible-chevron-scale 4s infinite 0.4s cubic-bezier(0.46, 0.03, 0.52, 0.96);
 }
 
-@keyframes standing-crucible-chevron-highlight {
-  0%, 10%, 100% {
-    opacity: 0;
+.list.reports li > .head.crucible .standing .icon .victory .chevron.chevron4 {
+  animation: standing-crucible-chevron-scale 4s infinite 0.6s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+}
+
+@keyframes standing-crucible-chevron-scale-small {
+  0%, 20%, 100% {
+    transform: scale(1);
   }
-  5% {
-    opacity: 0.2;
+  10% {
+    transform: scale(1.05);
   }
 }
 
-.list.reports li > .head .standing .icon.crucible .defeat .knives {
+@keyframes standing-crucible-chevron-scale {
+  0%, 20%, 100% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.075);
+  }
+}
+
+.list.reports li > .head.crucible .standing .icon .defeat .knives {
   transform-origin: center center;
   animation: rotate-linear 40s infinite linear;
 }
 
-.list.reports li > .head .standing .icon.crucible .defeat .knife {
+.list.reports li > .head.crucible .standing .icon .defeat .knife {
   transform-origin: center center;
   transform: translate3d(-10px, -10px, 0);
   animation: standing-crucible-knife-bob-1 4s infinite cubic-bezier(0.86, 0, 0.07, 1);
 }
 
-.list.reports li > .head .standing .icon.crucible .defeat .knife.knife2 {
+.list.reports li > .head.crucible .standing .icon .defeat .knife.knife2 {
   transform: translate3d(10px, -10px, 0);
   animation: standing-crucible-knife-bob-2 4s infinite .5s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
-.list.reports li > .head .standing .icon.crucible .defeat .knife.knife3 {
+.list.reports li > .head.crucible .standing .icon .defeat .knife.knife3 {
   transform: translate3d(10px, 10px, 0);
   animation: standing-crucible-knife-bob-3 4s infinite 1s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
-.list.reports li > .head .standing .icon.crucible .defeat .knife.knife4 {
+.list.reports li > .head.crucible .standing .icon .defeat .knife.knife4 {
   transform: translate3d(-10px, 10px, 0);
   animation: standing-crucible-knife-bob-4 4s infinite 1.5s cubic-bezier(0.86, 0, 0.07, 1);
 }
@@ -210,6 +228,33 @@
   }
   30% {
     transform: translate3d(0, 0, 0);
+  }
+}
+
+.list.reports li > .head.gambit .standing .icon .victory-gambit .roles {
+  transform-origin: center center;
+  animation: rotate-linear 32s infinite linear;
+  opacity: 0.4;
+}
+
+.list.reports li > .head.gambit .standing .icon .victory-gambit .triangle {
+  transform-origin: center center;
+  animation: rotate-linear 64s infinite linear reverse;
+}
+
+.list.reports li > .head.gambit .standing .icon .victory-gambit .roles .role {
+  transform-origin: center center;
+  animation: standing-victory-gambit-roles-scale 1s 1 0s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
+}
+
+@keyframes standing-victory-gambit-roles-scale {
+  0% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
@@ -622,8 +667,11 @@
   }
 }
 
+
+
+
 @media screen and (max-width: 1024px) {
-  .list.reports li .entries .list .detail .group.kills,
+  .list.reports li .entries .list .detail:not(.single) .group.kills,
   .list.reports li .entries .list .detail .group.medals {
     grid-column: 2/5;
   }
@@ -639,18 +687,24 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .list.reports li > .basic > div {
+  .list.reports li > .basic .ago {
     display: none;
   }
 
-  .list.reports li > .basic .mode,
-  .list.reports li > .basic .map {
-    display: inherit;
+  .list.reports li > .basic .mode {
+    min-width: unset;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .list.reports li > .basic .map {
     text-align: right;
-    min-width: unset;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .list.reports li > .head {

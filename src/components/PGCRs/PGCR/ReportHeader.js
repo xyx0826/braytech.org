@@ -7,6 +7,7 @@ import moment from 'moment';
 import Moment from 'react-moment';
 
 import manifest from '../../../utils/manifest';
+import * as enums from '../../../utils/destinyEnums';
 import ObservedImage from '../../ObservedImage';
 
 import { ReactComponent as CrucibleIconDefault } from '../../../svg/crucible/default.svg';
@@ -27,14 +28,9 @@ import { ReactComponent as CrucibleIconIronBanner } from '../../../svg/crucible/
 
 import { ReactComponent as CrucibleIconStandingVictory } from '../../../svg/crucible/standing-victory.svg';
 import { ReactComponent as CrucibleIconStandingDefeat } from '../../../svg/crucible/standing-defeat.svg';
+import { ReactComponent as CrucibleIconStandingVictoryGambit } from '../../../svg/gambit/standing-victory-gambit.svg';
 
 class ReportHeader extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   render() {
     const { characterIds, activityDetails, period, entries } = this.props;
 
@@ -107,38 +103,31 @@ class ReportHeader extends React.Component {
 
     const modeExtra = modeExtras.find(m => m.modes.includes(activityDetails.mode));
 
+    // mode definition - control, survival, etc
     const definitionMode = Object.values(manifest.DestinyActivityModeDefinition).find(d => d.modeType === activityDetails.mode);
 
-    const modeName = definitionMode && definitionMode.displayProperties.name;
+    // map definition - specific strike, Rusted Lands, etc
+    const definitionActivity = manifest.DestinyActivityDefinition[activityDetails.referenceId];
 
-    const map = manifest.DestinyActivityDefinition[activityDetails.referenceId];
-    
-
+    // get current character entry or entry with longest activityDurationSeconds
     const entry = entries && ((characterIds && entries.find(entry => characterIds.includes(entry.characterId))) || (entries.length && orderBy(entries, [e => e.values && e.values.activityDurationSeconds && e.values.activityDurationSeconds.basic.value], ['desc'])[0]));
 
+    // add activityDurationSeconds to activity start time
     const realEndTime = moment(period).add(entry.values.activityDurationSeconds.basic.value, 'seconds');
-
 
     return (
       <div className='basic'>
-        <div className='mode'>{(modeExtra && modeExtra.name) || modeName}</div>
-        <div className='map'>{map && map.displayProperties.name}</div>
+        <div className='mode'>{modeExtra?.name || definitionMode?.displayProperties?.name}</div>
+        <div className='map'>{definitionActivity?.displayProperties?.name}</div>
         <div className='ago'>
           <Moment fromNow>{realEndTime}</Moment>
         </div>
       </div>
     );
-
   }
 }
 
 class ReportHeaderLarge extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   render() {
     const { t, characterIds, activityDetails, period, entries, teams } = this.props;
 
@@ -203,72 +192,70 @@ class ReportHeaderLarge extends React.Component {
 
     const modeExtra = modeExtras.find(m => m.modes.includes(activityDetails.mode));
 
+    // mode definition - control, survival, etc
     const definitionMode = Object.values(manifest.DestinyActivityModeDefinition).find(d => d.modeType === activityDetails.mode);
 
-    const modeName = definitionMode && definitionMode.displayProperties.name;
+    // map definition - specific strike, Rusted Lands, etc
+    const definitionActivity = manifest.DestinyActivityDefinition[activityDetails.referenceId];
 
-    const map = manifest.DestinyActivityDefinition[activityDetails.referenceId];
-
+    // get current character entry or entry with longest activityDurationSeconds
     const entry = entries && ((characterIds && entries.find(entry => characterIds.includes(entry.characterId))) || (entries.length && orderBy(entries, [e => e.values && e.values.activityDurationSeconds && e.values.activityDurationSeconds.basic.value], ['desc'])[0]));
 
+    // add activityDurationSeconds to activity start time
     const realEndTime = moment(period).add(entry.values.activityDurationSeconds.basic.value, 'seconds');
 
+    // standing based on current character, if possible
     const standing = entry.values.standing && entry.values.standing.basic.value !== undefined ? entry.values.standing.basic.value : -1;
+
+    // score total
     const scoreTotal = entry.values.score ? entries.reduce((v, e) => v + e.values.score.basic.value, 0) : false;
 
-    let alpha = teams && teams.length ? teams.find(t => t.teamId === 17) : false;
-    let bravo = teams && teams.length ? teams.find(t => t.teamId === 18) : false;
-    let score;
-    if (teams && teams.length && alpha && bravo) {
-      score = (
+    // team scores
+    const alpha = teams && teams.length ? teams.find(t => t.teamId === 17) : false;
+    const bravo = teams && teams.length ? teams.find(t => t.teamId === 18) : false;
+    const teamScores =
+      teams && teams.length && alpha && bravo ? (
         <>
           <div className={cx('value', 'alpha', { victory: teams.find(t => t.teamId === 17 && t.standing.basic.value === 0) })}>{alpha.score.basic.displayValue}</div>
           <div className={cx('value', 'bravo', { victory: teams.find(t => t.teamId === 18 && t.standing.basic.value === 0) })}>{bravo.score.basic.displayValue}</div>
         </>
-      );
-    }
+      ) : null;
+    
+    const simplifiedAcivityMode = enums.simplifiedAcivityModes.find(m => m.modes.indexOf(activityDetails.mode) > -1);
 
-    // const standingExtras = [
-    //   {
-    //     mode: 1164760504,
-    //     defeat: 
-    //   }
-    // ]
-
-    // const standingExtra = standingExtras.find(m => m.modes.includes(activityDetails.mode));
+    const StandingVictorySVG = simplifiedAcivityMode?.name === 'gambit' ? CrucibleIconStandingVictoryGambit : CrucibleIconStandingVictory;
 
     return (
-      <div className='head'>
-      {map && map.pgcrImage && <ObservedImage className='image bg' src={`https://www.bungie.net${map.pgcrImage}`} />}
-      <div className='detail'>
-        <div>
-          <div className='map'>{map && map.displayProperties.name}</div>
-          <div className='mode'>{(modeExtra && modeExtra.name) || modeName}</div>
-        </div>
-        <div>
-          <div className='duration'>{entry.values.activityDurationSeconds.basic.displayValue}</div>
-          <div className='ago'>
-            <Moment fromNow>{realEndTime}</Moment>
+      <div className={cx('head', simplifiedAcivityMode?.name)}>
+        {definitionActivity?.pgcrImage && <ObservedImage className='image bg' src={`https://www.bungie.net${definitionActivity.pgcrImage}`} />}
+        <div className='detail'>
+          <div>
+            <div className='mode'>{modeExtra?.name || definitionMode?.displayProperties?.name}</div>
+            <div className='map'>{definitionActivity?.displayProperties?.name}</div>
+          </div>
+          <div>
+            <div className='duration'>{entry.values.activityDurationSeconds.basic.displayValue}</div>
+            <div className='ago'>
+              <Moment fromNow>{realEndTime}</Moment>
+            </div>
           </div>
         </div>
+        {standing > -1 ? (
+          <>
+            <div className='standing'>
+              <div className='icon'>{standing === 0 ? <StandingVictorySVG /> : <CrucibleIconStandingDefeat />}</div>
+              <div className='text'>{standing === 0 ? t('Victory') : t('Defeat')}</div>
+            </div>
+            <div className='score teams'>{teamScores}</div>
+          </>
+        ) : null}
+        {scoreTotal && standing < 0 ? (
+          <>
+            <div className='score'>{scoreTotal.toLocaleString()}</div>
+          </>
+        ) : null}
       </div>
-      {standing > -1 ? (
-        <>
-          <div className='standing'>
-            <div className='icon crucible'>{standing === 0 ? <CrucibleIconStandingVictory /> : <CrucibleIconStandingDefeat />}</div>
-            <div className='text'>{standing === 0 ? t('Victory') : t('Defeat')}</div>
-          </div>
-          <div className='score teams'>{score}</div>
-        </>
-      ) : null}
-      {scoreTotal && standing < 0 ? (
-        <>
-          <div className='score'>{scoreTotal.toLocaleString()}</div>
-        </>
-      ) : null}
-    </div>
     );
-
   }
 }
 

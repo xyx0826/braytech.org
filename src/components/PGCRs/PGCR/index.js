@@ -16,13 +16,17 @@ import { EntryHeader, EntryDetail } from './EntryRow';
 
 import './styles.css';
 
+const unfinishableActivityModes = [
+  6 // Patrol
+];
+
 class ReportItem extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       expandedReport: Boolean(this.props.expanded),
-      expandedPlayers: ['2305843009260574394'],
+      expandedPlayers: [],
       playerCache: []
     };
   }
@@ -208,7 +212,7 @@ class ReportItem extends React.Component {
 
     const { expandedReport, expandedPlayers, playerCache } = this.state;
 
-    
+    const isFinishable = !unfinishableActivityModes.filter(mode => report.activityDetails.modes.indexOf(mode) > -1).length;
 
    
     if (expandedReport) console.log(this.props);
@@ -224,7 +228,7 @@ class ReportItem extends React.Component {
 
 
     const entries = report.entries.map(entry => {
-      const dnf = entry.values.completed.basic.value === 0 ? true : false;
+      const dnf = entry.values.completed.basic.value === 0 && isFinishable ? true : false;
       const isExpandedPlayer = expandedPlayers.includes(entry.characterId);
 
       return {
