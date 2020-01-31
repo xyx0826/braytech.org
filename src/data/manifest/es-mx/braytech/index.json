@@ -50,7 +50,7 @@
     "commonality": {
       "displayProperties": {
         "name": "Rareza",
-        "description": "Una representación del número de jugadores que han adquirido o canjeado este triunfo."
+        "description": "Una representación del número de jugadores que adquirieron o canjeado este triunfo."
       },
       "itemType": 1
     },
