@@ -121,33 +121,33 @@
   pointer-events: none;
 }
 
-.list.reports li > .head.crucible .standing .icon .victory .square {
+.list.reports li > .head .standing .icon .victory .square {
   transform-origin: center center;
   animation: rotate-linear 32s infinite linear;
 }
 
-.list.reports li > .head.crucible .standing .icon .victory .square2 {
+.list.reports li > .head .standing .icon .victory .square2 {
   animation: rotate-linear 16s infinite linear;
 }
 
-.list.reports li > .head.crucible .standing .icon .victory .chevron {
+.list.reports li > .head .standing .icon .victory .chevron {
   transform-origin: center center;
   animation: standing-crucible-chevron-scale-small 4s infinite 0s cubic-bezier(0.46, 0.03, 0.52, 0.96);
 }
 
-.list.reports li > .head.crucible .standing .icon .victory .chevron.chevron1 {
+.list.reports li > .head .standing .icon .victory .chevron.chevron1 {
   animation: standing-crucible-chevron-scale-small 4s infinite 0.1s cubic-bezier(0.46, 0.03, 0.52, 0.96);
 }
 
-.list.reports li > .head.crucible .standing .icon .victory .chevron.chevron2 {
+.list.reports li > .head .standing .icon .victory .chevron.chevron2 {
   animation: standing-crucible-chevron-scale 4s infinite 0.2s cubic-bezier(0.46, 0.03, 0.52, 0.96);
 }
 
-.list.reports li > .head.crucible .standing .icon .victory .chevron.chevron3 {
+.list.reports li > .head .standing .icon .victory .chevron.chevron3 {
   animation: standing-crucible-chevron-scale 4s infinite 0.4s cubic-bezier(0.46, 0.03, 0.52, 0.96);
 }
 
-.list.reports li > .head.crucible .standing .icon .victory .chevron.chevron4 {
+.list.reports li > .head .standing .icon .victory .chevron.chevron4 {
   animation: standing-crucible-chevron-scale 4s infinite 0.6s cubic-bezier(0.46, 0.03, 0.52, 0.96);
 }
 
@@ -169,28 +169,28 @@
   }
 }
 
-.list.reports li > .head.crucible .standing .icon .defeat .knives {
+.list.reports li > .head .standing .icon .defeat .knives {
   transform-origin: center center;
   animation: rotate-linear 40s infinite linear;
 }
 
-.list.reports li > .head.crucible .standing .icon .defeat .knife {
+.list.reports li > .head .standing .icon .defeat .knife {
   transform-origin: center center;
   transform: translate3d(-10px, -10px, 0);
   animation: standing-crucible-knife-bob-1 4s infinite cubic-bezier(0.86, 0, 0.07, 1);
 }
 
-.list.reports li > .head.crucible .standing .icon .defeat .knife.knife2 {
+.list.reports li > .head .standing .icon .defeat .knife.knife2 {
   transform: translate3d(10px, -10px, 0);
   animation: standing-crucible-knife-bob-2 4s infinite .5s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
-.list.reports li > .head.crucible .standing .icon .defeat .knife.knife3 {
+.list.reports li > .head .standing .icon .defeat .knife.knife3 {
   transform: translate3d(10px, 10px, 0);
   animation: standing-crucible-knife-bob-3 4s infinite 1s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
-.list.reports li > .head.crucible .standing .icon .defeat .knife.knife4 {
+.list.reports li > .head .standing .icon .defeat .knife.knife4 {
   transform: translate3d(-10px, 10px, 0);
   animation: standing-crucible-knife-bob-4 4s infinite 1.5s cubic-bezier(0.86, 0, 0.07, 1);
 }
@@ -231,25 +231,45 @@
   }
 }
 
-.list.reports li > .head.gambit .standing .icon .victory-gambit .roles {
+.list.reports li > .head .standing .icon .victory-gambit .radial {
   transform-origin: center center;
   animation: rotate-linear 32s infinite linear;
   opacity: 0.4;
 }
 
-.list.reports li > .head.gambit .standing .icon .victory-gambit .triangle {
+.list.reports li > .head .standing .icon .victory-gambit .radial-1,
+.list.reports li > .head .standing .icon .victory-gambit .radial-2,
+.list.reports li > .head .standing .icon .victory-gambit .radial-background {
+  opacity: 0;
   transform-origin: center center;
-  animation: rotate-linear 64s infinite linear reverse;
 }
 
-.list.reports li > .head.gambit .standing .icon .victory-gambit .roles .role {
-  transform-origin: center center;
-  animation: standing-victory-gambit-roles-scale 1s 1 0s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
+.list.reports li > .head .standing .icon .victory-gambit .radial-1 {
+  animation: standing-victory-gambit-radial-scale 1s 1 0s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
 }
 
-@keyframes standing-victory-gambit-roles-scale {
+.list.reports li > .head .standing .icon .victory-gambit .radial-2 {
+  animation: standing-victory-gambit-radial-scale 1s 1 0.4s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
+}
+
+.list.reports li > .head .standing .icon .victory-gambit .radial-background {
+  animation: standing-victory-gambit-radial-background-scale 3s 1 0s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
+}
+
+@keyframes standing-victory-gambit-radial-scale {
   0% {
     transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes standing-victory-gambit-radial-background-scale {
+  0% {
+    transform: scale(0.4);
     opacity: 0;
   }
   100% {
