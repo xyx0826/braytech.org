@@ -46,7 +46,6 @@ class CollectionsBadge extends React.Component {
         </>
       );
     } else {
-      let children;
 
       let classStates = [];
       definitionBadge.children.presentationNodes.forEach(node => {
@@ -61,7 +60,7 @@ class CollectionsBadge extends React.Component {
         });
 
         classStates.push({
-          class: enums.CLASSES[enums.associationsCollectionsBadgesClasses[definitionNode.hash]]?.toLowerCase(),
+          class: enums.classStrings[enums.associationsCollectionsBadgesClasses[definitionNode.hash]],
           name: definitionNode.displayProperties.name,
           states: classState
         });

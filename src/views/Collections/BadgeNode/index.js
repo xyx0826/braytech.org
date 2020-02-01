@@ -77,7 +77,7 @@ class BadgeNode extends React.Component {
       }
 
       classStates.push({
-        class: enums.CLASSES[enums.associationsCollectionsBadgesClasses[definitionNode.hash]]?.toLowerCase(),
+        class: enums.classStrings[enums.associationsCollectionsBadgesClasses[definitionNode.hash]],
         name: definitionNode.displayProperties.name,
         states: classState
       });
@@ -151,7 +151,7 @@ class BadgeNode extends React.Component {
 
                 return (
                   <li key={p.presentationNodeHash} className='linked'>
-                    <span className={`destiny-class_${enums.CLASSES[enums.associationsCollectionsBadgesClasses[p.presentationNodeHash]]?.toLowerCase()}`} />
+                    <span className={`destiny-class_${enums.classStrings[enums.associationsCollectionsBadgesClasses[p.presentationNodeHash]]}`} />
                     <ProfileNavLink isActive={isActive} to={`/collections/badge/${definitionBadge.hash}/${p.presentationNodeHash}`} onClick={() => {
                       let element = this.entries.current;
                       window.scrollTo(0, (element.offsetTop - element.scrollTop + element.clientTop - 34));

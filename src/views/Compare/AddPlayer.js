@@ -45,7 +45,7 @@ class AddPlayer extends React.Component {
     return (
       <li key={i} className='linked'>
         <div className='icon'>
-          <span className={`destiny-platform_${enums.PLATFORMS[p.membershipType]}`} />
+          <span className={`destiny-platform_${enums.platforms[p.membershipType]}`} />
         </div>
         <div className='displayName'>{p.displayName}</div>
         <Link to={queryString ? `/compare/${object}?members=${queryString}` : `/compare/${object}`} />

@@ -6,8 +6,7 @@ import { orderBy } from 'lodash';
 import cx from 'classnames';
 import moment from 'moment';
 
-import manifest from '../../utils/manifest';
-import * as ls from '../../utils/localStorage';
+import * as enums from '../../utils/destinyEnums';
 import * as utils from '../../utils/destinyUtils';
 import { ProfileLink } from '../../components/ProfileLink';
 import getGroupMembers from '../../utils/getGroupMembers';
@@ -142,10 +141,7 @@ class Roster extends React.Component {
                   <li className='col lastCharacter'>
                     <div className='icon'>
                       <i
-                        className={`destiny-class_${utils
-                          .classTypeToString(lastCharacter.classType)
-                          .toString()
-                          .toLowerCase()}`}
+                        className={`destiny-class_${enums.classStrings[lastCharacter.classType]}`}
                       />
                     </div>
                     <div className='icon'>

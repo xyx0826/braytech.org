@@ -1,32 +1,15 @@
-export const TITAN = 0;
-export const HUNTER = 1;
-export const WARLOCK = 2;
-export const NO_CLASS = 3;
-
-export const KINETIC_WEAPON = 2;
-export const ENERGY_WEAPON = 3;
-export const POWER_WEAPON = 4;
-
-export const XBOX = 1;
-export const PLAYSTATION = 2;
-export const PC_STEAM = 3;
-export const PC_BLIZZARD = 4;
-export const STADIA = 5;
-export const TIGERDEMON = 10;
-export const BUNGIENEXT = 254;
-
-export const PLATFORMS = {
-  [XBOX]: 'xbox',
-  [PLAYSTATION]: 'playstation',
-  [PC_STEAM]: 'steam',
-  [PC_BLIZZARD]: 'battlenet',
-  [STADIA]: 'stadia'
+export const platforms = {
+  1: 'xbox',
+  2: 'playstation',
+  3: 'steam',
+  4: 'battlenet',
+  5: 'stadia'
 };
 
-export const CLASSES = {
-  [WARLOCK]: 'Warlock',
-  [TITAN]: 'Titan',
-  [HUNTER]: 'Hunter'
+export const classStrings = {
+  0: 'titan',
+  1: 'hunter',
+  2: 'warlock'
 };
 
 export const DestinyItemType = {

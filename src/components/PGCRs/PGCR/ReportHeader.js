@@ -107,7 +107,7 @@ class ReportHeader extends React.Component {
     const definitionMode = Object.values(manifest.DestinyActivityModeDefinition).find(d => d.modeType === activityDetails.mode);
 
     // map definition - specific strike, Rusted Lands, etc
-    const definitionActivity = manifest.DestinyActivityDefinition[activityDetails.referenceId];
+    const definitionActivity = manifest.DestinyActivityDefinition[activityDetails.mode === 66 && activityDetails.directorActivityHash ? activityDetails.directorActivityHash : activityDetails.referenceId];
 
     // get current character entry or entry with longest activityDurationSeconds
     const entry = entries && ((characterIds && entries.find(entry => characterIds.includes(entry.characterId))) || (entries.length && orderBy(entries, [e => e.values && e.values.activityDurationSeconds && e.values.activityDurationSeconds.basic.value], ['desc'])[0]));
@@ -196,7 +196,7 @@ class ReportHeaderLarge extends React.Component {
     const definitionMode = Object.values(manifest.DestinyActivityModeDefinition).find(d => d.modeType === activityDetails.mode);
 
     // map definition - specific strike, Rusted Lands, etc
-    const definitionActivity = manifest.DestinyActivityDefinition[activityDetails.referenceId];
+    const definitionActivity = manifest.DestinyActivityDefinition[activityDetails.mode === 66 && activityDetails.directorActivityHash ? activityDetails.directorActivityHash : activityDetails.referenceId];
 
     // get current character entry or entry with longest activityDurationSeconds
     const entry = entries && ((characterIds && entries.find(entry => characterIds.includes(entry.characterId))) || (entries.length && orderBy(entries, [e => e.values && e.values.activityDurationSeconds && e.values.activityDurationSeconds.basic.value], ['desc'])[0]));

@@ -9,8 +9,8 @@ import html2canvas from 'html2canvas';
 import i18n from 'i18next';
 
 import manifest from '../../utils/manifest';
+import * as enums from '../../utils/destinyEnums';
 import * as utils from '../../utils/destinyUtils';
-import { enumerateRecordState } from '../../utils/destinyEnums';
 import ObservedImage from '../../components/ObservedImage';
 import ObservedImageBase64 from '../../components/ObservedImageBase64';
 import Button from '../../components/UI/Button';
@@ -657,9 +657,9 @@ class Legend extends React.Component {
 
                     return (
                       <div key={i} className='col'>
-                        <div className={cx('class-bar', classString)}>
+                        <div className={cx('class-bar', enums.classStrings[c.classType])}>
                           <div className='icon'>
-                            <i className={`destiny-class_${classString}`} />
+                            <i className={`destiny-class_${enums.classStrings[c.classType]}`} />
                           </div>
                           <div className='class'>{utils.classHashToString(c.classHash)}</div>
                           <div className='light'>{c.light}</div>
@@ -768,8 +768,8 @@ class Legend extends React.Component {
                       const completionRecordData = definitionSeal && definitionSeal.completionRecordHash && definitionSeal.scope === 1 ? characterRecords[member.characterId].records[definitionSeal.completionRecordHash] : profileRecords[definitionSeal.completionRecordHash];
 
                       // temporary fix for https://github.com/Bungie-net/api/issues/1167
-                      if (completionRecordData && enumerateRecordState(completionRecordData.state).rewardUnavailable && enumerateRecordState(completionRecordData.state).objectiveNotCompleted && child.presentationNodeHash !== 2209950401) {
-                        console.log(`Completion record for seal ${child.presentationNodeHash} says it's no longer available`, enumerateRecordState(completionRecordData.state));
+                      if (completionRecordData && enums.enumerateRecordState(completionRecordData.state).rewardUnavailable && enums.enumerateRecordState(completionRecordData.state).objectiveNotCompleted && child.presentationNodeHash !== 2209950401) {
+                        console.log(`Completion record for seal ${child.presentationNodeHash} says it's no longer available`, enums.enumerateRecordState(completionRecordData.state));
                         return;
                       }
 
@@ -789,7 +789,7 @@ class Legend extends React.Component {
 
                       // // MOMENTS OF TRIUMPH: MMXIX does not have the above ^
                       if (definitionSeal.hash === 1002334440) {
-                        nodeProgress = states.filter(s => !enumerateRecordState(s.state).objectiveNotCompleted && enumerateRecordState(s.state).recordRedeemed).length;
+                        nodeProgress = states.filter(s => !enums.enumerateRecordState(s.state).objectiveNotCompleted && enums.enumerateRecordState(s.state).recordRedeemed).length;
                         nodeTotal = 23;
                       }
 
