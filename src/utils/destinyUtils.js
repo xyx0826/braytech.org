@@ -955,6 +955,10 @@ export function lastPlayerActivity(member) {
         
         lastActivityString = definitionActivity.displayProperties.name;
 
+      } else if (definitionActivityPlaylist?.hash === 2032534090) { // Convert Story: The Shattered Throne -> Dungeon: The Shattered Throne
+        
+        lastActivityString = `${manifest.DestinyActivityTypeDefinition[608898761].displayProperties.name}: ${definitionActivity.displayProperties.name}`;
+
       } else if (definitionActivityMode && definitionActivity?.placeHash !== 2961497387) { // Default
         
         lastActivityString = `${definitionActivityMode.displayProperties.name}: ${definitionActivity.displayProperties.name}`;

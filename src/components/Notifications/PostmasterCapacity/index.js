@@ -56,7 +56,9 @@ class PostmasterCapacity extends React.Component {
           <div id='postmaster-capacity' onClick={this.deactivateOverlay}>
             <div className='wrapper-outer'>
               <div className='background'>
-                <div className='border-top' />
+                <div className='border-top'>
+                  <div className='inner' />
+                </div>
                 <div className='acrylic' />
               </div>
               <div className='wrapper-inner'>

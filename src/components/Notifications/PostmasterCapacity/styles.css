@@ -21,7 +21,17 @@
   left: 0;
   width: 100%;
   height: 6px;
+  background-color: rgb(117, 117, 117);
+}
+
+#postmaster-capacity .background .border-top .inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgb(220, 81, 59);
+  box-shadow: 0 0 60px 10px rgb(220, 81, 59);
 }
 
 #postmaster-capacity .background .acrylic {

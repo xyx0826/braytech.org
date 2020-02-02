@@ -379,7 +379,20 @@ class Customise extends React.Component {
           name: this.props.t('Selected vendor'),
           options: {
             name: hash => manifest.DestinyVendorDefinition[hash] && manifest.DestinyVendorDefinition[hash].displayProperties && manifest.DestinyVendorDefinition[hash].displayProperties.name,
-            values: [2917531897, 672118013, 3603221665, 863940356, 248695599, 69482069]
+            values: [
+              2917531897, // Ada-1
+              672118013,  // Banshee-44
+              3603221665, // Lord Shaxx
+              863940356,  // Spider
+              248695599,  // The Drifter
+              69482069,   // Commander Zavala
+              396892126,  // Devrim Kay
+              1062861569, // Sloane
+              1576276905, // Failsafe
+              3982706173, // Asher Mir
+              2398407866, // Brother Vance
+              1735426333  // Ana Bray
+            ]
           }
         }
       ]

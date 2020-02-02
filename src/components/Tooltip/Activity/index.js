@@ -181,6 +181,9 @@ class Activity extends React.Component {
         } else if (activityTypeHash === 400075666) {
           // The Menagerie
           return 'menagerie';
+        } else if (activityModeHashes.includes(608898761) || definitionActivityPlaylist?.hash === 2032534090) {
+          // catches dungeon types and Story: The Shattered Throne
+          return 'dungeon';
         } else if (activityModeHashes.includes(1686739444)) {
           return 'story';
         } else if (activityModeHashes.includes(2394616003)) {
@@ -203,8 +206,6 @@ class Activity extends React.Component {
           return 'nightmare-hunt';
         } else if (activityModeHashes.includes(2319502047)) {
           return 'seasonal-arena';
-        } else if (activityModeHashes.includes(608898761)) {
-          return 'dungeon';
         }
       };
 
@@ -432,6 +433,8 @@ class Activity extends React.Component {
       if (modeFiltered === 'dungeon') {
         activityTypeDisplay = {
           ...activityTypeDisplay,
+          name: definitionActivityPlaylist.displayProperties.name,
+          mode: manifest.DestinyActivityTypeDefinition[608898761].displayProperties.name,
           className: 'dungeon',
           icon: (
             <span className='destiny-dungeon'>
