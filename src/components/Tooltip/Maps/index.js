@@ -55,6 +55,8 @@ class Checklist extends React.Component {
       checklist.checklistIcon = <span className={cx(checklist.checklistIcon)} />;
     }
 
+    console.log(checklistItem);
+
     return (
       <>
         <div className='acrylic' />
@@ -212,12 +214,9 @@ class Node extends React.Component {
       'activity': `${t('Located inside activity')}${locatedActivityName ? `: ${locatedActivityName}`: ``}`
     }
     
-    let icon = null;
-    if (node.icon) {
-      icon = <span className={node.icon} />;
-    }
+    const icon = node.icon ? <span className={node.icon} /> : undefined;
 
-    console.log(node)
+    console.log(node);
 
     const completed = node.related && node.related.objectives && node.related.objectives.filter(o => !o.complete).length < 1;
 
