@@ -243,7 +243,7 @@ async function run() {
           }
         }
 
-        if (changes.recordHash === 3390078236) console.log(mapping, existing)
+        //if (changes.recordHash === 3390078236) console.log(mapping, existing)
         // console.log(changes)
         // console.log({
         //   ...existing,

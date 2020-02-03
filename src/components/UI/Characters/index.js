@@ -16,7 +16,7 @@ import './styles.css';
 
 class Characters extends React.Component {
   render() {
-    const { member, viewport, location, mini } = this.props;
+    const { member, viewport, location, mini, colourised } = this.props;
     const characters = member.data.profile.characters;
     const characterActivities = member.data.profile.characterActivities;
 
@@ -63,7 +63,7 @@ class Characters extends React.Component {
                 <div className='light'>{character.light}</div>
                 <ProgressBar hideCheck {...progressSeasonalRank} />
               </Button>
-              {character.titleRecordHash ? <div className='title'>{manifest.DestinyRecordDefinition[character.titleRecordHash].titleInfo.titlesByGenderHash[character.genderHash]}</div> : null}
+              {character.titleRecordHash ? <div className={cx('title', { colourised })}>{manifest.DestinyRecordDefinition[character.titleRecordHash].titleInfo.titlesByGenderHash[character.genderHash]}</div> : null}
               <div className='state'>{state}</div>
             </div>
           );

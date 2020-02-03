@@ -11,7 +11,7 @@ import 'leaflet/dist/leaflet.css';
 import { Map } from 'react-leaflet';
 
 import maps from '../../data/lowlines/maps/destinations';
-import nodes from '../../data/lowlines/maps/nodes';
+// import nodes from '../../data/lowlines/maps/nodes';
 
 import manifest from '../../utils/manifest';
 import * as ls from '../../utils/localStorage';
@@ -25,7 +25,7 @@ import { Layers, BackgroundLayer } from './Layers';
 import Static from './Nodes/Static';
 import Checklists from './Nodes/Checklists';
 import Runtime from './Nodes/Runtime';
-import CharacterActivities from './Nodes/CharacterActivities';
+// import CharacterActivities from './Nodes/CharacterActivities';
 
 import './styles.css';
 
@@ -45,8 +45,9 @@ class Maps extends React.Component {
   }
 
   componentDidMount() {
-    window.scrollTo(0, 0);
     this.mounted = true;
+
+    window.scrollTo(0, 0);
   }
 
   componentWillUnmount() {

@@ -366,7 +366,7 @@ class MemberLink extends React.Component {
                       <div className='sub-header'>
                         <div>{t('Characters')}</div>
                       </div>
-                      <Characters member={{ data: { profile: this.state.all.data }, membershipId, membershipType, characterId: lastCharacterPlayed }} characterClick={this.handler_onCharacterClick} mini />
+                      <Characters member={{ data: { profile: this.state.all.data }, membershipId, membershipType, characterId: lastCharacterPlayed }} characterClick={this.handler_onCharacterClick} mini colourised />
                     </div>
                     <div className='module fireteam'>
                       <div className='sub-header'>

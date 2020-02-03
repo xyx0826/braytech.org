@@ -22,6 +22,7 @@ class Checklist extends React.Component {
 
     if (!checklistEntry) {
       console.warn('Hash not found');
+      
       return null;
     }
 
@@ -104,6 +105,7 @@ class Record extends React.Component {
 
     if (!checklistEntry) {
       console.warn('Hash not found');
+
       return null;
     }
 
@@ -193,6 +195,7 @@ class Node extends React.Component {
 
     if (!node) {
       console.warn('Hash not found');
+
       return null;
     }
 
