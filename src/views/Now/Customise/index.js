@@ -72,7 +72,7 @@ const getListStyle = isDraggingOver => ({
 
 export const moduleRules = {
   full: ['SeasonPass'],
-  double: ['SeasonArtifact', 'Milestones'],
+  double: ['SeasonArtifact', 'Challenges'],
   head: ['Flashpoint', 'DailyVanguardModifiers', 'HeroicStoryMissions', 'BlackArmoryForges', 'SeasonCountdown']
 };
 
@@ -401,8 +401,8 @@ class Customise extends React.Component {
       name: this.props.t('Spider: Material Exchange'),
       description: this.props.t("Monitor Spider's materials closely")
     },
-    Milestones: {
-      name: this.props.t('Milestones'),
+    Challenges: {
+      name: this.props.t('Challenges'),
       description: this.props.t("Activities offering powerful rewards")
     },
     SeasonArtifact: {

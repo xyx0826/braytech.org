@@ -8,7 +8,7 @@ import { ProfileLink } from '../../../components/ProfileLink';
 import { DestinyKey } from '../../../components/UI/Button';
 
 import Flashpoint from '../../../components/UserModules/Flashpoint';
-import Milestones from '../../../components/UserModules/Milestones';
+import Challenges from '../../../components/UserModules/Challenges';
 import HeroicStoryMissions from '../../../components/UserModules/HeroicStoryMissions';
 import BlackArmoryForges from '../../../components/UserModules/BlackArmoryForges';
 import DailyVanguardModifiers from '../../../components/UserModules/DailyVanguardModifiers';
@@ -41,8 +41,8 @@ class Now extends React.Component {
     Flashpoint: {
       reference: Flashpoint
     },
-    Milestones: {
-      reference: Milestones
+    Challenges: {
+      reference: Challenges
     },
     DailyVanguardModifiers: {
       reference: DailyVanguardModifiers

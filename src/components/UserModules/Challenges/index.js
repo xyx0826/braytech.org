@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import cx from 'classnames';
-import moment from 'moment';
+import { groupBy } from 'lodash';
 
 import manifest from '../../../utils/manifest';
 import { seasonalMods } from '../../../utils/destinyEnums';
@@ -13,7 +13,7 @@ import ProgressBar from '../../UI/ProgressBar';
 
 import './styles.css';
 
-class Milestones extends React.Component {
+class Challenges extends React.Component {
   componentDidMount() {
     this.mounted = true;
   }
@@ -26,8 +26,10 @@ class Milestones extends React.Component {
     const { t, member } = this.props;
     const characterActivities = member.data.profile.characterActivities.data;
 
+    console.log(groupBy(characterActivities[member.characterId].availableActivities.filter(a => a.challenges), a => a.challenges[0].objective.objectiveHash))
+
     return (
-      <div className='user-module milestones'>
+      <div className='user-module challenges'>
         Hi!
       </div>
     );
@@ -48,4 +50,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(Milestones);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(Challenges);
