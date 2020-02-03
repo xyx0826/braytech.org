@@ -1,385 +1,140 @@
 {
   "de": {
     "translated": 407,
-    "notTranslated": 212,
+    "notTranslated": 216,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "debug": {
-    "translated": 619,
+    "translated": 623,
     "notTranslated": 0,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "en": {
-    "translated": 619,
+    "translated": 623,
     "notTranslated": 0,
     "added": [],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "es-mx": {
-    "translated": 581,
-    "notTranslated": 38,
+    "translated": 619,
+    "notTranslated": 4,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "es": {
-    "translated": 608,
-    "notTranslated": 11,
+    "translated": 619,
+    "notTranslated": 4,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "fr": {
-    "translated": 532,
-    "notTranslated": 87,
+    "translated": 547,
+    "notTranslated": 76,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "it": {
-    "translated": 598,
-    "notTranslated": 21,
+    "translated": 619,
+    "notTranslated": 4,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "ja": {
     "translated": 559,
-    "notTranslated": 60,
+    "notTranslated": 64,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "ko": {
     "translated": 610,
-    "notTranslated": 9,
+    "notTranslated": 13,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 619,
+    "notTranslated": 623,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "pt-br": {
     "translated": 524,
-    "notTranslated": 95,
+    "notTranslated": 99,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "ru": {
-    "translated": 559,
-    "notTranslated": 60,
+    "translated": 580,
+    "notTranslated": 43,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "zh-chs": {
-    "translated": 440,
-    "notTranslated": 179,
+    "translated": 509,
+    "notTranslated": 114,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   },
   "zh-cht": {
     "translated": 414,
-    "notTranslated": 205,
+    "notTranslated": 209,
     "added": [
-      "Accuracy",
-      "Character class",
-      "Explore",
-      "No medals awarded",
-      "No stats were recorded",
-      "Player",
-      "Precision",
-      "Weapon"
+      "Activities offering powerful rewards"
     ],
     "removed": [
-      "Ability kills",
-      "Assists",
-      "Basic",
-      "Common",
-      "Extra",
-      "Invasion",
-      "Medals earned",
-      "Mobs",
-      "Motes",
-      "Precision kills",
-      "Score",
-      "Weapons used"
+      "Activities offering powerful and pinnacle rewards"
     ]
   }
 }

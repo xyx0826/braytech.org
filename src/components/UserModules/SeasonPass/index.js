@@ -185,7 +185,7 @@ class SeasonPass extends React.Component {
       <div className='season-pass'>
         <div className='module status'>
           <div className='sub-header'>
-            <div>{t('Season rank')}</div>
+            <div>{t('Season pass')}</div>
           </div>
           <div className='text'>
             <div className='name'>{seasonPass.season.displayProperties.name}</div>

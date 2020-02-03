@@ -72,7 +72,7 @@ const getListStyle = isDraggingOver => ({
 
 export const moduleRules = {
   full: ['SeasonPass'],
-  double: ['SeasonalArtifact'],
+  double: ['SeasonArtifact', 'Milestones'],
   head: ['Flashpoint', 'DailyVanguardModifiers', 'HeroicStoryMissions', 'BlackArmoryForges', 'SeasonCountdown']
 };
 
@@ -401,12 +401,16 @@ class Customise extends React.Component {
       name: this.props.t('Spider: Material Exchange'),
       description: this.props.t("Monitor Spider's materials closely")
     },
-    SeasonalArtifact: {
-      name: this.props.t('Seasonal progression'),
+    Milestones: {
+      name: this.props.t('Milestones'),
+      description: this.props.t("Activities offering powerful rewards")
+    },
+    SeasonArtifact: {
+      name: this.props.t('Seasonal artifact'),
       description: this.props.t("Display your seaonal artifact's configuration and its progression")
     },
     SeasonPass: {
-      name: this.props.t('Season rank'),
+      name: this.props.t('Season pass'),
       description: this.props.t('Display your season pass progression and available rewards')
     },
     SeasonCountdown: {
@@ -456,17 +460,18 @@ class Customise extends React.Component {
           <DragDropContext onDragEnd={this.onDragEnd}>
             {this.state.groups.map((group, i) => {
               const groupFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
-              const groupDoubleSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.double.includes(m.component)));
+              const groupDoubleSpan = group.cols.filter(c => c.mods.find(m => moduleRules.double.includes(m.component))).length;
 
-              const cols = groupFullSpan > -1 ? group.cols.slice(0, 1) : groupDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols;
+              const cols = groupFullSpan > -1 ? group.cols.slice(0, 1) : groupDoubleSpan ? groupDoubleSpan < 2 ? group.cols.slice(0, 3) : group.cols.filter(c => c.mods.find(m => moduleRules.double.includes(m.component))) : group.cols;
 
               return (
-                <div key={i} className={cx('group', 'user', { head: group.id === 'head', full: groupFullSpan > -1 })}>
+                <div key={i} className={cx('group', 'user', { head: group.id === 'head', full: groupFullSpan > -1, 'double-pear': groupDoubleSpan > 1 })}>
                   {cols.map((col, i) => {
                     const colDoubleSpan = col.mods.filter(m => moduleRules.double.includes(m.component));
                     const columnFilled = (group.id === 'head' && col.mods.length > 0) || colDoubleSpan.length > 0;
+
                     return (
-                      <div key={col.id} className={cx('column', { double: i === groupDoubleSpan })}>
+                      <div key={col.id} className={cx('column', { double: colDoubleSpan.length })}>
                         <div className='col-id'>{col.id}</div>
                         <Droppable droppableId={col.id}>
                           {(provided, snapshot) => (

@@ -54,8 +54,8 @@ export const defaultState = {
             id: 'body-1-col-0',
             mods: [
               {
-                id: 'SeasonalArtifact-0',
-                component: 'SeasonalArtifact'
+                id: 'SeasonArtifact-0',
+                component: 'SeasonArtifact'
               }
             ]
           },

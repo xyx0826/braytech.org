@@ -38,7 +38,7 @@ export const DestinyItemType = {
   Package: 25,
   Bounty: 26,
   Wrapper: 27,
-  SeasonalArtifact: 28,
+  SeasonArtifact: 28,
   Finisher: 29
 };
 

@@ -37,4 +37,11 @@ export default function runOnceTasks() {
     ls.update('history.tasks', { id: 'resetLayoutsBETA_november302019' });
   }
 
+  if (!history.find(t => t.id === 'adjustLayouts_february032020')) {
+
+    ls.set('setting.layouts', JSON.parse(JSON.stringify(ls.get('setting.layouts')).replace(/SeasonalArtifact/g, 'SeasonArtifact')));
+
+    ls.update('history.tasks', { id: 'adjustLayouts_february032020' });
+  }
+
 }

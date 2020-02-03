@@ -13,7 +13,7 @@ import ProgressBar from '../../UI/ProgressBar';
 
 import './styles.css';
 
-class SeasonalArtifact extends React.Component {
+class SeasonArtifact extends React.Component {
   state = {
     days: 0,
     hours: 0,
@@ -68,12 +68,14 @@ class SeasonalArtifact extends React.Component {
 
     if (!equippedArtifact) {
       return (
-        <div className='head'>
-          <div className='sub-header'>
-            <div>{t('Seasonal progression')}</div>
-          </div>
-          <div className='info'>
-            <p>{t("This profile hasn't received an artifact yet.")}</p>
+        <div className='seasonal-artifact'>
+          <div className='head'>
+            <div className='sub-header'>
+              <div>{t('Seasonal progression')}</div>
+            </div>
+            <div className='info'>
+              <p>{t("This profile hasn't received an artifact yet.")}</p>
+            </div>
           </div>
         </div>
       );
@@ -244,4 +246,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(SeasonalArtifact);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withTranslation())(SeasonArtifact);

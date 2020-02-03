@@ -8,12 +8,13 @@ import { ProfileLink } from '../../../components/ProfileLink';
 import { DestinyKey } from '../../../components/UI/Button';
 
 import Flashpoint from '../../../components/UserModules/Flashpoint';
+import Milestones from '../../../components/UserModules/Milestones';
 import HeroicStoryMissions from '../../../components/UserModules/HeroicStoryMissions';
 import BlackArmoryForges from '../../../components/UserModules/BlackArmoryForges';
 import DailyVanguardModifiers from '../../../components/UserModules/DailyVanguardModifiers';
 import Ranks from '../../../components/UserModules/Ranks';
 import SeasonPass from '../../../components/UserModules/SeasonPass';
-import SeasonalArtifact from '../../../components/UserModules/SeasonalArtifact';
+import SeasonArtifact from '../../../components/UserModules/SeasonArtifact';
 import Vendor from '../../../components/UserModules/Vendor';
 import VendorSpiderMaterials from '../../../components/UserModules/VendorSpiderMaterials';
 import AuthUpsell from '../../../components/UserModules/AuthUpsell';
@@ -40,14 +41,17 @@ class Now extends React.Component {
     Flashpoint: {
       reference: Flashpoint
     },
+    Milestones: {
+      reference: Milestones
+    },
     DailyVanguardModifiers: {
       reference: DailyVanguardModifiers
     },
     HeroicStoryMissions: {
       reference: HeroicStoryMissions
     },
-    SeasonalArtifact: {
-      reference: SeasonalArtifact
+    SeasonArtifact: {
+      reference: SeasonArtifact
     },
     Ranks: {
       reference: Ranks
@@ -167,12 +171,12 @@ class Now extends React.Component {
               }
             } else {
               const modFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
-              const modDoubleSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.double.includes(m.component)));
+              const modDoubleSpan = group.cols.filter(c => c.mods.find(m => moduleRules.double.includes(m.component))).length;
 
               const cols = modFullSpan > -1 ? group.cols.slice(0, 1) : modDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols;
 
               return (
-                <div key={g} className={cx('group', ...(group.className || []))}>
+                <div key={g} className={cx('group', ...(group.className || []), { 'double-pear': modDoubleSpan > 1 } )}>
                   {cols
                     .map((col, c) => {
                       if ((col.condition === undefined || col.condition) && col.mods.length) {
