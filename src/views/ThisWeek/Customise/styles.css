@@ -95,9 +95,11 @@
   position: relative;
 }
 
-/* #this-week.customise .modules-selector .list {
-  position: absolute;
-} */
+#this-week.customise .modules-selector .list {
+  margin: 3px 0 0;
+  display: grid;
+  row-gap: 3px;
+}
 
 
 @media screen and (max-width: 1440px) {

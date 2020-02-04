@@ -5,9 +5,35 @@ import manifest from './manifest';
 
 async function getMember(membershipType, membershipId, silent = false) {
 
-  const components = [100, 104, 200, 202, 204, 205, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 800, 900];
-  let withAuth = false;
+  // https://bungie-net.github.io/multi/schema_Destiny-DestinyComponentType.html
+  
+  const components = [
+    100, // Profiles
+    102, // ProfileInventories
+    103, // ProfileCurrencies
+    104, // ProfileProgression
+    200, // Characters
+    201, // CharacterInventories
+    202, // CharacterProgressions
+    204, // CharacterActivities
+    205, // CharacterEquipment
+    300, // ItemInstances
+    301, // ItemObjectives
+    302, // ItemPerks
+    303, // ItemRenderData
+    304, // ItemStats
+    305, // ItemSockets
+    306, // ItemTalentGrids
+    307, // ItemCommonData
+    308, // ItemPlugStates
+    309, // ItemPlugObjectives
+    310, // ItemReusablePlugs
+    800, // Collectibles
+    900  // Records
+  ];
 
+  let withAuth = false;
+  
   try {
     const tokens = ls.get('setting.auth');
     const now = new Date().getTime() + 10000;
@@ -20,7 +46,6 @@ async function getMember(membershipType, membershipId, silent = false) {
       };
       
       withAuth = true;
-      components.push(102,103,201);
     }
   } catch (e) {
     console.log(e);

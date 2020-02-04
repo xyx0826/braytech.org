@@ -29,8 +29,8 @@ export const itemComponents = (item, member) => {
     };
   }
 
-  // extra item data in cvase it's msising i guess idk
-  if (item.itemInstanceId && member.data?.profile.characterInventories?.data[member.characterId]?.items?.find(i => i.itemInstanceId === item.itemInstanceId)) {
+  // extra item data in case it's missing i guess idk
+  if (item.itemInstanceId && member.data?.profile.characterInventories?.data?.[member.characterId]?.items?.find(i => i.itemInstanceId === item.itemInstanceId)) {
     data = {
       ...(data || {}),
       item: member.data.profile.characterInventories.data[member.characterId].items.find(i => i.itemInstanceId === item.itemInstanceId)

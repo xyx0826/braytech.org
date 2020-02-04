@@ -20,7 +20,7 @@ class Activity extends React.Component {
     const definitionActivityMode = manifest.DestinyActivityModeDefinition[mode];
     const definitionActivityModeParent = definitionActivityMode && definitionActivityMode.parentHashes && definitionActivityMode.parentHashes.length && manifest.DestinyActivityModeDefinition[definitionActivityMode.parentHashes[0]];
     const definitionActivityPlaylist = manifest.DestinyActivityDefinition[playlist];
-    const definitionActivityType = definitionActivityPlaylist && definitionActivityPlaylist.activityTypeHash && manifest.DestinyActivityTypeDefinition[definitionActivityPlaylist.activityTypeHash];
+    const definitionActivityType = definitionActivityPlaylist?.activityTypeHash && manifest.DestinyActivityTypeDefinition[definitionActivityPlaylist.activityTypeHash];
     const definitionPlaceDefinition = definitionActivity && definitionActivity.placeHash && manifest.DestinyPlaceDefinition[definitionActivity.placeHash];
 
     if (!definitionActivity) {
@@ -294,8 +294,8 @@ class Activity extends React.Component {
         };
 
         // Survival, Survival: Freelance
-        if (definitionActivityPlaylist && [135537449, 740891329].includes(definitionActivityPlaylist.hash)) {
-          activityTypeDisplay.name = definitionActivityPlaylist.displayProperties.name;
+        if (definitionActivityPlaylist && [135537449, 740891329].includes(definitionActivityPlaylist?.hash)) {
+          activityTypeDisplay.name = definitionActivityPlaylist?.displayProperties.name;
         }
       }
 
@@ -304,7 +304,7 @@ class Activity extends React.Component {
           ...activityTypeDisplay,
           name: definitionActivity.displayProperties.name,
           description: definitionActivity.displayProperties.description,
-          mode: definitionActivityMode && definitionActivityMode.displayProperties && definitionActivityMode.displayProperties.name,
+          mode: definitionActivityMode?.displayProperties.name || manifest.DestinyActivityModeDefinition[2043403989]?.displayProperties.name,
           className: 'raid',
           icon: <span className='destiny-raid' />
         };
@@ -313,12 +313,12 @@ class Activity extends React.Component {
       if (modeFiltered === 'forge') {
         activityTypeDisplay = {
           ...activityTypeDisplay,
-          name: definitionActivityPlaylist && definitionActivityPlaylist.displayProperties ? definitionActivityPlaylist.displayProperties.name : t('Unknown'),
-          description: definitionActivityPlaylist && definitionActivityPlaylist.displayProperties ? definitionActivityPlaylist.displayProperties.description : t('Unknown'),
+          name: definitionActivityPlaylist?.displayProperties.name || t('Unknown'),
+          description: definitionActivityPlaylist?.displayProperties.description || t('Unknown'),
           mode: definitionActivityType && definitionActivityType.displayProperties && definitionActivityType.displayProperties.name,
-          activityLightLevel: definitionActivityPlaylist.activityLightLevel,
+          activityLightLevel: definitionActivityPlaylist?.activityLightLevel,
           className: 'forge',
-          pgcrImage: definitionActivityPlaylist.pgcrImage,
+          pgcrImage: definitionActivityPlaylist?.pgcrImage,
           icon: <span className='destiny-black_armory_forge' />
         };
       }
@@ -331,7 +331,7 @@ class Activity extends React.Component {
             place: false
           },
           mode: false,
-          activityLightLevel: definitionActivityPlaylist.activityLightLevel,
+          activityLightLevel: definitionActivityPlaylist?.activityLightLevel,
           className: 'menagerie',
           icon: (
             <span className='destiny-menagerie'>
@@ -433,7 +433,7 @@ class Activity extends React.Component {
       if (modeFiltered === 'dungeon') {
         activityTypeDisplay = {
           ...activityTypeDisplay,
-          name: definitionActivityPlaylist.displayProperties.name,
+          name: definitionActivityPlaylist?.displayProperties.name || definitionActivity?.displayProperties.name,
           mode: manifest.DestinyActivityTypeDefinition[608898761].displayProperties.name,
           className: 'dungeon',
           icon: (
@@ -449,8 +449,8 @@ class Activity extends React.Component {
       if (modeFiltered === 'seasonal-arena') {
         activityTypeDisplay = {
           ...activityTypeDisplay,
-          name: definitionActivityPlaylist.displayProperties.name,
-          description: definitionActivityPlaylist.displayProperties.description,
+          name: definitionActivityPlaylist?.displayProperties.name,
+          description: definitionActivityPlaylist?.displayProperties.description,
           mode: manifest.DestinyActivityTypeDefinition[263019149].displayProperties.name,
           className: 'seasonal-arena',
           icon: (
@@ -528,7 +528,7 @@ class Activity extends React.Component {
                     {activityTypeDisplay.isCrucible ? (
                       <>
                         <li>{t('Player versus player')}</li>
-                        {definitionActivityPlaylist.hash === 3753505781 ? <li>{t('Level advantages enabled')}</li> : <li>{t('Level advantages disabled')}</li>}
+                        {definitionActivityPlaylist?.hash === 3753505781 ? <li>{t('Level advantages enabled')}</li> : <li>{t('Level advantages disabled')}</li>}
                       </>
                     ) : (
                       <li>{t('Cooperative')}</li>

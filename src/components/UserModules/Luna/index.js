@@ -8,17 +8,17 @@ import manifest from '../../../utils/manifest';
 
 import './styles.css';
 
-const recallMissions = [
+export const recallMissions = [
   2306231495, // A Mysterious Disturbance
-  471727774, // In the Deep
-  1326496189 // Beyond
+  471727774,  // In the Deep
+  1326496189  // Beyond
 ];
 
 const storyMissions = [
   4167922031, // In the Deep
-  661325298, // In Search of Answers
-  778535230, // Beyond
-  2446907856 // A Mysterious Disturbance
+  661325298,  // In Search of Answers
+  778535230,  // Beyond
+  2446907856  // A Mysterious Disturbance
 ];
 
 class Luna extends React.Component {

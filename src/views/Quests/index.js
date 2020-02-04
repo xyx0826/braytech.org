@@ -107,15 +107,15 @@ class Quests extends React.Component {
     const order = this.props.match.params.order || 'rarity';
     const hash = this.props.match.params.hash;
 
-    if (!auth) {
+    if (!member.data.profile.profileInventory?.data && !auth) {
       return <NoAuth />;
     }
 
-    if (auth && !auth.destinyMemberships.find(m => m.membershipId === member.membershipId)) {
+    if (!member.data.profile.profileInventory?.data && auth && !auth.destinyMemberships.find(m => m.membershipId === member.membershipId)) {
       return <DiffProfile />;
     }
 
-    if (auth && auth.destinyMemberships.find(m => m.membershipId === member.membershipId) && !member.data.profile.profileInventory) {
+    if (!member.data.profile.profileInventory?.data && auth && auth.destinyMemberships.find(m => m.membershipId === member.membershipId)) {
       return (
         <div className='view' id='quests'>
           <Spinner />

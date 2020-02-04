@@ -243,15 +243,15 @@ class BountyTracker extends React.Component {
       );
     }
 
-    if (!auth) {
+    if (!member.data.profile.profileInventory?.data && !auth) {
       return <NoAuth />;
     }
 
-    if (auth && !auth.destinyMemberships.find(m => m.membershipId === member.membershipId)) {
+    if (!member.data.profile.profileInventory?.data && auth && !auth.destinyMemberships.find(m => m.membershipId === member.membershipId)) {
       return <DiffProfile />;
     }
 
-    if (auth && auth.destinyMemberships.find(m => m.membershipId === member.membershipId) && !member.data.profile.profileInventory) {
+    if (!member.data.profile.profileInventory?.data && auth && auth.destinyMemberships.find(m => m.membershipId === member.membershipId)) {
       return (
         <div className='view' id='bounty-tracker'>
           <Spinner />

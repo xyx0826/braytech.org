@@ -565,6 +565,21 @@ export function GambitDetail(props) {
       name: t('Large blockers sent'),
       type: 'value',
       extended: true
+    },
+    {
+      divider: true
+    },
+    {
+      key: 'primevalDamage',
+      name: t('Primeval damage'),
+      type: 'value',
+      extended: true
+    },
+    {
+      key: 'primevalHealing',
+      name: t('Primeval healing'),
+      type: 'value',
+      extended: true
     }
   ];
 
