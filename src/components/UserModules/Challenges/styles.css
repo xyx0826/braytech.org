@@ -1,0 +1,56 @@
+.user-module.challenges ul {
+  display: grid;
+  gap: 2rem;
+}
+
+.user-module.challenges ul li {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+  row-gap: 1rem;
+  align-content: start;
+}
+
+@media screen and (max-width: 1440px) {
+  .user-module.challenges ul li {
+    grid-template-columns: 1fr;
+  }
+}
+
+.user-module.challenges ul li .activity .text {
+  display: grid;
+  gap: 6px;
+}
+
+.user-module.challenges ul li .activity .text .name {
+  font-size: 16px;
+}
+
+.user-module.challenges ul li .activity .text .description {
+  font-size: 16px;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 400px;
+}
+
+.user-module.challenges ul li .objectives {
+  grid-column: 2/3;
+}
+
+.user-module.challenges ul li .challenge {
+  background-color: rgba(255, 237, 111, 0.1);
+  padding: 1rem;
+}
+
+.user-module.challenges ul li .challenge {
+  border-top: 2px solid rgba(255, 237, 111, 0.2);
+}
+
+.user-module.challenges ul li .challenge:first-child {
+  border-top: 2px solid rgba(255, 237, 111, 0.4);
+}
+
+.user-module.challenges ul li .challenge .text {
+  margin: 0 0 10px;
+}

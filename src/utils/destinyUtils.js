@@ -943,9 +943,9 @@ export function lastPlayerActivity(member) {
 
         lastActivityString = `${definitionActivity.displayProperties.name}`;
 
-      } else if ([1164760504].includes(lastActivity.currentActivityModeHash)) { // Crucible
+      } else if (lastActivity.currentActivityModeTypes?.indexOf(5) > -1) { // Crucible
 
-        lastActivityString = `${definitionActivityMode.displayProperties.name}: ${definitionActivityPlaylist.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
+        lastActivityString = `${manifest.DestinyActivityModeDefinition[1164760504].displayProperties.name}: ${definitionActivityPlaylist.displayProperties.name}: ${definitionActivity.displayProperties.name}`;
 
       } else if ([135537449, 740891329].includes(lastActivity.currentPlaylistActivityHash)) { // Survival, Survival: Freelance
 

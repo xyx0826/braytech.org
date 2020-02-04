@@ -117,8 +117,12 @@
 
 
 @media screen and (max-width: 1440px) {
-  #now .group:not(.full):not(.double-pear) {
+  #now .group:not(.full) {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  #now .group.double-pear {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 

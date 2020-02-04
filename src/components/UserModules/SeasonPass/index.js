@@ -190,9 +190,7 @@ class SeasonPass extends React.Component {
           <div className='text'>
             <div className='name'>{seasonPass.season.displayProperties.name}</div>
             <div className='description'>
-              <p>
-                <em>{seasonPass.season.displayProperties.description}</em>
-              </p>
+              <p>{seasonPass.season.displayProperties.description}</p>
             </div>
           </div>
           <div className='rank'>{progressSeasonalRank.level}</div>
