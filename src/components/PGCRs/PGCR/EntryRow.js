@@ -7,10 +7,16 @@ import * as utils from '../../../utils/destinyUtils';
 import * as enums from '../../../utils/destinyEnums';
 import ObservedImage from '../../ObservedImage';
 
-const medalExclusions = ['allMedalsEarned', 'medalUnknown', 'precisionKills', 'weaponKillsAbility', 'weaponKillsGrenade', 'weaponKillsMelee', 'weaponKillsSuper', 'primevalHealing', 'primevalDamage', 'primevalKills', 'motesPickedUp', 'motesLost', 'motesDeposited', 'motesDenied', 'bankOverage', 'supremacyAllyKillEnemyTagsCaptured', 'supremacyAllyTagsRecovered', 'supremacyCrestsRecovered', 'supremacyCrestsSecured', 'supremacyOwnKillEnemyTagsCaptured', 'supremacyOwnTagsRecovered'];
+const medalExclusions = ['allMedalsEarned', 'precisionKills', 'weaponKillsAbility', 'weaponKillsGrenade', 'weaponKillsMelee', 'weaponKillsSuper', 'primevalHealing', 'primevalDamage', 'primevalKills', 'motesPickedUp', 'motesLost', 'motesDeposited', 'motesDenied', 'bankOverage', 'supremacyAllyKillEnemyTagsCaptured', 'supremacyAllyTagsRecovered', 'supremacyCrestsRecovered', 'supremacyCrestsSecured', 'supremacyOwnKillEnemyTagsCaptured', 'supremacyOwnTagsRecovered'];
 
 function formatValue(column, entry, playerCache = []) {
-  if (column.extended) {
+  if (column.custom) {
+    if (column.key === 'supremacySecureRate') {
+      return Number.parseFloat(entry.extended.values.supremacyOwnKillEnemyTagsCaptured.basic.value / entry.values.kills.basic.value * 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
+    } else {
+      return '?';
+    }
+  } else if (column.extended) {
     // from the extended stats value
     return column.round ? Number.parseFloat(entry.extended.values[column.key].basic[column.type]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : entry.extended.values[column.key].basic[column.type].toLocaleString();
   } else if (column.async) {
@@ -307,14 +313,80 @@ export function DefaultDetail(props) {
   );
 }
 
+function hasActivitySpecific(modes) {
+  if (modes.indexOf(31) > -1) {
+    return 'supremacy';
+  } else {
+    return false;
+  }
+}
+
 export function CrucibleDetail(props) {
   const { playerCache, activityDetails, entry } = props;
   const { t, i18n } = useTranslation();
 
   const cache = playerCache.find(p => p.membershipId === entry.player.destinyUserInfo.membershipId);
 
+  const medals = Object.keys(entry.extended.values)
+    .filter(key => !medalExclusions.includes(key))
+    .sort((a, b) => (entry.extended.values[b].basic?.value || 0) - (entry.extended.values[a].basic?.value || 0));
+
+  const activity = hasActivitySpecific(activityDetails.modes);
+
+  const activitySpecific = {
+    supremacy: [
+      {
+        key: 'supremacyCrestsSecured',
+        name: t('Crests secured'),
+        type: 'value',
+        extended: true
+      },
+      {
+        key: 'supremacyCrestsRecovered',
+        name: t('Crests recovered'),
+        type: 'value',
+        extended: true
+      },
+      // {
+      //   key: 'supremacySecureRate',
+      //   name: t('Secure rate'),
+      //   custom: true
+      // },
+      {
+        divider: true
+      },
+      {
+        key: 'supremacyOwnKillEnemyTagsCaptured',
+        name: t('Kills secured'),
+        type: 'value',
+        extended: true
+      },
+      {
+        key: 'supremacyAllyKillEnemyTagsCaptured',
+        name: t('Allied kills secured'),
+        type: 'value',
+        extended: true
+      },
+      {
+        divider: true
+      },
+      {
+        key: 'supremacyOwnTagsRecovered',
+        name: t('Crests recovered'),
+        type: 'value',
+        extended: true
+      },
+      {
+        key: 'supremacyAllyTagsRecovered',
+        name: t('Ally crests recovered'),
+        type: 'value',
+        extended: true
+      }
+    ]
+  };
+
   return (
-    <div className='detail crucible'>
+    <div className={cx('detail', 'crucible', { 'activity-specific': activity })}>
       <div className='group common'>
         <ul className='pairs'>
           <li className='header'>
@@ -342,6 +414,29 @@ export function CrucibleDetail(props) {
           </li>
         </ul>
       </div>
+      {activity ? (
+        <div className='group activity'>
+          <ul className='pairs'>
+            <li className='header'>
+              <ul>
+                <li>{t('Activity')}</li>
+              </ul>
+            </li>
+            {activitySpecific[activity].map((column, c) =>
+              column.divider ? (
+                <li key={c} className='divider' />
+              ) : (
+                <li key={c}>
+                  <ul>
+                    <li>{column.name}</li>
+                    <li>{formatValue(column, entry)}</li>
+                  </ul>
+                </li>
+              )
+            )}
+          </ul>
+        </div>
+      ) : null}
       <div className='group kills'>
         <ul>
           <li className='header'>
@@ -430,32 +525,29 @@ export function CrucibleDetail(props) {
               <li>{t('Medals')}</li>
             </ul>
           </li>
-          {Object.keys(entry.extended.values)
-            .filter(key => !medalExclusions.includes(key))
-            .sort((a, b) => (entry.extended.values[b].basic?.value || 0) - (entry.extended.values[a].basic?.value || 0))
-            .map((key, k) => {
-              const medal = entry.extended.values[key];
-              const definitionMedal = manifest.DestinyHistoricalStatsDefinition[key];
+          {medals.map((key, k) => {
+            const medal = entry.extended.values[key];
+            const definitionMedal = manifest.DestinyHistoricalStatsDefinition[key];
 
-              const count = medal.basic?.value || '0';
-              const icon = definitionMedal && definitionMedal.iconImage && definitionMedal.iconImage !== '' ? definitionMedal.iconImage : manifest.settings.destiny2CoreSettings.undiscoveredCollectibleImage;
+            const count = medal.basic?.value || '0';
+            const icon = definitionMedal && definitionMedal.iconImage && definitionMedal.iconImage !== '' ? definitionMedal.iconImage : manifest.settings.destiny2CoreSettings.undiscoveredCollectibleImage;
 
-              return (
-                <li key={k}>
-                  <ul>
-                    <li className='double'>
-                      <ul className='list inventory-items'>
-                        <li key={k} className='item tooltip' data-hash={key} data-type='stat'>
-                          <ObservedImage className={cx('image', 'icon')} src={`${!definitionMedal.localIcon ? 'https://www.bungie.net' : ''}${icon}`} />
-                        </li>
-                      </ul>
-                      <div>{definitionMedal.statName || t('Unknown')}</div>
-                    </li>
-                    <li>{count}</li>
-                  </ul>
-                </li>
-              );
-            })}
+            return (
+              <li key={k}>
+                <ul>
+                  <li className='double'>
+                    <ul className='list inventory-items'>
+                      <li key={k} className='item tooltip' data-hash={key} data-type='stat'>
+                        <ObservedImage className={cx('image', 'icon')} src={`${!definitionMedal.localIcon ? 'https://www.bungie.net' : ''}${icon}`} />
+                      </li>
+                    </ul>
+                    <div>{definitionMedal.statName || t('Unknown')}</div>
+                  </li>
+                  <li>{count}</li>
+                </ul>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
@@ -584,7 +676,7 @@ export function GambitDetail(props) {
   ];
 
   return (
-    <div className='detail gambit'>
+    <div className='detail gambit activity-specific'>
       <div className='group common'>
         <ul className='pairs'>
           <li className='header'>

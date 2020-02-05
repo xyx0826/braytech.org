@@ -49,7 +49,7 @@ class Challenges extends React.Component {
     } else if (objectiveHash === 1296970487) {
       return {
         name: manifest.DestinyObjectiveDefinition[1296970487]?.displayProperties.name,
-        description: this.props.t('Retrace your steps and unravel the mysteru of the Pyramid.')
+        description: this.props.t('Retrace your steps and unravel the mystery of the Pyramid.')
       };
     } else if (objectiveHash === 3118376466 || objectiveHash === 1607758693) { // Crucible
       return {
