@@ -1,140 +1,154 @@
 {
   "de": {
     "translated": 407,
-    "notTranslated": 216,
+    "notTranslated": 221,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "debug": {
-    "translated": 623,
+    "translated": 628,
     "notTranslated": 0,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "en": {
-    "translated": 623,
+    "translated": 628,
     "notTranslated": 0,
     "added": [],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "es-mx": {
     "translated": 619,
-    "notTranslated": 4,
+    "notTranslated": 9,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "es": {
     "translated": 619,
-    "notTranslated": 4,
+    "notTranslated": 9,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "fr": {
     "translated": 547,
-    "notTranslated": 76,
+    "notTranslated": 81,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "it": {
-    "translated": 619,
-    "notTranslated": 4,
+    "translated": 623,
+    "notTranslated": 5,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "ja": {
     "translated": 559,
-    "notTranslated": 64,
+    "notTranslated": 69,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "ko": {
     "translated": 610,
-    "notTranslated": 13,
+    "notTranslated": 18,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 623,
+    "notTranslated": 628,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "pt-br": {
     "translated": 524,
-    "notTranslated": 99,
+    "notTranslated": 104,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "ru": {
     "translated": 580,
-    "notTranslated": 43,
+    "notTranslated": 48,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "zh-chs": {
     "translated": 509,
-    "notTranslated": 114,
+    "notTranslated": 119,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   },
   "zh-cht": {
     "translated": 414,
-    "notTranslated": 209,
+    "notTranslated": 214,
     "added": [
-      "Challenges"
+      "It seems your Guardian has smashed all of their challenges this week."
     ],
     "removed": [
-      "Milestones"
+      "Luna's Recall",
+      "Seems your Guardian has smashed all of their challenges this week."
     ]
   }
 }

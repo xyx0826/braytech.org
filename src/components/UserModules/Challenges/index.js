@@ -48,7 +48,7 @@ class Challenges extends React.Component {
       };
     } else if (objectiveHash === 1296970487) {
       return {
-        name: this.props.t("Luna's Recall"),
+        name: manifest.DestinyObjectiveDefinition[1296970487]?.displayProperties.name,
         description: this.props.t('Retrace your steps and unravel the mysteru of the Pyramid.')
       };
     } else if (objectiveHash === 3118376466 || objectiveHash === 1607758693) { // Crucible
@@ -187,7 +187,7 @@ class Challenges extends React.Component {
                 );
               })
           ) : (
-            <div className='info'>{t('Seems your Guardian has smashed all of their challenges this week.')}</div>
+            <div className='info'>{t('It seems your Guardian has smashed all of their challenges this week.')}</div>
           )}
         </ul>
       </div>
