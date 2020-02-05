@@ -211,5 +211,17 @@
         "dismiss": true
       }
     ]
+  },
+  {
+    "id": "l390esuon1npcbyvm7t9o",
+    "date": "2020-02-05T04:13:14.108Z",
+    "expiry": 432000000,
+    "showOnce": true,
+    "displayProperties": {
+      "name": "New module: Challenges",
+      "image": "/static/images/notifications/ChallengesModule.jpg",
+      "description": "I've built a new module for the _Now_ view. It's based on activity challenges and will reflect what you see in your game's Director (the maps).\n\nI'm still not 100% satisfied with the modules available for _Now_, but I feel closer now.\n\nBefore long, we will have built enough modules that we'll have what we need to accomplish this hefty task. The fact of the matter is, whether we wanted it or not, we've stepped into a war with the Cabal on Mars. So let's get to taking out their command, one by one. Valus Ta'aurc. From what I can gather he commands the Siege Dancers from an Imperial Land Tank outside of Rubicon. He's well protected, but with the right team, we can punch through those defenses, take this beast out, and break their grip on Freehold.",
+      "prompt": true
+    }
   }
 ]

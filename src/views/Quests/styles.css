@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: calc(64px * 5 + 3px * 4) calc(64px * 4 + 3px * 3) auto;
   gap: 3rem;
+  align-content: start;
   min-height: calc(100vh - 212px);
 }
 

@@ -973,5 +973,10 @@
     "date": "2020-02-03T02:42:09.877Z",
     "version": "2.15.7",
     "content": "- revisions"
+  },
+  {
+    "date": "2020-02-05T04:13:14.108Z",
+    "version": "2.16.0",
+    "content": "- new _Challenges_ module for _Now_ view\n- made changes to allow users to view another player's _Quests_ view, where privacy preferences permit"
   }
 ]

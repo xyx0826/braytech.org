@@ -20,6 +20,10 @@ const groups = [
   [
     3118376466, // Crucible core playlists
     1607758693  // Crucible Rotator playlists
+  ],
+  [
+    3683641566, // Nightmare Hunt activities completion
+    2190387136  // Nightmare Hunt on Master difficulty
   ]
 ];
 
@@ -175,6 +179,7 @@ class Challenges extends React.Component {
                             <p>{manifest.DestinyObjectiveDefinition[objective.objectiveHash].displayProperties.description}</p>
                           </div>
                           <ProgressBar key={o} {...objective} />
+                          {/* <p>{objective.objectiveHash}</p> */}
                         </div>
                       ))}
                     </div>
