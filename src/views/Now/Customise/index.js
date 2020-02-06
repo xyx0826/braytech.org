@@ -548,7 +548,7 @@ class Customise extends React.Component {
               <li>
                 <Button onClick={this.handler_addGroup}>
                   <DestinyKey type='accept' />
-                  {t('Add a group')}
+                  {t('Add group')}
                 </Button>
               </li>
               <li>

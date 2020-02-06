@@ -200,10 +200,10 @@ class ThisWeek extends React.Component {
                 return null;
               }
             } else {
-              const modFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
-              const modDoubleSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.double.includes(m.component)));
+              const groupFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
+              const groupDoubleSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.double.includes(m.component)));
 
-              const cols = modFullSpan > -1 ? group.cols.slice(0, 1) : modDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols.filter(c => c.mods.filter(m => m.condition === undefined || m.condition).length);
+              const cols = groupFullSpan > -1 ? group.cols.slice(0, 1) : groupDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols.filter(c => c.mods.filter(m => m.condition === undefined || m.condition).length);
 
               return (
                 <div key={g} className={cx('group', ...(group.className || []))}>

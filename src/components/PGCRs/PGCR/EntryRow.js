@@ -7,12 +7,14 @@ import * as utils from '../../../utils/destinyUtils';
 import * as enums from '../../../utils/destinyEnums';
 import ObservedImage from '../../ObservedImage';
 
+// import ReportPlayer from '../ReportPlayer';
+
 const medalExclusions = ['allMedalsEarned', 'precisionKills', 'weaponKillsAbility', 'weaponKillsGrenade', 'weaponKillsMelee', 'weaponKillsSuper', 'primevalHealing', 'primevalDamage', 'primevalKills', 'motesPickedUp', 'motesLost', 'motesDeposited', 'motesDenied', 'bankOverage', 'supremacyAllyKillEnemyTagsCaptured', 'supremacyAllyTagsRecovered', 'supremacyCrestsRecovered', 'supremacyCrestsSecured', 'supremacyOwnKillEnemyTagsCaptured', 'supremacyOwnTagsRecovered'];
 
 function formatValue(column, entry, playerCache = []) {
   if (column.custom) {
     if (column.key === 'supremacySecureRate') {
-      return Number.parseFloat(entry.extended.values.supremacyOwnKillEnemyTagsCaptured.basic.value / entry.values.kills.basic.value * 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
+      return Number.parseFloat((entry.extended.values.supremacyOwnKillEnemyTagsCaptured.basic.value / entry.values.kills.basic.value) * 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
     } else {
       return '?';
     }
@@ -413,6 +415,7 @@ export function CrucibleDetail(props) {
             </ul>
           </li>
         </ul>
+        {/* <ReportPlayer characterId={entry.characterId} /> */}
       </div>
       {activity ? (
         <div className='group activity'>

@@ -10,7 +10,6 @@ import * as bungie from '../../../utils/bungie';
 import { Button, DestinyKey } from '../../UI/Button';
 import MemberLink from '../../MemberLink';
 
-// import ReportPlayer from '../ReportPlayer';
 import { ReportHeader, ReportHeaderLarge } from './ReportHeader';
 import { EntryHeader, EntryDetail } from './EntryRow';
 

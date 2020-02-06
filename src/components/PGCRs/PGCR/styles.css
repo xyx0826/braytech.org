@@ -653,10 +653,8 @@
 
 
 
-.list.reports li .entries .list .inline .behaviour {
-  grid-column: 8/10;
-  display: grid;
-  justify-content: right;
+.list.reports li .entries .list .detail .group.common .report-player {
+  margin: 1rem 0 0;
 }
 
 

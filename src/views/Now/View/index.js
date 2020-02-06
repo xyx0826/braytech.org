@@ -170,13 +170,13 @@ class Now extends React.Component {
                 return null;
               }
             } else {
-              const modFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
-              const modDoubleSpan = group.cols.filter(c => c.mods.find(m => moduleRules.double.includes(m.component))).length;
+              const groupFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
+              const groupDoubleSpan = group.cols.filter(c => c.mods.find(m => moduleRules.double.includes(m.component))).length;
 
-              const cols = modFullSpan > -1 ? group.cols.slice(0, 1) : modDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols;
+              const cols = groupFullSpan > -1 ? group.cols.slice(0, 1) : groupDoubleSpan ? groupDoubleSpan < 2 ? group.cols.slice(0, 3) : group.cols.filter(c => c.mods.find(m => moduleRules.double.includes(m.component))) : group.cols;
 
               return (
-                <div key={g} className={cx('group', ...(group.className || []), { 'double-pear': modDoubleSpan > 1 } )}>
+                <div key={g} className={cx('group', ...(group.className || []), { 'double-pear': groupDoubleSpan > 1 } )}>
                   {cols
                     .map((col, c) => {
                       if ((col.condition === undefined || col.condition) && col.mods.length) {

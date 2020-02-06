@@ -150,7 +150,7 @@ class Matches extends React.Component {
   }
 
   startInterval() {
-    this.refreshDataInterval = window.setInterval(this.run, 30000);
+    this.refreshDataInterval = window.setInterval(this.run, 20000);
   }
 
   clearInterval() {

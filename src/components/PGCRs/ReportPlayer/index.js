@@ -25,8 +25,8 @@ class ReportPlayer extends React.Component {
     const { t } = this.props;
 
     return (
-      <div className='report-player-button'>
-        <Button text='😡' />
+      <div className='report-player'>
+        <Button text={t('Report player')} />
       </div>
     );
   }
