@@ -668,7 +668,7 @@ class ModulesSelector extends React.Component {
     } else {
       return (
         <div className='modules-selector'>
-          <Button text={t('Add a module')} disabled={disabled} onClick={this.handler_expand} />
+          <Button text={t('Add module')} disabled={disabled} onClick={this.handler_expand} />
         </div>
       );
     }
