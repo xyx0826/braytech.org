@@ -70,6 +70,22 @@ const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? 'rgba(255, 255, 255, 0.2)' : ''
 });
 
+const getCols = cols => {
+  const full = cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
+  const doubleIndexes = cols.map((c, i) => c.mods.filter(m => moduleRules.double.includes(m.component)).length ? i : -1).filter(i => i > -1);
+  const doubleCount = cols.filter(c => c.mods.find(m => moduleRules.double.includes(m.component))).length;
+
+  // if (doubleCount > 0) console.log(cols, doubleIndexes, doubleCount)
+
+  if (full > -1) {
+    return cols.filter(c => c.mods.find(m => moduleRules.full.includes(m.component)))
+  } else if (doubleCount > 0 && doubleCount < 3) {
+    return cols.filter((c, i) => doubleIndexes.indexOf(i - 1) < 0);
+  } else {
+    return cols;
+  }
+}
+
 export const moduleRules = {
   full: ['Nightfalls'],
   double: ['DreamingCityShatteredThrone', 'Events'],
@@ -504,17 +520,18 @@ class Customise extends React.Component {
               if (group.id === 'head') group = headOverride;
 
               const groupFullSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.full.includes(m.component)));
-              const groupDoubleSpan = group.cols.findIndex(c => c.mods.find(m => moduleRules.double.includes(m.component)));
-
-              const cols = groupFullSpan > -1 ? group.cols.slice(0, 1) : groupDoubleSpan > -1 ? group.cols.slice(0, 3) : group.cols;
+              const groupDoubleSpan = group.cols.filter(c => c.mods.find(m => moduleRules.double.includes(m.component))).length;
+              
+              const cols = getCols(group.cols);
 
               return (
-                <div key={i} className={cx('group', 'user', { head: group.id === 'head', full: groupFullSpan > -1 })}>
+                <div key={i} className={cx('group', 'user', { head: group.id === 'head', full: groupFullSpan > -1, 'double-pear': groupDoubleSpan > 1 })}>
                   {cols.map((col, i) => {
                     const colDoubleSpan = col.mods.filter(m => moduleRules.double.includes(m.component));
                     const columnFilled = (group.id === 'head' && col.mods.length > 0) || colDoubleSpan.length > 0;
+
                     return (
-                      <div key={col.id} className={cx('column', { double: i === groupDoubleSpan })}>
+                      <div key={col.id} className={cx('column', { double: colDoubleSpan.length })}>
                         <div className='col-id'>{col.id}</div>
                         <Droppable droppableId={col.id}>
                           {(provided, snapshot) => (

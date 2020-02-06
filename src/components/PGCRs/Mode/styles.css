@@ -2,6 +2,7 @@
   height: unset;
   align-items: flex-start;
   background-color: rgba(255, 255, 255, 0.04);
+  user-select: none;
 }
 
 .list.modes li:hover {

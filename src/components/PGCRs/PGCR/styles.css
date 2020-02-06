@@ -11,6 +11,7 @@
   padding: 0 1rem;
   grid-template-columns: minmax(max-content, 240px) max-content auto;
   column-gap: 10px;
+  user-select: none;
   align-items: center;
   font-size: 14px;
 }
@@ -63,6 +64,7 @@
   position: relative;
   width: 100%;
   padding-bottom: 40%;
+  user-select: none;
 }
 
 .list.reports li > .head .image.bg {
@@ -404,6 +406,7 @@
 .list.reports li .entries .team-head {
   grid-template-columns: repeat(8, 1fr);
   padding: 0 0 0 10px;
+  user-select: none;
 }
 
 .list.reports li .entries .list li:last-child {

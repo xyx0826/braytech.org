@@ -167,8 +167,8 @@ class Mode extends React.Component {
             <>
               <div className='minor-stats'>
                 <div className='stat'>
-                  <div className='name'>{manifest.DestinyHistoricalStatsDefinition['efficiency'].statName}</div>
-                  <div className='value'>{Number.parseFloat(stats.efficiency.basic.value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                  <div className='name'>{definitionActivityMode?.activityModeCategory > 1 ? t('Matches') : t('Activities')}</div>
+                  <div className='value'>{stats.activitiesEntered.basic.value.toLocaleString()}</div>
                 </div>
                 <div className='stat'>
                   <div className='name'>{manifest.DestinyHistoricalStatsDefinition['kills'].statName}</div>
