@@ -36,7 +36,7 @@ const vendorMap = {
 };
 
 const vendorBubbleMap = {
-  1576276905: 1576276905,         // vendorHash: bubbleHash
+  1576276905: 4205285323,         // vendorHash: bubbleHash
   1062861569: 1291433366,
   396892126: 3091570009,
   863940356: 1608679832,
