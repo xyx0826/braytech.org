@@ -1,203 +1,86 @@
 {
   "de": {
-    "translated": 407,
-    "notTranslated": 229,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "translated": 402,
+    "notTranslated": 236,
+    "added": [],
     "removed": []
   },
   "debug": {
-    "translated": 636,
+    "translated": 638,
     "notTranslated": 0,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "added": [],
     "removed": []
   },
   "en": {
-    "translated": 636,
+    "translated": 638,
     "notTranslated": 0,
     "added": [],
     "removed": []
   },
   "es-mx": {
-    "translated": 619,
-    "notTranslated": 17,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "translated": 614,
+    "notTranslated": 24,
+    "added": [],
     "removed": []
   },
   "es": {
-    "translated": 619,
-    "notTranslated": 17,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "translated": 614,
+    "notTranslated": 24,
+    "added": [],
     "removed": []
   },
   "fr": {
-    "translated": 547,
-    "notTranslated": 89,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "translated": 542,
+    "notTranslated": 96,
+    "added": [],
     "removed": []
   },
   "it": {
-    "translated": 623,
-    "notTranslated": 13,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "translated": 618,
+    "notTranslated": 20,
+    "added": [],
     "removed": []
   },
   "ja": {
-    "translated": 582,
-    "notTranslated": 54,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "translated": 577,
+    "notTranslated": 61,
+    "added": [],
     "removed": []
   },
   "ko": {
-    "translated": 610,
-    "notTranslated": 26,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "translated": 605,
+    "notTranslated": 33,
+    "added": [],
     "removed": []
   },
   "pl": {
     "translated": 0,
-    "notTranslated": 636,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "notTranslated": 638,
+    "added": [],
     "removed": []
   },
   "pt-br": {
-    "translated": 524,
-    "notTranslated": 112,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "translated": 623,
+    "notTranslated": 15,
+    "added": [],
     "removed": []
   },
   "ru": {
-    "translated": 580,
-    "notTranslated": 56,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "translated": 575,
+    "notTranslated": 63,
+    "added": [],
     "removed": []
   },
   "zh-chs": {
-    "translated": 509,
-    "notTranslated": 127,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "translated": 504,
+    "notTranslated": 134,
+    "added": [],
     "removed": []
   },
   "zh-cht": {
-    "translated": 414,
-    "notTranslated": 222,
-    "added": [
-      "Activities",
-      "Allied kills secured",
-      "Ally crests recovered",
-      "Crests recovered",
-      "Crests secured",
-      "Kills secured",
-      "Matches",
-      "Report player"
-    ],
+    "translated": 409,
+    "notTranslated": 229,
+    "added": [],
     "removed": []
   }
 }

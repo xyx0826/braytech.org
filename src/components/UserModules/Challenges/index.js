@@ -164,7 +164,6 @@ class Challenges extends React.Component {
                               return (
                                 <li key={i} className='linked tooltip' data-table='DestinyActivityDefinition' data-hash={definitionActivity.hash} data-mode={definitionActivity.directActivityModeHash}>
                                   <div className='name'>{name}</div>
-                                  <div />
                                 </li>
                               );
                             })}

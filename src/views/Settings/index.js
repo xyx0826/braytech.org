@@ -137,12 +137,16 @@ class Settings extends React.Component {
     this.props.resetLayouts({ target: false });
   };
 
-  handler_clearProfileHistory = e => {
+  handler_resetTrackedTriumphs = e => {
+    this.props.setTrackedTriumphs([]);
+  };
+
+  handler_resetProfileHistory = e => {
     ls.set('history.profiles', []);
   };
 
-  handler_clearTrackedTriumphs = e => {
-    this.props.setTrackedTriumphs([]);
+  handler_resetTipsState = e => {
+    ls.set('history.tips', []);
   };
 
   handler_resetNotificationsState = e => {
@@ -195,7 +199,7 @@ class Settings extends React.Component {
             <BungieAuth location={location} />
           </div>
           <div className='module'>
-          <div className='sub-header sub'>
+            <div className='sub-header sub'>
               <div>{t('Theme')}</div>
             </div>
             <ul className='list settings'>
@@ -210,17 +214,21 @@ class Settings extends React.Component {
               <div>{t('Local data')}</div>
             </div>
             <div className='buttons'>
-              <Button text={t('Clear profile history')} action={this.handler_clearProfileHistory} />
+              <Button text={t('Reset profile history')} action={this.handler_resetProfileHistory} />
               <div className='info'>
-                <p>{t('Deletes the stored list of previously loaded member profiles (character select).')}</p>
+                <p>{t('Deletes the stored list of previously loaded member profiles (character select)')}</p>
               </div>
-              <Button text={t('Clear tracked triumphs')} action={this.handler_clearTrackedTriumphs} />
+              <Button text={t('Reset tracked triumphs')} action={this.handler_resetTrackedTriumphs} />
               <div className='info'>
-                <p>{t('Clears tracked triumphs permanently.')}</p>
+                <p>{t('Untrack all user-tracked triumphs. Will not affect the state of in-game triumphs.')}</p>
+              </div>
+              <Button text={t('Reset tips')} action={this.handler_resetTipsState} />
+              <div className='info'>
+                <p>{t('Restore informational tips to their default state')}</p>
               </div>
               <Button text={t('Reset notifications')} action={this.handler_resetNotificationsState} />
               <div className='info'>
-                <p>{t("Reset data pertaining to whether or not you've seen any active notifcation items.")}</p>
+                <p>{t('Reset dismissed notifications to their default state')}</p>
               </div>
               <Button text={t('Reset customisable layouts')} action={this.handler_resetLayouts} />
               <div className='info'>
@@ -341,10 +349,6 @@ class Settings extends React.Component {
               <div className='info'>
                 <p>{t('Reload the app')}</p>
               </div>
-              <Button text={t('Reset customisable layouts')} action={this.handler_resetLayouts} />
-              <div className='info'>
-                <p>{t('Reset customisable layouts to their default arrangements')}</p>
-              </div>
               {this.swAvailable && this.state.swInstalled ? (
                 <>
                   <Button text={t('Update service worker')} disabled={!this.state.swInstalled || this.state.swUpdateAttempt || this.state.swUnregisterAttempt} action={this.swUpdate} />
@@ -394,7 +398,6 @@ function mapDispatchToProps(dispatch) {
       dispatch({ type: 'SET_MAPS', payload: value });
     },
     resetLayouts: value => {
-      console.log('fuck')
       dispatch({ type: 'RESET_LAYOUTS', payload: value });
     },
     setThree: value => {
